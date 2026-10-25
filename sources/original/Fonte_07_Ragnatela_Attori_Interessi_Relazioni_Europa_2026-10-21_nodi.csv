@@ -1,0 +1,354 @@
+﻿id,name,kind,domain,geo,date_start,date_end,date_precision,source_docs,evidence_status,note
+RU,Federazione Russa,state,geopolitics,,,,,,,
+CN,Repubblica Popolare Cinese,state,geopolitics,,,,,,,
+US,Stati Uniti / amministrazione federale,state,geopolitics,,,,,,,
+IL,Stato di Israele,state,geopolitics,,,,,,,
+IR,Repubblica Islamica dell’Iran,state,geopolitics,,,,,,,
+BY,Bielorussia,state,geopolitics,,,,,,,
+AZ,Azerbaigian,state,geopolitics,,,,,,,
+MA,Marocco,state,geopolitics,,,,,,,
+UA,Ucraina,state,geopolitics,,,,,,,
+MD,Repubblica di Moldova,state,geopolitics,,,,,,,
+TW,Taiwan,state,geopolitics,,,,,,,
+GB,Regno Unito,state,geopolitics,,,,,,,
+FR,Francia,state,geopolitics,,,,,,,
+DE,Germania,state,geopolitics,,,,,,,
+PL,Polonia,state,geopolitics,,,,,,,
+CZ,Cechia,state,geopolitics,,,,,,,
+EE,Estonia,state,geopolitics,,,,,,,
+FI,Finlandia,state,geopolitics,,,,,,,
+LT,Lituania,state,geopolitics,,,,,,,
+RO,Romania,state,geopolitics,,,,,,,
+AL,Albania,state,geopolitics,,,,,,,
+ES,Spagna,state,geopolitics,,,,,,,
+PT,Portogallo,state,geopolitics,,,,,,,
+BE,Belgio,state,geopolitics,,,,,,,
+BR,Brasile,state,geopolitics,,,,,,,
+PE,Perù,state,geopolitics,,,,,,,
+CD,Repubblica Democratica del Congo,state,geopolitics,,,,,,,
+AO,Angola,state,geopolitics,,,,,,,
+AE,Emirati Arabi Uniti,state,geopolitics,,,,,,,
+TR,Turchia,state,geopolitics,,,,,,,
+QA,Qatar,state,geopolitics,,,,,,,
+SA,Arabia Saudita,state,geopolitics,,,,,,,
+EU,Unione europea,institution,institutional,,,,,,,
+NATO,NATO,institution,institutional,,,,,,,
+ICC,Corte penale internazionale,institution,institutional,,,,,,,
+EEAS,Servizio europeo per l’azione esterna / SEAE,institution,institutional,,,,,,,
+VIGINUM,VIGINUM / SGDSN,institution,institutional,,,,,,,
+BIS,BIS (intelligence ceca),institution,institutional,,,,,,,
+OFAC,OFAC (Tesoro USA),institution,institutional,,,,,,,
+CPS,Crown Prosecution Service UK,institution,institutional,,,,,,,
+KAPO,KAPO (sicurezza estone),institution,institutional,,,,,,,
+IEA,International Energy Agency,institution,institutional,,,,,,,
+ENISA,ENISA,institution,institutional,,,,,,,
+EASA,EASA,institution,institutional,,,,,,,
+WTO,Organizzazione mondiale del commercio,institution,institutional,,,,,,,
+IISS,International Institute for Strategic Studies,institution,institutional,,,,,,,
+CSIS,Center for Strategic and International Studies,institution,institutional,,,,,,,
+EPRS,Servizio Ricerca Parlamento europeo,institution,institutional,,,,,,,
+EC,Commissione europea,institution,institutional,,,,,,,
+FRJ,Organi giudiziari francesi,institution,institutional,,,,,,,
+UKINT,MI5 / intelligence del Regno Unito,institution,institutional,,,,,,,
+NDB,New Development Bank,institution,institutional,,,,,,,
+BRICS,BRICS,institution,institutional,,,,,,,
+GRU,GRU / intelligence militare russa,organization,intelligence-security,,,,,,,
+APT28,APT28 / Fancy Bear,organization,intelligence-security,,,,,,,
+SANDWORM,Sandworm / GRU unità 74455,organization,intelligence-security,,,,,,,
+GRU29155,Unità GRU 29155,organization,intelligence-security,,,,,,,
+GUGI,GUGI (apparato subacqueo russo),organization,intelligence-security,,,,,,,
+EW841,841st Separate Electronic Warfare Center,organization,intelligence-security,,,,,,,
+APT31,APT31 / attori cyber affiliati alla Cina,organization,intelligence-security,,,,,,,
+UFWD,United Front Work Department,organization,intelligence-security,,,,,,,
+MOIS,Ministero dell’Intelligence iraniana (MOIS),organization,intelligence-security,,,,,,,
+IRGC,Corpo delle Guardie della Rivoluzione iraniane (IRGC),organization,intelligence-security,,,,,,,
+AZBIG,Baku Initiative Group,organization,intelligence-security,,,,,,,
+WAGNER,Rete Wagner / collegati,organization,intelligence-security,,,,,,,
+FOXTROT,Foxtrot Network (organizzazione criminale),organization,intelligence-security,,,,,,,
+PARACRIM,Intermediari criminali reclutati online,organization,intelligence-security,,,,,,,
+PUTIN,Vladimir Putin,person,persons,,,,,,,
+MED,Viktor Medvedchuk,person,persons,,,,,,,
+MAR,Artem Marchevskyi,person,persons,,,,,,,
+VOL,Oleg Voloshyn,person,persons,,,,,,,
+GILL,Nathan Gill,person,persons,,,,,,,
+SHOR,Ilan Șor,person,persons,,,,,,,
+MANAFORT,Paul Manafort,person,persons,,,,,,,
+GATES,Rick Gates,person,persons,,,,,,,
+YANUKOVYCH,Viktor Yanukovych,person,persons,,,,,,,
+TRUMP,Donald Trump,person,persons,,,,,,,
+MUSK,Elon Musk,person,persons,,,,,,,
+KERIMOV,Suleiman Kerimov,person,persons,,,,,,,
+SOB,Roman Sobachevskiy,person,persons,,,,,,,
+JIANG,Jian G.,person,persons,,,,,,,
+LEE,Christine Lee,person,persons,,,,,,,
+KOUL,Stelios Kouloglou,person,persons,,,,,,,
+PAPP,Armin Papperger,person,persons,,,,,,,
+MAJID,Rawa Majid,person,persons,,,,,,,
+NATLAND,Johannes Natland,person,persons,,,,,,,
+VLAAH,Irina Vlah,person,persons,,,,,,,
+VOE,Voice of Europe,organization,influence-technology,,,,,,,
+EVRAZIA,Evrazia,organization,influence-technology,,,,,,,
+PSB,Promsvyazbank,organization,influence-technology,,,,,,,
+HAPSBURG,Hapsburg Group,organization,influence-technology,,,,,,,
+PARTYREG,Party of Regions,organization,influence-technology,,,,,,,
+STORM,Storm-1516,organization,influence-technology,,,,,,,
+DOPP,Doppelganger,organization,influence-technology,,,,,,,
+SDA,Social Design Agency,organization,influence-technology,,,,,,,
+STRUCTURA,Structura,organization,influence-technology,,,,,,,
+DIALOG,ANO Dialog,organization,influence-technology,,,,,,,
+MATRY,Matryoshka,organization,influence-technology,,,,,,,
+PORTALK,Portal Kombat,organization,influence-technology,,,,,,,
+TIGERWEB,TigerWeb,organization,influence-technology,,,,,,,
+COPYCOP,CopyCop,organization,influence-technology,,,,,,,
+SPAM,Spamouflage,organization,influence-technology,,,,,,,
+PAPER,Paperwall,organization,influence-technology,,,,,,,
+HAIMAI,Haimai PR,organization,influence-technology,,,,,,,
+FALSOS,Falsos Amigos,organization,influence-technology,,,,,,,
+BLACK,BlackCore,organization,influence-technology,,,,,,,
+ROKH,Rokh Solis,organization,influence-technology,,,,,,,
+TEAMJORGE,Team Jorge,organization,influence-technology,,,,,,,
+NSO,NSO Group,organization,influence-technology,,,,,,,
+PEGASUS,Pegasus,organization,influence-technology,,,,,,,
+PARAGON,Paragon Solutions,organization,influence-technology,,,,,,,
+GRAPHITE,Graphite,organization,influence-technology,,,,,,,
+CANDIRU,Candiru,organization,influence-technology,,,,,,,
+DISCOVER,Discover-Tech,organization,influence-technology,,,,,,,
+INTELLEXA,Intellexa,organization,influence-technology,,,,,,,
+EMENNET,Emennet Pasargad,organization,influence-technology,,,,,,,
+CONTIG,Conti criminal ransomware group,organization,influence-technology,,,,,,,
+MOLDP,Reti politiche locali moldave / blocco Victory-Pobeda,organization,influence-technology,,,,,,,
+CIVEU,"Società civile, stampa e corpo elettorale europeo",organization,influence-technology,,,,,,,
+HEALTH,Settore sanitario europeo,organization,influence-technology,,,,,,,
+X,X (ex Twitter),company,commerce-infrastructure,,,,,,,
+SPACEX,SpaceX,company,commerce-infrastructure,,,,,,,
+STARLINK,Starlink,company,commerce-infrastructure,,,,,,,
+STARSHIELD,Starshield,company,commerce-infrastructure,,,,,,,
+XAI,xAI,company,commerce-infrastructure,,,,,,,
+TESLA,Tesla,company,commerce-infrastructure,,,,,,,
+TSMC,TSMC,company,commerce-infrastructure,,,,,,,
+ASML,ASML,company,commerce-infrastructure,,,,,,,
+NVIDIA,NVIDIA,company,commerce-infrastructure,,,,,,,
+RHEIN,Rheinmetall,company,commerce-infrastructure,,,,,,,
+MILREM,Milrem Robotics,company,commerce-infrastructure,,,,,,,
+VIASAT,Viasat / KA-SAT,company,commerce-infrastructure,,,,,,,
+PALANTIR,Palantir,company,commerce-infrastructure,,,,,,,
+META,Meta / Facebook / Instagram,company,commerce-infrastructure,,,,,,,
+TIKTOK,TikTok,company,commerce-infrastructure,,,,,,,
+TELEGRAM,Telegram,company,commerce-infrastructure,,,,,,,
+YOUTUBE,YouTube,company,commerce-infrastructure,,,,,,,
+TOMALES,Tomales Bay Capital,company,commerce-infrastructure,,,,,,,
+HAL9001,HAL9001 Partners Fund I,company,commerce-infrastructure,,,,,,,
+GVA,GVA Capital,company,commerce-infrastructure,,,,,,,
+HERITAGE,Heritage Trust,company,commerce-infrastructure,,,,,,,
+IPI,IPI Partners,company,commerce-infrastructure,,,,,,,
+SEQUOIA,Sequoia Capital,company,commerce-infrastructure,,,,,,,
+BINANCE,Binance,company,commerce-infrastructure,,,,,,,
+QHOLD,Qatar Holding,company,commerce-infrastructure,,,,,,,
+VYCAP,VyCapital,company,commerce-infrastructure,,,,,,,
+A16Z,Andreessen Horowitz (a16z),company,commerce-infrastructure,,,,,,,
+FIDELITY,Fidelity,company,commerce-infrastructure,,,,,,,
+COSCO,COSCO,company,commerce-infrastructure,,,,,,,
+CMOC,CMOC,company,commerce-infrastructure,,,,,,,
+BYD,BYD,company,commerce-infrastructure,,,,,,,
+NEWNEW,NewNew Polar Bear (nave),company,commerce-infrastructure,,,,,,,
+YIPENG,Yi Peng 3 (nave),company,commerce-infrastructure,,,,,,,
+EAGLES,Eagle S (nave),company,commerce-infrastructure,,,,,,,
+IRIS2,IRIS² / SpaceRISE,asset,dependencies,,,,,,,
+CRMA,Critical Raw Materials Act,asset,dependencies,,,,,,,
+REPOWER,REPowerEU / uscita dal gas russo,asset,dependencies,,,,,,,
+CHIPSACT,EU Chips Act / Chips Act 2.0,asset,dependencies,,,,,,,
+EUROPORTS,EU Ports Strategy,asset,dependencies,,,,,,,
+READINESS,Readiness 2030 / SAFE,asset,dependencies,,,,,,,
+BALTICSENTRY,Baltic Sentry,asset,dependencies,,,,,,,
+MOLDELEC,Elezioni moldave 2024-2025,asset,dependencies,,,,,,,
+BREXIT,Referendum Brexit 2016,asset,dependencies,,,,,,,
+ROMELEC,Presidenziali Romania 2024,asset,dependencies,,,,,,,
+EU24,Elezioni europee 2024,asset,dependencies,,,,,,,
+FRELEC,Municipali francesi 2026,asset,dependencies,,,,,,,
+GELEC,Elezioni federali tedesche 2025,asset,dependencies,,,,,,,
+AFD,Alternative für Deutschland,asset,dependencies,,,,,,,
+CABLES,Cavi sottomarini baltici,asset,dependencies,,,,,,,
+GNSS,Segnale GNSS civile baltico,asset,dependencies,,,,,,,
+HORMUZ,Stretto di Hormuz / traffico energetico,asset,dependencies,,,,,,,
+EUENERGY,Mercato energetico europeo,asset,dependencies,,,,,,,
+RU_GAS,Gas naturale russo verso UE,asset,dependencies,,,,,,,
+LNG,Mercato globale del gas naturale liquefatto,asset,dependencies,,,,,,,
+REE,Terre rare e magneti industriali,asset,dependencies,,,,,,,
+CHNREFINE,Raffinazione cinese dei minerali,asset,dependencies,,,,,,,
+BATT,Produzione batterie,asset,dependencies,,,,,,,
+SEMICON,Semiconduttori avanzati,asset,dependencies,,,,,,,
+EUDEF,Capacità difensiva europea,asset,dependencies,,,,,,,
+RUMIC,Base industriale militare russa,asset,dependencies,,,,,,,
+UKRLOG,Logistica europea per la difesa ucraina,asset,dependencies,,,,,,,
+PROTEST26,Proteste europee autunno 2026,asset,dependencies,,,,,,,
+CEUTA,Crisi migratoria Ceuta 2026,asset,dependencies,,,,,,,
+LITHCOERCION,Coercizione commerciale contro la Lituania,asset,dependencies,,,,,,,
+SHADOW,Shadow fleet russa,asset,dependencies,,,,,,,
+RUSANCTIONS,Sanzioni occidentali contro la Russia,asset,dependencies,,,,,,,
+XDSA,Obblighi Digital Services Act verso X,asset,dependencies,,,,,,,
+OILMARKET,Mercato mondiale dei carburanti,asset,dependencies,,,,,,,
+CHANCAY,"Porto di Chancay, Perù",asset,dependencies,,,,,,,
+LOBITO,Corridoio di Lobito,asset,dependencies,,,,,,,
+UK_BUNDESTAG,Parlamento federale tedesco,institution,targets,,,,,,,
+ELECTCOM,Electoral Commission UK,institution,targets,,,,,,,
+CZECH_MFA,Ministero degli Esteri ceco,institution,targets,,,,,,,
+OPCW,OPCW,institution,targets,,,,,,,
+HSE,Health Service Executive Irlanda,institution,targets,,,,,,,
+EMA,European Medicines Agency,institution,targets,,,,,,,
+EUROPARL,Parlamento europeo,institution,targets,,,,,,,
+EUPARTIES,Partiti e rappresentanti politici europei,institution,targets,,,,,,,
+RAFFAIR,Base RAF Fairford,institution,targets,,,,,,,
+ISREMB,Ambasciata israeliana a Stoccolma,institution,targets,,,,,,,
+RU_PRESS,Media statali russi RT / Sputnik,institution,targets,,,,,,,
+TUR_BRA_MOR,"Mercati Turchia, Brasile, Marocco (diesel russo)",institution,targets,,,,,,,
+EV_TL-0001,Attacchi DDoS contro l’Estonia,event,Cyber / sicurezza,Estonia,2007-04,2007-05,month,"S06,S00;S03;S05",Evento accertato; mandante statale contestato,"Record originale TL-0001; Dopo la crisi del Bronze Soldier vengono colpiti governo, banche e media; il comando diretto dello Stato russo non è conclusivamente provato."
+EV_TL-0002,Cyberattacchi durante la guerra russo-georgiana,event,Cyber / guerra,Georgia,2008-08,,month,"S06,S03",Evento corroborato; regia cyber non conclusiva,Record originale TL-0002; DDoS e compromissioni di siti accompagnano l’offensiva militare russa; catena di comando cyber statale incompleta nelle fonti aperte.
+EV_TL-0003,Hapsburg Group e lobbying per Yanukovych,event,Influenza politica,Europa / Ucraina,2012,2014,year,"S06,S01",Documentato in atti giudiziari; regia russa non provata,Record originale TL-0003; Manafort/Gates organizzano una rete di ex personalità politiche europee per attività favorevoli al governo Yanukovych e al Party of Regions. Non dimostrata una catena diretta del Cremlino.
+EV_TL-0004,Avvio e ampliamento del regime sanzionatorio UE sulla Russia,event,Sanzioni / diplomazia,Unione europea,2014,,year,"S06,S00;S05",Atto istituzionale,Record originale TL-0004; L’UE costruisce le misure restrittive in risposta alla violazione della sovranità ucraina.
+EV_TL-0005,Inizio della guerra nel Donbas,event,Guerra,Ucraina,2014,,year,"S06,S00;S03;S05",Accertato,Record originale TL-0005; Conflitto armato nell’Ucraina orientale nel contesto dell’aggressione russa; punto di svolta per la sicurezza europea.
+EV_TL-0006,Occupazione e annessione illegale della Crimea,event,Guerra,Crimea / Ucraina,2014,,year,"S06,S00;S03;S05",Accertato,"Record originale TL-0006; La Russia occupa e annette la penisola ucraina, in violazione del diritto internazionale."
+EV_TL-0007,Esplosioni nei depositi di Vrbětice,event,Sabotaggio,Cechia,2014-10,2014-12,month,"S06,S00;S03",Evento accertato; attribuzione istituzionale GRU,Record originale TL-0007; Due persone muoiono; in seguito le autorità ceche attribuiscono l’operazione a ufficiali GRU. Secondo episodio nel dicembre 2014.
+EV_TL-0008,Compromissione informatica del Bundestag,event,Cyber / spionaggio,Germania,2015,,year,"S06,S00;S03",Attribuzione istituzionale,Record originale TL-0008; Intrusione ed esfiltrazione di dati attribuite a APT28/GRU; successive sanzioni europee.
+EV_TL-0009,Interferenza russa nelle presidenziali statunitensi,event,Interferenza elettorale,Stati Uniti,2016,,year,"S06,S00;S05",Attribuzione istituzionale; impatto ignoto,Record originale TL-0009; Intelligence e successivi rapporti del Senato USA documentano operazioni russe; non quantificano la variazione del voto né stabiliscono una cospirazione generale Trump-Russia.
+EV_TL-0010,Referendum Brexit e operazioni informative,event,Interferenza elettorale,Regno Unito,2016,,year,"S06,S00;S01;S02;S05",Referendum accertato; impatto estero non verificato,"Record originale TL-0010; RT, Sputnik, reti social e account filorussi sono discussi dagli studi; l’effetto sul voto non è determinato e non è provato che la Russia abbia causato la Brexit."
+EV_TL-0011,MacronLeaks nelle presidenziali francesi,event,Interferenza elettorale,Francia,2017,,year,"S06,S02",Evento accertato; attribuzione statale non conclusiva,"Record originale TL-0011; Operazione hack-and-leak, phishing e amplificazione online; la Francia non attribuisce formalmente l’episodio a uno Stato, pur emergendo indizi russi in analisi successive."
+EV_TL-0012,Strutture patrimoniali di Kerimov negli USA,event,Finanza / sanzioni,Stati Uniti,2017,2018,year,"S06,S01",Corroborato; cronologia della proprietà pluriennale,"Record originale TL-0012; Trust, gestori e intermediari custodiscono attività patrimoniali riconducibili a Suleiman Kerimov, poi oggetto di provvedimenti OFAC."
+EV_TL-0013,NotPetya,event,Cyber / sabotaggio,Ucraina / Europa / mondo,2017-06,,month,"S06,S00;S03;S05",Attribuzione istituzionale,Record originale TL-0013; Malware distruttivo contro infrastrutture ucraine con ricadute globali; governi occidentali e UE lo attribuiscono a Sandworm/GRU.
+EV_TL-0014,Designazione statunitense di Suleiman Kerimov,event,Finanza / sanzioni,USA / Russia,2018,,year,"S06,S01",Atto istituzionale,Record originale TL-0014; Kerimov viene inserito nelle sanzioni USA; seguono indagini su trust e gestori patrimoniali.
+EV_TL-0015,Pagamenti all’eurodeputato Nathan Gill,event,Corruzione / influenza,Regno Unito / Parlamento europeo,2018,2019,year,"S06,S01",Accertato penalmente nel 2025,Record originale TL-0015; Fra 2018 e 2019 Gill riceve denaro per interventi e dichiarazioni favorevoli a narrative filorusse; successiva confessione e condanna.
+EV_TL-0016,Proteste dei Gilet gialli,event,Movimenti sociali,Francia,2018,,year,"S06,S02",Proteste accertate; regia estera non provata,Record originale TL-0016; Mobilitazione francese su temi economici; studi sulla centralità dei bot non dimostrano un’origine artificiale o una regia russa del movimento.
+EV_TL-0017,Avvelenamento di Sergei e Yulia Skripal,event,Attacco chimico,Regno Unito,2018-03,,month,"S06,S00;S03",Attribuzione UK; prova forense sulla sostanza,"Record originale TL-0017; Uso di agente Novichok a Salisbury; Londra attribuisce l’operazione a ufficiali russi, OPCW conferma tecnicamente l’agente."
+EV_TL-0018,Tentativo GRU contro OPCW,event,Cyber / spionaggio,Paesi Bassi,2018-04,,month,"S06,S00;S03",Accertato,Record originale TL-0018; Autorità olandesi intercettano quattro ufficiali GRU durante un’operazione di accesso informatico ravvicinato; sequestrata attrezzatura.
+EV_TL-0019,Omicidio di Zelimkhan Khangoshvili,event,Omicidio / intelligence,Germania,2019-08,,month,"S06,S03",Accertato giudiziariamente,Record originale TL-0019; Uccisione a Berlino; successivamente la giustizia tedesca riconosce il mandato di organi statali russi.
+EV_TL-0020,Attacco informatico all’EMA e leak di documenti vaccinali,event,Cyber / salute,Unione europea,2020,,year,"S06,S02",Attacco accertato; mandante statale non verificato,Record originale TL-0020; Documenti sottratti e in parte manipolati prima della diffusione; l’EMA non attribuisce pubblicamente l’operazione a uno Stato nella fonte citata.
+EV_TL-0021,Intrusioni contro ministeri estoni,event,Cyber / intelligence,Estonia,2020,,year,"S06,S03",Attribuzione istituzionale successiva,Record originale TL-0021; Compromissione e sottrazione di documenti; la UE attribuirà l’operazione alla GRU Unit 29155 e sanzionerà nel 2025.
+EV_TL-0022,Pandemia COVID-19: narrative su vaccini e regolatori,event,Disinformazione sanitaria,Europa / mondo,2020,2022,year,"S06,S00;S02",Campagne documentate; impatto non quantificato,"Record originale TL-0022; Il SEAE rileva messaggi fuorvianti diffusi da media/reti collegati a Russia e Cina, anche contro vaccini occidentali ed EMA; impatto clinico attribuibile non misurato."
+EV_TL-0023,Russia Report del comitato intelligence britannico,event,Indagine parlamentare,Regno Unito,2020-07,,month,"S06,S00;S01;S02",Atto parlamentare,Record originale TL-0023; Il rapporto UK critica la mancata valutazione post-Brexit dell’interferenza; non stabilisce che Mosca abbia determinato il referendum.
+EV_TL-0024,Rapporto Senato USA sull’interferenza del 2016,event,Indagine parlamentare,Stati Uniti,2020-08,,month,"S06,S00;S05",Atto parlamentare,"Record originale TL-0024; Pubblicazione del Volume 5 dell’indagine bipartisan su interferenze russe, contatti e vulnerabilità della campagna."
+EV_TL-0025,Accessi contro l’Electoral Commission britannica,event,Cyber / spionaggio,Regno Unito,2021,2022,year,"S06,S03",Attribuzione UK nel 2024,"Record originale TL-0025; Campagna 2021-2022 e ricognizioni contro parlamentari, successivamente attribuite dal Regno Unito ad APT31; nessuna alterazione del voto accertata."
+EV_TL-0026,Caso Christine Lee e UFWD,event,Influenza politica,Regno Unito,2021,2022,year,"S06,S01","Attribuzione istituzionale, non condanna","Record originale TL-0026; MI5 indaga rapporti politici e finanziamenti di Christine Lee, che sfoceranno nell’interference alert del 2022."
+EV_TL-0027,Misure cinesi contro Lituania e catene di fornitura,event,Coercizione commerciale,Cina / Lituania / UE,2021,,year,"S06,S00;S04;S05",Denuncia/azione istituzionale UE,Record originale TL-0027; La Commissione contesta restrizioni discriminatorie su beni e imprese; il caso arriva alla controversia WTO WT/DS610.
+EV_TL-0028,Strumentalizzazione migratoria dalla Bielorussia,event,Coercizione migratoria,Bielorussia / frontiera UE,2021,,year,"S06,S00;S03;S05",Attribuzione istituzionale,"Record originale TL-0028; Trasferimento/facilitazione di flussi verso Polonia, Lituania e Lettonia; regime bielorusso ritenuto responsabile dall’UE."
+EV_TL-0029,Attacco Conti al servizio sanitario irlandese,event,Ransomware / salute,Irlanda,2021-05,,month,"S06,S00;S03",Attacco accertato; ordine statale non verificato,"Record originale TL-0029; Ransomware colpisce Health Service Executive; attribuzione al gruppo criminale Conti, non a un mandato del Cremlino."
+EV_TL-0030,Quinto pacchetto sanzioni UE contro la Bielorussia,event,Sanzioni / frontiere,Unione europea,2021-12-02,,day,"S06,S00;S03;S05",Atto istituzionale,Record originale TL-0030; UE sanziona anche operatori commerciali per strumentalizzazione dei migranti.
+EV_TL-0031,Acquisizione Twitter da parte di Elon Musk,event,Investimenti / tecnologia,Stati Uniti / mondo,2022,,year,"S06,S00;S01",Operazione societaria accertata,"Record originale TL-0031; L’operazione coinvolge impegni finanziari internazionali, inclusi soggetti statunitensi, cinesi e del Golfo; ciò non prova controllo politico dei finanziatori."
+EV_TL-0032,Doppelganger prende dimensione europea,event,FIMI / campagne,Europa,2022,,year,"S06,S01;S02",Campagna corroborata,"Record originale TL-0032; Falsi siti che imitano media, account e inserzioni attivi soprattutto in Germania, Francia, Italia, UK e Ucraina."
+EV_TL-0033,Espansione Portal Kombat verso pubblici occidentali,event,FIMI / campagne,Europa / web,2022,2024,year,"S06,S01;S02",Campagna corroborata,Record originale TL-0033; Rete di aggregazione automatizzata e siti filorussi; studi tecnici individueranno TigerWeb e almeno 193 portali.
+EV_TL-0034,Meta rimuove una grande rete Doppelganger,event,FIMI / contromisure,Europa / Meta,2022,,year,"S06,S02",Contromisura piattaforma documentata,"Record originale TL-0034; Rimossi 1.633 account Facebook, 703 pagine e 29 account Instagram descritti come originati in Russia."
+EV_TL-0035,MI5 diffonde l’interference alert su Christine Lee,event,Cyber / spionaggio,Regno Unito,2022,,year,"S06,S01","Attribuzione istituzionale, non condanna",Record originale TL-0035; L’intelligence britannica afferma che donazioni e accessi politici hanno occultato l’origine di finanziamenti esteri in relazione all’UFWD cinese.
+EV_TL-0036,OFAC sanziona Ilan Șor,event,Sanzioni / finanziamenti,Moldavia / Stati Uniti,2022,,year,"S06,S01",Designazione ufficiale,Record originale TL-0036; Autorità USA descrivono attività a beneficio della Federazione Russa e reti di influenza moldave.
+EV_TL-0037,Sostegno occidentale all’Ucraina e sanzioni ampliate,event,Guerra / sanzioni,UE / Ucraina,2022,,year,"S06,S00;S03;S04;S05",Atti pubblici e impieghi documentati,Record originale TL-0037; UE e alleati ampliano sanzioni e aiuti; le reti Starlink acquistano importanza in comunicazioni e operazioni ucraine.
+EV_TL-0038,Attacco Viasat KA-SAT,event,Cyber / satelliti,Ucraina / Europa,2022-02-24,,day,"S06,S00;S03",Attribuzione istituzionale,Record originale TL-0038; Sabotaggio informatico della rete satellitare con disservizi anche per utenze europee; formalmente attribuito alla Federazione Russa da UE e alleati.
+EV_TL-0039,Invasione russa su vasta scala dell’Ucraina,event,Guerra,Ucraina,2022-02-24,,day,"S06,S00;S01;S02;S03;S04;S05",Accertato,"Record originale TL-0039; Avvio dell’offensiva militare contro l’Ucraina; spartiacque per sicurezza, sanzioni, difesa e operazioni ibride europee."
+EV_TL-0040,Campagna distruttiva iraniana contro l’Albania,event,Cyber / guerra ibrida,Albania,2022-07,2022-09,month,"S06,S03",Forense e attribuzione istituzionale,"Record originale TL-0040; Accesso persistente, esfiltrazione, wiper/ransomware e operazioni informative fra luglio e settembre; gruppi collegati al MOIS secondo analisi forensi e autorità."
+EV_TL-0041,Esplosioni dei gasdotti Nord Stream,event,Sabotaggio energetico,Mar Baltico,2022-09-26,,day,"S06,S03;S04",Danno accertato; responsabilità statale contestata,Record originale TL-0041; Danneggiamento nel Baltico; procure tedesche accusano in seguito sospetti ucraini. Processo e attribuzione allo Stato ucraino non conclusivi.
+EV_TL-0042,Afflusso migratorio al confine russo-finlandese,event,Pressione migratoria,Finlandia / Russia,2023,2024,year,"S06,S03",Attribuzione istituzionale finlandese,Record originale TL-0042; Incremento e chiusure dei valichi nel 2023-2024; la Finlandia attribuisce alla Russia una facilitazione strumentale dei flussi.
+EV_TL-0043,Condanna di Ilan Șor,event,Finanza / giustizia,Moldavia,2023,,year,"S06,S01",Accertato giudiziariamente,Record originale TL-0043; Condanna definitiva a 15 anni in Moldavia per frode bancaria e riciclaggio; le reti di influenza collegate continuano ad operare.
+EV_TL-0044,ENISA documenta 215 incidenti sanitari nel triennio,event,Cyber / salute,Europa,2023,,year,"S06,S00;S03",Analisi statistica istituzionale,"Record originale TL-0044; Rapporto su incidenti 2021-2023 in sanità UE/limitrofi; 54% include ransomware. Serie aggregata, non un singolo attacco."
+EV_TL-0045,Matryoshka e Storm-1516 si consolidano,event,Interferenze / FIMI,Europa / mondo,2023,2025,year,"S06,S01;S02",Campagne corroborate,"Record originale TL-0045; Campagne multicanale filorusse con pseudo-media, video falsi, seeding su Telegram e amplificazione su X; inizi documentati nel 2023."
+EV_TL-0046,Danni a Balticconnector e cavi,event,Infrastrutture sottomarine,Golfo di Finlandia,2023-10-08,,day,"S06,S03",Causalità materiale corroborata; intento non verificato,"Record originale TL-0046; L’ancora della NewNew Polar Bear è implicata nei danni; responsabilità materiale corroborata, dolo e ordine di Pechino non dimostrati."
+EV_TL-0047,DOJ sequestra 32 domini legati a Doppelganger,event,FIMI / contromisure,Stati Uniti / Europa,2024,,year,"S06,S01;S02",Atto giudiziario / attribuzione DOJ,Record originale TL-0047; Il dipartimento di Giustizia USA descrive la rete SDA/Structura e componenti tecniche di impersonazione dei media e influenza.
+EV_TL-0048,Mandati di arresto CPI nel caso Netanyahu/Gallant,event,Spyware / diritti,Corte penale internazionale,2024,,year,"S06,S05",Atto giudiziario internazionale,Record originale TL-0048; La Corte penale internazionale emette mandati contro esponenti israeliani; seguiranno sanzioni USA contro la Corte.
+EV_TL-0049,Operazioni azere contro interessi francesi,event,Guerra informativa,Francia / territori d’oltremare,2024,,year,"S06,S05",Attribuzione istituzionale,"Record originale TL-0049; VIGINUM ricostruisce attività del Baku Initiative Group, anche relative a territori francesi d’oltremare, e collegamenti diretti con lo Stato azerbaigiano."
+EV_TL-0050,Operazioni iraniane in Francia e Svezia,event,Cyber / interferenze,Francia / Svezia,2024,,year,"S06,S03",Attribuzione istituzionale successiva,"Record originale TL-0050; Breach, compromissioni SMS e attività informative ricondotte in seguito a Emennet Pasargad; nel 2026 arrivano sanzioni UE."
+EV_TL-0051,Paperwall esposta da Citizen Lab,event,Disinformazione / reti,Europa / mondo,2024,,year,"S06,S02",Operatore corroborato; mandato non verificato,"Record originale TL-0051; Rete di falsi media locali riconducibile tecnicamente a Haimai; prima mappatura: 123 siti in 30 Paesi, poi espansione. Ordine statale specifico non provato."
+EV_TL-0052,Pressioni militari cinesi intorno a Taiwan,event,Cina / Taiwan,Stretto di Taiwan,2024,2026,year,"S06,S00;S04;S05",Attività pubbliche; scenario futuro ipotetico,Record originale TL-0052; Pattuglie ed esercitazioni continuano nel 2024-2026; non esiste nelle fonti del progetto prova di decisione già presa per un’invasione.
+EV_TL-0053,Processi politici e referendum in Moldavia,event,Elezioni / influenza,Moldavia,2024,2025,year,"S06,S00;S01;S02",Attribuzione istituzionale; effetti sul singolo voto non quantificati,"Record originale TL-0053; Indagini su compravendita di voti, propaganda, trasferimenti in rubli e reti PSB/Șor/Evrazia; parte attribuita a finanziamenti russi da UE e autorità moldave."
+EV_TL-0054,Regno Unito attribuisce ad APT31 operazioni contro il processo politico,event,Controspionaggio,Regno Unito,2024,,year,"S06,S03",Attribuzione istituzionale,Record originale TL-0054; Attribuzione pubblica di attacchi e ricognizioni 2021-2022 contro Electoral Commission e parlamentari a soggetti affiliati allo Stato cinese.
+EV_TL-0055,VIGINUM mappa Portal Kombat,event,Disinformazione / reti,Francia / Europa,2024,,year,"S06,S01;S02",Corroborato tecnicamente,Record originale TL-0055; Identificati almeno 193 siti di propagazione e aggregazione filorussa; legami tecnici con TigerWeb.
+EV_TL-0056,Le autorità ceche scoprono la rete Voice of Europe,event,Influenza politica,Cechia / Polonia / UE,2024-03,,month,"S06,S00;S01;S05",Attribuzione istituzionale,"Record originale TL-0056; BIS e autorità polacche documentano un canale mediatico e finanziario legato a Medvedchuk/Marchevskyi, con pagamenti e contatti politici."
+EV_TL-0057,Aggressione a Leonid Volkov,event,Aggressione / repressione,Lituania,2024-03-12,,day,"S06,S03",Evento accertato; ordinante contestato,"Record originale TL-0057; Attacco a Vilnius con martello e irritante; sospetti sul coinvolgimento russo, ordinante finale oggetto di piste e indagini differenti."
+EV_TL-0058,Incendio del magazzino londinese con aiuti per Kiev,event,Sabotaggio / logistica,Regno Unito,2024-03-20,,day,"S06,S03",Accertato giudiziariamente,Record originale TL-0058; Materiali Starlink e aiuti destinati all’Ucraina colpiti; condanne contro esecutori collegati a una rete Wagner.
+EV_TL-0059,Incendio di Marywilska 44,event,Sabotaggio,Polonia,2024-05,,month,"S06,S03",Attribuzione istituzionale contestata dalla Russia,"Record originale TL-0059; Distruzione del centro commerciale a Varsavia; il governo polacco attribuisce l’ordine ai servizi russi, che negano."
+EV_TL-0060,Sanzioni UE sul caso Voice of Europe,event,Sanzioni / reti,Unione europea,2024-05-27,,day,"S06,S00;S01",Atto istituzionale,"Record originale TL-0060; Il Consiglio UE designa Voice of Europe, Viktor Medvedchuk e Artem Marchevskyi; formalizza i ruoli nella rete di influenza e pagamento."
+EV_TL-0061,Elezioni europee 2024 e monitoraggio FIMI,event,Elezioni / FIMI,Unione europea,2024-06,,month,"S06,S02",Elezioni accertate; monitoraggio istituzionale,"Record originale TL-0061; Il SEAE registra 42 episodi russi FIMI intorno al ciclo elettorale, senza rilevare una campagna grave nei giorni del voto; impatto sul risultato non dimostrato."
+EV_TL-0062,Rapporto OMS Europa sui determinanti commerciali della salute,event,Salute / lobbying,Europa,2024-06,,month,"S06,S00",Studio istituzionale,Record originale TL-0062; Pubblicazione su influenze industriali sulle politiche sanitarie. Non equivale a prova di un’operazione di intelligence straniera.
+EV_TL-0063,Complotto contro Armin Papperger,event,Intelligence / sicurezza,Germania,2024-07,,month,"S06,S03",Corroborato da reporting di intelligence,Record originale TL-0063; Servizi occidentali segnalano un piano russo per uccidere il dirigente Rheinmetall; non risulta sentenza pubblica sul complotto.
+EV_TL-0064,Pacchi incendiari DHL/DPD,event,Sabotaggio / trasporti,Germania / Polonia / UK,2024-07,,month,"S06,S03",Fortemente corroborato,"Record originale TL-0064; Dispositivi con timer su circuiti logistici in Germania, Polonia e UK; investigatori collegano l’operazione a intermediari russi e intelligence militare."
+EV_TL-0065,Dichiarazione NATO del vertice di Washington,event,NATO / geopolitica,Washington / NATO,2024-07-10,,day,"S06,S00;S03;S04;S05",Attribuzione NATO; contestata da Pechino,Record originale TL-0065; NATO descrive la minaccia ibrida russa e definisce la Cina “decisive enabler” della base industriale della guerra russa tramite dual-use.
+EV_TL-0066,Danneggiamento di due cavi da Yi Peng 3,event,Infrastrutture sottomarine,Mar Baltico,2024-11,,month,"S06,S03",Danno accertato; dolo non verificato,Record originale TL-0066; Indagine svedese identifica il ruolo materiale dell’ancora; non dimostra intenzionalità o ordine della Cina.
+EV_TL-0067,Presidenziali in Romania e manipolazione TikTok,event,Elezioni / piattaforme,Romania,2024-11,,month,"S06,S00;S02",Manipolazione documentata; origine straniera non conclusiva,Record originale TL-0067; Promozione inautentica e influencer occultamente remunerati; VIGINUM non attribuisce l’insieme a un attore straniero.
+EV_TL-0068,Annullamento delle presidenziali romene,event,Elezioni / istituzioni,Romania,2024-12,,month,"S06,S00;S02",Decisione istituzionale; mandante estero contestato,Record originale TL-0068; Annullamento del processo elettorale dopo le controversie sulla manipolazione online; l’annullamento non costituisce automaticamente attribuzione alla Russia.
+EV_TL-0069,Danneggiamento Estlink 2 e cavi,event,Infrastrutture sottomarine,Finlandia / Estonia,2024-12-25,,day,"S06,S03",Danno accertato; mandato statale non provato,"Record originale TL-0069; Nave Eagle S associata alla shadow fleet russa; responsabilità di un ordine del Cremlino non accertata, procedimento finlandese con problemi di giurisdizione."
+EV_TL-0070,Attribuzione ceca del cyber-spionaggio APT31 sul Ministero degli Esteri,event,Cyber / spionaggio,Cechia,2025,,year,"S06,S03",Attribuzione istituzionale,Record originale TL-0070; La Cechia denuncia attività persistente dal 2022 collegate ai servizi di sicurezza cinesi.
+EV_TL-0071,Aumento dell’uso di AI nelle campagne FIMI,event,FIMI / tecnologia,Europa / web,2025,,year,"S06,S02;S05",Serie di monitoraggio istituzionale,"Record originale TL-0071; Il quarto rapporto SEAE, pubblicato nel 2026, analizza 540 incidenti del 2025 e circa 10.500 canali; il 27% degli incidenti usa tecniche legate all’AI."
+EV_TL-0072,Avvio di Baltic Sentry,event,NATO / difesa,Mar Baltico,2025,,year,"S06,S03",Iniziativa NATO,Record originale TL-0072; NATO rafforza pattugliamento e protezione delle infrastrutture baltiche dopo incidenti a cavi e interconnettori.
+EV_TL-0073,Campagna tedesca e Storm-1516,event,Elezioni / disinformazione,Germania,2025,,year,"S06,S01;S02",Attribuzione istituzionale; effetto voto non misurato,"Record originale TL-0073; Fake news, video sintetici, deepfake e siti pseudo-giornalistici, in parte attribuiti dal governo tedesco all’ecosistema russo/GRU."
+EV_TL-0074,Concentrazione cinese delle filiere batterie,event,Industria / batterie,Cina / mercato globale,2025,,year,"S06,S04",Dati IEA,Record originale TL-0074; Nel 2025 Cina oltre 80% celle mondiali; circa 85% materiali catodici e oltre 90% anodici. Indicatore strutturale.
+EV_TL-0075,Condanna di Jian G. in Germania,event,Giustizia / spionaggio,Germania / Parlamento europeo,2025,,year,"S06,S01",Accertato giudiziariamente,Record originale TL-0075; L’ex assistente di un eurodeputato riceve 4 anni e 9 mesi per spionaggio a favore della Cina e sorveglianza di dissidenti.
+EV_TL-0076,Diminuzione della quota russa nel gas UE,event,Energia / resilienza,Unione europea,2025,,year,"S06,S04;S05",Dati istituzionali,"Record originale TL-0076; Quota stimata dal ~40% del 2021 a ~10% nel 2025; crescente ricorso a LNG e mercati globali. Indicatore annuale, non singolo incidente."
+EV_TL-0077,Elezioni moldave e reti di influenza russe,event,Elezioni / interferenze,Moldavia,2025,,year,"S06,S01;S02;S05",Interferenze attribuite; impatto sul voto individuale ignoto,Record originale TL-0077; Reti collegate a Șor/Evrazia e meccanismi finanziari indagati; procedimenti e designazioni UE si sviluppano fra 2024 e 2026.
+EV_TL-0078,Graphite/Paragon contro giornalisti europei,event,Spyware / sorveglianza,Italia / Europa,2025,,year,"S06,S01;S03;S04",Forense; committente non verificato,"Record originale TL-0078; Citizen Lab e successive indagini forensi documentano compromissioni, fra cui casi italiani, senza identificare in modo pubblico e univoco cliente e autorità ordinante."
+EV_TL-0079,Inizio della seconda amministrazione Trump,event,Governi / geopolitica,Stati Uniti,2025,,year,"S06,S00;S05",Evento istituzionale,"Record originale TL-0079; Nuova linea strategica USA: divergenze con UE su politica, sanzioni, commercio e sostegno a Kiev."
+EV_TL-0080,Interferenze FIMI nelle elezioni europee del 2025,event,Elezioni / influenza,Europa,2025,,year,"S06,S02",Attività documentate; impatto sul voto ignoto,"Record originale TL-0080; Il SEAE documenta tattiche russe in Germania, Polonia, Romania, Moldavia e Cechia; differenziare tentativi e impatto effettivo."
+EV_TL-0081,Musk interviene a favore di AfD,event,Influenza politica pubblica,Germania / USA,2025,2025-02,year,"S06,S00;S01",Condotta pubblica accertata; effetti non misurati,Record originale TL-0081; Sostegno pubblico su X e interviste nel ciclo elettorale tedesco; nessuna prova pubblica di mandato clandestino federale USA o di effetto decisivo sul voto.
+EV_TL-0082,Paperwall cresce e ricicla fonti,event,Disinformazione / reti,Europa / mondo,2025,,year,"S06,S02",Campagna documentata; coordinamento non provato,Record originale TL-0082; Il SEAE osserva espansione della rete cinese di pseudo-media e ripresa di contenuti russi; non è prova di comando congiunto Cina-Russia.
+EV_TL-0083,Partnership strategica Russia-Iran,event,Trattati / geopolitica,Russia / Iran,2025,,year,"S06,S05",Trattato / ratifica documentata,Record originale TL-0083; Accordo strategico in seguito ratificato da Mosca nel 2025; non comporta una clausola di difesa reciproca automatica tipo NATO.
+EV_TL-0084,Procedimenti OFAC su GVA Capital e IPI Partners,event,Finanza / sanzioni,Stati Uniti,2025,,year,"S06,S01",Atti amministrativi,Record originale TL-0084; Sanzione civile a GVA per investimenti riconducibili a Kerimov e settlement distinto con IPI; non prova finanziamento Kerimov-SpaceX.
+EV_TL-0085,Restrizioni cinesi a minerali critici e tecnologie,event,Commercio / industria,Cina / UE / USA,2025,,year,"S06,S00;S04;S05",Decisioni pubbliche e impatti documentati,"Record originale TL-0085; Controlli export su terre rare, magneti e altre materie prime generano interruzioni nelle supply chain occidentali."
+EV_TL-0086,Serie di danneggiamenti a cavi nel Baltico,event,Infrastrutture / cavi,Mar Baltico,2025,,year,"S06,S03",Dato aggregato di monitoraggio,"Record originale TL-0086; Fonti Reuters riportano almeno 11 cavi danneggiati fra ottobre 2023 e fine 2025, con cause differenti e attribuzioni da distinguere."
+EV_TL-0087,Sanzioni statunitensi contro la Corte penale internazionale,event,CPI / sanzioni,Stati Uniti / CPI,2025-02,,month,"S06,S00;S05",Atto ufficiale,"Record originale TL-0087; La Casa Bianca introduce misure restrittive contro la CPI, contestandone attività relative a Israele e altri attori."
+EV_TL-0088,Rapporto CSIS sull’escalation dei sabotaggi russi,event,Analisi / guerra ibrida,Europa,2025-03-18,,day,"S06,S00;S03",Studio di ricerca,"Record originale TL-0088; Nel campione CSIS 3 casi 2022, 12 nel 2023 e 34 nel 2024; non è conteggio totale delle operazioni ibride."
+EV_TL-0089,Cina limita l’esportazione di sette terre rare pesanti,event,Commercio / industria,Cina / UE,2025-04,,month,"S06,S04;S05",Provvedimento pubblico,Record originale TL-0089; Export controls sulle terre rare magnetiche; si osservano difficoltà nell’automotive e in altre industrie occidentali.
+EV_TL-0090,Sanzioni UE all’841st EW Center russo,event,Guerra elettronica / sanzioni,Russia / Baltico,2025-07,,month,"S06,S03",Attribuzione e sanzione istituzionale,Record originale TL-0090; L’UE associa al centro di Kaliningrad disturbi GNSS/jamming/spoofing che coinvolgono anche traffico aereo europeo.
+EV_TL-0091,Attentato sulla ferrovia Varsavia-Lublino,event,Sabotaggio / ferrovie,Polonia,2025-11,,month,"S06,S03",Attribuzione istituzionale polacca,Record originale TL-0091; Esplosione e tentativo di deragliamento; Varsavia collega i sospetti a un’operazione d’intelligence russa.
+EV_TL-0092,Condanna di Nathan Gill,event,Giustizia / corruzione,Regno Unito,2025-11,,month,"S06,S01",Accertato giudiziariamente,"Record originale TL-0092; Gill, dopo aver ammesso otto reati, riceve una pena di 10 anni e 6 mesi; documentati circa £40.000 per attività politiche filorusse."
+EV_TL-0093,National Security Strategy degli Stati Uniti,event,Strategia USA / Europa,USA / Europa,2025-12,,month,"S06,S00;S05","Documento ufficiale, intenzione dichiarata",Record originale TL-0093; La strategia ufficiale esprime l’obiettivo di favorire cambiamenti nella traiettoria politica europea e un rapporto più stabile con Mosca; non prova un’operazione clandestina.
+EV_TL-0094,Multa UE da 120 milioni di euro a X,event,DSA / piattaforme,Unione europea / X,2025-12-05,,day,"S06,S00",Provvedimento UE,Record originale TL-0094; Decisione della Commissione europea per obblighi di trasparenza DSA: non è una sanzione per collusione con Mosca.
+EV_TL-0095,Cable Security Toolbox e finanziamenti UE,event,Infrastrutture / cavi,Unione europea,2026,,year,"S06,S03","Intervento UE, data annuale indicativa",Record originale TL-0095; La Commissione vara strumenti di protezione delle reti subacquee e mette a disposizione ulteriori €347 milioni; le fonti non specificano qui il giorno del provvedimento.
+EV_TL-0096,Intercettazione di attività GUGI alle Svalbard,event,Infrastrutture / cavi,Svalbard / Artico,2026,,year,"S06,S03",Corroborato; nessun sabotaggio materiale,"Record originale TL-0096; Unità russa impegnata in esercitazione clandestina con tecnologie subacquee, secondo fonti occidentali; nessun cavo danneggiato. La data è indicata come primavera dalle fonti."
+EV_TL-0097,SpaceX contrasta terminali russi non autorizzati,event,Satelliti / cooperazione,Ucraina,2026,,year,"S06,S00",Operazione dichiarata/documentata; giorno non indicato,Record originale TL-0097; Le fonti documentano anche cooperazione con Kiev per disabilitare terminali Starlink russi non autorizzati; le misure non annullano la controversia distinta sulle limitazioni ucraine.
+EV_TL-0098,USA rivedono licenze export per H200 e MI325X,event,Semiconduttori / export,Stati Uniti / Cina,2026-01,,month,"S06,S04",Policy pubblica,"Record originale TL-0098; Washington introduce una valutazione caso per caso per certi chip avanzati destinati alla Cina, dopo controlli irrigiditi nel 2025."
+EV_TL-0099,SpaceX acquisisce xAI,event,Tecnologia / società,Stati Uniti,2026-02,,month,"S06,S04",Operazione societaria corroborata,"Record originale TL-0099; La struttura societaria integra indirettamente X con infrastruttura satellitare, lanci e AI; evento distinto dall’uso operativo di Starshield."
+EV_TL-0100,USA e Israele attaccano l’Iran,event,Guerra / Medio Oriente,Iran / Medio Oriente,2026-02-28,,day,"S06,S00;S03;S04;S05",Operazioni militari accertate,"Record originale TL-0100; Inizio della guerra del 2026, con ripercussioni sulla navigazione a Hormuz e sui mercati energetici mondiali."
+EV_TL-0101,Accordi Congo-Cina sulla cooperazione mineraria,event,Materie prime / Africa,Repubblica Democratica del Congo / Cina,2026-03,,month,"S06,S04",Accordi economici documentati,Record originale TL-0101; Ampliamento della cooperazione su trattamento locale e condivisione di dati geologici; non prova una coercizione contro l’Europa.
+EV_TL-0102,EU Ports Strategy,event,Industria / infrastrutture,Unione europea,2026-03,,month,"S06,S04",Strategia UE pubblicata,Record originale TL-0102; La Commissione introduce criteri di valutazione del controllo straniero di infrastrutture portuali essenziali.
+EV_TL-0103,Interruzione estrema dei flussi petroliferi a Hormuz,event,Energia / shock,Stretto di Hormuz,2026-03,,month,"S06,S00;S04;S05",Valutazione IEA,Record originale TL-0103; L’IEA descrive una crisi storica dell’offerta su un corridoio che prima del conflitto vedeva circa 20 milioni di barili/giorno.
+EV_TL-0104,Quarto rapporto SEAE sulle interferenze informative,event,Reti FIMI / report,Unione europea,2026-03,,month,"S06,S00;S02;S03;S05",Rapporto istituzionale,"Record originale TL-0104; Pubblicato il quadro 2025: 540 incidenti, 10.500 canali; quota attribuita Russia 29%, Cina 6%. Campione, non censimento dell’intero web."
+EV_TL-0105,Rilascio coordinato di riserve IEA,event,Energia / risposta,Mercato petrolifero mondiale,2026-03,,month,"S06,S05",Decisione istituzionale,Record originale TL-0105; Gli Stati membri IEA autorizzano l’immissione di circa 400 milioni di barili per mitigare lo shock.
+EV_TL-0106,UE sanziona Emennet Pasargad,event,Sanzioni / cyber,Unione europea / Iran,2026-03,,month,"S06,S03",Atto istituzionale,"Record originale TL-0106; Designazione per campagne informatiche e informative che hanno interessato, fra gli altri, Francia e Svezia."
+EV_TL-0107,UE sanziona società tecnologiche cinesi per cyberattacchi,event,Cyber / contromisure,Unione europea / Cina,2026-03,,month,"S06,S03",Sanzioni/attribuzione istituzionale,"Record originale TL-0107; Designazioni contro Integrity Technology Group e Anxun/i-Soon citate nella DS-03; attribuzione ufficiale, non conferma di sabotaggi navali."
+EV_TL-0108,Nuova fase dei controlli export cinesi verso entità UE,event,Commercio / industria,Cina / UE,2026-04,2026-07,month,"S06,S05",Policy commerciali,Record originale TL-0108; La Cina adotta misure e contromisure nel contesto di tensioni commerciali; la portata precisa varia tra i provvedimenti.
+EV_TL-0109,UE amplia misure contro reti di paesi terzi,event,Sanzioni / industria,Unione europea / paesi terzi,2026-04,2026-07,month,"S06,S05",Designazioni UE,"Record originale TL-0109; Provvedimenti contro entità extra-russe legate a dual-use, filiere militari e aggiramento sanzioni; prosecuzione anche nei mesi successivi."
+EV_TL-0110,Xi e Putin rafforzano il coordinamento strategico,event,Diplomazia / Cina-Russia,Cina / Russia,2026-05,,month,"S06,S05",Documenti ufficiali,"Record originale TL-0110; Nuova dichiarazione congiunta e firma di venti documenti economici, commerciali, educativi, scientifici e tecnologici."
+EV_TL-0111,Citizen Lab documenta Pegasus contro ex eurodeputato PEGA,event,Spyware,Unione europea,2026-06,2026-07,month,"S06,S00;S04;S05",Forense; operatore non verificato,Record originale TL-0111; Confermata forensicamente compromissione di Stelios Kouloglou mentre lavorava nella commissione PEGA; operatore finale non determinato.
+EV_TL-0112,Iniziativa europea Chips Act 2.0,event,Industria / semiconduttori,Unione europea,2026-06,,month,"S06,S04;S05",Iniziativa istituzionale,Record originale TL-0112; L’UE promuove una nuova fase di autonomia industriale per ridurre dipendenze leading-edge; l’assenza di foundry UE aperte sotto 10 nm resta un limite.
+EV_TL-0113,Municipali francesi e operazione Rokh Solis,event,Influenza digitale,Francia,2026-06,,month,"S06,S00;S01;S02;S05",INE attribuita; committente non verificato,"Record originale TL-0113; VIGINUM classifica l’operazione come ingerenza digitale straniera e identifica indicatori verso BlackCore, società israeliana; committenti non stabiliti."
+EV_TL-0114,UE amplia designazioni su propaganda e filiere militari russe,event,Sanzioni / Russia,Unione europea,2026-06,,month,"S06,S05",Atto istituzionale,"Record originale TL-0114; Misure contro soggetti FIMI e imprese in Cina, Liberia, Turchia, Emirati, Azerbaigian e Hong Kong legate a dual-use/shadow fleet."
+EV_TL-0115,Nuove sanzioni UE su reti Șor/Evrazia,event,Sanzioni / Moldavia,Unione europea / Moldavia,2026-06-15,,day,"S06,S00;S01;S05",Atto istituzionale,Record originale TL-0115; Consiglio UE designa sei persone per attività destabilizzanti in Moldavia e uso di reti di reclutamento/propaganda.
+EV_TL-0116,Inchiesta ProPublica sui fondi che investono in SpaceX,event,Finanza / tecnologia,Stati Uniti / investitori globali,2026-06-18,,day,"S06,S00;S01;S04",Inchiesta documentale; nessi ultimi non verificati,"Record originale TL-0116; Emergono LP e veicoli con collegamenti internazionali, inclusi Russia/Cina; non dimostrato flusso Kerimov → HAL9001 → SpaceX né controllo sulle decisioni Starshield."
+EV_TL-0117,Afflusso massivo a Ceuta,event,Coercizione migratoria / crisi,Ceuta / Marocco / Spagna,2026-07,,month,"S06,S00;S05",Crisi accertata; mandante non verificato,Record originale TL-0117; Crisi umanitaria al confine con il Marocco. Le fonti divergono su 70–80 mila ingressi e numero di vittime; regia statale marocchina non conclusivamente accertata.
+EV_TL-0118,Revisione del programma IRIS²,event,Satelliti / politica industriale,Unione europea,2026-08,,month,"S06,S04",Decisione/programmazione documentata,"Record originale TL-0118; Accordo rivisto per 348 satelliti (330 LEO, 18 MEO); primi lanci attesi dal 2029, servizi dal 2030."
+EV_TL-0119,Drone esplosivo a Leipzig/Halle,event,Sabotaggio / difesa,Germania,2026-08-04,,day,"S06,S03",Attribuzione istituzionale,Record originale TL-0119; Tentato attacco contro hub logistico cargo; attribuzione tedesca e sostegno UE alla responsabilità russa.
+EV_TL-0120,Incendio contro Milrem Robotics,event,Sabotaggio / industria,Estonia,2026-08-15,,day,"S06,S03",Attribuzione KAPO; processo non concluso,"Record originale TL-0120; Attacco a Tallinn contro un fornitore di veicoli terrestri per l’Ucraina; KAPO attribuisce l’operazione ai servizi russi tramite intermediari, tre sospetti arrestati."
+EV_TL-0121,"Contestazioni su corruzione, istruzione e progetti turistici",event,Proteste / Albania,Albania,2026-09,2026-10,month,"S06,S00",Proteste documentate; accuse istituzionali non corroborate,Record originale TL-0121; Il premier Rama formula accuse d’ingerenza Russia/Iran; verifica indipendente della regia delle manifestazioni insufficiente nel corpus.
+EV_TL-0122,"Eurozona: inflazione al 3,8% e energia in forte crescita",event,Inflazione / energia,Eurozona,2026-09,,month,"S06,S00;S03;S04;S05",Dati Eurostat pubblicati in ottobre,"Record originale TL-0122; Il dato finale di settembre mostra energia +18,9% annuo (18,8% nella stima flash); non attribuisce la responsabilità delle singole proteste."
+EV_TL-0123,Incremento di violazioni dello spazio aereo e sabotaggi,event,Attacchi / NATO,Europa / NATO,2026-09,,month,"S06,S03","Valutazione NATO, serie aggregata","Record originale TL-0123; NATO nel settembre 2026 osserva aumento di episodi con droni, cyberattacchi e sabotaggi, nel contesto di campagna attribuita alla Russia."
+EV_TL-0124,Mobilitazioni autunnali in diversi Paesi europei,event,Proteste / società,Europa,2026-09,2026-10,month,"S06,S00;S02;S03",Proteste accertate; regia unica non verificata,"Record originale TL-0124; Proteste in Francia, Italia, Albania, Spagna, Portogallo e Belgio, su motivazioni domestiche differenti; non dimostrata una regia estera unica."
+EV_TL-0125,Mobilitazioni per abitazioni e sindacati in Portogallo,event,Proteste / Portogallo,Portogallo,2026-09,2026-10,month,"S06,S00;S02",Proteste documentate,Record originale TL-0125; Movimenti e forme di emulazione con manifestazioni iberiche; nessuna prova di comando estero.
+EV_TL-0126,Mobilitazioni studentesche e sul costo della vita in Italia,event,Proteste / Italia,Italia,2026-09,2026-10,month,"S06,S00;S02;S03",Proteste documentate; organizzazione estera non provata,"Record originale TL-0126; Manifestazioni legate ad abitazioni, istruzione e servizi; denunce su account sospetti non equivalgono ad attribuzione di regia russa."
+EV_TL-0127,Mobilitazioni su istruzione e bilanci pubblici,event,Proteste / Belgio,Belgio,2026-09,2026-10,month,"S06,S00;S02",Proteste documentate,"Record originale TL-0127; Rivendicazioni locali e influenze di emulazione da Francia, senza attribuzione estera dimostrata."
+EV_TL-0128,Proteste contro la crisi abitativa spagnola,event,Proteste / Spagna,Spagna,2026-09,2026-10,month,"S06,S00;S02",Proteste documentate,"Record originale TL-0128; Mobilitazioni su affitti, sfratti e accesso alla casa; nessuna direzione straniera specifica dimostrata."
+EV_TL-0129,Requisiti NATO di resilienza civile,event,NATO / resilienza,NATO / Europa,2026-09,,month,"S06,S03",Documento NATO,"Record originale TL-0129; Aggiornamento dei Baseline Requirements su continuità di energia, acqua, sanità, cibo e comunicazioni."
+EV_TL-0130,Dichiarazioni ufficiali spagnole su Ceuta,event,Diplomazia / migrazione,Spagna,2026-09-03,,day,"S06,S00",Dichiarazione istituzionale,Record originale TL-0130; Il governo spagnolo pubblica un bilancio dell’afflusso intorno a 70.000 persone; la ricostruzione delle responsabilità marocchine resta controversa.
+EV_TL-0131,Citizen Lab pubblica l’indagine BlackCore,event,Ricerca forense / FIMI,Israele / Europa / Angola,2026-09-17,,day,"S06,S00;S01;S02;S05",Indagine forense,"Record originale TL-0131; Rapporto su influence-for-hire, profili fittizi e attività transnazionali; committenti operativi non sempre conosciuti."
+EV_TL-0132,Intesa USA-Russia per il diesel russo,event,Energia / Russia-USA,USA / Russia / mercati globali,2026-10,,month,"S06,S00;S03;S04;S05",Decisioni/documenti e reporting; interpretazione strategica aperta,Record originale TL-0132; Washington attenua restrizioni e favorisce il ritorno di flussi di gasolio russo a mercati terzi; beneficio economico a Mosca non prova coordinamento clandestino.
+EV_TL-0133,Nuove sanzioni USA contro CPI e reazione UE,event,Diplomazia / CPI,Stati Uniti / Unione europea,2026-10,,month,"S06,S00;S05",Atti e posizioni ufficiali; giorno non specificato,"Record originale TL-0133; Nel mese di ottobre Washington estende misure restrittive, mentre l’UE riafferma il sostegno all’indipendenza della Corte."
+EV_TL-0134,Stima flash dell’inflazione eurozona di settembre,event,Eurostat / energia,Eurozona,2026-10-02,,day,"S06,S00;S04",Dato statistico istituzionale,"Record originale TL-0134; Eurostat pubblica il 3,8% annuo e una componente energia al +18,8%; verrà aggiornata nella release definitiva."
+EV_TL-0135,Briefing EPRS sulla crisi di Ceuta,event,Migrazione / rapporto,Unione europea / Ceuta,2026-10-08,,day,"S06,S00","Pubblicazione istituzionale, dati discordanti","Record originale TL-0135; Il briefing cita ~80.000 ingressi e almeno 141 decessi nella sintesi, con discrepanze interne; non trasformare in conteggio consolidato."
+EV_TL-0136,106 progetti strategici CRMA riconosciuti,event,Materie prime / UE,Unione europea,2026-10-09,,day,"S06,S04",Dato istituzionale,"Record originale TL-0136; La Commissione registra 106 progetti al 9 ottobre, nel quadro degli obiettivi 2030 di estrazione, lavorazione e riciclo."
+EV_TL-0137,Restrizioni Starshield/Starlink su terminali mobili,event,Satelliti / Ucraina,Ucraina,2026-10-14,2026-10-21,day,"S06,S00;S03;S04;S05",Effetto operativo accertato; decisore contestato,"Record originale TL-0137; Limitazioni, anche su sistemi in movimento oltre circa 160 km/h, compromettono impieghi di droni e intercettori ucraini. Catena decisionale Casa Bianca/SpaceX/Musk contestata."
+EV_TL-0138,Citizen Lab pubblica “Exposing AdFection”,event,Spyware / adtech,Europa / globale,2026-10-15,,day,"S06,S00;S01;S03;S04;S05",Forense su casi specifici,Record originale TL-0138; La ricerca descrive l’uso di advertising mirato e Discover-Tech come vettore in catene spyware Candiru; non dimostra compromissione di ogni sito pubblicitario attraversato.
+EV_TL-0139,Hybrid Symposium NATO,event,NATO / sicurezza,NATO,2026-10-15,2026-10-16,day,"S06,S03",Evento NATO,"Record originale TL-0139; Il simposio 15-16 ottobre si concentra su sabotaggi, droni e cyber minacce attribuite all’ecosistema russo."
+EV_TL-0140,Dato definitivo Eurostat per settembre 2026,event,Eurostat / energia,Eurozona,2026-10-16,,day,"S06,S00;S03;S04",Dato statistico istituzionale,"Record originale TL-0140; Inflazione eurozona 3,8%, energia +18,9% annuo, aggiornamento della stima del 2 ottobre."
+EV_TL-0141,Ordine presidenziale USA sulle deroghe al Graham Act,event,Sanzioni / Stati Uniti,Stati Uniti / Russia,2026-10-16,,day,"S06,S00;S04;S05",Atto ufficiale,Record originale TL-0141; La Casa Bianca dispone waiver per varie nuove sanzioni e dazi verso Mosca; le sanzioni anti-russe precedenti non vengono automaticamente abrogate.
+EV_TL-0142,Prime ricostruzioni pubbliche delle restrizioni Starshield,event,Satelliti / intelligence,Ucraina / Stati Uniti,2026-10-16,,day,"S06,S00;S03;S05",Reporting giornalistico; responsabilità contestata,Record originale TL-0142; AP/Reuters riportano limitazioni e attribuzioni iniziali interne alla Casa Bianca; Telegraph descrive ruolo propositivo di Musk. Versioni divergenti.
+EV_TL-0143,Mobilitazione francese del 17 ottobre,event,Proteste / Francia,Francia,2026-10-17,,day,"S06,S00;S02;S03",Protesta accertata; regia estera non verificata,"Record originale TL-0143; Grandi manifestazioni con motivazioni economiche e sociali; VIGINUM non identifica prima dell’evento una regia estera, ma amplificazione estera opportunistica e di bassa portata."
+EV_TL-0144,Reporting Reuters sulle tensioni Trump-Zelensky,event,Relazioni USA-Ucraina,Stati Uniti / Ucraina,2026-10-17,,day,"S06,S00;S03;S05",Inchiesta giornalistica,"Record originale TL-0144; Ricostruite pressioni su Kiev, discussioni su difesa, intelligence, diesel e attacchi alle raffinerie russe; non prova un’unica intesa segreta contro l’Europa."
+EV_TL-0145,Reuters ricostruisce spedizioni di gasolio russo,event,Energia / trasporti,Russia / Turchia / Brasile / Marocco,2026-10-20,,day,"S06,S04;S05",Reporting commerciale,"Record originale TL-0145; Nuovi flussi verso Turchia, Brasile e Marocco dopo attenuazioni USA; gli effetti economici sono distinti da ipotesi di coordinamento politico."
+EV_TL-0146,WSJ pubblica una nuova ricostruzione Starshield,event,Satelliti / responsabilità,Stati Uniti / Ucraina,2026-10-20,,day,"S06,S03;S05",Ricostruzione contestata,"Record originale TL-0146; Fonti WSJ attribuiscono a Musk un ordine personale e colloqui con Trump; interessati contestano, Reuters non conferma indipendentemente quella ricostruzione."
+EV_TL-0147,Chiusura temporale delle Deep Search DS-03 e DS-05,event,Ricerca / baseline,Progetto,2026-10-21,,day,"S06,S03;S05",Metadato documentale,"Record originale TL-0147; Aggiornamento finale delle fonti del progetto su incidenti ibridi e convergenze geopolitiche; è una data di raccolta, non un evento geopolitico."
+EV_EXT-001,Attacco contro l’ambasciata israeliana a Stoccolma: attribuzione OFAC a Foxtrot su incarico iraniano,event,new_discovery,Europa / UK / Svezia,2024-01,,month,WEB-EXT-001,E2,"Nuovo rispetto alla Fonte_06. OFAC sostiene che Foxtrot organizzò l’attacco per conto dell’Iran. Si tratta di attribuzione USA, distinta da sentenza sul mandato."
+EV_EXT-002,OFAC sanziona Foxtrot Network e Rawa Majid,event,new_discovery,Europa / UK / Svezia,2025-03-12,,day,WEB-EXT-002,E1,Nuovo rispetto alla Fonte_06. Designazione Foxtrot come organizzazione criminale transnazionale e del leader Rawa Majid; OFAC dichiara cooperazione Majid-MOIS.
+EV_EXT-003,Condanna Natland per complotto omicida Foxtrot nel Regno Unito,event,new_discovery,Europa / UK / Svezia,2026-10-16,,day,WEB-EXT-003,E1,Nuovo rispetto alla Fonte_06. CPS aggiorna il 16 ottobre la condanna a 20 anni per un tentativo di omicidio su commissione nel marzo 2025; il singolo ordine iraniano non è dimostrato nel caso.
+EV_EXT-004,Incidente alla base RAF Fairford e nuovi arresti del 20 ottobre,event,new_discovery,Europa / UK / Svezia,2026-09-27,,day,WEB-EXT-004,E3,Nuovo rispetto alla Fonte_06. Arresti presso la base il 27 settembre; due nuovamente arrestati il 20 ottobre per sospetta assistenza ai servizi iraniani. Indagine aperta e responsabilità non giudicata.
