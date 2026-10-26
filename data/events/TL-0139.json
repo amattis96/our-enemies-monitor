@@ -1,0 +1,71 @@
+{
+  "id": "TL-0139",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-10-15",
+    "end": "2026-10-16",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Hybrid Symposium NATO"
+  },
+  "description": {
+    "it": "Il simposio 15-16 ottobre si concentra su sabotaggi, droni e cyber minacce attribuite all’ecosistema russo."
+  },
+  "category": {
+    "it": "NATO / sicurezza"
+  },
+  "geography": {
+    "it": "NATO"
+  },
+  "evidence_note": {
+    "it": "Evento NATO"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 139,
+      "original": {
+        "id": "TL-0139",
+        "date_start": "2026-10-15",
+        "date_end": "2026-10-16",
+        "date_precision": "day",
+        "category": "NATO / sicurezza",
+        "title": "Hybrid Symposium NATO",
+        "description": "Il simposio 15-16 ottobre si concentra su sabotaggi, droni e cyber minacce attribuite all’ecosistema russo.",
+        "evidence_status": "Evento NATO",
+        "source_docs": "S03",
+        "geography": "NATO"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 341,
+      "original": {
+        "id": "EV_TL-0139",
+        "name": "Hybrid Symposium NATO",
+        "kind": "event",
+        "domain": "NATO / sicurezza",
+        "geo": "NATO",
+        "date_start": "2026-10-15",
+        "date_end": "2026-10-16",
+        "date_precision": "day",
+        "source_docs": "S06,S03",
+        "evidence_status": "Evento NATO",
+        "note": "Record originale TL-0139; Il simposio 15-16 ottobre si concentra su sabotaggi, droni e cyber minacce attribuite all’ecosistema russo."
+      }
+    }
+  ]
+}

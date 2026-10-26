@@ -1,0 +1,51 @@
+{
+  "id": "H04",
+  "subject": "BLACK",
+  "object": "ROKH",
+  "hypothesis_type": "COMMITTENTE_FINALE_ROKH",
+  "question": {
+    "it": "Chi ha commissionato e pagato Rokh Solis?"
+  },
+  "current_limit": {
+    "it": "Nazionalità israeliana operatore non identifica committente né Stato israeliano."
+  },
+  "priority": "critical",
+  "evidence_needed": {
+    "it": "Billing adtech, registrazione domini, beneficiari societari, chain of custody VIGINUM"
+  },
+  "events": [
+    "TL-0113",
+    "TL-0131"
+  ],
+  "external_url": "https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les",
+  "status": "open_unproven",
+  "sources": [
+    "S01",
+    "S02",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 4,
+      "original": {
+        "id": "H04",
+        "subject": "BLACK",
+        "object": "ROKH",
+        "hypothesis_type": "COMMITTENTE_FINALE_ROKH",
+        "verification_question": "Chi ha commissionato e pagato Rokh Solis?",
+        "current_limit": "Nazionalità israeliana operatore non identifica committente né Stato israeliano.",
+        "priority": "Critica",
+        "evidence_needed": "Billing adtech, registrazione domini, beneficiari societari, chain of custody VIGINUM",
+        "source_docs": "S01,S02,S05",
+        "timeline_ids": "TL-0113;TL-0131",
+        "external_url": "https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

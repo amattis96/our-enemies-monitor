@@ -1,0 +1,71 @@
+{
+  "id": "TL-0102",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-03",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "EU Ports Strategy"
+  },
+  "description": {
+    "it": "La Commissione introduce criteri di valutazione del controllo straniero di infrastrutture portuali essenziali."
+  },
+  "category": {
+    "it": "Industria / infrastrutture"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Strategia UE pubblicata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 102,
+      "original": {
+        "id": "TL-0102",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Industria / infrastrutture",
+        "title": "EU Ports Strategy",
+        "description": "La Commissione introduce criteri di valutazione del controllo straniero di infrastrutture portuali essenziali.",
+        "evidence_status": "Strategia UE pubblicata",
+        "source_docs": "S04",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 304,
+      "original": {
+        "id": "EV_TL-0102",
+        "name": "EU Ports Strategy",
+        "kind": "event",
+        "domain": "Industria / infrastrutture",
+        "geo": "Unione europea",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S04",
+        "evidence_status": "Strategia UE pubblicata",
+        "note": "Record originale TL-0102; La Commissione introduce criteri di valutazione del controllo straniero di infrastrutture portuali essenziali."
+      }
+    }
+  ]
+}

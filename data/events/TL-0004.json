@@ -1,0 +1,72 @@
+{
+  "id": "TL-0004",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2014",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Avvio e ampliamento del regime sanzionatorio UE sulla Russia"
+  },
+  "description": {
+    "it": "L’UE costruisce le misure restrittive in risposta alla violazione della sovranità ucraina."
+  },
+  "category": {
+    "it": "Sanzioni / diplomazia"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Atto istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 4,
+      "original": {
+        "id": "TL-0004",
+        "date_start": "2014",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Sanzioni / diplomazia",
+        "title": "Avvio e ampliamento del regime sanzionatorio UE sulla Russia",
+        "description": "L’UE costruisce le misure restrittive in risposta alla violazione della sovranità ucraina.",
+        "evidence_status": "Atto istituzionale",
+        "source_docs": "S00,S05",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 206,
+      "original": {
+        "id": "EV_TL-0004",
+        "name": "Avvio e ampliamento del regime sanzionatorio UE sulla Russia",
+        "kind": "event",
+        "domain": "Sanzioni / diplomazia",
+        "geo": "Unione europea",
+        "date_start": "2014",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S05",
+        "evidence_status": "Atto istituzionale",
+        "note": "Record originale TL-0004; L’UE costruisce le misure restrittive in risposta alla violazione della sovranità ucraina."
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "F09",
+  "type": "external_reference",
+  "title": {
+    "it": "Associated Press, ondata di proteste europee, ottobre 2026"
+  },
+  "publisher": "Associated Press",
+  "files": [],
+  "urls": [
+    "https://apnews.com/article/210ff22c6746b9ec66438ac80740bc0e"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 341,
+      "original": {
+        "text": "- **[F09] Associated Press**, ondata di proteste europee, ottobre 2026: https://apnews.com/article/210ff22c6746b9ec66438ac80740bc0e"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "H22",
+  "subject": "AL",
+  "object": "IR",
+  "hypothesis_type": "ATTRIBUZIONE_DISORDINI_ALBANESI_2026",
+  "question": {
+    "it": "Le accuse politiche sui disordini albanesi hanno indicatori forensi indipendenti?"
+  },
+  "current_limit": {
+    "it": "Accuse del premier non equivalgono a prova."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Atti giudiziari locali, report EEAS FIMI, comunicazioni perizia"
+  },
+  "events": [
+    "TL-0121"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S00",
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 22,
+      "original": {
+        "id": "H22",
+        "subject": "AL",
+        "object": "IR",
+        "hypothesis_type": "ATTRIBUZIONE_DISORDINI_ALBANESI_2026",
+        "verification_question": "Le accuse politiche sui disordini albanesi hanno indicatori forensi indipendenti?",
+        "current_limit": "Accuse del premier non equivalgono a prova.",
+        "priority": "Media",
+        "evidence_needed": "Atti giudiziari locali, report EEAS FIMI, comunicazioni perizia",
+        "source_docs": "S00,S02",
+        "timeline_ids": "TL-0121",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

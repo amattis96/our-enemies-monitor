@@ -1,0 +1,43 @@
+{
+  "id": "G-0005",
+  "subject": "RU",
+  "predicate": "APPARATO_STATALE",
+  "object": "GUGI",
+  "relation_class": "operational",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 5,
+      "original": {
+        "id": "G-0005",
+        "source": "RU",
+        "target": "GUGI",
+        "predicate": "APPARATO_STATALE",
+        "relation_class": "operational",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "G-0107",
+  "subject": "EU",
+  "predicate": "POTENZIA_DIFESA_EUROPEA",
+  "object": "READINESS",
+  "relation_class": "policy",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "SAFE fino a €150 mld, readiness fino a €800 mld aggiuntivi entro 2030"
+  },
+  "sources": [
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 105,
+      "original": {
+        "id": "G-0107",
+        "source": "EU",
+        "target": "READINESS",
+        "predicate": "POTENZIA_DIFESA_EUROPEA",
+        "relation_class": "policy",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S05",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "SAFE fino a €150 mld, readiness fino a €800 mld aggiuntivi entro 2030"
+      }
+    }
+  ]
+}

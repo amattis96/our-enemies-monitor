@@ -1,0 +1,50 @@
+{
+  "id": "H17",
+  "subject": "EU",
+  "object": "SEMICON",
+  "hypothesis_type": "RUPTURA_MULTINODO_E_CHOKEPOINT",
+  "question": {
+    "it": "Quale combinazione Taiwan+minerali raffinati Cina+controlli USA+energia potrebbe interrompere settori UE?"
+  },
+  "current_limit": {
+    "it": "Scenario stress non evento già avvenuto."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "Distinta materiali, Tier-2/3, dipendenze wafer, ricambi, nodi produttivi"
+  },
+  "events": [
+    "TL-0085",
+    "TL-0112"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S04",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 17,
+      "original": {
+        "id": "H17",
+        "subject": "EU",
+        "object": "SEMICON",
+        "hypothesis_type": "RUPTURA_MULTINODO_E_CHOKEPOINT",
+        "verification_question": "Quale combinazione Taiwan+minerali raffinati Cina+controlli USA+energia potrebbe interrompere settori UE?",
+        "current_limit": "Scenario stress non evento già avvenuto.",
+        "priority": "Alta",
+        "evidence_needed": "Distinta materiali, Tier-2/3, dipendenze wafer, ricambi, nodi produttivi",
+        "source_docs": "S04,S05",
+        "timeline_ids": "TL-0085;TL-0112",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

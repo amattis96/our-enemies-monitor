@@ -1,0 +1,31 @@
+{
+  "id": "STARSHIELD",
+  "kind": "company",
+  "name": {
+    "it": "Starshield"
+  },
+  "domain": "commerce-infrastructure",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 124,
+      "original": {
+        "id": "STARSHIELD",
+        "name": "Starshield",
+        "kind": "company",
+        "domain": "commerce-infrastructure",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

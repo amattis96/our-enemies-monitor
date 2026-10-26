@@ -1,0 +1,71 @@
+{
+  "id": "TL-0110",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-05",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Xi e Putin rafforzano il coordinamento strategico"
+  },
+  "description": {
+    "it": "Nuova dichiarazione congiunta e firma di venti documenti economici, commerciali, educativi, scientifici e tecnologici."
+  },
+  "category": {
+    "it": "Diplomazia / Cina-Russia"
+  },
+  "geography": {
+    "it": "Cina / Russia"
+  },
+  "evidence_note": {
+    "it": "Documenti ufficiali"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 110,
+      "original": {
+        "id": "TL-0110",
+        "date_start": "2026-05",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Diplomazia / Cina-Russia",
+        "title": "Xi e Putin rafforzano il coordinamento strategico",
+        "description": "Nuova dichiarazione congiunta e firma di venti documenti economici, commerciali, educativi, scientifici e tecnologici.",
+        "evidence_status": "Documenti ufficiali",
+        "source_docs": "S05",
+        "geography": "Cina / Russia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 312,
+      "original": {
+        "id": "EV_TL-0110",
+        "name": "Xi e Putin rafforzano il coordinamento strategico",
+        "kind": "event",
+        "domain": "Diplomazia / Cina-Russia",
+        "geo": "Cina / Russia",
+        "date_start": "2026-05",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S05",
+        "evidence_status": "Documenti ufficiali",
+        "note": "Record originale TL-0110; Nuova dichiarazione congiunta e firma di venti documenti economici, commerciali, educativi, scientifici e tecnologici."
+      }
+    }
+  ]
+}

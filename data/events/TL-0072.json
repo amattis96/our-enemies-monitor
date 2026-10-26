@@ -1,0 +1,71 @@
+{
+  "id": "TL-0072",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Avvio di Baltic Sentry"
+  },
+  "description": {
+    "it": "NATO rafforza pattugliamento e protezione delle infrastrutture baltiche dopo incidenti a cavi e interconnettori."
+  },
+  "category": {
+    "it": "NATO / difesa"
+  },
+  "geography": {
+    "it": "Mar Baltico"
+  },
+  "evidence_note": {
+    "it": "Iniziativa NATO"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 72,
+      "original": {
+        "id": "TL-0072",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "NATO / difesa",
+        "title": "Avvio di Baltic Sentry",
+        "description": "NATO rafforza pattugliamento e protezione delle infrastrutture baltiche dopo incidenti a cavi e interconnettori.",
+        "evidence_status": "Iniziativa NATO",
+        "source_docs": "S03",
+        "geography": "Mar Baltico"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 274,
+      "original": {
+        "id": "EV_TL-0072",
+        "name": "Avvio di Baltic Sentry",
+        "kind": "event",
+        "domain": "NATO / difesa",
+        "geo": "Mar Baltico",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Iniziativa NATO",
+        "note": "Record originale TL-0072; NATO rafforza pattugliamento e protezione delle infrastrutture baltiche dopo incidenti a cavi e interconnettori."
+      }
+    }
+  ]
+}

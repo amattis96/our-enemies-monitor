@@ -1,0 +1,50 @@
+{
+  "id": "G-0429",
+  "subject": "EUENERGY",
+  "predicate": "FATTORE_ECONOMICO_PLAUSIBILE",
+  "object": "PROTEST26",
+  "relation_class": "consequence",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0124",
+    "TL-0143"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "La causa specifica di una protesta non è deducibile meccanicamente"
+  },
+  "sources": [
+    "S00",
+    "S02",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 427,
+      "original": {
+        "id": "G-0429",
+        "source": "EUENERGY",
+        "target": "PROTEST26",
+        "predicate": "FATTORE_ECONOMICO_PLAUSIBILE",
+        "relation_class": "consequence",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S00,S02,S05",
+        "timeline_ids": "TL-0124;TL-0143",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "La causa specifica di una protesta non è deducibile meccanicamente"
+      }
+    }
+  ]
+}

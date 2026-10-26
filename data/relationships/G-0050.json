@@ -1,0 +1,46 @@
+{
+  "id": "G-0050",
+  "subject": "NSO",
+  "predicate": "PRODUCE",
+  "object": "PEGASUS",
+  "relation_class": "technology",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0111"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S01",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 49,
+      "original": {
+        "id": "G-0050",
+        "source": "NSO",
+        "target": "PEGASUS",
+        "predicate": "PRODUCE",
+        "relation_class": "technology",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S01,S04",
+        "timeline_ids": "TL-0111",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

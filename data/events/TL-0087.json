@@ -1,0 +1,72 @@
+{
+  "id": "TL-0087",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025-02",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Sanzioni statunitensi contro la Corte penale internazionale"
+  },
+  "description": {
+    "it": "La Casa Bianca introduce misure restrittive contro la CPI, contestandone attività relative a Israele e altri attori."
+  },
+  "category": {
+    "it": "CPI / sanzioni"
+  },
+  "geography": {
+    "it": "Stati Uniti / CPI"
+  },
+  "evidence_note": {
+    "it": "Atto ufficiale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 87,
+      "original": {
+        "id": "TL-0087",
+        "date_start": "2025-02",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "CPI / sanzioni",
+        "title": "Sanzioni statunitensi contro la Corte penale internazionale",
+        "description": "La Casa Bianca introduce misure restrittive contro la CPI, contestandone attività relative a Israele e altri attori.",
+        "evidence_status": "Atto ufficiale",
+        "source_docs": "S00,S05",
+        "geography": "Stati Uniti / CPI"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 289,
+      "original": {
+        "id": "EV_TL-0087",
+        "name": "Sanzioni statunitensi contro la Corte penale internazionale",
+        "kind": "event",
+        "domain": "CPI / sanzioni",
+        "geo": "Stati Uniti / CPI",
+        "date_start": "2025-02",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S05",
+        "evidence_status": "Atto ufficiale",
+        "note": "Record originale TL-0087; La Casa Bianca introduce misure restrittive contro la CPI, contestandone attività relative a Israele e altri attori."
+      }
+    }
+  ]
+}

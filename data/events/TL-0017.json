@@ -1,0 +1,72 @@
+{
+  "id": "TL-0017",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2018-03",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Avvelenamento di Sergei e Yulia Skripal"
+  },
+  "description": {
+    "it": "Uso di agente Novichok a Salisbury; Londra attribuisce l’operazione a ufficiali russi, OPCW conferma tecnicamente l’agente."
+  },
+  "category": {
+    "it": "Attacco chimico"
+  },
+  "geography": {
+    "it": "Regno Unito"
+  },
+  "evidence_note": {
+    "it": "Attribuzione UK; prova forense sulla sostanza"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 17,
+      "original": {
+        "id": "TL-0017",
+        "date_start": "2018-03",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Attacco chimico",
+        "title": "Avvelenamento di Sergei e Yulia Skripal",
+        "description": "Uso di agente Novichok a Salisbury; Londra attribuisce l’operazione a ufficiali russi, OPCW conferma tecnicamente l’agente.",
+        "evidence_status": "Attribuzione UK; prova forense sulla sostanza",
+        "source_docs": "S00,S03",
+        "geography": "Regno Unito"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 219,
+      "original": {
+        "id": "EV_TL-0017",
+        "name": "Avvelenamento di Sergei e Yulia Skripal",
+        "kind": "event",
+        "domain": "Attacco chimico",
+        "geo": "Regno Unito",
+        "date_start": "2018-03",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S03",
+        "evidence_status": "Attribuzione UK; prova forense sulla sostanza",
+        "note": "Record originale TL-0017; Uso di agente Novichok a Salisbury; Londra attribuisce l’operazione a ufficiali russi, OPCW conferma tecnicamente l’agente."
+      }
+    }
+  ]
+}

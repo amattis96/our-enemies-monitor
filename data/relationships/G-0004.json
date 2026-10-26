@@ -1,0 +1,43 @@
+{
+  "id": "G-0004",
+  "subject": "GRU",
+  "predicate": "UNITA",
+  "object": "GRU29155",
+  "relation_class": "operational",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 4,
+      "original": {
+        "id": "G-0004",
+        "source": "GRU",
+        "target": "GRU29155",
+        "predicate": "UNITA",
+        "relation_class": "operational",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

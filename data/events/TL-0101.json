@@ -1,0 +1,71 @@
+{
+  "id": "TL-0101",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-03",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Accordi Congo-Cina sulla cooperazione mineraria"
+  },
+  "description": {
+    "it": "Ampliamento della cooperazione su trattamento locale e condivisione di dati geologici; non prova una coercizione contro l’Europa."
+  },
+  "category": {
+    "it": "Materie prime / Africa"
+  },
+  "geography": {
+    "it": "Repubblica Democratica del Congo / Cina"
+  },
+  "evidence_note": {
+    "it": "Accordi economici documentati"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 101,
+      "original": {
+        "id": "TL-0101",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Materie prime / Africa",
+        "title": "Accordi Congo-Cina sulla cooperazione mineraria",
+        "description": "Ampliamento della cooperazione su trattamento locale e condivisione di dati geologici; non prova una coercizione contro l’Europa.",
+        "evidence_status": "Accordi economici documentati",
+        "source_docs": "S04",
+        "geography": "Repubblica Democratica del Congo / Cina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 303,
+      "original": {
+        "id": "EV_TL-0101",
+        "name": "Accordi Congo-Cina sulla cooperazione mineraria",
+        "kind": "event",
+        "domain": "Materie prime / Africa",
+        "geo": "Repubblica Democratica del Congo / Cina",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S04",
+        "evidence_status": "Accordi economici documentati",
+        "note": "Record originale TL-0101; Ampliamento della cooperazione su trattamento locale e condivisione di dati geologici; non prova una coercizione contro l’Europa."
+      }
+    }
+  ]
+}

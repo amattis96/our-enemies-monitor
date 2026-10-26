@@ -1,0 +1,48 @@
+{
+  "id": "G-0012",
+  "subject": "VOE",
+  "predicate": "DISTRIBUISCE_CONTENUTI_SU",
+  "object": "X",
+  "relation_class": "platform",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0060"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
+  "caveat": {
+    "it": "Uso piattaforma ≠ partecipazione piattaforma"
+  },
+  "sources": [
+    "S01",
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 12,
+      "original": {
+        "id": "G-0012",
+        "source": "VOE",
+        "target": "X",
+        "predicate": "DISTRIBUISCE_CONTENUTI_SU",
+        "relation_class": "platform",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S01,S00",
+        "timeline_ids": "TL-0060",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
+        "layer": "source",
+        "description_or_caveat": "Uso piattaforma ≠ partecipazione piattaforma"
+      }
+    }
+  ]
+}

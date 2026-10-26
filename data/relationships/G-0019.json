@@ -1,0 +1,48 @@
+{
+  "id": "G-0019",
+  "subject": "SHOR",
+  "predicate": "COLLEGAMENTO_ORGANIZZATIVO",
+  "object": "EVRAZIA",
+  "relation_class": "operational",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0115"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
+  "caveat": {
+    "it": "Rete russa di influenza in Moldavia"
+  },
+  "sources": [
+    "S01",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 19,
+      "original": {
+        "id": "G-0019",
+        "source": "SHOR",
+        "target": "EVRAZIA",
+        "predicate": "COLLEGAMENTO_ORGANIZZATIVO",
+        "relation_class": "operational",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S01,S05",
+        "timeline_ids": "TL-0115",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
+        "layer": "source",
+        "description_or_caveat": "Rete russa di influenza in Moldavia"
+      }
+    }
+  ]
+}

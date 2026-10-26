@@ -1,0 +1,26 @@
+{
+  "id": "S04",
+  "type": "corpus_document",
+  "title": {
+    "it": "DS-04 — Dominio industriale, energia e dipendenze strategiche dell’Europa"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_04_DeepSearch_04 - Dominio industriale, energia e dipendenze strategiche dell’Europa.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_04_DeepSearch_04 - Dominio industriale, energia e dipendenze strategiche dell’Europa.md",
+      "line": 1,
+      "original": {
+        "text": "# DS-04 — Dominio industriale, energia e dipendenze strategiche dell’Europa"
+      }
+    }
+  ]
+}

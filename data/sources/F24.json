@@ -1,0 +1,28 @@
+{
+  "id": "F24",
+  "type": "external_reference",
+  "title": {
+    "it": "ENISA, Health Threat Landscape, 2023"
+  },
+  "publisher": "ENISA",
+  "files": [],
+  "urls": [
+    "https://www.enisa.europa.eu/news/checking-up-on-health-ransomware-accounts-for-54-of-cybersecurity-threats"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 356,
+      "original": {
+        "text": "- **[F24] ENISA**, *Health Threat Landscape*, 2023: https://www.enisa.europa.eu/news/checking-up-on-health-ransomware-accounts-for-54-of-cybersecurity-threats"
+      }
+    }
+  ]
+}

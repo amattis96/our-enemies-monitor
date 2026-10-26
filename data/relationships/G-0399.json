@@ -1,0 +1,45 @@
+{
+  "id": "G-0399",
+  "subject": "MAJID",
+  "predicate": "LEADERSHIP",
+  "object": "FOXTROT",
+  "relation_class": "operational",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
+  "caveat": {
+    "it": "OFAC parla di leader criminale e di cooperazione con MOIS"
+  },
+  "sources": [
+    "WEB-EXT-002"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 397,
+      "original": {
+        "id": "G-0399",
+        "source": "MAJID",
+        "target": "FOXTROT",
+        "predicate": "LEADERSHIP",
+        "relation_class": "operational",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "WEB-EXT-002",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
+        "layer": "source",
+        "description_or_caveat": "OFAC parla di leader criminale e di cooperazione con MOIS"
+      }
+    }
+  ]
+}

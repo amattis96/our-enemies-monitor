@@ -1,0 +1,28 @@
+{
+  "id": "F03",
+  "type": "external_reference",
+  "title": {
+    "it": "Consiglio UE, Moldavia e reti collegate a Ilan Șor, 15 giugno 2026"
+  },
+  "publisher": "Consiglio UE",
+  "files": [],
+  "urls": [
+    "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 335,
+      "original": {
+        "text": "- **[F03] Consiglio UE**, Moldavia e reti collegate a Ilan Șor, 15 giugno 2026: https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/"
+      }
+    }
+  ]
+}

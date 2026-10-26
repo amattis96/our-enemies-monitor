@@ -1,0 +1,28 @@
+{
+  "id": "F11",
+  "type": "external_reference",
+  "title": {
+    "it": "ISC UK, comunicato Russia Report 2020"
+  },
+  "publisher": "ISC UK",
+  "files": [],
+  "urls": [
+    "https://isc.independent.gov.uk/wp-content/uploads/2021/01/20200721_Russia_Press_Notice.pdf"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 343,
+      "original": {
+        "text": "- **[F11] ISC UK**, comunicato Russia Report 2020: https://isc.independent.gov.uk/wp-content/uploads/2021/01/20200721_Russia_Press_Notice.pdf"
+      }
+    }
+  ]
+}

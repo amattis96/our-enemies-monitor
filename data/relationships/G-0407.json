@@ -1,0 +1,45 @@
+{
+  "id": "G-0407",
+  "subject": "RHEIN",
+  "predicate": "FORNITORE_DI_CAPACITA_MILITARE",
+  "object": "UKRLOG",
+  "relation_class": "supply",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Struttura produttiva nel perimetro bersagli"
+  },
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 405,
+      "original": {
+        "id": "G-0407",
+        "source": "RHEIN",
+        "target": "UKRLOG",
+        "predicate": "FORNITORE_DI_CAPACITA_MILITARE",
+        "relation_class": "supply",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S03",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Struttura produttiva nel perimetro bersagli"
+      }
+    }
+  ]
+}

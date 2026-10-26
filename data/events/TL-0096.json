@@ -1,0 +1,71 @@
+{
+  "id": "TL-0096",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Intercettazione di attività GUGI alle Svalbard"
+  },
+  "description": {
+    "it": "Unità russa impegnata in esercitazione clandestina con tecnologie subacquee, secondo fonti occidentali; nessun cavo danneggiato. La data è indicata come primavera dalle fonti."
+  },
+  "category": {
+    "it": "Infrastrutture / cavi"
+  },
+  "geography": {
+    "it": "Svalbard / Artico"
+  },
+  "evidence_note": {
+    "it": "Corroborato; nessun sabotaggio materiale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 96,
+      "original": {
+        "id": "TL-0096",
+        "date_start": "2026",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Infrastrutture / cavi",
+        "title": "Intercettazione di attività GUGI alle Svalbard",
+        "description": "Unità russa impegnata in esercitazione clandestina con tecnologie subacquee, secondo fonti occidentali; nessun cavo danneggiato. La data è indicata come primavera dalle fonti.",
+        "evidence_status": "Corroborato; nessun sabotaggio materiale",
+        "source_docs": "S03",
+        "geography": "Svalbard / Artico"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 298,
+      "original": {
+        "id": "EV_TL-0096",
+        "name": "Intercettazione di attività GUGI alle Svalbard",
+        "kind": "event",
+        "domain": "Infrastrutture / cavi",
+        "geo": "Svalbard / Artico",
+        "date_start": "2026",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Corroborato; nessun sabotaggio materiale",
+        "note": "Record originale TL-0096; Unità russa impegnata in esercitazione clandestina con tecnologie subacquee, secondo fonti occidentali; nessun cavo danneggiato. La data è indicata come primavera dalle fonti."
+      }
+    }
+  ]
+}

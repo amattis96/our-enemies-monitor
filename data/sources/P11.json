@@ -1,0 +1,28 @@
+{
+  "id": "P11",
+  "type": "external_reference",
+  "title": {
+    "it": "IEA, rilascio di riserve petrolifere (11 marzo 2026). Decisione dei membri IEA di rendere disponibili 400 milioni di barili a fronte della crisi mediorientale."
+  },
+  "publisher": "IEA",
+  "files": [],
+  "urls": [
+    "https://www.iea.org/news/iea-member-countries-to-carry-out-largest-ever-oil-stock-release-amid-market-disruptions-from-middle-east-conflict"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1184,
+      "original": {
+        "text": "- **P11 | IEA, rilascio di riserve petrolifere (11 marzo 2026).** Decisione dei membri IEA di rendere disponibili 400 milioni di barili a fronte della crisi mediorientale. https://www.iea.org/news/iea-member-countries-to-carry-out-largest-ever-oil-stock-release-amid-market-disruptions-from-middle-east-conflict"
+      }
+    }
+  ]
+}

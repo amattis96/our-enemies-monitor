@@ -1,0 +1,47 @@
+{
+  "id": "G-0110",
+  "subject": "COSCO",
+  "predicate": "INVESTE_GESTISCE_PORTO",
+  "object": "CHANCAY",
+  "relation_class": "infrastructure",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0101"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Perù, flussi logistici globali"
+  },
+  "sources": [
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 108,
+      "original": {
+        "id": "G-0110",
+        "source": "COSCO",
+        "target": "CHANCAY",
+        "predicate": "INVESTE_GESTISCE_PORTO",
+        "relation_class": "infrastructure",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S04",
+        "timeline_ids": "TL-0101",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Perù, flussi logistici globali"
+      }
+    }
+  ]
+}

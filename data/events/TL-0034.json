@@ -1,0 +1,71 @@
+{
+  "id": "TL-0034",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Meta rimuove una grande rete Doppelganger"
+  },
+  "description": {
+    "it": "Rimossi 1.633 account Facebook, 703 pagine e 29 account Instagram descritti come originati in Russia."
+  },
+  "category": {
+    "it": "FIMI / contromisure"
+  },
+  "geography": {
+    "it": "Europa / Meta"
+  },
+  "evidence_note": {
+    "it": "Contromisura piattaforma documentata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 34,
+      "original": {
+        "id": "TL-0034",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "FIMI / contromisure",
+        "title": "Meta rimuove una grande rete Doppelganger",
+        "description": "Rimossi 1.633 account Facebook, 703 pagine e 29 account Instagram descritti come originati in Russia.",
+        "evidence_status": "Contromisura piattaforma documentata",
+        "source_docs": "S02",
+        "geography": "Europa / Meta"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 236,
+      "original": {
+        "id": "EV_TL-0034",
+        "name": "Meta rimuove una grande rete Doppelganger",
+        "kind": "event",
+        "domain": "FIMI / contromisure",
+        "geo": "Europa / Meta",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S02",
+        "evidence_status": "Contromisura piattaforma documentata",
+        "note": "Record originale TL-0034; Rimossi 1.633 account Facebook, 703 pagine e 29 account Instagram descritti come originati in Russia."
+      }
+    }
+  ]
+}

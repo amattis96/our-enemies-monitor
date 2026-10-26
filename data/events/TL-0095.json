@@ -1,0 +1,71 @@
+{
+  "id": "TL-0095",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Cable Security Toolbox e finanziamenti UE"
+  },
+  "description": {
+    "it": "La Commissione vara strumenti di protezione delle reti subacquee e mette a disposizione ulteriori €347 milioni; le fonti non specificano qui il giorno del provvedimento."
+  },
+  "category": {
+    "it": "Infrastrutture / cavi"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Intervento UE, data annuale indicativa"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 95,
+      "original": {
+        "id": "TL-0095",
+        "date_start": "2026",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Infrastrutture / cavi",
+        "title": "Cable Security Toolbox e finanziamenti UE",
+        "description": "La Commissione vara strumenti di protezione delle reti subacquee e mette a disposizione ulteriori €347 milioni; le fonti non specificano qui il giorno del provvedimento.",
+        "evidence_status": "Intervento UE, data annuale indicativa",
+        "source_docs": "S03",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 297,
+      "original": {
+        "id": "EV_TL-0095",
+        "name": "Cable Security Toolbox e finanziamenti UE",
+        "kind": "event",
+        "domain": "Infrastrutture / cavi",
+        "geo": "Unione europea",
+        "date_start": "2026",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Intervento UE, data annuale indicativa",
+        "note": "Record originale TL-0095; La Commissione vara strumenti di protezione delle reti subacquee e mette a disposizione ulteriori €347 milioni; le fonti non specificano qui il giorno del provvedimento."
+      }
+    }
+  ]
+}

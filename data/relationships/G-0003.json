@@ -1,0 +1,45 @@
+{
+  "id": "G-0003",
+  "subject": "GRU",
+  "predicate": "ATTRIBUZIONE_APPARATO",
+  "object": "SANDWORM",
+  "relation_class": "technical",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Unità 74455"
+  },
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 3,
+      "original": {
+        "id": "G-0003",
+        "source": "GRU",
+        "target": "SANDWORM",
+        "predicate": "ATTRIBUZIONE_APPARATO",
+        "relation_class": "technical",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Unità 74455"
+      }
+    }
+  ]
+}

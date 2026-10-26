@@ -1,0 +1,28 @@
+{
+  "id": "P09",
+  "type": "external_reference",
+  "title": {
+    "it": "Casa Bianca, National Security Strategy USA 2025. Documento ufficiale della strategia USA, sezione Europa, con orientamento politico dichiarato; pubblicato nel dicembre 2025, il testo riporta «November 2025»."
+  },
+  "publisher": "Casa Bianca",
+  "files": [],
+  "urls": [
+    "https://www.whitehouse.gov/wp-content/uploads/2025/12/2025-National-Security-Strategy.pdf"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1182,
+      "original": {
+        "text": "- **P09 | Casa Bianca, National Security Strategy USA 2025.** Documento ufficiale della strategia USA, sezione Europa, con orientamento politico dichiarato; pubblicato nel dicembre 2025, il testo riporta «November 2025». https://www.whitehouse.gov/wp-content/uploads/2025/12/2025-National-Security-Strategy.pdf"
+      }
+    }
+  ]
+}

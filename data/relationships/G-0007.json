@@ -1,0 +1,48 @@
+{
+  "id": "G-0007",
+  "subject": "RU",
+  "predicate": "AGGRESSIONE_MILITARE",
+  "object": "UA",
+  "relation_class": "military",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0006",
+    "TL-0029"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 7,
+      "original": {
+        "id": "G-0007",
+        "source": "RU",
+        "target": "UA",
+        "predicate": "AGGRESSIONE_MILITARE",
+        "relation_class": "military",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00,S03,S05",
+        "timeline_ids": "TL-0006;TL-0029",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

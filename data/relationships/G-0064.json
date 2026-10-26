@@ -1,0 +1,44 @@
+{
+  "id": "G-0064",
+  "subject": "RU",
+  "predicate": "COMPLESSO_INDUSTRIALE_DIFESA",
+  "object": "RUMIC",
+  "relation_class": "supply",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S03",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 62,
+      "original": {
+        "id": "G-0064",
+        "source": "RU",
+        "target": "RUMIC",
+        "predicate": "COMPLESSO_INDUSTRIALE_DIFESA",
+        "relation_class": "supply",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S03,S05",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

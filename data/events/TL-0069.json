@@ -1,0 +1,71 @@
+{
+  "id": "TL-0069",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-12-25",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Danneggiamento Estlink 2 e cavi"
+  },
+  "description": {
+    "it": "Nave Eagle S associata alla shadow fleet russa; responsabilità di un ordine del Cremlino non accertata, procedimento finlandese con problemi di giurisdizione."
+  },
+  "category": {
+    "it": "Infrastrutture sottomarine"
+  },
+  "geography": {
+    "it": "Finlandia / Estonia"
+  },
+  "evidence_note": {
+    "it": "Danno accertato; mandato statale non provato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 69,
+      "original": {
+        "id": "TL-0069",
+        "date_start": "2024-12-25",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Infrastrutture sottomarine",
+        "title": "Danneggiamento Estlink 2 e cavi",
+        "description": "Nave Eagle S associata alla shadow fleet russa; responsabilità di un ordine del Cremlino non accertata, procedimento finlandese con problemi di giurisdizione.",
+        "evidence_status": "Danno accertato; mandato statale non provato",
+        "source_docs": "S03",
+        "geography": "Finlandia / Estonia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 271,
+      "original": {
+        "id": "EV_TL-0069",
+        "name": "Danneggiamento Estlink 2 e cavi",
+        "kind": "event",
+        "domain": "Infrastrutture sottomarine",
+        "geo": "Finlandia / Estonia",
+        "date_start": "2024-12-25",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S03",
+        "evidence_status": "Danno accertato; mandato statale non provato",
+        "note": "Record originale TL-0069; Nave Eagle S associata alla shadow fleet russa; responsabilità di un ordine del Cremlino non accertata, procedimento finlandese con problemi di giurisdizione."
+      }
+    }
+  ]
+}

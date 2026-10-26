@@ -1,0 +1,26 @@
+{
+  "id": "S03",
+  "type": "corpus_document",
+  "title": {
+    "it": "DS-03 · Guerra ibrida, sabotaggi e sicurezza europea"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_03_DeepSearch_03 - Guerra ibrida, sabotaggi e sicurezza europea.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_03_DeepSearch_03 - Guerra ibrida, sabotaggi e sicurezza europea.md",
+      "line": 1,
+      "original": {
+        "text": "# DS-03 · Guerra ibrida, sabotaggi e sicurezza europea"
+      }
+    }
+  ]
+}

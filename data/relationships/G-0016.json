@@ -1,0 +1,47 @@
+{
+  "id": "G-0016",
+  "subject": "VOL",
+  "predicate": "COLLEGAMENTO_POLITICO_MEDIATICO",
+  "object": "MED",
+  "relation_class": "political",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0015"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://it.euronews.com/2025/11/22/la-condanna-a-nathan-gill-solleva-nuovi-interrogativi-sui-legami-tra-europarlamentari-e-cr",
+  "caveat": {
+    "it": "Interlocutore dell’ambiente di Medvedchuk; secondo reportage Medvedchuk fonte economica dello schema Gill"
+  },
+  "sources": [
+    "S01"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 16,
+      "original": {
+        "id": "G-0016",
+        "source": "VOL",
+        "target": "MED",
+        "predicate": "COLLEGAMENTO_POLITICO_MEDIATICO",
+        "relation_class": "political",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S01",
+        "timeline_ids": "TL-0015",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://it.euronews.com/2025/11/22/la-condanna-a-nathan-gill-solleva-nuovi-interrogativi-sui-legami-tra-europarlamentari-e-cr",
+        "layer": "source",
+        "description_or_caveat": "Interlocutore dell’ambiente di Medvedchuk; secondo reportage Medvedchuk fonte economica dello schema Gill"
+      }
+    }
+  ]
+}

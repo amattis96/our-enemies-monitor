@@ -1,0 +1,71 @@
+{
+  "id": "TL-0054",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Regno Unito attribuisce ad APT31 operazioni contro il processo politico"
+  },
+  "description": {
+    "it": "Attribuzione pubblica di attacchi e ricognizioni 2021-2022 contro Electoral Commission e parlamentari a soggetti affiliati allo Stato cinese."
+  },
+  "category": {
+    "it": "Controspionaggio"
+  },
+  "geography": {
+    "it": "Regno Unito"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 54,
+      "original": {
+        "id": "TL-0054",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Controspionaggio",
+        "title": "Regno Unito attribuisce ad APT31 operazioni contro il processo politico",
+        "description": "Attribuzione pubblica di attacchi e ricognizioni 2021-2022 contro Electoral Commission e parlamentari a soggetti affiliati allo Stato cinese.",
+        "evidence_status": "Attribuzione istituzionale",
+        "source_docs": "S03",
+        "geography": "Regno Unito"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 256,
+      "original": {
+        "id": "EV_TL-0054",
+        "name": "Regno Unito attribuisce ad APT31 operazioni contro il processo politico",
+        "kind": "event",
+        "domain": "Controspionaggio",
+        "geo": "Regno Unito",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione istituzionale",
+        "note": "Record originale TL-0054; Attribuzione pubblica di attacchi e ricognizioni 2021-2022 contro Electoral Commission e parlamentari a soggetti affiliati allo Stato cinese."
+      }
+    }
+  ]
+}

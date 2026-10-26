@@ -1,0 +1,31 @@
+{
+  "id": "EUENERGY",
+  "kind": "asset",
+  "name": {
+    "it": "Mercato energetico europeo"
+  },
+  "domain": "dependencies",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 172,
+      "original": {
+        "id": "EUENERGY",
+        "name": "Mercato energetico europeo",
+        "kind": "asset",
+        "domain": "dependencies",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

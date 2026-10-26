@@ -1,0 +1,71 @@
+{
+  "id": "TL-0062",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-06",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Rapporto OMS Europa sui determinanti commerciali della salute"
+  },
+  "description": {
+    "it": "Pubblicazione su influenze industriali sulle politiche sanitarie. Non equivale a prova di un’operazione di intelligence straniera."
+  },
+  "category": {
+    "it": "Salute / lobbying"
+  },
+  "geography": {
+    "it": "Europa"
+  },
+  "evidence_note": {
+    "it": "Studio istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 62,
+      "original": {
+        "id": "TL-0062",
+        "date_start": "2024-06",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Salute / lobbying",
+        "title": "Rapporto OMS Europa sui determinanti commerciali della salute",
+        "description": "Pubblicazione su influenze industriali sulle politiche sanitarie. Non equivale a prova di un’operazione di intelligence straniera.",
+        "evidence_status": "Studio istituzionale",
+        "source_docs": "S00",
+        "geography": "Europa"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 264,
+      "original": {
+        "id": "EV_TL-0062",
+        "name": "Rapporto OMS Europa sui determinanti commerciali della salute",
+        "kind": "event",
+        "domain": "Salute / lobbying",
+        "geo": "Europa",
+        "date_start": "2024-06",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00",
+        "evidence_status": "Studio istituzionale",
+        "note": "Record originale TL-0062; Pubblicazione su influenze industriali sulle politiche sanitarie. Non equivale a prova di un’operazione di intelligence straniera."
+      }
+    }
+  ]
+}

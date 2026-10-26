@@ -1,0 +1,73 @@
+{
+  "id": "TL-0005",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2014",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Inizio della guerra nel Donbas"
+  },
+  "description": {
+    "it": "Conflitto armato nell’Ucraina orientale nel contesto dell’aggressione russa; punto di svolta per la sicurezza europea."
+  },
+  "category": {
+    "it": "Guerra"
+  },
+  "geography": {
+    "it": "Ucraina"
+  },
+  "evidence_note": {
+    "it": "Accertato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 5,
+      "original": {
+        "id": "TL-0005",
+        "date_start": "2014",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Guerra",
+        "title": "Inizio della guerra nel Donbas",
+        "description": "Conflitto armato nell’Ucraina orientale nel contesto dell’aggressione russa; punto di svolta per la sicurezza europea.",
+        "evidence_status": "Accertato",
+        "source_docs": "S00,S03,S05",
+        "geography": "Ucraina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 207,
+      "original": {
+        "id": "EV_TL-0005",
+        "name": "Inizio della guerra nel Donbas",
+        "kind": "event",
+        "domain": "Guerra",
+        "geo": "Ucraina",
+        "date_start": "2014",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S03;S05",
+        "evidence_status": "Accertato",
+        "note": "Record originale TL-0005; Conflitto armato nell’Ucraina orientale nel contesto dell’aggressione russa; punto di svolta per la sicurezza europea."
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "WTO",
+  "kind": "institution",
+  "name": {
+    "it": "Organizzazione mondiale del commercio"
+  },
+  "domain": "institutional",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 45,
+      "original": {
+        "id": "WTO",
+        "name": "Organizzazione mondiale del commercio",
+        "kind": "institution",
+        "domain": "institutional",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

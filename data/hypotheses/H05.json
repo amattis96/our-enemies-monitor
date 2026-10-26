@@ -1,0 +1,50 @@
+{
+  "id": "H05",
+  "subject": "DISCOVER",
+  "object": "CANDIRU",
+  "hypothesis_type": "CLIENTI_E_SURVEILLANCE_EU",
+  "question": {
+    "it": "Quali enti effettivamente acquistano, implementano e autorizzano l’uso di Candiru/Discover-Tech?"
+  },
+  "current_limit": {
+    "it": "Catena tecnologica non attribuisce ogni infezione al fornitore o a un governo."
+  },
+  "priority": "critical",
+  "evidence_needed": {
+    "it": "Forensics, contratti procurement, pubblicità e ID, exploit hashes, autorizzazioni giudiziarie"
+  },
+  "events": [
+    "TL-0138"
+  ],
+  "external_url": "https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/",
+  "status": "open_unproven",
+  "sources": [
+    "S01",
+    "S04",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 5,
+      "original": {
+        "id": "H05",
+        "subject": "DISCOVER",
+        "object": "CANDIRU",
+        "hypothesis_type": "CLIENTI_E_SURVEILLANCE_EU",
+        "verification_question": "Quali enti effettivamente acquistano, implementano e autorizzano l’uso di Candiru/Discover-Tech?",
+        "current_limit": "Catena tecnologica non attribuisce ogni infezione al fornitore o a un governo.",
+        "priority": "Critica",
+        "evidence_needed": "Forensics, contratti procurement, pubblicità e ID, exploit hashes, autorizzazioni giudiziarie",
+        "source_docs": "S01,S04,S05",
+        "timeline_ids": "TL-0138",
+        "external_url": "https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

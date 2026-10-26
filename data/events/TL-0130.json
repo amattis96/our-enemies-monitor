@@ -1,0 +1,71 @@
+{
+  "id": "TL-0130",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-09-03",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Dichiarazioni ufficiali spagnole su Ceuta"
+  },
+  "description": {
+    "it": "Il governo spagnolo pubblica un bilancio dell’afflusso intorno a 70.000 persone; la ricostruzione delle responsabilità marocchine resta controversa."
+  },
+  "category": {
+    "it": "Diplomazia / migrazione"
+  },
+  "geography": {
+    "it": "Spagna"
+  },
+  "evidence_note": {
+    "it": "Dichiarazione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 130,
+      "original": {
+        "id": "TL-0130",
+        "date_start": "2026-09-03",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Diplomazia / migrazione",
+        "title": "Dichiarazioni ufficiali spagnole su Ceuta",
+        "description": "Il governo spagnolo pubblica un bilancio dell’afflusso intorno a 70.000 persone; la ricostruzione delle responsabilità marocchine resta controversa.",
+        "evidence_status": "Dichiarazione istituzionale",
+        "source_docs": "S00",
+        "geography": "Spagna"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 332,
+      "original": {
+        "id": "EV_TL-0130",
+        "name": "Dichiarazioni ufficiali spagnole su Ceuta",
+        "kind": "event",
+        "domain": "Diplomazia / migrazione",
+        "geo": "Spagna",
+        "date_start": "2026-09-03",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00",
+        "evidence_status": "Dichiarazione istituzionale",
+        "note": "Record originale TL-0130; Il governo spagnolo pubblica un bilancio dell’afflusso intorno a 70.000 persone; la ricostruzione delle responsabilità marocchine resta controversa."
+      }
+    }
+  ]
+}

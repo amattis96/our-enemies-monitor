@@ -1,0 +1,28 @@
+{
+  "id": "P05",
+  "type": "external_reference",
+  "title": {
+    "it": "Servizio europeo per l'azione esterna, quarto rapporto FIMI (12 marzo 2026). 540 incidenti nel campione 2025; circa 10.500 canali; attribuzione 29% Russia, 6% Cina."
+  },
+  "publisher": "Servizio europeo per l'azione esterna",
+  "files": [],
+  "urls": [
+    "https://www.eeas.europa.eu/eeas/4th-eeas-report-foreign-information-manipulation-and-interference-threats_en"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1178,
+      "original": {
+        "text": "- **P05 | Servizio europeo per l'azione esterna, quarto rapporto FIMI (12 marzo 2026).** 540 incidenti nel campione 2025; circa 10.500 canali; attribuzione 29% Russia, 6% Cina. https://www.eeas.europa.eu/eeas/4th-eeas-report-foreign-information-manipulation-and-interference-threats_en"
+      }
+    }
+  ]
+}

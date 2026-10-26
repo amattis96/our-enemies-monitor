@@ -1,0 +1,71 @@
+{
+  "id": "TL-0107",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-03",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "UE sanziona società tecnologiche cinesi per cyberattacchi"
+  },
+  "description": {
+    "it": "Designazioni contro Integrity Technology Group e Anxun/i-Soon citate nella DS-03; attribuzione ufficiale, non conferma di sabotaggi navali."
+  },
+  "category": {
+    "it": "Cyber / contromisure"
+  },
+  "geography": {
+    "it": "Unione europea / Cina"
+  },
+  "evidence_note": {
+    "it": "Sanzioni/attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 107,
+      "original": {
+        "id": "TL-0107",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Cyber / contromisure",
+        "title": "UE sanziona società tecnologiche cinesi per cyberattacchi",
+        "description": "Designazioni contro Integrity Technology Group e Anxun/i-Soon citate nella DS-03; attribuzione ufficiale, non conferma di sabotaggi navali.",
+        "evidence_status": "Sanzioni/attribuzione istituzionale",
+        "source_docs": "S03",
+        "geography": "Unione europea / Cina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 309,
+      "original": {
+        "id": "EV_TL-0107",
+        "name": "UE sanziona società tecnologiche cinesi per cyberattacchi",
+        "kind": "event",
+        "domain": "Cyber / contromisure",
+        "geo": "Unione europea / Cina",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Sanzioni/attribuzione istituzionale",
+        "note": "Record originale TL-0107; Designazioni contro Integrity Technology Group e Anxun/i-Soon citate nella DS-03; attribuzione ufficiale, non conferma di sabotaggi navali."
+      }
+    }
+  ]
+}

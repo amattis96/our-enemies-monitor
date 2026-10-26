@@ -1,0 +1,71 @@
+{
+  "id": "TL-0094",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025-12-05",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Multa UE da 120 milioni di euro a X"
+  },
+  "description": {
+    "it": "Decisione della Commissione europea per obblighi di trasparenza DSA: non è una sanzione per collusione con Mosca."
+  },
+  "category": {
+    "it": "DSA / piattaforme"
+  },
+  "geography": {
+    "it": "Unione europea / X"
+  },
+  "evidence_note": {
+    "it": "Provvedimento UE"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 94,
+      "original": {
+        "id": "TL-0094",
+        "date_start": "2025-12-05",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "DSA / piattaforme",
+        "title": "Multa UE da 120 milioni di euro a X",
+        "description": "Decisione della Commissione europea per obblighi di trasparenza DSA: non è una sanzione per collusione con Mosca.",
+        "evidence_status": "Provvedimento UE",
+        "source_docs": "S00",
+        "geography": "Unione europea / X"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 296,
+      "original": {
+        "id": "EV_TL-0094",
+        "name": "Multa UE da 120 milioni di euro a X",
+        "kind": "event",
+        "domain": "DSA / piattaforme",
+        "geo": "Unione europea / X",
+        "date_start": "2025-12-05",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00",
+        "evidence_status": "Provvedimento UE",
+        "note": "Record originale TL-0094; Decisione della Commissione europea per obblighi di trasparenza DSA: non è una sanzione per collusione con Mosca."
+      }
+    }
+  ]
+}

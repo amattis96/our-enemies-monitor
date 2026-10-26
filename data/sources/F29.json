@@ -1,0 +1,28 @@
+{
+  "id": "F29",
+  "type": "external_reference",
+  "title": {
+    "it": "Citizen Lab, Exposing AdFection, 15 ottobre 2026"
+  },
+  "publisher": "Citizen Lab",
+  "files": [],
+  "urls": [
+    "https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 361,
+      "original": {
+        "text": "- **[F29] Citizen Lab**, *Exposing AdFection*, 15 ottobre 2026: https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/"
+      }
+    }
+  ]
+}

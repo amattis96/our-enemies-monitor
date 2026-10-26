@@ -1,0 +1,74 @@
+{
+  "id": "TL-0065",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-07-10",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Dichiarazione NATO del vertice di Washington"
+  },
+  "description": {
+    "it": "NATO descrive la minaccia ibrida russa e definisce la Cina “decisive enabler” della base industriale della guerra russa tramite dual-use."
+  },
+  "category": {
+    "it": "NATO / geopolitica"
+  },
+  "geography": {
+    "it": "Washington / NATO"
+  },
+  "evidence_note": {
+    "it": "Attribuzione NATO; contestata da Pechino"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 65,
+      "original": {
+        "id": "TL-0065",
+        "date_start": "2024-07-10",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "NATO / geopolitica",
+        "title": "Dichiarazione NATO del vertice di Washington",
+        "description": "NATO descrive la minaccia ibrida russa e definisce la Cina “decisive enabler” della base industriale della guerra russa tramite dual-use.",
+        "evidence_status": "Attribuzione NATO; contestata da Pechino",
+        "source_docs": "S00,S03,S04,S05",
+        "geography": "Washington / NATO"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 267,
+      "original": {
+        "id": "EV_TL-0065",
+        "name": "Dichiarazione NATO del vertice di Washington",
+        "kind": "event",
+        "domain": "NATO / geopolitica",
+        "geo": "Washington / NATO",
+        "date_start": "2024-07-10",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S03;S04;S05",
+        "evidence_status": "Attribuzione NATO; contestata da Pechino",
+        "note": "Record originale TL-0065; NATO descrive la minaccia ibrida russa e definisce la Cina “decisive enabler” della base industriale della guerra russa tramite dual-use."
+      }
+    }
+  ]
+}

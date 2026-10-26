@@ -1,0 +1,47 @@
+{
+  "id": "G-0423",
+  "subject": "RU",
+  "predicate": "DESTINATARIO_SANZIONI",
+  "object": "RUSANCTIONS",
+  "relation_class": "policy",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0004",
+    "TL-0141"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 421,
+      "original": {
+        "id": "G-0423",
+        "source": "RU",
+        "target": "RUSANCTIONS",
+        "predicate": "DESTINATARIO_SANZIONI",
+        "relation_class": "policy",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00,S05",
+        "timeline_ids": "TL-0004;TL-0141",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

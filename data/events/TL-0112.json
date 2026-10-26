@@ -1,0 +1,72 @@
+{
+  "id": "TL-0112",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-06",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Iniziativa europea Chips Act 2.0"
+  },
+  "description": {
+    "it": "L’UE promuove una nuova fase di autonomia industriale per ridurre dipendenze leading-edge; l’assenza di foundry UE aperte sotto 10 nm resta un limite."
+  },
+  "category": {
+    "it": "Industria / semiconduttori"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Iniziativa istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 112,
+      "original": {
+        "id": "TL-0112",
+        "date_start": "2026-06",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Industria / semiconduttori",
+        "title": "Iniziativa europea Chips Act 2.0",
+        "description": "L’UE promuove una nuova fase di autonomia industriale per ridurre dipendenze leading-edge; l’assenza di foundry UE aperte sotto 10 nm resta un limite.",
+        "evidence_status": "Iniziativa istituzionale",
+        "source_docs": "S04,S05",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 314,
+      "original": {
+        "id": "EV_TL-0112",
+        "name": "Iniziativa europea Chips Act 2.0",
+        "kind": "event",
+        "domain": "Industria / semiconduttori",
+        "geo": "Unione europea",
+        "date_start": "2026-06",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S04;S05",
+        "evidence_status": "Iniziativa istituzionale",
+        "note": "Record originale TL-0112; L’UE promuove una nuova fase di autonomia industriale per ridurre dipendenze leading-edge; l’assenza di foundry UE aperte sotto 10 nm resta un limite."
+      }
+    }
+  ]
+}

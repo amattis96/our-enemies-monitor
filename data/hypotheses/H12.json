@@ -1,0 +1,49 @@
+{
+  "id": "H12",
+  "subject": "RU",
+  "object": "EAGLES",
+  "hypothesis_type": "MANDATO_STATALE_ESTLINK",
+  "question": {
+    "it": "Una catena di ordini collega il danneggiamento Estlink 2 allo Stato russo?"
+  },
+  "current_limit": {
+    "it": "Associazione shadow fleet è solo contesto."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "VDR, beneficial ownership, incident report, court documents"
+  },
+  "events": [
+    "TL-0069"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S03",
+    "S06"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 12,
+      "original": {
+        "id": "H12",
+        "subject": "RU",
+        "object": "EAGLES",
+        "hypothesis_type": "MANDATO_STATALE_ESTLINK",
+        "verification_question": "Una catena di ordini collega il danneggiamento Estlink 2 allo Stato russo?",
+        "current_limit": "Associazione shadow fleet è solo contesto.",
+        "priority": "Alta",
+        "evidence_needed": "VDR, beneficial ownership, incident report, court documents",
+        "source_docs": "S03,S06",
+        "timeline_ids": "TL-0069",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

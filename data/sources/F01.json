@@ -1,0 +1,28 @@
+{
+  "id": "F01",
+  "type": "external_reference",
+  "title": {
+    "it": "CSIS, Russia's Shadow War Against the West, 18 marzo 2025"
+  },
+  "publisher": "CSIS",
+  "files": [],
+  "urls": [
+    "https://www.csis.org/analysis/russias-shadow-war-against-west"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 333,
+      "original": {
+        "text": "- **[F01] CSIS**, *Russia's Shadow War Against the West*, 18 marzo 2025: https://www.csis.org/analysis/russias-shadow-war-against-west"
+      }
+    }
+  ]
+}

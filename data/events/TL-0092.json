@@ -1,0 +1,71 @@
+{
+  "id": "TL-0092",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025-11",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Condanna di Nathan Gill"
+  },
+  "description": {
+    "it": "Gill, dopo aver ammesso otto reati, riceve una pena di 10 anni e 6 mesi; documentati circa £40.000 per attività politiche filorusse."
+  },
+  "category": {
+    "it": "Giustizia / corruzione"
+  },
+  "geography": {
+    "it": "Regno Unito"
+  },
+  "evidence_note": {
+    "it": "Accertato giudiziariamente"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 92,
+      "original": {
+        "id": "TL-0092",
+        "date_start": "2025-11",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Giustizia / corruzione",
+        "title": "Condanna di Nathan Gill",
+        "description": "Gill, dopo aver ammesso otto reati, riceve una pena di 10 anni e 6 mesi; documentati circa £40.000 per attività politiche filorusse.",
+        "evidence_status": "Accertato giudiziariamente",
+        "source_docs": "S01",
+        "geography": "Regno Unito"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 294,
+      "original": {
+        "id": "EV_TL-0092",
+        "name": "Condanna di Nathan Gill",
+        "kind": "event",
+        "domain": "Giustizia / corruzione",
+        "geo": "Regno Unito",
+        "date_start": "2025-11",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S01",
+        "evidence_status": "Accertato giudiziariamente",
+        "note": "Record originale TL-0092; Gill, dopo aver ammesso otto reati, riceve una pena di 10 anni e 6 mesi; documentati circa £40.000 per attività politiche filorusse."
+      }
+    }
+  ]
+}

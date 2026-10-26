@@ -1,0 +1,45 @@
+{
+  "id": "G-0002",
+  "subject": "GRU",
+  "predicate": "ATTRIBUZIONE_APPARATO",
+  "object": "APT28",
+  "relation_class": "technical",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "APT28 attribuito a GRU da UE e governi"
+  },
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 2,
+      "original": {
+        "id": "G-0002",
+        "source": "GRU",
+        "target": "APT28",
+        "predicate": "ATTRIBUZIONE_APPARATO",
+        "relation_class": "technical",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "APT28 attribuito a GRU da UE e governi"
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "TL-0031",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Acquisizione Twitter da parte di Elon Musk"
+  },
+  "description": {
+    "it": "L’operazione coinvolge impegni finanziari internazionali, inclusi soggetti statunitensi, cinesi e del Golfo; ciò non prova controllo politico dei finanziatori."
+  },
+  "category": {
+    "it": "Investimenti / tecnologia"
+  },
+  "geography": {
+    "it": "Stati Uniti / mondo"
+  },
+  "evidence_note": {
+    "it": "Operazione societaria accertata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 31,
+      "original": {
+        "id": "TL-0031",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Investimenti / tecnologia",
+        "title": "Acquisizione Twitter da parte di Elon Musk",
+        "description": "L’operazione coinvolge impegni finanziari internazionali, inclusi soggetti statunitensi, cinesi e del Golfo; ciò non prova controllo politico dei finanziatori.",
+        "evidence_status": "Operazione societaria accertata",
+        "source_docs": "S00,S01",
+        "geography": "Stati Uniti / mondo"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 233,
+      "original": {
+        "id": "EV_TL-0031",
+        "name": "Acquisizione Twitter da parte di Elon Musk",
+        "kind": "event",
+        "domain": "Investimenti / tecnologia",
+        "geo": "Stati Uniti / mondo",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S01",
+        "evidence_status": "Operazione societaria accertata",
+        "note": "Record originale TL-0031; L’operazione coinvolge impegni finanziari internazionali, inclusi soggetti statunitensi, cinesi e del Golfo; ciò non prova controllo politico dei finanziatori."
+      }
+    }
+  ]
+}

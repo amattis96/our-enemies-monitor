@@ -1,0 +1,47 @@
+{
+  "id": "G-0422",
+  "subject": "EAGLES",
+  "predicate": "ASSOCIAZIONE_FLOTTA",
+  "object": "SHADOW",
+  "relation_class": "commercial",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0069"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Associazione flotta non equivale a ordine sabotaggio"
+  },
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 420,
+      "original": {
+        "id": "G-0422",
+        "source": "EAGLES",
+        "target": "SHADOW",
+        "predicate": "ASSOCIAZIONE_FLOTTA",
+        "relation_class": "commercial",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S03",
+        "timeline_ids": "TL-0069",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Associazione flotta non equivale a ordine sabotaggio"
+      }
+    }
+  ]
+}

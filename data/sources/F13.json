@@ -1,0 +1,28 @@
+{
+  "id": "F13",
+  "type": "external_reference",
+  "title": {
+    "it": "Consiglio UE, sanzioni Bielorussia per strumentalizzazione dei migranti, dicembre 2021"
+  },
+  "publisher": "Consiglio UE",
+  "files": [],
+  "urls": [
+    "https://www.consilium.europa.eu/en/press/press-releases/2021/12/02/belarus-eu-adopts-5th-package-of-sanctions-over-continued-human-rights-abuses-and-the-instrumentalisation-of-migrants/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 345,
+      "original": {
+        "text": "- **[F13] Consiglio UE**, sanzioni Bielorussia per strumentalizzazione dei migranti, dicembre 2021: https://www.consilium.europa.eu/en/press/press-releases/2021/12/02/belarus-eu-adopts-5th-package-of-sanctions-over-continued-human-rights-abuses-and-the-instrumentalisation-of-migrants/"
+      }
+    }
+  ]
+}

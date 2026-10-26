@@ -1,0 +1,71 @@
+{
+  "id": "TL-0002",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2008-08",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Cyberattacchi durante la guerra russo-georgiana"
+  },
+  "description": {
+    "it": "DDoS e compromissioni di siti accompagnano l’offensiva militare russa; catena di comando cyber statale incompleta nelle fonti aperte."
+  },
+  "category": {
+    "it": "Cyber / guerra"
+  },
+  "geography": {
+    "it": "Georgia"
+  },
+  "evidence_note": {
+    "it": "Evento corroborato; regia cyber non conclusiva"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 2,
+      "original": {
+        "id": "TL-0002",
+        "date_start": "2008-08",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Cyber / guerra",
+        "title": "Cyberattacchi durante la guerra russo-georgiana",
+        "description": "DDoS e compromissioni di siti accompagnano l’offensiva militare russa; catena di comando cyber statale incompleta nelle fonti aperte.",
+        "evidence_status": "Evento corroborato; regia cyber non conclusiva",
+        "source_docs": "S03",
+        "geography": "Georgia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 204,
+      "original": {
+        "id": "EV_TL-0002",
+        "name": "Cyberattacchi durante la guerra russo-georgiana",
+        "kind": "event",
+        "domain": "Cyber / guerra",
+        "geo": "Georgia",
+        "date_start": "2008-08",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Evento corroborato; regia cyber non conclusiva",
+        "note": "Record originale TL-0002; DDoS e compromissioni di siti accompagnano l’offensiva militare russa; catena di comando cyber statale incompleta nelle fonti aperte."
+      }
+    }
+  ]
+}

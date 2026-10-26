@@ -1,0 +1,51 @@
+{
+  "id": "H06",
+  "subject": "KERIMOV",
+  "object": "HAL9001",
+  "hypothesis_type": "FLUSSO_DI_CAPITALE_KERIMOV_SPACEX",
+  "question": {
+    "it": "Esiste prova bancaria di fondi Kerimov entrati nell’investimento HAL9001 o SpaceX?"
+  },
+  "current_limit": {
+    "it": "NESSUNA prova nel corpus; vietata la catena per semplice vicinanza Sob-GVA."
+  },
+  "priority": "critical",
+  "evidence_needed": {
+    "it": "LP register HAL9001, wire transfers, UBO KYC, side letters, documenti di fondi"
+  },
+  "events": [
+    "TL-0084",
+    "TL-0116"
+  ],
+  "external_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
+  "status": "open_unproven",
+  "sources": [
+    "S00",
+    "S01",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 6,
+      "original": {
+        "id": "H06",
+        "subject": "KERIMOV",
+        "object": "HAL9001",
+        "hypothesis_type": "FLUSSO_DI_CAPITALE_KERIMOV_SPACEX",
+        "verification_question": "Esiste prova bancaria di fondi Kerimov entrati nell’investimento HAL9001 o SpaceX?",
+        "current_limit": "NESSUNA prova nel corpus; vietata la catena per semplice vicinanza Sob-GVA.",
+        "priority": "Critica",
+        "evidence_needed": "LP register HAL9001, wire transfers, UBO KYC, side letters, documenti di fondi",
+        "source_docs": "S00,S01,S04",
+        "timeline_ids": "TL-0084;TL-0116",
+        "external_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

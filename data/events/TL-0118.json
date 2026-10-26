@@ -1,0 +1,71 @@
+{
+  "id": "TL-0118",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-08",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Revisione del programma IRIS²"
+  },
+  "description": {
+    "it": "Accordo rivisto per 348 satelliti (330 LEO, 18 MEO); primi lanci attesi dal 2029, servizi dal 2030."
+  },
+  "category": {
+    "it": "Satelliti / politica industriale"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Decisione/programmazione documentata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 118,
+      "original": {
+        "id": "TL-0118",
+        "date_start": "2026-08",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Satelliti / politica industriale",
+        "title": "Revisione del programma IRIS²",
+        "description": "Accordo rivisto per 348 satelliti (330 LEO, 18 MEO); primi lanci attesi dal 2029, servizi dal 2030.",
+        "evidence_status": "Decisione/programmazione documentata",
+        "source_docs": "S04",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 320,
+      "original": {
+        "id": "EV_TL-0118",
+        "name": "Revisione del programma IRIS²",
+        "kind": "event",
+        "domain": "Satelliti / politica industriale",
+        "geo": "Unione europea",
+        "date_start": "2026-08",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S04",
+        "evidence_status": "Decisione/programmazione documentata",
+        "note": "Record originale TL-0118; Accordo rivisto per 348 satelliti (330 LEO, 18 MEO); primi lanci attesi dal 2029, servizi dal 2030."
+      }
+    }
+  ]
+}

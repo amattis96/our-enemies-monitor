@@ -1,0 +1,72 @@
+{
+  "id": "TL-0076",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Diminuzione della quota russa nel gas UE"
+  },
+  "description": {
+    "it": "Quota stimata dal ~40% del 2021 a ~10% nel 2025; crescente ricorso a LNG e mercati globali. Indicatore annuale, non singolo incidente."
+  },
+  "category": {
+    "it": "Energia / resilienza"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Dati istituzionali"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 76,
+      "original": {
+        "id": "TL-0076",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Energia / resilienza",
+        "title": "Diminuzione della quota russa nel gas UE",
+        "description": "Quota stimata dal ~40% del 2021 a ~10% nel 2025; crescente ricorso a LNG e mercati globali. Indicatore annuale, non singolo incidente.",
+        "evidence_status": "Dati istituzionali",
+        "source_docs": "S04,S05",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 278,
+      "original": {
+        "id": "EV_TL-0076",
+        "name": "Diminuzione della quota russa nel gas UE",
+        "kind": "event",
+        "domain": "Energia / resilienza",
+        "geo": "Unione europea",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S04;S05",
+        "evidence_status": "Dati istituzionali",
+        "note": "Record originale TL-0076; Quota stimata dal ~40% del 2021 a ~10% nel 2025; crescente ricorso a LNG e mercati globali. Indicatore annuale, non singolo incidente."
+      }
+    }
+  ]
+}

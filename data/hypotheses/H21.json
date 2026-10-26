@@ -1,0 +1,49 @@
+{
+  "id": "H21",
+  "subject": "RUSANCTIONS",
+  "object": "AE",
+  "hypothesis_type": "NETWORK_ELUSIONE_MULTIGIURISDIZIONALE",
+  "question": {
+    "it": "Quali società effettive nelle sanzioni 2026 condividono amministratori, UBO, wallet, navi?"
+  },
+  "current_limit": {
+    "it": "Entità specifiche sanzionate non equivalgono a colpevolezza di Paesi terzi."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "Eurlex sanctions annexes, OFAC SDN, AIS/IMO, beneficial ownership, shipping docs"
+  },
+  "events": [
+    "TL-0109",
+    "TL-0114"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 21,
+      "original": {
+        "id": "H21",
+        "subject": "RUSANCTIONS",
+        "object": "AE",
+        "hypothesis_type": "NETWORK_ELUSIONE_MULTIGIURISDIZIONALE",
+        "verification_question": "Quali società effettive nelle sanzioni 2026 condividono amministratori, UBO, wallet, navi?",
+        "current_limit": "Entità specifiche sanzionate non equivalgono a colpevolezza di Paesi terzi.",
+        "priority": "Alta",
+        "evidence_needed": "Eurlex sanctions annexes, OFAC SDN, AIS/IMO, beneficial ownership, shipping docs",
+        "source_docs": "S05",
+        "timeline_ids": "TL-0109;TL-0114",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

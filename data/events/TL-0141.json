@@ -1,0 +1,73 @@
+{
+  "id": "TL-0141",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-10-16",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Ordine presidenziale USA sulle deroghe al Graham Act"
+  },
+  "description": {
+    "it": "La Casa Bianca dispone waiver per varie nuove sanzioni e dazi verso Mosca; le sanzioni anti-russe precedenti non vengono automaticamente abrogate."
+  },
+  "category": {
+    "it": "Sanzioni / Stati Uniti"
+  },
+  "geography": {
+    "it": "Stati Uniti / Russia"
+  },
+  "evidence_note": {
+    "it": "Atto ufficiale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 141,
+      "original": {
+        "id": "TL-0141",
+        "date_start": "2026-10-16",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Sanzioni / Stati Uniti",
+        "title": "Ordine presidenziale USA sulle deroghe al Graham Act",
+        "description": "La Casa Bianca dispone waiver per varie nuove sanzioni e dazi verso Mosca; le sanzioni anti-russe precedenti non vengono automaticamente abrogate.",
+        "evidence_status": "Atto ufficiale",
+        "source_docs": "S00,S04,S05",
+        "geography": "Stati Uniti / Russia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 343,
+      "original": {
+        "id": "EV_TL-0141",
+        "name": "Ordine presidenziale USA sulle deroghe al Graham Act",
+        "kind": "event",
+        "domain": "Sanzioni / Stati Uniti",
+        "geo": "Stati Uniti / Russia",
+        "date_start": "2026-10-16",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S04;S05",
+        "evidence_status": "Atto ufficiale",
+        "note": "Record originale TL-0141; La Casa Bianca dispone waiver per varie nuove sanzioni e dazi verso Mosca; le sanzioni anti-russe precedenti non vengono automaticamente abrogate."
+      }
+    }
+  ]
+}

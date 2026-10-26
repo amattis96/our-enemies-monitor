@@ -1,0 +1,71 @@
+{
+  "id": "TL-0135",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-10-08",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Briefing EPRS sulla crisi di Ceuta"
+  },
+  "description": {
+    "it": "Il briefing cita ~80.000 ingressi e almeno 141 decessi nella sintesi, con discrepanze interne; non trasformare in conteggio consolidato."
+  },
+  "category": {
+    "it": "Migrazione / rapporto"
+  },
+  "geography": {
+    "it": "Unione europea / Ceuta"
+  },
+  "evidence_note": {
+    "it": "Pubblicazione istituzionale, dati discordanti"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 135,
+      "original": {
+        "id": "TL-0135",
+        "date_start": "2026-10-08",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Migrazione / rapporto",
+        "title": "Briefing EPRS sulla crisi di Ceuta",
+        "description": "Il briefing cita ~80.000 ingressi e almeno 141 decessi nella sintesi, con discrepanze interne; non trasformare in conteggio consolidato.",
+        "evidence_status": "Pubblicazione istituzionale, dati discordanti",
+        "source_docs": "S00",
+        "geography": "Unione europea / Ceuta"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 337,
+      "original": {
+        "id": "EV_TL-0135",
+        "name": "Briefing EPRS sulla crisi di Ceuta",
+        "kind": "event",
+        "domain": "Migrazione / rapporto",
+        "geo": "Unione europea / Ceuta",
+        "date_start": "2026-10-08",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00",
+        "evidence_status": "Pubblicazione istituzionale, dati discordanti",
+        "note": "Record originale TL-0135; Il briefing cita ~80.000 ingressi e almeno 141 decessi nella sintesi, con discrepanze interne; non trasformare in conteggio consolidato."
+      }
+    }
+  ]
+}

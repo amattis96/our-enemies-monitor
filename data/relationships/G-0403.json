@@ -1,0 +1,43 @@
+{
+  "id": "G-0403",
+  "subject": "CPS",
+  "predicate": "AUTORITA_PROCURA",
+  "object": "EXT-003",
+  "relation_class": "event_participation",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.cps.gov.uk/national-news/news/teen-hitman-guilty-uk-murder-plot",
+  "caveat": null,
+  "sources": [
+    "WEB-EXT-003"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 401,
+      "original": {
+        "id": "G-0403",
+        "source": "CPS",
+        "target": "EV_EXT-003",
+        "predicate": "AUTORITA_PROCURA",
+        "relation_class": "event_participation",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "WEB-EXT-003",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.cps.gov.uk/national-news/news/teen-hitman-guilty-uk-murder-plot",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

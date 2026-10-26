@@ -1,0 +1,28 @@
+{
+  "id": "P03",
+  "type": "external_reference",
+  "title": {
+    "it": "Crown Prosecution Service, Nathan Gill (21 novembre 2025). Ammissione di colpevolezza, condanna, circa £40.000 di tangenti."
+  },
+  "publisher": "Crown Prosecution Service",
+  "files": [],
+  "urls": [
+    "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1176,
+      "original": {
+        "text": "- **P03 | Crown Prosecution Service, Nathan Gill (21 novembre 2025).** Ammissione di colpevolezza, condanna, circa £40.000 di tangenti. https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes"
+      }
+    }
+  ]
+}

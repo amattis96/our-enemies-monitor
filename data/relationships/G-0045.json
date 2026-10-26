@@ -1,0 +1,47 @@
+{
+  "id": "G-0045",
+  "subject": "PAPER",
+  "predicate": "RIPRENDE_NARRAZIONI",
+  "object": "RU_PRESS",
+  "relation_class": "information_flow",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0082"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Non provato coordinamento operativo Pechino-Mosca"
+  },
+  "sources": [
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 45,
+      "original": {
+        "id": "G-0045",
+        "source": "PAPER",
+        "target": "RU_PRESS",
+        "predicate": "RIPRENDE_NARRAZIONI",
+        "relation_class": "information_flow",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S02",
+        "timeline_ids": "TL-0082",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Non provato coordinamento operativo Pechino-Mosca"
+      }
+    }
+  ]
+}

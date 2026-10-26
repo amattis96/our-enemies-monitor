@@ -1,0 +1,28 @@
+{
+  "id": "F06",
+  "type": "external_reference",
+  "title": {
+    "it": "Casa Bianca, National Security Strategy 2025 (testo integrale)"
+  },
+  "publisher": "Casa Bianca",
+  "files": [],
+  "urls": [
+    "https://www.whitehouse.gov/wp-content/uploads/2025/12/2025-National-Security-Strategy.pdf"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 338,
+      "original": {
+        "text": "- **[F06] Casa Bianca**, *National Security Strategy 2025* (testo integrale): https://www.whitehouse.gov/wp-content/uploads/2025/12/2025-National-Security-Strategy.pdf"
+      }
+    }
+  ]
+}

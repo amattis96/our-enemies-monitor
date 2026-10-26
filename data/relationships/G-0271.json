@@ -1,0 +1,48 @@
+{
+  "id": "G-0271",
+  "subject": "IR",
+  "predicate": "TREATY_PARTY",
+  "object": "TL-0083",
+  "relation_class": "event_participation",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0083"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+  },
+  "sources": [
+    "S06",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 269,
+      "original": {
+        "id": "G-0271",
+        "source": "IR",
+        "target": "EV_TL-0083",
+        "predicate": "TREATY_PARTY",
+        "relation_class": "event_participation",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S06;S06,S05",
+        "timeline_ids": "TL-0083",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "timeline_link",
+        "description_or_caveat": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+      }
+    }
+  ]
+}

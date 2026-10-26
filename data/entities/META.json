@@ -1,0 +1,31 @@
+{
+  "id": "META",
+  "kind": "company",
+  "name": {
+    "it": "Meta / Facebook / Instagram"
+  },
+  "domain": "commerce-infrastructure",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 134,
+      "original": {
+        "id": "META",
+        "name": "Meta / Facebook / Instagram",
+        "kind": "company",
+        "domain": "commerce-infrastructure",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

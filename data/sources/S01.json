@@ -1,0 +1,26 @@
+{
+  "id": "S01",
+  "type": "corpus_document",
+  "title": {
+    "it": "Attori, reti, finanziamenti e infiltrazioni politiche in Europa"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_01_DeepSearch_01 - Attori, reti, finanziamenti e infiltrazioni politiche in Europa.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_01_DeepSearch_01 - Attori, reti, finanziamenti e infiltrazioni politiche in Europa.md",
+      "line": 1,
+      "original": {
+        "text": "# Attori, reti, finanziamenti e infiltrazioni politiche in Europa"
+      }
+    }
+  ]
+}

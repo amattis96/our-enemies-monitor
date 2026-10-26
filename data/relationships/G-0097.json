@@ -1,0 +1,46 @@
+{
+  "id": "G-0097",
+  "subject": "CN",
+  "predicate": "INDUSTRIA_NAZIONALE_DOMINA_RAFFINAZIONE",
+  "object": "CHNREFINE",
+  "relation_class": "dependency",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.iea.org/reports/rare-earth-elements/executive-summary",
+  "caveat": {
+    "it": "Percentuale di mercati documentata da IEA"
+  },
+  "sources": [
+    "S04",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 95,
+      "original": {
+        "id": "G-0097",
+        "source": "CN",
+        "target": "CHNREFINE",
+        "predicate": "INDUSTRIA_NAZIONALE_DOMINA_RAFFINAZIONE",
+        "relation_class": "dependency",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S04,S05",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.iea.org/reports/rare-earth-elements/executive-summary",
+        "layer": "source",
+        "description_or_caveat": "Percentuale di mercati documentata da IEA"
+      }
+    }
+  ]
+}

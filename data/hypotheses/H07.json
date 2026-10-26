@@ -1,0 +1,51 @@
+{
+  "id": "H07",
+  "subject": "X",
+  "object": "US",
+  "hypothesis_type": "COORDINAMENTO_POLITICO_USA_E_INTERVENTI_MUSK",
+  "question": {
+    "it": "Esistono ordini, accordi e contatti governativi relativi al sostegno Musk ad AfD?"
+  },
+  "current_limit": {
+    "it": "Sostegno pubblico accertato, regia clandestina federale non dimostrata."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "Records Casa Bianca/FARA, agenda contatti, contratti, testimonianze, log moderazione"
+  },
+  "events": [
+    "TL-0081",
+    "TL-0093"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S01",
+    "S02",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 7,
+      "original": {
+        "id": "H07",
+        "subject": "X",
+        "object": "US",
+        "hypothesis_type": "COORDINAMENTO_POLITICO_USA_E_INTERVENTI_MUSK",
+        "verification_question": "Esistono ordini, accordi e contatti governativi relativi al sostegno Musk ad AfD?",
+        "current_limit": "Sostegno pubblico accertato, regia clandestina federale non dimostrata.",
+        "priority": "Alta",
+        "evidence_needed": "Records Casa Bianca/FARA, agenda contatti, contratti, testimonianze, log moderazione",
+        "source_docs": "S01,S02,S05",
+        "timeline_ids": "TL-0081;TL-0093",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

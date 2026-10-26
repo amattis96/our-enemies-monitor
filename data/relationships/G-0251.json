@@ -1,0 +1,49 @@
+{
+  "id": "G-0251",
+  "subject": "GELEC",
+  "predicate": "TARGET",
+  "object": "TL-0073",
+  "relation_class": "event_participation",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0073"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+  },
+  "sources": [
+    "S06",
+    "S01",
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 249,
+      "original": {
+        "id": "G-0251",
+        "source": "GELEC",
+        "target": "EV_TL-0073",
+        "predicate": "TARGET",
+        "relation_class": "event_participation",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S06;S06,S01;S02",
+        "timeline_ids": "TL-0073",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "timeline_link",
+        "description_or_caveat": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+      }
+    }
+  ]
+}

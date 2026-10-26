@@ -1,0 +1,44 @@
+{
+  "id": "G-0432",
+  "subject": "TW",
+  "predicate": "CENTRO_FABBRICAZIONE_CHIP",
+  "object": "SEMICON",
+  "relation_class": "dependency",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S04",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 430,
+      "original": {
+        "id": "G-0432",
+        "source": "TW",
+        "target": "SEMICON",
+        "predicate": "CENTRO_FABBRICAZIONE_CHIP",
+        "relation_class": "dependency",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S04,S05",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

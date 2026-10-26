@@ -1,0 +1,72 @@
+{
+  "id": "TL-0032",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Doppelganger prende dimensione europea"
+  },
+  "description": {
+    "it": "Falsi siti che imitano media, account e inserzioni attivi soprattutto in Germania, Francia, Italia, UK e Ucraina."
+  },
+  "category": {
+    "it": "FIMI / campagne"
+  },
+  "geography": {
+    "it": "Europa"
+  },
+  "evidence_note": {
+    "it": "Campagna corroborata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01",
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 32,
+      "original": {
+        "id": "TL-0032",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "FIMI / campagne",
+        "title": "Doppelganger prende dimensione europea",
+        "description": "Falsi siti che imitano media, account e inserzioni attivi soprattutto in Germania, Francia, Italia, UK e Ucraina.",
+        "evidence_status": "Campagna corroborata",
+        "source_docs": "S01,S02",
+        "geography": "Europa"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 234,
+      "original": {
+        "id": "EV_TL-0032",
+        "name": "Doppelganger prende dimensione europea",
+        "kind": "event",
+        "domain": "FIMI / campagne",
+        "geo": "Europa",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S01;S02",
+        "evidence_status": "Campagna corroborata",
+        "note": "Record originale TL-0032; Falsi siti che imitano media, account e inserzioni attivi soprattutto in Germania, Francia, Italia, UK e Ucraina."
+      }
+    }
+  ]
+}

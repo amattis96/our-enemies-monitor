@@ -1,0 +1,71 @@
+{
+  "id": "TL-0042",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2023",
+    "end": "2024",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Afflusso migratorio al confine russo-finlandese"
+  },
+  "description": {
+    "it": "Incremento e chiusure dei valichi nel 2023-2024; la Finlandia attribuisce alla Russia una facilitazione strumentale dei flussi."
+  },
+  "category": {
+    "it": "Pressione migratoria"
+  },
+  "geography": {
+    "it": "Finlandia / Russia"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale finlandese"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 42,
+      "original": {
+        "id": "TL-0042",
+        "date_start": "2023",
+        "date_end": "2024",
+        "date_precision": "year",
+        "category": "Pressione migratoria",
+        "title": "Afflusso migratorio al confine russo-finlandese",
+        "description": "Incremento e chiusure dei valichi nel 2023-2024; la Finlandia attribuisce alla Russia una facilitazione strumentale dei flussi.",
+        "evidence_status": "Attribuzione istituzionale finlandese",
+        "source_docs": "S03",
+        "geography": "Finlandia / Russia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 244,
+      "original": {
+        "id": "EV_TL-0042",
+        "name": "Afflusso migratorio al confine russo-finlandese",
+        "kind": "event",
+        "domain": "Pressione migratoria",
+        "geo": "Finlandia / Russia",
+        "date_start": "2023",
+        "date_end": "2024",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione istituzionale finlandese",
+        "note": "Record originale TL-0042; Incremento e chiusure dei valichi nel 2023-2024; la Finlandia attribuisce alla Russia una facilitazione strumentale dei flussi."
+      }
+    }
+  ]
+}

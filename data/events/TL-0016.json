@@ -1,0 +1,71 @@
+{
+  "id": "TL-0016",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2018",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Proteste dei Gilet gialli"
+  },
+  "description": {
+    "it": "Mobilitazione francese su temi economici; studi sulla centralità dei bot non dimostrano un’origine artificiale o una regia russa del movimento."
+  },
+  "category": {
+    "it": "Movimenti sociali"
+  },
+  "geography": {
+    "it": "Francia"
+  },
+  "evidence_note": {
+    "it": "Proteste accertate; regia estera non provata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 16,
+      "original": {
+        "id": "TL-0016",
+        "date_start": "2018",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Movimenti sociali",
+        "title": "Proteste dei Gilet gialli",
+        "description": "Mobilitazione francese su temi economici; studi sulla centralità dei bot non dimostrano un’origine artificiale o una regia russa del movimento.",
+        "evidence_status": "Proteste accertate; regia estera non provata",
+        "source_docs": "S02",
+        "geography": "Francia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 218,
+      "original": {
+        "id": "EV_TL-0016",
+        "name": "Proteste dei Gilet gialli",
+        "kind": "event",
+        "domain": "Movimenti sociali",
+        "geo": "Francia",
+        "date_start": "2018",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S02",
+        "evidence_status": "Proteste accertate; regia estera non provata",
+        "note": "Record originale TL-0016; Mobilitazione francese su temi economici; studi sulla centralità dei bot non dimostrano un’origine artificiale o una regia russa del movimento."
+      }
+    }
+  ]
+}

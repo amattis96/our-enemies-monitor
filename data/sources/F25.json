@@ -1,0 +1,28 @@
+{
+  "id": "F25",
+  "type": "external_reference",
+  "title": {
+    "it": "OMS Europa, Commercial determinants of NCDs, giugno 2024"
+  },
+  "publisher": "OMS Europa",
+  "files": [],
+  "urls": [
+    "https://www.who.int/europe/publications/i/item/9789289061162"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 357,
+      "original": {
+        "text": "- **[F25] OMS Europa**, *Commercial determinants of NCDs*, giugno 2024: https://www.who.int/europe/publications/i/item/9789289061162"
+      }
+    }
+  ]
+}

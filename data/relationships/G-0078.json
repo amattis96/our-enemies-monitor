@@ -1,0 +1,47 @@
+{
+  "id": "G-0078",
+  "subject": "X",
+  "predicate": "SANZIONATA_DSA_DA",
+  "object": "EU",
+  "relation_class": "legal",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0094"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "120 milioni per trasparenza, non per collusione russa"
+  },
+  "sources": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 76,
+      "original": {
+        "id": "G-0078",
+        "source": "X",
+        "target": "EU",
+        "predicate": "SANZIONATA_DSA_DA",
+        "relation_class": "legal",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00",
+        "timeline_ids": "TL-0094",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "120 milioni per trasparenza, non per collusione russa"
+      }
+    }
+  ]
+}

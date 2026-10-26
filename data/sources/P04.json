@@ -1,0 +1,28 @@
+{
+  "id": "P04",
+  "type": "external_reference",
+  "title": {
+    "it": "Consiglio UE, Moldavia (15 giugno 2026). Designazioni per operazioni finanziate dalla Russia, compravendita di voti e reti Șor/Evrazia."
+  },
+  "publisher": "Consiglio UE",
+  "files": [],
+  "urls": [
+    "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1177,
+      "original": {
+        "text": "- **P04 | Consiglio UE, Moldavia (15 giugno 2026).** Designazioni per operazioni finanziate dalla Russia, compravendita di voti e reti Șor/Evrazia. https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "S02",
+  "type": "corpus_document",
+  "title": {
+    "it": "DS-02 · Manipolazione informativa, elezioni e società in Europa"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_02_DeepSearch_02 - Manipolazione informativa, elezioni e società in Europa.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_02_DeepSearch_02 - Manipolazione informativa, elezioni e società in Europa.md",
+      "line": 1,
+      "original": {
+        "text": "# DS-02 · Manipolazione informativa, elezioni e società in Europa"
+      }
+    }
+  ]
+}

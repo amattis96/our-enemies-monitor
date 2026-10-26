@@ -1,0 +1,74 @@
+{
+  "id": "TL-0010",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2016",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Referendum Brexit e operazioni informative"
+  },
+  "description": {
+    "it": "RT, Sputnik, reti social e account filorussi sono discussi dagli studi; l’effetto sul voto non è determinato e non è provato che la Russia abbia causato la Brexit."
+  },
+  "category": {
+    "it": "Interferenza elettorale"
+  },
+  "geography": {
+    "it": "Regno Unito"
+  },
+  "evidence_note": {
+    "it": "Referendum accertato; impatto estero non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01",
+    "S02",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 10,
+      "original": {
+        "id": "TL-0010",
+        "date_start": "2016",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Interferenza elettorale",
+        "title": "Referendum Brexit e operazioni informative",
+        "description": "RT, Sputnik, reti social e account filorussi sono discussi dagli studi; l’effetto sul voto non è determinato e non è provato che la Russia abbia causato la Brexit.",
+        "evidence_status": "Referendum accertato; impatto estero non verificato",
+        "source_docs": "S00,S01,S02,S05",
+        "geography": "Regno Unito"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 212,
+      "original": {
+        "id": "EV_TL-0010",
+        "name": "Referendum Brexit e operazioni informative",
+        "kind": "event",
+        "domain": "Interferenza elettorale",
+        "geo": "Regno Unito",
+        "date_start": "2016",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S01;S02;S05",
+        "evidence_status": "Referendum accertato; impatto estero non verificato",
+        "note": "Record originale TL-0010; RT, Sputnik, reti social e account filorussi sono discussi dagli studi; l’effetto sul voto non è determinato e non è provato che la Russia abbia causato la Brexit."
+      }
+    }
+  ]
+}

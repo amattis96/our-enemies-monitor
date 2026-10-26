@@ -1,0 +1,28 @@
+{
+  "id": "P06",
+  "type": "external_reference",
+  "title": {
+    "it": "IEA, Rare Earth Elements, executive summary. Quote di produzione estrattiva, raffinazione e magneti nel 2024."
+  },
+  "publisher": "IEA",
+  "files": [],
+  "urls": [
+    "https://www.iea.org/reports/rare-earth-elements/executive-summary"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1179,
+      "original": {
+        "text": "- **P06 | IEA, Rare Earth Elements, executive summary.** Quote di produzione estrattiva, raffinazione e magneti nel 2024. https://www.iea.org/reports/rare-earth-elements/executive-summary"
+      }
+    }
+  ]
+}

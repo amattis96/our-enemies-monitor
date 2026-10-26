@@ -1,0 +1,48 @@
+{
+  "id": "G-0068",
+  "subject": "US",
+  "predicate": "OPERAZIONE_MILITARE_CONGIUNTA_2026",
+  "object": "IL",
+  "relation_class": "military",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0100"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Iran 2026"
+  },
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 66,
+      "original": {
+        "id": "G-0068",
+        "source": "US",
+        "target": "IL",
+        "predicate": "OPERAZIONE_MILITARE_CONGIUNTA_2026",
+        "relation_class": "military",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00,S05",
+        "timeline_ids": "TL-0100",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Iran 2026"
+      }
+    }
+  ]
+}

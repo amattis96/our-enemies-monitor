@@ -1,0 +1,34 @@
+{
+  "name": "our-enemies-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Evidence-based mapping of foreign interference, hybrid threats and strategic dependencies affecting Europe.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
+  "packageManager": "pnpm@12.15.0",
+  "scripts": {
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm validate && pnpm schemas --check",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "validate": "node src/cli/validate.ts",
+    "format:data": "node src/cli/format-data.ts",
+    "schemas": "node src/cli/schemas.ts",
+    "import:baseline": "node src/cli/import-baseline.ts"
+  },
+  "dependencies": {
+    "csv-parse": "7.0.3",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.3",
+    "@types/node": "26.6.5",
+    "fast-xml-parser": "5.11.2",
+    "typescript": "7.0.2",
+    "vitest": "5.0.5"
+  }
+}

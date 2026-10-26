@@ -1,0 +1,28 @@
+{
+  "id": "F15",
+  "type": "external_reference",
+  "title": {
+    "it": "IEA, Oil Market Report, marzo 2026"
+  },
+  "publisher": "IEA",
+  "files": [],
+  "urls": [
+    "https://www.iea.org/reports/oil-market-report-march-2026"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 347,
+      "original": {
+        "text": "- **[F15] IEA**, *Oil Market Report*, marzo 2026: https://www.iea.org/reports/oil-market-report-march-2026"
+      }
+    }
+  ]
+}

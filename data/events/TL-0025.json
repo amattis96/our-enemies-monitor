@@ -1,0 +1,71 @@
+{
+  "id": "TL-0025",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2021",
+    "end": "2022",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Accessi contro l’Electoral Commission britannica"
+  },
+  "description": {
+    "it": "Campagna 2021-2022 e ricognizioni contro parlamentari, successivamente attribuite dal Regno Unito ad APT31; nessuna alterazione del voto accertata."
+  },
+  "category": {
+    "it": "Cyber / spionaggio"
+  },
+  "geography": {
+    "it": "Regno Unito"
+  },
+  "evidence_note": {
+    "it": "Attribuzione UK nel 2024"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 25,
+      "original": {
+        "id": "TL-0025",
+        "date_start": "2021",
+        "date_end": "2022",
+        "date_precision": "year",
+        "category": "Cyber / spionaggio",
+        "title": "Accessi contro l’Electoral Commission britannica",
+        "description": "Campagna 2021-2022 e ricognizioni contro parlamentari, successivamente attribuite dal Regno Unito ad APT31; nessuna alterazione del voto accertata.",
+        "evidence_status": "Attribuzione UK nel 2024",
+        "source_docs": "S03",
+        "geography": "Regno Unito"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 227,
+      "original": {
+        "id": "EV_TL-0025",
+        "name": "Accessi contro l’Electoral Commission britannica",
+        "kind": "event",
+        "domain": "Cyber / spionaggio",
+        "geo": "Regno Unito",
+        "date_start": "2021",
+        "date_end": "2022",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione UK nel 2024",
+        "note": "Record originale TL-0025; Campagna 2021-2022 e ricognizioni contro parlamentari, successivamente attribuite dal Regno Unito ad APT31; nessuna alterazione del voto accertata."
+      }
+    }
+  ]
+}

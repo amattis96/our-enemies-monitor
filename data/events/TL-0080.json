@@ -1,0 +1,71 @@
+{
+  "id": "TL-0080",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Interferenze FIMI nelle elezioni europee del 2025"
+  },
+  "description": {
+    "it": "Il SEAE documenta tattiche russe in Germania, Polonia, Romania, Moldavia e Cechia; differenziare tentativi e impatto effettivo."
+  },
+  "category": {
+    "it": "Elezioni / influenza"
+  },
+  "geography": {
+    "it": "Europa"
+  },
+  "evidence_note": {
+    "it": "Attività documentate; impatto sul voto ignoto"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 80,
+      "original": {
+        "id": "TL-0080",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Elezioni / influenza",
+        "title": "Interferenze FIMI nelle elezioni europee del 2025",
+        "description": "Il SEAE documenta tattiche russe in Germania, Polonia, Romania, Moldavia e Cechia; differenziare tentativi e impatto effettivo.",
+        "evidence_status": "Attività documentate; impatto sul voto ignoto",
+        "source_docs": "S02",
+        "geography": "Europa"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 282,
+      "original": {
+        "id": "EV_TL-0080",
+        "name": "Interferenze FIMI nelle elezioni europee del 2025",
+        "kind": "event",
+        "domain": "Elezioni / influenza",
+        "geo": "Europa",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S02",
+        "evidence_status": "Attività documentate; impatto sul voto ignoto",
+        "note": "Record originale TL-0080; Il SEAE documenta tattiche russe in Germania, Polonia, Romania, Moldavia e Cechia; differenziare tentativi e impatto effettivo."
+      }
+    }
+  ]
+}

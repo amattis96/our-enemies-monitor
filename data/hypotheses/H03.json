@@ -1,0 +1,49 @@
+{
+  "id": "H03",
+  "subject": "RU_PRESS",
+  "object": "PAPER",
+  "hypothesis_type": "SCAMBIO_NARRATIVE_CINA_RUSSIA",
+  "question": {
+    "it": "Il riuso Paperwall di fonti russe deriva da accordi editoriali, aggregazione automatica o istruzioni statali?"
+  },
+  "current_limit": {
+    "it": "Ripresa di contenuti dimostrata; coordinamento non dimostrato."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "Timestamp post originali, RSS/API, domini, hosting, partnership contrattuali, diffusione cross-platform"
+  },
+  "events": [
+    "TL-0082"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S02",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 3,
+      "original": {
+        "id": "H03",
+        "subject": "RU_PRESS",
+        "object": "PAPER",
+        "hypothesis_type": "SCAMBIO_NARRATIVE_CINA_RUSSIA",
+        "verification_question": "Il riuso Paperwall di fonti russe deriva da accordi editoriali, aggregazione automatica o istruzioni statali?",
+        "current_limit": "Ripresa di contenuti dimostrata; coordinamento non dimostrato.",
+        "priority": "Alta",
+        "evidence_needed": "Timestamp post originali, RSS/API, domini, hosting, partnership contrattuali, diffusione cross-platform",
+        "source_docs": "S02,S05",
+        "timeline_ids": "TL-0082",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

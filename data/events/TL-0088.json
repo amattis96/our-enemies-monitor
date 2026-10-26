@@ -1,0 +1,72 @@
+{
+  "id": "TL-0088",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025-03-18",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Rapporto CSIS sull’escalation dei sabotaggi russi"
+  },
+  "description": {
+    "it": "Nel campione CSIS 3 casi 2022, 12 nel 2023 e 34 nel 2024; non è conteggio totale delle operazioni ibride."
+  },
+  "category": {
+    "it": "Analisi / guerra ibrida"
+  },
+  "geography": {
+    "it": "Europa"
+  },
+  "evidence_note": {
+    "it": "Studio di ricerca"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 88,
+      "original": {
+        "id": "TL-0088",
+        "date_start": "2025-03-18",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Analisi / guerra ibrida",
+        "title": "Rapporto CSIS sull’escalation dei sabotaggi russi",
+        "description": "Nel campione CSIS 3 casi 2022, 12 nel 2023 e 34 nel 2024; non è conteggio totale delle operazioni ibride.",
+        "evidence_status": "Studio di ricerca",
+        "source_docs": "S00,S03",
+        "geography": "Europa"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 290,
+      "original": {
+        "id": "EV_TL-0088",
+        "name": "Rapporto CSIS sull’escalation dei sabotaggi russi",
+        "kind": "event",
+        "domain": "Analisi / guerra ibrida",
+        "geo": "Europa",
+        "date_start": "2025-03-18",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S03",
+        "evidence_status": "Studio di ricerca",
+        "note": "Record originale TL-0088; Nel campione CSIS 3 casi 2022, 12 nel 2023 e 34 nel 2024; non è conteggio totale delle operazioni ibride."
+      }
+    }
+  ]
+}

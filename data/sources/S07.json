@@ -1,0 +1,31 @@
+{
+  "id": "S07",
+  "type": "corpus_document",
+  "title": {
+    "it": "Fonte_07 — La ragnatela delle pressioni, infiltrazioni e dipendenze geopolitiche sull’Europa"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21.md",
+    "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+    "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+    "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+    "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nuove_evidenze.csv",
+    "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21.graphml"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21.md",
+      "line": 1,
+      "original": {
+        "text": "# Fonte_07 — La ragnatela delle pressioni, infiltrazioni e dipendenze geopolitiche sull’Europa"
+      }
+    }
+  ]
+}

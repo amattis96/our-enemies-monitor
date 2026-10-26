@@ -1,0 +1,71 @@
+{
+  "id": "TL-0082",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Paperwall cresce e ricicla fonti"
+  },
+  "description": {
+    "it": "Il SEAE osserva espansione della rete cinese di pseudo-media e ripresa di contenuti russi; non è prova di comando congiunto Cina-Russia."
+  },
+  "category": {
+    "it": "Disinformazione / reti"
+  },
+  "geography": {
+    "it": "Europa / mondo"
+  },
+  "evidence_note": {
+    "it": "Campagna documentata; coordinamento non provato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 82,
+      "original": {
+        "id": "TL-0082",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Disinformazione / reti",
+        "title": "Paperwall cresce e ricicla fonti",
+        "description": "Il SEAE osserva espansione della rete cinese di pseudo-media e ripresa di contenuti russi; non è prova di comando congiunto Cina-Russia.",
+        "evidence_status": "Campagna documentata; coordinamento non provato",
+        "source_docs": "S02",
+        "geography": "Europa / mondo"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 284,
+      "original": {
+        "id": "EV_TL-0082",
+        "name": "Paperwall cresce e ricicla fonti",
+        "kind": "event",
+        "domain": "Disinformazione / reti",
+        "geo": "Europa / mondo",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S02",
+        "evidence_status": "Campagna documentata; coordinamento non provato",
+        "note": "Record originale TL-0082; Il SEAE osserva espansione della rete cinese di pseudo-media e ripresa di contenuti russi; non è prova di comando congiunto Cina-Russia."
+      }
+    }
+  ]
+}

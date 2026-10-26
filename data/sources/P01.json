@@ -1,0 +1,28 @@
+{
+  "id": "P01",
+  "type": "external_reference",
+  "title": {
+    "it": "NATO, Washington Summit Declaration (10 luglio 2024). Classificazione della campagna ibrida russa, rapporto con Cina, «decisive enabler», vulnerabilità euroatlantiche."
+  },
+  "publisher": "NATO",
+  "files": [],
+  "urls": [
+    "https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/2024/07/10/washington-summit-declaration"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1174,
+      "original": {
+        "text": "- **P01 | NATO, Washington Summit Declaration (10 luglio 2024).** Classificazione della campagna ibrida russa, rapporto con Cina, «decisive enabler», vulnerabilità euroatlantiche. https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/2024/07/10/washington-summit-declaration"
+      }
+    }
+  ]
+}

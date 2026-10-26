@@ -1,0 +1,48 @@
+{
+  "id": "G-0133",
+  "subject": "HERITAGE",
+  "predicate": "RELATED_ENTITY",
+  "object": "TL-0012",
+  "relation_class": "event_participation",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0012"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+  },
+  "sources": [
+    "S06",
+    "S01"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 131,
+      "original": {
+        "id": "G-0133",
+        "source": "HERITAGE",
+        "target": "EV_TL-0012",
+        "predicate": "RELATED_ENTITY",
+        "relation_class": "event_participation",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S06;S06,S01",
+        "timeline_ids": "TL-0012",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "timeline_link",
+        "description_or_caveat": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+      }
+    }
+  ]
+}

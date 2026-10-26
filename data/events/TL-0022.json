@@ -1,0 +1,72 @@
+{
+  "id": "TL-0022",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2020",
+    "end": "2022",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Pandemia COVID-19: narrative su vaccini e regolatori"
+  },
+  "description": {
+    "it": "Il SEAE rileva messaggi fuorvianti diffusi da media/reti collegati a Russia e Cina, anche contro vaccini occidentali ed EMA; impatto clinico attribuibile non misurato."
+  },
+  "category": {
+    "it": "Disinformazione sanitaria"
+  },
+  "geography": {
+    "it": "Europa / mondo"
+  },
+  "evidence_note": {
+    "it": "Campagne documentate; impatto non quantificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 22,
+      "original": {
+        "id": "TL-0022",
+        "date_start": "2020",
+        "date_end": "2022",
+        "date_precision": "year",
+        "category": "Disinformazione sanitaria",
+        "title": "Pandemia COVID-19: narrative su vaccini e regolatori",
+        "description": "Il SEAE rileva messaggi fuorvianti diffusi da media/reti collegati a Russia e Cina, anche contro vaccini occidentali ed EMA; impatto clinico attribuibile non misurato.",
+        "evidence_status": "Campagne documentate; impatto non quantificato",
+        "source_docs": "S00,S02",
+        "geography": "Europa / mondo"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 224,
+      "original": {
+        "id": "EV_TL-0022",
+        "name": "Pandemia COVID-19: narrative su vaccini e regolatori",
+        "kind": "event",
+        "domain": "Disinformazione sanitaria",
+        "geo": "Europa / mondo",
+        "date_start": "2020",
+        "date_end": "2022",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S02",
+        "evidence_status": "Campagne documentate; impatto non quantificato",
+        "note": "Record originale TL-0022; Il SEAE rileva messaggi fuorvianti diffusi da media/reti collegati a Russia e Cina, anche contro vaccini occidentali ed EMA; impatto clinico attribuibile non misurato."
+      }
+    }
+  ]
+}

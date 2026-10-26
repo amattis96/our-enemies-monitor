@@ -1,0 +1,45 @@
+{
+  "id": "G-0405",
+  "subject": "IR",
+  "predicate": "PRESUNTA_RESPONSABILITA_IN_INDAGINE",
+  "object": "EXT-004",
+  "relation_class": "event_participation",
+  "evidence_level": "E4",
+  "evidence_status": "allegation",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.reuters.com/world/uk/uk-police-re-arrest-pair-suspicion-helping-iranian-intelligence-over-raf-2026-10-20/",
+  "caveat": {
+    "it": "Ipotesi di polizia, indagine aperta; non classificare come attribuzione definitiva"
+  },
+  "sources": [
+    "WEB-EXT-004"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 403,
+      "original": {
+        "id": "G-0405",
+        "source": "IR",
+        "target": "EV_EXT-004",
+        "predicate": "PRESUNTA_RESPONSABILITA_IN_INDAGINE",
+        "relation_class": "event_participation",
+        "evidence_level": "E4",
+        "evidence_status": "denuncia",
+        "source_docs": "WEB-EXT-004",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.reuters.com/world/uk/uk-police-re-arrest-pair-suspicion-helping-iranian-intelligence-over-raf-2026-10-20/",
+        "layer": "source",
+        "description_or_caveat": "Ipotesi di polizia, indagine aperta; non classificare come attribuzione definitiva"
+      }
+    }
+  ]
+}

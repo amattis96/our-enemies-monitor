@@ -1,0 +1,48 @@
+{
+  "id": "G-0087",
+  "subject": "SOB",
+  "predicate": "COLLEGAMENTO_SOCIETARIO_SEPARATO",
+  "object": "GVA",
+  "relation_class": "ownership",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0084",
+    "TL-0116"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
+  "caveat": {
+    "it": "Non dimostra denaro Kerimov verso SpaceX"
+  },
+  "sources": [
+    "S01"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 85,
+      "original": {
+        "id": "G-0087",
+        "source": "SOB",
+        "target": "GVA",
+        "predicate": "COLLEGAMENTO_SOCIETARIO_SEPARATO",
+        "relation_class": "ownership",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S01",
+        "timeline_ids": "TL-0084;TL-0116",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
+        "layer": "source",
+        "description_or_caveat": "Non dimostra denaro Kerimov verso SpaceX"
+      }
+    }
+  ]
+}

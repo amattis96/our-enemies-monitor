@@ -1,0 +1,71 @@
+{
+  "id": "TL-0075",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Condanna di Jian G. in Germania"
+  },
+  "description": {
+    "it": "L’ex assistente di un eurodeputato riceve 4 anni e 9 mesi per spionaggio a favore della Cina e sorveglianza di dissidenti."
+  },
+  "category": {
+    "it": "Giustizia / spionaggio"
+  },
+  "geography": {
+    "it": "Germania / Parlamento europeo"
+  },
+  "evidence_note": {
+    "it": "Accertato giudiziariamente"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 75,
+      "original": {
+        "id": "TL-0075",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Giustizia / spionaggio",
+        "title": "Condanna di Jian G. in Germania",
+        "description": "L’ex assistente di un eurodeputato riceve 4 anni e 9 mesi per spionaggio a favore della Cina e sorveglianza di dissidenti.",
+        "evidence_status": "Accertato giudiziariamente",
+        "source_docs": "S01",
+        "geography": "Germania / Parlamento europeo"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 277,
+      "original": {
+        "id": "EV_TL-0075",
+        "name": "Condanna di Jian G. in Germania",
+        "kind": "event",
+        "domain": "Giustizia / spionaggio",
+        "geo": "Germania / Parlamento europeo",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S01",
+        "evidence_status": "Accertato giudiziariamente",
+        "note": "Record originale TL-0075; L’ex assistente di un eurodeputato riceve 4 anni e 9 mesi per spionaggio a favore della Cina e sorveglianza di dissidenti."
+      }
+    }
+  ]
+}

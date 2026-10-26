@@ -1,0 +1,71 @@
+{
+  "id": "TL-0086",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Serie di danneggiamenti a cavi nel Baltico"
+  },
+  "description": {
+    "it": "Fonti Reuters riportano almeno 11 cavi danneggiati fra ottobre 2023 e fine 2025, con cause differenti e attribuzioni da distinguere."
+  },
+  "category": {
+    "it": "Infrastrutture / cavi"
+  },
+  "geography": {
+    "it": "Mar Baltico"
+  },
+  "evidence_note": {
+    "it": "Dato aggregato di monitoraggio"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 86,
+      "original": {
+        "id": "TL-0086",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Infrastrutture / cavi",
+        "title": "Serie di danneggiamenti a cavi nel Baltico",
+        "description": "Fonti Reuters riportano almeno 11 cavi danneggiati fra ottobre 2023 e fine 2025, con cause differenti e attribuzioni da distinguere.",
+        "evidence_status": "Dato aggregato di monitoraggio",
+        "source_docs": "S03",
+        "geography": "Mar Baltico"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 288,
+      "original": {
+        "id": "EV_TL-0086",
+        "name": "Serie di danneggiamenti a cavi nel Baltico",
+        "kind": "event",
+        "domain": "Infrastrutture / cavi",
+        "geo": "Mar Baltico",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Dato aggregato di monitoraggio",
+        "note": "Record originale TL-0086; Fonti Reuters riportano almeno 11 cavi danneggiati fra ottobre 2023 e fine 2025, con cause differenti e attribuzioni da distinguere."
+      }
+    }
+  ]
+}

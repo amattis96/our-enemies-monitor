@@ -1,0 +1,48 @@
+{
+  "id": "G-0426",
+  "subject": "US",
+  "predicate": "ATTENUA_RESTRIZIONI_DIESEL",
+  "object": "OILMARKET",
+  "relation_class": "policy",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0132",
+    "TL-0141"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/",
+  "caveat": null,
+  "sources": [
+    "S00",
+    "S04",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 424,
+      "original": {
+        "id": "G-0426",
+        "source": "US",
+        "target": "OILMARKET",
+        "predicate": "ATTENUA_RESTRIZIONI_DIESEL",
+        "relation_class": "policy",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00,S04,S05",
+        "timeline_ids": "TL-0132;TL-0141",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

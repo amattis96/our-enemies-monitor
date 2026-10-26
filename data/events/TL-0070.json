@@ -1,0 +1,71 @@
+{
+  "id": "TL-0070",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Attribuzione ceca del cyber-spionaggio APT31 sul Ministero degli Esteri"
+  },
+  "description": {
+    "it": "La Cechia denuncia attività persistente dal 2022 collegate ai servizi di sicurezza cinesi."
+  },
+  "category": {
+    "it": "Cyber / spionaggio"
+  },
+  "geography": {
+    "it": "Cechia"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 70,
+      "original": {
+        "id": "TL-0070",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Cyber / spionaggio",
+        "title": "Attribuzione ceca del cyber-spionaggio APT31 sul Ministero degli Esteri",
+        "description": "La Cechia denuncia attività persistente dal 2022 collegate ai servizi di sicurezza cinesi.",
+        "evidence_status": "Attribuzione istituzionale",
+        "source_docs": "S03",
+        "geography": "Cechia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 272,
+      "original": {
+        "id": "EV_TL-0070",
+        "name": "Attribuzione ceca del cyber-spionaggio APT31 sul Ministero degli Esteri",
+        "kind": "event",
+        "domain": "Cyber / spionaggio",
+        "geo": "Cechia",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione istituzionale",
+        "note": "Record originale TL-0070; La Cechia denuncia attività persistente dal 2022 collegate ai servizi di sicurezza cinesi."
+      }
+    }
+  ]
+}

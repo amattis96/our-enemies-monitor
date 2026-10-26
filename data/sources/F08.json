@@ -1,0 +1,28 @@
+{
+  "id": "F08",
+  "type": "external_reference",
+  "title": {
+    "it": "Commissione UE, European Critical Raw Materials Act"
+  },
+  "publisher": "Commissione UE",
+  "files": [],
+  "urls": [
+    "https://commission.europa.eu/topics/competitiveness/green-deal-industrial-plan/european-critical-raw-materials-act_en"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 340,
+      "original": {
+        "text": "- **[F08] Commissione UE**, *European Critical Raw Materials Act*: https://commission.europa.eu/topics/competitiveness/green-deal-industrial-plan/european-critical-raw-materials-act_en"
+      }
+    }
+  ]
+}

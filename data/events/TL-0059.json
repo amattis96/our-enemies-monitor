@@ -1,0 +1,71 @@
+{
+  "id": "TL-0059",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-05",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Incendio di Marywilska 44"
+  },
+  "description": {
+    "it": "Distruzione del centro commerciale a Varsavia; il governo polacco attribuisce l’ordine ai servizi russi, che negano."
+  },
+  "category": {
+    "it": "Sabotaggio"
+  },
+  "geography": {
+    "it": "Polonia"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale contestata dalla Russia"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 59,
+      "original": {
+        "id": "TL-0059",
+        "date_start": "2024-05",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Sabotaggio",
+        "title": "Incendio di Marywilska 44",
+        "description": "Distruzione del centro commerciale a Varsavia; il governo polacco attribuisce l’ordine ai servizi russi, che negano.",
+        "evidence_status": "Attribuzione istituzionale contestata dalla Russia",
+        "source_docs": "S03",
+        "geography": "Polonia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 261,
+      "original": {
+        "id": "EV_TL-0059",
+        "name": "Incendio di Marywilska 44",
+        "kind": "event",
+        "domain": "Sabotaggio",
+        "geo": "Polonia",
+        "date_start": "2024-05",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione istituzionale contestata dalla Russia",
+        "note": "Record originale TL-0059; Distruzione del centro commerciale a Varsavia; il governo polacco attribuisce l’ordine ai servizi russi, che negano."
+      }
+    }
+  ]
+}

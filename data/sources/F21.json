@@ -1,0 +1,28 @@
+{
+  "id": "F21",
+  "type": "external_reference",
+  "title": {
+    "it": "VIGINUM / SGDSN, ricerche sulle campagne Storm-1516"
+  },
+  "publisher": "VIGINUM / SGDSN",
+  "files": [],
+  "urls": [
+    "https://www.sgdsn.gouv.fr/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 353,
+      "original": {
+        "text": "- **[F21] VIGINUM / SGDSN**, ricerche sulle campagne Storm-1516: https://www.sgdsn.gouv.fr/"
+      }
+    }
+  ]
+}

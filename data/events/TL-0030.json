@@ -1,0 +1,73 @@
+{
+  "id": "TL-0030",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2021-12-02",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Quinto pacchetto sanzioni UE contro la Bielorussia"
+  },
+  "description": {
+    "it": "UE sanziona anche operatori commerciali per strumentalizzazione dei migranti."
+  },
+  "category": {
+    "it": "Sanzioni / frontiere"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Atto istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 30,
+      "original": {
+        "id": "TL-0030",
+        "date_start": "2021-12-02",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Sanzioni / frontiere",
+        "title": "Quinto pacchetto sanzioni UE contro la Bielorussia",
+        "description": "UE sanziona anche operatori commerciali per strumentalizzazione dei migranti.",
+        "evidence_status": "Atto istituzionale",
+        "source_docs": "S00,S03,S05",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 232,
+      "original": {
+        "id": "EV_TL-0030",
+        "name": "Quinto pacchetto sanzioni UE contro la Bielorussia",
+        "kind": "event",
+        "domain": "Sanzioni / frontiere",
+        "geo": "Unione europea",
+        "date_start": "2021-12-02",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S03;S05",
+        "evidence_status": "Atto istituzionale",
+        "note": "Record originale TL-0030; UE sanziona anche operatori commerciali per strumentalizzazione dei migranti."
+      }
+    }
+  ]
+}

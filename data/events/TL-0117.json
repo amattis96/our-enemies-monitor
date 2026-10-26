@@ -1,0 +1,72 @@
+{
+  "id": "TL-0117",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-07",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Afflusso massivo a Ceuta"
+  },
+  "description": {
+    "it": "Crisi umanitaria al confine con il Marocco. Le fonti divergono su 70–80 mila ingressi e numero di vittime; regia statale marocchina non conclusivamente accertata."
+  },
+  "category": {
+    "it": "Coercizione migratoria / crisi"
+  },
+  "geography": {
+    "it": "Ceuta / Marocco / Spagna"
+  },
+  "evidence_note": {
+    "it": "Crisi accertata; mandante non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 117,
+      "original": {
+        "id": "TL-0117",
+        "date_start": "2026-07",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Coercizione migratoria / crisi",
+        "title": "Afflusso massivo a Ceuta",
+        "description": "Crisi umanitaria al confine con il Marocco. Le fonti divergono su 70–80 mila ingressi e numero di vittime; regia statale marocchina non conclusivamente accertata.",
+        "evidence_status": "Crisi accertata; mandante non verificato",
+        "source_docs": "S00,S05",
+        "geography": "Ceuta / Marocco / Spagna"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 319,
+      "original": {
+        "id": "EV_TL-0117",
+        "name": "Afflusso massivo a Ceuta",
+        "kind": "event",
+        "domain": "Coercizione migratoria / crisi",
+        "geo": "Ceuta / Marocco / Spagna",
+        "date_start": "2026-07",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S05",
+        "evidence_status": "Crisi accertata; mandante non verificato",
+        "note": "Record originale TL-0117; Crisi umanitaria al confine con il Marocco. Le fonti divergono su 70–80 mila ingressi e numero di vittime; regia statale marocchina non conclusivamente accertata."
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "TL-0123",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-09",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Incremento di violazioni dello spazio aereo e sabotaggi"
+  },
+  "description": {
+    "it": "NATO nel settembre 2026 osserva aumento di episodi con droni, cyberattacchi e sabotaggi, nel contesto di campagna attribuita alla Russia."
+  },
+  "category": {
+    "it": "Attacchi / NATO"
+  },
+  "geography": {
+    "it": "Europa / NATO"
+  },
+  "evidence_note": {
+    "it": "Valutazione NATO, serie aggregata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 123,
+      "original": {
+        "id": "TL-0123",
+        "date_start": "2026-09",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Attacchi / NATO",
+        "title": "Incremento di violazioni dello spazio aereo e sabotaggi",
+        "description": "NATO nel settembre 2026 osserva aumento di episodi con droni, cyberattacchi e sabotaggi, nel contesto di campagna attribuita alla Russia.",
+        "evidence_status": "Valutazione NATO, serie aggregata",
+        "source_docs": "S03",
+        "geography": "Europa / NATO"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 325,
+      "original": {
+        "id": "EV_TL-0123",
+        "name": "Incremento di violazioni dello spazio aereo e sabotaggi",
+        "kind": "event",
+        "domain": "Attacchi / NATO",
+        "geo": "Europa / NATO",
+        "date_start": "2026-09",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Valutazione NATO, serie aggregata",
+        "note": "Record originale TL-0123; NATO nel settembre 2026 osserva aumento di episodi con droni, cyberattacchi e sabotaggi, nel contesto di campagna attribuita alla Russia."
+      }
+    }
+  ]
+}

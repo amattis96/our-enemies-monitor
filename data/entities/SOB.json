@@ -1,0 +1,31 @@
+{
+  "id": "SOB",
+  "kind": "person",
+  "name": {
+    "it": "Roman Sobachevskiy"
+  },
+  "domain": "persons",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 80,
+      "original": {
+        "id": "SOB",
+        "name": "Roman Sobachevskiy",
+        "kind": "person",
+        "domain": "persons",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

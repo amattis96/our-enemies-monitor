@@ -1,0 +1,48 @@
+{
+  "id": "G-0014",
+  "subject": "VOL",
+  "predicate": "PAGA_E_IMPARTISCE_ISTRUZIONI",
+  "object": "GILL",
+  "relation_class": "financial",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0015",
+    "TL-0092"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+  "caveat": {
+    "it": "~£40.000, attività 2018-19, condanna 2025"
+  },
+  "sources": [
+    "S01"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 14,
+      "original": {
+        "id": "G-0014",
+        "source": "VOL",
+        "target": "GILL",
+        "predicate": "PAGA_E_IMPARTISCE_ISTRUZIONI",
+        "relation_class": "financial",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S01",
+        "timeline_ids": "TL-0015;TL-0092",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+        "layer": "source",
+        "description_or_caveat": "~£40.000, attività 2018-19, condanna 2025"
+      }
+    }
+  ]
+}

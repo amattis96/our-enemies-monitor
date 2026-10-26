@@ -1,0 +1,71 @@
+{
+  "id": "TL-0097",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "SpaceX contrasta terminali russi non autorizzati"
+  },
+  "description": {
+    "it": "Le fonti documentano anche cooperazione con Kiev per disabilitare terminali Starlink russi non autorizzati; le misure non annullano la controversia distinta sulle limitazioni ucraine."
+  },
+  "category": {
+    "it": "Satelliti / cooperazione"
+  },
+  "geography": {
+    "it": "Ucraina"
+  },
+  "evidence_note": {
+    "it": "Operazione dichiarata/documentata; giorno non indicato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 97,
+      "original": {
+        "id": "TL-0097",
+        "date_start": "2026",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Satelliti / cooperazione",
+        "title": "SpaceX contrasta terminali russi non autorizzati",
+        "description": "Le fonti documentano anche cooperazione con Kiev per disabilitare terminali Starlink russi non autorizzati; le misure non annullano la controversia distinta sulle limitazioni ucraine.",
+        "evidence_status": "Operazione dichiarata/documentata; giorno non indicato",
+        "source_docs": "S00",
+        "geography": "Ucraina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 299,
+      "original": {
+        "id": "EV_TL-0097",
+        "name": "SpaceX contrasta terminali russi non autorizzati",
+        "kind": "event",
+        "domain": "Satelliti / cooperazione",
+        "geo": "Ucraina",
+        "date_start": "2026",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00",
+        "evidence_status": "Operazione dichiarata/documentata; giorno non indicato",
+        "note": "Record originale TL-0097; Le fonti documentano anche cooperazione con Kiev per disabilitare terminali Starlink russi non autorizzati; le misure non annullano la controversia distinta sulle limitazioni ucraine."
+      }
+    }
+  ]
+}

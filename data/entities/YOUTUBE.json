@@ -1,0 +1,31 @@
+{
+  "id": "YOUTUBE",
+  "kind": "company",
+  "name": {
+    "it": "YouTube"
+  },
+  "domain": "commerce-infrastructure",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 137,
+      "original": {
+        "id": "YOUTUBE",
+        "name": "YouTube",
+        "kind": "company",
+        "domain": "commerce-infrastructure",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

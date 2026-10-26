@@ -1,0 +1,26 @@
+{
+  "id": "S05",
+  "type": "corpus_document",
+  "title": {
+    "it": "DS-05 — Strategie globali, convergenze geopolitiche e conseguenze europee"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_05_DeepSearch_05 - Strategie globali, convergenze geopolitiche e conseguenze europee.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_05_DeepSearch_05 - Strategie globali, convergenze geopolitiche e conseguenze europee.md",
+      "line": 1,
+      "original": {
+        "text": "# DS-05 — Strategie globali, convergenze geopolitiche e conseguenze europee"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "F05",
+  "type": "external_reference",
+  "title": {
+    "it": "NATO, dichiarazione del vertice di Washington, 10 luglio 2024"
+  },
+  "publisher": "NATO",
+  "files": [],
+  "urls": [
+    "https://nato.int/en/about-us/official-texts-and-resources/official-texts/2024/07/10/washington-summit-declaration"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 337,
+      "original": {
+        "text": "- **[F05] NATO**, dichiarazione del vertice di Washington, 10 luglio 2024: https://nato.int/en/about-us/official-texts-and-resources/official-texts/2024/07/10/washington-summit-declaration"
+      }
+    }
+  ]
+}

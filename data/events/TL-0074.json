@@ -1,0 +1,71 @@
+{
+  "id": "TL-0074",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Concentrazione cinese delle filiere batterie"
+  },
+  "description": {
+    "it": "Nel 2025 Cina oltre 80% celle mondiali; circa 85% materiali catodici e oltre 90% anodici. Indicatore strutturale."
+  },
+  "category": {
+    "it": "Industria / batterie"
+  },
+  "geography": {
+    "it": "Cina / mercato globale"
+  },
+  "evidence_note": {
+    "it": "Dati IEA"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 74,
+      "original": {
+        "id": "TL-0074",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Industria / batterie",
+        "title": "Concentrazione cinese delle filiere batterie",
+        "description": "Nel 2025 Cina oltre 80% celle mondiali; circa 85% materiali catodici e oltre 90% anodici. Indicatore strutturale.",
+        "evidence_status": "Dati IEA",
+        "source_docs": "S04",
+        "geography": "Cina / mercato globale"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 276,
+      "original": {
+        "id": "EV_TL-0074",
+        "name": "Concentrazione cinese delle filiere batterie",
+        "kind": "event",
+        "domain": "Industria / batterie",
+        "geo": "Cina / mercato globale",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S04",
+        "evidence_status": "Dati IEA",
+        "note": "Record originale TL-0074; Nel 2025 Cina oltre 80% celle mondiali; circa 85% materiali catodici e oltre 90% anodici. Indicatore strutturale."
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "G-0063",
+  "subject": "CN",
+  "predicate": "SOSTEGNO_DUAL_USE_SECONDO_NATO",
+  "object": "RUMIC",
+  "relation_class": "supply",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0065"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://nato.int/en/about-us/official-texts-and-resources/official-texts/2024/07/10/washington-summit-declaration",
+  "caveat": {
+    "it": "Formulazione NATO decisive enabler, contestata da Pechino"
+  },
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 61,
+      "original": {
+        "id": "G-0063",
+        "source": "CN",
+        "target": "RUMIC",
+        "predicate": "SOSTEGNO_DUAL_USE_SECONDO_NATO",
+        "relation_class": "supply",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S00,S03,S05",
+        "timeline_ids": "TL-0065",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://nato.int/en/about-us/official-texts-and-resources/official-texts/2024/07/10/washington-summit-declaration",
+        "layer": "source",
+        "description_or_caveat": "Formulazione NATO decisive enabler, contestata da Pechino"
+      }
+    }
+  ]
+}

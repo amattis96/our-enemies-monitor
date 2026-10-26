@@ -1,0 +1,71 @@
+{
+  "id": "TL-0064",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-07",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Pacchi incendiari DHL/DPD"
+  },
+  "description": {
+    "it": "Dispositivi con timer su circuiti logistici in Germania, Polonia e UK; investigatori collegano l’operazione a intermediari russi e intelligence militare."
+  },
+  "category": {
+    "it": "Sabotaggio / trasporti"
+  },
+  "geography": {
+    "it": "Germania / Polonia / UK"
+  },
+  "evidence_note": {
+    "it": "Fortemente corroborato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 64,
+      "original": {
+        "id": "TL-0064",
+        "date_start": "2024-07",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Sabotaggio / trasporti",
+        "title": "Pacchi incendiari DHL/DPD",
+        "description": "Dispositivi con timer su circuiti logistici in Germania, Polonia e UK; investigatori collegano l’operazione a intermediari russi e intelligence militare.",
+        "evidence_status": "Fortemente corroborato",
+        "source_docs": "S03",
+        "geography": "Germania / Polonia / UK"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 266,
+      "original": {
+        "id": "EV_TL-0064",
+        "name": "Pacchi incendiari DHL/DPD",
+        "kind": "event",
+        "domain": "Sabotaggio / trasporti",
+        "geo": "Germania / Polonia / UK",
+        "date_start": "2024-07",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Fortemente corroborato",
+        "note": "Record originale TL-0064; Dispositivi con timer su circuiti logistici in Germania, Polonia e UK; investigatori collegano l’operazione a intermediari russi e intelligence militare."
+      }
+    }
+  ]
+}

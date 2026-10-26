@@ -1,0 +1,72 @@
+{
+  "id": "TL-0067",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-11",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Presidenziali in Romania e manipolazione TikTok"
+  },
+  "description": {
+    "it": "Promozione inautentica e influencer occultamente remunerati; VIGINUM non attribuisce l’insieme a un attore straniero."
+  },
+  "category": {
+    "it": "Elezioni / piattaforme"
+  },
+  "geography": {
+    "it": "Romania"
+  },
+  "evidence_note": {
+    "it": "Manipolazione documentata; origine straniera non conclusiva"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 67,
+      "original": {
+        "id": "TL-0067",
+        "date_start": "2024-11",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Elezioni / piattaforme",
+        "title": "Presidenziali in Romania e manipolazione TikTok",
+        "description": "Promozione inautentica e influencer occultamente remunerati; VIGINUM non attribuisce l’insieme a un attore straniero.",
+        "evidence_status": "Manipolazione documentata; origine straniera non conclusiva",
+        "source_docs": "S00,S02",
+        "geography": "Romania"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 269,
+      "original": {
+        "id": "EV_TL-0067",
+        "name": "Presidenziali in Romania e manipolazione TikTok",
+        "kind": "event",
+        "domain": "Elezioni / piattaforme",
+        "geo": "Romania",
+        "date_start": "2024-11",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S02",
+        "evidence_status": "Manipolazione documentata; origine straniera non conclusiva",
+        "note": "Record originale TL-0067; Promozione inautentica e influencer occultamente remunerati; VIGINUM non attribuisce l’insieme a un attore straniero."
+      }
+    }
+  ]
+}

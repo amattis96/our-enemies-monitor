@@ -1,0 +1,28 @@
+{
+  "id": "F04",
+  "type": "external_reference",
+  "title": {
+    "it": "EEAS, 4° rapporto FIMI, marzo 2026"
+  },
+  "publisher": "EEAS",
+  "files": [],
+  "urls": [
+    "https://www.eeas.europa.eu/eeas/4th-eeas-annual-report-foreign-information-manipulation-and-interference-threats_en"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 336,
+      "original": {
+        "text": "- **[F04] EEAS**, 4° rapporto FIMI, marzo 2026: https://www.eeas.europa.eu/eeas/4th-eeas-annual-report-foreign-information-manipulation-and-interference-threats_en"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "G-0060",
+  "subject": "BY",
+  "predicate": "STRUMENTALIZZA_MIGRAZIONE_CONFINE",
+  "object": "EU",
+  "relation_class": "hybrid",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0026"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.consilium.europa.eu/en/press/press-releases/2021/12/02/belarus-eu-adopts-5th-package-of-sanctions-over-continued-human-rights-abuses-and-the-instrumentalisation-of-migrants/",
+  "caveat": {
+    "it": "Attribuzione UE, distinta da Ceuta"
+  },
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 58,
+      "original": {
+        "id": "G-0060",
+        "source": "BY",
+        "target": "EU",
+        "predicate": "STRUMENTALIZZA_MIGRAZIONE_CONFINE",
+        "relation_class": "hybrid",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S00,S03,S05",
+        "timeline_ids": "TL-0026",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.consilium.europa.eu/en/press/press-releases/2021/12/02/belarus-eu-adopts-5th-package-of-sanctions-over-continued-human-rights-abuses-and-the-instrumentalisation-of-migrants/",
+        "layer": "source",
+        "description_or_caveat": "Attribuzione UE, distinta da Ceuta"
+      }
+    }
+  ]
+}

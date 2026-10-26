@@ -1,0 +1,73 @@
+{
+  "id": "TL-0027",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2021",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Misure cinesi contro Lituania e catene di fornitura"
+  },
+  "description": {
+    "it": "La Commissione contesta restrizioni discriminatorie su beni e imprese; il caso arriva alla controversia WTO WT/DS610."
+  },
+  "category": {
+    "it": "Coercizione commerciale"
+  },
+  "geography": {
+    "it": "Cina / Lituania / UE"
+  },
+  "evidence_note": {
+    "it": "Denuncia/azione istituzionale UE"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 27,
+      "original": {
+        "id": "TL-0027",
+        "date_start": "2021",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Coercizione commerciale",
+        "title": "Misure cinesi contro Lituania e catene di fornitura",
+        "description": "La Commissione contesta restrizioni discriminatorie su beni e imprese; il caso arriva alla controversia WTO WT/DS610.",
+        "evidence_status": "Denuncia/azione istituzionale UE",
+        "source_docs": "S00,S04,S05",
+        "geography": "Cina / Lituania / UE"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 229,
+      "original": {
+        "id": "EV_TL-0027",
+        "name": "Misure cinesi contro Lituania e catene di fornitura",
+        "kind": "event",
+        "domain": "Coercizione commerciale",
+        "geo": "Cina / Lituania / UE",
+        "date_start": "2021",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S04;S05",
+        "evidence_status": "Denuncia/azione istituzionale UE",
+        "note": "Record originale TL-0027; La Commissione contesta restrizioni discriminatorie su beni e imprese; il caso arriva alla controversia WTO WT/DS610."
+      }
+    }
+  ]
+}

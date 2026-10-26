@@ -1,0 +1,49 @@
+{
+  "id": "G-0443",
+  "subject": "US",
+  "predicate": "CONTESTO_ESTERNO_NON_ATTRIBUZIONE",
+  "object": "GELEC",
+  "relation_class": "context",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0081",
+    "TL-0093"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Due canali osservati, non rapporto di comando fra loro"
+  },
+  "sources": [
+    "S01",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 441,
+      "original": {
+        "id": "G-0443",
+        "source": "US",
+        "target": "GELEC",
+        "predicate": "CONTESTO_ESTERNO_NON_ATTRIBUZIONE",
+        "relation_class": "context",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S01,S05",
+        "timeline_ids": "TL-0081;TL-0093",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Due canali osservati, non rapporto di comando fra loro"
+      }
+    }
+  ]
+}

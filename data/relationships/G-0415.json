@@ -1,0 +1,48 @@
+{
+  "id": "G-0415",
+  "subject": "APT31",
+  "predicate": "ACCESSO_ABUSIVO_ATTRIBUITO",
+  "object": "ELECTCOM",
+  "relation_class": "intelligence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0025",
+    "TL-0054"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Nessuna alterazione del voto dimostrata"
+  },
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 413,
+      "original": {
+        "id": "G-0415",
+        "source": "APT31",
+        "target": "ELECTCOM",
+        "predicate": "ACCESSO_ABUSIVO_ATTRIBUITO",
+        "relation_class": "intelligence",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "TL-0025;TL-0054",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Nessuna alterazione del voto dimostrata"
+      }
+    }
+  ]
+}

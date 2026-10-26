@@ -1,0 +1,71 @@
+{
+  "id": "TL-0046",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2023-10-08",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Danni a Balticconnector e cavi"
+  },
+  "description": {
+    "it": "L’ancora della NewNew Polar Bear è implicata nei danni; responsabilità materiale corroborata, dolo e ordine di Pechino non dimostrati."
+  },
+  "category": {
+    "it": "Infrastrutture sottomarine"
+  },
+  "geography": {
+    "it": "Golfo di Finlandia"
+  },
+  "evidence_note": {
+    "it": "Causalità materiale corroborata; intento non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 46,
+      "original": {
+        "id": "TL-0046",
+        "date_start": "2023-10-08",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Infrastrutture sottomarine",
+        "title": "Danni a Balticconnector e cavi",
+        "description": "L’ancora della NewNew Polar Bear è implicata nei danni; responsabilità materiale corroborata, dolo e ordine di Pechino non dimostrati.",
+        "evidence_status": "Causalità materiale corroborata; intento non verificato",
+        "source_docs": "S03",
+        "geography": "Golfo di Finlandia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 248,
+      "original": {
+        "id": "EV_TL-0046",
+        "name": "Danni a Balticconnector e cavi",
+        "kind": "event",
+        "domain": "Infrastrutture sottomarine",
+        "geo": "Golfo di Finlandia",
+        "date_start": "2023-10-08",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S03",
+        "evidence_status": "Causalità materiale corroborata; intento non verificato",
+        "note": "Record originale TL-0046; L’ancora della NewNew Polar Bear è implicata nei danni; responsabilità materiale corroborata, dolo e ordine di Pechino non dimostrati."
+      }
+    }
+  ]
+}

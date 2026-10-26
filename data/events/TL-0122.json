@@ -1,0 +1,74 @@
+{
+  "id": "TL-0122",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-09",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Eurozona: inflazione al 3,8% e energia in forte crescita"
+  },
+  "description": {
+    "it": "Il dato finale di settembre mostra energia +18,9% annuo (18,8% nella stima flash); non attribuisce la responsabilità delle singole proteste."
+  },
+  "category": {
+    "it": "Inflazione / energia"
+  },
+  "geography": {
+    "it": "Eurozona"
+  },
+  "evidence_note": {
+    "it": "Dati Eurostat pubblicati in ottobre"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 122,
+      "original": {
+        "id": "TL-0122",
+        "date_start": "2026-09",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Inflazione / energia",
+        "title": "Eurozona: inflazione al 3,8% e energia in forte crescita",
+        "description": "Il dato finale di settembre mostra energia +18,9% annuo (18,8% nella stima flash); non attribuisce la responsabilità delle singole proteste.",
+        "evidence_status": "Dati Eurostat pubblicati in ottobre",
+        "source_docs": "S00,S03,S04,S05",
+        "geography": "Eurozona"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 324,
+      "original": {
+        "id": "EV_TL-0122",
+        "name": "Eurozona: inflazione al 3,8% e energia in forte crescita",
+        "kind": "event",
+        "domain": "Inflazione / energia",
+        "geo": "Eurozona",
+        "date_start": "2026-09",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S03;S04;S05",
+        "evidence_status": "Dati Eurostat pubblicati in ottobre",
+        "note": "Record originale TL-0122; Il dato finale di settembre mostra energia +18,9% annuo (18,8% nella stima flash); non attribuisce la responsabilità delle singole proteste."
+      }
+    }
+  ]
+}

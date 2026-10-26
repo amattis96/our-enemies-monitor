@@ -1,0 +1,45 @@
+{
+  "id": "G-0428",
+  "subject": "HORMUZ",
+  "predicate": "CHOKEPOINT_OFFERTA_INTERROTTO",
+  "object": "OILMARKET",
+  "relation_class": "dependency",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0103"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.iea.org/reports/oil-market-report-march-2026",
+  "caveat": null,
+  "sources": [
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 426,
+      "original": {
+        "id": "G-0428",
+        "source": "HORMUZ",
+        "target": "OILMARKET",
+        "predicate": "CHOKEPOINT_OFFERTA_INTERROTTO",
+        "relation_class": "dependency",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S05",
+        "timeline_ids": "TL-0103",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.iea.org/reports/oil-market-report-march-2026",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

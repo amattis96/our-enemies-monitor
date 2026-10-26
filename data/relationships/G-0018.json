@@ -1,0 +1,48 @@
+{
+  "id": "G-0018",
+  "subject": "RU",
+  "predicate": "SOSTEGNO_OPERAZIONI_FAVORITE_DA",
+  "object": "SHOR",
+  "relation_class": "financial",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0053"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://eur-lex.europa.eu/eli/dec/2023/891/2026-06-15/eng",
+  "caveat": {
+    "it": "OFAC/Consiglio UE attribuiscono azioni finanziate dalla Russia"
+  },
+  "sources": [
+    "S01",
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 18,
+      "original": {
+        "id": "G-0018",
+        "source": "RU",
+        "target": "SHOR",
+        "predicate": "SOSTEGNO_OPERAZIONI_FAVORITE_DA",
+        "relation_class": "financial",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S01,S00",
+        "timeline_ids": "TL-0053",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://eur-lex.europa.eu/eli/dec/2023/891/2026-06-15/eng",
+        "layer": "source",
+        "description_or_caveat": "OFAC/Consiglio UE attribuiscono azioni finanziate dalla Russia"
+      }
+    }
+  ]
+}

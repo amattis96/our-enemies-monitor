@@ -1,0 +1,71 @@
+{
+  "id": "TL-0020",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2020",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Attacco informatico all’EMA e leak di documenti vaccinali"
+  },
+  "description": {
+    "it": "Documenti sottratti e in parte manipolati prima della diffusione; l’EMA non attribuisce pubblicamente l’operazione a uno Stato nella fonte citata."
+  },
+  "category": {
+    "it": "Cyber / salute"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Attacco accertato; mandante statale non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 20,
+      "original": {
+        "id": "TL-0020",
+        "date_start": "2020",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Cyber / salute",
+        "title": "Attacco informatico all’EMA e leak di documenti vaccinali",
+        "description": "Documenti sottratti e in parte manipolati prima della diffusione; l’EMA non attribuisce pubblicamente l’operazione a uno Stato nella fonte citata.",
+        "evidence_status": "Attacco accertato; mandante statale non verificato",
+        "source_docs": "S02",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 222,
+      "original": {
+        "id": "EV_TL-0020",
+        "name": "Attacco informatico all’EMA e leak di documenti vaccinali",
+        "kind": "event",
+        "domain": "Cyber / salute",
+        "geo": "Unione europea",
+        "date_start": "2020",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S02",
+        "evidence_status": "Attacco accertato; mandante statale non verificato",
+        "note": "Record originale TL-0020; Documenti sottratti e in parte manipolati prima della diffusione; l’EMA non attribuisce pubblicamente l’operazione a uno Stato nella fonte citata."
+      }
+    }
+  ]
+}

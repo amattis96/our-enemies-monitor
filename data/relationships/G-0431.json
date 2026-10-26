@@ -1,0 +1,47 @@
+{
+  "id": "G-0431",
+  "subject": "LNG",
+  "predicate": "NUOVA_DIPENDENZA_DA_MERCATO_GLOBALE",
+  "object": "EUENERGY",
+  "relation_class": "dependency",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0076"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "La diversificazione ha costi e rischi di chokepoint"
+  },
+  "sources": [
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 429,
+      "original": {
+        "id": "G-0431",
+        "source": "LNG",
+        "target": "EUENERGY",
+        "predicate": "NUOVA_DIPENDENZA_DA_MERCATO_GLOBALE",
+        "relation_class": "dependency",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S04",
+        "timeline_ids": "TL-0076",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "La diversificazione ha costi e rischi di chokepoint"
+      }
+    }
+  ]
+}

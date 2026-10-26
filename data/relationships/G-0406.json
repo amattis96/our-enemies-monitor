@@ -1,0 +1,45 @@
+{
+  "id": "G-0406",
+  "subject": "US",
+  "predicate": "USO_MILITARE_BASI",
+  "object": "RAFFAIR",
+  "relation_class": "infrastructure",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.reuters.com/world/uk/uk-police-re-arrest-pair-suspicion-helping-iranian-intelligence-over-raf-2026-10-20/",
+  "caveat": {
+    "it": "Base UK usata da mezzi USA nel conflitto Iran"
+  },
+  "sources": [
+    "WEB-EXT-004"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 404,
+      "original": {
+        "id": "G-0406",
+        "source": "US",
+        "target": "RAFFAIR",
+        "predicate": "USO_MILITARE_BASI",
+        "relation_class": "infrastructure",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "WEB-EXT-004",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.reuters.com/world/uk/uk-police-re-arrest-pair-suspicion-helping-iranian-intelligence-over-raf-2026-10-20/",
+        "layer": "source",
+        "description_or_caveat": "Base UK usata da mezzi USA nel conflitto Iran"
+      }
+    }
+  ]
+}

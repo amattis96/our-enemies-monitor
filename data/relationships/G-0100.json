@@ -1,0 +1,47 @@
+{
+  "id": "G-0100",
+  "subject": "EU",
+  "predicate": "DIPENDE_IMPORTAZIONI",
+  "object": "REE",
+  "relation_class": "dependency",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0089"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Rischio per automotive e difesa; non ostilità in ogni acquisto"
+  },
+  "sources": [
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 98,
+      "original": {
+        "id": "G-0100",
+        "source": "EU",
+        "target": "REE",
+        "predicate": "DIPENDE_IMPORTAZIONI",
+        "relation_class": "dependency",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S04",
+        "timeline_ids": "TL-0089",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Rischio per automotive e difesa; non ostilità in ogni acquisto"
+      }
+    }
+  ]
+}

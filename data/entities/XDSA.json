@@ -1,0 +1,31 @@
+{
+  "id": "XDSA",
+  "kind": "asset",
+  "name": {
+    "it": "Obblighi Digital Services Act verso X"
+  },
+  "domain": "dependencies",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 187,
+      "original": {
+        "id": "XDSA",
+        "name": "Obblighi Digital Services Act verso X",
+        "kind": "asset",
+        "domain": "dependencies",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

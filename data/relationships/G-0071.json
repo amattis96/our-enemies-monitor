@@ -1,0 +1,45 @@
+{
+  "id": "G-0071",
+  "subject": "TRUMP",
+  "predicate": "CAPO_ESECUTIVO_2025_2026",
+  "object": "US",
+  "relation_class": "governance",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0079"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 69,
+      "original": {
+        "id": "G-0071",
+        "source": "TRUMP",
+        "target": "US",
+        "predicate": "CAPO_ESECUTIVO_2025_2026",
+        "relation_class": "governance",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S05",
+        "timeline_ids": "TL-0079",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

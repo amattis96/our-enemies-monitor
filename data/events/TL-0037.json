@@ -1,0 +1,74 @@
+{
+  "id": "TL-0037",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Sostegno occidentale all’Ucraina e sanzioni ampliate"
+  },
+  "description": {
+    "it": "UE e alleati ampliano sanzioni e aiuti; le reti Starlink acquistano importanza in comunicazioni e operazioni ucraine."
+  },
+  "category": {
+    "it": "Guerra / sanzioni"
+  },
+  "geography": {
+    "it": "UE / Ucraina"
+  },
+  "evidence_note": {
+    "it": "Atti pubblici e impieghi documentati"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 37,
+      "original": {
+        "id": "TL-0037",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Guerra / sanzioni",
+        "title": "Sostegno occidentale all’Ucraina e sanzioni ampliate",
+        "description": "UE e alleati ampliano sanzioni e aiuti; le reti Starlink acquistano importanza in comunicazioni e operazioni ucraine.",
+        "evidence_status": "Atti pubblici e impieghi documentati",
+        "source_docs": "S00,S03,S04,S05",
+        "geography": "UE / Ucraina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 239,
+      "original": {
+        "id": "EV_TL-0037",
+        "name": "Sostegno occidentale all’Ucraina e sanzioni ampliate",
+        "kind": "event",
+        "domain": "Guerra / sanzioni",
+        "geo": "UE / Ucraina",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S03;S04;S05",
+        "evidence_status": "Atti pubblici e impieghi documentati",
+        "note": "Record originale TL-0037; UE e alleati ampliano sanzioni e aiuti; le reti Starlink acquistano importanza in comunicazioni e operazioni ucraine."
+      }
+    }
+  ]
+}

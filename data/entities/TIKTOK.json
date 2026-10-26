@@ -1,0 +1,31 @@
+{
+  "id": "TIKTOK",
+  "kind": "company",
+  "name": {
+    "it": "TikTok"
+  },
+  "domain": "commerce-infrastructure",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 135,
+      "original": {
+        "id": "TIKTOK",
+        "name": "TikTok",
+        "kind": "company",
+        "domain": "commerce-infrastructure",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

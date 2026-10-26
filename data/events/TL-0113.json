@@ -1,0 +1,85 @@
+{
+  "id": "TL-0113",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-06",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Municipali francesi e operazione Rokh Solis"
+  },
+  "description": {
+    "it": "VIGINUM classifica l’operazione come ingerenza digitale straniera e identifica indicatori verso BlackCore, società israeliana; committenti non stabiliti."
+  },
+  "category": {
+    "it": "Influenza digitale"
+  },
+  "geography": {
+    "it": "Francia"
+  },
+  "evidence_note": {
+    "it": "INE attribuita; committente non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01",
+    "S02",
+    "S05"
+  ],
+  "known_issues": [
+    {
+      "code": "date_reflects_publication",
+      "note": {
+        "it": "Rokh Solis è datato 2026-06 (pubblicazione del rapporto VIGINUM), ma le municipali francesi si sono svolte nel marzo 2026: separare data dell'evento e data di pubblicazione."
+      },
+      "reported_in": [
+        "S07",
+        "S08"
+      ]
+    }
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 113,
+      "original": {
+        "id": "TL-0113",
+        "date_start": "2026-06",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Influenza digitale",
+        "title": "Municipali francesi e operazione Rokh Solis",
+        "description": "VIGINUM classifica l’operazione come ingerenza digitale straniera e identifica indicatori verso BlackCore, società israeliana; committenti non stabiliti.",
+        "evidence_status": "INE attribuita; committente non verificato",
+        "source_docs": "S00,S01,S02,S05",
+        "geography": "Francia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 315,
+      "original": {
+        "id": "EV_TL-0113",
+        "name": "Municipali francesi e operazione Rokh Solis",
+        "kind": "event",
+        "domain": "Influenza digitale",
+        "geo": "Francia",
+        "date_start": "2026-06",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S01;S02;S05",
+        "evidence_status": "INE attribuita; committente non verificato",
+        "note": "Record originale TL-0113; VIGINUM classifica l’operazione come ingerenza digitale straniera e identifica indicatori verso BlackCore, società israeliana; committenti non stabiliti."
+      }
+    }
+  ]
+}

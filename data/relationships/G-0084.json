@@ -1,0 +1,48 @@
+{
+  "id": "G-0084",
+  "subject": "TOMALES",
+  "predicate": "FONDI_PARTECIPANO_CAPITALE",
+  "object": "SPACEX",
+  "relation_class": "financial",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0116"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
+  "caveat": {
+    "it": "Nessun diritto decisionale operativo dimostrato"
+  },
+  "sources": [
+    "S01",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 82,
+      "original": {
+        "id": "G-0084",
+        "source": "TOMALES",
+        "target": "SPACEX",
+        "predicate": "FONDI_PARTECIPANO_CAPITALE",
+        "relation_class": "financial",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S01,S04",
+        "timeline_ids": "TL-0116",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
+        "layer": "source",
+        "description_or_caveat": "Nessun diritto decisionale operativo dimostrato"
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "TL-0115",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-06-15",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Nuove sanzioni UE su reti Șor/Evrazia"
+  },
+  "description": {
+    "it": "Consiglio UE designa sei persone per attività destabilizzanti in Moldavia e uso di reti di reclutamento/propaganda."
+  },
+  "category": {
+    "it": "Sanzioni / Moldavia"
+  },
+  "geography": {
+    "it": "Unione europea / Moldavia"
+  },
+  "evidence_note": {
+    "it": "Atto istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 115,
+      "original": {
+        "id": "TL-0115",
+        "date_start": "2026-06-15",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Sanzioni / Moldavia",
+        "title": "Nuove sanzioni UE su reti Șor/Evrazia",
+        "description": "Consiglio UE designa sei persone per attività destabilizzanti in Moldavia e uso di reti di reclutamento/propaganda.",
+        "evidence_status": "Atto istituzionale",
+        "source_docs": "S00,S01,S05",
+        "geography": "Unione europea / Moldavia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 317,
+      "original": {
+        "id": "EV_TL-0115",
+        "name": "Nuove sanzioni UE su reti Șor/Evrazia",
+        "kind": "event",
+        "domain": "Sanzioni / Moldavia",
+        "geo": "Unione europea / Moldavia",
+        "date_start": "2026-06-15",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S01;S05",
+        "evidence_status": "Atto istituzionale",
+        "note": "Record originale TL-0115; Consiglio UE designa sei persone per attività destabilizzanti in Moldavia e uso di reti di reclutamento/propaganda."
+      }
+    }
+  ]
+}

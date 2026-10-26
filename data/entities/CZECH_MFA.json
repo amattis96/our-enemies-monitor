@@ -1,0 +1,31 @@
+{
+  "id": "CZECH_MFA",
+  "kind": "institution",
+  "name": {
+    "it": "Ministero degli Esteri ceco"
+  },
+  "domain": "targets",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 193,
+      "original": {
+        "id": "CZECH_MFA",
+        "name": "Ministero degli Esteri ceco",
+        "kind": "institution",
+        "domain": "targets",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

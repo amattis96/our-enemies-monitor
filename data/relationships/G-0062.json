@@ -1,0 +1,47 @@
+{
+  "id": "G-0062",
+  "subject": "AZBIG",
+  "predicate": "OPERAZIONI_INFLUENZA_TERRITORI",
+  "object": "FR",
+  "relation_class": "influence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0049"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Colpiti interessi francesi oltremare"
+  },
+  "sources": [
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 60,
+      "original": {
+        "id": "G-0062",
+        "source": "AZBIG",
+        "target": "FR",
+        "predicate": "OPERAZIONI_INFLUENZA_TERRITORI",
+        "relation_class": "influence",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S05",
+        "timeline_ids": "TL-0049",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Colpiti interessi francesi oltremare"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "P07",
+  "type": "external_reference",
+  "title": {
+    "it": "VIGINUM, Rokh Solis (11 giugno 2026). Municipali francesi marzo 2026; indicatori BlackCore; visibilità bassa; committente non identificato pubblicamente."
+  },
+  "publisher": "VIGINUM",
+  "files": [],
+  "urls": [
+    "https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1180,
+      "original": {
+        "text": "- **P07 | VIGINUM, Rokh Solis (11 giugno 2026).** Municipali francesi marzo 2026; indicatori BlackCore; visibilità bassa; committente non identificato pubblicamente. https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les"
+      }
+    }
+  ]
+}

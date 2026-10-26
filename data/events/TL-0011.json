@@ -1,0 +1,71 @@
+{
+  "id": "TL-0011",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2017",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "MacronLeaks nelle presidenziali francesi"
+  },
+  "description": {
+    "it": "Operazione hack-and-leak, phishing e amplificazione online; la Francia non attribuisce formalmente l’episodio a uno Stato, pur emergendo indizi russi in analisi successive."
+  },
+  "category": {
+    "it": "Interferenza elettorale"
+  },
+  "geography": {
+    "it": "Francia"
+  },
+  "evidence_note": {
+    "it": "Evento accertato; attribuzione statale non conclusiva"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 11,
+      "original": {
+        "id": "TL-0011",
+        "date_start": "2017",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Interferenza elettorale",
+        "title": "MacronLeaks nelle presidenziali francesi",
+        "description": "Operazione hack-and-leak, phishing e amplificazione online; la Francia non attribuisce formalmente l’episodio a uno Stato, pur emergendo indizi russi in analisi successive.",
+        "evidence_status": "Evento accertato; attribuzione statale non conclusiva",
+        "source_docs": "S02",
+        "geography": "Francia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 213,
+      "original": {
+        "id": "EV_TL-0011",
+        "name": "MacronLeaks nelle presidenziali francesi",
+        "kind": "event",
+        "domain": "Interferenza elettorale",
+        "geo": "Francia",
+        "date_start": "2017",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S02",
+        "evidence_status": "Evento accertato; attribuzione statale non conclusiva",
+        "note": "Record originale TL-0011; Operazione hack-and-leak, phishing e amplificazione online; la Francia non attribuisce formalmente l’episodio a uno Stato, pur emergendo indizi russi in analisi successive."
+      }
+    }
+  ]
+}

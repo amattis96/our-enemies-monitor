@@ -1,0 +1,53 @@
+{
+  "id": "H08",
+  "subject": "STARSHIELD",
+  "object": "US",
+  "hypothesis_type": "CATENA_DECISIONALE_RESTRIZIONI_2026",
+  "question": {
+    "it": "Quale soggetto autorizzò specificamente le limitazioni Starshield e quando?"
+  },
+  "current_limit": {
+    "it": "WSJ/Reuters/Telegraph e interessati divergono; non collegare automaticamente a Mosca."
+  },
+  "priority": "critical",
+  "evidence_needed": {
+    "it": "Ordini contrattuali, tickets tecnici, audit deployment, White House/Pentagon records"
+  },
+  "events": [
+    "TL-0137",
+    "TL-0142",
+    "TL-0146"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S00",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 8,
+      "original": {
+        "id": "H08",
+        "subject": "STARSHIELD",
+        "object": "US",
+        "hypothesis_type": "CATENA_DECISIONALE_RESTRIZIONI_2026",
+        "verification_question": "Quale soggetto autorizzò specificamente le limitazioni Starshield e quando?",
+        "current_limit": "WSJ/Reuters/Telegraph e interessati divergono; non collegare automaticamente a Mosca.",
+        "priority": "Critica",
+        "evidence_needed": "Ordini contrattuali, tickets tecnici, audit deployment, White House/Pentagon records",
+        "source_docs": "S00,S03,S04,S05",
+        "timeline_ids": "TL-0137;TL-0142;TL-0146",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

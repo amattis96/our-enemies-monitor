@@ -1,0 +1,47 @@
+{
+  "id": "H19",
+  "subject": "FOXTROT",
+  "object": "MOIS",
+  "hypothesis_type": "ORDINE_IRANIANO_SINGOLO_CASO_NATLAND",
+  "question": {
+    "it": "La condanna Natland prova un ordine specifico da intelligence iraniana?"
+  },
+  "current_limit": {
+    "it": "No; CPS accerta complotto Foxtrot, OFAC attribuisce altri specifici episodi al MOIS."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "Atti dibattimentali, comunicazioni, procurement criminali, intelligence disclosure"
+  },
+  "events": [],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "WEB-EXT-002",
+    "WEB-EXT-003"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 19,
+      "original": {
+        "id": "H19",
+        "subject": "FOXTROT",
+        "object": "MOIS",
+        "hypothesis_type": "ORDINE_IRANIANO_SINGOLO_CASO_NATLAND",
+        "verification_question": "La condanna Natland prova un ordine specifico da intelligence iraniana?",
+        "current_limit": "No; CPS accerta complotto Foxtrot, OFAC attribuisce altri specifici episodi al MOIS.",
+        "priority": "Alta",
+        "evidence_needed": "Atti dibattimentali, comunicazioni, procurement criminali, intelligence disclosure",
+        "source_docs": "WEB-EXT-002,WEB-EXT-003",
+        "timeline_ids": "",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

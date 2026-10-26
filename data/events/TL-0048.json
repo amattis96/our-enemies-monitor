@@ -1,0 +1,82 @@
+{
+  "id": "TL-0048",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Mandati di arresto CPI nel caso Netanyahu/Gallant"
+  },
+  "description": {
+    "it": "La Corte penale internazionale emette mandati contro esponenti israeliani; seguiranno sanzioni USA contro la Corte."
+  },
+  "category": {
+    "it": "Spyware / diritti"
+  },
+  "geography": {
+    "it": "Corte penale internazionale"
+  },
+  "evidence_note": {
+    "it": "Atto giudiziario internazionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [
+    {
+      "code": "misclassified_category",
+      "note": {
+        "it": "Mandati della CPI classificati «Spyware / diritti»: riclassificare come giustizia internazionale/diplomazia."
+      },
+      "reported_in": [
+        "S07",
+        "S08"
+      ]
+    }
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 48,
+      "original": {
+        "id": "TL-0048",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Spyware / diritti",
+        "title": "Mandati di arresto CPI nel caso Netanyahu/Gallant",
+        "description": "La Corte penale internazionale emette mandati contro esponenti israeliani; seguiranno sanzioni USA contro la Corte.",
+        "evidence_status": "Atto giudiziario internazionale",
+        "source_docs": "S05",
+        "geography": "Corte penale internazionale"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 250,
+      "original": {
+        "id": "EV_TL-0048",
+        "name": "Mandati di arresto CPI nel caso Netanyahu/Gallant",
+        "kind": "event",
+        "domain": "Spyware / diritti",
+        "geo": "Corte penale internazionale",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S05",
+        "evidence_status": "Atto giudiziario internazionale",
+        "note": "Record originale TL-0048; La Corte penale internazionale emette mandati contro esponenti israeliani; seguiranno sanzioni USA contro la Corte."
+      }
+    }
+  ]
+}

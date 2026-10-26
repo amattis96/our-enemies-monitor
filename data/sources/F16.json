@@ -1,0 +1,28 @@
+{
+  "id": "F16",
+  "type": "external_reference",
+  "title": {
+    "it": "Parlamento europeo/EPRS, Ceuta migrant crisis, 8 ottobre 2026"
+  },
+  "publisher": "Parlamento europeo/EPRS",
+  "files": [],
+  "urls": [
+    "https://eprs.europarl.europa.eu/contents/publications/EPRS/2026/10/EPRS_BRI%282026%29791481.html"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 348,
+      "original": {
+        "text": "- **[F16] Parlamento europeo/EPRS**, *Ceuta migrant crisis*, 8 ottobre 2026: https://eprs.europarl.europa.eu/contents/publications/EPRS/2026/10/EPRS_BRI%282026%29791481.html"
+      }
+    }
+  ]
+}

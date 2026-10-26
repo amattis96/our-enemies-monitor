@@ -1,0 +1,72 @@
+{
+  "id": "TL-0024",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2020-08",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Rapporto Senato USA sull’interferenza del 2016"
+  },
+  "description": {
+    "it": "Pubblicazione del Volume 5 dell’indagine bipartisan su interferenze russe, contatti e vulnerabilità della campagna."
+  },
+  "category": {
+    "it": "Indagine parlamentare"
+  },
+  "geography": {
+    "it": "Stati Uniti"
+  },
+  "evidence_note": {
+    "it": "Atto parlamentare"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 24,
+      "original": {
+        "id": "TL-0024",
+        "date_start": "2020-08",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Indagine parlamentare",
+        "title": "Rapporto Senato USA sull’interferenza del 2016",
+        "description": "Pubblicazione del Volume 5 dell’indagine bipartisan su interferenze russe, contatti e vulnerabilità della campagna.",
+        "evidence_status": "Atto parlamentare",
+        "source_docs": "S00,S05",
+        "geography": "Stati Uniti"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 226,
+      "original": {
+        "id": "EV_TL-0024",
+        "name": "Rapporto Senato USA sull’interferenza del 2016",
+        "kind": "event",
+        "domain": "Indagine parlamentare",
+        "geo": "Stati Uniti",
+        "date_start": "2020-08",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S05",
+        "evidence_status": "Atto parlamentare",
+        "note": "Record originale TL-0024; Pubblicazione del Volume 5 dell’indagine bipartisan su interferenze russe, contatti e vulnerabilità della campagna."
+      }
+    }
+  ]
+}

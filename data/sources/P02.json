@@ -1,0 +1,28 @@
+{
+  "id": "P02",
+  "type": "external_reference",
+  "title": {
+    "it": "Consiglio UE, Voice of Europe/Medvedchuk/Marchevskyi (27 maggio 2024). Sanzioni, funzione finanziaria e rete di influenza."
+  },
+  "publisher": "Consiglio UE",
+  "files": [],
+  "urls": [
+    "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1175,
+      "original": {
+        "text": "- **P02 | Consiglio UE, Voice of Europe/Medvedchuk/Marchevskyi (27 maggio 2024).** Sanzioni, funzione finanziaria e rete di influenza. https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/"
+      }
+    }
+  ]
+}

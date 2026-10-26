@@ -1,0 +1,46 @@
+{
+  "id": "G-0102",
+  "subject": "EU",
+  "predicate": "ADOTTA_PRESIDIO_DE_RISKING",
+  "object": "CRMA",
+  "relation_class": "policy",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0136"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://commission.europa.eu/topics/competitiveness/green-deal-industrial-plan/european-critical-raw-materials-act_en",
+  "caveat": null,
+  "sources": [
+    "S00",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 100,
+      "original": {
+        "id": "G-0102",
+        "source": "EU",
+        "target": "CRMA",
+        "predicate": "ADOTTA_PRESIDIO_DE_RISKING",
+        "relation_class": "policy",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00,S04",
+        "timeline_ids": "TL-0136",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://commission.europa.eu/topics/competitiveness/green-deal-industrial-plan/european-critical-raw-materials-act_en",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

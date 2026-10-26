@@ -1,0 +1,31 @@
+{
+  "id": "HSE",
+  "kind": "institution",
+  "name": {
+    "it": "Health Service Executive Irlanda"
+  },
+  "domain": "targets",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 195,
+      "original": {
+        "id": "HSE",
+        "name": "Health Service Executive Irlanda",
+        "kind": "institution",
+        "domain": "targets",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

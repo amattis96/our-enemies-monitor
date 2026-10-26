@@ -1,0 +1,26 @@
+{
+  "id": "S08",
+  "type": "corpus_document",
+  "title": {
+    "it": "Fonte 08 | L'Europa sotto pressione: attori ostili, reti transnazionali e vulnerabilità strategiche"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1,
+      "original": {
+        "text": "# Fonte 08 | L'Europa sotto pressione: attori ostili, reti transnazionali e vulnerabilità strategiche"
+      }
+    }
+  ]
+}

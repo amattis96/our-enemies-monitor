@@ -1,0 +1,72 @@
+{
+  "id": "TL-0009",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2016",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Interferenza russa nelle presidenziali statunitensi"
+  },
+  "description": {
+    "it": "Intelligence e successivi rapporti del Senato USA documentano operazioni russe; non quantificano la variazione del voto né stabiliscono una cospirazione generale Trump-Russia."
+  },
+  "category": {
+    "it": "Interferenza elettorale"
+  },
+  "geography": {
+    "it": "Stati Uniti"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale; impatto ignoto"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 9,
+      "original": {
+        "id": "TL-0009",
+        "date_start": "2016",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Interferenza elettorale",
+        "title": "Interferenza russa nelle presidenziali statunitensi",
+        "description": "Intelligence e successivi rapporti del Senato USA documentano operazioni russe; non quantificano la variazione del voto né stabiliscono una cospirazione generale Trump-Russia.",
+        "evidence_status": "Attribuzione istituzionale; impatto ignoto",
+        "source_docs": "S00,S05",
+        "geography": "Stati Uniti"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 211,
+      "original": {
+        "id": "EV_TL-0009",
+        "name": "Interferenza russa nelle presidenziali statunitensi",
+        "kind": "event",
+        "domain": "Interferenza elettorale",
+        "geo": "Stati Uniti",
+        "date_start": "2016",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S05",
+        "evidence_status": "Attribuzione istituzionale; impatto ignoto",
+        "note": "Record originale TL-0009; Intelligence e successivi rapporti del Senato USA documentano operazioni russe; non quantificano la variazione del voto né stabiliscono una cospirazione generale Trump-Russia."
+      }
+    }
+  ]
+}

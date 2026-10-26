@@ -1,0 +1,31 @@
+{
+  "id": "PORTALK",
+  "kind": "organization",
+  "name": {
+    "it": "Portal Kombat"
+  },
+  "domain": "influence-technology",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 99,
+      "original": {
+        "id": "PORTALK",
+        "name": "Portal Kombat",
+        "kind": "organization",
+        "domain": "influence-technology",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

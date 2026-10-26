@@ -1,0 +1,49 @@
+{
+  "id": "H18",
+  "subject": "AZBIG",
+  "object": "RU_PRESS",
+  "hypothesis_type": "AMPLIFICAZIONE_AZERA_RUSSA",
+  "question": {
+    "it": "Esiste amplificazione reciproca tracciabile tra BIG e reti russe su Francia?"
+  },
+  "current_limit": {
+    "it": "Nessun coordinamento descritto dalle fonti; solo bersaglio potenzialmente comune."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Archivi cross-platform, timestamps, IP/domains, contratti pubblici"
+  },
+  "events": [
+    "TL-0049"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S02",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 18,
+      "original": {
+        "id": "H18",
+        "subject": "AZBIG",
+        "object": "RU_PRESS",
+        "hypothesis_type": "AMPLIFICAZIONE_AZERA_RUSSA",
+        "verification_question": "Esiste amplificazione reciproca tracciabile tra BIG e reti russe su Francia?",
+        "current_limit": "Nessun coordinamento descritto dalle fonti; solo bersaglio potenzialmente comune.",
+        "priority": "Media",
+        "evidence_needed": "Archivi cross-platform, timestamps, IP/domains, contratti pubblici",
+        "source_docs": "S02,S05",
+        "timeline_ids": "TL-0049",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

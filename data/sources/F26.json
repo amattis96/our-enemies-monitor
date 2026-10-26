@@ -1,0 +1,28 @@
+{
+  "id": "F26",
+  "type": "external_reference",
+  "title": {
+    "it": "Kyiv Independent, sintesi dell'inchiesta Telegraph su Musk/Starshield, 16 ottobre 2026"
+  },
+  "publisher": "Kyiv Independent",
+  "files": [],
+  "urls": [
+    "https://kyivindependent.com/musk-asked-trump-to-restrict-ukraines-starlink-service-telegraph-reports/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 358,
+      "original": {
+        "text": "- **[F26] Kyiv Independent**, sintesi dell'inchiesta Telegraph su Musk/Starshield, 16 ottobre 2026: https://kyivindependent.com/musk-asked-trump-to-restrict-ukraines-starlink-service-telegraph-reports/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "TL-0100",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-02-28",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "USA e Israele attaccano l’Iran"
+  },
+  "description": {
+    "it": "Inizio della guerra del 2026, con ripercussioni sulla navigazione a Hormuz e sui mercati energetici mondiali."
+  },
+  "category": {
+    "it": "Guerra / Medio Oriente"
+  },
+  "geography": {
+    "it": "Iran / Medio Oriente"
+  },
+  "evidence_note": {
+    "it": "Operazioni militari accertate"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 100,
+      "original": {
+        "id": "TL-0100",
+        "date_start": "2026-02-28",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Guerra / Medio Oriente",
+        "title": "USA e Israele attaccano l’Iran",
+        "description": "Inizio della guerra del 2026, con ripercussioni sulla navigazione a Hormuz e sui mercati energetici mondiali.",
+        "evidence_status": "Operazioni militari accertate",
+        "source_docs": "S00,S03,S04,S05",
+        "geography": "Iran / Medio Oriente"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 302,
+      "original": {
+        "id": "EV_TL-0100",
+        "name": "USA e Israele attaccano l’Iran",
+        "kind": "event",
+        "domain": "Guerra / Medio Oriente",
+        "geo": "Iran / Medio Oriente",
+        "date_start": "2026-02-28",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S03;S04;S05",
+        "evidence_status": "Operazioni militari accertate",
+        "note": "Record originale TL-0100; Inizio della guerra del 2026, con ripercussioni sulla navigazione a Hormuz e sui mercati energetici mondiali."
+      }
+    }
+  ]
+}

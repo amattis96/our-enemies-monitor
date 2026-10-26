@@ -1,0 +1,72 @@
+{
+  "id": "TL-0081",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": "2025-02",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Musk interviene a favore di AfD"
+  },
+  "description": {
+    "it": "Sostegno pubblico su X e interviste nel ciclo elettorale tedesco; nessuna prova pubblica di mandato clandestino federale USA o di effetto decisivo sul voto."
+  },
+  "category": {
+    "it": "Influenza politica pubblica"
+  },
+  "geography": {
+    "it": "Germania / USA"
+  },
+  "evidence_note": {
+    "it": "Condotta pubblica accertata; effetti non misurati"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 81,
+      "original": {
+        "id": "TL-0081",
+        "date_start": "2025",
+        "date_end": "2025-02",
+        "date_precision": "year",
+        "category": "Influenza politica pubblica",
+        "title": "Musk interviene a favore di AfD",
+        "description": "Sostegno pubblico su X e interviste nel ciclo elettorale tedesco; nessuna prova pubblica di mandato clandestino federale USA o di effetto decisivo sul voto.",
+        "evidence_status": "Condotta pubblica accertata; effetti non misurati",
+        "source_docs": "S00,S01",
+        "geography": "Germania / USA"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 283,
+      "original": {
+        "id": "EV_TL-0081",
+        "name": "Musk interviene a favore di AfD",
+        "kind": "event",
+        "domain": "Influenza politica pubblica",
+        "geo": "Germania / USA",
+        "date_start": "2025",
+        "date_end": "2025-02",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S01",
+        "evidence_status": "Condotta pubblica accertata; effetti non misurati",
+        "note": "Record originale TL-0081; Sostegno pubblico su X e interviste nel ciclo elettorale tedesco; nessuna prova pubblica di mandato clandestino federale USA o di effetto decisivo sul voto."
+      }
+    }
+  ]
+}

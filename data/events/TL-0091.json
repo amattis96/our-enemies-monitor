@@ -1,0 +1,71 @@
+{
+  "id": "TL-0091",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025-11",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Attentato sulla ferrovia Varsavia-Lublino"
+  },
+  "description": {
+    "it": "Esplosione e tentativo di deragliamento; Varsavia collega i sospetti a un’operazione d’intelligence russa."
+  },
+  "category": {
+    "it": "Sabotaggio / ferrovie"
+  },
+  "geography": {
+    "it": "Polonia"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale polacca"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 91,
+      "original": {
+        "id": "TL-0091",
+        "date_start": "2025-11",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Sabotaggio / ferrovie",
+        "title": "Attentato sulla ferrovia Varsavia-Lublino",
+        "description": "Esplosione e tentativo di deragliamento; Varsavia collega i sospetti a un’operazione d’intelligence russa.",
+        "evidence_status": "Attribuzione istituzionale polacca",
+        "source_docs": "S03",
+        "geography": "Polonia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 293,
+      "original": {
+        "id": "EV_TL-0091",
+        "name": "Attentato sulla ferrovia Varsavia-Lublino",
+        "kind": "event",
+        "domain": "Sabotaggio / ferrovie",
+        "geo": "Polonia",
+        "date_start": "2025-11",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione istituzionale polacca",
+        "note": "Record originale TL-0091; Esplosione e tentativo di deragliamento; Varsavia collega i sospetti a un’operazione d’intelligence russa."
+      }
+    }
+  ]
+}

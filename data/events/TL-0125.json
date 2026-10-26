@@ -1,0 +1,72 @@
+{
+  "id": "TL-0125",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-09",
+    "end": "2026-10",
+    "precision": "month"
+  },
+  "title": {
+    "it": "Mobilitazioni per abitazioni e sindacati in Portogallo"
+  },
+  "description": {
+    "it": "Movimenti e forme di emulazione con manifestazioni iberiche; nessuna prova di comando estero."
+  },
+  "category": {
+    "it": "Proteste / Portogallo"
+  },
+  "geography": {
+    "it": "Portogallo"
+  },
+  "evidence_note": {
+    "it": "Proteste documentate"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 125,
+      "original": {
+        "id": "TL-0125",
+        "date_start": "2026-09",
+        "date_end": "2026-10",
+        "date_precision": "month",
+        "category": "Proteste / Portogallo",
+        "title": "Mobilitazioni per abitazioni e sindacati in Portogallo",
+        "description": "Movimenti e forme di emulazione con manifestazioni iberiche; nessuna prova di comando estero.",
+        "evidence_status": "Proteste documentate",
+        "source_docs": "S00,S02",
+        "geography": "Portogallo"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 327,
+      "original": {
+        "id": "EV_TL-0125",
+        "name": "Mobilitazioni per abitazioni e sindacati in Portogallo",
+        "kind": "event",
+        "domain": "Proteste / Portogallo",
+        "geo": "Portogallo",
+        "date_start": "2026-09",
+        "date_end": "2026-10",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S02",
+        "evidence_status": "Proteste documentate",
+        "note": "Record originale TL-0125; Movimenti e forme di emulazione con manifestazioni iberiche; nessuna prova di comando estero."
+      }
+    }
+  ]
+}

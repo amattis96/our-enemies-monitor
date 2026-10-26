@@ -1,0 +1,31 @@
+{
+  "id": "CABLES",
+  "kind": "asset",
+  "name": {
+    "it": "Cavi sottomarini baltici"
+  },
+  "domain": "dependencies",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 169,
+      "original": {
+        "id": "CABLES",
+        "name": "Cavi sottomarini baltici",
+        "kind": "asset",
+        "domain": "dependencies",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

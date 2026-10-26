@@ -1,0 +1,71 @@
+{
+  "id": "TL-0108",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-04",
+    "end": "2026-07",
+    "precision": "month"
+  },
+  "title": {
+    "it": "Nuova fase dei controlli export cinesi verso entità UE"
+  },
+  "description": {
+    "it": "La Cina adotta misure e contromisure nel contesto di tensioni commerciali; la portata precisa varia tra i provvedimenti."
+  },
+  "category": {
+    "it": "Commercio / industria"
+  },
+  "geography": {
+    "it": "Cina / UE"
+  },
+  "evidence_note": {
+    "it": "Policy commerciali"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 108,
+      "original": {
+        "id": "TL-0108",
+        "date_start": "2026-04",
+        "date_end": "2026-07",
+        "date_precision": "month",
+        "category": "Commercio / industria",
+        "title": "Nuova fase dei controlli export cinesi verso entità UE",
+        "description": "La Cina adotta misure e contromisure nel contesto di tensioni commerciali; la portata precisa varia tra i provvedimenti.",
+        "evidence_status": "Policy commerciali",
+        "source_docs": "S05",
+        "geography": "Cina / UE"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 310,
+      "original": {
+        "id": "EV_TL-0108",
+        "name": "Nuova fase dei controlli export cinesi verso entità UE",
+        "kind": "event",
+        "domain": "Commercio / industria",
+        "geo": "Cina / UE",
+        "date_start": "2026-04",
+        "date_end": "2026-07",
+        "date_precision": "month",
+        "source_docs": "S06,S05",
+        "evidence_status": "Policy commerciali",
+        "note": "Record originale TL-0108; La Cina adotta misure e contromisure nel contesto di tensioni commerciali; la portata precisa varia tra i provvedimenti."
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "F22",
+  "type": "external_reference",
+  "title": {
+    "it": "Citizen Lab, indagini Pegasus e sorveglianza su figure europee"
+  },
+  "publisher": "Citizen Lab",
+  "files": [],
+  "urls": [
+    "https://citizenlab.ca/research/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 354,
+      "original": {
+        "text": "- **[F22] Citizen Lab**, indagini Pegasus e sorveglianza su figure europee: https://citizenlab.ca/research/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "F27",
+  "type": "external_reference",
+  "title": {
+    "it": "ProPublica, investitori esteri e SpaceX, 18 giugno 2026"
+  },
+  "publisher": "ProPublica",
+  "files": [],
+  "urls": [
+    "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 359,
+      "original": {
+        "text": "- **[F27] ProPublica**, investitori esteri e SpaceX, 18 giugno 2026: https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china"
+      }
+    }
+  ]
+}

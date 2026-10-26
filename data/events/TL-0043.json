@@ -1,0 +1,71 @@
+{
+  "id": "TL-0043",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2023",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Condanna di Ilan Șor"
+  },
+  "description": {
+    "it": "Condanna definitiva a 15 anni in Moldavia per frode bancaria e riciclaggio; le reti di influenza collegate continuano ad operare."
+  },
+  "category": {
+    "it": "Finanza / giustizia"
+  },
+  "geography": {
+    "it": "Moldavia"
+  },
+  "evidence_note": {
+    "it": "Accertato giudiziariamente"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 43,
+      "original": {
+        "id": "TL-0043",
+        "date_start": "2023",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Finanza / giustizia",
+        "title": "Condanna di Ilan Șor",
+        "description": "Condanna definitiva a 15 anni in Moldavia per frode bancaria e riciclaggio; le reti di influenza collegate continuano ad operare.",
+        "evidence_status": "Accertato giudiziariamente",
+        "source_docs": "S01",
+        "geography": "Moldavia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 245,
+      "original": {
+        "id": "EV_TL-0043",
+        "name": "Condanna di Ilan Șor",
+        "kind": "event",
+        "domain": "Finanza / giustizia",
+        "geo": "Moldavia",
+        "date_start": "2023",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S01",
+        "evidence_status": "Accertato giudiziariamente",
+        "note": "Record originale TL-0043; Condanna definitiva a 15 anni in Moldavia per frode bancaria e riciclaggio; le reti di influenza collegate continuano ad operare."
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "TL-0052",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024",
+    "end": "2026",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Pressioni militari cinesi intorno a Taiwan"
+  },
+  "description": {
+    "it": "Pattuglie ed esercitazioni continuano nel 2024-2026; non esiste nelle fonti del progetto prova di decisione già presa per un’invasione."
+  },
+  "category": {
+    "it": "Cina / Taiwan"
+  },
+  "geography": {
+    "it": "Stretto di Taiwan"
+  },
+  "evidence_note": {
+    "it": "Attività pubbliche; scenario futuro ipotetico"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 52,
+      "original": {
+        "id": "TL-0052",
+        "date_start": "2024",
+        "date_end": "2026",
+        "date_precision": "year",
+        "category": "Cina / Taiwan",
+        "title": "Pressioni militari cinesi intorno a Taiwan",
+        "description": "Pattuglie ed esercitazioni continuano nel 2024-2026; non esiste nelle fonti del progetto prova di decisione già presa per un’invasione.",
+        "evidence_status": "Attività pubbliche; scenario futuro ipotetico",
+        "source_docs": "S00,S04,S05",
+        "geography": "Stretto di Taiwan"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 254,
+      "original": {
+        "id": "EV_TL-0052",
+        "name": "Pressioni militari cinesi intorno a Taiwan",
+        "kind": "event",
+        "domain": "Cina / Taiwan",
+        "geo": "Stretto di Taiwan",
+        "date_start": "2024",
+        "date_end": "2026",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S04;S05",
+        "evidence_status": "Attività pubbliche; scenario futuro ipotetico",
+        "note": "Record originale TL-0052; Pattuglie ed esercitazioni continuano nel 2024-2026; non esiste nelle fonti del progetto prova di decisione già presa per un’invasione."
+      }
+    }
+  ]
+}

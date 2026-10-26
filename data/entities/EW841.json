@@ -1,0 +1,31 @@
+{
+  "id": "EW841",
+  "kind": "organization",
+  "name": {
+    "it": "841st Separate Electronic Warfare Center"
+  },
+  "domain": "intelligence-security",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 59,
+      "original": {
+        "id": "EW841",
+        "name": "841st Separate Electronic Warfare Center",
+        "kind": "organization",
+        "domain": "intelligence-security",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

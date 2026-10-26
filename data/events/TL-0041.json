@@ -1,0 +1,72 @@
+{
+  "id": "TL-0041",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022-09-26",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Esplosioni dei gasdotti Nord Stream"
+  },
+  "description": {
+    "it": "Danneggiamento nel Baltico; procure tedesche accusano in seguito sospetti ucraini. Processo e attribuzione allo Stato ucraino non conclusivi."
+  },
+  "category": {
+    "it": "Sabotaggio energetico"
+  },
+  "geography": {
+    "it": "Mar Baltico"
+  },
+  "evidence_note": {
+    "it": "Danno accertato; responsabilità statale contestata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03",
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 41,
+      "original": {
+        "id": "TL-0041",
+        "date_start": "2022-09-26",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Sabotaggio energetico",
+        "title": "Esplosioni dei gasdotti Nord Stream",
+        "description": "Danneggiamento nel Baltico; procure tedesche accusano in seguito sospetti ucraini. Processo e attribuzione allo Stato ucraino non conclusivi.",
+        "evidence_status": "Danno accertato; responsabilità statale contestata",
+        "source_docs": "S03,S04",
+        "geography": "Mar Baltico"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 243,
+      "original": {
+        "id": "EV_TL-0041",
+        "name": "Esplosioni dei gasdotti Nord Stream",
+        "kind": "event",
+        "domain": "Sabotaggio energetico",
+        "geo": "Mar Baltico",
+        "date_start": "2022-09-26",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S03;S04",
+        "evidence_status": "Danno accertato; responsabilità statale contestata",
+        "note": "Record originale TL-0041; Danneggiamento nel Baltico; procure tedesche accusano in seguito sospetti ucraini. Processo e attribuzione allo Stato ucraino non conclusivi."
+      }
+    }
+  ]
+}

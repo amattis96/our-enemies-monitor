@@ -1,0 +1,73 @@
+{
+  "id": "TL-0001",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2007-04",
+    "end": "2007-05",
+    "precision": "month"
+  },
+  "title": {
+    "it": "Attacchi DDoS contro l’Estonia"
+  },
+  "description": {
+    "it": "Dopo la crisi del Bronze Soldier vengono colpiti governo, banche e media; il comando diretto dello Stato russo non è conclusivamente provato."
+  },
+  "category": {
+    "it": "Cyber / sicurezza"
+  },
+  "geography": {
+    "it": "Estonia"
+  },
+  "evidence_note": {
+    "it": "Evento accertato; mandante statale contestato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 1,
+      "original": {
+        "id": "TL-0001",
+        "date_start": "2007-04",
+        "date_end": "2007-05",
+        "date_precision": "month",
+        "category": "Cyber / sicurezza",
+        "title": "Attacchi DDoS contro l’Estonia",
+        "description": "Dopo la crisi del Bronze Soldier vengono colpiti governo, banche e media; il comando diretto dello Stato russo non è conclusivamente provato.",
+        "evidence_status": "Evento accertato; mandante statale contestato",
+        "source_docs": "S00,S03,S05",
+        "geography": "Estonia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 203,
+      "original": {
+        "id": "EV_TL-0001",
+        "name": "Attacchi DDoS contro l’Estonia",
+        "kind": "event",
+        "domain": "Cyber / sicurezza",
+        "geo": "Estonia",
+        "date_start": "2007-04",
+        "date_end": "2007-05",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S03;S05",
+        "evidence_status": "Evento accertato; mandante statale contestato",
+        "note": "Record originale TL-0001; Dopo la crisi del Bronze Soldier vengono colpiti governo, banche e media; il comando diretto dello Stato russo non è conclusivamente provato."
+      }
+    }
+  ]
+}

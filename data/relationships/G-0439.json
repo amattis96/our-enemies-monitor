@@ -1,0 +1,48 @@
+{
+  "id": "G-0439",
+  "subject": "CD",
+  "predicate": "FORNISCE_COBALTO_IN_CATENA",
+  "object": "CHNREFINE",
+  "relation_class": "supply",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0101"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Possibili canali anche non cinesi"
+  },
+  "sources": [
+    "S04",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 437,
+      "original": {
+        "id": "G-0439",
+        "source": "CD",
+        "target": "CHNREFINE",
+        "predicate": "FORNISCE_COBALTO_IN_CATENA",
+        "relation_class": "supply",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S04,S05",
+        "timeline_ids": "TL-0101",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Possibili canali anche non cinesi"
+      }
+    }
+  ]
+}

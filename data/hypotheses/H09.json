@@ -1,0 +1,51 @@
+{
+  "id": "H09",
+  "subject": "MA",
+  "object": "CEUTA",
+  "hypothesis_type": "INTENZIONALITA_STATUALE_CEUTA",
+  "question": {
+    "it": "Il governo marocchino pianificò la crisi o ne conosceva l’arrivo senza organizzarla?"
+  },
+  "current_limit": {
+    "it": "Fonti e cifre discordanti; non equiparare al caso bielorusso."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "Atti CNI/Guardia Civil, cronologia frontiera, acquisizioni radar, comunicazioni officiali"
+  },
+  "events": [
+    "TL-0117",
+    "TL-0130",
+    "TL-0135"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 9,
+      "original": {
+        "id": "H09",
+        "subject": "MA",
+        "object": "CEUTA",
+        "hypothesis_type": "INTENZIONALITA_STATUALE_CEUTA",
+        "verification_question": "Il governo marocchino pianificò la crisi o ne conosceva l’arrivo senza organizzarla?",
+        "current_limit": "Fonti e cifre discordanti; non equiparare al caso bielorusso.",
+        "priority": "Alta",
+        "evidence_needed": "Atti CNI/Guardia Civil, cronologia frontiera, acquisizioni radar, comunicazioni officiali",
+        "source_docs": "S00,S05",
+        "timeline_ids": "TL-0117;TL-0130;TL-0135",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

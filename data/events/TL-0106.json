@@ -1,0 +1,71 @@
+{
+  "id": "TL-0106",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-03",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "UE sanziona Emennet Pasargad"
+  },
+  "description": {
+    "it": "Designazione per campagne informatiche e informative che hanno interessato, fra gli altri, Francia e Svezia."
+  },
+  "category": {
+    "it": "Sanzioni / cyber"
+  },
+  "geography": {
+    "it": "Unione europea / Iran"
+  },
+  "evidence_note": {
+    "it": "Atto istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 106,
+      "original": {
+        "id": "TL-0106",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Sanzioni / cyber",
+        "title": "UE sanziona Emennet Pasargad",
+        "description": "Designazione per campagne informatiche e informative che hanno interessato, fra gli altri, Francia e Svezia.",
+        "evidence_status": "Atto istituzionale",
+        "source_docs": "S03",
+        "geography": "Unione europea / Iran"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 308,
+      "original": {
+        "id": "EV_TL-0106",
+        "name": "UE sanziona Emennet Pasargad",
+        "kind": "event",
+        "domain": "Sanzioni / cyber",
+        "geo": "Unione europea / Iran",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Atto istituzionale",
+        "note": "Record originale TL-0106; Designazione per campagne informatiche e informative che hanno interessato, fra gli altri, Francia e Svezia."
+      }
+    }
+  ]
+}

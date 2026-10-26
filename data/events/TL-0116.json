@@ -1,0 +1,73 @@
+{
+  "id": "TL-0116",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-06-18",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Inchiesta ProPublica sui fondi che investono in SpaceX"
+  },
+  "description": {
+    "it": "Emergono LP e veicoli con collegamenti internazionali, inclusi Russia/Cina; non dimostrato flusso Kerimov → HAL9001 → SpaceX né controllo sulle decisioni Starshield."
+  },
+  "category": {
+    "it": "Finanza / tecnologia"
+  },
+  "geography": {
+    "it": "Stati Uniti / investitori globali"
+  },
+  "evidence_note": {
+    "it": "Inchiesta documentale; nessi ultimi non verificati"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01",
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 116,
+      "original": {
+        "id": "TL-0116",
+        "date_start": "2026-06-18",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Finanza / tecnologia",
+        "title": "Inchiesta ProPublica sui fondi che investono in SpaceX",
+        "description": "Emergono LP e veicoli con collegamenti internazionali, inclusi Russia/Cina; non dimostrato flusso Kerimov → HAL9001 → SpaceX né controllo sulle decisioni Starshield.",
+        "evidence_status": "Inchiesta documentale; nessi ultimi non verificati",
+        "source_docs": "S00,S01,S04",
+        "geography": "Stati Uniti / investitori globali"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 318,
+      "original": {
+        "id": "EV_TL-0116",
+        "name": "Inchiesta ProPublica sui fondi che investono in SpaceX",
+        "kind": "event",
+        "domain": "Finanza / tecnologia",
+        "geo": "Stati Uniti / investitori globali",
+        "date_start": "2026-06-18",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S01;S04",
+        "evidence_status": "Inchiesta documentale; nessi ultimi non verificati",
+        "note": "Record originale TL-0116; Emergono LP e veicoli con collegamenti internazionali, inclusi Russia/Cina; non dimostrato flusso Kerimov → HAL9001 → SpaceX né controllo sulle decisioni Starshield."
+      }
+    }
+  ]
+}

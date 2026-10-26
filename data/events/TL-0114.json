@@ -1,0 +1,71 @@
+{
+  "id": "TL-0114",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-06",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "UE amplia designazioni su propaganda e filiere militari russe"
+  },
+  "description": {
+    "it": "Misure contro soggetti FIMI e imprese in Cina, Liberia, Turchia, Emirati, Azerbaigian e Hong Kong legate a dual-use/shadow fleet."
+  },
+  "category": {
+    "it": "Sanzioni / Russia"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Atto istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 114,
+      "original": {
+        "id": "TL-0114",
+        "date_start": "2026-06",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Sanzioni / Russia",
+        "title": "UE amplia designazioni su propaganda e filiere militari russe",
+        "description": "Misure contro soggetti FIMI e imprese in Cina, Liberia, Turchia, Emirati, Azerbaigian e Hong Kong legate a dual-use/shadow fleet.",
+        "evidence_status": "Atto istituzionale",
+        "source_docs": "S05",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 316,
+      "original": {
+        "id": "EV_TL-0114",
+        "name": "UE amplia designazioni su propaganda e filiere militari russe",
+        "kind": "event",
+        "domain": "Sanzioni / Russia",
+        "geo": "Unione europea",
+        "date_start": "2026-06",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S05",
+        "evidence_status": "Atto istituzionale",
+        "note": "Record originale TL-0114; Misure contro soggetti FIMI e imprese in Cina, Liberia, Turchia, Emirati, Azerbaigian e Hong Kong legate a dual-use/shadow fleet."
+      }
+    }
+  ]
+}

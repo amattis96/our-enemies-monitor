@@ -1,0 +1,72 @@
+{
+  "id": "TL-0029",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2021-05",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Attacco Conti al servizio sanitario irlandese"
+  },
+  "description": {
+    "it": "Ransomware colpisce Health Service Executive; attribuzione al gruppo criminale Conti, non a un mandato del Cremlino."
+  },
+  "category": {
+    "it": "Ransomware / salute"
+  },
+  "geography": {
+    "it": "Irlanda"
+  },
+  "evidence_note": {
+    "it": "Attacco accertato; ordine statale non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 29,
+      "original": {
+        "id": "TL-0029",
+        "date_start": "2021-05",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Ransomware / salute",
+        "title": "Attacco Conti al servizio sanitario irlandese",
+        "description": "Ransomware colpisce Health Service Executive; attribuzione al gruppo criminale Conti, non a un mandato del Cremlino.",
+        "evidence_status": "Attacco accertato; ordine statale non verificato",
+        "source_docs": "S00,S03",
+        "geography": "Irlanda"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 231,
+      "original": {
+        "id": "EV_TL-0029",
+        "name": "Attacco Conti al servizio sanitario irlandese",
+        "kind": "event",
+        "domain": "Ransomware / salute",
+        "geo": "Irlanda",
+        "date_start": "2021-05",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S03",
+        "evidence_status": "Attacco accertato; ordine statale non verificato",
+        "note": "Record originale TL-0029; Ransomware colpisce Health Service Executive; attribuzione al gruppo criminale Conti, non a un mandato del Cremlino."
+      }
+    }
+  ]
+}

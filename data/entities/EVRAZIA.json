@@ -1,0 +1,31 @@
+{
+  "id": "EVRAZIA",
+  "kind": "organization",
+  "name": {
+    "it": "Evrazia"
+  },
+  "domain": "influence-technology",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 89,
+      "original": {
+        "id": "EVRAZIA",
+        "name": "Evrazia",
+        "kind": "organization",
+        "domain": "influence-technology",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

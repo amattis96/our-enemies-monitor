@@ -1,0 +1,45 @@
+{
+  "id": "G-0106",
+  "subject": "EU",
+  "predicate": "PUBBLICA_STRATEGIA",
+  "object": "EUROPORTS",
+  "relation_class": "policy",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0102"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 104,
+      "original": {
+        "id": "G-0106",
+        "source": "EU",
+        "target": "EUROPORTS",
+        "predicate": "PUBBLICA_STRATEGIA",
+        "relation_class": "policy",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S04",
+        "timeline_ids": "TL-0102",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

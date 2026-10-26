@@ -1,0 +1,49 @@
+{
+  "id": "H10",
+  "subject": "CN",
+  "object": "NEWNEW",
+  "hypothesis_type": "INTENTIONALITA_SABOTAGGIO_BALTICO",
+  "question": {
+    "it": "Il trascinamento ancora fu intenzionale o risulta accidentale?"
+  },
+  "current_limit": {
+    "it": "Dolo e ordine del governo cinese non provati."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "AIS, VDR, catena comando nave, escussioni equipaggio, forensics ancora"
+  },
+  "events": [
+    "TL-0046"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S03",
+    "S06"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 10,
+      "original": {
+        "id": "H10",
+        "subject": "CN",
+        "object": "NEWNEW",
+        "hypothesis_type": "INTENTIONALITA_SABOTAGGIO_BALTICO",
+        "verification_question": "Il trascinamento ancora fu intenzionale o risulta accidentale?",
+        "current_limit": "Dolo e ordine del governo cinese non provati.",
+        "priority": "Alta",
+        "evidence_needed": "AIS, VDR, catena comando nave, escussioni equipaggio, forensics ancora",
+        "source_docs": "S03,S06",
+        "timeline_ids": "TL-0046",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

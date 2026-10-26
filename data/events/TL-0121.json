@@ -1,0 +1,71 @@
+{
+  "id": "TL-0121",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-09",
+    "end": "2026-10",
+    "precision": "month"
+  },
+  "title": {
+    "it": "Contestazioni su corruzione, istruzione e progetti turistici"
+  },
+  "description": {
+    "it": "Il premier Rama formula accuse d’ingerenza Russia/Iran; verifica indipendente della regia delle manifestazioni insufficiente nel corpus."
+  },
+  "category": {
+    "it": "Proteste / Albania"
+  },
+  "geography": {
+    "it": "Albania"
+  },
+  "evidence_note": {
+    "it": "Proteste documentate; accuse istituzionali non corroborate"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 121,
+      "original": {
+        "id": "TL-0121",
+        "date_start": "2026-09",
+        "date_end": "2026-10",
+        "date_precision": "month",
+        "category": "Proteste / Albania",
+        "title": "Contestazioni su corruzione, istruzione e progetti turistici",
+        "description": "Il premier Rama formula accuse d’ingerenza Russia/Iran; verifica indipendente della regia delle manifestazioni insufficiente nel corpus.",
+        "evidence_status": "Proteste documentate; accuse istituzionali non corroborate",
+        "source_docs": "S00",
+        "geography": "Albania"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 323,
+      "original": {
+        "id": "EV_TL-0121",
+        "name": "Contestazioni su corruzione, istruzione e progetti turistici",
+        "kind": "event",
+        "domain": "Proteste / Albania",
+        "geo": "Albania",
+        "date_start": "2026-09",
+        "date_end": "2026-10",
+        "date_precision": "month",
+        "source_docs": "S06,S00",
+        "evidence_status": "Proteste documentate; accuse istituzionali non corroborate",
+        "note": "Record originale TL-0121; Il premier Rama formula accuse d’ingerenza Russia/Iran; verifica indipendente della regia delle manifestazioni insufficiente nel corpus."
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "TL-0058",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-03-20",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Incendio del magazzino londinese con aiuti per Kiev"
+  },
+  "description": {
+    "it": "Materiali Starlink e aiuti destinati all’Ucraina colpiti; condanne contro esecutori collegati a una rete Wagner."
+  },
+  "category": {
+    "it": "Sabotaggio / logistica"
+  },
+  "geography": {
+    "it": "Regno Unito"
+  },
+  "evidence_note": {
+    "it": "Accertato giudiziariamente"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 58,
+      "original": {
+        "id": "TL-0058",
+        "date_start": "2024-03-20",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Sabotaggio / logistica",
+        "title": "Incendio del magazzino londinese con aiuti per Kiev",
+        "description": "Materiali Starlink e aiuti destinati all’Ucraina colpiti; condanne contro esecutori collegati a una rete Wagner.",
+        "evidence_status": "Accertato giudiziariamente",
+        "source_docs": "S03",
+        "geography": "Regno Unito"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 260,
+      "original": {
+        "id": "EV_TL-0058",
+        "name": "Incendio del magazzino londinese con aiuti per Kiev",
+        "kind": "event",
+        "domain": "Sabotaggio / logistica",
+        "geo": "Regno Unito",
+        "date_start": "2024-03-20",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S03",
+        "evidence_status": "Accertato giudiziariamente",
+        "note": "Record originale TL-0058; Materiali Starlink e aiuti destinati all’Ucraina colpiti; condanne contro esecutori collegati a una rete Wagner."
+      }
+    }
+  ]
+}

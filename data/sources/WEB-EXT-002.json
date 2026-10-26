@@ -1,0 +1,35 @@
+{
+  "id": "WEB-EXT-002",
+  "type": "external_reference",
+  "title": {
+    "it": "OFAC sanziona Foxtrot Network e Rawa Majid"
+  },
+  "publisher": "US Treasury OFAC",
+  "files": [],
+  "urls": [
+    "https://home.treasury.gov/news/press-releases/sb0047"
+  ],
+  "cited_in": [
+    "S07"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nuove_evidenze.csv",
+      "row": 2,
+      "original": {
+        "id": "EXT-002",
+        "date_start": "2025-03-12",
+        "title": "OFAC sanziona Foxtrot Network e Rawa Majid",
+        "description": "Designazione Foxtrot come organizzazione criminale transnazionale e del leader Rawa Majid; OFAC dichiara cooperazione Majid-MOIS.",
+        "publisher": "US Treasury OFAC",
+        "url": "https://home.treasury.gov/news/press-releases/sb0047",
+        "evidence_level": "E1",
+        "in_source_06": "no"
+      }
+    }
+  ]
+}

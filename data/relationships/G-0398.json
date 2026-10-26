@@ -1,0 +1,43 @@
+{
+  "id": "G-0398",
+  "subject": "FOXTROT",
+  "predicate": "SOGGETTO_SANZIONATO",
+  "object": "EXT-002",
+  "relation_class": "event_participation",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
+  "caveat": null,
+  "sources": [
+    "WEB-EXT-002"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 396,
+      "original": {
+        "id": "G-0398",
+        "source": "FOXTROT",
+        "target": "EV_EXT-002",
+        "predicate": "SOGGETTO_SANZIONATO",
+        "relation_class": "event_participation",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "WEB-EXT-002",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

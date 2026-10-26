@@ -1,0 +1,28 @@
+{
+  "id": "F20",
+  "type": "external_reference",
+  "title": {
+    "it": "Reuters, crisi Trump-Zelensky e gasolio, 17 ottobre 2026"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/europe/trump-zelenskiy-rift-threatens-vital-support-kyiv-2026-10-17/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 352,
+      "original": {
+        "text": "- **[F20] Reuters**, crisi Trump-Zelensky e gasolio, 17 ottobre 2026: https://www.reuters.com/world/europe/trump-zelenskiy-rift-threatens-vital-support-kyiv-2026-10-17/"
+      }
+    }
+  ]
+}

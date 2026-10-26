@@ -1,0 +1,72 @@
+{
+  "id": "TL-0147",
+  "record_type": "dataset_metadata",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-10-21",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Chiusura temporale delle Deep Search DS-03 e DS-05"
+  },
+  "description": {
+    "it": "Aggiornamento finale delle fonti del progetto su incidenti ibridi e convergenze geopolitiche; è una data di raccolta, non un evento geopolitico."
+  },
+  "category": {
+    "it": "Ricerca / baseline"
+  },
+  "geography": {
+    "it": "Progetto"
+  },
+  "evidence_note": {
+    "it": "Metadato documentale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 147,
+      "original": {
+        "id": "TL-0147",
+        "date_start": "2026-10-21",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Ricerca / baseline",
+        "title": "Chiusura temporale delle Deep Search DS-03 e DS-05",
+        "description": "Aggiornamento finale delle fonti del progetto su incidenti ibridi e convergenze geopolitiche; è una data di raccolta, non un evento geopolitico.",
+        "evidence_status": "Metadato documentale",
+        "source_docs": "S03,S05",
+        "geography": "Progetto"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 349,
+      "original": {
+        "id": "EV_TL-0147",
+        "name": "Chiusura temporale delle Deep Search DS-03 e DS-05",
+        "kind": "event",
+        "domain": "Ricerca / baseline",
+        "geo": "Progetto",
+        "date_start": "2026-10-21",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S03;S05",
+        "evidence_status": "Metadato documentale",
+        "note": "Record originale TL-0147; Aggiornamento finale delle fonti del progetto su incidenti ibridi e convergenze geopolitiche; è una data di raccolta, non un evento geopolitico."
+      }
+    }
+  ]
+}

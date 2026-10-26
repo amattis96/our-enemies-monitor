@@ -1,0 +1,48 @@
+{
+  "id": "G-0032",
+  "subject": "RU",
+  "predicate": "ATTRIBUZIONE_FIMI_RUSSA",
+  "object": "STORM",
+  "relation_class": "influence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0073"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "GRU supporta entità in casi descritti; non tutte le uscite hanno comando dimostrato"
+  },
+  "sources": [
+    "S01",
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 32,
+      "original": {
+        "id": "G-0032",
+        "source": "RU",
+        "target": "STORM",
+        "predicate": "ATTRIBUZIONE_FIMI_RUSSA",
+        "relation_class": "influence",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S01,S02",
+        "timeline_ids": "TL-0073",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "GRU supporta entità in casi descritti; non tutte le uscite hanno comando dimostrato"
+      }
+    }
+  ]
+}

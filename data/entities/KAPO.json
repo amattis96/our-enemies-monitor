@@ -1,0 +1,31 @@
+{
+  "id": "KAPO",
+  "kind": "institution",
+  "name": {
+    "it": "KAPO (sicurezza estone)"
+  },
+  "domain": "institutional",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 41,
+      "original": {
+        "id": "KAPO",
+        "name": "KAPO (sicurezza estone)",
+        "kind": "institution",
+        "domain": "institutional",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

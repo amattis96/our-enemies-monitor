@@ -1,0 +1,28 @@
+{
+  "id": "F07",
+  "type": "external_reference",
+  "title": {
+    "it": "IEA, Rare Earth Elements, executive summary"
+  },
+  "publisher": "IEA",
+  "files": [],
+  "urls": [
+    "https://www.iea.org/reports/rare-earth-elements/executive-summary"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 339,
+      "original": {
+        "text": "- **[F07] IEA**, *Rare Earth Elements*, executive summary: https://www.iea.org/reports/rare-earth-elements/executive-summary"
+      }
+    }
+  ]
+}

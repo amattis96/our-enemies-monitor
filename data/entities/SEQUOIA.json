@@ -1,0 +1,31 @@
+{
+  "id": "SEQUOIA",
+  "kind": "company",
+  "name": {
+    "it": "Sequoia Capital"
+  },
+  "domain": "commerce-infrastructure",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 143,
+      "original": {
+        "id": "SEQUOIA",
+        "name": "Sequoia Capital",
+        "kind": "company",
+        "domain": "commerce-infrastructure",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

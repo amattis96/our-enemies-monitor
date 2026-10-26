@@ -1,0 +1,82 @@
+{
+  "id": "TL-0035",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "MI5 diffonde l’interference alert su Christine Lee"
+  },
+  "description": {
+    "it": "L’intelligence britannica afferma che donazioni e accessi politici hanno occultato l’origine di finanziamenti esteri in relazione all’UFWD cinese."
+  },
+  "category": {
+    "it": "Cyber / spionaggio"
+  },
+  "geography": {
+    "it": "Regno Unito"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale, non condanna"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01"
+  ],
+  "known_issues": [
+    {
+      "code": "misclassified_category",
+      "note": {
+        "it": "Alert MI5/Christine Lee classificato «Cyber / spionaggio»: riclassificare come interferenza politica/intelligence, mantenendo l'attribuzione MI5."
+      },
+      "reported_in": [
+        "S07",
+        "S08"
+      ]
+    }
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 35,
+      "original": {
+        "id": "TL-0035",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Cyber / spionaggio",
+        "title": "MI5 diffonde l’interference alert su Christine Lee",
+        "description": "L’intelligence britannica afferma che donazioni e accessi politici hanno occultato l’origine di finanziamenti esteri in relazione all’UFWD cinese.",
+        "evidence_status": "Attribuzione istituzionale, non condanna",
+        "source_docs": "S01",
+        "geography": "Regno Unito"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 237,
+      "original": {
+        "id": "EV_TL-0035",
+        "name": "MI5 diffonde l’interference alert su Christine Lee",
+        "kind": "event",
+        "domain": "Cyber / spionaggio",
+        "geo": "Regno Unito",
+        "date_start": "2022",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S01",
+        "evidence_status": "Attribuzione istituzionale, non condanna",
+        "note": "Record originale TL-0035; L’intelligence britannica afferma che donazioni e accessi politici hanno occultato l’origine di finanziamenti esteri in relazione all’UFWD cinese."
+      }
+    }
+  ]
+}

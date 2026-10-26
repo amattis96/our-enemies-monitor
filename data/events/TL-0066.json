@@ -1,0 +1,71 @@
+{
+  "id": "TL-0066",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-11",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Danneggiamento di due cavi da Yi Peng 3"
+  },
+  "description": {
+    "it": "Indagine svedese identifica il ruolo materiale dell’ancora; non dimostra intenzionalità o ordine della Cina."
+  },
+  "category": {
+    "it": "Infrastrutture sottomarine"
+  },
+  "geography": {
+    "it": "Mar Baltico"
+  },
+  "evidence_note": {
+    "it": "Danno accertato; dolo non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 66,
+      "original": {
+        "id": "TL-0066",
+        "date_start": "2024-11",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Infrastrutture sottomarine",
+        "title": "Danneggiamento di due cavi da Yi Peng 3",
+        "description": "Indagine svedese identifica il ruolo materiale dell’ancora; non dimostra intenzionalità o ordine della Cina.",
+        "evidence_status": "Danno accertato; dolo non verificato",
+        "source_docs": "S03",
+        "geography": "Mar Baltico"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 268,
+      "original": {
+        "id": "EV_TL-0066",
+        "name": "Danneggiamento di due cavi da Yi Peng 3",
+        "kind": "event",
+        "domain": "Infrastrutture sottomarine",
+        "geo": "Mar Baltico",
+        "date_start": "2024-11",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Danno accertato; dolo non verificato",
+        "note": "Record originale TL-0066; Indagine svedese identifica il ruolo materiale dell’ancora; non dimostra intenzionalità o ordine della Cina."
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "WEB-EXT-004",
+  "type": "external_reference",
+  "title": {
+    "it": "Incidente alla base RAF Fairford e nuovi arresti del 20 ottobre"
+  },
+  "publisher": "Reuters / polizia UK",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/uk/uk-police-re-arrest-pair-suspicion-helping-iranian-intelligence-over-raf-2026-10-20/"
+  ],
+  "cited_in": [
+    "S07"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nuove_evidenze.csv",
+      "row": 4,
+      "original": {
+        "id": "EXT-004",
+        "date_start": "2026-09-27",
+        "title": "Incidente alla base RAF Fairford e nuovi arresti del 20 ottobre",
+        "description": "Arresti presso la base il 27 settembre; due nuovamente arrestati il 20 ottobre per sospetta assistenza ai servizi iraniani. Indagine aperta e responsabilità non giudicata.",
+        "publisher": "Reuters / polizia UK",
+        "url": "https://www.reuters.com/world/uk/uk-police-re-arrest-pair-suspicion-helping-iranian-intelligence-over-raf-2026-10-20/",
+        "evidence_level": "E3",
+        "in_source_06": "no"
+      }
+    }
+  ]
+}

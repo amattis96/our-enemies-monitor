@@ -1,0 +1,71 @@
+{
+  "id": "TL-0015",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2018",
+    "end": "2019",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Pagamenti all’eurodeputato Nathan Gill"
+  },
+  "description": {
+    "it": "Fra 2018 e 2019 Gill riceve denaro per interventi e dichiarazioni favorevoli a narrative filorusse; successiva confessione e condanna."
+  },
+  "category": {
+    "it": "Corruzione / influenza"
+  },
+  "geography": {
+    "it": "Regno Unito / Parlamento europeo"
+  },
+  "evidence_note": {
+    "it": "Accertato penalmente nel 2025"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 15,
+      "original": {
+        "id": "TL-0015",
+        "date_start": "2018",
+        "date_end": "2019",
+        "date_precision": "year",
+        "category": "Corruzione / influenza",
+        "title": "Pagamenti all’eurodeputato Nathan Gill",
+        "description": "Fra 2018 e 2019 Gill riceve denaro per interventi e dichiarazioni favorevoli a narrative filorusse; successiva confessione e condanna.",
+        "evidence_status": "Accertato penalmente nel 2025",
+        "source_docs": "S01",
+        "geography": "Regno Unito / Parlamento europeo"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 217,
+      "original": {
+        "id": "EV_TL-0015",
+        "name": "Pagamenti all’eurodeputato Nathan Gill",
+        "kind": "event",
+        "domain": "Corruzione / influenza",
+        "geo": "Regno Unito / Parlamento europeo",
+        "date_start": "2018",
+        "date_end": "2019",
+        "date_precision": "year",
+        "source_docs": "S06,S01",
+        "evidence_status": "Accertato penalmente nel 2025",
+        "note": "Record originale TL-0015; Fra 2018 e 2019 Gill riceve denaro per interventi e dichiarazioni favorevoli a narrative filorusse; successiva confessione e condanna."
+      }
+    }
+  ]
+}

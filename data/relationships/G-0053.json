@@ -1,0 +1,48 @@
+{
+  "id": "G-0053",
+  "subject": "GRAPHITE",
+  "predicate": "SORVEGLIANZA_DOCUMENTATA_SU_GIORNALISTI",
+  "object": "CIVEU",
+  "relation_class": "surveillance",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0078"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Clienti operativi non identificati"
+  },
+  "sources": [
+    "S03",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 52,
+      "original": {
+        "id": "G-0053",
+        "source": "GRAPHITE",
+        "target": "CIVEU",
+        "predicate": "SORVEGLIANZA_DOCUMENTATA_SU_GIORNALISTI",
+        "relation_class": "surveillance",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S03,S04",
+        "timeline_ids": "TL-0078",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Clienti operativi non identificati"
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "TL-0083",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Partnership strategica Russia-Iran"
+  },
+  "description": {
+    "it": "Accordo strategico in seguito ratificato da Mosca nel 2025; non comporta una clausola di difesa reciproca automatica tipo NATO."
+  },
+  "category": {
+    "it": "Trattati / geopolitica"
+  },
+  "geography": {
+    "it": "Russia / Iran"
+  },
+  "evidence_note": {
+    "it": "Trattato / ratifica documentata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 83,
+      "original": {
+        "id": "TL-0083",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Trattati / geopolitica",
+        "title": "Partnership strategica Russia-Iran",
+        "description": "Accordo strategico in seguito ratificato da Mosca nel 2025; non comporta una clausola di difesa reciproca automatica tipo NATO.",
+        "evidence_status": "Trattato / ratifica documentata",
+        "source_docs": "S05",
+        "geography": "Russia / Iran"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 285,
+      "original": {
+        "id": "EV_TL-0083",
+        "name": "Partnership strategica Russia-Iran",
+        "kind": "event",
+        "domain": "Trattati / geopolitica",
+        "geo": "Russia / Iran",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S05",
+        "evidence_status": "Trattato / ratifica documentata",
+        "note": "Record originale TL-0083; Accordo strategico in seguito ratificato da Mosca nel 2025; non comporta una clausola di difesa reciproca automatica tipo NATO."
+      }
+    }
+  ]
+}

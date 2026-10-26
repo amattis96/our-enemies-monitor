@@ -1,0 +1,49 @@
+{
+  "id": "G-0081",
+  "subject": "STARSHIELD",
+  "predicate": "SUPPORTA_CONNETTIVITA_MILITARE",
+  "object": "UA",
+  "relation_class": "dependency",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0137"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Limitazioni 2026: restrizioni tecniche, decisore ultimo contestato"
+  },
+  "sources": [
+    "S00",
+    "S03",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 79,
+      "original": {
+        "id": "G-0081",
+        "source": "STARSHIELD",
+        "target": "UA",
+        "predicate": "SUPPORTA_CONNETTIVITA_MILITARE",
+        "relation_class": "dependency",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00,S03,S04",
+        "timeline_ids": "TL-0137",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Limitazioni 2026: restrizioni tecniche, decisore ultimo contestato"
+      }
+    }
+  ]
+}

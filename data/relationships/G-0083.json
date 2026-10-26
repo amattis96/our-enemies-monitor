@@ -1,0 +1,47 @@
+{
+  "id": "G-0083",
+  "subject": "SPACEX",
+  "predicate": "BLOCCA_TERMINALI_NON_AUTORIZZATI",
+  "object": "RU",
+  "relation_class": "security",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0097"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "La cooperazione anti-abuso bilancia narrativa su limitazioni"
+  },
+  "sources": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 81,
+      "original": {
+        "id": "G-0083",
+        "source": "SPACEX",
+        "target": "RU",
+        "predicate": "BLOCCA_TERMINALI_NON_AUTORIZZATI",
+        "relation_class": "security",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S00",
+        "timeline_ids": "TL-0097",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "La cooperazione anti-abuso bilancia narrativa su limitazioni"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "H14",
+  "subject": "RU",
+  "object": "ROMELEC",
+  "hypothesis_type": "MANDATO_ESTERO_ROMANIA",
+  "question": {
+    "it": "Quale parte della manipolazione TikTok 2024 aveva finanziatori esteri?"
+  },
+  "current_limit": {
+    "it": "Manipolazione certa; VIGINUM non attribuisce in blocco ingerenza straniera."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "Pagamenti influencer, piattaforma ads, archivi parti, inchieste DSA"
+  },
+  "events": [
+    "TL-0067",
+    "TL-0068"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S02",
+    "S06"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 14,
+      "original": {
+        "id": "H14",
+        "subject": "RU",
+        "object": "ROMELEC",
+        "hypothesis_type": "MANDATO_ESTERO_ROMANIA",
+        "verification_question": "Quale parte della manipolazione TikTok 2024 aveva finanziatori esteri?",
+        "current_limit": "Manipolazione certa; VIGINUM non attribuisce in blocco ingerenza straniera.",
+        "priority": "Alta",
+        "evidence_needed": "Pagamenti influencer, piattaforma ads, archivi parti, inchieste DSA",
+        "source_docs": "S02,S06",
+        "timeline_ids": "TL-0067;TL-0068",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "TL-0077",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Elezioni moldave e reti di influenza russe"
+  },
+  "description": {
+    "it": "Reti collegate a Șor/Evrazia e meccanismi finanziari indagati; procedimenti e designazioni UE si sviluppano fra 2024 e 2026."
+  },
+  "category": {
+    "it": "Elezioni / interferenze"
+  },
+  "geography": {
+    "it": "Moldavia"
+  },
+  "evidence_note": {
+    "it": "Interferenze attribuite; impatto sul voto individuale ignoto"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01",
+    "S02",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 77,
+      "original": {
+        "id": "TL-0077",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Elezioni / interferenze",
+        "title": "Elezioni moldave e reti di influenza russe",
+        "description": "Reti collegate a Șor/Evrazia e meccanismi finanziari indagati; procedimenti e designazioni UE si sviluppano fra 2024 e 2026.",
+        "evidence_status": "Interferenze attribuite; impatto sul voto individuale ignoto",
+        "source_docs": "S01,S02,S05",
+        "geography": "Moldavia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 279,
+      "original": {
+        "id": "EV_TL-0077",
+        "name": "Elezioni moldave e reti di influenza russe",
+        "kind": "event",
+        "domain": "Elezioni / interferenze",
+        "geo": "Moldavia",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S01;S02;S05",
+        "evidence_status": "Interferenze attribuite; impatto sul voto individuale ignoto",
+        "note": "Record originale TL-0077; Reti collegate a Șor/Evrazia e meccanismi finanziari indagati; procedimenti e designazioni UE si sviluppano fra 2024 e 2026."
+      }
+    }
+  ]
+}

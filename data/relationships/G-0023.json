@@ -1,0 +1,49 @@
+{
+  "id": "G-0023",
+  "subject": "MOLDP",
+  "predicate": "COMPRAVENDITA_VOTI_E_FIMI",
+  "object": "MOLDELEC",
+  "relation_class": "influence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0053",
+    "TL-0077"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
+  "caveat": {
+    "it": "Non quantificare effetto su voto individuale"
+  },
+  "sources": [
+    "S01",
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 23,
+      "original": {
+        "id": "G-0023",
+        "source": "MOLDP",
+        "target": "MOLDELEC",
+        "predicate": "COMPRAVENDITA_VOTI_E_FIMI",
+        "relation_class": "influence",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S01,S02",
+        "timeline_ids": "TL-0053;TL-0077",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
+        "layer": "source",
+        "description_or_caveat": "Non quantificare effetto su voto individuale"
+      }
+    }
+  ]
+}

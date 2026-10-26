@@ -1,0 +1,51 @@
+{
+  "id": "H13",
+  "subject": "RU",
+  "object": "BREXIT",
+  "hypothesis_type": "IMPATTO_INTERFERENZA_BREXIT",
+  "question": {
+    "it": "Quali campagne sono misurabili per scala ed esposizione reale, non soltanto volume bot?"
+  },
+  "current_limit": {
+    "it": "Nessun dato consente di provare che Russia abbia determinato esito."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Dati campagne storiche, audience campionate, audit e ISC Russia Report"
+  },
+  "events": [
+    "TL-0010",
+    "TL-0023"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S00",
+    "S01",
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 13,
+      "original": {
+        "id": "H13",
+        "subject": "RU",
+        "object": "BREXIT",
+        "hypothesis_type": "IMPATTO_INTERFERENZA_BREXIT",
+        "verification_question": "Quali campagne sono misurabili per scala ed esposizione reale, non soltanto volume bot?",
+        "current_limit": "Nessun dato consente di provare che Russia abbia determinato esito.",
+        "priority": "Media",
+        "evidence_needed": "Dati campagne storiche, audience campionate, audit e ISC Russia Report",
+        "source_docs": "S00,S01,S02",
+        "timeline_ids": "TL-0010;TL-0023",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

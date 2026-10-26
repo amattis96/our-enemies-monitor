@@ -1,0 +1,26 @@
+{
+  "id": "S00",
+  "type": "corpus_document",
+  "title": {
+    "it": "La ragnatela delle interferenze e delle pressioni geopolitiche sull'Europa"
+  },
+  "publisher": null,
+  "files": [
+    "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 1,
+      "original": {
+        "text": "# La ragnatela delle interferenze e delle pressioni geopolitiche sull'Europa"
+      }
+    }
+  ]
+}

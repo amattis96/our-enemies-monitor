@@ -1,0 +1,28 @@
+{
+  "id": "P10",
+  "type": "external_reference",
+  "title": {
+    "it": "Casa Bianca, attuazione del Graham Act (16 ottobre 2026). Deroghe specifiche ai nuovi dazi/sanzioni; preservazione di misure previgenti basate su altri ordini esecutivi."
+  },
+  "publisher": "Casa Bianca",
+  "files": [],
+  "urls": [
+    "https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1183,
+      "original": {
+        "text": "- **P10 | Casa Bianca, attuazione del Graham Act (16 ottobre 2026).** Deroghe specifiche ai nuovi dazi/sanzioni; preservazione di misure previgenti basate su altri ordini esecutivi. https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/"
+      }
+    }
+  ]
+}

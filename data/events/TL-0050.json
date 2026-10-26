@@ -1,0 +1,71 @@
+{
+  "id": "TL-0050",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Operazioni iraniane in Francia e Svezia"
+  },
+  "description": {
+    "it": "Breach, compromissioni SMS e attività informative ricondotte in seguito a Emennet Pasargad; nel 2026 arrivano sanzioni UE."
+  },
+  "category": {
+    "it": "Cyber / interferenze"
+  },
+  "geography": {
+    "it": "Francia / Svezia"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale successiva"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 50,
+      "original": {
+        "id": "TL-0050",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Cyber / interferenze",
+        "title": "Operazioni iraniane in Francia e Svezia",
+        "description": "Breach, compromissioni SMS e attività informative ricondotte in seguito a Emennet Pasargad; nel 2026 arrivano sanzioni UE.",
+        "evidence_status": "Attribuzione istituzionale successiva",
+        "source_docs": "S03",
+        "geography": "Francia / Svezia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 252,
+      "original": {
+        "id": "EV_TL-0050",
+        "name": "Operazioni iraniane in Francia e Svezia",
+        "kind": "event",
+        "domain": "Cyber / interferenze",
+        "geo": "Francia / Svezia",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione istituzionale successiva",
+        "note": "Record originale TL-0050; Breach, compromissioni SMS e attività informative ricondotte in seguito a Emennet Pasargad; nel 2026 arrivano sanzioni UE."
+      }
+    }
+  ]
+}

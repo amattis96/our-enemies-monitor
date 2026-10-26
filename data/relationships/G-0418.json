@@ -1,0 +1,45 @@
+{
+  "id": "G-0418",
+  "subject": "EW841",
+  "predicate": "INTERFERENZE_ATTRIBUITE_DA_UE",
+  "object": "GNSS",
+  "relation_class": "security",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0090"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 416,
+      "original": {
+        "id": "G-0418",
+        "source": "EW841",
+        "target": "GNSS",
+        "predicate": "INTERFERENZE_ATTRIBUITE_DA_UE",
+        "relation_class": "security",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "TL-0090",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

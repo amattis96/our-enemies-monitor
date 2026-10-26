@@ -1,0 +1,28 @@
+{
+  "id": "F17",
+  "type": "external_reference",
+  "title": {
+    "it": "Governo spagnolo, dichiarazioni sulla crisi di Ceuta, 3 settembre 2026"
+  },
+  "publisher": "Governo spagnolo",
+  "files": [],
+  "urls": [
+    "https://www.lamoncloa.gob.es/lang/en/presidente/intervenciones/Paginas/2026/20260903-appearance-ceuta-statement.aspx?mode=Dark"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 349,
+      "original": {
+        "text": "- **[F17] Governo spagnolo**, dichiarazioni sulla crisi di Ceuta, 3 settembre 2026: https://www.lamoncloa.gob.es/lang/en/presidente/intervenciones/Paginas/2026/20260903-appearance-ceuta-statement.aspx?mode=Dark"
+      }
+    }
+  ]
+}

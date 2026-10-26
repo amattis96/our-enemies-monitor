@@ -1,0 +1,31 @@
+{
+  "id": "READINESS",
+  "kind": "asset",
+  "name": {
+    "it": "Readiness 2030 / SAFE"
+  },
+  "domain": "dependencies",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 160,
+      "original": {
+        "id": "READINESS",
+        "name": "Readiness 2030 / SAFE",
+        "kind": "asset",
+        "domain": "dependencies",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

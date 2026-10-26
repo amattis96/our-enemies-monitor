@@ -1,0 +1,71 @@
+{
+  "id": "TL-0109",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-04",
+    "end": "2026-07",
+    "precision": "month"
+  },
+  "title": {
+    "it": "UE amplia misure contro reti di paesi terzi"
+  },
+  "description": {
+    "it": "Provvedimenti contro entità extra-russe legate a dual-use, filiere militari e aggiramento sanzioni; prosecuzione anche nei mesi successivi."
+  },
+  "category": {
+    "it": "Sanzioni / industria"
+  },
+  "geography": {
+    "it": "Unione europea / paesi terzi"
+  },
+  "evidence_note": {
+    "it": "Designazioni UE"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 109,
+      "original": {
+        "id": "TL-0109",
+        "date_start": "2026-04",
+        "date_end": "2026-07",
+        "date_precision": "month",
+        "category": "Sanzioni / industria",
+        "title": "UE amplia misure contro reti di paesi terzi",
+        "description": "Provvedimenti contro entità extra-russe legate a dual-use, filiere militari e aggiramento sanzioni; prosecuzione anche nei mesi successivi.",
+        "evidence_status": "Designazioni UE",
+        "source_docs": "S05",
+        "geography": "Unione europea / paesi terzi"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 311,
+      "original": {
+        "id": "EV_TL-0109",
+        "name": "UE amplia misure contro reti di paesi terzi",
+        "kind": "event",
+        "domain": "Sanzioni / industria",
+        "geo": "Unione europea / paesi terzi",
+        "date_start": "2026-04",
+        "date_end": "2026-07",
+        "date_precision": "month",
+        "source_docs": "S06,S05",
+        "evidence_status": "Designazioni UE",
+        "note": "Record originale TL-0109; Provvedimenti contro entità extra-russe legate a dual-use, filiere militari e aggiramento sanzioni; prosecuzione anche nei mesi successivi."
+      }
+    }
+  ]
+}

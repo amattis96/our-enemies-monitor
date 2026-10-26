@@ -1,0 +1,45 @@
+{
+  "id": "G-0416",
+  "subject": "APT31",
+  "predicate": "CYBER_SPIONAGGIO_ATTRIBUITO",
+  "object": "CZECH_MFA",
+  "relation_class": "intelligence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0070"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 414,
+      "original": {
+        "id": "G-0416",
+        "source": "APT31",
+        "target": "CZECH_MFA",
+        "predicate": "CYBER_SPIONAGGIO_ATTRIBUITO",
+        "relation_class": "intelligence",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "TL-0070",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

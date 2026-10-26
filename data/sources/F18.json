@@ -1,0 +1,28 @@
+{
+  "id": "F18",
+  "type": "external_reference",
+  "title": {
+    "it": "Associated Press, limiti Starshield, 16 ottobre 2026"
+  },
+  "publisher": "Associated Press",
+  "files": [],
+  "urls": [
+    "https://apnews.com/article/385eb944f6c34990bdf21f624416b820"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 350,
+      "original": {
+        "text": "- **[F18] Associated Press**, limiti Starshield, 16 ottobre 2026: https://apnews.com/article/385eb944f6c34990bdf21f624416b820"
+      }
+    }
+  ]
+}

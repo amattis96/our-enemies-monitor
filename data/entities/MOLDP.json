@@ -1,0 +1,31 @@
+{
+  "id": "MOLDP",
+  "kind": "organization",
+  "name": {
+    "it": "Reti politiche locali moldave / blocco Victory-Pobeda"
+  },
+  "domain": "influence-technology",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 118,
+      "original": {
+        "id": "MOLDP",
+        "name": "Reti politiche locali moldave / blocco Victory-Pobeda",
+        "kind": "organization",
+        "domain": "influence-technology",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

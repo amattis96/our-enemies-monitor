@@ -1,0 +1,29 @@
+{
+  "id": "F10",
+  "type": "external_reference",
+  "title": {
+    "it": "Eurostat, inflazione settembre 2026 (stima 2 ottobre e dato 16 ottobre)"
+  },
+  "publisher": "Eurostat",
+  "files": [],
+  "urls": [
+    "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-02102026-ap",
+    "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-16102026-ap"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 342,
+      "original": {
+        "text": "- **[F10] Eurostat**, inflazione settembre 2026 (stima 2 ottobre e dato 16 ottobre): https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-02102026-ap ; https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-16102026-ap"
+      }
+    }
+  ]
+}

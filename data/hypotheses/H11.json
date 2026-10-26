@@ -1,0 +1,49 @@
+{
+  "id": "H11",
+  "subject": "CN",
+  "object": "YIPENG",
+  "hypothesis_type": "INTENTIONALITA_CAVI_2024",
+  "question": {
+    "it": "La nave Yi Peng 3 agì deliberatamente?"
+  },
+  "current_limit": {
+    "it": "Indagine svedese non dimostra il dolo; nazionalità non prova mandato."
+  },
+  "priority": "high",
+  "evidence_needed": {
+    "it": "AIS/VDR, piani rotta, forensics, sentenze, contatti"
+  },
+  "events": [
+    "TL-0066"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S03",
+    "S06"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 11,
+      "original": {
+        "id": "H11",
+        "subject": "CN",
+        "object": "YIPENG",
+        "hypothesis_type": "INTENTIONALITA_CAVI_2024",
+        "verification_question": "La nave Yi Peng 3 agì deliberatamente?",
+        "current_limit": "Indagine svedese non dimostra il dolo; nazionalità non prova mandato.",
+        "priority": "Alta",
+        "evidence_needed": "AIS/VDR, piani rotta, forensics, sentenze, contatti",
+        "source_docs": "S03,S06",
+        "timeline_ids": "TL-0066",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

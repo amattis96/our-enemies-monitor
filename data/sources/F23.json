@@ -1,0 +1,28 @@
+{
+  "id": "F23",
+  "type": "external_reference",
+  "title": {
+    "it": "Citizen Lab, BlackCore's Influence Operations for Hire, 17 settembre 2026"
+  },
+  "publisher": "Citizen Lab",
+  "files": [],
+  "urls": [
+    "https://citizenlab.ca/research/blackcores-influence-operations-for-hire/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 355,
+      "original": {
+        "text": "- **[F23] Citizen Lab**, *BlackCore's Influence Operations for Hire*, 17 settembre 2026: https://citizenlab.ca/research/blackcores-influence-operations-for-hire/"
+      }
+    }
+  ]
+}

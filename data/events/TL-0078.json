@@ -1,0 +1,73 @@
+{
+  "id": "TL-0078",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Graphite/Paragon contro giornalisti europei"
+  },
+  "description": {
+    "it": "Citizen Lab e successive indagini forensi documentano compromissioni, fra cui casi italiani, senza identificare in modo pubblico e univoco cliente e autorità ordinante."
+  },
+  "category": {
+    "it": "Spyware / sorveglianza"
+  },
+  "geography": {
+    "it": "Italia / Europa"
+  },
+  "evidence_note": {
+    "it": "Forense; committente non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01",
+    "S03",
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 78,
+      "original": {
+        "id": "TL-0078",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Spyware / sorveglianza",
+        "title": "Graphite/Paragon contro giornalisti europei",
+        "description": "Citizen Lab e successive indagini forensi documentano compromissioni, fra cui casi italiani, senza identificare in modo pubblico e univoco cliente e autorità ordinante.",
+        "evidence_status": "Forense; committente non verificato",
+        "source_docs": "S01,S03,S04",
+        "geography": "Italia / Europa"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 280,
+      "original": {
+        "id": "EV_TL-0078",
+        "name": "Graphite/Paragon contro giornalisti europei",
+        "kind": "event",
+        "domain": "Spyware / sorveglianza",
+        "geo": "Italia / Europa",
+        "date_start": "2025",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S01;S03;S04",
+        "evidence_status": "Forense; committente non verificato",
+        "note": "Record originale TL-0078; Citizen Lab e successive indagini forensi documentano compromissioni, fra cui casi italiani, senza identificare in modo pubblico e univoco cliente e autorità ordinante."
+      }
+    }
+  ]
+}

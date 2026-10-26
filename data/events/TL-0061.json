@@ -1,0 +1,71 @@
+{
+  "id": "TL-0061",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-06",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Elezioni europee 2024 e monitoraggio FIMI"
+  },
+  "description": {
+    "it": "Il SEAE registra 42 episodi russi FIMI intorno al ciclo elettorale, senza rilevare una campagna grave nei giorni del voto; impatto sul risultato non dimostrato."
+  },
+  "category": {
+    "it": "Elezioni / FIMI"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Elezioni accertate; monitoraggio istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 61,
+      "original": {
+        "id": "TL-0061",
+        "date_start": "2024-06",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Elezioni / FIMI",
+        "title": "Elezioni europee 2024 e monitoraggio FIMI",
+        "description": "Il SEAE registra 42 episodi russi FIMI intorno al ciclo elettorale, senza rilevare una campagna grave nei giorni del voto; impatto sul risultato non dimostrato.",
+        "evidence_status": "Elezioni accertate; monitoraggio istituzionale",
+        "source_docs": "S02",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 263,
+      "original": {
+        "id": "EV_TL-0061",
+        "name": "Elezioni europee 2024 e monitoraggio FIMI",
+        "kind": "event",
+        "domain": "Elezioni / FIMI",
+        "geo": "Unione europea",
+        "date_start": "2024-06",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S02",
+        "evidence_status": "Elezioni accertate; monitoraggio istituzionale",
+        "note": "Record originale TL-0061; Il SEAE registra 42 episodi russi FIMI intorno al ciclo elettorale, senza rilevare una campagna grave nei giorni del voto; impatto sul risultato non dimostrato."
+      }
+    }
+  ]
+}

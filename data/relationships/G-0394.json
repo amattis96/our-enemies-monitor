@@ -1,0 +1,45 @@
+{
+  "id": "G-0394",
+  "subject": "FOXTROT",
+  "predicate": "OPERAZIONE_ATTRIBUITA_DA_OFAC",
+  "object": "EXT-001",
+  "relation_class": "event_participation",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
+  "caveat": {
+    "it": "OFAC collega l’operazione al gruppo"
+  },
+  "sources": [
+    "WEB-EXT-001"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 392,
+      "original": {
+        "id": "G-0394",
+        "source": "FOXTROT",
+        "target": "EV_EXT-001",
+        "predicate": "OPERAZIONE_ATTRIBUITA_DA_OFAC",
+        "relation_class": "event_participation",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "WEB-EXT-001",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
+        "layer": "source",
+        "description_or_caveat": "OFAC collega l’operazione al gruppo"
+      }
+    }
+  ]
+}

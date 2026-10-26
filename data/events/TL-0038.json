@@ -1,0 +1,72 @@
+{
+  "id": "TL-0038",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022-02-24",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Attacco Viasat KA-SAT"
+  },
+  "description": {
+    "it": "Sabotaggio informatico della rete satellitare con disservizi anche per utenze europee; formalmente attribuito alla Federazione Russa da UE e alleati."
+  },
+  "category": {
+    "it": "Cyber / satelliti"
+  },
+  "geography": {
+    "it": "Ucraina / Europa"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 38,
+      "original": {
+        "id": "TL-0038",
+        "date_start": "2022-02-24",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Cyber / satelliti",
+        "title": "Attacco Viasat KA-SAT",
+        "description": "Sabotaggio informatico della rete satellitare con disservizi anche per utenze europee; formalmente attribuito alla Federazione Russa da UE e alleati.",
+        "evidence_status": "Attribuzione istituzionale",
+        "source_docs": "S00,S03",
+        "geography": "Ucraina / Europa"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 240,
+      "original": {
+        "id": "EV_TL-0038",
+        "name": "Attacco Viasat KA-SAT",
+        "kind": "event",
+        "domain": "Cyber / satelliti",
+        "geo": "Ucraina / Europa",
+        "date_start": "2022-02-24",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S03",
+        "evidence_status": "Attribuzione istituzionale",
+        "note": "Record originale TL-0038; Sabotaggio informatico della rete satellitare con disservizi anche per utenze europee; formalmente attribuito alla Federazione Russa da UE e alleati."
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "G-0236",
+  "subject": "YIPENG",
+  "predicate": "VESSEL_INVOLVED",
+  "object": "TL-0066",
+  "relation_class": "event_participation",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0066"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+  },
+  "sources": [
+    "S06",
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 234,
+      "original": {
+        "id": "G-0236",
+        "source": "YIPENG",
+        "target": "EV_TL-0066",
+        "predicate": "VESSEL_INVOLVED",
+        "relation_class": "event_participation",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S06;S06,S03",
+        "timeline_ids": "TL-0066",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "timeline_link",
+        "description_or_caveat": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+      }
+    }
+  ]
+}

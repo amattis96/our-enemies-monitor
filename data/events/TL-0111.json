@@ -1,0 +1,73 @@
+{
+  "id": "TL-0111",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-06",
+    "end": "2026-07",
+    "precision": "month"
+  },
+  "title": {
+    "it": "Citizen Lab documenta Pegasus contro ex eurodeputato PEGA"
+  },
+  "description": {
+    "it": "Confermata forensicamente compromissione di Stelios Kouloglou mentre lavorava nella commissione PEGA; operatore finale non determinato."
+  },
+  "category": {
+    "it": "Spyware"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Forense; operatore non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 111,
+      "original": {
+        "id": "TL-0111",
+        "date_start": "2026-06",
+        "date_end": "2026-07",
+        "date_precision": "month",
+        "category": "Spyware",
+        "title": "Citizen Lab documenta Pegasus contro ex eurodeputato PEGA",
+        "description": "Confermata forensicamente compromissione di Stelios Kouloglou mentre lavorava nella commissione PEGA; operatore finale non determinato.",
+        "evidence_status": "Forense; operatore non verificato",
+        "source_docs": "S00,S04,S05",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 313,
+      "original": {
+        "id": "EV_TL-0111",
+        "name": "Citizen Lab documenta Pegasus contro ex eurodeputato PEGA",
+        "kind": "event",
+        "domain": "Spyware",
+        "geo": "Unione europea",
+        "date_start": "2026-06",
+        "date_end": "2026-07",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S04;S05",
+        "evidence_status": "Forense; operatore non verificato",
+        "note": "Record originale TL-0111; Confermata forensicamente compromissione di Stelios Kouloglou mentre lavorava nella commissione PEGA; operatore finale non determinato."
+      }
+    }
+  ]
+}

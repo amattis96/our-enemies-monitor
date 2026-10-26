@@ -1,0 +1,73 @@
+{
+  "id": "TL-0056",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-03",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Le autorità ceche scoprono la rete Voice of Europe"
+  },
+  "description": {
+    "it": "BIS e autorità polacche documentano un canale mediatico e finanziario legato a Medvedchuk/Marchevskyi, con pagamenti e contatti politici."
+  },
+  "category": {
+    "it": "Influenza politica"
+  },
+  "geography": {
+    "it": "Cechia / Polonia / UE"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 56,
+      "original": {
+        "id": "TL-0056",
+        "date_start": "2024-03",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Influenza politica",
+        "title": "Le autorità ceche scoprono la rete Voice of Europe",
+        "description": "BIS e autorità polacche documentano un canale mediatico e finanziario legato a Medvedchuk/Marchevskyi, con pagamenti e contatti politici.",
+        "evidence_status": "Attribuzione istituzionale",
+        "source_docs": "S00,S01,S05",
+        "geography": "Cechia / Polonia / UE"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 258,
+      "original": {
+        "id": "EV_TL-0056",
+        "name": "Le autorità ceche scoprono la rete Voice of Europe",
+        "kind": "event",
+        "domain": "Influenza politica",
+        "geo": "Cechia / Polonia / UE",
+        "date_start": "2024-03",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S01;S05",
+        "evidence_status": "Attribuzione istituzionale",
+        "note": "Record originale TL-0056; BIS e autorità polacche documentano un canale mediatico e finanziario legato a Medvedchuk/Marchevskyi, con pagamenti e contatti politici."
+      }
+    }
+  ]
+}

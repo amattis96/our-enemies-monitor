@@ -1,0 +1,43 @@
+{
+  "id": "G-0441",
+  "subject": "NATO",
+  "predicate": "SUPPORTO_CAPACITA_E_DIFESA",
+  "object": "EUDEF",
+  "relation_class": "policy",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 439,
+      "original": {
+        "id": "G-0441",
+        "source": "NATO",
+        "target": "EUDEF",
+        "predicate": "SUPPORTO_CAPACITA_E_DIFESA",
+        "relation_class": "policy",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S05",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

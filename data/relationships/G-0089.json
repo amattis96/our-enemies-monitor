@@ -1,0 +1,46 @@
+{
+  "id": "G-0089",
+  "subject": "HERITAGE",
+  "predicate": "ASSET_ATTRIBUITI_A",
+  "object": "KERIMOV",
+  "relation_class": "financial",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0012",
+    "TL-0014"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S01"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 87,
+      "original": {
+        "id": "G-0089",
+        "source": "HERITAGE",
+        "target": "KERIMOV",
+        "predicate": "ASSET_ATTRIBUITI_A",
+        "relation_class": "financial",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S01",
+        "timeline_ids": "TL-0012;TL-0014",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

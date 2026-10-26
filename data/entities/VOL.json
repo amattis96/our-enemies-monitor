@@ -1,0 +1,31 @@
+{
+  "id": "VOL",
+  "kind": "person",
+  "name": {
+    "it": "Oleg Voloshyn"
+  },
+  "domain": "persons",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 71,
+      "original": {
+        "id": "VOL",
+        "name": "Oleg Voloshyn",
+        "kind": "person",
+        "domain": "persons",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

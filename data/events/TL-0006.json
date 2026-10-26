@@ -1,0 +1,73 @@
+{
+  "id": "TL-0006",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2014",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Occupazione e annessione illegale della Crimea"
+  },
+  "description": {
+    "it": "La Russia occupa e annette la penisola ucraina, in violazione del diritto internazionale."
+  },
+  "category": {
+    "it": "Guerra"
+  },
+  "geography": {
+    "it": "Crimea / Ucraina"
+  },
+  "evidence_note": {
+    "it": "Accertato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 6,
+      "original": {
+        "id": "TL-0006",
+        "date_start": "2014",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Guerra",
+        "title": "Occupazione e annessione illegale della Crimea",
+        "description": "La Russia occupa e annette la penisola ucraina, in violazione del diritto internazionale.",
+        "evidence_status": "Accertato",
+        "source_docs": "S00,S03,S05",
+        "geography": "Crimea / Ucraina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 208,
+      "original": {
+        "id": "EV_TL-0006",
+        "name": "Occupazione e annessione illegale della Crimea",
+        "kind": "event",
+        "domain": "Guerra",
+        "geo": "Crimea / Ucraina",
+        "date_start": "2014",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S03;S05",
+        "evidence_status": "Accertato",
+        "note": "Record originale TL-0006; La Russia occupa e annette la penisola ucraina, in violazione del diritto internazionale."
+      }
+    }
+  ]
+}

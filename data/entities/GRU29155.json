@@ -1,0 +1,31 @@
+{
+  "id": "GRU29155",
+  "kind": "organization",
+  "name": {
+    "it": "Unità GRU 29155"
+  },
+  "domain": "intelligence-security",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 57,
+      "original": {
+        "id": "GRU29155",
+        "name": "Unità GRU 29155",
+        "kind": "organization",
+        "domain": "intelligence-security",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

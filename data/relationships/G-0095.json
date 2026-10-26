@@ -1,0 +1,45 @@
+{
+  "id": "G-0095",
+  "subject": "A16Z",
+  "predicate": "COMMITMENT_ACQUISIZIONE_2022",
+  "object": "X",
+  "relation_class": "financial",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0035"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S01"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 93,
+      "original": {
+        "id": "G-0095",
+        "source": "A16Z",
+        "target": "X",
+        "predicate": "COMMITMENT_ACQUISIZIONE_2022",
+        "relation_class": "financial",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S01",
+        "timeline_ids": "TL-0035",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

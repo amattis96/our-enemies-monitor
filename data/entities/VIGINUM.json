@@ -1,0 +1,31 @@
+{
+  "id": "VIGINUM",
+  "kind": "institution",
+  "name": {
+    "it": "VIGINUM / SGDSN"
+  },
+  "domain": "institutional",
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 37,
+      "original": {
+        "id": "VIGINUM",
+        "name": "VIGINUM / SGDSN",
+        "kind": "institution",
+        "domain": "institutional",
+        "geo": "",
+        "date_start": "",
+        "date_end": "",
+        "date_precision": "",
+        "source_docs": "",
+        "evidence_status": "",
+        "note": ""
+      }
+    }
+  ]
+}

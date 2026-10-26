@@ -1,0 +1,71 @@
+{
+  "id": "TL-0063",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-07",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Complotto contro Armin Papperger"
+  },
+  "description": {
+    "it": "Servizi occidentali segnalano un piano russo per uccidere il dirigente Rheinmetall; non risulta sentenza pubblica sul complotto."
+  },
+  "category": {
+    "it": "Intelligence / sicurezza"
+  },
+  "geography": {
+    "it": "Germania"
+  },
+  "evidence_note": {
+    "it": "Corroborato da reporting di intelligence"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 63,
+      "original": {
+        "id": "TL-0063",
+        "date_start": "2024-07",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Intelligence / sicurezza",
+        "title": "Complotto contro Armin Papperger",
+        "description": "Servizi occidentali segnalano un piano russo per uccidere il dirigente Rheinmetall; non risulta sentenza pubblica sul complotto.",
+        "evidence_status": "Corroborato da reporting di intelligence",
+        "source_docs": "S03",
+        "geography": "Germania"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 265,
+      "original": {
+        "id": "EV_TL-0063",
+        "name": "Complotto contro Armin Papperger",
+        "kind": "event",
+        "domain": "Intelligence / sicurezza",
+        "geo": "Germania",
+        "date_start": "2024-07",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Corroborato da reporting di intelligence",
+        "note": "Record originale TL-0063; Servizi occidentali segnalano un piano russo per uccidere il dirigente Rheinmetall; non risulta sentenza pubblica sul complotto."
+      }
+    }
+  ]
+}

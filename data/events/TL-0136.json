@@ -1,0 +1,71 @@
+{
+  "id": "TL-0136",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-10-09",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "106 progetti strategici CRMA riconosciuti"
+  },
+  "description": {
+    "it": "La Commissione registra 106 progetti al 9 ottobre, nel quadro degli obiettivi 2030 di estrazione, lavorazione e riciclo."
+  },
+  "category": {
+    "it": "Materie prime / UE"
+  },
+  "geography": {
+    "it": "Unione europea"
+  },
+  "evidence_note": {
+    "it": "Dato istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 136,
+      "original": {
+        "id": "TL-0136",
+        "date_start": "2026-10-09",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Materie prime / UE",
+        "title": "106 progetti strategici CRMA riconosciuti",
+        "description": "La Commissione registra 106 progetti al 9 ottobre, nel quadro degli obiettivi 2030 di estrazione, lavorazione e riciclo.",
+        "evidence_status": "Dato istituzionale",
+        "source_docs": "S04",
+        "geography": "Unione europea"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 338,
+      "original": {
+        "id": "EV_TL-0136",
+        "name": "106 progetti strategici CRMA riconosciuti",
+        "kind": "event",
+        "domain": "Materie prime / UE",
+        "geo": "Unione europea",
+        "date_start": "2026-10-09",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S04",
+        "evidence_status": "Dato istituzionale",
+        "note": "Record originale TL-0136; La Commissione registra 106 progetti al 9 ottobre, nel quadro degli obiettivi 2030 di estrazione, lavorazione e riciclo."
+      }
+    }
+  ]
+}

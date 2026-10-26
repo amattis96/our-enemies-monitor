@@ -1,0 +1,47 @@
+{
+  "id": "G-0419",
+  "subject": "NEWNEW",
+  "predicate": "DANNEGGIAMENTO_DA_ANCORA",
+  "object": "CABLES",
+  "relation_class": "infrastructure",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0046"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Dolo non provato"
+  },
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 417,
+      "original": {
+        "id": "G-0419",
+        "source": "NEWNEW",
+        "target": "CABLES",
+        "predicate": "DANNEGGIAMENTO_DA_ANCORA",
+        "relation_class": "infrastructure",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S03",
+        "timeline_ids": "TL-0046",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Dolo non provato"
+      }
+    }
+  ]
+}

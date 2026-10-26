@@ -1,0 +1,72 @@
+{
+  "id": "TL-0146",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-10-20",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "WSJ pubblica una nuova ricostruzione Starshield"
+  },
+  "description": {
+    "it": "Fonti WSJ attribuiscono a Musk un ordine personale e colloqui con Trump; interessati contestano, Reuters non conferma indipendentemente quella ricostruzione."
+  },
+  "category": {
+    "it": "Satelliti / responsabilità"
+  },
+  "geography": {
+    "it": "Stati Uniti / Ucraina"
+  },
+  "evidence_note": {
+    "it": "Ricostruzione contestata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 146,
+      "original": {
+        "id": "TL-0146",
+        "date_start": "2026-10-20",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Satelliti / responsabilità",
+        "title": "WSJ pubblica una nuova ricostruzione Starshield",
+        "description": "Fonti WSJ attribuiscono a Musk un ordine personale e colloqui con Trump; interessati contestano, Reuters non conferma indipendentemente quella ricostruzione.",
+        "evidence_status": "Ricostruzione contestata",
+        "source_docs": "S03,S05",
+        "geography": "Stati Uniti / Ucraina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 348,
+      "original": {
+        "id": "EV_TL-0146",
+        "name": "WSJ pubblica una nuova ricostruzione Starshield",
+        "kind": "event",
+        "domain": "Satelliti / responsabilità",
+        "geo": "Stati Uniti / Ucraina",
+        "date_start": "2026-10-20",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S03;S05",
+        "evidence_status": "Ricostruzione contestata",
+        "note": "Record originale TL-0146; Fonti WSJ attribuiscono a Musk un ordine personale e colloqui con Trump; interessati contestano, Reuters non conferma indipendentemente quella ricostruzione."
+      }
+    }
+  ]
+}

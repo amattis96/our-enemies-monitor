@@ -1,0 +1,51 @@
+{
+  "id": "H15",
+  "subject": "PROTEST26",
+  "object": "RU",
+  "hypothesis_type": "AMPLIFICAZIONE_VS_ISTIGAZIONE",
+  "question": {
+    "it": "Quali reti straniere hanno amplificato manifestazioni dopo l’origine domestica?"
+  },
+  "current_limit": {
+    "it": "Assenza di prove che fossero create dall’estero; viralità non è comando."
+  },
+  "priority": "critical",
+  "evidence_needed": {
+    "it": "Timeline primi account, strumenti AI, pattern citazione, dati VIGINUM, platform transparency"
+  },
+  "events": [
+    "TL-0124",
+    "TL-0143"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S00",
+    "S02",
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 15,
+      "original": {
+        "id": "H15",
+        "subject": "PROTEST26",
+        "object": "RU",
+        "hypothesis_type": "AMPLIFICAZIONE_VS_ISTIGAZIONE",
+        "verification_question": "Quali reti straniere hanno amplificato manifestazioni dopo l’origine domestica?",
+        "current_limit": "Assenza di prove che fossero create dall’estero; viralità non è comando.",
+        "priority": "Critica",
+        "evidence_needed": "Timeline primi account, strumenti AI, pattern citazione, dati VIGINUM, platform transparency",
+        "source_docs": "S00,S02,S03",
+        "timeline_ids": "TL-0124;TL-0143",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

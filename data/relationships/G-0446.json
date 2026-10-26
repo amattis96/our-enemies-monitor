@@ -1,0 +1,46 @@
+{
+  "id": "G-0446",
+  "subject": "CPS",
+  "predicate": "ESERCITA_AZIONE_PENALE",
+  "object": "GILL",
+  "relation_class": "legal",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0092"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+  "caveat": null,
+  "sources": [
+    "S01",
+    "WEB"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 444,
+      "original": {
+        "id": "G-0446",
+        "source": "CPS",
+        "target": "GILL",
+        "predicate": "ESERCITA_AZIONE_PENALE",
+        "relation_class": "legal",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S01,WEB",
+        "timeline_ids": "TL-0092",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "G-0421",
+  "subject": "EAGLES",
+  "predicate": "DANNEGGIAMENTO_ASSOCIATO_NAVE",
+  "object": "CABLES",
+  "relation_class": "infrastructure",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0069"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Mandato russo non provato"
+  },
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 419,
+      "original": {
+        "id": "G-0421",
+        "source": "EAGLES",
+        "target": "CABLES",
+        "predicate": "DANNEGGIAMENTO_ASSOCIATO_NAVE",
+        "relation_class": "infrastructure",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S03",
+        "timeline_ids": "TL-0069",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Mandato russo non provato"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "WEB-EXT-001",
+  "type": "external_reference",
+  "title": {
+    "it": "Attacco contro l’ambasciata israeliana a Stoccolma: attribuzione OFAC a Foxtrot su incarico iraniano"
+  },
+  "publisher": "US Treasury OFAC",
+  "files": [],
+  "urls": [
+    "https://home.treasury.gov/news/press-releases/sb0047"
+  ],
+  "cited_in": [
+    "S07"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nuove_evidenze.csv",
+      "row": 1,
+      "original": {
+        "id": "EXT-001",
+        "date_start": "2024-01",
+        "title": "Attacco contro l’ambasciata israeliana a Stoccolma: attribuzione OFAC a Foxtrot su incarico iraniano",
+        "description": "OFAC sostiene che Foxtrot organizzò l’attacco per conto dell’Iran. Si tratta di attribuzione USA, distinta da sentenza sul mandato.",
+        "publisher": "US Treasury OFAC",
+        "url": "https://home.treasury.gov/news/press-releases/sb0047",
+        "evidence_level": "E2",
+        "in_source_06": "no"
+      }
+    }
+  ]
+}

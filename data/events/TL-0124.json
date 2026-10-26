@@ -1,0 +1,73 @@
+{
+  "id": "TL-0124",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-09",
+    "end": "2026-10",
+    "precision": "month"
+  },
+  "title": {
+    "it": "Mobilitazioni autunnali in diversi Paesi europei"
+  },
+  "description": {
+    "it": "Proteste in Francia, Italia, Albania, Spagna, Portogallo e Belgio, su motivazioni domestiche differenti; non dimostrata una regia estera unica."
+  },
+  "category": {
+    "it": "Proteste / società"
+  },
+  "geography": {
+    "it": "Europa"
+  },
+  "evidence_note": {
+    "it": "Proteste accertate; regia unica non verificata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S02",
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 124,
+      "original": {
+        "id": "TL-0124",
+        "date_start": "2026-09",
+        "date_end": "2026-10",
+        "date_precision": "month",
+        "category": "Proteste / società",
+        "title": "Mobilitazioni autunnali in diversi Paesi europei",
+        "description": "Proteste in Francia, Italia, Albania, Spagna, Portogallo e Belgio, su motivazioni domestiche differenti; non dimostrata una regia estera unica.",
+        "evidence_status": "Proteste accertate; regia unica non verificata",
+        "source_docs": "S00,S02,S03",
+        "geography": "Europa"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 326,
+      "original": {
+        "id": "EV_TL-0124",
+        "name": "Mobilitazioni autunnali in diversi Paesi europei",
+        "kind": "event",
+        "domain": "Proteste / società",
+        "geo": "Europa",
+        "date_start": "2026-09",
+        "date_end": "2026-10",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S02;S03",
+        "evidence_status": "Proteste accertate; regia unica non verificata",
+        "note": "Record originale TL-0124; Proteste in Francia, Italia, Albania, Spagna, Portogallo e Belgio, su motivazioni domestiche differenti; non dimostrata una regia estera unica."
+      }
+    }
+  ]
+}

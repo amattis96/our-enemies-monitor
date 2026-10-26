@@ -1,0 +1,44 @@
+{
+  "id": "G-0080",
+  "subject": "SPACEX",
+  "predicate": "FORNITORE",
+  "object": "STARSHIELD",
+  "relation_class": "infrastructure",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S03",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 78,
+      "original": {
+        "id": "G-0080",
+        "source": "SPACEX",
+        "target": "STARSHIELD",
+        "predicate": "FORNITORE",
+        "relation_class": "infrastructure",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S03,S04",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

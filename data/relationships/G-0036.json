@@ -1,0 +1,46 @@
+{
+  "id": "G-0036",
+  "subject": "PORTALK",
+  "predicate": "GESTIONE_TECNICA_ATTRIBUITA",
+  "object": "TIGERWEB",
+  "relation_class": "technical",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "TL-0055"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S01",
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 36,
+      "original": {
+        "id": "G-0036",
+        "source": "PORTALK",
+        "target": "TIGERWEB",
+        "predicate": "GESTIONE_TECNICA_ATTRIBUITA",
+        "relation_class": "technical",
+        "evidence_level": "E3",
+        "evidence_status": "corroborato",
+        "source_docs": "S01,S02",
+        "timeline_ids": "TL-0055",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

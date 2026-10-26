@@ -1,0 +1,28 @@
+{
+  "id": "F12",
+  "type": "external_reference",
+  "title": {
+    "it": "Senate Intelligence Committee, Volume 5 Russia investigation 2020"
+  },
+  "publisher": "Senate Intelligence Committee",
+  "files": [],
+  "urls": [
+    "https://www.intelligence.senate.gov/2020/08/18/press-senate-intel-releases-volume-5-bipartisan-russia-report/"
+  ],
+  "cited_in": [
+    "S00"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_00_Dossier_Ragnatela_Interferenze_Geopolitiche_Europa_2026-10-20.md",
+      "line": 344,
+      "original": {
+        "text": "- **[F12] Senate Intelligence Committee**, Volume 5 Russia investigation 2020: https://www.intelligence.senate.gov/2020/08/18/press-senate-intel-releases-volume-5-bipartisan-russia-report/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "TL-0068",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024-12",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Annullamento delle presidenziali romene"
+  },
+  "description": {
+    "it": "Annullamento del processo elettorale dopo le controversie sulla manipolazione online; l’annullamento non costituisce automaticamente attribuzione alla Russia."
+  },
+  "category": {
+    "it": "Elezioni / istituzioni"
+  },
+  "geography": {
+    "it": "Romania"
+  },
+  "evidence_note": {
+    "it": "Decisione istituzionale; mandante estero contestato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 68,
+      "original": {
+        "id": "TL-0068",
+        "date_start": "2024-12",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Elezioni / istituzioni",
+        "title": "Annullamento delle presidenziali romene",
+        "description": "Annullamento del processo elettorale dopo le controversie sulla manipolazione online; l’annullamento non costituisce automaticamente attribuzione alla Russia.",
+        "evidence_status": "Decisione istituzionale; mandante estero contestato",
+        "source_docs": "S00,S02",
+        "geography": "Romania"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 270,
+      "original": {
+        "id": "EV_TL-0068",
+        "name": "Annullamento delle presidenziali romene",
+        "kind": "event",
+        "domain": "Elezioni / istituzioni",
+        "geo": "Romania",
+        "date_start": "2024-12",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S02",
+        "evidence_status": "Decisione istituzionale; mandante estero contestato",
+        "note": "Record originale TL-0068; Annullamento del processo elettorale dopo le controversie sulla manipolazione online; l’annullamento non costituisce automaticamente attribuzione alla Russia."
+      }
+    }
+  ]
+}

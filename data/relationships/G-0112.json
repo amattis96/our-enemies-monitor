@@ -1,0 +1,45 @@
+{
+  "id": "G-0112",
+  "subject": "CN",
+  "predicate": "FILIERA_EV_GLOBALE",
+  "object": "BYD",
+  "relation_class": "commerce",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Industria auto e batterie, non operazione ostile"
+  },
+  "sources": [
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 110,
+      "original": {
+        "id": "G-0112",
+        "source": "CN",
+        "target": "BYD",
+        "predicate": "FILIERA_EV_GLOBALE",
+        "relation_class": "commerce",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S04",
+        "timeline_ids": "",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "Industria auto e batterie, non operazione ostile"
+      }
+    }
+  ]
+}

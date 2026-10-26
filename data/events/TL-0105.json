@@ -1,0 +1,71 @@
+{
+  "id": "TL-0105",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-03",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Rilascio coordinato di riserve IEA"
+  },
+  "description": {
+    "it": "Gli Stati membri IEA autorizzano l’immissione di circa 400 milioni di barili per mitigare lo shock."
+  },
+  "category": {
+    "it": "Energia / risposta"
+  },
+  "geography": {
+    "it": "Mercato petrolifero mondiale"
+  },
+  "evidence_note": {
+    "it": "Decisione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 105,
+      "original": {
+        "id": "TL-0105",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Energia / risposta",
+        "title": "Rilascio coordinato di riserve IEA",
+        "description": "Gli Stati membri IEA autorizzano l’immissione di circa 400 milioni di barili per mitigare lo shock.",
+        "evidence_status": "Decisione istituzionale",
+        "source_docs": "S05",
+        "geography": "Mercato petrolifero mondiale"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 307,
+      "original": {
+        "id": "EV_TL-0105",
+        "name": "Rilascio coordinato di riserve IEA",
+        "kind": "event",
+        "domain": "Energia / risposta",
+        "geo": "Mercato petrolifero mondiale",
+        "date_start": "2026-03",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S05",
+        "evidence_status": "Decisione istituzionale",
+        "note": "Record originale TL-0105; Gli Stati membri IEA autorizzano l’immissione di circa 400 milioni di barili per mitigare lo shock."
+      }
+    }
+  ]
+}

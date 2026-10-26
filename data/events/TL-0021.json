@@ -1,0 +1,71 @@
+{
+  "id": "TL-0021",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2020",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Intrusioni contro ministeri estoni"
+  },
+  "description": {
+    "it": "Compromissione e sottrazione di documenti; la UE attribuirà l’operazione alla GRU Unit 29155 e sanzionerà nel 2025."
+  },
+  "category": {
+    "it": "Cyber / intelligence"
+  },
+  "geography": {
+    "it": "Estonia"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale successiva"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 21,
+      "original": {
+        "id": "TL-0021",
+        "date_start": "2020",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Cyber / intelligence",
+        "title": "Intrusioni contro ministeri estoni",
+        "description": "Compromissione e sottrazione di documenti; la UE attribuirà l’operazione alla GRU Unit 29155 e sanzionerà nel 2025.",
+        "evidence_status": "Attribuzione istituzionale successiva",
+        "source_docs": "S03",
+        "geography": "Estonia"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 223,
+      "original": {
+        "id": "EV_TL-0021",
+        "name": "Intrusioni contro ministeri estoni",
+        "kind": "event",
+        "domain": "Cyber / intelligence",
+        "geo": "Estonia",
+        "date_start": "2020",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione istituzionale successiva",
+        "note": "Record originale TL-0021; Compromissione e sottrazione di documenti; la UE attribuirà l’operazione alla GRU Unit 29155 e sanzionerà nel 2025."
+      }
+    }
+  ]
+}

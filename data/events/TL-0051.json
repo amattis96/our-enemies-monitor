@@ -1,0 +1,71 @@
+{
+  "id": "TL-0051",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Paperwall esposta da Citizen Lab"
+  },
+  "description": {
+    "it": "Rete di falsi media locali riconducibile tecnicamente a Haimai; prima mappatura: 123 siti in 30 Paesi, poi espansione. Ordine statale specifico non provato."
+  },
+  "category": {
+    "it": "Disinformazione / reti"
+  },
+  "geography": {
+    "it": "Europa / mondo"
+  },
+  "evidence_note": {
+    "it": "Operatore corroborato; mandato non verificato"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 51,
+      "original": {
+        "id": "TL-0051",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Disinformazione / reti",
+        "title": "Paperwall esposta da Citizen Lab",
+        "description": "Rete di falsi media locali riconducibile tecnicamente a Haimai; prima mappatura: 123 siti in 30 Paesi, poi espansione. Ordine statale specifico non provato.",
+        "evidence_status": "Operatore corroborato; mandato non verificato",
+        "source_docs": "S02",
+        "geography": "Europa / mondo"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 253,
+      "original": {
+        "id": "EV_TL-0051",
+        "name": "Paperwall esposta da Citizen Lab",
+        "kind": "event",
+        "domain": "Disinformazione / reti",
+        "geo": "Europa / mondo",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S02",
+        "evidence_status": "Operatore corroborato; mandato non verificato",
+        "note": "Record originale TL-0051; Rete di falsi media locali riconducibile tecnicamente a Haimai; prima mappatura: 123 siti in 30 Paesi, poi espansione. Ordine statale specifico non provato."
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "TL-0131",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-09-17",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Citizen Lab pubblica l’indagine BlackCore"
+  },
+  "description": {
+    "it": "Rapporto su influence-for-hire, profili fittizi e attività transnazionali; committenti operativi non sempre conosciuti."
+  },
+  "category": {
+    "it": "Ricerca forense / FIMI"
+  },
+  "geography": {
+    "it": "Israele / Europa / Angola"
+  },
+  "evidence_note": {
+    "it": "Indagine forense"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S01",
+    "S02",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 131,
+      "original": {
+        "id": "TL-0131",
+        "date_start": "2026-09-17",
+        "date_end": "",
+        "date_precision": "day",
+        "category": "Ricerca forense / FIMI",
+        "title": "Citizen Lab pubblica l’indagine BlackCore",
+        "description": "Rapporto su influence-for-hire, profili fittizi e attività transnazionali; committenti operativi non sempre conosciuti.",
+        "evidence_status": "Indagine forense",
+        "source_docs": "S00,S01,S02,S05",
+        "geography": "Israele / Europa / Angola"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 333,
+      "original": {
+        "id": "EV_TL-0131",
+        "name": "Citizen Lab pubblica l’indagine BlackCore",
+        "kind": "event",
+        "domain": "Ricerca forense / FIMI",
+        "geo": "Israele / Europa / Angola",
+        "date_start": "2026-09-17",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "S06,S00;S01;S02;S05",
+        "evidence_status": "Indagine forense",
+        "note": "Record originale TL-0131; Rapporto su influence-for-hire, profili fittizi e attività transnazionali; committenti operativi non sempre conosciuti."
+      }
+    }
+  ]
+}

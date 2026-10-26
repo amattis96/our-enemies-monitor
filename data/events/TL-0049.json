@@ -1,0 +1,71 @@
+{
+  "id": "TL-0049",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2024",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Operazioni azere contro interessi francesi"
+  },
+  "description": {
+    "it": "VIGINUM ricostruisce attività del Baku Initiative Group, anche relative a territori francesi d’oltremare, e collegamenti diretti con lo Stato azerbaigiano."
+  },
+  "category": {
+    "it": "Guerra informativa"
+  },
+  "geography": {
+    "it": "Francia / territori d’oltremare"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 49,
+      "original": {
+        "id": "TL-0049",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Guerra informativa",
+        "title": "Operazioni azere contro interessi francesi",
+        "description": "VIGINUM ricostruisce attività del Baku Initiative Group, anche relative a territori francesi d’oltremare, e collegamenti diretti con lo Stato azerbaigiano.",
+        "evidence_status": "Attribuzione istituzionale",
+        "source_docs": "S05",
+        "geography": "Francia / territori d’oltremare"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 251,
+      "original": {
+        "id": "EV_TL-0049",
+        "name": "Operazioni azere contro interessi francesi",
+        "kind": "event",
+        "domain": "Guerra informativa",
+        "geo": "Francia / territori d’oltremare",
+        "date_start": "2024",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S05",
+        "evidence_status": "Attribuzione istituzionale",
+        "note": "Record originale TL-0049; VIGINUM ricostruisce attività del Baku Initiative Group, anche relative a territori francesi d’oltremare, e collegamenti diretti con lo Stato azerbaigiano."
+      }
+    }
+  ]
+}

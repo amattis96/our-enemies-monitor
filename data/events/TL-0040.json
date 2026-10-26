@@ -1,0 +1,71 @@
+{
+  "id": "TL-0040",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022-07",
+    "end": "2022-09",
+    "precision": "month"
+  },
+  "title": {
+    "it": "Campagna distruttiva iraniana contro l’Albania"
+  },
+  "description": {
+    "it": "Accesso persistente, esfiltrazione, wiper/ransomware e operazioni informative fra luglio e settembre; gruppi collegati al MOIS secondo analisi forensi e autorità."
+  },
+  "category": {
+    "it": "Cyber / guerra ibrida"
+  },
+  "geography": {
+    "it": "Albania"
+  },
+  "evidence_note": {
+    "it": "Forense e attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 40,
+      "original": {
+        "id": "TL-0040",
+        "date_start": "2022-07",
+        "date_end": "2022-09",
+        "date_precision": "month",
+        "category": "Cyber / guerra ibrida",
+        "title": "Campagna distruttiva iraniana contro l’Albania",
+        "description": "Accesso persistente, esfiltrazione, wiper/ransomware e operazioni informative fra luglio e settembre; gruppi collegati al MOIS secondo analisi forensi e autorità.",
+        "evidence_status": "Forense e attribuzione istituzionale",
+        "source_docs": "S03",
+        "geography": "Albania"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 242,
+      "original": {
+        "id": "EV_TL-0040",
+        "name": "Campagna distruttiva iraniana contro l’Albania",
+        "kind": "event",
+        "domain": "Cyber / guerra ibrida",
+        "geo": "Albania",
+        "date_start": "2022-07",
+        "date_end": "2022-09",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Forense e attribuzione istituzionale",
+        "note": "Record originale TL-0040; Accesso persistente, esfiltrazione, wiper/ransomware e operazioni informative fra luglio e settembre; gruppi collegati al MOIS secondo analisi forensi e autorità."
+      }
+    }
+  ]
+}

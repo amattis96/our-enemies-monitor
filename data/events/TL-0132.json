@@ -1,0 +1,74 @@
+{
+  "id": "TL-0132",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-10",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Intesa USA-Russia per il diesel russo"
+  },
+  "description": {
+    "it": "Washington attenua restrizioni e favorisce il ritorno di flussi di gasolio russo a mercati terzi; beneficio economico a Mosca non prova coordinamento clandestino."
+  },
+  "category": {
+    "it": "Energia / Russia-USA"
+  },
+  "geography": {
+    "it": "USA / Russia / mercati globali"
+  },
+  "evidence_note": {
+    "it": "Decisioni/documenti e reporting; interpretazione strategica aperta"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 132,
+      "original": {
+        "id": "TL-0132",
+        "date_start": "2026-10",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Energia / Russia-USA",
+        "title": "Intesa USA-Russia per il diesel russo",
+        "description": "Washington attenua restrizioni e favorisce il ritorno di flussi di gasolio russo a mercati terzi; beneficio economico a Mosca non prova coordinamento clandestino.",
+        "evidence_status": "Decisioni/documenti e reporting; interpretazione strategica aperta",
+        "source_docs": "S00,S03,S04,S05",
+        "geography": "USA / Russia / mercati globali"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 334,
+      "original": {
+        "id": "EV_TL-0132",
+        "name": "Intesa USA-Russia per il diesel russo",
+        "kind": "event",
+        "domain": "Energia / Russia-USA",
+        "geo": "USA / Russia / mercati globali",
+        "date_start": "2026-10",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S00;S03;S04;S05",
+        "evidence_status": "Decisioni/documenti e reporting; interpretazione strategica aperta",
+        "note": "Record originale TL-0132; Washington attenua restrizioni e favorisce il ritorno di flussi di gasolio russo a mercati terzi; beneficio economico a Mosca non prova coordinamento clandestino."
+      }
+    }
+  ]
+}

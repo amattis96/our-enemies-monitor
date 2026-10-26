@@ -1,0 +1,72 @@
+{
+  "id": "TL-0033",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2022",
+    "end": "2024",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Espansione Portal Kombat verso pubblici occidentali"
+  },
+  "description": {
+    "it": "Rete di aggregazione automatizzata e siti filorussi; studi tecnici individueranno TigerWeb e almeno 193 portali."
+  },
+  "category": {
+    "it": "FIMI / campagne"
+  },
+  "geography": {
+    "it": "Europa / web"
+  },
+  "evidence_note": {
+    "it": "Campagna corroborata"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01",
+    "S02"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 33,
+      "original": {
+        "id": "TL-0033",
+        "date_start": "2022",
+        "date_end": "2024",
+        "date_precision": "year",
+        "category": "FIMI / campagne",
+        "title": "Espansione Portal Kombat verso pubblici occidentali",
+        "description": "Rete di aggregazione automatizzata e siti filorussi; studi tecnici individueranno TigerWeb e almeno 193 portali.",
+        "evidence_status": "Campagna corroborata",
+        "source_docs": "S01,S02",
+        "geography": "Europa / web"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 235,
+      "original": {
+        "id": "EV_TL-0033",
+        "name": "Espansione Portal Kombat verso pubblici occidentali",
+        "kind": "event",
+        "domain": "FIMI / campagne",
+        "geo": "Europa / web",
+        "date_start": "2022",
+        "date_end": "2024",
+        "date_precision": "year",
+        "source_docs": "S06,S01;S02",
+        "evidence_status": "Campagna corroborata",
+        "note": "Record originale TL-0033; Rete di aggregazione automatizzata e siti filorussi; studi tecnici individueranno TigerWeb e almeno 193 portali."
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "TL-0089",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025-04",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Cina limita l’esportazione di sette terre rare pesanti"
+  },
+  "description": {
+    "it": "Export controls sulle terre rare magnetiche; si osservano difficoltà nell’automotive e in altre industrie occidentali."
+  },
+  "category": {
+    "it": "Commercio / industria"
+  },
+  "geography": {
+    "it": "Cina / UE"
+  },
+  "evidence_note": {
+    "it": "Provvedimento pubblico"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 89,
+      "original": {
+        "id": "TL-0089",
+        "date_start": "2025-04",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Commercio / industria",
+        "title": "Cina limita l’esportazione di sette terre rare pesanti",
+        "description": "Export controls sulle terre rare magnetiche; si osservano difficoltà nell’automotive e in altre industrie occidentali.",
+        "evidence_status": "Provvedimento pubblico",
+        "source_docs": "S04,S05",
+        "geography": "Cina / UE"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 291,
+      "original": {
+        "id": "EV_TL-0089",
+        "name": "Cina limita l’esportazione di sette terre rare pesanti",
+        "kind": "event",
+        "domain": "Commercio / industria",
+        "geo": "Cina / UE",
+        "date_start": "2025-04",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S04;S05",
+        "evidence_status": "Provvedimento pubblico",
+        "note": "Record originale TL-0089; Export controls sulle terre rare magnetiche; si osservano difficoltà nell’automotive e in altre industrie occidentali."
+      }
+    }
+  ]
+}

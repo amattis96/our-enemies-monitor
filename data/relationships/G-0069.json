@@ -1,0 +1,49 @@
+{
+  "id": "G-0069",
+  "subject": "US",
+  "predicate": "APPLICA_SANZIONI",
+  "object": "ICC",
+  "relation_class": "legal",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "TL-0087",
+    "TL-0133"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "UE sostiene l’indipendenza Corte; diverse posizioni statali"
+  },
+  "sources": [
+    "S00",
+    "S05"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 67,
+      "original": {
+        "id": "G-0069",
+        "source": "US",
+        "target": "ICC",
+        "predicate": "APPLICA_SANZIONI",
+        "relation_class": "legal",
+        "evidence_level": "E1",
+        "evidence_status": "documentato",
+        "source_docs": "S00,S05",
+        "timeline_ids": "TL-0087;TL-0133",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": "UE sostiene l’indipendenza Corte; diverse posizioni statali"
+      }
+    }
+  ]
+}

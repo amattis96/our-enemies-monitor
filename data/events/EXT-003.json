@@ -1,0 +1,65 @@
+{
+  "id": "EXT-003",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-10-16",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Condanna Natland per complotto omicida Foxtrot nel Regno Unito"
+  },
+  "description": {
+    "it": "CPS aggiorna il 16 ottobre la condanna a 20 anni per un tentativo di omicidio su commissione nel marzo 2025; il singolo ordine iraniano non è dimostrato nel caso."
+  },
+  "category": null,
+  "geography": {
+    "it": "Europa / UK / Svezia"
+  },
+  "evidence_note": null,
+  "evidence_level": "E1",
+  "publisher": "UK Crown Prosecution Service",
+  "url": "https://www.cps.gov.uk/national-news/news/teen-hitman-guilty-uk-murder-plot",
+  "sources": [
+    "WEB-EXT-003"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nuove_evidenze.csv",
+      "row": 3,
+      "original": {
+        "id": "EXT-003",
+        "date_start": "2026-10-16",
+        "title": "Condanna Natland per complotto omicida Foxtrot nel Regno Unito",
+        "description": "CPS aggiorna il 16 ottobre la condanna a 20 anni per un tentativo di omicidio su commissione nel marzo 2025; il singolo ordine iraniano non è dimostrato nel caso.",
+        "publisher": "UK Crown Prosecution Service",
+        "url": "https://www.cps.gov.uk/national-news/news/teen-hitman-guilty-uk-murder-plot",
+        "evidence_level": "E1",
+        "in_source_06": "no"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 352,
+      "original": {
+        "id": "EV_EXT-003",
+        "name": "Condanna Natland per complotto omicida Foxtrot nel Regno Unito",
+        "kind": "event",
+        "domain": "new_discovery",
+        "geo": "Europa / UK / Svezia",
+        "date_start": "2026-10-16",
+        "date_end": "",
+        "date_precision": "day",
+        "source_docs": "WEB-EXT-003",
+        "evidence_status": "E1",
+        "note": "Nuovo rispetto alla Fonte_06. CPS aggiorna il 16 ottobre la condanna a 20 anni per un tentativo di omicidio su commissione nel marzo 2025; il singolo ordine iraniano non è dimostrato nel caso."
+      }
+    }
+  ]
+}

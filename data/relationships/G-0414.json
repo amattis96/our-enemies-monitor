@@ -1,0 +1,45 @@
+{
+  "id": "G-0414",
+  "subject": "MOIS",
+  "predicate": "CYBERATTACCHI_ATTRIBUITI",
+  "object": "AL",
+  "relation_class": "intelligence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0040"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": null,
+  "sources": [
+    "S03"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 412,
+      "original": {
+        "id": "G-0414",
+        "source": "MOIS",
+        "target": "AL",
+        "predicate": "CYBERATTACCHI_ATTRIBUITI",
+        "relation_class": "intelligence",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S03",
+        "timeline_ids": "TL-0040",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "",
+        "layer": "source",
+        "description_or_caveat": ""
+      }
+    }
+  ]
+}

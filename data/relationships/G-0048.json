@@ -1,0 +1,47 @@
+{
+  "id": "G-0048",
+  "subject": "ROKH",
+  "predicate": "TENTA_INGERENZA",
+  "object": "FRELEC",
+  "relation_class": "influence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "TL-0113"
+  ],
+  "valid_from": null,
+  "valid_to": null,
+  "primary_url": "https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les",
+  "caveat": {
+    "it": "Bassa esposizione effettiva"
+  },
+  "sources": [
+    "S02"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_archi.csv",
+      "row": 48,
+      "original": {
+        "id": "G-0048",
+        "source": "ROKH",
+        "target": "FRELEC",
+        "predicate": "TENTA_INGERENZA",
+        "relation_class": "influence",
+        "evidence_level": "E2",
+        "evidence_status": "attribuzione_istituzionale",
+        "source_docs": "S02",
+        "timeline_ids": "TL-0113",
+        "date_start": "",
+        "date_end": "",
+        "primary_url": "https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les",
+        "layer": "source",
+        "description_or_caveat": "Bassa esposizione effettiva"
+      }
+    }
+  ]
+}

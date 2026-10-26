@@ -1,0 +1,71 @@
+{
+  "id": "TL-0090",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2025-07",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "Sanzioni UE all’841st EW Center russo"
+  },
+  "description": {
+    "it": "L’UE associa al centro di Kaliningrad disturbi GNSS/jamming/spoofing che coinvolgono anche traffico aereo europeo."
+  },
+  "category": {
+    "it": "Guerra elettronica / sanzioni"
+  },
+  "geography": {
+    "it": "Russia / Baltico"
+  },
+  "evidence_note": {
+    "it": "Attribuzione e sanzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S03"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 90,
+      "original": {
+        "id": "TL-0090",
+        "date_start": "2025-07",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Guerra elettronica / sanzioni",
+        "title": "Sanzioni UE all’841st EW Center russo",
+        "description": "L’UE associa al centro di Kaliningrad disturbi GNSS/jamming/spoofing che coinvolgono anche traffico aereo europeo.",
+        "evidence_status": "Attribuzione e sanzione istituzionale",
+        "source_docs": "S03",
+        "geography": "Russia / Baltico"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 292,
+      "original": {
+        "id": "EV_TL-0090",
+        "name": "Sanzioni UE all’841st EW Center russo",
+        "kind": "event",
+        "domain": "Guerra elettronica / sanzioni",
+        "geo": "Russia / Baltico",
+        "date_start": "2025-07",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S03",
+        "evidence_status": "Attribuzione e sanzione istituzionale",
+        "note": "Record originale TL-0090; L’UE associa al centro di Kaliningrad disturbi GNSS/jamming/spoofing che coinvolgono anche traffico aereo europeo."
+      }
+    }
+  ]
+}

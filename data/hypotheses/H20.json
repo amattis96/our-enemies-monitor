@@ -1,0 +1,46 @@
+{
+  "id": "H20",
+  "subject": "IR",
+  "object": "RAFFAIR",
+  "hypothesis_type": "RESPONSABILITA_FINALE_FARFORD",
+  "question": {
+    "it": "Si può dimostrare un incarico iraniano nel caso RAF Fairford?"
+  },
+  "current_limit": {
+    "it": "L’inchiesta è aperta al cutoff; nessuna condanna o responsabilità definitiva."
+  },
+  "priority": "critical",
+  "evidence_needed": {
+    "it": "Atti giudiziari, National Security Act charge sheets, evidence police, CCTV"
+  },
+  "events": [],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "WEB-EXT-004"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_ipotesi.csv",
+      "row": 20,
+      "original": {
+        "id": "H20",
+        "subject": "IR",
+        "object": "RAFFAIR",
+        "hypothesis_type": "RESPONSABILITA_FINALE_FARFORD",
+        "verification_question": "Si può dimostrare un incarico iraniano nel caso RAF Fairford?",
+        "current_limit": "L’inchiesta è aperta al cutoff; nessuna condanna o responsabilità definitiva.",
+        "priority": "Critica",
+        "evidence_needed": "Atti giudiziari, National Security Act charge sheets, evidence police, CCTV",
+        "source_docs": "WEB-EXT-004",
+        "timeline_ids": "",
+        "external_url": "",
+        "status": "open_unproven"
+      }
+    }
+  ]
+}

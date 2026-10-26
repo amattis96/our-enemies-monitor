@@ -1,0 +1,73 @@
+{
+  "id": "TL-0028",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2021",
+    "end": null,
+    "precision": "year"
+  },
+  "title": {
+    "it": "Strumentalizzazione migratoria dalla Bielorussia"
+  },
+  "description": {
+    "it": "Trasferimento/facilitazione di flussi verso Polonia, Lituania e Lettonia; regime bielorusso ritenuto responsabile dall’UE."
+  },
+  "category": {
+    "it": "Coercizione migratoria"
+  },
+  "geography": {
+    "it": "Bielorussia / frontiera UE"
+  },
+  "evidence_note": {
+    "it": "Attribuzione istituzionale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S00",
+    "S03",
+    "S05"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 28,
+      "original": {
+        "id": "TL-0028",
+        "date_start": "2021",
+        "date_end": "",
+        "date_precision": "year",
+        "category": "Coercizione migratoria",
+        "title": "Strumentalizzazione migratoria dalla Bielorussia",
+        "description": "Trasferimento/facilitazione di flussi verso Polonia, Lituania e Lettonia; regime bielorusso ritenuto responsabile dall’UE.",
+        "evidence_status": "Attribuzione istituzionale",
+        "source_docs": "S00,S03,S05",
+        "geography": "Bielorussia / frontiera UE"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 230,
+      "original": {
+        "id": "EV_TL-0028",
+        "name": "Strumentalizzazione migratoria dalla Bielorussia",
+        "kind": "event",
+        "domain": "Coercizione migratoria",
+        "geo": "Bielorussia / frontiera UE",
+        "date_start": "2021",
+        "date_end": "",
+        "date_precision": "year",
+        "source_docs": "S06,S00;S03;S05",
+        "evidence_status": "Attribuzione istituzionale",
+        "note": "Record originale TL-0028; Trasferimento/facilitazione di flussi verso Polonia, Lituania e Lettonia; regime bielorusso ritenuto responsabile dall’UE."
+      }
+    }
+  ]
+}

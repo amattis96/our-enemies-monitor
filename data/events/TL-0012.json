@@ -1,0 +1,71 @@
+{
+  "id": "TL-0012",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2017",
+    "end": "2018",
+    "precision": "year"
+  },
+  "title": {
+    "it": "Strutture patrimoniali di Kerimov negli USA"
+  },
+  "description": {
+    "it": "Trust, gestori e intermediari custodiscono attività patrimoniali riconducibili a Suleiman Kerimov, poi oggetto di provvedimenti OFAC."
+  },
+  "category": {
+    "it": "Finanza / sanzioni"
+  },
+  "geography": {
+    "it": "Stati Uniti"
+  },
+  "evidence_note": {
+    "it": "Corroborato; cronologia della proprietà pluriennale"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S01"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 12,
+      "original": {
+        "id": "TL-0012",
+        "date_start": "2017",
+        "date_end": "2018",
+        "date_precision": "year",
+        "category": "Finanza / sanzioni",
+        "title": "Strutture patrimoniali di Kerimov negli USA",
+        "description": "Trust, gestori e intermediari custodiscono attività patrimoniali riconducibili a Suleiman Kerimov, poi oggetto di provvedimenti OFAC.",
+        "evidence_status": "Corroborato; cronologia della proprietà pluriennale",
+        "source_docs": "S01",
+        "geography": "Stati Uniti"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 214,
+      "original": {
+        "id": "EV_TL-0012",
+        "name": "Strutture patrimoniali di Kerimov negli USA",
+        "kind": "event",
+        "domain": "Finanza / sanzioni",
+        "geo": "Stati Uniti",
+        "date_start": "2017",
+        "date_end": "2018",
+        "date_precision": "year",
+        "source_docs": "S06,S01",
+        "evidence_status": "Corroborato; cronologia della proprietà pluriennale",
+        "note": "Record originale TL-0012; Trust, gestori e intermediari custodiscono attività patrimoniali riconducibili a Suleiman Kerimov, poi oggetto di provvedimenti OFAC."
+      }
+    }
+  ]
+}

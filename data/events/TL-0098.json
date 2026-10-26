@@ -1,0 +1,71 @@
+{
+  "id": "TL-0098",
+  "record_type": "event",
+  "timeline_status": "integrated",
+  "date": {
+    "start": "2026-01",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "USA rivedono licenze export per H200 e MI325X"
+  },
+  "description": {
+    "it": "Washington introduce una valutazione caso per caso per certi chip avanzati destinati alla Cina, dopo controlli irrigiditi nel 2025."
+  },
+  "category": {
+    "it": "Semiconduttori / export"
+  },
+  "geography": {
+    "it": "Stati Uniti / Cina"
+  },
+  "evidence_note": {
+    "it": "Policy pubblica"
+  },
+  "evidence_level": null,
+  "publisher": null,
+  "url": null,
+  "sources": [
+    "S04"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_06_Timeline_Cronologica_Eventi_Documentati_Europa_2007-2026_2026-10-21.csv",
+      "row": 98,
+      "original": {
+        "id": "TL-0098",
+        "date_start": "2026-01",
+        "date_end": "",
+        "date_precision": "month",
+        "category": "Semiconduttori / export",
+        "title": "USA rivedono licenze export per H200 e MI325X",
+        "description": "Washington introduce una valutazione caso per caso per certi chip avanzati destinati alla Cina, dopo controlli irrigiditi nel 2025.",
+        "evidence_status": "Policy pubblica",
+        "source_docs": "S04",
+        "geography": "Stati Uniti / Cina"
+      }
+    },
+    {
+      "file": "sources/original/Fonte_07_Ragnatela_Attori_Interessi_Relazioni_Europa_2026-10-21_nodi.csv",
+      "row": 300,
+      "original": {
+        "id": "EV_TL-0098",
+        "name": "USA rivedono licenze export per H200 e MI325X",
+        "kind": "event",
+        "domain": "Semiconduttori / export",
+        "geo": "Stati Uniti / Cina",
+        "date_start": "2026-01",
+        "date_end": "",
+        "date_precision": "month",
+        "source_docs": "S06,S04",
+        "evidence_status": "Policy pubblica",
+        "note": "Record originale TL-0098; Washington introduce una valutazione caso per caso per certi chip avanzati destinati alla Cina, dopo controlli irrigiditi nel 2025."
+      }
+    }
+  ]
+}

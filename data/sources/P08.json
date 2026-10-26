@@ -1,0 +1,28 @@
+{
+  "id": "P08",
+  "type": "external_reference",
+  "title": {
+    "it": "Eurostat, inflazione finale settembre 2026 (16 ottobre 2026). 3,8% eurozona; energia 18,9%; contributo energia 1,71 punti percentuali."
+  },
+  "publisher": "Eurostat",
+  "files": [],
+  "urls": [
+    "https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-16102026-ap"
+  ],
+  "cited_in": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": []
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 1181,
+      "original": {
+        "text": "- **P08 | Eurostat, inflazione finale settembre 2026 (16 ottobre 2026).** 3,8% eurozona; energia 18,9%; contributo energia 1,71 punti percentuali. https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-16102026-ap"
+      }
+    }
+  ]
+}
