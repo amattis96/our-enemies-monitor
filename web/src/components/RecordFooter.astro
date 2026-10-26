@@ -1,30 +1,35 @@
 ---
-import type { ProvenanceEntry, Review } from "../../../src/model/index.ts";
-import { REVIEW_STATUS_LABELS } from "../../../src/site/format.ts";
+import type { Language, ProvenanceEntry, Review } from "../../../src/model/index.ts";
+import { REVIEW_STATUS_LABELS, TRANSLATION_STATUS_LABELS } from "../../../src/site/format.ts";
+import { ui } from "../../../src/site/i18n.ts";
 
 interface Props {
   id: string;
   collection: string;
   review: Review;
   provenance: ProvenanceEntry[];
+  lang: Language;
 }
-const { id, collection, review, provenance } = Astro.props;
+const { id, collection, review, provenance, lang } = Astro.props;
+const t = ui(lang);
 const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main";
+const translation = review.translations?.en;
 ---
 
 <section class="mt-10 border-t border-line pt-4 meta" data-pagefind-ignore>
-  <h2 class="text-base">Revisione e provenienza</h2>
+  <h2 class="text-base">{t.reviewTitle}</h2>
   <p>
-    Stato: {REVIEW_STATUS_LABELS[review.status]}.
+    {t.reviewStatus}: {REVIEW_STATUS_LABELS[review.status][lang]}
+    {translation && <> · English: {TRANSLATION_STATUS_LABELS[translation.status][lang]}</>}.
     {review.notes.map((note) => <span class="block">{note}</span>)}
   </p>
-  <ul class="list-disc pl-5">
-    <li><a href={`${repo}/data/${collection}/${id}.json`}>Record canonico {id}.json</a></li>
+  <ul class="list-disc pl-5 wrap-anywhere">
+    <li><a href={`${repo}/data/${collection}/${id}.json`}>{t.canonicalRecord} {id}.json</a></li>
     {
       provenance.map((entry) => (
         <li>
           <a href={`${repo}/${encodeURI(entry.file)}`}>{entry.file.split("/").pop()}</a>,{" "}
-          {"row" in entry ? `riga dati ${entry.row}` : `riga ${entry.line}`}
+          {"row" in entry ? `${t.dataRow} ${entry.row}` : `${t.line} ${entry.line}`}
         </li>
       ))
     }

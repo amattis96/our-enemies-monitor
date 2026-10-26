@@ -1,0 +1,173 @@
+---
+import type { Event } from "../../../../../src/model/index.ts";
+import { countryName, formatDateRange, PRECISION_LABELS } from "../../../../../src/site/format.ts";
+import { choose, langParam, languageFromParam, textOf, ui } from "../../../../../src/site/i18n.ts";
+import { isParticipation } from "../../../../../src/site/read-model.ts";
+import EvidenceBadge from "../../../components/EvidenceBadge.astro";
+import NodeLink from "../../../components/NodeLink.astro";
+import RecordFooter from "../../../components/RecordFooter.astro";
+import RelationshipTable from "../../../components/RelationshipTable.astro";
+import SourceRefs from "../../../components/SourceRefs.astro";
+import T from "../../../components/T.astro";
+import ThemeList from "../../../components/ThemeList.astro";
+import TranslationNotice from "../../../components/TranslationNotice.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+
+export function getStaticPaths() {
+  return (["it", "en"] as const).flatMap((lang) =>
+    getModel().events.map((event) => ({
+      params: { lang: langParam(lang), id: event.id },
+      props: { event },
+    })),
+  );
+}
+
+const { event } = Astro.props as { event: Event };
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const participants = model.relationshipsOf(event.id).filter(isParticipation);
+const citing = model.relationshipsCiting(event.id);
+const hypotheses = model.dataset.hypotheses.filter((h) => h.events.includes(event.id));
+---
+
+<Base title={textOf(event.title, lang)} lang={lang} description={textOf(event.description, lang)} searchable>
+  <p class="meta">
+    <a href={href("timeline/", lang)}>{ui(lang).navTimeline}</a> · <span class="font-mono">{event.id}</span>
+  </p>
+  <h1><T text={event.title} lang={lang} /></h1>
+  <p class="meta">
+    {formatDateRange(event.date.start, event.date.end, lang)} ({PRECISION_LABELS[event.date.precision][lang]})
+    {event.geography && <> · <T text={event.geography} lang={lang} /></>}
+  </p>
+  <TranslationNotice review={event.review} lang={lang} />
+
+  {
+    event.timeline_status === "pending_integration" && (
+      <div class="notice">
+        {c(
+          "Evidenza verificata esternamente e non ancora integrata nella cronologia ufficiale (Fonte_06).",
+          "Externally verified evidence not yet integrated into the official timeline (Fonte_06).",
+        )}
+      </div>
+    )
+  }
+  {
+    event.record_type === "dataset_metadata" && (
+      <div class="notice">
+        {c("Questa voce è un metadato del dataset, non un evento geopolitico.", "This entry is dataset metadata, not a geopolitical event.")}
+      </div>
+    )
+  }
+  {
+    event.known_issues.map((issue) => (
+      <div class="notice">
+        <strong>{c("Anomalia nota della baseline:", "Known baseline anomaly:")}</strong> <T text={issue.note} lang={lang} />{" "}
+        <SourceRefs ids={issue.reported_in} lang={lang} />
+      </div>
+    ))
+  }
+
+  <p class="max-w-3xl text-lg"><T text={event.description} lang={lang} /></p>
+
+  <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
+    {
+      event.evidence_note && (
+        <>
+          <dt class="font-semibold">{c("Valutazione nel corpus", "Assessment in the corpus")}</dt>
+          <dd><T text={event.evidence_note} lang={lang} /></dd>
+        </>
+      )
+    }
+    {
+      event.evidence_level && (
+        <>
+          <dt class="font-semibold">{c("Livello di evidenza", "Evidence level")}</dt>
+          <dd><EvidenceBadge level={event.evidence_level} lang={lang} /></dd>
+        </>
+      )
+    }
+    {
+      event.publisher && (
+        <>
+          <dt class="font-semibold">{c("Fonte pubblica", "Public source")}</dt>
+          <dd>
+            {event.publisher}
+            {event.url && <> · <a href={event.url} rel="noopener">{c("documento", "document")}</a></>}
+          </dd>
+        </>
+      )
+    }
+    <dt class="font-semibold">{c("Temi", "Themes")}</dt>
+    <dd><ThemeList themes={event.themes} lang={lang} /></dd>
+    {
+      event.category && (
+        <>
+          <dt class="font-semibold">{c("Categoria originale", "Original category")}</dt>
+          <dd><T text={event.category} lang={lang} /></dd>
+        </>
+      )
+    }
+    {
+      event.places.length > 0 && (
+        <>
+          <dt class="font-semibold">{c("Paesi indicati dalla geografia", "Countries named by the geography")}</dt>
+          <dd>
+            {event.places.map((code, index) => (
+              <>
+                {index > 0 && ", "}
+                <a href={`${href("atlas/", lang)}#${code}`}>{countryName(code, lang)}</a>
+              </>
+            ))}
+          </dd>
+        </>
+      )
+    }
+    <dt class="font-semibold">{c("Fonti del corpus", "Corpus sources")}</dt>
+    <dd><SourceRefs ids={event.sources} lang={lang} /></dd>
+  </dl>
+
+  <h2>{c("Attori e ruoli nell'evento", "Actors and roles in the event")}</h2>
+  <p class="meta max-w-3xl">
+    {c(
+      "Relazioni di presenza o ruolo rispetto all'evento: non indicano di per sé comando, finanziamento o coordinamento fra gli attori.",
+      "Presence or role relationships with respect to the event: they do not by themselves indicate command, financing or coordination between actors.",
+    )}
+  </p>
+  {
+    participants.length > 0 ? (
+      <RelationshipTable relationships={participants} caption={c("Attori e ruoli", "Actors and roles")} lang={lang} />
+    ) : (
+      <p class="meta">{c("Nessun attore registrato.", "No actor recorded.")}</p>
+    )
+  }
+
+  {
+    citing.length > 0 && (
+      <>
+        <h2>{c("Relazioni dirette che citano l'evento", "Direct relationships citing the event")}</h2>
+        <RelationshipTable relationships={citing} caption={c("Relazioni dirette", "Direct relationships")} lang={lang} />
+      </>
+    )
+  }
+
+  {
+    hypotheses.length > 0 && (
+      <>
+        <h2>{c("Ipotesi aperte collegate", "Linked open hypotheses")}</h2>
+        <ul class="list-disc pl-5">
+          {hypotheses.map((h) => (
+            <li>
+              <a href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a>: <T text={h.question} lang={lang} /> (
+              <NodeLink id={h.subject} lang={lang} /> → <NodeLink id={h.object} lang={lang} />)
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  <RecordFooter id={event.id} collection="events" review={event.review} provenance={event.provenance} lang={lang} />
+</Base>

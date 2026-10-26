@@ -1,0 +1,97 @@
+---
+import type { Source } from "../../../../../src/model/index.ts";
+import { formatDateRange, SOURCE_TYPE_LABELS } from "../../../../../src/site/format.ts";
+import { choose, langParam, languageFromParam, textOf, ui } from "../../../../../src/site/i18n.ts";
+import NodeLink from "../../../components/NodeLink.astro";
+import RecordFooter from "../../../components/RecordFooter.astro";
+import SourceRefs from "../../../components/SourceRefs.astro";
+import T from "../../../components/T.astro";
+import TranslationNotice from "../../../components/TranslationNotice.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+
+export function getStaticPaths() {
+  return (["it", "en"] as const).flatMap((lang) =>
+    getModel().dataset.sources.map((source) => ({
+      params: { lang: langParam(lang), id: source.id },
+      props: { source },
+    })),
+  );
+}
+const { source: s } = Astro.props as { source: Source };
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const citing = model.citing(s.id);
+const exposures = model.dataset.exposures.filter((x) => x.sources.includes(s.id));
+const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main";
+---
+
+<Base title={`${s.id} · ${textOf(s.title, lang)}`} lang={lang} searchable>
+  <p class="meta"><a href={href("sources/", lang)}>{ui(lang).navSources}</a> · {SOURCE_TYPE_LABELS[s.type][lang]}</p>
+  <h1><span class="font-mono">{s.id}</span> <T text={s.title} lang={lang} /></h1>
+  <TranslationNotice review={s.review} lang={lang} />
+  <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
+    {s.publisher && (<><dt class="font-semibold">{c("Editore / autorità", "Publisher / authority")}</dt><dd>{s.publisher}</dd></>)}
+    {
+      s.urls.length > 0 && (
+        <>
+          <dt class="font-semibold">{c("Collegamenti", "Links")}</dt>
+          <dd>
+            <ul>{s.urls.map((url) => <li class="break-all"><a href={url} rel="noopener">{url}</a></li>)}</ul>
+          </dd>
+        </>
+      )
+    }
+    {
+      s.files.length > 0 && (
+        <>
+          <dt class="font-semibold">{c("File nel repository (in italiano)", "Repository files (in Italian)")}</dt>
+          <dd>
+            <ul>{s.files.map((file) => <li class="break-all"><a href={`${repo}/${encodeURI(file)}`}>{file.split("/").pop()}</a></li>)}</ul>
+          </dd>
+        </>
+      )
+    }
+    {s.cited_in.length > 0 && (<><dt class="font-semibold">{c("Citata in", "Cited in")}</dt><dd><SourceRefs ids={s.cited_in} lang={lang} /></dd></>)}
+  </dl>
+
+  <h2>{c("Record che citano questa fonte", "Records citing this source")}</h2>
+  <p class="meta">
+    {citing.events.length} {c("eventi", "events")}, {citing.relationships.length} {c("relazioni", "relationships")}, {citing.hypotheses.length} {c("ipotesi", "hypotheses")}, {exposures.length} {c("esposizioni", "exposures")}.
+  </p>
+  {
+    citing.events.length > 0 && (
+      <details>
+        <summary class="cursor-pointer">{c("Eventi", "Events")} ({citing.events.length})</summary>
+        <ul class="mt-2">
+          {citing.events.map((e) => (
+            <li><span class="meta">{formatDateRange(e.date.start, e.date.end, lang)} · </span><NodeLink id={e.id} lang={lang} /></li>
+          ))}
+        </ul>
+      </details>
+    )
+  }
+  {
+    citing.hypotheses.length > 0 && (
+      <details>
+        <summary class="cursor-pointer">{c("Ipotesi", "Hypotheses")} ({citing.hypotheses.length})</summary>
+        <ul class="mt-2">
+          {citing.hypotheses.map((h) => <li><a href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a> <T text={h.question} lang={lang} /></li>)}
+        </ul>
+      </details>
+    )
+  }
+  {
+    exposures.length > 0 && (
+      <details>
+        <summary class="cursor-pointer">{c("Esposizioni", "Exposures")} ({exposures.length})</summary>
+        <ul class="mt-2">
+          {exposures.map((x) => <li><a href={`${href("dependencies/", lang)}#${x.id}`}>{x.id}</a> <T text={x.sector} lang={lang} /></li>)}
+        </ul>
+      </details>
+    )
+  }
+  <RecordFooter id={s.id} collection="sources" review={s.review} provenance={s.provenance} lang={lang} />
+</Base>

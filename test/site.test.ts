@@ -1,7 +1,15 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { CATEGORY_THEMES, EVENT_THEME_OVERRIDES } from "../src/pipeline/baseline/themes.ts";
-import { formatDateRange, formatPartialDate, formatPredicate } from "../src/site/format.ts";
+import { buildManifest, exportFiles } from "../src/site/exports.ts";
 import {
+  formatDateRange,
+  formatMeasure,
+  formatPartialDate,
+  formatPredicate,
+} from "../src/site/format.ts";
+import { languagePaths, pick } from "../src/site/i18n.ts";
+import {
+  atlasRows,
   evidenceGraph,
   hypothesisGraph,
   loadReadModel,
@@ -69,12 +77,85 @@ describe("themes", () => {
   });
 });
 
+describe("atlas", () => {
+  it("keeps event location separate from state roles", () => {
+    const rows = atlasRows(model);
+    const ee = rows.find((r) => r.code === "EE");
+    expect(ee?.located.map((e) => e.id)).toContain("TL-0001");
+    expect(ee?.state?.id).toBe("EE");
+    for (const row of rows) {
+      expect(row.located.every((e) => e.places.includes(row.code))).toBe(true);
+      expect(row.located.some((e) => e.record_type === "dataset_metadata")).toBe(false);
+    }
+  });
+
+  it("does not reveal restricted relationships through roles", () => {
+    const roleCount = atlasRows(model).reduce(
+      (sum, row) => sum + row.roles.reduce((n, role) => n + role.events.length, 0),
+      0,
+    );
+    const visible = model.dataset.relationships.filter(
+      (r) =>
+        r.relation_class === "event_participation" &&
+        !model.isRestricted(r) &&
+        [r.subject, r.object].some((id) => model.entity(id)?.kind === "state"),
+    ).length;
+    expect(roleCount).toBe(visible);
+  });
+});
+
+describe("i18n", () => {
+  it("falls back to Italian and says so", () => {
+    expect(pick({ it: "ciao", en: "hello" }, "en")).toEqual({
+      value: "hello",
+      lang: "en",
+      fallback: false,
+    });
+    expect(pick({ it: "ciao" }, "en")).toEqual({ value: "ciao", lang: "it", fallback: true });
+    expect(pick({ it: "ciao", en: "hello" }, "it").value).toBe("ciao");
+  });
+
+  it("returns fresh static paths on every call", () => {
+    expect(languagePaths()).not.toBe(languagePaths());
+    expect(languagePaths().map((p) => p.params.lang)).toEqual([undefined, "en"]);
+  });
+});
+
+describe("exports", () => {
+  it("are deterministic and described by the manifest", () => {
+    const files = exportFiles(model.dataset);
+    expect(exportFiles(model.dataset)).toEqual(files);
+    expect(files.map((f) => f.path)).toContain("events.json");
+    expect(files.map((f) => f.path)).toContain("schemas/exposures.schema.json");
+    const manifest = buildManifest(model.dataset, files);
+    expect(manifest.files).toHaveLength(files.length);
+    expect(manifest.counts.exposures).toBe(14);
+    expect(JSON.parse(files.find((f) => f.path === "all.json")?.text ?? "{}").events).toHaveLength(
+      151,
+    );
+  });
+});
+
 describe("formatting", () => {
   it("formats partial dates without inventing precision", () => {
     expect(formatPartialDate("2007")).toBe("2007");
     expect(formatPartialDate("2007-04")).toBe("aprile 2007");
     expect(formatPartialDate("2026-10-06")).toBe("6 ottobre 2026");
     expect(formatDateRange("2007-04", "2007-05")).toBe("aprile 2007 – maggio 2007");
+  });
+
+  it("formats measures with their qualifier and unit", () => {
+    const base = { label: { it: "x" }, out_of: null, period: null } as const;
+    expect(formatMeasure({ ...base, value: 85, unit: "percent", qualifier: "approx" }, "it")).toBe(
+      "circa 85%",
+    );
+    expect(
+      formatMeasure({ ...base, value: 43.6, unit: "eur_billion", qualifier: "exact" }, "en"),
+    ).toBe("€43.6 bn");
+    expect(
+      formatMeasure({ ...base, value: 19, unit: "count", qualifier: "exact", out_of: 20 }, "en"),
+    ).toBe("19 of 20");
+    expect(formatPartialDate("2007-04", "en")).toBe("April 2007");
   });
 
   it("keeps predicates literal", () => {

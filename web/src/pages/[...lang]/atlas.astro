@@ -1,0 +1,164 @@
+---
+import { countryName, formatDateRange, formatPredicate } from "../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import { atlasRows } from "../../../../src/site/read-model.ts";
+import NodeLink from "../../components/NodeLink.astro";
+import T from "../../components/T.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { BUCKETS, colorFor, EMPTY_COLOR, renderMap } from "../../lib/map.ts";
+import { getModel } from "../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const rows = atlasRows(model).sort((a, b) =>
+  countryName(a.code, lang).localeCompare(countryName(b.code, lang), lang),
+);
+const located = new Map(rows.map((r) => [r.code, r.located.length]));
+const maps = [
+  { id: "europe", title: c("Europa", "Europe"), map: renderMap(located, "europe") },
+  { id: "world", title: c("Mondo", "World"), map: renderMap(located, "world") },
+];
+const unplaced = model.events.filter(
+  (e) => e.record_type === "event" && e.geography !== null && e.places.length === 0,
+);
+const legend = [
+  { color: EMPTY_COLOR, label: "0" },
+  ...BUCKETS.map((b) => ({
+    color: b.color,
+    label:
+      b.max === Number.POSITIVE_INFINITY
+        ? `${b.min}+`
+        : b.min === b.max
+          ? `${b.min}`
+          : `${b.min}–${b.max}`,
+  })),
+];
+---
+
+<Base title={ui(lang).navAtlas} lang={lang} description={c("Atlante a livello di paese degli eventi documentati.", "Country-level atlas of documented events.")}>
+  <h1>{c("Atlante", "Atlas")}</h1>
+  <div class="max-w-3xl">
+    <p>
+      {c(
+        "Le mappe mostrano dove sono avvenuti gli eventi della cronologia, secondo la geografia indicata nel corpus. Il luogo di un evento non indica chi ne è responsabile: autore, mandante e bersaglio sono informazioni distinte, riportate nella tabella come ruoli letterali.",
+        "The maps show where timeline events took place, according to the geography given in the corpus. The location of an event does not indicate who is responsible: perpetrator, sponsor and target are distinct pieces of information, given in the table as literal roles.",
+      )}
+    </p>
+    <p class="meta">
+      {c(
+        `Solo livello di paese, senza coordinate inventate. ${unplaced.length} eventi hanno una geografia sovranazionale, marittima o generica (es. «Unione europea», «Mar Baltico») e non compaiono sulla mappa. Un evento che nomina più paesi è contato in ciascuno.`,
+        `Country level only, with no invented coordinates. ${unplaced.length} events have a supranational, maritime or generic geography (e.g. “European Union”, “Baltic Sea”) and do not appear on the map. An event naming several countries is counted in each.`,
+      )}
+    </p>
+  </div>
+
+  <ul class="flex flex-wrap gap-3 text-sm my-3" aria-label={c("Legenda: numero di eventi", "Legend: number of events")}>
+    {legend.map((item) => (
+      <li class="flex items-center gap-1">
+        <span aria-hidden="true" class="inline-block w-4 h-4 border border-line" style={`background:${item.color}`}></span>
+        {item.label}
+      </li>
+    ))}
+  </ul>
+
+  <div class="grid gap-6 lg:grid-cols-2">
+    {
+      maps.map(({ id, title, map }) => (
+        <figure>
+          <figcaption class="font-semibold mb-1" id={`map-${id}`}>{title}</figcaption>
+          <svg
+            viewBox={`0 0 ${map.width} ${map.height}`}
+            class="w-full h-auto border border-line rounded bg-[#f7f9fc]"
+            role="group"
+            aria-labelledby={`map-${id}`}
+          >
+            {map.shapes.map((shape) =>
+              shape.code && shape.value > 0 ? (
+                <a href={`#${shape.code}`}>
+                  <path d={shape.d} fill={colorFor(shape.value)} stroke="#ffffff" stroke-width="0.5">
+                    <title>{`${countryName(shape.code, lang)}: ${shape.value}`}</title>
+                  </path>
+                </a>
+              ) : (
+                <path d={shape.d} fill={EMPTY_COLOR} stroke="#ffffff" stroke-width="0.5" />
+              ),
+            )}
+          </svg>
+        </figure>
+      ))
+    }
+  </div>
+  <p class="meta mt-2">
+    {c("Confini: Natural Earth (pubblico dominio) tramite world-atlas.", "Borders: Natural Earth (public domain) via world-atlas.")}
+  </p>
+
+  <h2>{c("Paesi", "Countries")}</h2>
+  <p class="meta max-w-3xl">
+    {c(
+      "«Eventi nel paese» deriva dalla geografia dell'evento. «Ruoli dello Stato» elenca i predicati originali (in italiano) con cui lo Stato compare negli eventi: includono bersagli, autorità che attribuiscono o sanzionano, contesto. Non è una misura di ostilità.",
+      "“Events in the country” comes from the event geography. “Roles of the state” lists the original predicates (in Italian) with which the state appears in events: they include targets, authorities attributing or sanctioning, context. It is not a measure of hostility.",
+    )}
+  </p>
+  <div class="relative overflow-x-auto">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">{c("Paese", "Country")}</th>
+          <th scope="col">{c("Eventi nel paese", "Events in the country")}</th>
+          <th scope="col">{c("Ruoli dello Stato negli eventi", "Roles of the state in events")}</th>
+          <th scope="col">{c("Relazioni dirette dello Stato", "Direct relationships of the state")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((row) => (
+            <tr id={row.code}>
+              <th scope="row" class="font-normal">
+                {countryName(row.code, lang)} <span class="meta font-mono">{row.code}</span>
+                {row.state && (
+                  <div class="meta">
+                    <NodeLink id={row.state.id} lang={lang} />
+                  </div>
+                )}
+              </th>
+              <td>
+                {row.located.length === 0 ? (
+                  <span class="meta">0</span>
+                ) : (
+                  <details>
+                    <summary class="cursor-pointer">{row.located.length}</summary>
+                    <ul class="mt-1 space-y-1">
+                      {row.located.map((event) => (
+                        <li>
+                          <span class="meta">{formatDateRange(event.date.start, event.date.end, lang)} · </span>
+                          <a href={href(`events/${event.id}/`, lang)}><T text={event.title} lang={lang} /></a>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </td>
+              <td>
+                {row.roles.length === 0 ? (
+                  <span class="meta">—</span>
+                ) : (
+                  <ul>
+                    {row.roles.map((role) => (
+                      <li>
+                        <span lang="it">{formatPredicate(role.predicate)}</span> <span class="meta">({role.events.length})</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </td>
+              <td>{row.state ? row.direct : <span class="meta">—</span>}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Base>

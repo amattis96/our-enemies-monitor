@@ -1,0 +1,236 @@
+---
+import {
+  EVIDENCE_LEVEL_LABELS,
+  EVIDENCE_LEVELS,
+  RELATION_CLASS_GROUP,
+  RELATION_GROUPS,
+} from "../../../../src/model/index.ts";
+import { RELATION_GROUP_LABELS } from "../../../../src/site/format.ts";
+import { languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import EvidenceBadge from "../../components/EvidenceBadge.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+
+const classesByGroup = RELATION_GROUPS.map((group) => ({
+  group,
+  classes: Object.entries(RELATION_CLASS_GROUP)
+    .filter(([, g]) => g === group)
+    .map(([c]) => c),
+}));
+
+const CONTENT = {
+  it: {
+    intro:
+      "Il progetto è uno strumento di analisi e ricerca, non un organismo ufficiale UE, NATO, di intelligence, giudiziario o di fact-checking. I livelli di evidenza sono classificazioni editoriali, non accertamenti giudiziari né probabilità calibrate.",
+    levelsTitle: "Livelli di evidenza",
+    levelsText:
+      "Il livello descrive il sostegno a una specifica affermazione o relazione, non la reputazione complessiva di un'entità. Una condanna è E1 per la condanna, non per tutte le accuse esterne citate nella motivazione; una sanzione è E1 per l'atto e può essere E2 per la responsabilità attribuita.",
+    levelCol: "Livello",
+    meaningCol: "Significato",
+    e5Note: "Il livello E5 non compare mai nella rete delle relazioni: le ipotesi vivono nel",
+    e5Link: "registro delle ipotesi",
+    principlesTitle: "Principi",
+    principles: [
+      [
+        "Connessione non è causalità.",
+        "Narrative condivise, vicinanza nel grafo e interessi coincidenti non dimostrano coordinamento operativo.",
+      ],
+      [
+        "Evento, autore, mandante, motivo e impatto sono affermazioni distinte.",
+        "Ognuna richiede la propria evidenza.",
+      ],
+      [
+        "L'attribuzione istituzionale non è una sentenza.",
+        "Si registra la decisione o la dichiarazione esatta e la sua data.",
+      ],
+      [
+        "Un accertamento può cambiare.",
+        "Correzioni, assoluzioni, nuove prove e ritrattazioni restano visibili e versionate.",
+      ],
+      [
+        "Nessuna colpevolezza per associazione.",
+        "Gli archi di contesto e partecipazione sono distinti da quelli di controllo e finanziamento.",
+      ],
+      [
+        "Nessuna falsa precisione.",
+        "Date, cifre, quote societarie e nessi causali ignoti restano ignoti.",
+      ],
+      [
+        "Le prove contrarie contano.",
+        "Si cercano attivamente spiegazioni alternative e risultanze contrarie.",
+      ],
+    ],
+    groupsTitle: "Tipi di relazione",
+    groupsText:
+      "Ogni relazione conserva la classe e il predicato originali, da leggere letteralmente. I gruppi servono solo a filtrare la visualizzazione e non aggiungono affermazioni.",
+    groupCol: "Gruppo",
+    classesCol: "Classi originali",
+    personsTitle: "Persone nominate",
+    personsText:
+      "Per ogni persona reale devono essere visibili l'atto che la riguarda, la fonte, i limiti, la data e lo stato procedurale. Finché una relazione che riguarda una persona non ha una fonte primaria collegata, il sito la mostra in forma riservata e la esclude dal grafo. Non si compilano elenchi di sospetti sulla base di ideologia, nazionalità o associazioni superficiali.",
+    datesTitle: "Date e cronologia",
+    datesText:
+      "Le date hanno una precisione esplicita (anno, mese o giorno). La data di un fatto è distinta da quella della sua scoperta, attribuzione, sentenza o pubblicazione: un'attribuzione successiva non viene retrodatata all'evento.",
+    classificationTitle: "Temi e luoghi",
+    classificationText:
+      "I temi della cronologia e i paesi dell'atlante sono classificazioni editoriali delle categorie e delle geografie originali, che restano visibili in ogni scheda come riferimento. Dove il corpus stesso segnala una classificazione errata (TL-0035, TL-0048), i temi seguono la correzione indicata. L'atlante lavora solo a livello di paese: nessuna coordinata viene inventata.",
+    dependenciesTitle: "Dipendenze strategiche",
+    dependenciesText:
+      "Ogni valore di esposizione è riportato con il proprio denominatore, periodo e qualificatore («circa», «oltre»). Valori con universi statistici diversi non vengono confrontati in un unico grafico né sommati in un indice.",
+    languageTitle: "Lingue",
+    languageText:
+      "Il corpus è in italiano, che resta la lingua di riferimento. I testi inglesi sono traduzioni automatiche non ancora riviste, segnalate come tali; i predicati delle relazioni restano nell'italiano originale per evitare traduzioni che ne alterino il significato.",
+    limitsTitle: "Limiti del corpus",
+    limits: [
+      "Il corpus è selettivo e curatoriale: non è un censimento di tutti gli incidenti in Europa.",
+      "Le operazioni clandestine non scoperte non sono osservabili; i casi più visibili e occidentali sono sovrarappresentati.",
+      "I conteggi riflettono come è stato costruito il dataset, non la grandezza reale di una minaccia.",
+      "Molte affermazioni non sono ancora state verificate riga per riga sulla fonte primaria.",
+      "Una relazione mancante non prova l'assenza; un'ipotesi non verificata non è un fatto.",
+    ],
+    correctionsTitle: "Correzioni e contributi",
+    correctionsText:
+      "Integrazioni documentate, interpretazioni alternative e correzioni sono benvenute tramite il repository GitHub, indicando le fonti primarie, i record interessati, cosa è noto e cosa è dedotto, e le eventuali prove contrarie.",
+    correctionsLink: "Come contribuire",
+  },
+  en: {
+    intro:
+      "The project is an analysis and research tool, not an official EU, NATO, intelligence, judicial or fact-checking body. Evidence levels are editorial classifications, not judicial findings or calibrated probabilities.",
+    levelsTitle: "Evidence levels",
+    levelsText:
+      "A level describes the support for a specific statement or relationship, not an entity's overall reputation. A conviction is E1 for the conviction, not for every external allegation cited in the reasoning; a sanction is E1 for the act and may be E2 for the responsibility it attributes.",
+    levelCol: "Level",
+    meaningCol: "Meaning",
+    e5Note: "Level E5 never appears in the relationship network: hypotheses live in the",
+    e5Link: "hypothesis register",
+    principlesTitle: "Principles",
+    principles: [
+      [
+        "Connection is not causation.",
+        "Shared narratives, proximity in the graph and coinciding interests do not demonstrate operational coordination.",
+      ],
+      [
+        "Event, perpetrator, sponsor, motive and impact are distinct claims.",
+        "Each needs its own evidence.",
+      ],
+      [
+        "Institutional attribution is not a court verdict.",
+        "The exact decision or statement and its date are recorded.",
+      ],
+      [
+        "A finding may change.",
+        "Corrections, acquittals, new evidence and retractions remain visible and versioned.",
+      ],
+      [
+        "No guilt by association.",
+        "Context and participation edges are distinct from control and financing edges.",
+      ],
+      [
+        "No false precision.",
+        "Unknown dates, figures, ownership shares and causal links remain unknown.",
+      ],
+      [
+        "Counter-evidence matters.",
+        "Alternative explanations and contrary findings are actively sought.",
+      ],
+    ],
+    groupsTitle: "Relationship types",
+    groupsText:
+      "Each relationship keeps its original class and predicate, to be read literally. Groups only serve to filter the visualisation and add no claims.",
+    groupCol: "Group",
+    classesCol: "Original classes",
+    personsTitle: "Named people",
+    personsText:
+      "For every real person, the act concerning them, the source, its limits, the date and the procedural status must be visible. Until a relationship concerning a person has a linked primary source, the site shows it in restricted form and excludes it from the graph. No lists of suspects are compiled on the basis of ideology, nationality or superficial associations.",
+    datesTitle: "Dates and chronology",
+    datesText:
+      "Dates carry an explicit precision (year, month or day). The date of a fact is distinct from the date of its discovery, attribution, judgment or publication: a later attribution is not backdated to the event.",
+    classificationTitle: "Themes and places",
+    classificationText:
+      "Timeline themes and atlas countries are editorial classifications of the original categories and geographies, which remain visible on every record as the reference. Where the corpus itself reports a misclassification (TL-0035, TL-0048), the themes follow the stated correction. The atlas works at country level only: no coordinates are invented.",
+    dependenciesTitle: "Strategic dependencies",
+    dependenciesText:
+      "Every exposure value is given with its own denominator, period and qualifier (“about”, “over”). Values from different statistical universes are not compared in a single chart nor added up into an index.",
+    languageTitle: "Languages",
+    languageText:
+      "The corpus is in Italian, which remains the reference language. English texts are unreviewed machine translations and are marked as such; relationship predicates stay in the original Italian to avoid translations that could alter their meaning.",
+    limitsTitle: "Limits of the corpus",
+    limits: [
+      "The corpus is selective and curated: it is not a census of all incidents in Europe.",
+      "Undiscovered covert operations cannot be observed; the most visible and Western cases are over-represented.",
+      "Counts reflect how the dataset was built, not the actual magnitude of a threat.",
+      "Many statements have not yet been verified line by line against the primary source.",
+      "A missing relationship does not prove absence; an unverified hypothesis is not a fact.",
+    ],
+    correctionsTitle: "Corrections and contributions",
+    correctionsText:
+      "Documented additions, alternative interpretations and corrections are welcome through the GitHub repository, stating the primary sources, the records concerned, what is known and what is inferred, and any contrary evidence.",
+    correctionsLink: "How to contribute",
+  },
+};
+const t = CONTENT[lang];
+---
+
+<Base title={ui(lang).navMethodology} lang={lang} searchable>
+  <h1>{ui(lang).navMethodology}</h1>
+  <p class="max-w-3xl">{t.intro}</p>
+
+  <h2>{t.levelsTitle}</h2>
+  <p class="max-w-3xl">{t.levelsText}</p>
+  <div class="relative overflow-x-auto max-w-3xl">
+    <table>
+      <thead><tr><th scope="col">{t.levelCol}</th><th scope="col">{t.meaningCol}</th></tr></thead>
+      <tbody>
+        {EVIDENCE_LEVELS.map((level) => (
+          <tr><td><EvidenceBadge level={level} lang={lang} /></td><td>{EVIDENCE_LEVEL_LABELS[level][lang]}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="meta max-w-3xl mt-2">
+    {t.e5Note}{" "}<a href={href("hypotheses/", lang)}>{t.e5Link}</a>.
+  </p>
+
+  <h2>{t.principlesTitle}</h2>
+  <ol class="list-decimal pl-5 max-w-3xl space-y-1">
+    {t.principles.map(([title, text]) => <li><strong>{title}</strong> {text}</li>)}
+  </ol>
+
+  <h2>{t.groupsTitle}</h2>
+  <p class="max-w-3xl">{t.groupsText}</p>
+  <div class="relative overflow-x-auto max-w-3xl">
+    <table>
+      <thead><tr><th scope="col">{t.groupCol}</th><th scope="col">{t.classesCol}</th></tr></thead>
+      <tbody>
+        {classesByGroup.map(({ group, classes }) => (
+          <tr><td>{RELATION_GROUP_LABELS[group][lang]}</td><td class="font-mono text-xs">{classes.join(", ")}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>{t.personsTitle}</h2>
+  <p class="max-w-3xl">{t.personsText}</p>
+  <h2>{t.datesTitle}</h2>
+  <p class="max-w-3xl">{t.datesText}</p>
+  <h2>{t.classificationTitle}</h2>
+  <p class="max-w-3xl">{t.classificationText}</p>
+  <h2>{t.dependenciesTitle}</h2>
+  <p class="max-w-3xl">{t.dependenciesText}</p>
+  <h2>{t.languageTitle}</h2>
+  <p class="max-w-3xl">{t.languageText}</p>
+
+  <h2>{t.limitsTitle}</h2>
+  <ul class="list-disc pl-5 max-w-3xl space-y-1">
+    {t.limits.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>{t.correctionsTitle}</h2>
+  <p class="max-w-3xl">
+    {t.correctionsText}{" "}
+    <a href="https://github.com/amattis96/our-enemies-monitor/blob/main/CONTRIBUTING.md">{t.correctionsLink}</a>.
+  </p>
+</Base>

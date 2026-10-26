@@ -1,0 +1,76 @@
+---
+import { buildManifest, exportFiles } from "../../../../src/site/exports.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { assetHref } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const dataset = getModel().dataset;
+const manifest = buildManifest(dataset, exportFiles(dataset));
+const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
+---
+
+<Base title={ui(lang).navData} lang={lang} description={c("Dati canonici scaricabili e schemi JSON.", "Downloadable canonical data and JSON Schemas.")}>
+  <h1>{c("Dati aperti", "Open data")}</h1>
+  <div class="max-w-3xl">
+    <p>
+      {c(
+        "I dati originali del progetto sono dedicati al pubblico dominio con CC0 1.0: si possono copiare, ripubblicare e riusare anche commercialmente, senza obbligo di attribuzione. Conservare fonti, avvertenze e correzioni è comunque raccomandato per l'integrità della ricerca. I materiali di terzi citati (articoli, documenti ufficiali) mantengono i propri diritti.",
+        "The project's original data is dedicated to the public domain under CC0 1.0: it may be copied, republished and reused, including commercially, with no attribution requirement. Keeping sources, caveats and corrections is still recommended for research integrity. Cited third-party materials (articles, official documents) keep their own rights.",
+      )}
+    </p>
+    <p class="meta">
+      {c("Versione di export", "Export version")} {manifest.export_version}
+      {manifest.commit && <> · commit <span class="font-mono">{manifest.commit.slice(0, 7)}</span></>}
+      {manifest.commit_date && <> · {manifest.commit_date.slice(0, 10)}</>} ·{" "}
+      <a href={assetHref("data/v1/manifest.json")}>manifest.json</a>
+      {c(" (conteggi e SHA-256 di ogni file)", " (counts and SHA-256 of every file)")}
+    </p>
+  </div>
+
+  <div class="relative overflow-x-auto">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">{c("File", "File")}</th>
+          <th scope="col">{c("Dimensione", "Size")}</th>
+          <th scope="col">SHA-256</th>
+        </tr>
+      </thead>
+      <tbody>
+        {manifest.files.map((file) => (
+          <tr>
+            <td><a href={assetHref(`data/v1/${file.path}`)}>{file.path}</a></td>
+            <td class="whitespace-nowrap">{kb(file.bytes)}</td>
+            <td class="font-mono text-xs break-all">{file.sha256}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>{c("Formato", "Format")}</h2>
+  <ul class="list-disc pl-5 max-w-3xl space-y-1">
+    <li>{c("Ogni file di collezione è un array JSON dei record canonici, identici a quelli in data/ nel repository.", "Each collection file is a JSON array of the canonical records, identical to those in data/ in the repository.")}</li>
+    <li>{c("all.json contiene tutte le collezioni in un unico oggetto.", "all.json contains every collection in a single object.")}</li>
+    <li>{c("Gli schemi JSON (draft 2020-12) descrivono ogni record e sono generati dal modello del progetto.", "The JSON Schemas (draft 2020-12) describe every record and are generated from the project model.")}</li>
+    <li>{c("Il testo canonico è in italiano (campo it); en è una traduzione, con stato in review.translations.", "Canonical text is Italian (field it); en is a translation, with its status in review.translations.")}</li>
+    <li>{c("Il campo provenance riporta file e riga del corpus originale da cui deriva ogni record.", "The provenance field gives the original corpus file and row each record comes from.")}</li>
+  </ul>
+
+  <h2>{c("Ricostruire da zero", "Rebuild from scratch")}</h2>
+  <p class="max-w-3xl">
+    {c(
+      "Il sito e questi file si rigenerano da un fork del repository con software libero, senza account né servizi a pagamento:",
+      "The site and these files can be regenerated from a fork of the repository with free software, with no account or paid service:",
+    )}
+  </p>
+  <pre class="card bg-wash overflow-x-auto text-sm"><code>git clone https://github.com/amattis96/our-enemies-monitor.git
+cd our-enemies-monitor
+pnpm install
+pnpm check
+SITE_URL=https://example.org BASE_PATH=/ pnpm build   # → web/dist</code></pre>
+</Base>

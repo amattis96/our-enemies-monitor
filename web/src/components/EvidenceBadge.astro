@@ -1,11 +1,16 @@
 ---
-import { EVIDENCE_LEVEL_LABELS, type EvidenceLevel } from "../../../src/model/index.ts";
+import {
+  EVIDENCE_LEVEL_LABELS,
+  type EvidenceLevel,
+  type Language,
+} from "../../../src/model/index.ts";
 
 interface Props {
   level: EvidenceLevel;
+  lang: Language;
 }
-const { level } = Astro.props;
-const label = EVIDENCE_LEVEL_LABELS[level].it;
+const { level, lang } = Astro.props;
+const label = EVIDENCE_LEVEL_LABELS[level][lang];
 ---
 
 <span class="badge font-mono" title={label}>

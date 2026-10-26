@@ -66,10 +66,13 @@ pnpm import:baseline    # one-time import; refuses to overwrite data/ without --
 pnpm build              # static site into web/dist + Pagefind index
 pnpm dev                # Astro dev server (no search index)
 pnpm preview            # serve the last build
+pnpm check:links        # internal links of the built site (after pnpm build)
+pnpm i18n:export <f>    # untranslated/stale Italian texts → { it: "" }
+pnpm i18n:import <f> --status machine|reviewed   # apply { it: en } translations
 ```
 
-Before declaring work done, run `pnpm check` (and `pnpm build` for site changes)
-and report the real result. For UI changes, also look at the pages in a browser.
+Before declaring work done, run `pnpm check` (and `pnpm build` plus
+`pnpm check:links` for site changes) and report the real result. For UI changes, also look at the pages in a browser.
 
 ## Where things are
 
@@ -81,14 +84,21 @@ and report the real result. For UI changes, also look at the pages in a browser.
   known-issue registry for the original files.
 - `src/pipeline/baseline/themes.ts` — editorial category → theme mapping. A new
   category in the data needs an explicit entry here.
-- `src/site/` — read model and display formatting for the website. Public
+- `src/pipeline/baseline/places.ts` / `exposures.ts` — editorial geography →
+  country mapping and the Fonte_08 §12.2 exposure transcription.
+- `src/site/` — read model, i18n strings, formatting and data exports for the website. Public
   rules (restricted person relationships, graph separation, ordering) live
   here, with tests, not in templates.
 - `web/` — Astro site. Keep `.astro` templates thin: they are not type-checked
-  (`@astrojs/check` does not support TypeScript 7 yet). Use `href()` from
-  `web/src/lib/links.ts` for every internal link (base path). Astro drops
-  whitespace between a line break and a tag: write `{" "}` where a space is
-  needed before/after inline links.
+  (`@astrojs/check` does not support TypeScript 7 yet). Pages live in
+  `web/src/pages/[...lang]/` and must work for both languages: take `lang`
+  from `languageFromParam(Astro.params.lang)`, use `languagePaths()` in
+  `getStaticPaths`, put interface strings in both languages, and render data
+  text with the `T` component (Italian fallback is marked). Use
+  `href(path, lang)` from `web/src/lib/links.ts` for internal pages and
+  `assetHref()` for language-neutral files. Astro drops whitespace between a
+  line break and a tag: write `{" "}` where a space is needed around inline
+  links.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
 
@@ -107,6 +117,18 @@ and report the real result. For UI changes, also look at the pages in a browser.
   `docs: ...`). One logical change per commit.
 - Work on a branch and open a PR for data changes produced by research agents;
   never push directly to `main` unless the maintainer asks.
+
+## Translations
+
+- Italian is canonical. Never edit only the `en` text to change meaning: fix
+  the Italian, then re-translate.
+- Changing an Italian text makes the record's English translation stale and
+  `pnpm validate` fails. Re-translate with `pnpm i18n:export` → translate →
+  `pnpm i18n:import`, or remove the record's `en` texts and
+  `review.translations`.
+- AI translations are imported with `--status machine`; only a human
+  reviewer may import with `--status reviewed`.
+- Relationship predicates stay in Italian on every page (they are literal).
 
 ## Adding or correcting data
 

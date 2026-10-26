@@ -1,0 +1,35 @@
+---
+import { ENTITY_KIND_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import NetworkExplorer from "../../../islands/NetworkExplorer.tsx";
+import Base from "../../../layouts/Base.astro";
+import { assetHref, href } from "../../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const kindLabels = Object.fromEntries(
+  Object.entries(ENTITY_KIND_LABELS).map(([k, v]) => [k, v[lang]]),
+);
+---
+
+<Base title={c("Grafo delle ipotesi (esplorativo)", "Hypothesis graph (exploratory)")} lang={lang}>
+  <h1>{c("Grafo delle ipotesi — esplorativo", "Hypothesis graph — exploratory")}</h1>
+  <div class="notice max-w-3xl">
+    {c(
+      "Questo grafo non mostra fatti: ogni collegamento è una domanda investigativa aperta e non dimostrata (livello E5). Non va letto né citato come una relazione accertata.",
+      "This graph does not show facts: every link is an open, unproven investigative question (level E5). It must not be read or cited as an established relationship.",
+    )}{" "}
+    <a href={href("network/", lang)}>{c("Rete delle evidenze", "Evidence network")}</a>.
+  </div>
+  <NetworkExplorer
+    client:only="react"
+    lang={lang}
+    mode="hypotheses"
+    dataUrl={assetHref("data/v1/hypotheses-graph.json")}
+    entityBase={href("entities/", lang)}
+    eventBase={href("events/", lang)}
+    groupLabels={{}}
+    kindLabels={kindLabels}
+  />
+</Base>

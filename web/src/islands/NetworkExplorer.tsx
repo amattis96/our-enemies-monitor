@@ -1,9 +1,39 @@
 import cytoscape, { type Core, type ElementDefinition } from "cytoscape";
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { Language, LocalizedText } from "../../../src/model/index.ts";
 import { formatPredicate } from "../../../src/site/format.ts";
 import type { GraphEdge, GraphNode, HypothesisEdge } from "../../../src/site/read-model.ts";
 
+const LABELS = {
+  it: {
+    loadError: "Impossibile caricare i dati del grafo.",
+    relationTypes: "Tipi di relazione",
+    evidenceLevel: "Livello di evidenza",
+    lineStyles: "Linea continua E1–E2, tratteggiata E3, punteggiata E4.",
+    nodeTypes: "Tipi di nodo",
+    visible: (n: number, e: number) => `${n} nodi, ${e} collegamenti visibili.`,
+    fit: "Adatta il grafo alla vista",
+    open: "Apri la scheda",
+    graphLabel:
+      "Grafo interattivo: l'elenco testuale dei collegamenti visibili è disponibile sotto il grafo.",
+    textList: "Elenco testuale dei collegamenti visibili",
+  },
+  en: {
+    loadError: "Unable to load the graph data.",
+    relationTypes: "Relationship types",
+    evidenceLevel: "Evidence level",
+    lineStyles: "Solid line E1–E2, dashed E3, dotted E4.",
+    nodeTypes: "Node types",
+    visible: (n: number, e: number) => `${n} nodes, ${e} visible links.`,
+    fit: "Fit the graph to the view",
+    open: "Open the profile",
+    graphLabel: "Interactive graph: a text list of the visible links is available below the graph.",
+    textList: "Text list of visible links",
+  },
+};
+
 type Props = {
+  lang: Language;
   mode: "evidence" | "hypotheses";
   dataUrl: string;
   /** Base URLs of entity and event pages, ending with a slash. */
@@ -20,6 +50,10 @@ type Edge = (GraphEdge | HypothesisEdge) & {
 };
 
 const LEVELS = ["E1", "E2", "E3", "E4"];
+
+function localized(text: LocalizedText, lang: Language): string {
+  return lang === "en" ? (text.en ?? text.it) : text.it;
+}
 const GROUP_COLORS: Record<string, string> = {
   participation: "#b7bcc5",
   control: "#b42318",
@@ -42,7 +76,8 @@ const KIND_COLORS: Record<string, string> = {
 };
 
 export default function NetworkExplorer(props: Props) {
-  const { mode, dataUrl, groupLabels, kindLabels } = props;
+  const { lang, mode, dataUrl, groupLabels, kindLabels } = props;
+  const t = LABELS[lang];
   const container = useRef<HTMLDivElement>(null);
   const cy = useRef<Core | null>(null);
   const [data, setData] = useState<{ nodes: GraphNode[]; edges: Edge[] } | null>(null);
@@ -87,7 +122,12 @@ export default function NetworkExplorer(props: Props) {
     if (!container.current || !data) return;
     const elements: ElementDefinition[] = [
       ...visible.nodes.map((n) => ({
-        data: { id: n.id, label: n.label, color: KIND_COLORS[n.kind] ?? "#98a2b3", kind: n.kind },
+        data: {
+          id: n.id,
+          label: localized(n.label, lang),
+          color: KIND_COLORS[n.kind] ?? "#98a2b3",
+          kind: n.kind,
+        },
       })),
       ...visible.edges.map((e) => ({
         data: {
@@ -164,7 +204,7 @@ export default function NetworkExplorer(props: Props) {
     });
     cy.current = instance;
     return () => instance.destroy();
-  }, [visible, data, mode]);
+  }, [visible, data, mode, lang]);
 
   const toggle = (set: Set<string>, value: string, update: (s: Set<string>) => void) => {
     const next = new Set(set);
@@ -174,13 +214,16 @@ export default function NetworkExplorer(props: Props) {
 
   const selectedNode = data?.nodes.find((n) => n.id === selected);
   const selectedEdges = visible.edges.filter((e) => e.source === selected || e.target === selected);
-  const label = (id: string) => data?.nodes.find((n) => n.id === id)?.label ?? id;
+  const label = (id: string) => {
+    const node = data?.nodes.find((n) => n.id === id);
+    return node ? localized(node.label, lang) : id;
+  };
   const pageOf = (id: string) => {
     const kind = data?.nodes.find((n) => n.id === id)?.kind;
     return `${kind === "event" ? props.eventBase : props.entityBase}${id}/`;
   };
 
-  if (failed) return <p className="notice">Impossibile caricare i dati del grafo.</p>;
+  if (failed) return <p className="notice">{t.loadError}</p>;
 
   return (
     <div className="grid gap-4 lg:grid-cols-[16rem_1fr]">
@@ -188,7 +231,7 @@ export default function NetworkExplorer(props: Props) {
         {mode === "evidence" && (
           <>
             <fieldset>
-              <legend className="font-semibold">Tipi di relazione</legend>
+              <legend className="font-semibold">{t.relationTypes}</legend>
               {Object.entries(groupLabels).map(([group, text]) => (
                 <label key={group} className="flex items-center gap-2">
                   <input
@@ -206,7 +249,7 @@ export default function NetworkExplorer(props: Props) {
               ))}
             </fieldset>
             <fieldset>
-              <legend className="font-semibold">Livello di evidenza</legend>
+              <legend className="font-semibold">{t.evidenceLevel}</legend>
               {LEVELS.map((level) => (
                 <label key={level} className="mr-3">
                   <input
@@ -217,12 +260,12 @@ export default function NetworkExplorer(props: Props) {
                   {level}
                 </label>
               ))}
-              <p className="meta mt-1">Linea continua E1–E2, tratteggiata E3, punteggiata E4.</p>
+              <p className="meta mt-1">{t.lineStyles}</p>
             </fieldset>
           </>
         )}
         <div>
-          <p className="font-semibold mb-1">Tipi di nodo</p>
+          <p className="font-semibold mb-1">{t.nodeTypes}</p>
           <ul>
             {Object.entries(kindLabels).map(([kind, text]) => (
               <li key={kind} className="flex items-center gap-2">
@@ -237,20 +280,20 @@ export default function NetworkExplorer(props: Props) {
           </ul>
         </div>
         <p className="meta" aria-live="polite">
-          {visible.nodes.length} nodi, {visible.edges.length} collegamenti visibili.
+          {t.visible(visible.nodes.length, visible.edges.length)}
         </p>
         <button
           type="button"
           className="badge cursor-pointer"
           onClick={() => cy.current?.fit(undefined, 20)}
         >
-          Adatta il grafo alla vista
+          {t.fit}
         </button>
         {selectedNode && (
           <div className="card" aria-live="polite">
-            <p className="font-semibold mb-1">{selectedNode.label}</p>
+            <p className="font-semibold mb-1">{localized(selectedNode.label, lang)}</p>
             <p className="meta">{kindLabels[selectedNode.kind]}</p>
-            <a href={pageOf(selectedNode.id)}>Apri la scheda</a>
+            <a href={pageOf(selectedNode.id)}>{t.open}</a>
             <ul className="mt-2 space-y-1">
               {selectedEdges.map((e) => (
                 <li key={e.id} className="meta">
@@ -267,10 +310,10 @@ export default function NetworkExplorer(props: Props) {
           ref={container}
           className="h-[70vh] min-h-[28rem] border border-line rounded bg-white"
           role="img"
-          aria-label="Grafo interattivo: l'elenco testuale dei collegamenti visibili è disponibile sotto il grafo."
+          aria-label={t.graphLabel}
         />
         <details className="mt-3">
-          <summary className="cursor-pointer">Elenco testuale dei collegamenti visibili</summary>
+          <summary className="cursor-pointer">{t.textList}</summary>
           <ul className="mt-2 text-sm space-y-1">
             {visible.edges.map((e) => (
               <li key={e.id}>

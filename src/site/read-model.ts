@@ -4,6 +4,8 @@ import {
   type EntityKind,
   type Event,
   type Hypothesis,
+  type Language,
+  type LocalizedText,
   RELATION_CLASS_GROUP,
   type RelationGroup,
   type Relationship,
@@ -11,6 +13,7 @@ import {
 } from "../model/index.ts";
 import { readDataFiles } from "../pipeline/load.ts";
 import { validateDataFiles } from "../pipeline/validate.ts";
+import { textOf } from "./i18n.ts";
 
 /**
  * Indexed, read-only view of the canonical data used to render the site.
@@ -37,7 +40,9 @@ export type ReadModel = {
     hypotheses: Hypothesis[];
   };
   isRestricted: (relationship: Relationship) => boolean;
-  nodeLabel: (id: string) => string;
+  /** Localized name of an entity or title of an event. */
+  nodeName: (id: string) => LocalizedText;
+  nodeLabel: (id: string, lang?: Language) => string;
   nodeKind: (id: string) => EntityKind | "event" | undefined;
 };
 
@@ -100,7 +105,11 @@ export function buildReadModel(dataset: Dataset): ReadModel {
     // Named-person relationships stay restricted until a primary source is linked.
     isRestricted: (r) =>
       r.primary_url === null && (persons.has(r.subject) || persons.has(r.object)),
-    nodeLabel: (id) => entities.get(id)?.name.it ?? events.get(id)?.title.it ?? id,
+    nodeName: (id) => entities.get(id)?.name ?? events.get(id)?.title ?? { it: id },
+    nodeLabel: (id, lang = "it") => {
+      const name = entities.get(id)?.name ?? events.get(id)?.title;
+      return name ? textOf(name, lang) : id;
+    },
     nodeKind: (id) => entities.get(id)?.kind ?? (events.has(id) ? "event" : undefined),
   };
 }
@@ -120,7 +129,7 @@ function compareEvents(a: Event, b: Event): number {
 // ---------------------------------------------------------------------------
 // Graph projections (published as static JSON for the network view)
 
-export type GraphNode = { id: string; label: string; kind: EntityKind | "event" };
+export type GraphNode = { id: string; label: LocalizedText; kind: EntityKind | "event" };
 export type GraphEdge = {
   id: string;
   source: string;
@@ -171,7 +180,7 @@ export function hypothesisGraph(model: ReadModel): { nodes: GraphNode[]; edges: 
 
 function nodesOf(model: ReadModel, edges: { source: string; target: string }[]): GraphNode[] {
   const ids = [...new Set(edges.flatMap((e) => [e.source, e.target]))].sort();
-  return ids.map((id) => ({ id, label: model.nodeLabel(id), kind: model.nodeKind(id) ?? "event" }));
+  return ids.map((id) => ({ id, label: model.nodeName(id), kind: model.nodeKind(id) ?? "event" }));
 }
 
 // ---------------------------------------------------------------------------
@@ -190,17 +199,59 @@ export type TimelineItem = {
   metadata: boolean;
 };
 
-export function timelineItems(model: ReadModel): TimelineItem[] {
+export function timelineItems(model: ReadModel, lang: Language = "it"): TimelineItem[] {
   return model.events.map((e) => ({
     id: e.id,
-    title: e.title.it,
+    title: textOf(e.title, lang),
     start: e.date.start,
     end: e.date.end,
     precision: e.date.precision,
     themes: e.themes,
-    evidence_note: e.evidence_note?.it ?? null,
-    geography: e.geography?.it ?? null,
+    evidence_note: e.evidence_note ? textOf(e.evidence_note, lang) : null,
+    geography: e.geography ? textOf(e.geography, lang) : null,
     pending: e.timeline_status === "pending_integration",
     metadata: e.record_type === "dataset_metadata",
   }));
+}
+
+// ---------------------------------------------------------------------------
+// Atlas projection: event location and state participation stay separate
+
+export type CountryRow = {
+  code: string;
+  /** Events whose geography names the country (location, not responsibility). */
+  located: Event[];
+  /** The state entity for the country, if the corpus has one. */
+  state: Entity | null;
+  /** Unrestricted event-participation relationships of that state, by literal predicate. */
+  roles: { predicate: string; events: string[] }[];
+  /** Number of direct (non-participation) relationships of that state. */
+  direct: number;
+};
+
+export function atlasRows(model: ReadModel): CountryRow[] {
+  const states = new Map(
+    model.dataset.entities.flatMap((e) => (e.country ? [[e.country, e] as const] : [])),
+  );
+  const codes = new Set([...model.events.flatMap((e) => e.places), ...states.keys()]);
+  return [...codes].sort().map((code) => {
+    const state = states.get(code) ?? null;
+    const relationships = state ? model.relationshipsOf(state.id) : [];
+    const roles = new Map<string, string[]>();
+    for (const r of relationships.filter((r) => isParticipation(r) && !model.isRestricted(r))) {
+      const event = r.subject === state?.id ? r.object : r.subject;
+      roles.set(r.predicate, [...(roles.get(r.predicate) ?? []), event]);
+    }
+    return {
+      code,
+      located: model.events.filter((e) => e.places.includes(code) && e.record_type === "event"),
+      state,
+      roles: [...roles]
+        .map(([predicate, events]) => ({ predicate, events }))
+        .sort(
+          (a, b) => b.events.length - a.events.length || a.predicate.localeCompare(b.predicate),
+        ),
+      direct: relationships.filter((r) => !isParticipation(r)).length,
+    };
+  });
 }

@@ -1,0 +1,120 @@
+---
+import type { Entity } from "../../../../../src/model/index.ts";
+import {
+  countryName,
+  ENTITY_KIND_LABELS,
+  formatDateRange,
+  formatPredicate,
+} from "../../../../../src/site/format.ts";
+import { choose, langParam, languageFromParam, textOf, ui } from "../../../../../src/site/i18n.ts";
+import { isParticipation } from "../../../../../src/site/read-model.ts";
+import EvidenceBadge from "../../../components/EvidenceBadge.astro";
+import NodeLink from "../../../components/NodeLink.astro";
+import RecordFooter from "../../../components/RecordFooter.astro";
+import RelationshipTable from "../../../components/RelationshipTable.astro";
+import T from "../../../components/T.astro";
+import TranslationNotice from "../../../components/TranslationNotice.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+
+export function getStaticPaths() {
+  return (["it", "en"] as const).flatMap((lang) =>
+    getModel().dataset.entities.map((entity) => ({
+      params: { lang: langParam(lang), id: entity.id },
+      props: { entity },
+    })),
+  );
+}
+
+const { entity } = Astro.props as { entity: Entity };
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const relationships = model.relationshipsOf(entity.id);
+const direct = relationships.filter((r) => !isParticipation(r));
+const participations = relationships
+  .filter(isParticipation)
+  .map((r) => ({ r, event: model.event(r.subject === entity.id ? r.object : r.subject) }))
+  .sort((a, b) => (a.event?.date.start ?? "").localeCompare(b.event?.date.start ?? ""));
+const hypotheses = model.hypothesesOf(entity.id);
+---
+
+<Base title={textOf(entity.name, lang)} lang={lang} searchable>
+  <p class="meta">
+    <a href={href("entities/", lang)}>{ui(lang).navEntities}</a> · {ENTITY_KIND_LABELS[entity.kind][lang]} ·{" "}
+    <span class="font-mono">{entity.id}</span> · {c("dominio", "domain")} {entity.domain}
+    {entity.country && <> · <a href={`${href("atlas/", lang)}#${entity.country}`}>{countryName(entity.country, lang)}</a></>}
+  </p>
+  <h1><T text={entity.name} lang={lang} /></h1>
+  <TranslationNotice review={entity.review} lang={lang} />
+
+  {
+    entity.kind === "person" && (
+      <div class="notice max-w-3xl">
+        {c(
+          "Persona reale. Ogni relazione indica solo ciò che la fonte citata sostiene, con il proprio livello di evidenza. Un'attribuzione istituzionale non è una condanna; la partecipazione a un evento non implica responsabilità. Le relazioni prive di fonte primaria collegata restano riservate fino alla revisione. Per segnalare correzioni usare il repository GitHub.",
+          "Real person. Each relationship states only what the cited source supports, with its own evidence level. An institutional attribution is not a conviction; participation in an event does not imply responsibility. Relationships without a linked primary source remain restricted until review. Use the GitHub repository to report corrections.",
+        )}
+      </div>
+    )
+  }
+
+  <h2>{c("Relazioni dirette", "Direct relationships")} ({direct.length})</h2>
+  <p class="meta max-w-3xl">
+    {c(
+      "Ogni predicato va letto letteralmente: «fornisce a» non significa «controlla», «sanziona» non significa «condanna».",
+      "Each predicate must be read literally (predicates are kept in the original Italian): “supplies” does not mean “controls”, “sanctions” does not mean “convicts”.",
+    )}
+  </p>
+  {
+    direct.length > 0 ? (
+      <RelationshipTable relationships={direct} caption={c("Relazioni dirette", "Direct relationships")} lang={lang} />
+    ) : (
+      <p class="meta">{c("Nessuna relazione diretta registrata.", "No direct relationship recorded.")}</p>
+    )
+  }
+
+  <h2>{c("Eventi in cui compare", "Events it appears in")} ({participations.length})</h2>
+  <p class="meta max-w-3xl">
+    {c("Presenza o ruolo nell'evento, non prova di comando, finanziamento o coordinamento.", "Presence or role in the event, not proof of command, financing or coordination.")}
+  </p>
+  {
+    participations.length > 0 ? (
+      <ul class="space-y-1">
+        {participations.map(({ r, event }) => (
+          <li>
+            {event && <span class="meta">{formatDateRange(event.date.start, event.date.end, lang)} · </span>}
+            <NodeLink id={r.subject === entity.id ? r.object : r.subject} lang={lang} />
+            {model.isRestricted(r) ? (
+              <span class="meta"> · {c("ruolo riservato in attesa di fonte primaria", "role restricted pending a primary source")}</span>
+            ) : (
+              <span class="meta"> · {c("ruolo", "role")}: <span lang="it">{formatPredicate(r.predicate)}</span></span>
+            )}{" "}
+            <EvidenceBadge level={r.evidence_level} lang={lang} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="meta">{c("Nessun evento registrato.", "No event recorded.")}</p>
+    )
+  }
+
+  {
+    hypotheses.length > 0 && (
+      <>
+        <h2>{c("Ipotesi aperte che la riguardano", "Open hypotheses concerning it")} ({hypotheses.length})</h2>
+        <p class="meta">{c("Domande investigative non dimostrate: non sono relazioni accertate.", "Unproven investigative questions: they are not established relationships.")}</p>
+        <ul class="list-disc pl-5">
+          {hypotheses.map((h) => (
+            <li>
+              <a href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a>: <T text={h.question} lang={lang} />
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  <RecordFooter id={entity.id} collection="entities" review={entity.review} provenance={entity.provenance} lang={lang} />
+</Base>

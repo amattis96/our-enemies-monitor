@@ -1,0 +1,111 @@
+---
+import { summarize } from "../../../../src/pipeline/validate.ts";
+import { languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const t = ui(lang);
+const c = summarize(getModel().dataset);
+const it = lang === "it";
+const sections = [
+  [
+    "timeline/",
+    t.navTimeline,
+    it
+      ? `${c.timeline_events} eventi documentati dal 2007 al 2026, filtrabili per tema e periodo.`
+      : `${c.timeline_events} documented events from 2007 to 2026, filterable by theme and period.`,
+  ],
+  [
+    "network/",
+    t.navNetwork,
+    it
+      ? `${c.direct_relationships} relazioni dirette tipizzate e ${c.event_participation} partecipazioni a eventi.`
+      : `${c.direct_relationships} typed direct relationships and ${c.event_participation} event participations.`,
+  ],
+  [
+    "atlas/",
+    t.navAtlas,
+    it
+      ? "Dove sono avvenuti gli eventi e in quali ruoli compaiono gli Stati, a livello di paese."
+      : "Where events took place and in which roles states appear, at country level.",
+  ],
+  [
+    "dependencies/",
+    t.navDependencies,
+    it
+      ? `${c.exposures} esposizioni strategiche quantificate, ciascuna con il proprio denominatore.`
+      : `${c.exposures} quantified strategic exposures, each with its own denominator.`,
+  ],
+  [
+    "entities/",
+    t.navEntities,
+    it
+      ? `${c.entities} Stati, istituzioni, organizzazioni, imprese, persone e asset strategici.`
+      : `${c.entities} states, institutions, organisations, companies, people and strategic assets.`,
+  ],
+  [
+    "hypotheses/",
+    t.navHypotheses,
+    it
+      ? `${c.hypotheses} domande investigative, tenute separate dai fatti documentati.`
+      : `${c.hypotheses} investigative questions, kept separate from documented facts.`,
+  ],
+  [
+    "sources/",
+    t.navSources,
+    it
+      ? `${c.sources} documenti del corpus e riferimenti esterni citati.`
+      : `${c.sources} corpus documents and cited external references.`,
+  ],
+  [
+    "methodology/",
+    t.navMethodology,
+    it
+      ? "Livelli di evidenza E1–E5, regole di attribuzione e limiti del corpus."
+      : "Evidence levels E1–E5, attribution rules and limits of the corpus.",
+  ],
+  [
+    "data/",
+    t.navData,
+    it
+      ? "Scarica i dati canonici e gli schemi JSON (CC0)."
+      : "Download the canonical data and JSON Schemas (CC0).",
+  ],
+] as const;
+---
+
+<Base title="Our Enemies Monitor" lang={lang} description={t.siteTagline} searchable>
+  <h1>Our Enemies Monitor</h1>
+  <p class="text-lg max-w-3xl">{t.siteTagline}</p>
+  <div class="notice max-w-3xl">
+    <p class="mb-0">
+      {
+        it
+          ? "«Enemies» è il nome del progetto, non una qualifica giuridica o investigativa. La presenza nel database non implica illecito, intento ostile, controllo straniero o complicità. Una dipendenza commerciale, un disaccordo politico o un collegamento nel grafo non dimostrano da soli un'operazione illecita o un coordinamento."
+          : "“Enemies” is the name of the project, not a legal or investigative designation. Appearing in the database does not imply wrongdoing, hostile intent, foreign control or complicity. A commercial dependency, a political disagreement or a link in the graph does not by itself demonstrate an illicit operation or coordination."
+      }
+    </p>
+  </div>
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
+    {
+      sections.map(([path, title, text]) => (
+        <li class="card">
+          <h2 class="mt-0 text-lg">
+            <a href={href(path, lang)}>{title}</a>
+          </h2>
+          <p class="mb-0 meta">{text}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="meta mt-6">
+    {
+      it
+        ? "Baseline di ricerca con cutoff al 21 ottobre 2026: record curati, non un censimento esaustivo degli incidenti in Europa. Tutti i record sono importati dal corpus originale e in attesa di revisione editoriale."
+        : "Research baseline with a cut-off of 21 October 2026: curated records, not an exhaustive census of incidents in Europe. All records are imported from the original Italian corpus and await editorial review; English texts are unreviewed machine translations."
+    }
+  </p>
+</Base>

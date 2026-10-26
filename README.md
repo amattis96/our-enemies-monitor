@@ -10,7 +10,9 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: canonical data layer (M1) and Italian MVP portal (M2) in place; English version, atlas, dependency metrics and automated update workflows planned.**
+**Phase: canonical data layer, bilingual portal (Italian/English), atlas, dependency metrics and open-data exports in place (M1–M3); editorial and AI-agent update workflows planned (M4).**
+
+**Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
 The initial research corpus has a cutoff of **21 October 2026** and covers **2007–2026**, with earlier context where relevant. These are curated records, not an exhaustive census of all incidents in Europe.
 
@@ -107,7 +109,8 @@ The repository is the durable source of truth. A **static-first portal** is buil
 | Public web app | Astro 7 static site with React 19 islands, Tailwind CSS 4 |
 | Network graphs | Cytoscape.js |
 | Search | Pagefind static index |
-| Atlas (M3) | Country-level SVG maps (d3-geo, Natural Earth) |
+| Atlas | Static country-level SVG maps (d3-geo, Natural Earth) |
+| Languages | Italian (canonical) and English, translation status tracked per record |
 | Publishing | GitHub Actions, GitHub Pages, portable static output |
 
 No database, graph database, map tile server or paid service is needed to build or mirror the site.
@@ -120,6 +123,7 @@ pnpm check        # lint, typecheck, tests, data validation, schema freshness
 pnpm validate     # validate data/ only
 pnpm build        # build the static site into web/dist (with search index)
 pnpm preview      # serve the built site locally
+pnpm check:links  # verify every internal link of the built site
 ```
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
@@ -186,8 +190,9 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Define and validate normalized schemas and import the baseline into canonical data (M1).
 - [ ] Audit sensitive claims against stable primary-source references.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
-- [ ] Build the geographic atlas and strategic-dependency views (M3).
-- [ ] Introduce multilingual navigation and translation review.
+- [x] Build the geographic atlas and strategic-dependency views (M3).
+- [x] Introduce multilingual navigation (Italian/English) with tracked translation status (M3).
+- [ ] Review the English machine translations.
 - [ ] Set up agent-specific research branches, CI checks and pull requests.
 - [ ] Enable scheduled research, editorial review and automatic deployment.
 - [ ] Publish the public portal and its correction policy.

@@ -3,7 +3,15 @@ import Base from "../layouts/Base.astro";
 import { href } from "../lib/links.ts";
 ---
 
-<Base title="Pagina non trovata">
+<Base title="Pagina non trovata / Page not found" lang="it" translated={false}>
   <h1>Pagina non trovata</h1>
-  <p>La pagina richiesta non esiste. Torna alla <a href={href()}>pagina iniziale</a> o usa la <a href={href("search/")}>ricerca</a>.</p>
+  <p>
+    La pagina richiesta non esiste. Torna alla <a href={href()}>pagina iniziale</a> o usa la{" "}
+    <a href={href("search/")}>ricerca</a>.
+  </p>
+  <h2 lang="en">Page not found</h2>
+  <p lang="en">
+    The requested page does not exist. Go to the <a href={href("", "en")}>home page</a> or use{" "}
+    <a href={href("search/", "en")}>search</a>.
+  </p>
 </Base>

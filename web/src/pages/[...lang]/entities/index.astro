@@ -1,0 +1,54 @@
+---
+import { ENTITY_KINDS } from "../../../../../src/model/index.ts";
+import { ENTITY_KIND_PLURALS } from "../../../../../src/site/format.ts";
+import {
+  choose,
+  languageFromParam,
+  languagePaths,
+  textOf,
+  ui,
+} from "../../../../../src/site/i18n.ts";
+import T from "../../../components/T.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const model = getModel();
+const groups = ENTITY_KINDS.map((kind) => ({
+  kind,
+  entities: model.dataset.entities
+    .filter((e) => e.kind === kind)
+    .sort((a, b) => textOf(a.name, lang).localeCompare(textOf(b.name, lang), lang)),
+}));
+---
+
+<Base title={ui(lang).navEntities} lang={lang}>
+  <h1>{ui(lang).navEntities}</h1>
+  <p class="max-w-3xl">
+    {choose(
+      lang,
+      "Il grafo documenta anche alleati, partner commerciali, regolatori e soggetti colpiti: la presenza in questo elenco non implica illecito né intento ostile.",
+      "The graph also documents allies, trading partners, regulators and targeted parties: appearing in this list implies neither wrongdoing nor hostile intent.",
+    )}
+  </p>
+  <nav aria-label={choose(lang, "Tipi di entità", "Entity types")} class="meta flex flex-wrap gap-x-3">
+    {groups.map((g) => <a href={`#${g.kind}`}>{ENTITY_KIND_PLURALS[g.kind][lang]} ({g.entities.length})</a>)}
+  </nav>
+  {
+    groups.map((g) => (
+      <section id={g.kind}>
+        <h2>{ENTITY_KIND_PLURALS[g.kind][lang]}</h2>
+        <ul class="columns-1 sm:columns-2 lg:columns-3">
+          {g.entities.map((e) => (
+            <li>
+              <a href={href(`entities/${e.id}/`, lang)}><T text={e.name} lang={lang} /></a>{" "}
+              <span class="meta">({model.relationshipsOf(e.id).length})</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Base>

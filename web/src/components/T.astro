@@ -1,0 +1,14 @@
+---
+import type { Language, LocalizedText } from "../../../src/model/index.ts";
+import { pick } from "../../../src/site/i18n.ts";
+
+// A localized text; marks Italian fallback with lang="it" for assistive tech and search.
+interface Props {
+  text: LocalizedText;
+  lang: Language;
+}
+const { text, lang } = Astro.props;
+const chosen = pick(text, lang);
+---
+
+{chosen.fallback ? <span lang="it">{chosen.value}</span> : chosen.value}

@@ -1,0 +1,77 @@
+---
+import type { Hypothesis } from "../../../../../src/model/index.ts";
+import {
+  formatPredicate,
+  HYPOTHESIS_STATUS_LABELS,
+  PRIORITY_LABELS,
+} from "../../../../../src/site/format.ts";
+import { choose, langParam, languageFromParam, textOf } from "../../../../../src/site/i18n.ts";
+import NodeLink from "../../../components/NodeLink.astro";
+import RecordFooter from "../../../components/RecordFooter.astro";
+import SourceRefs from "../../../components/SourceRefs.astro";
+import T from "../../../components/T.astro";
+import TranslationNotice from "../../../components/TranslationNotice.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+
+export function getStaticPaths() {
+  return (["it", "en"] as const).flatMap((lang) =>
+    getModel().dataset.hypotheses.map((hypothesis) => ({
+      params: { lang: langParam(lang), id: hypothesis.id },
+      props: { hypothesis },
+    })),
+  );
+}
+const { hypothesis: h } = Astro.props as { hypothesis: Hypothesis };
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+---
+
+<Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} searchable>
+  <p class="meta"><a href={href("hypotheses/", lang)}>{c("Ipotesi", "Hypotheses")}</a> · <span class="font-mono">{h.id}</span></p>
+  <h1><T text={h.question} lang={lang} /></h1>
+  <TranslationNotice review={h.review} lang={lang} />
+  <div class="notice max-w-3xl">
+    {c("Ipotesi aperta (E5): non è un fatto accertato né una relazione documentata.", "Open hypothesis (E5): not an established fact nor a documented relationship.")}
+  </div>
+  <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
+    <dt class="font-semibold">{c("Soggetti", "Subjects")}</dt>
+    <dd><NodeLink id={h.subject} lang={lang} /> · <NodeLink id={h.object} lang={lang} /></dd>
+    <dt class="font-semibold">{c("Tipo di ipotesi", "Hypothesis type")}</dt>
+    <dd lang="it">{formatPredicate(h.hypothesis_type)}</dd>
+    <dt class="font-semibold">{c("Limite attuale", "Current limit")}</dt>
+    <dd><T text={h.current_limit} lang={lang} /></dd>
+    <dt class="font-semibold">{c("Prove necessarie", "Evidence needed")}</dt>
+    <dd><T text={h.evidence_needed} lang={lang} /></dd>
+    <dt class="font-semibold">{c("Priorità", "Priority")}</dt>
+    <dd>{PRIORITY_LABELS[h.priority][lang]}</dd>
+    <dt class="font-semibold">{c("Stato", "Status")}</dt>
+    <dd>{HYPOTHESIS_STATUS_LABELS[h.status][lang]}</dd>
+    {
+      h.events.length > 0 && (
+        <>
+          <dt class="font-semibold">{c("Eventi collegati", "Linked events")}</dt>
+          <dd>
+            <ul>
+              {h.events.map((id) => (
+                <li><NodeLink id={id} lang={lang} /></li>
+              ))}
+            </ul>
+          </dd>
+        </>
+      )
+    }
+    {
+      h.external_url && (
+        <>
+          <dt class="font-semibold">{c("Riferimento esterno", "External reference")}</dt>
+          <dd><a href={h.external_url} rel="noopener">{h.external_url}</a></dd>
+        </>
+      )
+    }
+    <dt class="font-semibold">{c("Fonti del corpus", "Corpus sources")}</dt>
+    <dd><SourceRefs ids={h.sources} lang={lang} /></dd>
+  </dl>
+  <RecordFooter id={h.id} collection="hypotheses" review={h.review} provenance={h.provenance} lang={lang} />
+</Base>

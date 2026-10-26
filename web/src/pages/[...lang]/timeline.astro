@@ -1,0 +1,34 @@
+---
+import { THEME_LABELS } from "../../../../src/model/index.ts";
+import { languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import { timelineItems } from "../../../../src/site/read-model.ts";
+import TimelineExplorer from "../../islands/TimelineExplorer.tsx";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const items = timelineItems(getModel(), lang);
+const themes = Object.entries(THEME_LABELS).map(([id, label]) => ({ id, label: label[lang] }));
+const it = lang === "it";
+---
+
+<Base title={ui(lang).navTimeline} lang={lang} description={it ? "Cronologia degli eventi documentati, 2007–2026." : "Timeline of documented events, 2007–2026."}>
+  <h1>{it ? "Cronologia 2007–2026" : "Timeline 2007–2026"}</h1>
+  <p class="max-w-3xl">
+    {
+      it
+        ? "Eventi, decisioni, attribuzioni e sentenze riportati nel corpus. All'interno di ogni anno le voci note solo all'anno precedono quelle mensili o giornaliere: è un ordinamento tecnico, non un'affermazione sulla sequenza. La data dell'attribuzione o della sentenza è una voce distinta dalla data del fatto."
+        : "Events, decisions, attributions and judgments reported in the corpus. Within each year, entries known only to the year come before monthly or daily ones: a technical ordering, not a claim about sequence. The date of an attribution or judgment is a separate entry from the date of the fact."
+    }
+  </p>
+  <TimelineExplorer client:load lang={lang} items={items} themes={themes} eventBase={href("events/", lang)} />
+  <noscript>
+    <ul class="mt-4">
+      {items.map((item) => (
+        <li><a href={href(`events/${item.id}/`, lang)}>{item.start} — {item.title}</a></li>
+      ))}
+    </ul>
+  </noscript>
+</Base>

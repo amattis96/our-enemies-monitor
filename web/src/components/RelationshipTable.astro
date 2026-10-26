@@ -1,72 +1,78 @@
 ---
-import type { Relationship } from "../../../src/model/index.ts";
+import type { Language, Relationship } from "../../../src/model/index.ts";
 import {
   EVIDENCE_STATUS_LABELS,
   formatPredicate,
   RELATION_GROUP_LABELS,
 } from "../../../src/site/format.ts";
+import { ui } from "../../../src/site/i18n.ts";
 import { relationGroup } from "../../../src/site/read-model.ts";
 import { getModel } from "../lib/model.ts";
 import EvidenceBadge from "./EvidenceBadge.astro";
 import NodeLink from "./NodeLink.astro";
 import SourceRefs from "./SourceRefs.astro";
+import T from "./T.astro";
 
 interface Props {
   relationships: Relationship[];
   caption: string;
+  lang: Language;
 }
-const { relationships, caption } = Astro.props;
+const { relationships, caption, lang } = Astro.props;
 const model = getModel();
+const t = ui(lang);
 ---
 
-<table>
-  <caption class="sr-only">{caption}</caption>
-  <thead>
-    <tr>
-      <th scope="col">Soggetto</th>
-      <th scope="col">Relazione (predicato letterale)</th>
-      <th scope="col">Oggetto</th>
-      <th scope="col">Evidenza</th>
-      <th scope="col">Fonti</th>
-    </tr>
-  </thead>
-  <tbody>
-    {
-      relationships.map((r) =>
-        model.isRestricted(r) ? (
-          <tr>
-            <td><NodeLink id={r.subject} /></td>
-            <td colspan="2">
-              <span class="meta">
-                Relazione riservata ({r.id}): riguarda una persona e non ha ancora una fonte primaria
-                collegata. Sarà pubblicata dopo la revisione editoriale.
-              </span>
-            </td>
-            <td><EvidenceBadge level={r.evidence_level} /></td>
-            <td><SourceRefs ids={r.sources} /></td>
-          </tr>
-        ) : (
-          <tr>
-            <td><NodeLink id={r.subject} /></td>
-            <td>
-              <span class="font-mono text-xs">{r.id}</span> {formatPredicate(r.predicate)}
-              <div class="meta">
-                {RELATION_GROUP_LABELS[relationGroup(r)]} · {r.relation_class} ·{" "}
-                {EVIDENCE_STATUS_LABELS[r.evidence_status]}
-              </div>
-              {r.caveat && <div class="meta italic">{r.caveat.it}</div>}
-              {r.primary_url && (
+<div class="relative overflow-x-auto">
+  <table>
+    <caption class="sr-only">{caption}</caption>
+    <thead>
+      <tr>
+        <th scope="col">{t.subject}</th>
+        <th scope="col">{t.relationship}</th>
+        <th scope="col">{t.object}</th>
+        <th scope="col">{t.evidence}</th>
+        <th scope="col">{t.sources}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        relationships.map((r) =>
+          model.isRestricted(r) ? (
+            <tr>
+              <td><NodeLink id={r.subject} lang={lang} /></td>
+              <td colspan="2">
+                <span class="meta">
+                  <span class="font-mono">{r.id}</span> {t.restricted}
+                </span>
+              </td>
+              <td><EvidenceBadge level={r.evidence_level} lang={lang} /></td>
+              <td><SourceRefs ids={r.sources} lang={lang} /></td>
+            </tr>
+          ) : (
+            <tr>
+              <td><NodeLink id={r.subject} lang={lang} /></td>
+              <td>
+                <span class="font-mono text-xs">{r.id}</span>{" "}
+                <span lang="it">{formatPredicate(r.predicate)}</span>
                 <div class="meta">
-                  <a href={r.primary_url} rel="noopener">Fonte primaria</a>
+                  {RELATION_GROUP_LABELS[relationGroup(r)][lang]} · {r.relation_class} ·{" "}
+                  {EVIDENCE_STATUS_LABELS[r.evidence_status][lang]}
                 </div>
-              )}
-            </td>
-            <td><NodeLink id={r.object} /></td>
-            <td><EvidenceBadge level={r.evidence_level} /></td>
-            <td><SourceRefs ids={r.sources} /></td>
-          </tr>
-        ),
-      )
-    }
-  </tbody>
-</table>
+                {r.caveat && <div class="meta italic"><T text={r.caveat} lang={lang} /></div>}
+                {r.primary_url && (
+                  <div class="meta">
+                    <a href={r.primary_url} rel="noopener">{t.primarySource}</a>
+                  </div>
+                )}
+              </td>
+              <td><NodeLink id={r.object} lang={lang} /></td>
+              <td><EvidenceBadge level={r.evidence_level} lang={lang} /></td>
+              <td><SourceRefs ids={r.sources} lang={lang} /></td>
+            </tr>
+          ),
+        )
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,59 @@
+---
+import { HYPOTHESIS_PRIORITIES } from "../../../../../src/model/index.ts";
+import { HYPOTHESIS_STATUS_LABELS, PRIORITY_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import NodeLink from "../../../components/NodeLink.astro";
+import T from "../../../components/T.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const groups = HYPOTHESIS_PRIORITIES.map((priority) => ({
+  priority,
+  items: model.dataset.hypotheses.filter((h) => h.priority === priority),
+})).filter((g) => g.items.length > 0);
+---
+
+<Base title={c("Ipotesi aperte", "Open hypotheses")} lang={lang}>
+  <h1>{c("Registro delle ipotesi aperte", "Register of open hypotheses")}</h1>
+  <div class="notice max-w-3xl">
+    {c(
+      "Domande investigative falsificabili, non relazioni accertate. Un'ipotesi prioritaria non diventa vera per la sua priorità. Può essere promossa a relazione solo con una fonte primaria e una revisione umana.",
+      "Falsifiable investigative questions, not established relationships. A priority hypothesis does not become true because of its priority. It can be promoted to a relationship only with a primary source and human review.",
+    )}{" "}
+    <a href={href("network/hypotheses/", lang)}>{c("Grafo esplorativo", "Exploratory graph")}</a>.
+  </div>
+  {
+    groups.map((g) => (
+      <section>
+        <h2>{c("Priorità", "Priority")}: {PRIORITY_LABELS[g.priority][lang].toLowerCase()} ({g.items.length})</h2>
+        <div class="relative overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">{c("Domanda", "Question")}</th>
+                <th scope="col">{c("Soggetti", "Subjects")}</th>
+                <th scope="col">{c("Stato", "Status")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {g.items.map((h) => (
+                <tr>
+                  <td class="font-mono"><a href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a></td>
+                  <td><T text={h.question} lang={lang} /></td>
+                  <td><NodeLink id={h.subject} lang={lang} /> · <NodeLink id={h.object} lang={lang} /></td>
+                  <td>{HYPOTHESIS_STATUS_LABELS[h.status][lang]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))
+  }
+</Base>

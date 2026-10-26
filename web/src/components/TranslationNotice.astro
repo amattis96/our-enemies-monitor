@@ -1,0 +1,14 @@
+---
+import type { Language, Review } from "../../../src/model/index.ts";
+import { ui } from "../../../src/site/i18n.ts";
+
+// Shown on English pages whose record has an unreviewed machine translation.
+interface Props {
+  review: Review;
+  lang: Language;
+}
+const { review, lang } = Astro.props;
+const machine = lang === "en" && review.translations?.en?.status === "machine";
+---
+
+{machine && <p class="meta italic" data-pagefind-ignore>{ui(lang).translationNotice}</p>}

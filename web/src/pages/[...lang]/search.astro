@@ -1,0 +1,49 @@
+---
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { assetHref } from "../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const config = {
+  bundle: assetHref("pagefind/"),
+  translations: {
+    placeholder: c("Cerca nel corpus", "Search the corpus"),
+    zero_results: c("Nessun risultato per [SEARCH_TERM]", "No results for [SEARCH_TERM]"),
+  },
+  missing: c(
+    "Indice di ricerca non disponibile: viene generato solo dalla build di produzione (pnpm build).",
+    "Search index unavailable: it is generated only by the production build (pnpm build).",
+  ),
+};
+---
+
+<Base title={ui(lang).navSearch} lang={lang}>
+  <h1>{ui(lang).navSearch}</h1>
+  <p class="meta">
+    {c(
+      "Ricerca a testo pieno su eventi, entità, ipotesi, fonti e metodologia (indice statico Pagefind). Cerca nelle pagine di questa lingua.",
+      "Full-text search over events, entities, hypotheses, sources and methodology (static Pagefind index). Searches the pages in this language.",
+    )}
+  </p>
+  <link href={assetHref("pagefind/pagefind-ui.css")} rel="stylesheet" />
+  <div id="search" class="mt-4"></div>
+  <noscript>{c("La ricerca richiede JavaScript.", "Search requires JavaScript.")}</noscript>
+  <script is:inline define:vars={{ config }}>
+    const script = document.createElement("script");
+    script.src = `${config.bundle}pagefind-ui.js`;
+    script.onload = () => {
+      new PagefindUI({
+        element: "#search",
+        bundlePath: config.bundle,
+        showSubResults: true,
+        translations: config.translations,
+      });
+    };
+    script.onerror = () => {
+      document.getElementById("search").textContent = config.missing;
+    };
+    document.head.append(script);
+  </script>
+</Base>

@@ -1,21 +1,28 @@
 ---
+import type { Language } from "../../../src/model/index.ts";
+import { textOf, ui } from "../../../src/site/i18n.ts";
 import { href } from "../lib/links.ts";
 import { getModel } from "../lib/model.ts";
 
 interface Props {
   ids: string[];
+  lang: Language;
 }
-const { ids } = Astro.props;
+const { ids, lang } = Astro.props;
 const model = getModel();
+const titleOf = (id: string) => {
+  const source = model.source(id);
+  return source ? textOf(source.title, lang) : id;
+};
 ---
 
 {
   ids.length === 0 ? (
-    <span class="meta">nessuna fonte indicata</span>
+    <span class="meta">{ui(lang).sourcesNone}</span>
   ) : (
     <span class="inline-flex flex-wrap gap-1">
       {ids.map((id) => (
-        <a class="badge font-mono" href={href(`sources/${id}/`)} title={model.source(id)?.title.it}>
+        <a class="badge font-mono" href={href(`sources/${id}/`, lang)} title={titleOf(id)}>
           {id}
         </a>
       ))}

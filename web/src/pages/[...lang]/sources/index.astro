@@ -1,0 +1,43 @@
+---
+import { SOURCE_TYPES } from "../../../../../src/model/index.ts";
+import { SOURCE_TYPE_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../../src/site/i18n.ts";
+import T from "../../../components/T.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const model = getModel();
+const groups = SOURCE_TYPES.map((type) => ({
+  type,
+  sources: model.dataset.sources.filter((s) => s.type === type),
+})).filter((g) => g.sources.length > 0);
+---
+
+<Base title={ui(lang).navSources} lang={lang}>
+  <h1>{ui(lang).navSources}</h1>
+  <p class="max-w-3xl">
+    {choose(
+      lang,
+      "I codici S00–S08 sono i documenti del corpus del progetto, consolidamenti secondari datati: non sostituiscono la verifica sulla fonte primaria. F e P sono i riferimenti pubblici citati nei registri di Fonte_00 e Fonte_08. Alcune citazioni delle ricerche originali rimandano a sessioni e non a URL permanenti.",
+      "Codes S00–S08 are the project's corpus documents, dated secondary consolidations: they do not replace verification against the primary source. F and P are the public references cited in the registers of Fonte_00 and Fonte_08. Some citations in the original research point to research sessions rather than permanent URLs.",
+    )}
+  </p>
+  {
+    groups.map((g) => (
+      <section>
+        <h2>{SOURCE_TYPE_LABELS[g.type][lang]} ({g.sources.length})</h2>
+        <ul class="space-y-1">
+          {g.sources.map((s) => (
+            <li>
+              <a class="font-mono" href={href(`sources/${s.id}/`, lang)}>{s.id}</a> <T text={s.title} lang={lang} />
+              {s.publisher && <span class="meta"> · {s.publisher}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Base>

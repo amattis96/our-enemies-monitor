@@ -1,18 +1,19 @@
 ---
-import { THEME_LABELS, type Theme } from "../../../src/model/index.ts";
+import { type Language, THEME_LABELS, type Theme } from "../../../src/model/index.ts";
 import { href } from "../lib/links.ts";
 
 interface Props {
   themes: Theme[];
+  lang: Language;
 }
-const { themes } = Astro.props;
+const { themes, lang } = Astro.props;
 ---
 
 <span class="inline-flex flex-wrap gap-1">
   {
     themes.map((theme) => (
-      <a class="badge" href={href(`timeline/?tema=${theme}`)}>
-        {THEME_LABELS[theme].it}
+      <a class="badge" href={href(`timeline/?tema=${theme}`, lang)}>
+        {THEME_LABELS[theme][lang]}
       </a>
     ))
   }

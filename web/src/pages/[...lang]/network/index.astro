@@ -1,0 +1,42 @@
+---
+import { ENTITY_KIND_LABELS, RELATION_GROUP_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import NetworkExplorer from "../../../islands/NetworkExplorer.tsx";
+import Base from "../../../layouts/Base.astro";
+import { assetHref, href } from "../../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const labels = (table: Record<string, { it: string; en: string }>) =>
+  Object.fromEntries(Object.entries(table).map(([key, value]) => [key, value[lang]]));
+---
+
+<Base title={c("Rete delle relazioni", "Relationship network")} lang={lang} description={c("Grafo delle relazioni documentate fra entità ed eventi.", "Graph of documented relationships between entities and events.")}>
+  <h1>{c("Rete delle relazioni documentate", "Network of documented relationships")}</h1>
+  <div class="max-w-3xl">
+    <p>
+      {c(
+        "Relazioni tipizzate con livello di evidenza E1–E4. La vicinanza nel grafo non dimostra coordinamento: A → B → C non implica A → C, e la partecipazione a molti eventi non equivale a dirigerli. Per questo la partecipazione a eventi è esclusa di default.",
+        "Typed relationships with evidence levels E1–E4. Proximity in the graph does not demonstrate coordination: A → B → C does not imply A → C, and taking part in many events is not the same as directing them. This is why participation in events is excluded by default.",
+      )}
+    </p>
+    <p class="meta">
+      <a href={href("network/hypotheses/", lang)}>{c("Grafo esplorativo delle ipotesi (separato)", "Exploratory hypothesis graph (separate)")}</a>.{" "}
+      {c(
+        "Le relazioni che riguardano persone senza fonte primaria collegata non sono incluse. I predicati restano nell'italiano originale.",
+        "Relationships concerning people without a linked primary source are not included. Predicates remain in the original Italian.",
+      )}
+    </p>
+  </div>
+  <NetworkExplorer
+    client:only="react"
+    lang={lang}
+    mode="evidence"
+    dataUrl={assetHref("data/v1/graph.json")}
+    entityBase={href("entities/", lang)}
+    eventBase={href("events/", lang)}
+    groupLabels={labels(RELATION_GROUP_LABELS)}
+    kindLabels={labels(ENTITY_KIND_LABELS)}
+  />
+</Base>

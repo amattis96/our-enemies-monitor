@@ -1,12 +1,15 @@
 ---
+import type { Language } from "../../../src/model/index.ts";
 import { nodeHref } from "../lib/links.ts";
 import { getModel } from "../lib/model.ts";
+import T from "./T.astro";
 
 interface Props {
   id: string;
+  lang: Language;
 }
-const { id } = Astro.props;
+const { id, lang } = Astro.props;
 const model = getModel();
 ---
 
-<a href={nodeHref(id, model.nodeKind(id))}>{model.nodeLabel(id)}</a>
+<a href={nodeHref(id, model.nodeKind(id), lang)}><T text={model.nodeName(id)} lang={lang} /></a>

@@ -1,0 +1,78 @@
+---
+import { formatMeasure } from "../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import SourceRefs from "../../components/SourceRefs.astro";
+import T from "../../components/T.astro";
+import TranslationNotice from "../../components/TranslationNotice.astro";
+import Base from "../../layouts/Base.astro";
+import { getModel } from "../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const exposures = getModel().dataset.exposures;
+const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/exposures";
+---
+
+<Base title={ui(lang).navDependencies} lang={lang} description={c("Esposizioni strategiche quantificate dell'Europa, con denominatori e periodi.", "Europe's quantified strategic exposures, with denominators and periods.")} searchable>
+  <h1>{c("Dipendenze strategiche", "Strategic dependencies")}</h1>
+  <div class="max-w-3xl">
+    <p>
+      {c(
+        "Esposizioni quantificate dalla matrice della Fonte_08 (§12.2). Una dipendenza non equivale a coercizione né a ostilità del fornitore.",
+        "Exposures quantified in the Fonte_08 matrix (§12.2). A dependency is neither coercion nor hostility on the supplier's part.",
+      )}
+    </p>
+    <div class="notice">
+      {c(
+        "I valori non sono confrontabili fra loro: misurano universi diversi (domanda UE, produzione mondiale, siti produttivi, valore in euro). Il 98% delle importazioni di magneti e il 91% della raffinazione mondiale non sono due misure dello stesso fenomeno. Per questo ogni scheda riporta cosa misura il valore, e non esiste un indice complessivo.",
+        "The values are not comparable with each other: they measure different universes (EU demand, world production, production sites, value in euros). The 98% of magnet imports and the 91% of world refining are not two measures of the same phenomenon. That is why each card states what the value measures, and there is no overall index.",
+      )}
+    </div>
+  </div>
+
+  <ul class="grid gap-4 md:grid-cols-2 mt-4">
+    {
+      exposures.map((x) => (
+        <li class="card" id={x.id}>
+          <p class="meta mb-1">
+            <span class="font-mono">{x.id}</span>
+            {x.status === "target" && (
+              <span class="badge ml-2">{c("obiettivo/programma, non osservato", "target/programme, not observed")}</span>
+            )}
+          </p>
+          <h2 class="mt-0 text-lg"><T text={x.sector} lang={lang} /></h2>
+          <TranslationNotice review={x.review} lang={lang} />
+          <ul class="space-y-2">
+            {x.measures.map((m) => (
+              <li>
+                <div class="flex flex-wrap justify-between gap-x-3">
+                  <span><T text={m.label} lang={lang} />{m.period && <span class="meta"> ({m.period})</span>}</span>
+                  <strong>{formatMeasure(m, lang)}</strong>
+                </div>
+                {m.unit === "percent" && (
+                  <div class="h-2 bg-wash rounded" aria-hidden="true">
+                    <div class="h-2 rounded bg-accent" style={`width:${Math.min(m.value, 100)}%`} />
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+          <dl class="mt-3 text-sm space-y-1">
+            <dt class="font-semibold">{c("Cosa misura", "What it measures")}</dt>
+            <dd><T text={x.scope} lang={lang} /></dd>
+            <dt class="font-semibold">{c("Conseguenza e cautela", "Consequence and caveat")}</dt>
+            <dd><T text={x.consequence} lang={lang} /></dd>
+            <dt class="font-semibold">{c("Indicatore originale", "Original indicator")}</dt>
+            <dd class="meta"><T text={x.indicator} lang={lang} /></dd>
+            <dt class="font-semibold">{c("Fonti", "Sources")}</dt>
+            <dd>
+              <SourceRefs ids={x.sources} lang={lang} />{" "}
+              <a class="meta" href={`${repo}/${x.id}.json`}>{c("record", "record")}</a>
+            </dd>
+          </dl>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
