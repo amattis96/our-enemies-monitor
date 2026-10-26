@@ -1,0 +1,69 @@
+---
+import type { Hypothesis } from "../../../../src/model/index.ts";
+import {
+  formatPredicate,
+  HYPOTHESIS_STATUS_LABELS,
+  PRIORITY_LABELS,
+} from "../../../../src/site/format.ts";
+import NodeLink from "../../components/NodeLink.astro";
+import RecordFooter from "../../components/RecordFooter.astro";
+import SourceRefs from "../../components/SourceRefs.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+export function getStaticPaths() {
+  return getModel().dataset.hypotheses.map((hypothesis) => ({
+    params: { id: hypothesis.id },
+    props: { hypothesis },
+  }));
+}
+const { hypothesis: h } = Astro.props as { hypothesis: Hypothesis };
+---
+
+<Base title={`Ipotesi ${h.id}`} description={h.question.it} searchable>
+  <p class="meta"><a href={href("hypotheses/")}>Ipotesi</a> · <span class="font-mono">{h.id}</span></p>
+  <h1>{h.question.it}</h1>
+  <div class="notice max-w-3xl">
+    Ipotesi aperta (E5): non è un fatto accertato né una relazione documentata.
+  </div>
+  <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
+    <dt class="font-semibold">Soggetti</dt>
+    <dd><NodeLink id={h.subject} /> · <NodeLink id={h.object} /></dd>
+    <dt class="font-semibold">Tipo di ipotesi</dt>
+    <dd>{formatPredicate(h.hypothesis_type)}</dd>
+    <dt class="font-semibold">Limite attuale</dt>
+    <dd>{h.current_limit.it}</dd>
+    <dt class="font-semibold">Prove necessarie</dt>
+    <dd>{h.evidence_needed.it}</dd>
+    <dt class="font-semibold">Priorità</dt>
+    <dd>{PRIORITY_LABELS[h.priority]}</dd>
+    <dt class="font-semibold">Stato</dt>
+    <dd>{HYPOTHESIS_STATUS_LABELS[h.status]}</dd>
+    {
+      h.events.length > 0 && (
+        <>
+          <dt class="font-semibold">Eventi collegati</dt>
+          <dd>
+            <ul>
+              {h.events.map((id) => (
+                <li><NodeLink id={id} /></li>
+              ))}
+            </ul>
+          </dd>
+        </>
+      )
+    }
+    {
+      h.external_url && (
+        <>
+          <dt class="font-semibold">Riferimento esterno</dt>
+          <dd><a href={h.external_url} rel="noopener">{h.external_url}</a></dd>
+        </>
+      )
+    }
+    <dt class="font-semibold">Fonti del corpus</dt>
+    <dd><SourceRefs ids={h.sources} /></dd>
+  </dl>
+  <RecordFooter id={h.id} collection="hypotheses" review={h.review} provenance={h.provenance} />
+</Base>

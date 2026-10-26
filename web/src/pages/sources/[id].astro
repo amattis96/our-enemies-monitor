@@ -1,0 +1,78 @@
+---
+import type { Source } from "../../../../src/model/index.ts";
+import { formatDateRange, SOURCE_TYPE_LABELS } from "../../../../src/site/format.ts";
+import NodeLink from "../../components/NodeLink.astro";
+import RecordFooter from "../../components/RecordFooter.astro";
+import SourceRefs from "../../components/SourceRefs.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+export function getStaticPaths() {
+  return getModel().dataset.sources.map((source) => ({
+    params: { id: source.id },
+    props: { source },
+  }));
+}
+const { source: s } = Astro.props as { source: Source };
+const model = getModel();
+const citing = model.citing(s.id);
+const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main";
+---
+
+<Base title={`${s.id} · ${s.title.it}`} searchable>
+  <p class="meta"><a href={href("sources/")}>Fonti</a> · {SOURCE_TYPE_LABELS[s.type]}</p>
+  <h1><span class="font-mono">{s.id}</span> {s.title.it}</h1>
+  <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
+    {s.publisher && (<><dt class="font-semibold">Editore / autorità</dt><dd>{s.publisher}</dd></>)}
+    {
+      s.urls.length > 0 && (
+        <>
+          <dt class="font-semibold">Collegamenti</dt>
+          <dd>
+            <ul>{s.urls.map((url) => <li><a href={url} rel="noopener">{url}</a></li>)}</ul>
+          </dd>
+        </>
+      )
+    }
+    {
+      s.files.length > 0 && (
+        <>
+          <dt class="font-semibold">File nel repository</dt>
+          <dd>
+            <ul>{s.files.map((file) => <li><a href={`${repo}/${encodeURI(file)}`}>{file.split("/").pop()}</a></li>)}</ul>
+          </dd>
+        </>
+      )
+    }
+    {s.cited_in.length > 0 && (<><dt class="font-semibold">Citata in</dt><dd><SourceRefs ids={s.cited_in} /></dd></>)}
+  </dl>
+
+  <h2>Record che citano questa fonte</h2>
+  <p class="meta">
+    {citing.events.length} eventi, {citing.relationships.length} relazioni, {citing.hypotheses.length} ipotesi.
+  </p>
+  {
+    citing.events.length > 0 && (
+      <details>
+        <summary class="cursor-pointer">Eventi ({citing.events.length})</summary>
+        <ul class="mt-2">
+          {citing.events.map((e) => (
+            <li><span class="meta">{formatDateRange(e.date.start, e.date.end)} · </span><NodeLink id={e.id} /></li>
+          ))}
+        </ul>
+      </details>
+    )
+  }
+  {
+    citing.hypotheses.length > 0 && (
+      <details>
+        <summary class="cursor-pointer">Ipotesi ({citing.hypotheses.length})</summary>
+        <ul class="mt-2">
+          {citing.hypotheses.map((h) => <li><a href={href(`hypotheses/${h.id}/`)}>{h.id}</a> {h.question.it}</li>)}
+        </ul>
+      </details>
+    )
+  }
+  <RecordFooter id={s.id} collection="sources" review={s.review} provenance={s.provenance} />
+</Base>

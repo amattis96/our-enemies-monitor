@@ -1,0 +1,9 @@
+---
+import Base from "../layouts/Base.astro";
+import { href } from "../lib/links.ts";
+---
+
+<Base title="Pagina non trovata">
+  <h1>Pagina non trovata</h1>
+  <p>La pagina richiesta non esiste. Torna alla <a href={href()}>pagina iniziale</a> o usa la <a href={href("search/")}>ricerca</a>.</p>
+</Base>

@@ -10,6 +10,9 @@
   },
   "packageManager": "pnpm@12.15.0",
   "scripts": {
+    "dev": "astro dev --root web",
+    "build": "astro build --root web && pagefind --site web/dist",
+    "preview": "astro preview --root web",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm validate && pnpm schemas --check",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
@@ -21,13 +24,24 @@
     "import:baseline": "node src/cli/import-baseline.ts"
   },
   "dependencies": {
+    "@astrojs/react": "7.1.1",
+    "@astrojs/sitemap": "3.7.4",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.4.2",
     "csv-parse": "7.0.3",
+    "cytoscape": "3.34.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwindcss": "4.3.3",
     "zod": "4.6.7"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.3",
     "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "fast-xml-parser": "5.11.2",
+    "pagefind": "1.5.2",
     "typescript": "7.0.2",
     "vitest": "5.0.5"
   }

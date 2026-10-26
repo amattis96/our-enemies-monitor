@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: canonical data layer and validation pipeline in place (M1); public website and automated update workflows planned.**
+**Phase: canonical data layer (M1) and Italian MVP portal (M2) in place; English version, atlas, dependency metrics and automated update workflows planned.**
 
 The initial research corpus has a cutoff of **21 October 2026** and covers **2007–2026**, with earlier context where relevant. These are curated records, not an exhaustive census of all incidents in Europe.
 
@@ -104,9 +104,9 @@ The repository is the durable source of truth. A **static-first portal** is buil
 | Runtime and tooling | Node.js 26, pnpm 12, TypeScript 7, Biome 2, Vitest 5 |
 | Data model and validation | Zod 4 schemas, exported as JSON Schema |
 | Canonical data | One JSON file per record in `data/`, versioned in Git |
-| Public web app (M2) | Astro 7 static site with React 19 islands, Tailwind CSS 4 |
-| Network graphs (M2) | Cytoscape.js |
-| Search (M2) | Pagefind static index |
+| Public web app | Astro 7 static site with React 19 islands, Tailwind CSS 4 |
+| Network graphs | Cytoscape.js |
+| Search | Pagefind static index |
 | Atlas (M3) | Country-level SVG maps (d3-geo, Natural Earth) |
 | Publishing | GitHub Actions, GitHub Pages, portable static output |
 
@@ -118,6 +118,8 @@ No database, graph database, map tile server or paid service is needed to build 
 pnpm install
 pnpm check        # lint, typecheck, tests, data validation, schema freshness
 pnpm validate     # validate data/ only
+pnpm build        # build the static site into web/dist (with search index)
+pnpm preview      # serve the built site locally
 ```
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
@@ -183,7 +185,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Publish permissive licenses for code and original project data.
 - [x] Define and validate normalized schemas and import the baseline into canonical data (M1).
 - [ ] Audit sensitive claims against stable primary-source references.
-- [ ] Build the interactive timeline, map, graph and profile pages.
+- [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
+- [ ] Build the geographic atlas and strategic-dependency views (M3).
 - [ ] Introduce multilingual navigation and translation review.
 - [ ] Set up agent-specific research branches, CI checks and pull requests.
 - [ ] Enable scheduled research, editorial review and automatic deployment.

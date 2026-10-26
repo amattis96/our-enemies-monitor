@@ -1,0 +1,24 @@
+---
+import { ENTITY_KIND_LABELS } from "../../../../src/site/format.ts";
+import NetworkExplorer from "../../islands/NetworkExplorer.tsx";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+---
+
+<Base title="Grafo delle ipotesi (esplorativo)" description="Grafo esplorativo delle domande investigative aperte.">
+  <h1>Grafo delle ipotesi — esplorativo</h1>
+  <div class="notice max-w-3xl">
+    Questo grafo <strong>non mostra fatti</strong>: ogni collegamento è una domanda investigativa
+    aperta e non dimostrata (livello E5). Non va letto né citato come una relazione accertata.
+    Le relazioni documentate sono nella <a href={href("network/")}>rete delle evidenze</a>.
+  </div>
+  <NetworkExplorer
+    client:only="react"
+    mode="hypotheses"
+    dataUrl={href("data/v1/hypotheses-graph.json")}
+    entityBase={href("entities/")}
+    eventBase={href("events/")}
+    groupLabels={{}}
+    kindLabels={ENTITY_KIND_LABELS}
+  />
+</Base>

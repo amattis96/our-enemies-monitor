@@ -1,0 +1,30 @@
+---
+import { ENTITY_KIND_LABELS, RELATION_GROUP_LABELS } from "../../../../src/site/format.ts";
+import NetworkExplorer from "../../islands/NetworkExplorer.tsx";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+---
+
+<Base title="Rete delle relazioni" description="Grafo delle relazioni documentate fra entità ed eventi.">
+  <h1>Rete delle relazioni documentate</h1>
+  <div class="max-w-3xl">
+    <p>
+      Relazioni tipizzate con livello di evidenza E1–E4. La vicinanza nel grafo non dimostra
+      coordinamento: <strong>A → B → C non implica A → C</strong>, e la partecipazione a molti
+      eventi non equivale a dirigerli. Per questo la partecipazione a eventi è esclusa di default.
+    </p>
+    <p class="meta">
+      Le ipotesi aperte sono in un <a href={href("network/hypotheses/")}>grafo esplorativo separato</a>.
+      Le relazioni che riguardano persone senza fonte primaria collegata non sono incluse.
+    </p>
+  </div>
+  <NetworkExplorer
+    client:only="react"
+    mode="evidence"
+    dataUrl={href("data/v1/graph.json")}
+    entityBase={href("entities/")}
+    eventBase={href("events/")}
+    groupLabels={RELATION_GROUP_LABELS}
+    kindLabels={ENTITY_KIND_LABELS}
+  />
+</Base>

@@ -63,9 +63,13 @@ pnpm format:data        # rewrite data/ in canonical form
 pnpm schemas            # regenerate schemas/*.schema.json after model changes
 pnpm lint:fix           # Biome autofix
 pnpm import:baseline    # one-time import; refuses to overwrite data/ without --force
+pnpm build              # static site into web/dist + Pagefind index
+pnpm dev                # Astro dev server (no search index)
+pnpm preview            # serve the last build
 ```
 
-Before declaring work done, run `pnpm check` and report its real result.
+Before declaring work done, run `pnpm check` (and `pnpm build` for site changes)
+and report the real result. For UI changes, also look at the pages in a browser.
 
 ## Where things are
 
@@ -75,6 +79,16 @@ Before declaring work done, run `pnpm check` and report its real result.
 - `src/pipeline/` — loading, canonical serialization (`serialize.ts`),
   validation (`validate.ts`). `baseline/` holds the one-time importer and the
   known-issue registry for the original files.
+- `src/pipeline/baseline/themes.ts` — editorial category → theme mapping. A new
+  category in the data needs an explicit entry here.
+- `src/site/` — read model and display formatting for the website. Public
+  rules (restricted person relationships, graph separation, ordering) live
+  here, with tests, not in templates.
+- `web/` — Astro site. Keep `.astro` templates thin: they are not type-checked
+  (`@astrojs/check` does not support TypeScript 7 yet). Use `href()` from
+  `web/src/lib/links.ts` for every internal link (base path). Astro drops
+  whitespace between a line break and a tag: write `{" "}` where a space is
+  needed before/after inline links.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
 

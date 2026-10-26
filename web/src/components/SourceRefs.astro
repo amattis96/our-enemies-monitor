@@ -1,0 +1,24 @@
+---
+import { href } from "../lib/links.ts";
+import { getModel } from "../lib/model.ts";
+
+interface Props {
+  ids: string[];
+}
+const { ids } = Astro.props;
+const model = getModel();
+---
+
+{
+  ids.length === 0 ? (
+    <span class="meta">nessuna fonte indicata</span>
+  ) : (
+    <span class="inline-flex flex-wrap gap-1">
+      {ids.map((id) => (
+        <a class="badge font-mono" href={href(`sources/${id}/`)} title={model.source(id)?.title.it}>
+          {id}
+        </a>
+      ))}
+    </span>
+  )
+}

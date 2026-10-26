@@ -1,6 +1,7 @@
 # Technical architecture
 
-**Status:** adopted 2026-10-26. M1 (data foundation) implemented; M2–M4 planned.
+**Status:** adopted 2026-10-26. M1 (data foundation) and M2 (Italian MVP portal)
+implemented; M3–M4 planned.
 This document describes the architecture as it is built. Keep it in sync
 with the code (see [AGENTS.md](../AGENTS.md)).
 
@@ -33,20 +34,26 @@ with the code (see [AGENTS.md](../AGENTS.md)).
 | Package manager | pnpm 12 | Exact versions pinned in `package.json` |
 | Language / types | TypeScript 7 | `tsc --noEmit` as type checker |
 | Schemas | Zod 4 | Source of truth for types, validation and exported JSON Schema |
-| Tests | Vitest 5 | Importer and validator suites |
-| Lint / format | Biome 2 | Code formatting and lint; data formatting is done by the pipeline |
-| CI | GitHub Actions | `pnpm check` on every push and PR |
-| Website (M2) | Astro 7 + React 19 islands | Static HTML pages; React only for interactive views |
-| Styling (M2) | Tailwind CSS 4 + React Aria Components | Accessible primitives |
-| Network graph (M2) | Cytoscape.js | Edge styles per relation group, hypotheses on a separate layer |
-| Search (M2) | Pagefind | Static, multilingual index built from the generated pages |
+| Tests | Vitest 5 | Importer, validator and read-model suites |
+| Lint / format | Biome 2 | Code and Astro formatting/lint; data formatting is done by the pipeline |
+| CI / CD | GitHub Actions | `pnpm check` and `pnpm build` on every push and PR; deploy to Pages from `main` |
+| Website | Astro 7 + React 19 islands | Static HTML pages; React only for timeline and network |
+| Styling | Tailwind CSS 4 | Functional MVP styling with native form controls; a dedicated UI/UX design study will replace it (React Aria Components to be evaluated then) |
+| Network graph | Cytoscape.js | Edge styles per relation group, hypotheses on a separate layer |
+| Search | Pagefind | Static, multilingual index built from the generated pages |
 | Atlas (M3) | Country-level SVG (d3-geo + Natural Earth) | No point coordinates exist in the data; no tile server |
-| Hosting (M2) | GitHub Pages | Portable static output, works on any static host |
+| Hosting | GitHub Pages | Portable static output, works on any static host |
 
 Deliberately **not** used: Next.js (static export loses i18n routing and adds
 RSC runtime for a content site), Python in the build (would duplicate the
 schemas), SQLite/PostgreSQL (unnecessary at this scale), graph or vector
 databases, map tile servers. Reconsider only with measured need.
+
+**Known tooling gap:** `@astrojs/check` does not support TypeScript 7 yet
+(peer range `^5 || ^6`), so `.astro` templates are not type-checked. Keep
+logic in `.ts`/`.tsx` modules (checked by `tsc`) and templates thin; adopt
+`astro check` when it supports TypeScript 7. Biome cannot see template usage
+in `.astro` files, so its unused-import/variable rules are off for them.
 
 ## Repository layout
 
@@ -64,11 +71,19 @@ src/
   pipeline/            Loading (load.ts), source reading (sources.ts),
                        canonical serialization (serialize.ts), validation (validate.ts)
     baseline/          One-time importer, file registry, known-issue registry
+    baseline/themes.ts Editorial category → theme classification
+  site/                Read model (indexes, restriction rule, graph and timeline
+                       projections) and Italian display formatting
   cli/                 Entry points used by package scripts
 test/                  Vitest suites
+web/                   Astro portal
+  astro.config.ts      SITE_URL / BASE_PATH configurable for mirrors
+  src/pages/           Routes (see Website)
+  src/components/      Shared .astro components
+  src/islands/         React islands: TimelineExplorer, NetworkExplorer
+  src/lib/             Base-path links, cached read model
 docs/                  Architecture and project documentation
-.github/workflows/     CI
-web/                   Astro portal (M2, not yet created)
+.github/workflows/     CI and Pages deployment
 ```
 
 ## Data model
@@ -100,8 +115,8 @@ namespaces are disjoint, so a relationship endpoint is resolved by its ID.
 - **Event:** dated record with `date {start, end, precision}` (partial ISO
   `YYYY`, `YYYY-MM`, `YYYY-MM-DD`), `record_type` (`event` or
   `dataset_metadata`), `timeline_status` (`integrated` or
-  `pending_integration`), title, description, original category, original
-  evidence note, original geography, source references, optional publisher,
+  `pending_integration`), title, description, original category, editorial
+  `themes` (18 codes, at least one), original evidence note, original geography, source references, optional publisher,
   URL and evidence level (EXT records), `known_issues`.
 - **Entity:** `kind` (`state`, `institution`, `person`, `organization`,
   `company`, `asset`), name, original domain.
@@ -132,11 +147,17 @@ and corrections as separate collections are introduced when real data
 exists for them (M3–M4). The baseline has no claim-level data, and inventing
 that structure would be false precision. Until then each relationship is the
 claim, its sources are the evidence, and Git history plus `review.notes`
-record corrections. Normalized themes (from the ~90 free-text categories),
-places (from free-text geography), canonical predicates (from 290 original
-predicates) and the event/attribution/impact status split (from free-text
-evidence notes) are **editorial classifications** scheduled for M2/M3; the
-original values remain the reference.
+record corrections. Normalized places (from free-text geography), canonical
+predicates (from 290 original predicates) and the event/attribution/impact
+status split (from free-text evidence notes) are **editorial classifications**
+not yet done; the original values remain the reference.
+
+**Themes (M2):** each of the 123 original categories is mapped explicitly to
+one or more of 18 themes in `src/pipeline/baseline/themes.ts` (the importer
+fails on an unmapped category; a test fails on stale entries). Per-event
+overrides apply the reclassifications reported by the corpus (TL-0035,
+TL-0048) and classify the EXT records, which have no category; each override
+is explained in `review.notes`.
 
 ## Baseline in numbers
 
@@ -157,7 +178,7 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
                     temporal rules, provenance vs. original files,
                     sensitive-person report
                                          |
-                    (M2) build read models --> Astro static site --> Pages
+                    src/site read model --> Astro static site + Pagefind --> Pages
 ```
 
 - `pnpm import:baseline` refuses to overwrite an existing `data/` unless
@@ -167,8 +188,9 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 - `pnpm schemas` regenerates `schemas/*.schema.json`; `pnpm check` fails if
   they are stale.
 - `pnpm format:data` rewrites data files in canonical form.
-- `pnpm check` = lint + typecheck + tests + validate + schema freshness. It is
-  what CI runs.
+- `pnpm check` = lint + typecheck + tests + validate + schema freshness.
+- `pnpm build` builds the site into `web/dist/` and indexes it with Pagefind;
+  `pnpm dev` / `pnpm preview` serve it locally (search works only on a build).
 
 ### Validation rules
 
@@ -185,28 +207,45 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 8. Warning: relationships touching a `person` entity without a `primary_url`
    (they will be restricted on the public site until reviewed).
 
-## Website (M2–M3)
+## Website
 
-Static-first Astro site reading `data/` through the same model package.
-Content pages (events, entities, hypotheses, sources, methodology) are plain
-HTML; interactive views are React islands:
+Static Astro site (`web/`), Italian only for now (`<html lang="it">`). It
+loads `data/` through `src/site/read-model.ts`, which re-runs validation and
+fails the build on any error, so invalid data is never published. Build
+output is ~440 static pages.
 
-- **Timeline:** filter by period, theme, evidence; precision shown explicitly;
-  `dataset_metadata` records hidden from the event list.
-- **Network:** Cytoscape.js; filter by relation group and evidence level;
-  event-participation edges visually distinct from direct relationships;
-  hypotheses only in a separate, clearly labeled exploratory view; no
-  automatic path inference or transitive edges.
-- **Profiles:** entity and event pages with every relationship, its sources,
-  caveats and review status. Named-person relationships without a primary
-  source are shown in restricted form.
-- **Atlas (M3):** country-level layers that keep event location, target and
-  alleged origin separate.
-- **Dependencies (M3):** exposure metrics with unit, denominator, year and
-  scope (from Fonte_08 §12.2).
-- **i18n:** Italian canonical; English in M3; stable IDs in URLs.
+| Route | Content |
+| --- | --- |
+| `/` | Purpose, disclaimer, counts, entry points |
+| `/timeline/` | React island: filter by theme (`?tema=` deep link), period, text; EXT records flagged; `dataset_metadata` hidden by default; `<noscript>` list |
+| `/events/<id>/` | Date with precision, known issues, evidence note, themes, original category, actors and roles, direct relationships citing the event, linked hypotheses, provenance |
+| `/entities/`, `/entities/<id>/` | Index by kind; profile with direct relationships, event participations, hypotheses, person notice |
+| `/network/` | React island (Cytoscape.js) over `/data/v1/graph.json`: filter by relation group and evidence level (E1–E2 solid, E3 dashed, E4 dotted); participation off by default; node selection panel; text list of visible links as accessible alternative |
+| `/network/hypotheses/` | Separate exploratory graph over `/data/v1/hypotheses-graph.json`, labeled as non-factual |
+| `/hypotheses/`, `/hypotheses/<id>/` | Register by priority, detail with limits and evidence needed |
+| `/sources/`, `/sources/<id>/` | Corpus documents and references, URLs, repository files, citing records |
+| `/methodology/` | Evidence levels, principles, relation groups, person rule, limits |
+| `/search/` | Pagefind UI over pages marked `data-pagefind-body` (records and methodology) |
 
-Read models are sharded per record and per neighborhood; no monolithic JSON.
+Public-facing rules implemented in the read model and tested:
+
+- **Restriction:** a relationship touching a `person` without `primary_url`
+  is shown only as "restricted, pending primary source" (no predicate or
+  caveat) and is excluded from the graph JSON (36 in the baseline).
+- **Separation:** the evidence graph contains only `G-*` relationships; the
+  hypothesis graph only `H*`. Nothing infers paths or transitive edges.
+- **Ordering:** timeline sorted by start date; year-precision entries come
+  first within a year (technical ordering, stated on the page).
+
+Planned (M3): English locale under `/en/` with the same IDs in URLs,
+country-level atlas keeping event location, target and alleged origin
+separate, exposure metrics with unit/denominator/year/scope (Fonte_08 §12.2),
+downloadable data. UI/UX will be redesigned in a dedicated study.
+
+**Deployment:** the CI job builds on every push and PR; on `main` it uploads
+`web/dist` and the `deploy` job publishes it to GitHub Pages (the repository
+must have Pages enabled with source "GitHub Actions"). Mirrors set
+`SITE_URL` and `BASE_PATH` and serve `web/dist` from any static host.
 
 ## Editorial workflow and AI agents (M4)
 
@@ -222,6 +261,6 @@ statuses of sensitive records; CODEOWNERS and branch protection enforce this.
 | Milestone | Scope | Status |
 | --- | --- | --- |
 | **M1** Data foundation | Toolchain, Zod model, baseline import, validators, tests, CI, AGENTS.md | Done |
-| **M2** Italian MVP portal | Astro site: timeline, event/entity pages, network, hypotheses, sources, methodology, Pagefind search, GitHub Pages; theme classification | Planned |
+| **M2** Italian MVP portal | Astro site: timeline, event/entity pages, network, hypotheses, sources, methodology, Pagefind search, GitHub Pages; theme classification | Done |
 | **M3** English, atlas, dependencies | EN translations with review status, country atlas, exposure dataset, a11y/mobile pass, downloadable data and schemas | Planned |
 | **M4** Editorial workflow and agents | Contribution templates, PR evidence diff, CODEOWNERS/branch protection, scheduled research agent PRs, changes/corrections page | Planned |

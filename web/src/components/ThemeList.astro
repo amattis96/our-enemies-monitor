@@ -1,0 +1,19 @@
+---
+import { THEME_LABELS, type Theme } from "../../../src/model/index.ts";
+import { href } from "../lib/links.ts";
+
+interface Props {
+  themes: Theme[];
+}
+const { themes } = Astro.props;
+---
+
+<span class="inline-flex flex-wrap gap-1">
+  {
+    themes.map((theme) => (
+      <a class="badge" href={href(`timeline/?tema=${theme}`)}>
+        {THEME_LABELS[theme].it}
+      </a>
+    ))
+  }
+</span>

@@ -1,0 +1,12 @@
+---
+import { nodeHref } from "../lib/links.ts";
+import { getModel } from "../lib/model.ts";
+
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+const model = getModel();
+---
+
+<a href={nodeHref(id, model.nodeKind(id))}>{model.nodeLabel(id)}</a>

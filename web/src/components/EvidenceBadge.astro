@@ -1,0 +1,13 @@
+---
+import { EVIDENCE_LEVEL_LABELS, type EvidenceLevel } from "../../../src/model/index.ts";
+
+interface Props {
+  level: EvidenceLevel;
+}
+const { level } = Astro.props;
+const label = EVIDENCE_LEVEL_LABELS[level].it;
+---
+
+<span class="badge font-mono" title={label}>
+  {level}<span class="sr-only">: {label}</span>
+</span>

@@ -1,0 +1,32 @@
+---
+import type { ProvenanceEntry, Review } from "../../../src/model/index.ts";
+import { REVIEW_STATUS_LABELS } from "../../../src/site/format.ts";
+
+interface Props {
+  id: string;
+  collection: string;
+  review: Review;
+  provenance: ProvenanceEntry[];
+}
+const { id, collection, review, provenance } = Astro.props;
+const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main";
+---
+
+<section class="mt-10 border-t border-line pt-4 meta" data-pagefind-ignore>
+  <h2 class="text-base">Revisione e provenienza</h2>
+  <p>
+    Stato: {REVIEW_STATUS_LABELS[review.status]}.
+    {review.notes.map((note) => <span class="block">{note}</span>)}
+  </p>
+  <ul class="list-disc pl-5">
+    <li><a href={`${repo}/data/${collection}/${id}.json`}>Record canonico {id}.json</a></li>
+    {
+      provenance.map((entry) => (
+        <li>
+          <a href={`${repo}/${encodeURI(entry.file)}`}>{entry.file.split("/").pop()}</a>,{" "}
+          {"row" in entry ? `riga dati ${entry.row}` : `riga ${entry.line}`}
+        </li>
+      ))
+    }
+  </ul>
+</section>

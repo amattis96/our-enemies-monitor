@@ -1,0 +1,29 @@
+---
+import Base from "../layouts/Base.astro";
+import { href } from "../lib/links.ts";
+---
+
+<Base title="Cerca" description="Ricerca testuale in eventi, entità, ipotesi e fonti.">
+  <h1>Cerca</h1>
+  <p class="meta">Ricerca a testo pieno su eventi, entità, ipotesi e fonti (indice statico Pagefind).</p>
+  <link href={href("pagefind/pagefind-ui.css")} rel="stylesheet" />
+  <div id="search" class="mt-4"></div>
+  <noscript>La ricerca richiede JavaScript. In alternativa usa la cronologia e gli elenchi.</noscript>
+  <script is:inline define:vars={{ bundle: href("pagefind/") }}>
+    const script = document.createElement("script");
+    script.src = `${bundle}pagefind-ui.js`;
+    script.onload = () => {
+      new PagefindUI({
+        element: "#search",
+        bundlePath: bundle,
+        showSubResults: true,
+        translations: { placeholder: "Cerca nel corpus", zero_results: "Nessun risultato per [SEARCH_TERM]" },
+      });
+    };
+    script.onerror = () => {
+      document.getElementById("search").textContent =
+        "Indice di ricerca non disponibile: viene generato solo dalla build di produzione (pnpm build).";
+    };
+    document.head.append(script);
+  </script>
+</Base>

@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+import { href } from "../lib/links.ts";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Index the page in the site search. */
+  searchable?: boolean;
+}
+
+const { title, description, searchable = false } = Astro.props;
+const fullTitle = title === "Our Enemies Monitor" ? title : `${title} · Our Enemies Monitor`;
+const nav = [
+  ["timeline/", "Cronologia"],
+  ["network/", "Rete"],
+  ["entities/", "Entità"],
+  ["hypotheses/", "Ipotesi"],
+  ["sources/", "Fonti"],
+  ["methodology/", "Metodologia"],
+  ["search/", "Cerca"],
+];
+const current = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href={href("favicon.svg")} type="image/svg+xml" />
+    <link rel="sitemap" href={href("sitemap-index.xml")} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-2 focus:bg-white">
+      Vai al contenuto
+    </a>
+    <header class="border-b border-line bg-wash">
+      <div class="mx-auto max-w-6xl px-4 py-3 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+        <a href={href()} class="font-bold no-underline text-ink">Our Enemies Monitor</a>
+        <nav aria-label="Sezioni principali">
+          <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            {
+              nav.map(([path, label]) => (
+                <li>
+                  <a
+                    href={href(path)}
+                    aria-current={current.startsWith(href(path)) ? "page" : undefined}
+                    class:list={[current.startsWith(href(path)) && "font-semibold"]}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="mx-auto w-full max-w-6xl px-4 py-6 flex-1" data-pagefind-body={searchable ? "" : undefined}>
+      <slot />
+    </main>
+    <footer class="border-t border-line bg-wash" data-pagefind-ignore>
+      <div class="mx-auto max-w-6xl px-4 py-4 meta space-y-1">
+        <p>
+          Progetto di ricerca OSINT indipendente. La presenza nel database non implica illecito,
+          intento ostile o complicità. Cutoff della baseline: 21 ottobre 2026.
+        </p>
+        <p>
+          Codice <a href="https://github.com/amattis96/our-enemies-monitor/blob/main/LICENSE">MIT</a>{" "}
+          · dati e ricerca originali{" "}
+          <a href="https://github.com/amattis96/our-enemies-monitor/blob/main/LICENSE-DATA.md">CC0 1.0</a>{" "}
+          · <a href="https://github.com/amattis96/our-enemies-monitor">sorgenti su GitHub</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

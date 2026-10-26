@@ -1,0 +1,50 @@
+---
+import { HYPOTHESIS_PRIORITIES } from "../../../../src/model/index.ts";
+import { HYPOTHESIS_STATUS_LABELS, PRIORITY_LABELS } from "../../../../src/site/format.ts";
+import NodeLink from "../../components/NodeLink.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+const model = getModel();
+const groups = HYPOTHESIS_PRIORITIES.map((priority) => ({
+  priority,
+  items: model.dataset.hypotheses.filter((h) => h.priority === priority),
+})).filter((g) => g.items.length > 0);
+---
+
+<Base title="Ipotesi aperte" description="Registro delle domande investigative aperte, separate dai fatti documentati.">
+  <h1>Registro delle ipotesi aperte</h1>
+  <div class="notice max-w-3xl">
+    Domande investigative falsificabili, <strong>non relazioni accertate</strong>. Un'ipotesi
+    prioritaria non diventa vera per la sua priorità. Può essere promossa a relazione solo con una
+    fonte primaria e una revisione umana. Vedi anche il <a href={href("network/hypotheses/")}>grafo esplorativo</a>.
+  </div>
+  {
+    groups.map((g) => (
+      <section>
+        <h2>Priorità {PRIORITY_LABELS[g.priority].toLowerCase()} ({g.items.length})</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Domanda</th>
+              <th scope="col">Soggetti</th>
+              <th scope="col">Stato</th>
+            </tr>
+          </thead>
+          <tbody>
+            {g.items.map((h) => (
+              <tr>
+                <td class="font-mono"><a href={href(`hypotheses/${h.id}/`)}>{h.id}</a></td>
+                <td>{h.question.it}</td>
+                <td><NodeLink id={h.subject} /> · <NodeLink id={h.object} /></td>
+                <td>{HYPOTHESIS_STATUS_LABELS[h.status]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    ))
+  }
+</Base>
