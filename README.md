@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: canonical data layer, bilingual portal (Italian/English), atlas, dependency metrics and open-data exports in place (M1–M3); editorial and AI-agent update workflows planned (M4).**
+**Phase: canonical data layer, bilingual portal (Italian/English), atlas, dependency metrics, open-data exports, editorial workflow and weekly research agent in place (M1–M4). Records are imported from the baseline and await editorial review.**
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -193,13 +193,14 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Build the geographic atlas and strategic-dependency views (M3).
 - [x] Introduce multilingual navigation (Italian/English) with tracked translation status (M3).
 - [ ] Review the English machine translations.
-- [ ] Set up agent-specific research branches, CI checks and pull requests.
-- [ ] Enable scheduled research, editorial review and automatic deployment.
-- [ ] Publish the public portal and its correction policy.
+- [x] Set up agent-specific research branches, CI checks, evidence diffs and pull requests (M4).
+- [x] Enable scheduled research (needs the `ANTHROPIC_API_KEY` secret), editorial review and automatic deployment (M4).
+- [x] Publish the public portal and its correction policy (changes page, contribution rules).
+- [ ] Editorial review of imported records, starting with the 36 restricted named-person relationships.
 
 ## Contributing and corrections
 
-The project aims to welcome **documented additions, competing interpretations, corrections and technical contributions**. Until contribution templates and governance rules are established, proposed research updates should include the primary sources, precise affected records, a statement of what is known versus inferred, and any relevant conflicting evidence.
+The project welcomes **documented additions, competing interpretations, corrections and technical contributions**. See [CONTRIBUTING.md](CONTRIBUTING.md): use the correction or new-evidence issue forms, or open a pull request; every data pull request gets an automatic evidence diff and needs the maintainer's review. Proposed updates should include the primary sources, the precise affected records, what is known versus inferred, and any conflicting evidence.
 
 Please do not submit unsupported allegations, personal data without a legitimate research basis, or speculative links as confirmed relationships. Preserve an individual's legal or procedural status accurately. Publication and republication of third-party materials must respect their licenses and applicable law.
 

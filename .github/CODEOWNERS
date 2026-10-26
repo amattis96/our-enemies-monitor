@@ -1,0 +1,12 @@
+# Every change needs the maintainer's review. Sensitive paths are listed
+# explicitly so that ownership survives if more owners are added for data/.
+*                       @amattis96
+/data/                  @amattis96
+/.github/               @amattis96
+/src/                   @amattis96
+/schemas/               @amattis96
+/sources/original/      @amattis96
+/AGENTS.md              @amattis96
+/CLAUDE.md              @amattis96
+/package.json           @amattis96
+/pnpm-lock.yaml         @amattis96

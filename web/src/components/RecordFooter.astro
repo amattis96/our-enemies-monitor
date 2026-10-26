@@ -12,7 +12,7 @@ interface Props {
 }
 const { id, collection, review, provenance, lang } = Astro.props;
 const t = ui(lang);
-const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main";
+const repo = "https://github.com/amattis96/our-enemies-monitor";
 const translation = review.translations?.en;
 ---
 
@@ -24,11 +24,14 @@ const translation = review.translations?.en;
     {review.notes.map((note) => <span class="block">{note}</span>)}
   </p>
   <ul class="list-disc pl-5 wrap-anywhere">
-    <li><a href={`${repo}/data/${collection}/${id}.json`}>{t.canonicalRecord} {id}.json</a></li>
+    <li>
+      <a href={`${repo}/blob/main/data/${collection}/${id}.json`}>{t.canonicalRecord} {id}.json</a>
+      (<a href={`${repo}/commits/main/data/${collection}/${id}.json`}>{t.recordHistory}</a>)
+    </li>
     {
       provenance.map((entry) => (
         <li>
-          <a href={`${repo}/${encodeURI(entry.file)}`}>{entry.file.split("/").pop()}</a>,{" "}
+          <a href={`${repo}/blob/main/${encodeURI(entry.file)}`}>{entry.file.split("/").pop()}</a>,{" "}
           {"row" in entry ? `${t.dataRow} ${entry.row}` : `${t.line} ${entry.line}`}
         </li>
       ))

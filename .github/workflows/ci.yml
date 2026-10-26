@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # full history for the changes page
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
@@ -30,6 +32,31 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: web/dist
+
+  evidence-diff:
+    # Human-readable diff of data/ for reviewers; stricter rules on agent/* branches.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Evidence diff
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          AGENT_BRANCH: ${{ startsWith(github.head_ref, 'agent/') }}
+        run: |
+          if [ "$AGENT_BRANCH" = "true" ]; then
+            pnpm data:diff --base "origin/$BASE_REF" --agent
+          else
+            pnpm data:diff --base "origin/$BASE_REF"
+          fi
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'

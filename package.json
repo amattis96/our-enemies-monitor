@@ -24,7 +24,8 @@
     "import:baseline": "node src/cli/import-baseline.ts",
     "i18n:export": "node src/cli/i18n.ts export",
     "i18n:import": "node src/cli/i18n.ts import",
-    "check:links": "node src/cli/check-links.ts"
+    "check:links": "node src/cli/check-links.ts",
+    "data:diff": "node src/cli/data-diff.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",

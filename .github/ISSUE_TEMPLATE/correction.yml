@@ -1,0 +1,53 @@
+name: Correction / Correzione
+description: Report an error, retraction, acquittal or outdated status in an existing record.
+title: "[correction] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections stay visible in the project history. Please cite the source that establishes the correction.
+        Le correzioni restano visibili nella storia del progetto. Cita la fonte che stabilisce la correzione.
+  - type: input
+    id: records
+    attributes:
+      label: Affected records / Record interessati
+      description: IDs, e.g. TL-0060, G-0009, GILL
+      placeholder: TL-0060, G-0009
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of correction / Tipo di correzione
+      options:
+        - Factual error / Errore fattuale
+        - Date or place / Data o luogo
+        - Evidence level or status / Livello o stato di evidenza
+        - New judgment, acquittal or retraction / Nuova sentenza, assoluzione o ritrattazione
+        - Translation / Traduzione
+        - Other / Altro
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What is wrong and what is correct / Cosa è errato e cosa è corretto
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources (primary if possible) / Fonti (primarie se possibile)
+      description: URL, publisher, publication date.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks / Verifiche
+      options:
+        - label: I distinguish what the source establishes from what I infer / Distinguo ciò che la fonte stabilisce da ciò che deduco
+          required: true
+        - label: For named people, I give the exact act, date and procedural status / Per le persone nominate indico atto, data e stato procedurale esatti
+          required: false

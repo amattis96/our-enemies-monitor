@@ -1,0 +1,52 @@
+name: New evidence / Nuova evidenza
+description: Propose a new event, relationship or source.
+title: "[evidence] "
+labels: ["new-evidence"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the [methodology](https://amattis96.github.io/our-enemies-monitor/en/methodology/) first.
+        Unproven links belong in the hypothesis register, not in the graph.
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim / Affermazione
+      description: One precise statement. Who did what, to whom, when — as stated by the source.
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Proposed evidence level / Livello di evidenza proposto
+      options:
+        - E1 — primary act, judgment, official decision, verified technical fact
+        - E2 — formal attribution by a government or institution
+        - E3 — original investigation, independent forensics, strong corroboration
+        - E4 — allegation not publicly corroborated
+        - E5 — hypothesis (goes to the hypothesis register)
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / Fonti
+      description: URL, publisher, publication date; say which is primary.
+    validations:
+      required: true
+  - type: input
+    id: related
+    attributes:
+      label: Related records / Record collegati
+      description: Existing IDs (TL-, G-, H, entities) if any.
+  - type: textarea
+    id: dates
+    attributes:
+      label: Dates / Date
+      description: When it happened vs. when it was reported, attributed or judged. Leave unknown parts empty.
+  - type: textarea
+    id: contrary
+    attributes:
+      label: Contrary evidence and limits / Prove contrarie e limiti
+    validations:
+      required: true

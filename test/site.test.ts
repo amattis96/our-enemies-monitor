@@ -7,6 +7,7 @@ import {
   formatPartialDate,
   formatPredicate,
 } from "../src/site/format.ts";
+import { dataHistory } from "../src/site/history.ts";
 import { languagePaths, pick } from "../src/site/i18n.ts";
 import {
   atlasRows,
@@ -118,6 +119,19 @@ describe("i18n", () => {
   it("returns fresh static paths on every call", () => {
     expect(languagePaths()).not.toBe(languagePaths());
     expect(languagePaths().map((p) => p.params.lang)).toEqual([undefined, "en"]);
+  });
+});
+
+describe("history", () => {
+  it("reads data changes from Git, newest first", () => {
+    const history = dataHistory();
+    expect(history.length).toBeGreaterThan(0);
+    for (const commit of history) {
+      expect(commit.sha).toMatch(/^[0-9a-f]{40}$/);
+      expect(commit.records.length).toBeGreaterThan(0);
+    }
+    const dates = history.map((c) => c.date);
+    expect(dates).toEqual([...dates].sort().reverse());
   });
 });
 

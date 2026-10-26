@@ -1,0 +1,132 @@
+---
+import type { CollectionName } from "../../../../src/model/index.ts";
+import { formatPartialDate } from "../../../../src/site/format.ts";
+import { dataHistory, type RecordTouch } from "../../../../src/site/history.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import NodeLink from "../../components/NodeLink.astro";
+import T from "../../components/T.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const history = dataHistory();
+const repo = "https://github.com/amattis96/our-enemies-monitor";
+
+const withIssues = model.events.filter((e) => e.known_issues.length > 0);
+const noted = (
+  ["events", "entities", "relationships", "hypotheses", "sources", "exposures"] as const
+).flatMap((collection) =>
+  (model.dataset[collection] as { id: string; review: { notes: string[] } }[])
+    .filter((r) => r.review.notes.length > 0)
+    .map((r) => ({ collection, id: r.id, notes: r.review.notes })),
+);
+
+const COLLECTION_LABELS: Record<CollectionName, { it: string; en: string }> = {
+  events: { it: "eventi", en: "events" },
+  entities: { it: "entità", en: "entities" },
+  relationships: { it: "relazioni", en: "relationships" },
+  hypotheses: { it: "ipotesi", en: "hypotheses" },
+  sources: { it: "fonti", en: "sources" },
+  exposures: { it: "esposizioni", en: "exposures" },
+};
+const STATUS_LABELS = {
+  added: { it: "aggiunti", en: "added" },
+  modified: { it: "modificati", en: "modified" },
+  removed: { it: "rimossi", en: "removed" },
+};
+/** Page of a record, when it has one. */
+const recordHref = (touch: RecordTouch): string | null => {
+  if (touch.status === "removed") return null;
+  if (
+    touch.collection === "events" ||
+    touch.collection === "entities" ||
+    touch.collection === "hypotheses" ||
+    touch.collection === "sources"
+  ) {
+    return href(`${touch.collection}/${touch.id}/`, lang);
+  }
+  if (touch.collection === "exposures") return `${href("dependencies/", lang)}#${touch.id}`;
+  return `${repo}/blob/main/data/${touch.collection}/${touch.id}.json`;
+};
+const summary = (records: RecordTouch[]) => {
+  const parts = new Map<string, number>();
+  for (const r of records) {
+    const key = `${STATUS_LABELS[r.status][lang]} ${COLLECTION_LABELS[r.collection][lang]}`;
+    parts.set(key, (parts.get(key) ?? 0) + 1);
+  }
+  return [...parts].map(([key, n]) => `${n} ${key}`).join(" · ");
+};
+---
+
+<Base title={c("Modifiche e correzioni", "Changes and corrections")} lang={lang} description={c("Storia delle modifiche ai dati, anomalie note e correzioni.", "History of data changes, known anomalies and corrections.")}>
+  <h1>{c("Modifiche e correzioni", "Changes and corrections")}</h1>
+  <p class="max-w-3xl">
+    {c(
+      "Ogni modifica ai dati pubblicati corrisponde a un commit nel repository: nulla viene sovrascritto senza traccia. Le correzioni restano visibili, insieme alle anomalie note della baseline e alle note di revisione.",
+      "Every change to the published data corresponds to a commit in the repository: nothing is overwritten without a trace. Corrections remain visible, together with the known anomalies of the baseline and the review notes.",
+    )}
+  </p>
+
+  <h2>{c("Anomalie note della baseline", "Known baseline anomalies")} ({withIssues.length})</h2>
+  <ul class="list-disc pl-5 space-y-1">
+    {
+      withIssues.flatMap((event) =>
+        event.known_issues.map((issue) => (
+          <li>
+            <NodeLink id={event.id} lang={lang} /> <span class="meta font-mono">{event.id}</span>: <T text={issue.note} lang={lang} />
+          </li>
+        )),
+      )
+    }
+  </ul>
+
+  <h2>{c("Note di revisione", "Review notes")} ({noted.length})</h2>
+  <ul class="list-disc pl-5 space-y-1">
+    {
+      noted.map((r) => (
+        <li>
+          <span class="font-mono">{r.id}</span> <span class="meta">({COLLECTION_LABELS[r.collection][lang]})</span>: {r.notes.join(" ")}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>{c("Storia delle modifiche ai dati", "History of data changes")} ({history.length})</h2>
+  {history.length === 0 && <p class="meta">{c("Storia Git non disponibile in questa build.", "Git history not available in this build.")}</p>}
+  <ol class="space-y-4">
+    {
+      history.map((commit) => (
+        <li class="border-l-2 border-line pl-3">
+          <p class="meta mb-0">
+            {formatPartialDate(commit.date.slice(0, 10), lang)} ·{" "}
+            <a class="font-mono" href={`${repo}/commit/${commit.sha}`}>{commit.sha.slice(0, 7)}</a>
+          </p>
+          <p class="font-semibold mb-0" lang="en">{commit.subject}</p>
+          <p class="meta mb-0">{summary(commit.records)}</p>
+          <details>
+            <summary class="cursor-pointer text-sm">{c("Record interessati", "Records affected")} ({commit.records.length})</summary>
+            <ul class="mt-1 text-sm columns-2 sm:columns-4">
+              {commit.records.map((touch) => {
+                const link = recordHref(touch);
+                return (
+                  <li>
+                    {link ? <a class="font-mono" href={link}>{touch.id}</a> : <span class="font-mono">{touch.id}</span>}
+                    {touch.status !== "modified" && <span class="meta"> ({STATUS_LABELS[touch.status][lang]})</span>}
+                  </li>
+                );
+              })}
+            </ul>
+          </details>
+        </li>
+      ))
+    }
+  </ol>
+  <p class="meta mt-6">
+    <a href={`${repo}/commits/main/data`}>{c("Storia completa su GitHub", "Full history on GitHub")}</a> · {ui(lang).navData}:{" "}
+    <a href={href("data/", lang)}>{c("download e manifest", "downloads and manifest")}</a>
+  </p>
+</Base>

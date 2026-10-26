@@ -1,7 +1,8 @@
 # Technical architecture
 
-**Status:** adopted 2026-10-26. M1 (data foundation), M2 (Italian MVP portal) and
-M3 (English, atlas, dependencies, open data) implemented; M4 planned.
+**Status:** adopted 2026-10-26. Milestones M1–M4 implemented: data foundation,
+bilingual portal, atlas, dependencies, open data, editorial workflow and
+research agent.
 This document describes the architecture as it is built. Keep it in sync
 with the code (see [AGENTS.md](../AGENTS.md)).
 
@@ -77,6 +78,7 @@ src/
     baseline/places.ts    Editorial geography token → ISO country classification
     baseline/exposures.ts Transcription of the Fonte_08 §12.2 exposure matrix
     translations.ts    Localized-text traversal, source hash, translation checks
+    diff.ts            Evidence diff between two versions of data/
   site/                Read model (indexes, restriction rule, graph, timeline and
                        atlas projections), i18n strings, formatting, data exports
   cli/                 Entry points used by package scripts
@@ -89,7 +91,10 @@ web/                   Astro portal
   src/islands/         React islands: TimelineExplorer, NetworkExplorer
   src/lib/             Base-path/language links, cached read model, SVG map rendering
 docs/                  Architecture and project documentation
-.github/workflows/     CI and Pages deployment
+.github/workflows/     CI (+ evidence diff, Pages deployment) and the research agent
+.github/agent/         Versioned instructions of the research agent
+.github/ISSUE_TEMPLATE/ Correction and new-evidence forms
+CONTRIBUTING.md        Contribution and evidence rules (EN/IT)
 ```
 
 ## Data model
@@ -227,6 +232,8 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
   `pnpm dev` / `pnpm preview` serve it locally (search works only on a build).
 - `pnpm check:links` verifies every internal link and `#anchor` of the built
   site (CI runs it after the build).
+- `pnpm data:diff` writes the evidence diff of `data/` against a Git ref
+  (see Editorial workflow).
 
 ### Validation rules
 
@@ -253,7 +260,7 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 Static Astro site (`web/`) in Italian (root, canonical) and English
 (`/en/`). It loads `data/` through `src/site/read-model.ts`, which re-runs
 validation and fails the build on any error, so invalid data is never
-published. Build output is ~885 static pages; Pagefind builds a separate
+published. Build output is ~887 static pages; Pagefind builds a separate
 index per language from `<html lang>`.
 
 | Route (also under `/en/`) | Content |
@@ -270,6 +277,7 @@ index per language from `<html lang>`.
 | `/sources/`, `/sources/<id>/` | Corpus documents and references, URLs, repository files, citing records |
 | `/methodology/` | Evidence levels, principles, relation groups, person rule, dates, classifications, languages, limits |
 | `/data/` | Open-data downloads with size and SHA-256, format notes, rebuild instructions |
+| `/changes/` | Known anomalies, review notes and the Git history of data changes |
 | `/search/` | Pagefind UI over pages marked `data-pagefind-body`, per language |
 
 Language-neutral endpoints under `/data/v1/`: `graph.json`,
@@ -303,14 +311,57 @@ be redesigned in a dedicated study.
 must have Pages enabled with source "GitHub Actions"). Mirrors set
 `SITE_URL` and `BASE_PATH` and serve `web/dist` from any static host.
 
-## Editorial workflow and AI agents (M4)
+## Editorial workflow and AI agents
 
-Agents work on dedicated branches and open pull requests; they never push to
-`main`. CI validation is required but does not replace editorial review.
-Serious allegations about identifiable people, contested attributions and
-promotion of a hypothesis to a relationship require human approval. Agent
-output must not modify CI workflows, schemas, validation rules or review
-statuses of sensitive records; CODEOWNERS and branch protection enforce this.
+```text
+contributor / research agent          maintainer
+        |                                  |
+  branch + edits in data/                  |
+        |                                  |
+  pull request ──► CI: check, build, check:links
+                   evidence-diff job (job summary)
+                   agent/* branches: agent rules are errors
+        |                                  |
+        └──────────────► CODEOWNERS review ─► merge to main ─► deploy
+```
+
+- **Contributions:** `CONTRIBUTING.md` (EN/IT), issue forms for corrections
+  and new evidence (`.github/ISSUE_TEMPLATE/`), and a pull request template
+  with the evidentiary checklist.
+- **Evidence diff:** `pnpm data:diff --base <ref> [--agent] [--out file]`
+  (`src/pipeline/diff.ts`) compares `data/` with a Git ref and writes a
+  Markdown report: added/modified/removed records with field-level before and
+  after, and flags. *Attention* flags (any author): relationships concerning a
+  named person, raised evidence levels, new control/financing relationships,
+  new hypotheses, hypothesis status changes, deletions. In `--agent` mode
+  these are **errors**: any change outside `data/`, record deletion,
+  provenance changes, edits to `reviewed` records, setting `reviewed` or a
+  reviewed translation, hypothesis promotion, new records not
+  `needs_review`, new records claiming corpus provenance, new relationships
+  without `primary_url`. The CI `evidence-diff` job runs it on every pull
+  request (agent rules on `agent/*` branches) and publishes the report in the
+  job summary.
+- **Research agent:** `.github/workflows/research-agent.yml` runs weekly
+  (Mondays 05:00 UTC) and on demand (`workflow_dispatch` with an optional
+  focus). It runs Claude Code (`anthropics/claude-code-action@v1`) with the
+  versioned instructions in `.github/agent/research-prompt.md` and a tool
+  allow-list that permits writing only under `data/` (plus the run report).
+  The workflow then runs `pnpm format:data`, `pnpm check` and the agent-mode
+  evidence diff, and only if all pass pushes an `agent/research-<date>-<run>`
+  branch and opens a pull request labeled `agent` and `needs-review`, with the
+  agent's report and the evidence diff as description. It never writes to
+  `main`. Requires the `ANTHROPIC_API_KEY` secret (skipped otherwise);
+  `AGENT_PR_TOKEN` (fine-grained PAT) is optional and makes CI run on the
+  agent's pull requests, which GitHub does not do for `GITHUB_TOKEN`.
+- **Protection:** `.github/CODEOWNERS` assigns every path to the maintainer.
+  Branch protection on `main` requires the `check` status and a code-owner
+  review for pull requests, forbids force pushes and deletion; the
+  maintainer (admin) can still push directly. Agent pull requests are
+  authored by a bot and therefore need the maintainer's approval.
+- **Changes page:** `/changes/` lists the known baseline anomalies, every
+  record's review notes and the history of data commits read from Git at
+  build time (`src/site/history.ts`); each record page links to its own Git
+  history.
 
 ## Milestones
 
@@ -319,4 +370,4 @@ statuses of sensitive records; CODEOWNERS and branch protection enforce this.
 | **M1** Data foundation | Toolchain, Zod model, baseline import, validators, tests, CI, AGENTS.md | Done |
 | **M2** Italian MVP portal | Astro site: timeline, event/entity pages, network, hypotheses, sources, methodology, Pagefind search, GitHub Pages; theme classification | Done |
 | **M3** English, atlas, dependencies | EN translations with review status, country atlas, exposure dataset, a11y/mobile pass, downloadable data and schemas, link checking | Done |
-| **M4** Editorial workflow and agents | Contribution templates, PR evidence diff, CODEOWNERS/branch protection, scheduled research agent PRs, changes/corrections page | Planned |
+| **M4** Editorial workflow and agents | Contribution templates, PR evidence diff, CODEOWNERS/branch protection, scheduled research agent PRs, changes/corrections page | Done |

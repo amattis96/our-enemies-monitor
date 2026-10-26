@@ -4,3 +4,8 @@ dist/
 .astro/
 .DS_Store
 *.log
+
+# Research agent run files
+agent-report.md
+evidence-diff.md
+pr-body.md

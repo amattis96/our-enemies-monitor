@@ -1,0 +1,120 @@
+name: Research agent
+
+# Weekly AI research run. The agent edits data/ only; the workflow validates
+# the result, applies the agent rules of the evidence diff and opens a pull
+# request on an agent/* branch for human review. It never writes to main.
+#
+# Requires the ANTHROPIC_API_KEY secret (the run is skipped without it).
+# Optional AGENT_PR_TOKEN (fine-grained PAT: contents + pull requests write)
+# makes CI run on the agent's pull request; with the default GITHUB_TOKEN,
+# GitHub does not trigger other workflows, so the checks below are the gate.
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # Mondays 05:00 UTC
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: Optional focus for this run (e.g. a case or a topic)
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: research-agent
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+    steps:
+      - name: Skip without API key
+        if: env.HAS_KEY != 'true'
+        run: echo "::notice::ANTHROPIC_API_KEY is not configured; research agent skipped."
+
+      - if: env.HAS_KEY == 'true'
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - if: env.HAS_KEY == 'true'
+        uses: pnpm/action-setup@v6
+      - if: env.HAS_KEY == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - if: env.HAS_KEY == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build prompt
+        id: prompt
+        if: env.HAS_KEY == 'true'
+        env:
+          FOCUS: ${{ inputs.focus }}
+        run: |
+          {
+            echo "text<<PROMPT_EOF"
+            cat .github/agent/research-prompt.md
+            if [ -n "$FOCUS" ]; then
+              echo
+              echo "## Focus for this run (from the maintainer)"
+              echo
+              echo "$FOCUS"
+            fi
+            echo "PROMPT_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Research
+        if: env.HAS_KEY == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: ${{ steps.prompt.outputs.text }}
+          claude_args: >-
+            --model claude-opus-5-5
+            --max-turns 120
+            --allowedTools "Read,Glob,Grep,WebSearch,WebFetch,Edit(data/**),Write(data/**),Write(agent-report.md),Bash(pnpm validate),Bash(pnpm format:data)"
+
+      - name: Validate and check agent rules
+        id: verify
+        if: env.HAS_KEY == 'true'
+        run: |
+          pnpm format:data
+          if git diff --quiet -- data && [ -z "$(git ls-files --others --exclude-standard data)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::The agent proposed no data changes."
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          pnpm check
+          pnpm data:diff --base origin/main --agent --out evidence-diff.md
+
+      - name: Open pull request
+        if: env.HAS_KEY == 'true' && steps.verify.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.AGENT_PR_TOKEN || github.token }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          branch="agent/research-$(date -u +%Y-%m-%d)-$RUN_ID"
+          git config user.name "our-enemies-monitor-agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add data
+          git commit -m "data: research agent proposals ($(date -u +%Y-%m-%d))"
+          git push origin "$branch"
+          {
+            echo "> Automated proposal by the weekly research agent. **Nothing here is published until a maintainer reviews and merges it.** Check every source."
+            echo
+            if [ -f agent-report.md ]; then cat agent-report.md; else echo "_The agent wrote no report._"; fi
+            echo
+            cat evidence-diff.md
+          } > pr-body.md
+          gh pr create --base main --head "$branch" \
+            --title "Research agent: proposed updates $(date -u +%Y-%m-%d)" \
+            --body-file pr-body.md --label agent --label needs-review
