@@ -2,12 +2,20 @@
   "id": "TIGERWEB",
   "kind": "organization",
   "name": {
-    "it": "TigerWeb"
+    "it": "TigerWeb",
+    "en": "TigerWeb"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ae9a72375fa95d1f"
+      }
+    }
   },
   "provenance": [
     {

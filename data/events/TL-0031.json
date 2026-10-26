@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Acquisizione Twitter da parte di Elon Musk"
+    "it": "Acquisizione Twitter da parte di Elon Musk",
+    "en": "Elon Musk's acquisition of Twitter"
   },
   "description": {
-    "it": "L’operazione coinvolge impegni finanziari internazionali, inclusi soggetti statunitensi, cinesi e del Golfo; ciò non prova controllo politico dei finanziatori."
+    "it": "L’operazione coinvolge impegni finanziari internazionali, inclusi soggetti statunitensi, cinesi e del Golfo; ciò non prova controllo politico dei finanziatori.",
+    "en": "The operation involves international financial commitments, including US, Chinese and Gulf parties; this does not prove political control by the funders."
   },
   "category": {
-    "it": "Investimenti / tecnologia"
+    "it": "Investimenti / tecnologia",
+    "en": "Investment / technology"
   },
   "themes": [
     "industry_dependencies",
     "platforms_technology"
   ],
   "geography": {
-    "it": "Stati Uniti / mondo"
+    "it": "Stati Uniti / mondo",
+    "en": "United States / world"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Operazione societaria accertata"
+    "it": "Operazione societaria accertata",
+    "en": "Corporate transaction established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4e65d21344934bc9"
+      }
+    }
   },
   "provenance": [
     {

@@ -4,14 +4,17 @@
   "object": "RU",
   "hypothesis_type": "AMPLIFICAZIONE_VS_ISTIGAZIONE",
   "question": {
-    "it": "Quali reti straniere hanno amplificato manifestazioni dopo l’origine domestica?"
+    "it": "Quali reti straniere hanno amplificato manifestazioni dopo l’origine domestica?",
+    "en": "Which foreign networks amplified demonstrations after their domestic origin?"
   },
   "current_limit": {
-    "it": "Assenza di prove che fossero create dall’estero; viralità non è comando."
+    "it": "Assenza di prove che fossero create dall’estero; viralità non è comando.",
+    "en": "No evidence that they were created from abroad; virality is not command."
   },
   "priority": "critical",
   "evidence_needed": {
-    "it": "Timeline primi account, strumenti AI, pattern citazione, dati VIGINUM, platform transparency"
+    "it": "Timeline primi account, strumenti AI, pattern citazione, dati VIGINUM, platform transparency",
+    "en": "Timeline of first accounts, AI tools, citation patterns, VIGINUM data, platform transparency"
   },
   "events": [
     "TL-0124",
@@ -26,7 +29,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7c2004e823d7baef"
+      }
+    }
   },
   "provenance": [
     {

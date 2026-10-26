@@ -2,12 +2,20 @@
   "id": "TESLA",
   "kind": "company",
   "name": {
-    "it": "Tesla"
+    "it": "Tesla",
+    "en": "Tesla"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bd648267ed5f3c87"
+      }
+    }
   },
   "provenance": [
     {

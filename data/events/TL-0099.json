@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "SpaceX acquisisce xAI"
+    "it": "SpaceX acquisisce xAI",
+    "en": "SpaceX acquires xAI"
   },
   "description": {
-    "it": "La struttura societaria integra indirettamente X con infrastruttura satellitare, lanci e AI; evento distinto dall’uso operativo di Starshield."
+    "it": "La struttura societaria integra indirettamente X con infrastruttura satellitare, lanci e AI; evento distinto dall’uso operativo di Starshield.",
+    "en": "The corporate structure indirectly integrates X with satellite infrastructure, launches and AI; an event distinct from the operational use of Starshield."
   },
   "category": {
-    "it": "Tecnologia / società"
+    "it": "Tecnologia / società",
+    "en": "Technology / society"
   },
   "themes": [
     "platforms_technology",
     "society_health"
   ],
   "geography": {
-    "it": "Stati Uniti"
+    "it": "Stati Uniti",
+    "en": "United States"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Operazione societaria corroborata"
+    "it": "Operazione societaria corroborata",
+    "en": "Corporate transaction corroborated"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9435a1438c90cbb1"
+      }
+    }
   },
   "provenance": [
     {

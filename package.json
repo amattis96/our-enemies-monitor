@@ -21,7 +21,10 @@
     "validate": "node src/cli/validate.ts",
     "format:data": "node src/cli/format-data.ts",
     "schemas": "node src/cli/schemas.ts",
-    "import:baseline": "node src/cli/import-baseline.ts"
+    "import:baseline": "node src/cli/import-baseline.ts",
+    "i18n:export": "node src/cli/i18n.ts export",
+    "i18n:import": "node src/cli/i18n.ts import",
+    "check:links": "node src/cli/check-links.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",
@@ -30,16 +33,23 @@
     "astro": "7.4.2",
     "csv-parse": "7.0.3",
     "cytoscape": "3.34.4",
+    "d3-geo": "3.1.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "tailwindcss": "4.3.3",
+    "topojson-client": "3.1.0",
+    "world-atlas": "2.0.2",
     "zod": "4.6.7"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.3",
+    "@types/d3-geo": "3.1.1",
+    "@types/geojson": "7946.0.16",
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "@types/topojson-client": "3.1.5",
+    "@types/topojson-specification": "1.0.5",
     "fast-xml-parser": "5.11.2",
     "pagefind": "1.5.2",
     "typescript": "7.0.2",

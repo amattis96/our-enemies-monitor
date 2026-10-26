@@ -2,12 +2,20 @@
   "id": "MA",
   "kind": "state",
   "name": {
-    "it": "Marocco"
+    "it": "Marocco",
+    "en": "Morocco"
   },
   "domain": "geopolitics",
+  "country": "MA",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f4ac85a78f7d486f"
+      }
+    }
   },
   "provenance": [
     {

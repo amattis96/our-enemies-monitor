@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Sanzioni UE all’841st EW Center russo"
+    "it": "Sanzioni UE all’841st EW Center russo",
+    "en": "EU sanctions on Russia's 841st EW Center"
   },
   "description": {
-    "it": "L’UE associa al centro di Kaliningrad disturbi GNSS/jamming/spoofing che coinvolgono anche traffico aereo europeo."
+    "it": "L’UE associa al centro di Kaliningrad disturbi GNSS/jamming/spoofing che coinvolgono anche traffico aereo europeo.",
+    "en": "The EU links GNSS disruption/jamming/spoofing, also affecting European air traffic, to the Kaliningrad centre."
   },
   "category": {
-    "it": "Guerra elettronica / sanzioni"
+    "it": "Guerra elettronica / sanzioni",
+    "en": "Electronic warfare / sanctions"
   },
   "themes": [
     "hybrid_sabotage",
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Russia / Baltico"
+    "it": "Russia / Baltico",
+    "en": "Russia / Baltic"
   },
+  "places": [
+    "RU"
+  ],
   "evidence_note": {
-    "it": "Attribuzione e sanzione istituzionale"
+    "it": "Attribuzione e sanzione istituzionale",
+    "en": "Institutional attribution and sanction"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "73cd710f35bed8ad"
+      }
+    }
   },
   "provenance": [
     {

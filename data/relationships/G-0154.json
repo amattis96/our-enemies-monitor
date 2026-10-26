@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori."
+    "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori.",
+    "en": "Presence/role relationship with respect to the chronological record. It does not by itself infer coordination with other actors."
   },
   "sources": [
     "S06",
@@ -23,7 +24,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3a020bf03353aa3c"
+      }
+    }
   },
   "provenance": [
     {

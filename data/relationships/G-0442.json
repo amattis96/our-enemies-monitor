@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Non prova coinvolgimento SpaceX in decisioni UE IRIS²"
+    "it": "Non prova coinvolgimento SpaceX in decisioni UE IRIS²",
+    "en": "Does not prove SpaceX involvement in EU IRIS² decisions"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ce4e0c23abb52289"
+      }
+    }
   },
   "provenance": [
     {

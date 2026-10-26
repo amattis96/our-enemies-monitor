@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Interferenza russa nelle presidenziali statunitensi"
+    "it": "Interferenza russa nelle presidenziali statunitensi",
+    "en": "Russian interference in the US presidential election"
   },
   "description": {
-    "it": "Intelligence e successivi rapporti del Senato USA documentano operazioni russe; non quantificano la variazione del voto né stabiliscono una cospirazione generale Trump-Russia."
+    "it": "Intelligence e successivi rapporti del Senato USA documentano operazioni russe; non quantificano la variazione del voto né stabiliscono una cospirazione generale Trump-Russia.",
+    "en": "Intelligence assessments and later US Senate reports document Russian operations; they do not quantify any change in the vote nor establish a general Trump-Russia conspiracy."
   },
   "category": {
-    "it": "Interferenza elettorale"
+    "it": "Interferenza elettorale",
+    "en": "Electoral interference"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Stati Uniti"
+    "it": "Stati Uniti",
+    "en": "United States"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale; impatto ignoto"
+    "it": "Attribuzione istituzionale; impatto ignoto",
+    "en": "Institutional attribution; impact unknown"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0d9c74e26d86765b"
+      }
+    }
   },
   "provenance": [
     {

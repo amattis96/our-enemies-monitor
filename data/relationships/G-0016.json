@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": "https://it.euronews.com/2025/11/22/la-condanna-a-nathan-gill-solleva-nuovi-interrogativi-sui-legami-tra-europarlamentari-e-cr",
   "caveat": {
-    "it": "Interlocutore dell’ambiente di Medvedchuk; secondo reportage Medvedchuk fonte economica dello schema Gill"
+    "it": "Interlocutore dell’ambiente di Medvedchuk; secondo reportage Medvedchuk fonte economica dello schema Gill",
+    "en": "Contact from Medvedchuk's circle; according to reporting, Medvedchuk was the funding source of the Gill scheme"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "de22dd655b9c4bc3"
+      }
+    }
   },
   "provenance": [
     {

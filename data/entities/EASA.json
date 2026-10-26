@@ -2,12 +2,20 @@
   "id": "EASA",
   "kind": "institution",
   "name": {
-    "it": "EASA"
+    "it": "EASA",
+    "en": "EASA"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b19e9ca33c04fc29"
+      }
+    }
   },
   "provenance": [
     {

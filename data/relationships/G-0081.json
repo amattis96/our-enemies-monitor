@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Limitazioni 2026: restrizioni tecniche, decisore ultimo contestato"
+    "it": "Limitazioni 2026: restrizioni tecniche, decisore ultimo contestato",
+    "en": "2026 restrictions: technical limits, final decision-maker disputed"
   },
   "sources": [
     "S00",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1826b427f7d8a0c9"
+      }
+    }
   },
   "provenance": [
     {

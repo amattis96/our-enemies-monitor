@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Mobilitazioni studentesche e sul costo della vita in Italia"
+    "it": "Mobilitazioni studentesche e sul costo della vita in Italia",
+    "en": "Student and cost-of-living mobilisations in Italy"
   },
   "description": {
-    "it": "Manifestazioni legate ad abitazioni, istruzione e servizi; denunce su account sospetti non equivalgono ad attribuzione di regia russa."
+    "it": "Manifestazioni legate ad abitazioni, istruzione e servizi; denunce su account sospetti non equivalgono ad attribuzione di regia russa.",
+    "en": "Demonstrations linked to housing, education and services; reports of suspicious accounts do not amount to attributing Russian direction."
   },
   "category": {
-    "it": "Proteste / Italia"
+    "it": "Proteste / Italia",
+    "en": "Protests / Italy"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Italia"
+    "it": "Italia",
+    "en": "Italy"
   },
+  "places": [
+    "IT"
+  ],
   "evidence_note": {
-    "it": "Proteste documentate; organizzazione estera non provata"
+    "it": "Proteste documentate; organizzazione estera non provata",
+    "en": "Documented protests; foreign organisation not proven"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3861d85b10d59eb0"
+      }
+    }
   },
   "provenance": [
     {

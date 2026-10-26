@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Contestazioni su corruzione, istruzione e progetti turistici"
+    "it": "Contestazioni su corruzione, istruzione e progetti turistici",
+    "en": "Disputes over corruption, education and tourism projects"
   },
   "description": {
-    "it": "Il premier Rama formula accuse d’ingerenza Russia/Iran; verifica indipendente della regia delle manifestazioni insufficiente nel corpus."
+    "it": "Il premier Rama formula accuse d’ingerenza Russia/Iran; verifica indipendente della regia delle manifestazioni insufficiente nel corpus.",
+    "en": "Prime Minister Rama alleges Russian/Iranian interference; independent verification of who directed the demonstrations is insufficient in the corpus."
   },
   "category": {
-    "it": "Proteste / Albania"
+    "it": "Proteste / Albania",
+    "en": "Protests / Albania"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Albania"
+    "it": "Albania",
+    "en": "Albania"
   },
+  "places": [
+    "AL"
+  ],
   "evidence_note": {
-    "it": "Proteste documentate; accuse istituzionali non corroborate"
+    "it": "Proteste documentate; accuse istituzionali non corroborate",
+    "en": "Documented protests; institutional accusations not corroborated"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "aac91ff96a2fda41"
+      }
+    }
   },
   "provenance": [
     {

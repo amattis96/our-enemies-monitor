@@ -2,7 +2,8 @@
   "id": "P10",
   "type": "external_reference",
   "title": {
-    "it": "Casa Bianca, attuazione del Graham Act (16 ottobre 2026). Deroghe specifiche ai nuovi dazi/sanzioni; preservazione di misure previgenti basate su altri ordini esecutivi."
+    "it": "Casa Bianca, attuazione del Graham Act (16 ottobre 2026). Deroghe specifiche ai nuovi dazi/sanzioni; preservazione di misure previgenti basate su altri ordini esecutivi.",
+    "en": "White House, implementation of the Graham Act (16 October 2026). Specific waivers from the new tariffs/sanctions; preservation of pre-existing measures based on other executive orders."
   },
   "publisher": "Casa Bianca",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "11a7954be8b9693b"
+      }
+    }
   },
   "provenance": [
     {

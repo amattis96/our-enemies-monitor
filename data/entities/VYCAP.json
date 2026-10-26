@@ -2,12 +2,20 @@
   "id": "VYCAP",
   "kind": "company",
   "name": {
-    "it": "VyCapital"
+    "it": "VyCapital",
+    "en": "VyCapital"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1778d11cb4bfe695"
+      }
+    }
   },
   "provenance": [
     {

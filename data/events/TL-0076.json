@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Diminuzione della quota russa nel gas UE"
+    "it": "Diminuzione della quota russa nel gas UE",
+    "en": "Decline of the Russian share in EU gas"
   },
   "description": {
-    "it": "Quota stimata dal ~40% del 2021 a ~10% nel 2025; crescente ricorso a LNG e mercati globali. Indicatore annuale, non singolo incidente."
+    "it": "Quota stimata dal ~40% del 2021 a ~10% nel 2025; crescente ricorso a LNG e mercati globali. Indicatore annuale, non singolo incidente.",
+    "en": "Estimated share from ~40% in 2021 to ~10% in 2025; growing reliance on LNG and global markets. Annual indicator, not a single incident."
   },
   "category": {
-    "it": "Energia / resilienza"
+    "it": "Energia / resilienza",
+    "en": "Energy / resilience"
   },
   "themes": [
     "energy",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Dati istituzionali"
+    "it": "Dati istituzionali",
+    "en": "Institutional data"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7a58b97e4680b7ef"
+      }
+    }
   },
   "provenance": [
     {

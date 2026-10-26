@@ -2,7 +2,8 @@
   "id": "S02",
   "type": "corpus_document",
   "title": {
-    "it": "DS-02 · Manipolazione informativa, elezioni e società in Europa"
+    "it": "DS-02 · Manipolazione informativa, elezioni e società in Europa",
+    "en": "DS-02 · Information manipulation, elections and society in Europe"
   },
   "publisher": null,
   "files": [
@@ -12,7 +13,13 @@
   "cited_in": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e981f6974ca9c2b4"
+      }
+    }
   },
   "provenance": [
     {

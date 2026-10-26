@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Strumentalizzazione migratoria dalla Bielorussia"
+    "it": "Strumentalizzazione migratoria dalla Bielorussia",
+    "en": "Instrumentalisation of migration by Belarus"
   },
   "description": {
-    "it": "Trasferimento/facilitazione di flussi verso Polonia, Lituania e Lettonia; regime bielorusso ritenuto responsabile dall’UE."
+    "it": "Trasferimento/facilitazione di flussi verso Polonia, Lituania e Lettonia; regime bielorusso ritenuto responsabile dall’UE.",
+    "en": "Transfer/facilitation of flows towards Poland, Lithuania and Latvia; the Belarusian regime held responsible by the EU."
   },
   "category": {
-    "it": "Coercizione migratoria"
+    "it": "Coercizione migratoria",
+    "en": "Migration coercion"
   },
   "themes": [
     "migration_borders",
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Bielorussia / frontiera UE"
+    "it": "Bielorussia / frontiera UE",
+    "en": "Belarus / EU border"
   },
+  "places": [
+    "BY"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "213edfa61c3b14f2"
+      }
+    }
   },
   "provenance": [
     {

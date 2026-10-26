@@ -2,7 +2,8 @@
   "id": "P09",
   "type": "external_reference",
   "title": {
-    "it": "Casa Bianca, National Security Strategy USA 2025. Documento ufficiale della strategia USA, sezione Europa, con orientamento politico dichiarato; pubblicato nel dicembre 2025, il testo riporta «November 2025»."
+    "it": "Casa Bianca, National Security Strategy USA 2025. Documento ufficiale della strategia USA, sezione Europa, con orientamento politico dichiarato; pubblicato nel dicembre 2025, il testo riporta «November 2025».",
+    "en": "White House, US National Security Strategy 2025. Official US strategy document, Europe section, with a declared political orientation; published in December 2025, the text reads «November 2025»."
   },
   "publisher": "Casa Bianca",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b9b8cac73541929a"
+      }
+    }
   },
   "provenance": [
     {

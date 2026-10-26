@@ -8,18 +8,25 @@
     "precision": "month"
   },
   "title": {
-    "it": "Attacco contro l’ambasciata israeliana a Stoccolma: attribuzione OFAC a Foxtrot su incarico iraniano"
+    "it": "Attacco contro l’ambasciata israeliana a Stoccolma: attribuzione OFAC a Foxtrot su incarico iraniano",
+    "en": "Attack on the Israeli embassy in Stockholm: OFAC attributes it to Foxtrot acting on Iranian instructions"
   },
   "description": {
-    "it": "OFAC sostiene che Foxtrot organizzò l’attacco per conto dell’Iran. Si tratta di attribuzione USA, distinta da sentenza sul mandato."
+    "it": "OFAC sostiene che Foxtrot organizzò l’attacco per conto dell’Iran. Si tratta di attribuzione USA, distinta da sentenza sul mandato.",
+    "en": "OFAC states that Foxtrot organised the attack on behalf of Iran. This is a US attribution, distinct from a court ruling on who ordered it."
   },
   "category": null,
   "themes": [
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Europa / UK / Svezia"
+    "it": "Europa / UK / Svezia",
+    "en": "Europe / UK / Sweden"
   },
+  "places": [
+    "GB",
+    "SE"
+  ],
   "evidence_note": null,
   "evidence_level": "E2",
   "publisher": "US Treasury OFAC",
@@ -32,7 +39,13 @@
     "status": "imported_unreviewed",
     "notes": [
       "Themes assigned editorially: the record has no original category."
-    ]
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "430186158311f04e"
+      }
+    }
   },
   "provenance": [
     {

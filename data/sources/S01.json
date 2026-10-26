@@ -2,7 +2,8 @@
   "id": "S01",
   "type": "corpus_document",
   "title": {
-    "it": "Attori, reti, finanziamenti e infiltrazioni politiche in Europa"
+    "it": "Attori, reti, finanziamenti e infiltrazioni politiche in Europa",
+    "en": "Actors, networks, financing and political infiltration in Europe"
   },
   "publisher": null,
   "files": [
@@ -12,7 +13,13 @@
   "cited_in": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "035d2d8395a6893f"
+      }
+    }
   },
   "provenance": [
     {

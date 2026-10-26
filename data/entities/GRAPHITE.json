@@ -2,12 +2,20 @@
   "id": "GRAPHITE",
   "kind": "organization",
   "name": {
-    "it": "Graphite"
+    "it": "Graphite",
+    "en": "Graphite"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1b3f5621d18335f9"
+      }
+    }
   },
   "provenance": [
     {

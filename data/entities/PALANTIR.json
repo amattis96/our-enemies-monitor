@@ -2,12 +2,20 @@
   "id": "PALANTIR",
   "kind": "company",
   "name": {
-    "it": "Palantir"
+    "it": "Palantir",
+    "en": "Palantir"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f799764d7f68f057"
+      }
+    }
   },
   "provenance": [
     {

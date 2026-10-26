@@ -2,7 +2,8 @@
   "id": "S03",
   "type": "corpus_document",
   "title": {
-    "it": "DS-03 · Guerra ibrida, sabotaggi e sicurezza europea"
+    "it": "DS-03 · Guerra ibrida, sabotaggi e sicurezza europea",
+    "en": "DS-03 · Hybrid warfare, sabotage and European security"
   },
   "publisher": null,
   "files": [
@@ -12,7 +13,13 @@
   "cited_in": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5a4684316c8fd441"
+      }
+    }
   },
   "provenance": [
     {

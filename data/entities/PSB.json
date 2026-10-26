@@ -2,12 +2,20 @@
   "id": "PSB",
   "kind": "organization",
   "name": {
-    "it": "Promsvyazbank"
+    "it": "Promsvyazbank",
+    "en": "Promsvyazbank"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "57b2f60518ab1682"
+      }
+    }
   },
   "provenance": [
     {

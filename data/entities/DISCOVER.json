@@ -2,12 +2,20 @@
   "id": "DISCOVER",
   "kind": "organization",
   "name": {
-    "it": "Discover-Tech"
+    "it": "Discover-Tech",
+    "en": "Discover-Tech"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3c738b15a2c3d1a8"
+      }
+    }
   },
   "provenance": [
     {

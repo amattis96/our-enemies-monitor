@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "120 milioni per trasparenza, non per collusione russa"
+    "it": "120 milioni per trasparenza, non per collusione russa",
+    "en": "120 million for transparency, not for Russian collusion"
   },
   "sources": [
     "S00"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "aa516647653e6fbd"
+      }
+    }
   },
   "provenance": [
     {

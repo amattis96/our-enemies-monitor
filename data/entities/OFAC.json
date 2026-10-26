@@ -2,12 +2,20 @@
   "id": "OFAC",
   "kind": "institution",
   "name": {
-    "it": "OFAC (Tesoro USA)"
+    "it": "OFAC (Tesoro USA)",
+    "en": "OFAC (US Treasury)"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3a6805deb62d135b"
+      }
+    }
   },
   "provenance": [
     {

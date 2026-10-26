@@ -4,14 +4,17 @@
   "object": "VOL",
   "hypothesis_type": "CATENA_FINANZIARIA_COMUNE_SCHEMA_GILL_E_VOE",
   "question": {
-    "it": "Si può dimostrare se Voice of Europe e tangenti Gill condivisero conti, veicoli o intermediari oltre Medvedchuk?"
+    "it": "Si può dimostrare se Voice of Europe e tangenti Gill condivisero conti, veicoli o intermediari oltre Medvedchuk?",
+    "en": "Can it be shown whether Voice of Europe and the Gill bribes shared accounts, vehicles or intermediaries beyond Medvedchuk?"
   },
   "current_limit": {
-    "it": "Non provato un unico circuito finanziario; sponsor politico è nodo condiviso ma schema e date diverse."
+    "it": "Non provato un unico circuito finanziario; sponsor politico è nodo condiviso ma schema e date diverse.",
+    "en": "A single financial circuit is not proven; the political sponsor is a shared node, but the schemes and dates differ."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Contratti, atti penali UK, contabilità VOE, nominativi intermediari, bonifici e KYC"
+    "it": "Contratti, atti penali UK, contabilità VOE, nominativi intermediari, bonifici e KYC",
+    "en": "Contracts, UK criminal records, VOE accounts, names of intermediaries, transfers and KYC"
   },
   "events": [
     "TL-0015",
@@ -27,7 +30,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "214224191115d4b7"
+      }
+    }
   },
   "provenance": [
     {

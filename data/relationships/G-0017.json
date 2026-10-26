@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://it.euronews.com/2025/11/22/la-condanna-a-nathan-gill-solleva-nuovi-interrogativi-sui-legami-tra-europarlamentari-e-cr",
   "caveat": {
-    "it": "Reporting Euronews su atti processuali: distinguere questo schema dalla rete VoE"
+    "it": "Reporting Euronews su atti processuali: distinguere questo schema dalla rete VoE",
+    "en": "Euronews reporting on court records: distinguish this scheme from the VoE network"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c6a1c25d2dc57077"
+      }
+    }
   },
   "provenance": [
     {

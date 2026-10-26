@@ -1,0 +1,67 @@
+{
+  "id": "X-010",
+  "sector": {
+    "it": "Consumo e import di semiconduttori UE",
+    "en": "EU semiconductor consumption and imports"
+  },
+  "indicator": {
+    "it": "Circa €55 mld consumo 2024, €43,6 mld import",
+    "en": "About €55 bn consumption in 2024, €43.6 bn imports"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Consumo UE di semiconduttori",
+        "en": "EU semiconductor consumption"
+      },
+      "value": 55,
+      "unit": "eur_billion",
+      "qualifier": "approx",
+      "out_of": null,
+      "period": "2024"
+    },
+    {
+      "label": {
+        "it": "Importazioni UE di semiconduttori",
+        "en": "EU semiconductor imports"
+      },
+      "value": 43.6,
+      "unit": "eur_billion",
+      "qualifier": "approx",
+      "out_of": null,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Valore, non numero di chip",
+    "en": "Value, not number of chips"
+  },
+  "consequence": {
+    "it": "La produzione locale è insufficiente rispetto alla domanda",
+    "en": "Local production is insufficient relative to demand"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5474de488eccf34d"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 581,
+      "original": {
+        "text": "| Consumo e import di semiconduttori UE | Circa **€55 mld** consumo 2024, **€43,6 mld** import | Valore, non numero di chip | La produzione locale è insufficiente rispetto alla domanda [S04] |"
+      }
+    }
+  ]
+}

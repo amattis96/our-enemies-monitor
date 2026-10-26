@@ -2,12 +2,20 @@
   "id": "CHIPSACT",
   "kind": "asset",
   "name": {
-    "it": "EU Chips Act / Chips Act 2.0"
+    "it": "EU Chips Act / Chips Act 2.0",
+    "en": "EU Chips Act / Chips Act 2.0"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3e5032f614ba4cf8"
+      }
+    }
   },
   "provenance": [
     {

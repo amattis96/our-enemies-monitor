@@ -2,12 +2,20 @@
   "id": "EMENNET",
   "kind": "organization",
   "name": {
-    "it": "Emennet Pasargad"
+    "it": "Emennet Pasargad",
+    "en": "Emennet Pasargad"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "667db1499cd8ba65"
+      }
+    }
   },
   "provenance": [
     {

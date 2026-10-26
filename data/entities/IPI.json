@@ -2,12 +2,20 @@
   "id": "IPI",
   "kind": "company",
   "name": {
-    "it": "IPI Partners"
+    "it": "IPI Partners",
+    "en": "IPI Partners"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "63c0256a547c3ecb"
+      }
+    }
   },
   "provenance": [
     {

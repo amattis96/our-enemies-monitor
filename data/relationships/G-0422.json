@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Associazione flotta non equivale a ordine sabotaggio"
+    "it": "Associazione flotta non equivale a ordine sabotaggio",
+    "en": "Fleet association is not an order to sabotage"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5fb666de5cd6a9aa"
+      }
+    }
   },
   "provenance": [
     {

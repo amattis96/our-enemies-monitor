@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "MI5 Interference Alert"
+    "it": "MI5 Interference Alert",
+    "en": "MI5 Interference Alert"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5017811b017a7881"
+      }
+    }
   },
   "provenance": [
     {

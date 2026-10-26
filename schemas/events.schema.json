@@ -165,6 +165,13 @@
         }
       ]
     },
+    "places": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}$"
+      }
+    },
     "evidence_note": {
       "anyOf": [
         {
@@ -298,6 +305,33 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "translations": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "machine",
+                    "reviewed"
+                  ]
+                },
+                "source_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$"
+                }
+              },
+              "required": [
+                "status",
+                "source_hash"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
         }
       },
       "required": [
@@ -387,6 +421,7 @@
     "category",
     "themes",
     "geography",
+    "places",
     "evidence_note",
     "evidence_level",
     "publisher",

@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Mobilitazioni su istruzione e bilanci pubblici"
+    "it": "Mobilitazioni su istruzione e bilanci pubblici",
+    "en": "Mobilisations on education and public budgets"
   },
   "description": {
-    "it": "Rivendicazioni locali e influenze di emulazione da Francia, senza attribuzione estera dimostrata."
+    "it": "Rivendicazioni locali e influenze di emulazione da Francia, senza attribuzione estera dimostrata.",
+    "en": "Local demands and emulation of France, with no demonstrated foreign attribution."
   },
   "category": {
-    "it": "Proteste / Belgio"
+    "it": "Proteste / Belgio",
+    "en": "Protests / Belgium"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Belgio"
+    "it": "Belgio",
+    "en": "Belgium"
   },
+  "places": [
+    "BE"
+  ],
   "evidence_note": {
-    "it": "Proteste documentate"
+    "it": "Proteste documentate",
+    "en": "Documented protests"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a93b7fe70fb93514"
+      }
+    }
   },
   "provenance": [
     {

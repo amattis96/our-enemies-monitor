@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Campagna distruttiva iraniana contro l’Albania"
+    "it": "Campagna distruttiva iraniana contro l’Albania",
+    "en": "Iranian destructive campaign against Albania"
   },
   "description": {
-    "it": "Accesso persistente, esfiltrazione, wiper/ransomware e operazioni informative fra luglio e settembre; gruppi collegati al MOIS secondo analisi forensi e autorità."
+    "it": "Accesso persistente, esfiltrazione, wiper/ransomware e operazioni informative fra luglio e settembre; gruppi collegati al MOIS secondo analisi forensi e autorità.",
+    "en": "Persistent access, exfiltration, wiper/ransomware and information operations between July and September; groups linked to MOIS according to forensic analyses and authorities."
   },
   "category": {
-    "it": "Cyber / guerra ibrida"
+    "it": "Cyber / guerra ibrida",
+    "en": "Cyber / hybrid warfare"
   },
   "themes": [
     "cyber",
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Albania"
+    "it": "Albania",
+    "en": "Albania"
   },
+  "places": [
+    "AL"
+  ],
   "evidence_note": {
-    "it": "Forense e attribuzione istituzionale"
+    "it": "Forense e attribuzione istituzionale",
+    "en": "Forensics and institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "db86b733e65272a4"
+      }
+    }
   },
   "provenance": [
     {

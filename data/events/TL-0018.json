@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Tentativo GRU contro OPCW"
+    "it": "Tentativo GRU contro OPCW",
+    "en": "GRU attempt against the OPCW"
   },
   "description": {
-    "it": "Autorità olandesi intercettano quattro ufficiali GRU durante un’operazione di accesso informatico ravvicinato; sequestrata attrezzatura."
+    "it": "Autorità olandesi intercettano quattro ufficiali GRU durante un’operazione di accesso informatico ravvicinato; sequestrata attrezzatura.",
+    "en": "Dutch authorities intercept four GRU officers during a close-access cyber operation; equipment seized."
   },
   "category": {
-    "it": "Cyber / spionaggio"
+    "it": "Cyber / spionaggio",
+    "en": "Cyber / espionage"
   },
   "themes": [
     "cyber",
     "intelligence"
   ],
   "geography": {
-    "it": "Paesi Bassi"
+    "it": "Paesi Bassi",
+    "en": "Netherlands"
   },
+  "places": [
+    "NL"
+  ],
   "evidence_note": {
-    "it": "Accertato"
+    "it": "Accertato",
+    "en": "Established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e1cf7a43aa540146"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "EPRS",
   "kind": "institution",
   "name": {
-    "it": "Servizio Ricerca Parlamento europeo"
+    "it": "Servizio Ricerca Parlamento europeo",
+    "en": "European Parliamentary Research Service"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2ca24ecaa35ae034"
+      }
+    }
   },
   "provenance": [
     {

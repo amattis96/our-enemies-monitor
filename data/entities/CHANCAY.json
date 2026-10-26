@@ -2,12 +2,20 @@
   "id": "CHANCAY",
   "kind": "asset",
   "name": {
-    "it": "Porto di Chancay, Perù"
+    "it": "Porto di Chancay, Perù",
+    "en": "Port of Chancay, Peru"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5398cea564c3bf8a"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "Restrizioni Starshield/Starlink su terminali mobili"
+    "it": "Restrizioni Starshield/Starlink su terminali mobili",
+    "en": "Starshield/Starlink restrictions on mobile terminals"
   },
   "description": {
-    "it": "Limitazioni, anche su sistemi in movimento oltre circa 160 km/h, compromettono impieghi di droni e intercettori ucraini. Catena decisionale Casa Bianca/SpaceX/Musk contestata."
+    "it": "Limitazioni, anche su sistemi in movimento oltre circa 160 km/h, compromettono impieghi di droni e intercettori ucraini. Catena decisionale Casa Bianca/SpaceX/Musk contestata.",
+    "en": "Restrictions, including on systems moving faster than about 160 km/h, undermine the use of Ukrainian drones and interceptors. The White House/SpaceX/Musk decision chain is disputed."
   },
   "category": {
-    "it": "Satelliti / Ucraina"
+    "it": "Satelliti / Ucraina",
+    "en": "Satellites / Ukraine"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Ucraina"
+    "it": "Ucraina",
+    "en": "Ukraine"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Effetto operativo accertato; decisore contestato"
+    "it": "Effetto operativo accertato; decisore contestato",
+    "en": "Operational effect established; decision-maker disputed"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bf39c704ee5ee1a4"
+      }
+    }
   },
   "provenance": [
     {

@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Campagne e pseudo-media condividono schemi di diffusione, non presuppone proprietario unico"
+    "it": "Campagne e pseudo-media condividono schemi di diffusione, non presuppone proprietario unico",
+    "en": "Campaigns and pseudo-media share dissemination patterns; this does not imply a single owner"
   },
   "sources": [
     "S02"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "70111c5ad610826c"
+      }
+    }
   },
   "provenance": [
     {

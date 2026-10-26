@@ -4,14 +4,17 @@
   "object": "ROMELEC",
   "hypothesis_type": "MANDATO_ESTERO_ROMANIA",
   "question": {
-    "it": "Quale parte della manipolazione TikTok 2024 aveva finanziatori esteri?"
+    "it": "Quale parte della manipolazione TikTok 2024 aveva finanziatori esteri?",
+    "en": "Which part of the 2024 TikTok manipulation had foreign funders?"
   },
   "current_limit": {
-    "it": "Manipolazione certa; VIGINUM non attribuisce in blocco ingerenza straniera."
+    "it": "Manipolazione certa; VIGINUM non attribuisce in blocco ingerenza straniera.",
+    "en": "Manipulation certain; VIGINUM does not attribute foreign interference wholesale."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Pagamenti influencer, piattaforma ads, archivi parti, inchieste DSA"
+    "it": "Pagamenti influencer, piattaforma ads, archivi parti, inchieste DSA",
+    "en": "Influencer payments, ad platforms, party archives, DSA investigations"
   },
   "events": [
     "TL-0067",
@@ -25,7 +28,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cd9b4165a90c6f04"
+      }
+    }
   },
   "provenance": [
     {

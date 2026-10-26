@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "MI5 diffonde l’interference alert su Christine Lee"
+    "it": "MI5 diffonde l’interference alert su Christine Lee",
+    "en": "MI5 issues the interference alert on Christine Lee"
   },
   "description": {
-    "it": "L’intelligence britannica afferma che donazioni e accessi politici hanno occultato l’origine di finanziamenti esteri in relazione all’UFWD cinese."
+    "it": "L’intelligence britannica afferma che donazioni e accessi politici hanno occultato l’origine di finanziamenti esteri in relazione all’UFWD cinese.",
+    "en": "British intelligence states that donations and political access concealed the origin of foreign funding in connection with China's UFWD."
   },
   "category": {
-    "it": "Cyber / spionaggio"
+    "it": "Cyber / spionaggio",
+    "en": "Cyber / espionage"
   },
   "themes": [
     "elections_influence",
     "intelligence"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale, non condanna"
+    "it": "Attribuzione istituzionale, non condanna",
+    "en": "Institutional attribution, not a conviction"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,8 @@
     {
       "code": "misclassified_category",
       "note": {
-        "it": "Alert MI5/Christine Lee classificato «Cyber / spionaggio»: riclassificare come interferenza politica/intelligence, mantenendo l'attribuzione MI5."
+        "it": "Alert MI5/Christine Lee classificato «Cyber / spionaggio»: riclassificare come interferenza politica/intelligence, mantenendo l'attribuzione MI5.",
+        "en": "MI5/Christine Lee alert classified as «Cyber / espionage»: reclassify as political interference/intelligence, keeping the MI5 attribution."
       },
       "reported_in": [
         "S07",
@@ -48,7 +57,13 @@
     "status": "imported_unreviewed",
     "notes": [
       "Themes follow the reclassification reported in S07 §11 / S08 §20.2, not the original category."
-    ]
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cb03544f74ba8002"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Interruzione estrema dei flussi petroliferi a Hormuz"
+    "it": "Interruzione estrema dei flussi petroliferi a Hormuz",
+    "en": "Extreme disruption of oil flows through Hormuz"
   },
   "description": {
-    "it": "L’IEA descrive una crisi storica dell’offerta su un corridoio che prima del conflitto vedeva circa 20 milioni di barili/giorno."
+    "it": "L’IEA descrive una crisi storica dell’offerta su un corridoio che prima del conflitto vedeva circa 20 milioni di barili/giorno.",
+    "en": "The IEA describes a historic supply crisis on a corridor that carried about 20 million barrels/day before the conflict."
   },
   "category": {
-    "it": "Energia / shock"
+    "it": "Energia / shock",
+    "en": "Energy / shock"
   },
   "themes": [
     "energy"
   ],
   "geography": {
-    "it": "Stretto di Hormuz"
+    "it": "Stretto di Hormuz",
+    "en": "Strait of Hormuz"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Valutazione IEA"
+    "it": "Valutazione IEA",
+    "en": "IEA assessment"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "22db6708427e7592"
+      }
+    }
   },
   "provenance": [
     {

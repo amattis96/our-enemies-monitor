@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://www.consilium.europa.eu/en/press/press-releases/2021/12/02/belarus-eu-adopts-5th-package-of-sanctions-over-continued-human-rights-abuses-and-the-instrumentalisation-of-migrants/",
   "caveat": {
-    "it": "Attribuzione UE, distinta da Ceuta"
+    "it": "Attribuzione UE, distinta da Ceuta",
+    "en": "EU attribution, distinct from Ceuta"
   },
   "sources": [
     "S00",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6ccd02ac31207083"
+      }
+    }
   },
   "provenance": [
     {

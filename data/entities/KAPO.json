@@ -2,12 +2,20 @@
   "id": "KAPO",
   "kind": "institution",
   "name": {
-    "it": "KAPO (sicurezza estone)"
+    "it": "KAPO (sicurezza estone)",
+    "en": "KAPO (Estonian security service)"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "05dde5229b83e00e"
+      }
+    }
   },
   "provenance": [
     {

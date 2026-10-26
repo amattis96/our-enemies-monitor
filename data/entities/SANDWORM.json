@@ -2,12 +2,20 @@
   "id": "SANDWORM",
   "kind": "organization",
   "name": {
-    "it": "Sandworm / GRU unità 74455"
+    "it": "Sandworm / GRU unità 74455",
+    "en": "Sandworm / GRU Unit 74455"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "68dacc5ad81e0f34"
+      }
+    }
   },
   "provenance": [
     {

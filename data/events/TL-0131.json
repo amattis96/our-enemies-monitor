@@ -8,22 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Citizen Lab pubblica l’indagine BlackCore"
+    "it": "Citizen Lab pubblica l’indagine BlackCore",
+    "en": "Citizen Lab publishes the BlackCore investigation"
   },
   "description": {
-    "it": "Rapporto su influence-for-hire, profili fittizi e attività transnazionali; committenti operativi non sempre conosciuti."
+    "it": "Rapporto su influence-for-hire, profili fittizi e attività transnazionali; committenti operativi non sempre conosciuti.",
+    "en": "Report on influence-for-hire, fake profiles and transnational activities; operational clients not always known."
   },
   "category": {
-    "it": "Ricerca forense / FIMI"
+    "it": "Ricerca forense / FIMI",
+    "en": "Forensic research / FIMI"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Israele / Europa / Angola"
+    "it": "Israele / Europa / Angola",
+    "en": "Israel / Europe / Angola"
   },
+  "places": [
+    "IL",
+    "AO"
+  ],
   "evidence_note": {
-    "it": "Indagine forense"
+    "it": "Indagine forense",
+    "en": "Forensic investigation"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +46,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1208929dbee93e45"
+      }
+    }
   },
   "provenance": [
     {

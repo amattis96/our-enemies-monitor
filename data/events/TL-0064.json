@@ -8,23 +8,33 @@
     "precision": "month"
   },
   "title": {
-    "it": "Pacchi incendiari DHL/DPD"
+    "it": "Pacchi incendiari DHL/DPD",
+    "en": "DHL/DPD incendiary parcels"
   },
   "description": {
-    "it": "Dispositivi con timer su circuiti logistici in Germania, Polonia e UK; investigatori collegano l’operazione a intermediari russi e intelligence militare."
+    "it": "Dispositivi con timer su circuiti logistici in Germania, Polonia e UK; investigatori collegano l’operazione a intermediari russi e intelligence militare.",
+    "en": "Devices with timers in logistics circuits in Germany, Poland and the UK; investigators link the operation to Russian intermediaries and military intelligence."
   },
   "category": {
-    "it": "Sabotaggio / trasporti"
+    "it": "Sabotaggio / trasporti",
+    "en": "Sabotage / transport"
   },
   "themes": [
     "hybrid_sabotage",
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Germania / Polonia / UK"
+    "it": "Germania / Polonia / UK",
+    "en": "Germany / Poland / UK"
   },
+  "places": [
+    "DE",
+    "PL",
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Fortemente corroborato"
+    "it": "Fortemente corroborato",
+    "en": "Strongly corroborated"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9563983539f9ddf8"
+      }
+    }
   },
   "provenance": [
     {

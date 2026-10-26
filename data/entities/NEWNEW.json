@@ -2,12 +2,20 @@
   "id": "NEWNEW",
   "kind": "company",
   "name": {
-    "it": "NewNew Polar Bear (nave)"
+    "it": "NewNew Polar Bear (nave)",
+    "en": "NewNew Polar Bear (ship)"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0a458e322f4dab7a"
+      }
+    }
   },
   "provenance": [
     {

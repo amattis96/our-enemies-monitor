@@ -2,12 +2,20 @@
   "id": "NSO",
   "kind": "organization",
   "name": {
-    "it": "NSO Group"
+    "it": "NSO Group",
+    "en": "NSO Group"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f8f1d42147aec0a4"
+      }
+    }
   },
   "provenance": [
     {

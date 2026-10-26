@@ -2,12 +2,20 @@
   "id": "RU_GAS",
   "kind": "asset",
   "name": {
-    "it": "Gas naturale russo verso UE"
+    "it": "Gas naturale russo verso UE",
+    "en": "Russian natural gas to the EU"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0d6d1794b68efc11"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Mobilitazioni autunnali in diversi Paesi europei"
+    "it": "Mobilitazioni autunnali in diversi Paesi europei",
+    "en": "Autumn mobilisations in several European countries"
   },
   "description": {
-    "it": "Proteste in Francia, Italia, Albania, Spagna, Portogallo e Belgio, su motivazioni domestiche differenti; non dimostrata una regia estera unica."
+    "it": "Proteste in Francia, Italia, Albania, Spagna, Portogallo e Belgio, su motivazioni domestiche differenti; non dimostrata una regia estera unica.",
+    "en": "Protests in France, Italy, Albania, Spain, Portugal and Belgium, over different domestic motives; no single foreign direction demonstrated."
   },
   "category": {
-    "it": "Proteste / società"
+    "it": "Proteste / società",
+    "en": "Protests / society"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Europa"
+    "it": "Europa",
+    "en": "Europe"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Proteste accertate; regia unica non verificata"
+    "it": "Proteste accertate; regia unica non verificata",
+    "en": "Protests established; single direction not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8c558faadf99cd95"
+      }
+    }
   },
   "provenance": [
     {

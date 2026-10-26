@@ -2,12 +2,20 @@
   "id": "SHADOW",
   "kind": "asset",
   "name": {
-    "it": "Shadow fleet russa"
+    "it": "Shadow fleet russa",
+    "en": "Russian shadow fleet"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "765f33f2be93475a"
+      }
+    }
   },
   "provenance": [
     {

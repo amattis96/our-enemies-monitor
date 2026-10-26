@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Aumento dell’uso di AI nelle campagne FIMI"
+    "it": "Aumento dell’uso di AI nelle campagne FIMI",
+    "en": "Growing use of AI in FIMI campaigns"
   },
   "description": {
-    "it": "Il quarto rapporto SEAE, pubblicato nel 2026, analizza 540 incidenti del 2025 e circa 10.500 canali; il 27% degli incidenti usa tecniche legate all’AI."
+    "it": "Il quarto rapporto SEAE, pubblicato nel 2026, analizza 540 incidenti del 2025 e circa 10.500 canali; il 27% degli incidenti usa tecniche legate all’AI.",
+    "en": "The fourth EEAS report, published in 2026, analyses 540 incidents from 2025 and about 10,500 channels; 27% of the incidents use AI-related techniques."
   },
   "category": {
-    "it": "FIMI / tecnologia"
+    "it": "FIMI / tecnologia",
+    "en": "FIMI / technology"
   },
   "themes": [
     "information_manipulation",
     "platforms_technology"
   ],
   "geography": {
-    "it": "Europa / web"
+    "it": "Europa / web",
+    "en": "Europe / web"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Serie di monitoraggio istituzionale"
+    "it": "Serie di monitoraggio istituzionale",
+    "en": "Institutional monitoring series"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "80a35b063faa8827"
+      }
+    }
   },
   "provenance": [
     {

@@ -4,14 +4,17 @@
   "object": "RU_PRESS",
   "hypothesis_type": "AMPLIFICAZIONE_AZERA_RUSSA",
   "question": {
-    "it": "Esiste amplificazione reciproca tracciabile tra BIG e reti russe su Francia?"
+    "it": "Esiste amplificazione reciproca tracciabile tra BIG e reti russe su Francia?",
+    "en": "Is there traceable mutual amplification between BIG and Russian networks on France?"
   },
   "current_limit": {
-    "it": "Nessun coordinamento descritto dalle fonti; solo bersaglio potenzialmente comune."
+    "it": "Nessun coordinamento descritto dalle fonti; solo bersaglio potenzialmente comune.",
+    "en": "No coordination described by the sources; only a potentially common target."
   },
   "priority": "medium",
   "evidence_needed": {
-    "it": "Archivi cross-platform, timestamps, IP/domains, contratti pubblici"
+    "it": "Archivi cross-platform, timestamps, IP/domains, contratti pubblici",
+    "en": "Cross-platform archives, timestamps, IP/domains, public contracts"
   },
   "events": [
     "TL-0049"
@@ -24,7 +27,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dc262184faf15bec"
+      }
+    }
   },
   "provenance": [
     {

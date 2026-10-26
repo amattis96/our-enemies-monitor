@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "GRU supporta entità in casi descritti; non tutte le uscite hanno comando dimostrato"
+    "it": "GRU supporta entità in casi descritti; non tutte le uscite hanno comando dimostrato",
+    "en": "The GRU supports entities in the cases described; not all outputs have proven command"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "31a64104b6332ac1"
+      }
+    }
   },
   "provenance": [
     {

@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Rischio per automotive e difesa; non ostilità in ogni acquisto"
+    "it": "Rischio per automotive e difesa; non ostilità in ogni acquisto",
+    "en": "Risk for automotive and defence; not hostility in every purchase"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8e78c32e7c6f15ea"
+      }
+    }
   },
   "provenance": [
     {

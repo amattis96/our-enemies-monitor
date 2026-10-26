@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Avvelenamento di Sergei e Yulia Skripal"
+    "it": "Avvelenamento di Sergei e Yulia Skripal",
+    "en": "Poisoning of Sergei and Yulia Skripal"
   },
   "description": {
-    "it": "Uso di agente Novichok a Salisbury; Londra attribuisce l’operazione a ufficiali russi, OPCW conferma tecnicamente l’agente."
+    "it": "Uso di agente Novichok a Salisbury; Londra attribuisce l’operazione a ufficiali russi, OPCW conferma tecnicamente l’agente.",
+    "en": "Use of the Novichok agent in Salisbury; London attributes the operation to Russian officers, the OPCW technically confirms the agent."
   },
   "category": {
-    "it": "Attacco chimico"
+    "it": "Attacco chimico",
+    "en": "Chemical attack"
   },
   "themes": [
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Attribuzione UK; prova forense sulla sostanza"
+    "it": "Attribuzione UK; prova forense sulla sostanza",
+    "en": "UK attribution; forensic proof on the substance"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4b9b7360cb1dc077"
+      }
+    }
   },
   "provenance": [
     {

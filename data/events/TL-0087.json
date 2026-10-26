@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Sanzioni statunitensi contro la Corte penale internazionale"
+    "it": "Sanzioni statunitensi contro la Corte penale internazionale",
+    "en": "US sanctions against the International Criminal Court"
   },
   "description": {
-    "it": "La Casa Bianca introduce misure restrittive contro la CPI, contestandone attività relative a Israele e altri attori."
+    "it": "La Casa Bianca introduce misure restrittive contro la CPI, contestandone attività relative a Israele e altri attori.",
+    "en": "The White House introduces restrictive measures against the ICC, challenging its activities concerning Israel and other actors."
   },
   "category": {
-    "it": "CPI / sanzioni"
+    "it": "CPI / sanzioni",
+    "en": "ICC / sanctions"
   },
   "themes": [
     "justice",
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Stati Uniti / CPI"
+    "it": "Stati Uniti / CPI",
+    "en": "United States / ICC"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Atto ufficiale"
+    "it": "Atto ufficiale",
+    "en": "Official act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4da0f0ecd6467dda"
+      }
+    }
   },
   "provenance": [
     {

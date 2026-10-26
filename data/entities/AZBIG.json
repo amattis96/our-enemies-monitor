@@ -2,12 +2,20 @@
   "id": "AZBIG",
   "kind": "organization",
   "name": {
-    "it": "Baku Initiative Group"
+    "it": "Baku Initiative Group",
+    "en": "Baku Initiative Group"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c341cd85ec9290ac"
+      }
+    }
   },
   "provenance": [
     {

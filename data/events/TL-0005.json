@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Inizio della guerra nel Donbas"
+    "it": "Inizio della guerra nel Donbas",
+    "en": "Start of the war in Donbas"
   },
   "description": {
-    "it": "Conflitto armato nell’Ucraina orientale nel contesto dell’aggressione russa; punto di svolta per la sicurezza europea."
+    "it": "Conflitto armato nell’Ucraina orientale nel contesto dell’aggressione russa; punto di svolta per la sicurezza europea.",
+    "en": "Armed conflict in eastern Ukraine in the context of Russian aggression; a turning point for European security."
   },
   "category": {
-    "it": "Guerra"
+    "it": "Guerra",
+    "en": "War"
   },
   "themes": [
     "armed_conflict"
   ],
   "geography": {
-    "it": "Ucraina"
+    "it": "Ucraina",
+    "en": "Ukraine"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Accertato"
+    "it": "Accertato",
+    "en": "Established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ded4a7146305d22c"
+      }
+    }
   },
   "provenance": [
     {

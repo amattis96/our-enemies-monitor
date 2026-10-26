@@ -4,14 +4,17 @@
   "object": "CEUTA",
   "hypothesis_type": "INTENZIONALITA_STATUALE_CEUTA",
   "question": {
-    "it": "Il governo marocchino pianificò la crisi o ne conosceva l’arrivo senza organizzarla?"
+    "it": "Il governo marocchino pianificò la crisi o ne conosceva l’arrivo senza organizzarla?",
+    "en": "Did the Moroccan government plan the crisis, or did it know of the arrivals without organising them?"
   },
   "current_limit": {
-    "it": "Fonti e cifre discordanti; non equiparare al caso bielorusso."
+    "it": "Fonti e cifre discordanti; non equiparare al caso bielorusso.",
+    "en": "Conflicting sources and figures; do not equate with the Belarusian case."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Atti CNI/Guardia Civil, cronologia frontiera, acquisizioni radar, comunicazioni officiali"
+    "it": "Atti CNI/Guardia Civil, cronologia frontiera, acquisizioni radar, comunicazioni officiali",
+    "en": "CNI/Guardia Civil records, border chronology, radar data, official communications"
   },
   "events": [
     "TL-0117",
@@ -26,7 +29,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "637847f57888556c"
+      }
+    }
   },
   "provenance": [
     {

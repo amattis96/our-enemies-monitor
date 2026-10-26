@@ -2,12 +2,20 @@
   "id": "TUR_BRA_MOR",
   "kind": "institution",
   "name": {
-    "it": "Mercati Turchia, Brasile, Marocco (diesel russo)"
+    "it": "Mercati Turchia, Brasile, Marocco (diesel russo)",
+    "en": "Markets of Turkey, Brazil, Morocco (Russian diesel)"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "66dba926c87d4dbc"
+      }
+    }
   },
   "provenance": [
     {

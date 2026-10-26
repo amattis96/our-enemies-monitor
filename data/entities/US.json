@@ -2,12 +2,20 @@
   "id": "US",
   "kind": "state",
   "name": {
-    "it": "Stati Uniti / amministrazione federale"
+    "it": "Stati Uniti / amministrazione federale",
+    "en": "United States / federal administration"
   },
   "domain": "geopolitics",
+  "country": "US",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0b9c1b6638c22352"
+      }
+    }
   },
   "provenance": [
     {

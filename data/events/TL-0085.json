@@ -8,22 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Restrizioni cinesi a minerali critici e tecnologie"
+    "it": "Restrizioni cinesi a minerali critici e tecnologie",
+    "en": "Chinese restrictions on critical minerals and technologies"
   },
   "description": {
-    "it": "Controlli export su terre rare, magneti e altre materie prime generano interruzioni nelle supply chain occidentali."
+    "it": "Controlli export su terre rare, magneti e altre materie prime generano interruzioni nelle supply chain occidentali.",
+    "en": "Export controls on rare earths, magnets and other raw materials disrupt Western supply chains."
   },
   "category": {
-    "it": "Commercio / industria"
+    "it": "Commercio / industria",
+    "en": "Trade / industry"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Cina / UE / USA"
+    "it": "Cina / UE / USA",
+    "en": "China / EU / USA"
   },
+  "places": [
+    "CN",
+    "US"
+  ],
   "evidence_note": {
-    "it": "Decisioni pubbliche e impatti documentati"
+    "it": "Decisioni pubbliche e impatti documentati",
+    "en": "Documented public decisions and impacts"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ee7a5957c390d38e"
+      }
+    }
   },
   "provenance": [
     {

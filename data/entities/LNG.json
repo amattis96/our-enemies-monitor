@@ -2,12 +2,20 @@
   "id": "LNG",
   "kind": "asset",
   "name": {
-    "it": "Mercato globale del gas naturale liquefatto"
+    "it": "Mercato globale del gas naturale liquefatto",
+    "en": "Global liquefied natural gas market"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a813c47b53c294f0"
+      }
+    }
   },
   "provenance": [
     {

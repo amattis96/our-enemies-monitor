@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Presidenziali in Romania e manipolazione TikTok"
+    "it": "Presidenziali in Romania e manipolazione TikTok",
+    "en": "Romanian presidential election and TikTok manipulation"
   },
   "description": {
-    "it": "Promozione inautentica e influencer occultamente remunerati; VIGINUM non attribuisce l’insieme a un attore straniero."
+    "it": "Promozione inautentica e influencer occultamente remunerati; VIGINUM non attribuisce l’insieme a un attore straniero.",
+    "en": "Inauthentic promotion and covertly paid influencers; VIGINUM does not attribute the whole to a foreign actor."
   },
   "category": {
-    "it": "Elezioni / piattaforme"
+    "it": "Elezioni / piattaforme",
+    "en": "Elections / platforms"
   },
   "themes": [
     "elections_influence",
     "platforms_technology"
   ],
   "geography": {
-    "it": "Romania"
+    "it": "Romania",
+    "en": "Romania"
   },
+  "places": [
+    "RO"
+  ],
   "evidence_note": {
-    "it": "Manipolazione documentata; origine straniera non conclusiva"
+    "it": "Manipolazione documentata; origine straniera non conclusiva",
+    "en": "Manipulation documented; foreign origin not conclusive"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1028537f00dd226d"
+      }
+    }
   },
   "provenance": [
     {

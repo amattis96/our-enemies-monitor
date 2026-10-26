@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Non provato incarico federale o effetto elettorale determinante"
+    "it": "Non provato incarico federale o effetto elettorale determinante",
+    "en": "Federal mandate or decisive electoral effect not proven"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "692e66b3c9907e2c"
+      }
+    }
   },
   "provenance": [
     {

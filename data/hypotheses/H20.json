@@ -4,14 +4,17 @@
   "object": "RAFFAIR",
   "hypothesis_type": "RESPONSABILITA_FINALE_FARFORD",
   "question": {
-    "it": "Si può dimostrare un incarico iraniano nel caso RAF Fairford?"
+    "it": "Si può dimostrare un incarico iraniano nel caso RAF Fairford?",
+    "en": "Can an Iranian commission be demonstrated in the RAF Fairford case?"
   },
   "current_limit": {
-    "it": "L’inchiesta è aperta al cutoff; nessuna condanna o responsabilità definitiva."
+    "it": "L’inchiesta è aperta al cutoff; nessuna condanna o responsabilità definitiva.",
+    "en": "The investigation is open at the cut-off; no conviction or definitive responsibility."
   },
   "priority": "critical",
   "evidence_needed": {
-    "it": "Atti giudiziari, National Security Act charge sheets, evidence police, CCTV"
+    "it": "Atti giudiziari, National Security Act charge sheets, evidence police, CCTV",
+    "en": "Court records, National Security Act charge sheets, police evidence, CCTV"
   },
   "events": [],
   "external_url": null,
@@ -21,7 +24,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dda0d48cdc8b7be7"
+      }
+    }
   },
   "provenance": [
     {

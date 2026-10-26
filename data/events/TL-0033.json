@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Espansione Portal Kombat verso pubblici occidentali"
+    "it": "Espansione Portal Kombat verso pubblici occidentali",
+    "en": "Expansion of Portal Kombat towards Western audiences"
   },
   "description": {
-    "it": "Rete di aggregazione automatizzata e siti filorussi; studi tecnici individueranno TigerWeb e almeno 193 portali."
+    "it": "Rete di aggregazione automatizzata e siti filorussi; studi tecnici individueranno TigerWeb e almeno 193 portali.",
+    "en": "Automated aggregation network and pro-Russian sites; technical studies will identify TigerWeb and at least 193 portals."
   },
   "category": {
-    "it": "FIMI / campagne"
+    "it": "FIMI / campagne",
+    "en": "FIMI / campaigns"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Europa / web"
+    "it": "Europa / web",
+    "en": "Europe / web"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Campagna corroborata"
+    "it": "Campagna corroborata",
+    "en": "Corroborated campaign"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "556e202288a3ace8"
+      }
+    }
   },
   "provenance": [
     {

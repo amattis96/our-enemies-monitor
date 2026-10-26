@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "La diversificazione ha costi e rischi di chokepoint"
+    "it": "La diversificazione ha costi e rischi di chokepoint",
+    "en": "Diversification carries costs and chokepoint risks"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2c67bb512ce7caf4"
+      }
+    }
   },
   "provenance": [
     {

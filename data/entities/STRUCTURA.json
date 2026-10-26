@@ -2,12 +2,20 @@
   "id": "STRUCTURA",
   "kind": "organization",
   "name": {
-    "it": "Structura"
+    "it": "Structura",
+    "en": "Structura"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "eb668b1ecebc14b7"
+      }
+    }
   },
   "provenance": [
     {

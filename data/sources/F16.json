@@ -2,7 +2,8 @@
   "id": "F16",
   "type": "external_reference",
   "title": {
-    "it": "Parlamento europeo/EPRS, Ceuta migrant crisis, 8 ottobre 2026"
+    "it": "Parlamento europeo/EPRS, Ceuta migrant crisis, 8 ottobre 2026",
+    "en": "European Parliament/EPRS, Ceuta migrant crisis, 8 October 2026"
   },
   "publisher": "Parlamento europeo/EPRS",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "48ae7820e1a49e28"
+      }
+    }
   },
   "provenance": [
     {

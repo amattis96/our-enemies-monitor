@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Accertamento OFAC 2025"
+    "it": "Accertamento OFAC 2025",
+    "en": "OFAC finding 2025"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "943ca20bd5d2e731"
+      }
+    }
   },
   "provenance": [
     {

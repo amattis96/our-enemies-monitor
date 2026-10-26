@@ -1,0 +1,56 @@
+{
+  "id": "X-006",
+  "sector": {
+    "it": "Celle di batterie",
+    "en": "Battery cells"
+  },
+  "indicator": {
+    "it": ">80% produzione mondiale cinese nel 2025",
+    "en": "Over 80% of global production Chinese in 2025"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota cinese della produzione mondiale",
+        "en": "Chinese share of global production"
+      },
+      "value": 80,
+      "unit": "percent",
+      "qualifier": "more_than",
+      "out_of": null,
+      "period": "2025"
+    }
+  ],
+  "scope": {
+    "it": "Celle prodotte nel mondo",
+    "en": "Cells produced worldwide"
+  },
+  "consequence": {
+    "it": "Esposizione automotive e stoccaggio",
+    "en": "Automotive and storage exposure"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b0b44bc8af8d0982"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 577,
+      "original": {
+        "text": "| Celle di batterie | **>80%** produzione mondiale cinese nel 2025 | Celle prodotte nel mondo | Esposizione automotive e stoccaggio [S04] |"
+      }
+    }
+  ]
+}

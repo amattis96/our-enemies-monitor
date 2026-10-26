@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": "https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les",
   "caveat": {
-    "it": "Bassa esposizione effettiva"
+    "it": "Bassa esposizione effettiva",
+    "en": "Low actual exposure"
   },
   "sources": [
     "S02"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2542843cedad356f"
+      }
+    }
   },
   "provenance": [
     {

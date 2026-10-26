@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "106 progetti strategici CRMA riconosciuti"
+    "it": "106 progetti strategici CRMA riconosciuti",
+    "en": "106 strategic CRMA projects recognised"
   },
   "description": {
-    "it": "La Commissione registra 106 progetti al 9 ottobre, nel quadro degli obiettivi 2030 di estrazione, lavorazione e riciclo."
+    "it": "La Commissione registra 106 progetti al 9 ottobre, nel quadro degli obiettivi 2030 di estrazione, lavorazione e riciclo.",
+    "en": "The Commission records 106 projects as of 9 October, within the 2030 targets for extraction, processing and recycling."
   },
   "category": {
-    "it": "Materie prime / UE"
+    "it": "Materie prime / UE",
+    "en": "Raw materials / EU"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Dato istituzionale"
+    "it": "Dato istituzionale",
+    "en": "Institutional data point"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0705b385c1e69ba1"
+      }
+    }
   },
   "provenance": [
     {

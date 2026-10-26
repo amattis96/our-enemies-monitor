@@ -2,12 +2,20 @@
   "id": "PT",
   "kind": "state",
   "name": {
-    "it": "Portogallo"
+    "it": "Portogallo",
+    "en": "Portugal"
   },
   "domain": "geopolitics",
+  "country": "PT",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bd58c52d484090b0"
+      }
+    }
   },
   "provenance": [
     {

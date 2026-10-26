@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Citizen Lab pubblica “Exposing AdFection”"
+    "it": "Citizen Lab pubblica “Exposing AdFection”",
+    "en": "Citizen Lab publishes “Exposing AdFection”"
   },
   "description": {
-    "it": "La ricerca descrive l’uso di advertising mirato e Discover-Tech come vettore in catene spyware Candiru; non dimostra compromissione di ogni sito pubblicitario attraversato."
+    "it": "La ricerca descrive l’uso di advertising mirato e Discover-Tech come vettore in catene spyware Candiru; non dimostra compromissione di ogni sito pubblicitario attraversato.",
+    "en": "The research describes the use of targeted advertising and Discover-Tech as a vector in Candiru spyware chains; it does not demonstrate the compromise of every advertising site involved."
   },
   "category": {
-    "it": "Spyware / adtech"
+    "it": "Spyware / adtech",
+    "en": "Spyware / adtech"
   },
   "themes": [
     "surveillance_spyware"
   ],
   "geography": {
-    "it": "Europa / globale"
+    "it": "Europa / globale",
+    "en": "Europe / global"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Forense su casi specifici"
+    "it": "Forense su casi specifici",
+    "en": "Forensics on specific cases"
   },
   "evidence_level": null,
   "publisher": null,
@@ -38,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "de590acbbd2400e0"
+      }
+    }
   },
   "provenance": [
     {

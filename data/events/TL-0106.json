@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "UE sanziona Emennet Pasargad"
+    "it": "UE sanziona Emennet Pasargad",
+    "en": "EU sanctions Emennet Pasargad"
   },
   "description": {
-    "it": "Designazione per campagne informatiche e informative che hanno interessato, fra gli altri, Francia e Svezia."
+    "it": "Designazione per campagne informatiche e informative che hanno interessato, fra gli altri, Francia e Svezia.",
+    "en": "Designation for cyber and information campaigns that affected, among others, France and Sweden."
   },
   "category": {
-    "it": "Sanzioni / cyber"
+    "it": "Sanzioni / cyber",
+    "en": "Sanctions / cyber"
   },
   "themes": [
     "finance_sanctions",
     "cyber"
   ],
   "geography": {
-    "it": "Unione europea / Iran"
+    "it": "Unione europea / Iran",
+    "en": "European Union / Iran"
   },
+  "places": [
+    "IR"
+  ],
   "evidence_note": {
-    "it": "Atto istituzionale"
+    "it": "Atto istituzionale",
+    "en": "Institutional act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0b5bd88544b17ad0"
+      }
+    }
   },
   "provenance": [
     {

@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
   "caveat": {
-    "it": "Rete russa di influenza in Moldavia"
+    "it": "Rete russa di influenza in Moldavia",
+    "en": "Russian influence network in Moldova"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a9b8d72f9c572b07"
+      }
+    }
   },
   "provenance": [
     {

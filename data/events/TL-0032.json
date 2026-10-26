@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Doppelganger prende dimensione europea"
+    "it": "Doppelganger prende dimensione europea",
+    "en": "Doppelganger takes on a European dimension"
   },
   "description": {
-    "it": "Falsi siti che imitano media, account e inserzioni attivi soprattutto in Germania, Francia, Italia, UK e Ucraina."
+    "it": "Falsi siti che imitano media, account e inserzioni attivi soprattutto in Germania, Francia, Italia, UK e Ucraina.",
+    "en": "Fake sites imitating media outlets, accounts and ads active mainly in Germany, France, Italy, the UK and Ukraine."
   },
   "category": {
-    "it": "FIMI / campagne"
+    "it": "FIMI / campagne",
+    "en": "FIMI / campaigns"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Europa"
+    "it": "Europa",
+    "en": "Europe"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Campagna corroborata"
+    "it": "Campagna corroborata",
+    "en": "Corroborated campaign"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7debbc83a410155c"
+      }
+    }
   },
   "provenance": [
     {

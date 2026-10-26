@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Paperwall esposta da Citizen Lab"
+    "it": "Paperwall esposta da Citizen Lab",
+    "en": "Paperwall exposed by Citizen Lab"
   },
   "description": {
-    "it": "Rete di falsi media locali riconducibile tecnicamente a Haimai; prima mappatura: 123 siti in 30 Paesi, poi espansione. Ordine statale specifico non provato."
+    "it": "Rete di falsi media locali riconducibile tecnicamente a Haimai; prima mappatura: 123 siti in 30 Paesi, poi espansione. Ordine statale specifico non provato.",
+    "en": "Network of fake local media technically traceable to Haimai; first mapping: 123 sites in 30 countries, then expansion. Specific state orders not proven."
   },
   "category": {
-    "it": "Disinformazione / reti"
+    "it": "Disinformazione / reti",
+    "en": "Disinformation / networks"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Europa / mondo"
+    "it": "Europa / mondo",
+    "en": "Europe / world"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Operatore corroborato; mandato non verificato"
+    "it": "Operatore corroborato; mandato non verificato",
+    "en": "Operator corroborated; instructions not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e3113b8107118506"
+      }
+    }
   },
   "provenance": [
     {

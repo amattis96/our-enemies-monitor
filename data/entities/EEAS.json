@@ -2,12 +2,20 @@
   "id": "EEAS",
   "kind": "institution",
   "name": {
-    "it": "Servizio europeo per l’azione esterna / SEAE"
+    "it": "Servizio europeo per l’azione esterna / SEAE",
+    "en": "European External Action Service / EEAS"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ce1706bfaf54fbf6"
+      }
+    }
   },
   "provenance": [
     {

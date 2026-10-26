@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "ENISA documenta 215 incidenti sanitari nel triennio"
+    "it": "ENISA documenta 215 incidenti sanitari nel triennio",
+    "en": "ENISA documents 215 health-sector incidents over three years"
   },
   "description": {
-    "it": "Rapporto su incidenti 2021-2023 in sanità UE/limitrofi; 54% include ransomware. Serie aggregata, non un singolo attacco."
+    "it": "Rapporto su incidenti 2021-2023 in sanità UE/limitrofi; 54% include ransomware. Serie aggregata, non un singolo attacco.",
+    "en": "Report on 2021-2023 incidents in EU/neighbouring health sectors; 54% involve ransomware. Aggregate series, not a single attack."
   },
   "category": {
-    "it": "Cyber / salute"
+    "it": "Cyber / salute",
+    "en": "Cyber / health"
   },
   "themes": [
     "cyber",
     "society_health"
   ],
   "geography": {
-    "it": "Europa"
+    "it": "Europa",
+    "en": "Europe"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Analisi statistica istituzionale"
+    "it": "Analisi statistica istituzionale",
+    "en": "Institutional statistical analysis"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "121ac1e72c41189e"
+      }
+    }
   },
   "provenance": [
     {

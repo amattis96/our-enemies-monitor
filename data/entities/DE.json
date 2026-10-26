@@ -2,12 +2,20 @@
   "id": "DE",
   "kind": "state",
   "name": {
-    "it": "Germania"
+    "it": "Germania",
+    "en": "Germany"
   },
   "domain": "geopolitics",
+  "country": "DE",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6f48f109aaa57fca"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "ROMELEC",
   "kind": "asset",
   "name": {
-    "it": "Presidenziali Romania 2024"
+    "it": "Presidenziali Romania 2024",
+    "en": "Romanian presidential election 2024"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8a103fc8fe9e1900"
+      }
+    }
   },
   "provenance": [
     {

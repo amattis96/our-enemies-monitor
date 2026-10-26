@@ -4,14 +4,17 @@
   "object": "UKRLOG",
   "hypothesis_type": "REGIA_TRANSNAZIONALE_SABOTAGGI_LOGISTICI",
   "question": {
-    "it": "Quali committenti e canali uniscono DHL, magazzino Londra, Rheinmetall, Leipzig e Milrem?"
+    "it": "Quali committenti e canali uniscono DHL, magazzino Londra, Rheinmetall, Leipzig e Milrem?",
+    "en": "Which clients and channels connect DHL, the London warehouse, Rheinmetall, Leipzig and Milrem?"
   },
   "current_limit": {
-    "it": "Una campagna strategica comune non implica direttiva identica per ogni episodio."
+    "it": "Una campagna strategica comune non implica direttiva identica per ogni episodio.",
+    "en": "A common strategic campaign does not imply an identical directive for every episode."
   },
   "priority": "critical",
   "evidence_needed": {
-    "it": "Casi giudiziari, comunicazioni proxy, wallet crypto, Telegram, geografia logistica, contratti"
+    "it": "Casi giudiziari, comunicazioni proxy, wallet crypto, Telegram, geografia logistica, contratti",
+    "en": "Court cases, proxy communications, crypto wallets, Telegram, logistics geography, contracts"
   },
   "events": [
     "TL-0058",
@@ -28,7 +31,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3960a1b1359175e0"
+      }
+    }
   },
   "provenance": [
     {

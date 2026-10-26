@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Istituzione statale e apparato militare"
+    "it": "Istituzione statale e apparato militare",
+    "en": "State institution and military apparatus"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "824978c9f4799fcd"
+      }
+    }
   },
   "provenance": [
     {

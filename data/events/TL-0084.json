@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Procedimenti OFAC su GVA Capital e IPI Partners"
+    "it": "Procedimenti OFAC su GVA Capital e IPI Partners",
+    "en": "OFAC proceedings on GVA Capital and IPI Partners"
   },
   "description": {
-    "it": "Sanzione civile a GVA per investimenti riconducibili a Kerimov e settlement distinto con IPI; non prova finanziamento Kerimov-SpaceX."
+    "it": "Sanzione civile a GVA per investimenti riconducibili a Kerimov e settlement distinto con IPI; non prova finanziamento Kerimov-SpaceX.",
+    "en": "Civil penalty on GVA for investments traceable to Kerimov and a separate settlement with IPI; does not prove Kerimov-SpaceX funding."
   },
   "category": {
-    "it": "Finanza / sanzioni"
+    "it": "Finanza / sanzioni",
+    "en": "Finance / sanctions"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Stati Uniti"
+    "it": "Stati Uniti",
+    "en": "United States"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Atti amministrativi"
+    "it": "Atti amministrativi",
+    "en": "Administrative acts"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "27c88d4f7a538023"
+      }
+    }
   },
   "provenance": [
     {

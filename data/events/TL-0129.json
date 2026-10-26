@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Requisiti NATO di resilienza civile"
+    "it": "Requisiti NATO di resilienza civile",
+    "en": "NATO civil resilience requirements"
   },
   "description": {
-    "it": "Aggiornamento dei Baseline Requirements su continuità di energia, acqua, sanità, cibo e comunicazioni."
+    "it": "Aggiornamento dei Baseline Requirements su continuità di energia, acqua, sanità, cibo e comunicazioni.",
+    "en": "Update of the Baseline Requirements on continuity of energy, water, health, food and communications."
   },
   "category": {
-    "it": "NATO / resilienza"
+    "it": "NATO / resilienza",
+    "en": "NATO / resilience"
   },
   "themes": [
     "eu_nato_response"
   ],
   "geography": {
-    "it": "NATO / Europa"
+    "it": "NATO / Europa",
+    "en": "NATO / Europe"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Documento NATO"
+    "it": "Documento NATO",
+    "en": "NATO document"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ef88b2c9c1e8e3e5"
+      }
+    }
   },
   "provenance": [
     {

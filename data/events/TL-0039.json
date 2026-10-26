@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "Invasione russa su vasta scala dell’Ucraina"
+    "it": "Invasione russa su vasta scala dell’Ucraina",
+    "en": "Russia's full-scale invasion of Ukraine"
   },
   "description": {
-    "it": "Avvio dell’offensiva militare contro l’Ucraina; spartiacque per sicurezza, sanzioni, difesa e operazioni ibride europee."
+    "it": "Avvio dell’offensiva militare contro l’Ucraina; spartiacque per sicurezza, sanzioni, difesa e operazioni ibride europee.",
+    "en": "Start of the military offensive against Ukraine; a watershed for European security, sanctions, defence and hybrid operations."
   },
   "category": {
-    "it": "Guerra"
+    "it": "Guerra",
+    "en": "War"
   },
   "themes": [
     "armed_conflict"
   ],
   "geography": {
-    "it": "Ucraina"
+    "it": "Ucraina",
+    "en": "Ukraine"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Accertato"
+    "it": "Accertato",
+    "en": "Established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -39,7 +47,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e75b3f7fd2d1a16a"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "LOBITO",
   "kind": "asset",
   "name": {
-    "it": "Corridoio di Lobito"
+    "it": "Corridoio di Lobito",
+    "en": "Lobito Corridor"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "88ec4153f810962d"
+      }
+    }
   },
   "provenance": [
     {

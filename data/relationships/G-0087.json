@@ -14,14 +14,21 @@
   "valid_to": null,
   "primary_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
   "caveat": {
-    "it": "Non dimostra denaro Kerimov verso SpaceX"
+    "it": "Non dimostra denaro Kerimov verso SpaceX",
+    "en": "Does not demonstrate Kerimov money going to SpaceX"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7667e230e0b49580"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Inizio della seconda amministrazione Trump"
+    "it": "Inizio della seconda amministrazione Trump",
+    "en": "Start of the second Trump administration"
   },
   "description": {
-    "it": "Nuova linea strategica USA: divergenze con UE su politica, sanzioni, commercio e sostegno a Kiev."
+    "it": "Nuova linea strategica USA: divergenze con UE su politica, sanzioni, commercio e sostegno a Kiev.",
+    "en": "New US strategic line: divergences with the EU on politics, sanctions, trade and support for Kyiv."
   },
   "category": {
-    "it": "Governi / geopolitica"
+    "it": "Governi / geopolitica",
+    "en": "Governments / geopolitics"
   },
   "themes": [
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Stati Uniti"
+    "it": "Stati Uniti",
+    "en": "United States"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Evento istituzionale"
+    "it": "Evento istituzionale",
+    "en": "Institutional event"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "53fc644eb581ecac"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "UK_BUNDESTAG",
   "kind": "institution",
   "name": {
-    "it": "Parlamento federale tedesco"
+    "it": "Parlamento federale tedesco",
+    "en": "German federal parliament"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0503bb51ac6f4a6c"
+      }
+    }
   },
   "provenance": [
     {

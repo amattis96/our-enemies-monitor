@@ -2,12 +2,20 @@
   "id": "MD",
   "kind": "state",
   "name": {
-    "it": "Repubblica di Moldova"
+    "it": "Repubblica di Moldova",
+    "en": "Republic of Moldova"
   },
   "domain": "geopolitics",
+  "country": "MD",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f206b92f1bf59a2d"
+      }
+    }
   },
   "provenance": [
     {

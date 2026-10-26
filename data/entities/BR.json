@@ -2,12 +2,20 @@
   "id": "BR",
   "kind": "state",
   "name": {
-    "it": "Brasile"
+    "it": "Brasile",
+    "en": "Brazil"
   },
   "domain": "geopolitics",
+  "country": "BR",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1ff6119ebcc0f5d3"
+      }
+    }
   },
   "provenance": [
     {

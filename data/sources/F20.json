@@ -2,7 +2,8 @@
   "id": "F20",
   "type": "external_reference",
   "title": {
-    "it": "Reuters, crisi Trump-Zelensky e gasolio, 17 ottobre 2026"
+    "it": "Reuters, crisi Trump-Zelensky e gasolio, 17 ottobre 2026",
+    "en": "Reuters, Trump-Zelensky crisis and diesel, 17 October 2026"
   },
   "publisher": "Reuters",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f3aabc0be173d323"
+      }
+    }
   },
   "provenance": [
     {

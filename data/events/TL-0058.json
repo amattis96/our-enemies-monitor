@@ -8,23 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Incendio del magazzino londinese con aiuti per Kiev"
+    "it": "Incendio del magazzino londinese con aiuti per Kiev",
+    "en": "Fire at the London warehouse holding aid for Kyiv"
   },
   "description": {
-    "it": "Materiali Starlink e aiuti destinati all’Ucraina colpiti; condanne contro esecutori collegati a una rete Wagner."
+    "it": "Materiali Starlink e aiuti destinati all’Ucraina colpiti; condanne contro esecutori collegati a una rete Wagner.",
+    "en": "Starlink equipment and aid destined for Ukraine hit; convictions of perpetrators linked to a Wagner network."
   },
   "category": {
-    "it": "Sabotaggio / logistica"
+    "it": "Sabotaggio / logistica",
+    "en": "Sabotage / logistics"
   },
   "themes": [
     "hybrid_sabotage",
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Accertato giudiziariamente"
+    "it": "Accertato giudiziariamente",
+    "en": "Judicially established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "690d376529b0d03c"
+      }
+    }
   },
   "provenance": [
     {

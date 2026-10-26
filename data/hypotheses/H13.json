@@ -4,14 +4,17 @@
   "object": "BREXIT",
   "hypothesis_type": "IMPATTO_INTERFERENZA_BREXIT",
   "question": {
-    "it": "Quali campagne sono misurabili per scala ed esposizione reale, non soltanto volume bot?"
+    "it": "Quali campagne sono misurabili per scala ed esposizione reale, non soltanto volume bot?",
+    "en": "Which campaigns are measurable by scale and real exposure, not just bot volume?"
   },
   "current_limit": {
-    "it": "Nessun dato consente di provare che Russia abbia determinato esito."
+    "it": "Nessun dato consente di provare che Russia abbia determinato esito.",
+    "en": "No data makes it possible to prove that Russia determined the outcome."
   },
   "priority": "medium",
   "evidence_needed": {
-    "it": "Dati campagne storiche, audience campionate, audit e ISC Russia Report"
+    "it": "Dati campagne storiche, audience campionate, audit e ISC Russia Report",
+    "en": "Historical campaign data, sampled audiences, audits and the ISC Russia Report"
   },
   "events": [
     "TL-0010",
@@ -26,7 +29,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "91a131b10e5f1b9b"
+      }
+    }
   },
   "provenance": [
     {

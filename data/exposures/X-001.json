@@ -1,0 +1,56 @@
+{
+  "id": "X-001",
+  "sector": {
+    "it": "Magneti alle terre rare destinati all'UE",
+    "en": "Rare-earth magnets destined for the EU"
+  },
+  "indicator": {
+    "it": "98% della domanda UE coperta da importazioni dalla Cina, secondo DS-04",
+    "en": "98% of EU demand covered by imports from China, according to DS-04"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Domanda UE di magneti coperta da importazioni dalla Cina",
+        "en": "EU magnet demand covered by imports from China"
+      },
+      "value": 98,
+      "unit": "percent",
+      "qualifier": "exact",
+      "out_of": null,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Domanda di magneti UE, non import di tutti i minerali",
+    "en": "EU magnet demand, not imports of all minerals"
+  },
+  "consequence": {
+    "it": "Alta concentrazione del prodotto finito, non necessariamente dell'estrazione europea",
+    "en": "High concentration of the finished product, not necessarily of European extraction"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "10a4ce71ee3f1aef"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 572,
+      "original": {
+        "text": "| Magneti alle terre rare destinati all'UE | **98%** della domanda UE coperta da importazioni dalla Cina, secondo DS-04 | Domanda di magneti UE, non import di tutti i minerali | Alta concentrazione del prodotto finito, non necessariamente dell'estrazione europea |"
+      }
+    }
+  ]
+}

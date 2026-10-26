@@ -2,12 +2,20 @@
   "id": "RUSANCTIONS",
   "kind": "asset",
   "name": {
-    "it": "Sanzioni occidentali contro la Russia"
+    "it": "Sanzioni occidentali contro la Russia",
+    "en": "Western sanctions against Russia"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1243771780630fe6"
+      }
+    }
   },
   "provenance": [
     {

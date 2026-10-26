@@ -2,12 +2,20 @@
   "id": "FALSOS",
   "kind": "organization",
   "name": {
-    "it": "Falsos Amigos"
+    "it": "Falsos Amigos",
+    "en": "Falsos Amigos"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cd2b1a5b7eee1dce"
+      }
+    }
   },
   "provenance": [
     {

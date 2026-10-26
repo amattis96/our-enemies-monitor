@@ -14,7 +14,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "UE sostiene l’indipendenza Corte; diverse posizioni statali"
+    "it": "UE sostiene l’indipendenza Corte; diverse posizioni statali",
+    "en": "The EU supports the Court's independence; states take different positions"
   },
   "sources": [
     "S00",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cc1c21f34743acb9"
+      }
+    }
   },
   "provenance": [
     {

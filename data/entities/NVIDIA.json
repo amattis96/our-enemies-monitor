@@ -2,12 +2,20 @@
   "id": "NVIDIA",
   "kind": "company",
   "name": {
-    "it": "NVIDIA"
+    "it": "NVIDIA",
+    "en": "NVIDIA"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2f091ceed5bf13b1"
+      }
+    }
   },
   "provenance": [
     {

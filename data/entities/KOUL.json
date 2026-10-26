@@ -2,12 +2,20 @@
   "id": "KOUL",
   "kind": "person",
   "name": {
-    "it": "Stelios Kouloglou"
+    "it": "Stelios Kouloglou",
+    "en": "Stelios Kouloglou"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b44d6b9bbd68d43c"
+      }
+    }
   },
   "provenance": [
     {

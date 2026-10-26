@@ -2,12 +2,20 @@
   "id": "PROTEST26",
   "kind": "asset",
   "name": {
-    "it": "Proteste europee autunno 2026"
+    "it": "Proteste europee autunno 2026",
+    "en": "European protests, autumn 2026"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "418c3dc9a0217976"
+      }
+    }
   },
   "provenance": [
     {

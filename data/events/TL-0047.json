@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "DOJ sequestra 32 domini legati a Doppelganger"
+    "it": "DOJ sequestra 32 domini legati a Doppelganger",
+    "en": "DOJ seizes 32 domains linked to Doppelganger"
   },
   "description": {
-    "it": "Il dipartimento di Giustizia USA descrive la rete SDA/Structura e componenti tecniche di impersonazione dei media e influenza."
+    "it": "Il dipartimento di Giustizia USA descrive la rete SDA/Structura e componenti tecniche di impersonazione dei media e influenza.",
+    "en": "The US Department of Justice describes the SDA/Structura network and technical components for media impersonation and influence."
   },
   "category": {
-    "it": "FIMI / contromisure"
+    "it": "FIMI / contromisure",
+    "en": "FIMI / countermeasures"
   },
   "themes": [
     "information_manipulation",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Stati Uniti / Europa"
+    "it": "Stati Uniti / Europa",
+    "en": "United States / Europe"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Atto giudiziario / attribuzione DOJ"
+    "it": "Atto giudiziario / attribuzione DOJ",
+    "en": "Judicial act / DOJ attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fd9c92ac41fd410e"
+      }
+    }
   },
   "provenance": [
     {

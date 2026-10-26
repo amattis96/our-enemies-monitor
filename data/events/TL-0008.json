@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Compromissione informatica del Bundestag"
+    "it": "Compromissione informatica del Bundestag",
+    "en": "Cyber compromise of the Bundestag"
   },
   "description": {
-    "it": "Intrusione ed esfiltrazione di dati attribuite a APT28/GRU; successive sanzioni europee."
+    "it": "Intrusione ed esfiltrazione di dati attribuite a APT28/GRU; successive sanzioni europee.",
+    "en": "Intrusion and data exfiltration attributed to APT28/GRU; subsequent European sanctions."
   },
   "category": {
-    "it": "Cyber / spionaggio"
+    "it": "Cyber / spionaggio",
+    "en": "Cyber / espionage"
   },
   "themes": [
     "cyber",
     "intelligence"
   ],
   "geography": {
-    "it": "Germania"
+    "it": "Germania",
+    "en": "Germany"
   },
+  "places": [
+    "DE"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a0ef1923243255dd"
+      }
+    }
   },
   "provenance": [
     {

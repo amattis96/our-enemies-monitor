@@ -8,23 +8,29 @@
     "precision": "month"
   },
   "title": {
-    "it": "Rilascio coordinato di riserve IEA"
+    "it": "Rilascio coordinato di riserve IEA",
+    "en": "Coordinated release of IEA stocks"
   },
   "description": {
-    "it": "Gli Stati membri IEA autorizzano l’immissione di circa 400 milioni di barili per mitigare lo shock."
+    "it": "Gli Stati membri IEA autorizzano l’immissione di circa 400 milioni di barili per mitigare lo shock.",
+    "en": "IEA member states authorise the release of about 400 million barrels to mitigate the shock."
   },
   "category": {
-    "it": "Energia / risposta"
+    "it": "Energia / risposta",
+    "en": "Energy / response"
   },
   "themes": [
     "energy",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Mercato petrolifero mondiale"
+    "it": "Mercato petrolifero mondiale",
+    "en": "Global oil market"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Decisione istituzionale"
+    "it": "Decisione istituzionale",
+    "en": "Institutional decision"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f65189f79774eddc"
+      }
+    }
   },
   "provenance": [
     {

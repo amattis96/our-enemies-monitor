@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://citizenlab.ca/research/",
   "caveat": {
-    "it": "Operatore mandante non identificato"
+    "it": "Operatore mandante non identificato",
+    "en": "Instructing operator not identified"
   },
   "sources": [
     "S00",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "61c17a6546467e42"
+      }
+    }
   },
   "provenance": [
     {

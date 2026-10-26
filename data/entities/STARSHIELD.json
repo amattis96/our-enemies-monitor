@@ -2,12 +2,20 @@
   "id": "STARSHIELD",
   "kind": "company",
   "name": {
-    "it": "Starshield"
+    "it": "Starshield",
+    "en": "Starshield"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ae75f84af5372e6b"
+      }
+    }
   },
   "provenance": [
     {

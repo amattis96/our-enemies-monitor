@@ -4,14 +4,17 @@
   "object": "IR",
   "hypothesis_type": "ATTRIBUZIONE_DISORDINI_ALBANESI_2026",
   "question": {
-    "it": "Le accuse politiche sui disordini albanesi hanno indicatori forensi indipendenti?"
+    "it": "Le accuse politiche sui disordini albanesi hanno indicatori forensi indipendenti?",
+    "en": "Do the political accusations about the Albanian unrest have independent forensic indicators?"
   },
   "current_limit": {
-    "it": "Accuse del premier non equivalgono a prova."
+    "it": "Accuse del premier non equivalgono a prova.",
+    "en": "The prime minister's accusations are not proof."
   },
   "priority": "medium",
   "evidence_needed": {
-    "it": "Atti giudiziari locali, report EEAS FIMI, comunicazioni perizia"
+    "it": "Atti giudiziari locali, report EEAS FIMI, comunicazioni perizia",
+    "en": "Local court records, EEAS FIMI reports, expert-report communications"
   },
   "events": [
     "TL-0121"
@@ -24,7 +27,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "72edd7295fe2c615"
+      }
+    }
   },
   "provenance": [
     {

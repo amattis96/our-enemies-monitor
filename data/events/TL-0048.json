@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Mandati di arresto CPI nel caso Netanyahu/Gallant"
+    "it": "Mandati di arresto CPI nel caso Netanyahu/Gallant",
+    "en": "ICC arrest warrants in the Netanyahu/Gallant case"
   },
   "description": {
-    "it": "La Corte penale internazionale emette mandati contro esponenti israeliani; seguiranno sanzioni USA contro la Corte."
+    "it": "La Corte penale internazionale emette mandati contro esponenti israeliani; seguiranno sanzioni USA contro la Corte.",
+    "en": "The International Criminal Court issues warrants against Israeli officials; US sanctions against the Court will follow."
   },
   "category": {
-    "it": "Spyware / diritti"
+    "it": "Spyware / diritti",
+    "en": "Spyware / rights"
   },
   "themes": [
     "justice",
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Corte penale internazionale"
+    "it": "Corte penale internazionale",
+    "en": "International Criminal Court"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Atto giudiziario internazionale"
+    "it": "Atto giudiziario internazionale",
+    "en": "International judicial act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,8 @@
     {
       "code": "misclassified_category",
       "note": {
-        "it": "Mandati della CPI classificati «Spyware / diritti»: riclassificare come giustizia internazionale/diplomazia."
+        "it": "Mandati della CPI classificati «Spyware / diritti»: riclassificare come giustizia internazionale/diplomazia.",
+        "en": "ICC warrants classified as «Spyware / rights»: reclassify as international justice/diplomacy."
       },
       "reported_in": [
         "S07",
@@ -48,7 +55,13 @@
     "status": "imported_unreviewed",
     "notes": [
       "Themes follow the reclassification reported in S07 §11 / S08 §20.2, not the original category."
-    ]
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9a1d25aea0eebdf2"
+      }
+    }
   },
   "provenance": [
     {

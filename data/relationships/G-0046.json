@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Meta collega a persone associate a forze ordine cinesi; non ogni post è ordine statale"
+    "it": "Meta collega a persone associate a forze ordine cinesi; non ogni post è ordine statale",
+    "en": "Meta links it to people associated with Chinese law enforcement; not every post is a state order"
   },
   "sources": [
     "S02"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "282d58e7b58b1a63"
+      }
+    }
   },
   "provenance": [
     {

@@ -4,14 +4,17 @@
   "object": "EAGLES",
   "hypothesis_type": "MANDATO_STATALE_ESTLINK",
   "question": {
-    "it": "Una catena di ordini collega il danneggiamento Estlink 2 allo Stato russo?"
+    "it": "Una catena di ordini collega il danneggiamento Estlink 2 allo Stato russo?",
+    "en": "Does a chain of orders link the Estlink 2 damage to the Russian state?"
   },
   "current_limit": {
-    "it": "Associazione shadow fleet è solo contesto."
+    "it": "Associazione shadow fleet è solo contesto.",
+    "en": "Shadow fleet association is context only."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "VDR, beneficial ownership, incident report, court documents"
+    "it": "VDR, beneficial ownership, incident report, court documents",
+    "en": "VDR, beneficial ownership, incident report, court documents"
   },
   "events": [
     "TL-0069"
@@ -24,7 +27,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1892ddf94bbed908"
+      }
+    }
   },
   "provenance": [
     {

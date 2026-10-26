@@ -2,12 +2,20 @@
   "id": "A16Z",
   "kind": "company",
   "name": {
-    "it": "Andreessen Horowitz (a16z)"
+    "it": "Andreessen Horowitz (a16z)",
+    "en": "Andreessen Horowitz (a16z)"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "575b35d5d3ab7d32"
+      }
+    }
   },
   "provenance": [
     {

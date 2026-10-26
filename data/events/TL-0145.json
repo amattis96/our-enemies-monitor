@@ -8,23 +8,34 @@
     "precision": "day"
   },
   "title": {
-    "it": "Reuters ricostruisce spedizioni di gasolio russo"
+    "it": "Reuters ricostruisce spedizioni di gasolio russo",
+    "en": "Reuters reconstructs Russian diesel shipments"
   },
   "description": {
-    "it": "Nuovi flussi verso Turchia, Brasile e Marocco dopo attenuazioni USA; gli effetti economici sono distinti da ipotesi di coordinamento politico."
+    "it": "Nuovi flussi verso Turchia, Brasile e Marocco dopo attenuazioni USA; gli effetti economici sono distinti da ipotesi di coordinamento politico.",
+    "en": "New flows to Turkey, Brazil and Morocco after US relaxations; the economic effects are distinct from hypotheses of political coordination."
   },
   "category": {
-    "it": "Energia / trasporti"
+    "it": "Energia / trasporti",
+    "en": "Energy / transport"
   },
   "themes": [
     "energy",
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Russia / Turchia / Brasile / Marocco"
+    "it": "Russia / Turchia / Brasile / Marocco",
+    "en": "Russia / Turkey / Brazil / Morocco"
   },
+  "places": [
+    "RU",
+    "TR",
+    "BR",
+    "MA"
+  ],
   "evidence_note": {
-    "it": "Reporting commerciale"
+    "it": "Reporting commerciale",
+    "en": "Commercial reporting"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +47,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "abfe270aa92935c9"
+      }
+    }
   },
   "provenance": [
     {

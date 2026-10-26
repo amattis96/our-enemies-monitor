@@ -2,12 +2,20 @@
   "id": "META",
   "kind": "company",
   "name": {
-    "it": "Meta / Facebook / Instagram"
+    "it": "Meta / Facebook / Instagram",
+    "en": "Meta / Facebook / Instagram"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dde1af71b9c9ba10"
+      }
+    }
   },
   "provenance": [
     {

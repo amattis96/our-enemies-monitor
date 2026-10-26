@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Attacchi DDoS contro l’Estonia"
+    "it": "Attacchi DDoS contro l’Estonia",
+    "en": "DDoS attacks against Estonia"
   },
   "description": {
-    "it": "Dopo la crisi del Bronze Soldier vengono colpiti governo, banche e media; il comando diretto dello Stato russo non è conclusivamente provato."
+    "it": "Dopo la crisi del Bronze Soldier vengono colpiti governo, banche e media; il comando diretto dello Stato russo non è conclusivamente provato.",
+    "en": "After the Bronze Soldier crisis, government, banks and media are hit; direct command by the Russian state is not conclusively proven."
   },
   "category": {
-    "it": "Cyber / sicurezza"
+    "it": "Cyber / sicurezza",
+    "en": "Cyber / security"
   },
   "themes": [
     "cyber"
   ],
   "geography": {
-    "it": "Estonia"
+    "it": "Estonia",
+    "en": "Estonia"
   },
+  "places": [
+    "EE"
+  ],
   "evidence_note": {
-    "it": "Evento accertato; mandante statale contestato"
+    "it": "Evento accertato; mandante statale contestato",
+    "en": "Event established; state instigator disputed"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "175aeaefb9840bc0"
+      }
+    }
   },
   "provenance": [
     {

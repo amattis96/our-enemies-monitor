@@ -2,12 +2,20 @@
   "id": "AZ",
   "kind": "state",
   "name": {
-    "it": "Azerbaigian"
+    "it": "Azerbaigian",
+    "en": "Azerbaijan"
   },
   "domain": "geopolitics",
+  "country": "AZ",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ced55129e4c7fbd9"
+      }
+    }
   },
   "provenance": [
     {

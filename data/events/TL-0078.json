@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Graphite/Paragon contro giornalisti europei"
+    "it": "Graphite/Paragon contro giornalisti europei",
+    "en": "Graphite/Paragon against European journalists"
   },
   "description": {
-    "it": "Citizen Lab e successive indagini forensi documentano compromissioni, fra cui casi italiani, senza identificare in modo pubblico e univoco cliente e autorità ordinante."
+    "it": "Citizen Lab e successive indagini forensi documentano compromissioni, fra cui casi italiani, senza identificare in modo pubblico e univoco cliente e autorità ordinante.",
+    "en": "Citizen Lab and later forensic investigations document compromises, including Italian cases, without publicly and unambiguously identifying the client and the ordering authority."
   },
   "category": {
-    "it": "Spyware / sorveglianza"
+    "it": "Spyware / sorveglianza",
+    "en": "Spyware / surveillance"
   },
   "themes": [
     "surveillance_spyware"
   ],
   "geography": {
-    "it": "Italia / Europa"
+    "it": "Italia / Europa",
+    "en": "Italy / Europe"
   },
+  "places": [
+    "IT"
+  ],
   "evidence_note": {
-    "it": "Forense; committente non verificato"
+    "it": "Forense; committente non verificato",
+    "en": "Forensics; client not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9d62cca48328edd6"
+      }
+    }
   },
   "provenance": [
     {

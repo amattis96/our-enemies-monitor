@@ -2,12 +2,20 @@
   "id": "KERIMOV",
   "kind": "person",
   "name": {
-    "it": "Suleiman Kerimov"
+    "it": "Suleiman Kerimov",
+    "en": "Suleiman Kerimov"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "502012dbf88ec246"
+      }
+    }
   },
   "provenance": [
     {

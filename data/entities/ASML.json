@@ -2,12 +2,20 @@
   "id": "ASML",
   "kind": "company",
   "name": {
-    "it": "ASML"
+    "it": "ASML",
+    "en": "ASML"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cbc8e75766e6535e"
+      }
+    }
   },
   "provenance": [
     {

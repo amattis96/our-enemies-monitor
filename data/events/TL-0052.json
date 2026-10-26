@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Pressioni militari cinesi intorno a Taiwan"
+    "it": "Pressioni militari cinesi intorno a Taiwan",
+    "en": "Chinese military pressure around Taiwan"
   },
   "description": {
-    "it": "Pattuglie ed esercitazioni continuano nel 2024-2026; non esiste nelle fonti del progetto prova di decisione già presa per un’invasione."
+    "it": "Pattuglie ed esercitazioni continuano nel 2024-2026; non esiste nelle fonti del progetto prova di decisione già presa per un’invasione.",
+    "en": "Patrols and exercises continue in 2024-2026; the project's sources contain no evidence of a decision already taken to invade."
   },
   "category": {
-    "it": "Cina / Taiwan"
+    "it": "Cina / Taiwan",
+    "en": "China / Taiwan"
   },
   "themes": [
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Stretto di Taiwan"
+    "it": "Stretto di Taiwan",
+    "en": "Taiwan Strait"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Attività pubbliche; scenario futuro ipotetico"
+    "it": "Attività pubbliche; scenario futuro ipotetico",
+    "en": "Public activities; hypothetical future scenario"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "83938d19cad6c75b"
+      }
+    }
   },
   "provenance": [
     {

@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Magazzino Londra conteneva dispositivi, non attacco a SpaceX"
+    "it": "Magazzino Londra conteneva dispositivi, non attacco a SpaceX",
+    "en": "The London warehouse contained devices; not an attack on SpaceX"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "576d0cbe967b368a"
+      }
+    }
   },
   "provenance": [
     {

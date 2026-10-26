@@ -2,7 +2,8 @@
   "id": "WEB-EXT-001",
   "type": "external_reference",
   "title": {
-    "it": "Attacco contro l’ambasciata israeliana a Stoccolma: attribuzione OFAC a Foxtrot su incarico iraniano"
+    "it": "Attacco contro l’ambasciata israeliana a Stoccolma: attribuzione OFAC a Foxtrot su incarico iraniano",
+    "en": "Attack on the Israeli embassy in Stockholm: OFAC attributes it to Foxtrot acting on Iranian instructions"
   },
   "publisher": "US Treasury OFAC",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7b6385cc8368e521"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "HAIMAI",
   "kind": "organization",
   "name": {
-    "it": "Haimai PR"
+    "it": "Haimai PR",
+    "en": "Haimai PR"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0742af3720adc86b"
+      }
+    }
   },
   "provenance": [
     {

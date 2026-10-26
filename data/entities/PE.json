@@ -2,12 +2,20 @@
   "id": "PE",
   "kind": "state",
   "name": {
-    "it": "Perù"
+    "it": "Perù",
+    "en": "Peru"
   },
   "domain": "geopolitics",
+  "country": "PE",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "439550b6c1cf0c88"
+      }
+    }
   },
   "provenance": [
     {

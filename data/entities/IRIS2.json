@@ -2,12 +2,20 @@
   "id": "IRIS2",
   "kind": "asset",
   "name": {
-    "it": "IRIS² / SpaceRISE"
+    "it": "IRIS² / SpaceRISE",
+    "en": "IRIS² / SpaceRISE"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e368d99d51c00105"
+      }
+    }
   },
   "provenance": [
     {

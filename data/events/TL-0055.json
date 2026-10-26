@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "VIGINUM mappa Portal Kombat"
+    "it": "VIGINUM mappa Portal Kombat",
+    "en": "VIGINUM maps Portal Kombat"
   },
   "description": {
-    "it": "Identificati almeno 193 siti di propagazione e aggregazione filorussa; legami tecnici con TigerWeb."
+    "it": "Identificati almeno 193 siti di propagazione e aggregazione filorussa; legami tecnici con TigerWeb.",
+    "en": "At least 193 pro-Russian propagation and aggregation sites identified; technical links with TigerWeb."
   },
   "category": {
-    "it": "Disinformazione / reti"
+    "it": "Disinformazione / reti",
+    "en": "Disinformation / networks"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Francia / Europa"
+    "it": "Francia / Europa",
+    "en": "France / Europe"
   },
+  "places": [
+    "FR"
+  ],
   "evidence_note": {
-    "it": "Corroborato tecnicamente"
+    "it": "Corroborato tecnicamente",
+    "en": "Technically corroborated"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c45015a9132c06b5"
+      }
+    }
   },
   "provenance": [
     {

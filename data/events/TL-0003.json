@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Hapsburg Group e lobbying per Yanukovych"
+    "it": "Hapsburg Group e lobbying per Yanukovych",
+    "en": "Hapsburg Group and lobbying for Yanukovych"
   },
   "description": {
-    "it": "Manafort/Gates organizzano una rete di ex personalità politiche europee per attività favorevoli al governo Yanukovych e al Party of Regions. Non dimostrata una catena diretta del Cremlino."
+    "it": "Manafort/Gates organizzano una rete di ex personalità politiche europee per attività favorevoli al governo Yanukovych e al Party of Regions. Non dimostrata una catena diretta del Cremlino.",
+    "en": "Manafort/Gates organise a network of former European political figures for activities favourable to the Yanukovych government and the Party of Regions. No direct Kremlin chain demonstrated."
   },
   "category": {
-    "it": "Influenza politica"
+    "it": "Influenza politica",
+    "en": "Political influence"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Europa / Ucraina"
+    "it": "Europa / Ucraina",
+    "en": "Europe / Ukraine"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Documentato in atti giudiziari; regia russa non provata"
+    "it": "Documentato in atti giudiziari; regia russa non provata",
+    "en": "Documented in court records; Russian direction not proven"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "105d70f9afd153be"
+      }
+    }
   },
   "provenance": [
     {

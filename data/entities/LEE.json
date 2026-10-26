@@ -2,12 +2,20 @@
   "id": "LEE",
   "kind": "person",
   "name": {
-    "it": "Christine Lee"
+    "it": "Christine Lee",
+    "en": "Christine Lee"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "efc18847fc86aaa7"
+      }
+    }
   },
   "provenance": [
     {

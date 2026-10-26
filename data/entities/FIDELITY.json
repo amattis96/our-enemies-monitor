@@ -2,12 +2,20 @@
   "id": "FIDELITY",
   "kind": "company",
   "name": {
-    "it": "Fidelity"
+    "it": "Fidelity",
+    "en": "Fidelity"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4ae042d5e1f41836"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "PARAGON",
   "kind": "organization",
   "name": {
-    "it": "Paragon Solutions"
+    "it": "Paragon Solutions",
+    "en": "Paragon Solutions"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6270356538ccb2c6"
+      }
+    }
   },
   "provenance": [
     {

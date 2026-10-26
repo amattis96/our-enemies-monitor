@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Paperwall cresce e ricicla fonti"
+    "it": "Paperwall cresce e ricicla fonti",
+    "en": "Paperwall grows and recycles sources"
   },
   "description": {
-    "it": "Il SEAE osserva espansione della rete cinese di pseudo-media e ripresa di contenuti russi; non è prova di comando congiunto Cina-Russia."
+    "it": "Il SEAE osserva espansione della rete cinese di pseudo-media e ripresa di contenuti russi; non è prova di comando congiunto Cina-Russia.",
+    "en": "The EEAS observes the expansion of the Chinese pseudo-media network and the reuse of Russian content; this is not proof of joint China-Russia command."
   },
   "category": {
-    "it": "Disinformazione / reti"
+    "it": "Disinformazione / reti",
+    "en": "Disinformation / networks"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Europa / mondo"
+    "it": "Europa / mondo",
+    "en": "Europe / world"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Campagna documentata; coordinamento non provato"
+    "it": "Campagna documentata; coordinamento non provato",
+    "en": "Documented campaign; coordination not proven"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "62c92b20d3764bf8"
+      }
+    }
   },
   "provenance": [
     {

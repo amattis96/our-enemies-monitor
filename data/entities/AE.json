@@ -2,12 +2,20 @@
   "id": "AE",
   "kind": "state",
   "name": {
-    "it": "Emirati Arabi Uniti"
+    "it": "Emirati Arabi Uniti",
+    "en": "United Arab Emirates"
   },
   "domain": "geopolitics",
+  "country": "AE",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ecf5df5e4ad76585"
+      }
+    }
   },
   "provenance": [
     {

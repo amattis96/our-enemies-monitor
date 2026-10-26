@@ -4,14 +4,17 @@
   "object": "YIPENG",
   "hypothesis_type": "INTENTIONALITA_CAVI_2024",
   "question": {
-    "it": "La nave Yi Peng 3 agì deliberatamente?"
+    "it": "La nave Yi Peng 3 agì deliberatamente?",
+    "en": "Did the ship Yi Peng 3 act deliberately?"
   },
   "current_limit": {
-    "it": "Indagine svedese non dimostra il dolo; nazionalità non prova mandato."
+    "it": "Indagine svedese non dimostra il dolo; nazionalità non prova mandato.",
+    "en": "Swedish investigation does not prove intent; nationality does not prove instructions."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "AIS/VDR, piani rotta, forensics, sentenze, contatti"
+    "it": "AIS/VDR, piani rotta, forensics, sentenze, contatti",
+    "en": "AIS/VDR, route plans, forensics, judgments, contacts"
   },
   "events": [
     "TL-0066"
@@ -24,7 +27,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a7c207b8a5df2a18"
+      }
+    }
   },
   "provenance": [
     {

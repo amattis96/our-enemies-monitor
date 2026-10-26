@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Proteste contro la crisi abitativa spagnola"
+    "it": "Proteste contro la crisi abitativa spagnola",
+    "en": "Protests over the Spanish housing crisis"
   },
   "description": {
-    "it": "Mobilitazioni su affitti, sfratti e accesso alla casa; nessuna direzione straniera specifica dimostrata."
+    "it": "Mobilitazioni su affitti, sfratti e accesso alla casa; nessuna direzione straniera specifica dimostrata.",
+    "en": "Mobilisations on rents, evictions and access to housing; no specific foreign direction demonstrated."
   },
   "category": {
-    "it": "Proteste / Spagna"
+    "it": "Proteste / Spagna",
+    "en": "Protests / Spain"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Spagna"
+    "it": "Spagna",
+    "en": "Spain"
   },
+  "places": [
+    "ES"
+  ],
   "evidence_note": {
-    "it": "Proteste documentate"
+    "it": "Proteste documentate",
+    "en": "Documented protests"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c137a279abfc0e1a"
+      }
+    }
   },
   "provenance": [
     {

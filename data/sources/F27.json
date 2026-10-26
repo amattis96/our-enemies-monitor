@@ -2,7 +2,8 @@
   "id": "F27",
   "type": "external_reference",
   "title": {
-    "it": "ProPublica, investitori esteri e SpaceX, 18 giugno 2026"
+    "it": "ProPublica, investitori esteri e SpaceX, 18 giugno 2026",
+    "en": "ProPublica, foreign investors and SpaceX, 18 June 2026"
   },
   "publisher": "ProPublica",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0833f9be3a4801a2"
+      }
+    }
   },
   "provenance": [
     {

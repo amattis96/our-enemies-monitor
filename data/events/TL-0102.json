@@ -8,23 +8,29 @@
     "precision": "month"
   },
   "title": {
-    "it": "EU Ports Strategy"
+    "it": "EU Ports Strategy",
+    "en": "EU Ports Strategy"
   },
   "description": {
-    "it": "La Commissione introduce criteri di valutazione del controllo straniero di infrastrutture portuali essenziali."
+    "it": "La Commissione introduce criteri di valutazione del controllo straniero di infrastrutture portuali essenziali.",
+    "en": "The Commission introduces criteria for assessing foreign control of essential port infrastructure."
   },
   "category": {
-    "it": "Industria / infrastrutture"
+    "it": "Industria / infrastrutture",
+    "en": "Industry / infrastructure"
   },
   "themes": [
     "industry_dependencies",
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Strategia UE pubblicata"
+    "it": "Strategia UE pubblicata",
+    "en": "EU strategy published"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0aeed9a3878e8fdc"
+      }
+    }
   },
   "provenance": [
     {

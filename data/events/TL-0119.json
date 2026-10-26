@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "Drone esplosivo a Leipzig/Halle"
+    "it": "Drone esplosivo a Leipzig/Halle",
+    "en": "Explosive drone in Leipzig/Halle"
   },
   "description": {
-    "it": "Tentato attacco contro hub logistico cargo; attribuzione tedesca e sostegno UE alla responsabilità russa."
+    "it": "Tentato attacco contro hub logistico cargo; attribuzione tedesca e sostegno UE alla responsabilità russa.",
+    "en": "Attempted attack on a cargo logistics hub; German attribution and EU support for Russian responsibility."
   },
   "category": {
-    "it": "Sabotaggio / difesa"
+    "it": "Sabotaggio / difesa",
+    "en": "Sabotage / defence"
   },
   "themes": [
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Germania"
+    "it": "Germania",
+    "en": "Germany"
   },
+  "places": [
+    "DE"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "75e6a91ce39c9d99"
+      }
+    }
   },
   "provenance": [
     {

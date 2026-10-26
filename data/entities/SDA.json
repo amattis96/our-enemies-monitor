@@ -2,12 +2,20 @@
   "id": "SDA",
   "kind": "organization",
   "name": {
-    "it": "Social Design Agency"
+    "it": "Social Design Agency",
+    "en": "Social Design Agency"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e4bf4558218231da"
+      }
+    }
   },
   "provenance": [
     {

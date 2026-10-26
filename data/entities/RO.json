@@ -2,12 +2,20 @@
   "id": "RO",
   "kind": "state",
   "name": {
-    "it": "Romania"
+    "it": "Romania",
+    "en": "Romania"
   },
   "domain": "geopolitics",
+  "country": "RO",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5b5f686c1708ea92"
+      }
+    }
   },
   "provenance": [
     {

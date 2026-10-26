@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Danni a Balticconnector e cavi"
+    "it": "Danni a Balticconnector e cavi",
+    "en": "Damage to Balticconnector and cables"
   },
   "description": {
-    "it": "L’ancora della NewNew Polar Bear è implicata nei danni; responsabilità materiale corroborata, dolo e ordine di Pechino non dimostrati."
+    "it": "L’ancora della NewNew Polar Bear è implicata nei danni; responsabilità materiale corroborata, dolo e ordine di Pechino non dimostrati.",
+    "en": "The NewNew Polar Bear's anchor is implicated in the damage; material responsibility corroborated, intent and orders from Beijing not demonstrated."
   },
   "category": {
-    "it": "Infrastrutture sottomarine"
+    "it": "Infrastrutture sottomarine",
+    "en": "Undersea infrastructure"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Golfo di Finlandia"
+    "it": "Golfo di Finlandia",
+    "en": "Gulf of Finland"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Causalità materiale corroborata; intento non verificato"
+    "it": "Causalità materiale corroborata; intento non verificato",
+    "en": "Material causation corroborated; intent not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f06636f6fb9cbc5f"
+      }
+    }
   },
   "provenance": [
     {

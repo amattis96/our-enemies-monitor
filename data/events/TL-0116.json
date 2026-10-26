@@ -8,23 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Inchiesta ProPublica sui fondi che investono in SpaceX"
+    "it": "Inchiesta ProPublica sui fondi che investono in SpaceX",
+    "en": "ProPublica investigation into funds investing in SpaceX"
   },
   "description": {
-    "it": "Emergono LP e veicoli con collegamenti internazionali, inclusi Russia/Cina; non dimostrato flusso Kerimov → HAL9001 → SpaceX né controllo sulle decisioni Starshield."
+    "it": "Emergono LP e veicoli con collegamenti internazionali, inclusi Russia/Cina; non dimostrato flusso Kerimov → HAL9001 → SpaceX né controllo sulle decisioni Starshield.",
+    "en": "LPs and vehicles with international connections emerge, including Russia/China; no proven Kerimov → HAL9001 → SpaceX flow nor control over Starshield decisions."
   },
   "category": {
-    "it": "Finanza / tecnologia"
+    "it": "Finanza / tecnologia",
+    "en": "Finance / technology"
   },
   "themes": [
     "finance_sanctions",
     "platforms_technology"
   ],
   "geography": {
-    "it": "Stati Uniti / investitori globali"
+    "it": "Stati Uniti / investitori globali",
+    "en": "United States / global investors"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Inchiesta documentale; nessi ultimi non verificati"
+    "it": "Inchiesta documentale; nessi ultimi non verificati",
+    "en": "Documentary investigation; ultimate links not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "06a33777208f6ac8"
+      }
+    }
   },
   "provenance": [
     {

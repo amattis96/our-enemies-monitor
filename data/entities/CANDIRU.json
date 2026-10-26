@@ -2,12 +2,20 @@
   "id": "CANDIRU",
   "kind": "organization",
   "name": {
-    "it": "Candiru"
+    "it": "Candiru",
+    "en": "Candiru"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8fa8ea4e24e6efba"
+      }
+    }
   },
   "provenance": [
     {

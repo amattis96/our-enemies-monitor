@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Rapporto Senato USA sull’interferenza del 2016"
+    "it": "Rapporto Senato USA sull’interferenza del 2016",
+    "en": "US Senate report on 2016 interference"
   },
   "description": {
-    "it": "Pubblicazione del Volume 5 dell’indagine bipartisan su interferenze russe, contatti e vulnerabilità della campagna."
+    "it": "Pubblicazione del Volume 5 dell’indagine bipartisan su interferenze russe, contatti e vulnerabilità della campagna.",
+    "en": "Publication of Volume 5 of the bipartisan investigation into Russian interference, contacts and campaign vulnerabilities."
   },
   "category": {
-    "it": "Indagine parlamentare"
+    "it": "Indagine parlamentare",
+    "en": "Parliamentary inquiry"
   },
   "themes": [
     "justice"
   ],
   "geography": {
-    "it": "Stati Uniti"
+    "it": "Stati Uniti",
+    "en": "United States"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Atto parlamentare"
+    "it": "Atto parlamentare",
+    "en": "Parliamentary act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "df50847bd4641d53"
+      }
+    }
   },
   "provenance": [
     {

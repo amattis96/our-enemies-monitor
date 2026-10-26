@@ -8,23 +8,29 @@
     "precision": "month"
   },
   "title": {
-    "it": "Incremento di violazioni dello spazio aereo e sabotaggi"
+    "it": "Incremento di violazioni dello spazio aereo e sabotaggi",
+    "en": "Increase in airspace violations and sabotage"
   },
   "description": {
-    "it": "NATO nel settembre 2026 osserva aumento di episodi con droni, cyberattacchi e sabotaggi, nel contesto di campagna attribuita alla Russia."
+    "it": "NATO nel settembre 2026 osserva aumento di episodi con droni, cyberattacchi e sabotaggi, nel contesto di campagna attribuita alla Russia.",
+    "en": "In September 2026 NATO observes an increase in drone incidents, cyberattacks and sabotage, in the context of a campaign attributed to Russia."
   },
   "category": {
-    "it": "Attacchi / NATO"
+    "it": "Attacchi / NATO",
+    "en": "Attacks / NATO"
   },
   "themes": [
     "hybrid_sabotage",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Europa / NATO"
+    "it": "Europa / NATO",
+    "en": "Europe / NATO"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Valutazione NATO, serie aggregata"
+    "it": "Valutazione NATO, serie aggregata",
+    "en": "NATO assessment, aggregate series"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dd5254c62fe78c5f"
+      }
+    }
   },
   "provenance": [
     {

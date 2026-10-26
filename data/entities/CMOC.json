@@ -2,12 +2,20 @@
   "id": "CMOC",
   "kind": "company",
   "name": {
-    "it": "CMOC"
+    "it": "CMOC",
+    "en": "CMOC"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a50e0935522217fe"
+      }
+    }
   },
   "provenance": [
     {

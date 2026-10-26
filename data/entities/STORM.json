@@ -2,12 +2,20 @@
   "id": "STORM",
   "kind": "organization",
   "name": {
-    "it": "Storm-1516"
+    "it": "Storm-1516",
+    "en": "Storm-1516"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "581f53914c93aab6"
+      }
+    }
   },
   "provenance": [
     {

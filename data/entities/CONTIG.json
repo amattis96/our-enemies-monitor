@@ -2,12 +2,20 @@
   "id": "CONTIG",
   "kind": "organization",
   "name": {
-    "it": "Conti criminal ransomware group"
+    "it": "Conti criminal ransomware group",
+    "en": "Conti criminal ransomware group"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d7965595371ef4d9"
+      }
+    }
   },
   "provenance": [
     {

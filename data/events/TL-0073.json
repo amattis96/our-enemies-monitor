@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Campagna tedesca e Storm-1516"
+    "it": "Campagna tedesca e Storm-1516",
+    "en": "German campaign and Storm-1516"
   },
   "description": {
-    "it": "Fake news, video sintetici, deepfake e siti pseudo-giornalistici, in parte attribuiti dal governo tedesco all’ecosistema russo/GRU."
+    "it": "Fake news, video sintetici, deepfake e siti pseudo-giornalistici, in parte attribuiti dal governo tedesco all’ecosistema russo/GRU.",
+    "en": "Fake news, synthetic videos, deepfakes and pseudo-journalistic sites, partly attributed by the German government to the Russian/GRU ecosystem."
   },
   "category": {
-    "it": "Elezioni / disinformazione"
+    "it": "Elezioni / disinformazione",
+    "en": "Elections / disinformation"
   },
   "themes": [
     "elections_influence",
     "information_manipulation"
   ],
   "geography": {
-    "it": "Germania"
+    "it": "Germania",
+    "en": "Germany"
   },
+  "places": [
+    "DE"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale; effetto voto non misurato"
+    "it": "Attribuzione istituzionale; effetto voto non misurato",
+    "en": "Institutional attribution; effect on the vote not measured"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "64daed3e777e3751"
+      }
+    }
   },
   "provenance": [
     {

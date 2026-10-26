@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "SpaceX contrasta terminali russi non autorizzati"
+    "it": "SpaceX contrasta terminali russi non autorizzati",
+    "en": "SpaceX counters unauthorised Russian terminals"
   },
   "description": {
-    "it": "Le fonti documentano anche cooperazione con Kiev per disabilitare terminali Starlink russi non autorizzati; le misure non annullano la controversia distinta sulle limitazioni ucraine."
+    "it": "Le fonti documentano anche cooperazione con Kiev per disabilitare terminali Starlink russi non autorizzati; le misure non annullano la controversia distinta sulle limitazioni ucraine.",
+    "en": "Sources also document cooperation with Kyiv to disable unauthorised Russian Starlink terminals; these measures do not settle the separate dispute over the Ukrainian restrictions."
   },
   "category": {
-    "it": "Satelliti / cooperazione"
+    "it": "Satelliti / cooperazione",
+    "en": "Satellites / cooperation"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Ucraina"
+    "it": "Ucraina",
+    "en": "Ukraine"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Operazione dichiarata/documentata; giorno non indicato"
+    "it": "Operazione dichiarata/documentata; giorno non indicato",
+    "en": "Declared/documented operation; day not given"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f5a1e8892372fd12"
+      }
+    }
   },
   "provenance": [
     {

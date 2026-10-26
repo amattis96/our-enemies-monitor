@@ -1,0 +1,67 @@
+{
+  "id": "X-007",
+  "sector": {
+    "it": "Materiali catodici / anodici",
+    "en": "Cathode / anode materials"
+  },
+  "indicator": {
+    "it": "Circa 85% / >90% in Cina",
+    "en": "About 85% / >90% in China"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota cinese dei materiali catodici",
+        "en": "Chinese share of cathode materials"
+      },
+      "value": 85,
+      "unit": "percent",
+      "qualifier": "approx",
+      "out_of": null,
+      "period": null
+    },
+    {
+      "label": {
+        "it": "Quota cinese dei materiali anodici",
+        "en": "Chinese share of anode materials"
+      },
+      "value": 90,
+      "unit": "percent",
+      "qualifier": "more_than",
+      "out_of": null,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Catodi / anodi mondiali, DS-04",
+    "en": "Global cathodes / anodes, DS-04"
+  },
+  "consequence": {
+    "it": "Raffinazione e fabbricazione più concentrate della domanda finale",
+    "en": "Refining and manufacturing more concentrated than final demand"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9cf6921a9f93c984"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 578,
+      "original": {
+        "text": "| Materiali catodici / anodici | Circa **85% / >90%** in Cina | Catodi / anodi mondiali, DS-04 | Raffinazione e fabbricazione più concentrate della domanda finale |"
+      }
+    }
+  ]
+}

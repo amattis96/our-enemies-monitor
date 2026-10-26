@@ -2,12 +2,20 @@
   "id": "ENISA",
   "kind": "institution",
   "name": {
-    "it": "ENISA"
+    "it": "ENISA",
+    "en": "ENISA"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2426d9b7d4561c8c"
+      }
+    }
   },
   "provenance": [
     {

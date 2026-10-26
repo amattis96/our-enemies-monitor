@@ -14,14 +14,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Conti e bonifici in rubli secondo autorità moldave"
+    "it": "Conti e bonifici in rubli secondo autorità moldave",
+    "en": "Accounts and transfers in roubles according to Moldovan authorities"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "db3ebb1bd7ccc598"
+      }
+    }
   },
   "provenance": [
     {

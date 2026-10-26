@@ -1,0 +1,56 @@
+{
+  "id": "X-004",
+  "sector": {
+    "it": "Terre rare magnetiche, estrazione",
+    "en": "Magnetic rare earths, mining"
+  },
+  "indicator": {
+    "it": "60% produzione mondiale in Cina",
+    "en": "60% of global production in China"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota cinese della produzione mondiale",
+        "en": "Chinese share of global production"
+      },
+      "value": 60,
+      "unit": "percent",
+      "qualifier": "exact",
+      "out_of": null,
+      "period": "2024"
+    }
+  ],
+  "scope": {
+    "it": "IEA 2024, minerale",
+    "en": "IEA 2024, ore"
+  },
+  "consequence": {
+    "it": "Quota diversa da quella dei magneti",
+    "en": "Share different from that of magnets"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "P06"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "aeaa1559137c5036"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 575,
+      "original": {
+        "text": "| Terre rare magnetiche, estrazione | **60%** produzione mondiale in Cina | IEA 2024, minerale | Quota diversa da quella dei magneti [P06] |"
+      }
+    }
+  ]
+}

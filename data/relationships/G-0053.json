@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Clienti operativi non identificati"
+    "it": "Clienti operativi non identificati",
+    "en": "Operational clients not identified"
   },
   "sources": [
     "S03",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8ab9fcc13206ba76"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,23 +8,32 @@
     "precision": "year"
   },
   "title": {
-    "it": "Operazioni iraniane in Francia e Svezia"
+    "it": "Operazioni iraniane in Francia e Svezia",
+    "en": "Iranian operations in France and Sweden"
   },
   "description": {
-    "it": "Breach, compromissioni SMS e attività informative ricondotte in seguito a Emennet Pasargad; nel 2026 arrivano sanzioni UE."
+    "it": "Breach, compromissioni SMS e attività informative ricondotte in seguito a Emennet Pasargad; nel 2026 arrivano sanzioni UE.",
+    "en": "Breach, SMS compromises and information activities later traced to Emennet Pasargad; EU sanctions follow in 2026."
   },
   "category": {
-    "it": "Cyber / interferenze"
+    "it": "Cyber / interferenze",
+    "en": "Cyber / interference"
   },
   "themes": [
     "cyber",
     "elections_influence"
   ],
   "geography": {
-    "it": "Francia / Svezia"
+    "it": "Francia / Svezia",
+    "en": "France / Sweden"
   },
+  "places": [
+    "FR",
+    "SE"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale successiva"
+    "it": "Attribuzione istituzionale successiva",
+    "en": "Later institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d98a5500505864f3"
+      }
+    }
   },
   "provenance": [
     {

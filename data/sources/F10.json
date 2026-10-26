@@ -2,7 +2,8 @@
   "id": "F10",
   "type": "external_reference",
   "title": {
-    "it": "Eurostat, inflazione settembre 2026 (stima 2 ottobre e dato 16 ottobre)"
+    "it": "Eurostat, inflazione settembre 2026 (stima 2 ottobre e dato 16 ottobre)",
+    "en": "Eurostat, September 2026 inflation (2 October estimate and 16 October figure)"
   },
   "publisher": "Eurostat",
   "files": [],
@@ -15,7 +16,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "51cb5f7c3872bf16"
+      }
+    }
   },
   "provenance": [
     {

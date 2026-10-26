@@ -2,12 +2,20 @@
   "id": "NATO",
   "kind": "institution",
   "name": {
-    "it": "NATO"
+    "it": "NATO",
+    "en": "NATO"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b8a5243c6657fa46"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "FRJ",
   "kind": "institution",
   "name": {
-    "it": "Organi giudiziari francesi"
+    "it": "Organi giudiziari francesi",
+    "en": "French judicial bodies"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4e8536c29ace570e"
+      }
+    }
   },
   "provenance": [
     {

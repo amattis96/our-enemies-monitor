@@ -8,22 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Danneggiamento Estlink 2 e cavi"
+    "it": "Danneggiamento Estlink 2 e cavi",
+    "en": "Damage to Estlink 2 and cables"
   },
   "description": {
-    "it": "Nave Eagle S associata alla shadow fleet russa; responsabilità di un ordine del Cremlino non accertata, procedimento finlandese con problemi di giurisdizione."
+    "it": "Nave Eagle S associata alla shadow fleet russa; responsabilità di un ordine del Cremlino non accertata, procedimento finlandese con problemi di giurisdizione.",
+    "en": "The ship Eagle S, associated with the Russian shadow fleet; responsibility of a Kremlin order not established, Finnish proceedings with jurisdictional problems."
   },
   "category": {
-    "it": "Infrastrutture sottomarine"
+    "it": "Infrastrutture sottomarine",
+    "en": "Undersea infrastructure"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Finlandia / Estonia"
+    "it": "Finlandia / Estonia",
+    "en": "Finland / Estonia"
   },
+  "places": [
+    "FI",
+    "EE"
+  ],
   "evidence_note": {
-    "it": "Danno accertato; mandato statale non provato"
+    "it": "Danno accertato; mandato statale non provato",
+    "en": "Damage established; state instructions not proven"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "532681af23dff85a"
+      }
+    }
   },
   "provenance": [
     {

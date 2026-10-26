@@ -2,12 +2,20 @@
   "id": "GRU29155",
   "kind": "organization",
   "name": {
-    "it": "Unità GRU 29155"
+    "it": "Unità GRU 29155",
+    "en": "GRU Unit 29155"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "464b953c310b6edc"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Ordine presidenziale USA sulle deroghe al Graham Act"
+    "it": "Ordine presidenziale USA sulle deroghe al Graham Act",
+    "en": "US presidential order on waivers to the Graham Act"
   },
   "description": {
-    "it": "La Casa Bianca dispone waiver per varie nuove sanzioni e dazi verso Mosca; le sanzioni anti-russe precedenti non vengono automaticamente abrogate."
+    "it": "La Casa Bianca dispone waiver per varie nuove sanzioni e dazi verso Mosca; le sanzioni anti-russe precedenti non vengono automaticamente abrogate.",
+    "en": "The White House grants waivers for various new sanctions and tariffs on Moscow; earlier anti-Russian sanctions are not automatically repealed."
   },
   "category": {
-    "it": "Sanzioni / Stati Uniti"
+    "it": "Sanzioni / Stati Uniti",
+    "en": "Sanctions / United States"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Stati Uniti / Russia"
+    "it": "Stati Uniti / Russia",
+    "en": "United States / Russia"
   },
+  "places": [
+    "US",
+    "RU"
+  ],
   "evidence_note": {
-    "it": "Atto ufficiale"
+    "it": "Atto ufficiale",
+    "en": "Official act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "baed9d3c41624187"
+      }
+    }
   },
   "provenance": [
     {

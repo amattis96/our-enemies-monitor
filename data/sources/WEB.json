@@ -2,7 +2,8 @@
   "id": "WEB",
   "type": "unspecified_web",
   "title": {
-    "it": "Fonte web non specificata nel corpus originale"
+    "it": "Fonte web non specificata nel corpus originale",
+    "en": "Web source not specified in the original corpus"
   },
   "publisher": null,
   "files": [],
@@ -14,7 +15,13 @@
     "status": "needs_review",
     "notes": [
       "Identify the actual web source."
-    ]
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f4c4fb3f3a361537"
+      }
+    }
   },
   "provenance": []
 }

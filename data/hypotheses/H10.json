@@ -4,14 +4,17 @@
   "object": "NEWNEW",
   "hypothesis_type": "INTENTIONALITA_SABOTAGGIO_BALTICO",
   "question": {
-    "it": "Il trascinamento ancora fu intenzionale o risulta accidentale?"
+    "it": "Il trascinamento ancora fu intenzionale o risulta accidentale?",
+    "en": "Was the anchor dragging intentional or accidental?"
   },
   "current_limit": {
-    "it": "Dolo e ordine del governo cinese non provati."
+    "it": "Dolo e ordine del governo cinese non provati.",
+    "en": "Intent and orders from the Chinese government not proven."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "AIS, VDR, catena comando nave, escussioni equipaggio, forensics ancora"
+    "it": "AIS, VDR, catena comando nave, escussioni equipaggio, forensics ancora",
+    "en": "AIS, VDR, ship chain of command, crew interviews, anchor forensics"
   },
   "events": [
     "TL-0046"
@@ -24,7 +27,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f2316ccbaef0d652"
+      }
+    }
   },
   "provenance": [
     {

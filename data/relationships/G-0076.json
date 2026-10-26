@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Riferimento alla struttura riportata da S04"
+    "it": "Riferimento alla struttura riportata da S04",
+    "en": "Reference to the structure reported by S04"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a703e95c148e88d1"
+      }
+    }
   },
   "provenance": [
     {

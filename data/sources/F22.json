@@ -2,7 +2,8 @@
   "id": "F22",
   "type": "external_reference",
   "title": {
-    "it": "Citizen Lab, indagini Pegasus e sorveglianza su figure europee"
+    "it": "Citizen Lab, indagini Pegasus e sorveglianza su figure europee",
+    "en": "Citizen Lab, Pegasus investigations and surveillance of European figures"
   },
   "publisher": "Citizen Lab",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7f08101c07866654"
+      }
+    }
   },
   "provenance": [
     {

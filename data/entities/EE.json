@@ -2,12 +2,20 @@
   "id": "EE",
   "kind": "state",
   "name": {
-    "it": "Estonia"
+    "it": "Estonia",
+    "en": "Estonia"
   },
   "domain": "geopolitics",
+  "country": "EE",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0c8f18736373c4a0"
+      }
+    }
   },
   "provenance": [
     {

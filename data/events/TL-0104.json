@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Quarto rapporto SEAE sulle interferenze informative"
+    "it": "Quarto rapporto SEAE sulle interferenze informative",
+    "en": "Fourth EEAS report on information interference"
   },
   "description": {
-    "it": "Pubblicato il quadro 2025: 540 incidenti, 10.500 canali; quota attribuita Russia 29%, Cina 6%. Campione, non censimento dell’intero web."
+    "it": "Pubblicato il quadro 2025: 540 incidenti, 10.500 canali; quota attribuita Russia 29%, Cina 6%. Campione, non censimento dell’intero web.",
+    "en": "The 2025 picture is published: 540 incidents, 10,500 channels; share attributed to Russia 29%, China 6%. A sample, not a census of the whole web."
   },
   "category": {
-    "it": "Reti FIMI / report"
+    "it": "Reti FIMI / report",
+    "en": "FIMI networks / report"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Rapporto istituzionale"
+    "it": "Rapporto istituzionale",
+    "en": "Institutional report"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "924b740b2262a07f"
+      }
+    }
   },
   "provenance": [
     {

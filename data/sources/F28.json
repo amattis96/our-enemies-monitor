@@ -2,7 +2,8 @@
   "id": "F28",
   "type": "external_reference",
   "title": {
-    "it": "Commissione UE, sanzione DSA a X, 5 dicembre 2025"
+    "it": "Commissione UE, sanzione DSA a X, 5 dicembre 2025",
+    "en": "EU Commission, DSA fine on X, 5 December 2025"
   },
   "publisher": "Commissione UE",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fee2dfde1fc1ec84"
+      }
+    }
   },
   "provenance": [
     {

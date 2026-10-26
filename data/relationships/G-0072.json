@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://www.whitehouse.gov/wp-content/uploads/2025/12/2025-National-Security-Strategy.pdf",
   "caveat": {
-    "it": "Strategia pubblica, non regia occulta con Russia"
+    "it": "Strategia pubblica, non regia occulta con Russia",
+    "en": "Public strategy, not covert direction with Russia"
   },
   "sources": [
     "S00",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "891cf8911a75b6de"
+      }
+    }
   },
   "provenance": [
     {

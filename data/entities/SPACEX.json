@@ -2,12 +2,20 @@
   "id": "SPACEX",
   "kind": "company",
   "name": {
-    "it": "SpaceX"
+    "it": "SpaceX",
+    "en": "SpaceX"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f1e4aa63afd2c672"
+      }
+    }
   },
   "provenance": [
     {

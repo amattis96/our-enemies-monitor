@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Occupazione e annessione illegale della Crimea"
+    "it": "Occupazione e annessione illegale della Crimea",
+    "en": "Occupation and illegal annexation of Crimea"
   },
   "description": {
-    "it": "La Russia occupa e annette la penisola ucraina, in violazione del diritto internazionale."
+    "it": "La Russia occupa e annette la penisola ucraina, in violazione del diritto internazionale.",
+    "en": "Russia occupies and annexes the Ukrainian peninsula, in violation of international law."
   },
   "category": {
-    "it": "Guerra"
+    "it": "Guerra",
+    "en": "War"
   },
   "themes": [
     "armed_conflict"
   ],
   "geography": {
-    "it": "Crimea / Ucraina"
+    "it": "Crimea / Ucraina",
+    "en": "Crimea / Ukraine"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Accertato"
+    "it": "Accertato",
+    "en": "Established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9d479807b6ac5440"
+      }
+    }
   },
   "provenance": [
     {

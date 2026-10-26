@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Esplosioni nei depositi di Vrbětice"
+    "it": "Esplosioni nei depositi di Vrbětice",
+    "en": "Explosions at the Vrbětice depots"
   },
   "description": {
-    "it": "Due persone muoiono; in seguito le autorità ceche attribuiscono l’operazione a ufficiali GRU. Secondo episodio nel dicembre 2014."
+    "it": "Due persone muoiono; in seguito le autorità ceche attribuiscono l’operazione a ufficiali GRU. Secondo episodio nel dicembre 2014.",
+    "en": "Two people die; Czech authorities later attribute the operation to GRU officers. A second episode in December 2014."
   },
   "category": {
-    "it": "Sabotaggio"
+    "it": "Sabotaggio",
+    "en": "Sabotage"
   },
   "themes": [
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Cechia"
+    "it": "Cechia",
+    "en": "Czechia"
   },
+  "places": [
+    "CZ"
+  ],
   "evidence_note": {
-    "it": "Evento accertato; attribuzione istituzionale GRU"
+    "it": "Evento accertato; attribuzione istituzionale GRU",
+    "en": "Event established; institutional attribution to the GRU"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8b50d1f852877082"
+      }
+    }
   },
   "provenance": [
     {

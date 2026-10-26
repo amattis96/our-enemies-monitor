@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Annullamento delle presidenziali romene"
+    "it": "Annullamento delle presidenziali romene",
+    "en": "Annulment of the Romanian presidential election"
   },
   "description": {
-    "it": "Annullamento del processo elettorale dopo le controversie sulla manipolazione online; l’annullamento non costituisce automaticamente attribuzione alla Russia."
+    "it": "Annullamento del processo elettorale dopo le controversie sulla manipolazione online; l’annullamento non costituisce automaticamente attribuzione alla Russia.",
+    "en": "Annulment of the electoral process after disputes over online manipulation; the annulment does not automatically amount to attribution to Russia."
   },
   "category": {
-    "it": "Elezioni / istituzioni"
+    "it": "Elezioni / istituzioni",
+    "en": "Elections / institutions"
   },
   "themes": [
     "elections_influence",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Romania"
+    "it": "Romania",
+    "en": "Romania"
   },
+  "places": [
+    "RO"
+  ],
   "evidence_note": {
-    "it": "Decisione istituzionale; mandante estero contestato"
+    "it": "Decisione istituzionale; mandante estero contestato",
+    "en": "Institutional decision; foreign instigator disputed"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8cb8d9e3d25ebee5"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Omicidio di Zelimkhan Khangoshvili"
+    "it": "Omicidio di Zelimkhan Khangoshvili",
+    "en": "Murder of Zelimkhan Khangoshvili"
   },
   "description": {
-    "it": "Uccisione a Berlino; successivamente la giustizia tedesca riconosce il mandato di organi statali russi."
+    "it": "Uccisione a Berlino; successivamente la giustizia tedesca riconosce il mandato di organi statali russi.",
+    "en": "Killing in Berlin; German courts later recognise that it was ordered by Russian state bodies."
   },
   "category": {
-    "it": "Omicidio / intelligence"
+    "it": "Omicidio / intelligence",
+    "en": "Murder / intelligence"
   },
   "themes": [
     "hybrid_sabotage",
     "intelligence"
   ],
   "geography": {
-    "it": "Germania"
+    "it": "Germania",
+    "en": "Germany"
   },
+  "places": [
+    "DE"
+  ],
   "evidence_note": {
-    "it": "Accertato giudiziariamente"
+    "it": "Accertato giudiziariamente",
+    "en": "Judicially established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a648001ccc2e1598"
+      }
+    }
   },
   "provenance": [
     {

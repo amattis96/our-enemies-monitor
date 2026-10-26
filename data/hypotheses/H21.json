@@ -4,14 +4,17 @@
   "object": "AE",
   "hypothesis_type": "NETWORK_ELUSIONE_MULTIGIURISDIZIONALE",
   "question": {
-    "it": "Quali società effettive nelle sanzioni 2026 condividono amministratori, UBO, wallet, navi?"
+    "it": "Quali società effettive nelle sanzioni 2026 condividono amministratori, UBO, wallet, navi?",
+    "en": "Which actual companies in the 2026 sanctions share directors, UBOs, wallets, ships?"
   },
   "current_limit": {
-    "it": "Entità specifiche sanzionate non equivalgono a colpevolezza di Paesi terzi."
+    "it": "Entità specifiche sanzionate non equivalgono a colpevolezza di Paesi terzi.",
+    "en": "Specific sanctioned entities do not amount to the guilt of third countries."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Eurlex sanctions annexes, OFAC SDN, AIS/IMO, beneficial ownership, shipping docs"
+    "it": "Eurlex sanctions annexes, OFAC SDN, AIS/IMO, beneficial ownership, shipping docs",
+    "en": "EUR-Lex sanctions annexes, OFAC SDN, AIS/IMO, beneficial ownership, shipping documents"
   },
   "events": [
     "TL-0109",
@@ -24,7 +27,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b3ac7665d9e5d938"
+      }
+    }
   },
   "provenance": [
     {

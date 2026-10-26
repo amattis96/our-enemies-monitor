@@ -8,22 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "USA rivedono licenze export per H200 e MI325X"
+    "it": "USA rivedono licenze export per H200 e MI325X",
+    "en": "The US reviews export licences for the H200 and MI325X"
   },
   "description": {
-    "it": "Washington introduce una valutazione caso per caso per certi chip avanzati destinati alla Cina, dopo controlli irrigiditi nel 2025."
+    "it": "Washington introduce una valutazione caso per caso per certi chip avanzati destinati alla Cina, dopo controlli irrigiditi nel 2025.",
+    "en": "Washington introduces case-by-case review for certain advanced chips destined for China, after controls were tightened in 2025."
   },
   "category": {
-    "it": "Semiconduttori / export"
+    "it": "Semiconduttori / export",
+    "en": "Semiconductors / exports"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Stati Uniti / Cina"
+    "it": "Stati Uniti / Cina",
+    "en": "United States / China"
   },
+  "places": [
+    "US",
+    "CN"
+  ],
   "evidence_note": {
-    "it": "Policy pubblica"
+    "it": "Policy pubblica",
+    "en": "Public policy"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fcdcaec87bfb657e"
+      }
+    }
   },
   "provenance": [
     {

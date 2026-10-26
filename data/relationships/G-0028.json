@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Attribuzione DOJ, distinta da ogni altra attività russa"
+    "it": "Attribuzione DOJ, distinta da ogni altra attività russa",
+    "en": "DOJ attribution, distinct from any other Russian activity"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c2b7d7fa3371bffd"
+      }
+    }
   },
   "provenance": [
     {

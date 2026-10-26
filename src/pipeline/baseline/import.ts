@@ -3,6 +3,7 @@ import {
   type Dataset,
   type Entity,
   type Event,
+  type Exposure,
   HYPOTHESIS_PRIORITY_FROM_BASELINE,
   type Hypothesis,
   type LocalizedText,
@@ -14,8 +15,10 @@ import {
   type Source,
 } from "../../model/index.ts";
 import { type CsvRow, SourceReader } from "../sources.ts";
+import { EXPOSURE_ROWS } from "./exposures.ts";
 import { BASELINE_FILES, CORPUS_DOCUMENTS, REFERENCE_REGISTRIES } from "./files.ts";
 import { DATASET_METADATA_EVENTS, KNOWN_ISSUES } from "./known-issues.ts";
+import { placesOf } from "./places.ts";
 import { CATEGORY_THEMES, EVENT_THEME_OVERRIDES } from "./themes.ts";
 
 /**
@@ -43,6 +46,7 @@ export function importBaseline(reader = new SourceReader()): Dataset {
     relationships: importRelationships(reader),
     hypotheses: importHypotheses(reader),
     sources: importSources(reader),
+    exposures: importExposures(reader),
   };
   return {
     events: dataset.events.map((r) => COLLECTIONS.events.parse(r)),
@@ -50,6 +54,7 @@ export function importBaseline(reader = new SourceReader()): Dataset {
     relationships: dataset.relationships.map((r) => COLLECTIONS.relationships.parse(r)),
     hypotheses: dataset.hypotheses.map((r) => COLLECTIONS.hypotheses.parse(r)),
     sources: dataset.sources.map((r) => COLLECTIONS.sources.parse(r)),
+    exposures: dataset.exposures.map((r) => COLLECTIONS.exposures.parse(r)),
   };
 }
 
@@ -148,6 +153,7 @@ function importTimeline(
       category: optionalText(field(original, "category")),
       themes: themesOf(id, field(original, "category")),
       geography: optionalText(field(original, "geography")),
+      places: placesOf(orNull(field(original, "geography")), id),
       evidence_note: optionalText(field(original, "evidence_status")),
       evidence_level: null,
       publisher: null,
@@ -184,6 +190,7 @@ function importNewEvidence(
       category: null,
       themes: themesOf(id, null),
       geography: optionalText(field(node.original, "geo")),
+      places: placesOf(orNull(field(node.original, "geo")), id),
       evidence_note: null,
       evidence_level: field(original, "evidence_level") as Event["evidence_level"],
       publisher: orNull(field(original, "publisher")),
@@ -213,6 +220,7 @@ function importEntities(nodeRows: CsvRow[]): Entity[] {
         kind: field(original, "kind") as Entity["kind"],
         name: text(field(original, "name")),
         domain: field(original, "domain") as Entity["domain"],
+        country: field(original, "kind") === "state" ? field(original, "id") : null,
         review: UNREVIEWED,
         provenance: [{ file: BASELINE_FILES.nodesCsv, row: index + 1, original }],
       },
@@ -366,4 +374,40 @@ function referenceRegistry(reader: SourceReader, prefix: "F" | "P"): Source[] {
 
 function stripMarkdown(value: string): string {
   return value.replace(/\*+/g, "").replace(/\s+/g, " ").trim();
+}
+
+// ---------------------------------------------------------------------------
+// Exposures: transcription of the Fonte_08 §12.2 matrix
+
+function importExposures(reader: SourceReader): Exposure[] {
+  const file = CORPUS_DOCUMENTS.S08?.[0] ?? "";
+  const lines = reader.lines(file);
+  return EXPOSURE_ROWS.map((row) => {
+    const line = lines[row.line - 1] ?? "";
+    if (!line.startsWith(`| ${row.sector} |`)) {
+      throw new Error(`${row.id}: line ${row.line} of ${file} is not the "${row.sector}" row`);
+    }
+    const [, , indicator = "", scope = "", consequence = ""] = line.split("|").map((c) => c.trim());
+    const refs = [...line.matchAll(/\[(P\d{2}|S\d{2})\]/g)].map((match) => match[1] ?? "");
+    const mentionsS04 = /DS-04|\[S04\]/.test(line);
+    return {
+      id: row.id,
+      sector: text(row.sector),
+      indicator: text(stripMarkdown(indicator)),
+      measures: row.measures.map((measure) => ({
+        label: text(measure.label),
+        value: measure.value,
+        unit: measure.unit,
+        qualifier: measure.qualifier,
+        out_of: "out_of" in measure ? measure.out_of : null,
+        period: "period" in measure ? measure.period : null,
+      })),
+      scope: text(stripMarkdown(scope)),
+      consequence: text(stripMarkdown(consequence.replace(/\s*\[(P|S)\d{2}\]/g, ""))),
+      status: row.status,
+      sources: unique(["S08", ...(mentionsS04 ? ["S04"] : []), ...refs]),
+      review: UNREVIEWED,
+      provenance: [{ file, line: row.line, original: { text: line } }],
+    };
+  });
 }

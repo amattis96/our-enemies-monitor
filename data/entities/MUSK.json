@@ -2,12 +2,20 @@
   "id": "MUSK",
   "kind": "person",
   "name": {
-    "it": "Elon Musk"
+    "it": "Elon Musk",
+    "en": "Elon Musk"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e7c7df9abd508b4e"
+      }
+    }
   },
   "provenance": [
     {

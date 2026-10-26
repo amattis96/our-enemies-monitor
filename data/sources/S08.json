@@ -2,7 +2,8 @@
   "id": "S08",
   "type": "corpus_document",
   "title": {
-    "it": "Fonte 08 | L'Europa sotto pressione: attori ostili, reti transnazionali e vulnerabilità strategiche"
+    "it": "Fonte 08 | L'Europa sotto pressione: attori ostili, reti transnazionali e vulnerabilità strategiche",
+    "en": "Source 08 | Europe under pressure: hostile actors, transnational networks and strategic vulnerabilities"
   },
   "publisher": null,
   "files": [
@@ -12,7 +13,13 @@
   "cited_in": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d6b17ea9acb74c1e"
+      }
+    }
   },
   "provenance": [
     {

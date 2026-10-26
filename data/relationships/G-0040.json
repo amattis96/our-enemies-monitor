@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Nessuna condanna penale dichiarata"
+    "it": "Nessuna condanna penale dichiarata",
+    "en": "No criminal conviction declared"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "22b256a229383aab"
+      }
+    }
   },
   "provenance": [
     {

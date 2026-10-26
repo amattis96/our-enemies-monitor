@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Non alleanza militare automatica"
+    "it": "Non alleanza militare automatica",
+    "en": "Not an automatic military alliance"
   },
   "sources": [
     "S05"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d75ab0aaff8a9279"
+      }
+    }
   },
   "provenance": [
     {

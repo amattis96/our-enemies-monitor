@@ -16,14 +16,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Non tutti episodi attribuiti personalmente al GRU"
+    "it": "Non tutti episodi attribuiti personalmente al GRU",
+    "en": "Not all episodes are personally attributed to the GRU"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e3cc346390014b4c"
+      }
+    }
   },
   "provenance": [
     {

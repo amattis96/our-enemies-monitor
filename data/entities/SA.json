@@ -2,12 +2,20 @@
   "id": "SA",
   "kind": "state",
   "name": {
-    "it": "Arabia Saudita"
+    "it": "Arabia Saudita",
+    "en": "Saudi Arabia"
   },
   "domain": "geopolitics",
+  "country": "SA",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7ef49dcd82f7b7d8"
+      }
+    }
   },
   "provenance": [
     {

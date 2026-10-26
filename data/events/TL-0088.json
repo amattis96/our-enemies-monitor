@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Rapporto CSIS sull’escalation dei sabotaggi russi"
+    "it": "Rapporto CSIS sull’escalation dei sabotaggi russi",
+    "en": "CSIS report on the escalation of Russian sabotage"
   },
   "description": {
-    "it": "Nel campione CSIS 3 casi 2022, 12 nel 2023 e 34 nel 2024; non è conteggio totale delle operazioni ibride."
+    "it": "Nel campione CSIS 3 casi 2022, 12 nel 2023 e 34 nel 2024; non è conteggio totale delle operazioni ibride.",
+    "en": "In the CSIS sample: 3 cases in 2022, 12 in 2023 and 34 in 2024; not a total count of hybrid operations."
   },
   "category": {
-    "it": "Analisi / guerra ibrida"
+    "it": "Analisi / guerra ibrida",
+    "en": "Analysis / hybrid warfare"
   },
   "themes": [
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Europa"
+    "it": "Europa",
+    "en": "Europe"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Studio di ricerca"
+    "it": "Studio di ricerca",
+    "en": "Research study"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7f9c77d4cc33dc5a"
+      }
+    }
   },
   "provenance": [
     {

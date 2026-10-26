@@ -2,12 +2,20 @@
   "id": "SPAM",
   "kind": "organization",
   "name": {
-    "it": "Spamouflage"
+    "it": "Spamouflage",
+    "en": "Spamouflage"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ad6aa0ea97642a9f"
+      }
+    }
   },
   "provenance": [
     {

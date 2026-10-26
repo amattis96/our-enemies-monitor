@@ -4,14 +4,17 @@
   "object": "ROKH",
   "hypothesis_type": "COMMITTENTE_FINALE_ROKH",
   "question": {
-    "it": "Chi ha commissionato e pagato Rokh Solis?"
+    "it": "Chi ha commissionato e pagato Rokh Solis?",
+    "en": "Who commissioned and paid for Rokh Solis?"
   },
   "current_limit": {
-    "it": "Nazionalità israeliana operatore non identifica committente né Stato israeliano."
+    "it": "Nazionalità israeliana operatore non identifica committente né Stato israeliano.",
+    "en": "The Israeli nationality of an operator does not identify the client or the Israeli state."
   },
   "priority": "critical",
   "evidence_needed": {
-    "it": "Billing adtech, registrazione domini, beneficiari societari, chain of custody VIGINUM"
+    "it": "Billing adtech, registrazione domini, beneficiari societari, chain of custody VIGINUM",
+    "en": "Adtech billing, domain registration, corporate beneficial owners, VIGINUM chain of custody"
   },
   "events": [
     "TL-0113",
@@ -26,7 +29,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5650d69d3422f9cd"
+      }
+    }
   },
   "provenance": [
     {

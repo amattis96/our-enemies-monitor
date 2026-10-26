@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Meta rimuove una grande rete Doppelganger"
+    "it": "Meta rimuove una grande rete Doppelganger",
+    "en": "Meta removes a large Doppelganger network"
   },
   "description": {
-    "it": "Rimossi 1.633 account Facebook, 703 pagine e 29 account Instagram descritti come originati in Russia."
+    "it": "Rimossi 1.633 account Facebook, 703 pagine e 29 account Instagram descritti come originati in Russia.",
+    "en": "1,633 Facebook accounts, 703 pages and 29 Instagram accounts described as originating in Russia removed."
   },
   "category": {
-    "it": "FIMI / contromisure"
+    "it": "FIMI / contromisure",
+    "en": "FIMI / countermeasures"
   },
   "themes": [
     "information_manipulation",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Europa / Meta"
+    "it": "Europa / Meta",
+    "en": "Europe / Meta"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Contromisura piattaforma documentata"
+    "it": "Contromisura piattaforma documentata",
+    "en": "Documented platform countermeasure"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ca8d750e741c648d"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "COPYCOP",
   "kind": "organization",
   "name": {
-    "it": "CopyCop"
+    "it": "CopyCop",
+    "en": "CopyCop"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "af6097c8445f654d"
+      }
+    }
   },
   "provenance": [
     {

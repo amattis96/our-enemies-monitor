@@ -2,12 +2,20 @@
   "id": "UA",
   "kind": "state",
   "name": {
-    "it": "Ucraina"
+    "it": "Ucraina",
+    "en": "Ukraine"
   },
   "domain": "geopolitics",
+  "country": "UA",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f9376a609ebb9551"
+      }
+    }
   },
   "provenance": [
     {

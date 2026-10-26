@@ -2,12 +2,20 @@
   "id": "GVA",
   "kind": "company",
   "name": {
-    "it": "GVA Capital"
+    "it": "GVA Capital",
+    "en": "GVA Capital"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0803463e99e3fbea"
+      }
+    }
   },
   "provenance": [
     {

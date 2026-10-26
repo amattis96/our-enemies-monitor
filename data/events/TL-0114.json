@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "UE amplia designazioni su propaganda e filiere militari russe"
+    "it": "UE amplia designazioni su propaganda e filiere militari russe",
+    "en": "EU expands designations on Russian propaganda and military supply chains"
   },
   "description": {
-    "it": "Misure contro soggetti FIMI e imprese in Cina, Liberia, Turchia, Emirati, Azerbaigian e Hong Kong legate a dual-use/shadow fleet."
+    "it": "Misure contro soggetti FIMI e imprese in Cina, Liberia, Turchia, Emirati, Azerbaigian e Hong Kong legate a dual-use/shadow fleet.",
+    "en": "Measures against FIMI actors and companies in China, Liberia, Turkey, the UAE, Azerbaijan and Hong Kong linked to dual-use goods/the shadow fleet."
   },
   "category": {
-    "it": "Sanzioni / Russia"
+    "it": "Sanzioni / Russia",
+    "en": "Sanctions / Russia"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Atto istituzionale"
+    "it": "Atto istituzionale",
+    "en": "Institutional act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f5e32e8d8e24c03c"
+      }
+    }
   },
   "provenance": [
     {

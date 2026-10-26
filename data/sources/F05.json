@@ -2,7 +2,8 @@
   "id": "F05",
   "type": "external_reference",
   "title": {
-    "it": "NATO, dichiarazione del vertice di Washington, 10 luglio 2024"
+    "it": "NATO, dichiarazione del vertice di Washington, 10 luglio 2024",
+    "en": "NATO, Washington Summit Declaration, 10 July 2024"
   },
   "publisher": "NATO",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "149ea9413a429688"
+      }
+    }
   },
   "provenance": [
     {

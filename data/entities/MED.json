@@ -2,12 +2,20 @@
   "id": "MED",
   "kind": "person",
   "name": {
-    "it": "Viktor Medvedchuk"
+    "it": "Viktor Medvedchuk",
+    "en": "Viktor Medvedchuk"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6b7099f0354e896f"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "MANAFORT",
   "kind": "person",
   "name": {
-    "it": "Paul Manafort"
+    "it": "Paul Manafort",
+    "en": "Paul Manafort"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "14ba1360992e7178"
+      }
+    }
   },
   "provenance": [
     {

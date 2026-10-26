@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://www.iea.org/reports/rare-earth-elements/executive-summary",
   "caveat": {
-    "it": "Provenienza dei magneti non identica a origine mineraria"
+    "it": "Provenienza dei magneti non identica a origine mineraria",
+    "en": "Origin of the magnets is not the same as mineral origin"
   },
   "sources": [
     "S04",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4c55cb986e312b31"
+      }
+    }
   },
   "provenance": [
     {

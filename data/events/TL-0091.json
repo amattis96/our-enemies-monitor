@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Attentato sulla ferrovia Varsavia-Lublino"
+    "it": "Attentato sulla ferrovia Varsavia-Lublino",
+    "en": "Attack on the Warsaw-Lublin railway"
   },
   "description": {
-    "it": "Esplosione e tentativo di deragliamento; Varsavia collega i sospetti a un’operazione d’intelligence russa."
+    "it": "Esplosione e tentativo di deragliamento; Varsavia collega i sospetti a un’operazione d’intelligence russa.",
+    "en": "Explosion and attempted derailment; Warsaw links the suspects to a Russian intelligence operation."
   },
   "category": {
-    "it": "Sabotaggio / ferrovie"
+    "it": "Sabotaggio / ferrovie",
+    "en": "Sabotage / railways"
   },
   "themes": [
     "hybrid_sabotage",
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Polonia"
+    "it": "Polonia",
+    "en": "Poland"
   },
+  "places": [
+    "PL"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale polacca"
+    "it": "Attribuzione istituzionale polacca",
+    "en": "Polish institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "545fd63de3e49999"
+      }
+    }
   },
   "provenance": [
     {

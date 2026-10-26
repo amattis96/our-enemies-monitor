@@ -2,12 +2,20 @@
   "id": "PARACRIM",
   "kind": "organization",
   "name": {
-    "it": "Intermediari criminali reclutati online"
+    "it": "Intermediari criminali reclutati online",
+    "en": "Criminal intermediaries recruited online"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e64ecfcda3dc5197"
+      }
+    }
   },
   "provenance": [
     {

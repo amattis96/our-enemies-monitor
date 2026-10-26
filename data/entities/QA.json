@@ -2,12 +2,20 @@
   "id": "QA",
   "kind": "state",
   "name": {
-    "it": "Qatar"
+    "it": "Qatar",
+    "en": "Qatar"
   },
   "domain": "geopolitics",
+  "country": "QA",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9c17fa063f0ec062"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "XAI",
   "kind": "company",
   "name": {
-    "it": "xAI"
+    "it": "xAI",
+    "en": "xAI"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a46b34b9e82a1787"
+      }
+    }
   },
   "provenance": [
     {

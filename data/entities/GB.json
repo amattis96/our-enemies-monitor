@@ -2,12 +2,20 @@
   "id": "GB",
   "kind": "state",
   "name": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
   "domain": "geopolitics",
+  "country": "GB",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a3f07714a284fdae"
+      }
+    }
   },
   "provenance": [
     {

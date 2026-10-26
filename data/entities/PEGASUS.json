@@ -2,12 +2,20 @@
   "id": "PEGASUS",
   "kind": "organization",
   "name": {
-    "it": "Pegasus"
+    "it": "Pegasus",
+    "en": "Pegasus"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7d666c7a074ef15c"
+      }
+    }
   },
   "provenance": [
     {

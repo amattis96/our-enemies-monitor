@@ -2,12 +2,20 @@
   "id": "CZ",
   "kind": "state",
   "name": {
-    "it": "Cechia"
+    "it": "Cechia",
+    "en": "Czechia"
   },
   "domain": "geopolitics",
+  "country": "CZ",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "069108d3b49fffaa"
+      }
+    }
   },
   "provenance": [
     {

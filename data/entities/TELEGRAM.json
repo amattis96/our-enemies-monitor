@@ -2,12 +2,20 @@
   "id": "TELEGRAM",
   "kind": "company",
   "name": {
-    "it": "Telegram"
+    "it": "Telegram",
+    "en": "Telegram"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3c89d70f8b83de17"
+      }
+    }
   },
   "provenance": [
     {

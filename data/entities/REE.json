@@ -2,12 +2,20 @@
   "id": "REE",
   "kind": "asset",
   "name": {
-    "it": "Terre rare e magneti industriali"
+    "it": "Terre rare e magneti industriali",
+    "en": "Rare earths and industrial magnets"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dc3594b50f65d296"
+      }
+    }
   },
   "provenance": [
     {

@@ -14,14 +14,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Nessuna alterazione del voto dimostrata"
+    "it": "Nessuna alterazione del voto dimostrata",
+    "en": "No alteration of the vote demonstrated"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "415ae2d167020187"
+      }
+    }
   },
   "provenance": [
     {

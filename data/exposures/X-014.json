@@ -1,0 +1,56 @@
+{
+  "id": "X-014",
+  "sector": {
+    "it": "Porti UE",
+    "en": "EU ports"
+  },
+  "indicator": {
+    "it": "Partecipazioni/gestione cinese in 14 porti secondo Parlamento europeo",
+    "en": "Chinese stakes/management in 14 ports according to the European Parliament"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Porti UE con partecipazioni o gestione cinese",
+        "en": "EU ports with Chinese stakes or management"
+      },
+      "value": 14,
+      "unit": "count",
+      "qualifier": "exact",
+      "out_of": null,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Stima su presenze totali o parziali",
+    "en": "Estimate covering total or partial presences"
+  },
+  "consequence": {
+    "it": "Non equivale a controllo integrale di 14 scali",
+    "en": "Does not amount to full control of 14 ports"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2e050f5fc31cb2b6"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 585,
+      "original": {
+        "text": "| Porti UE | Partecipazioni/gestione cinese in **14 porti** secondo Parlamento europeo | Stima su presenze totali o parziali | Non equivale a controllo integrale di 14 scali [S04] |"
+      }
+    }
+  ]
+}

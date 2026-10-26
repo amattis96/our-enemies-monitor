@@ -2,12 +2,20 @@
   "id": "QHOLD",
   "kind": "company",
   "name": {
-    "it": "Qatar Holding"
+    "it": "Qatar Holding",
+    "en": "Qatar Holding"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "835cdb5594dfa2d1"
+      }
+    }
   },
   "provenance": [
     {

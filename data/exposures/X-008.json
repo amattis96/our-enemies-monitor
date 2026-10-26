@@ -1,0 +1,56 @@
+{
+  "id": "X-008",
+  "sector": {
+    "it": "Farmaceutica / API chimici",
+    "en": "Pharmaceuticals / chemical APIs"
+  },
+  "indicator": {
+    "it": "Circa 75% dei siti per API chimici utilizzati nell'UE sono extra-UE",
+    "en": "About 75% of the sites for chemical APIs used in the EU are outside the EU"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Siti di API chimici usati nell'UE situati fuori dall'UE",
+        "en": "Sites of chemical APIs used in the EU located outside the EU"
+      },
+      "value": 75,
+      "unit": "percent",
+      "qualifier": "approx",
+      "out_of": null,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Siti produttivi, non necessariamente volume o valore degli API",
+    "en": "Production sites, not necessarily volume or value of APIs"
+  },
+  "consequence": {
+    "it": "Continuità sanitaria vulnerabile a shock logistici",
+    "en": "Health continuity vulnerable to logistics shocks"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "32e2e3d557ab1de9"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 579,
+      "original": {
+        "text": "| Farmaceutica / API chimici | Circa **75%** dei siti per API chimici utilizzati nell'UE sono extra-UE | Siti produttivi, non necessariamente volume o valore degli API | Continuità sanitaria vulnerabile a shock logistici [S04] |"
+      }
+    }
+  ]
+}

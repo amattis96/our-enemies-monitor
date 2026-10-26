@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Danneggiamento di due cavi da Yi Peng 3"
+    "it": "Danneggiamento di due cavi da Yi Peng 3",
+    "en": "Damage to two cables by Yi Peng 3"
   },
   "description": {
-    "it": "Indagine svedese identifica il ruolo materiale dell’ancora; non dimostra intenzionalità o ordine della Cina."
+    "it": "Indagine svedese identifica il ruolo materiale dell’ancora; non dimostra intenzionalità o ordine della Cina.",
+    "en": "Swedish investigation identifies the material role of the anchor; it does not prove intent or orders from China."
   },
   "category": {
-    "it": "Infrastrutture sottomarine"
+    "it": "Infrastrutture sottomarine",
+    "en": "Undersea infrastructure"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Mar Baltico"
+    "it": "Mar Baltico",
+    "en": "Baltic Sea"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Danno accertato; dolo non verificato"
+    "it": "Danno accertato; dolo non verificato",
+    "en": "Damage established; intent not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "aa18e29b4e1ec444"
+      }
+    }
   },
   "provenance": [
     {

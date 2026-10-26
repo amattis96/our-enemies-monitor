@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "UE sanziona società tecnologiche cinesi per cyberattacchi"
+    "it": "UE sanziona società tecnologiche cinesi per cyberattacchi",
+    "en": "EU sanctions Chinese technology companies for cyberattacks"
   },
   "description": {
-    "it": "Designazioni contro Integrity Technology Group e Anxun/i-Soon citate nella DS-03; attribuzione ufficiale, non conferma di sabotaggi navali."
+    "it": "Designazioni contro Integrity Technology Group e Anxun/i-Soon citate nella DS-03; attribuzione ufficiale, non conferma di sabotaggi navali.",
+    "en": "Designations against Integrity Technology Group and Anxun/i-Soon cited in DS-03; official attribution, not confirmation of naval sabotage."
   },
   "category": {
-    "it": "Cyber / contromisure"
+    "it": "Cyber / contromisure",
+    "en": "Cyber / countermeasures"
   },
   "themes": [
     "cyber",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Unione europea / Cina"
+    "it": "Unione europea / Cina",
+    "en": "European Union / China"
   },
+  "places": [
+    "CN"
+  ],
   "evidence_note": {
-    "it": "Sanzioni/attribuzione istituzionale"
+    "it": "Sanzioni/attribuzione istituzionale",
+    "en": "Sanctions/institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9684d9c7932218a1"
+      }
+    }
   },
   "provenance": [
     {

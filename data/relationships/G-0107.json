@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "SAFE fino a €150 mld, readiness fino a €800 mld aggiuntivi entro 2030"
+    "it": "SAFE fino a €150 mld, readiness fino a €800 mld aggiuntivi entro 2030",
+    "en": "SAFE up to €150 bn, readiness up to an additional €800 bn by 2030"
   },
   "sources": [
     "S05"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5eb79561910e672f"
+      }
+    }
   },
   "provenance": [
     {

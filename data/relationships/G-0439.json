@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Possibili canali anche non cinesi"
+    "it": "Possibili canali anche non cinesi",
+    "en": "Possible non-Chinese channels too"
   },
   "sources": [
     "S04",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5bbd3a643e1012ae"
+      }
+    }
   },
   "provenance": [
     {

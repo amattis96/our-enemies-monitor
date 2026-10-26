@@ -2,12 +2,20 @@
   "id": "SOB",
   "kind": "person",
   "name": {
-    "it": "Roman Sobachevskiy"
+    "it": "Roman Sobachevskiy",
+    "en": "Roman Sobachevskiy"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a80246950778a0e1"
+      }
+    }
   },
   "provenance": [
     {

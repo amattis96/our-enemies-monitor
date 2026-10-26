@@ -2,12 +2,20 @@
   "id": "YOUTUBE",
   "kind": "company",
   "name": {
-    "it": "YouTube"
+    "it": "YouTube",
+    "en": "YouTube"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b3e730796a434f94"
+      }
+    }
   },
   "provenance": [
     {

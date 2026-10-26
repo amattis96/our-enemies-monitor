@@ -8,23 +8,29 @@
     "precision": "day"
   },
   "title": {
-    "it": "Esplosioni dei gasdotti Nord Stream"
+    "it": "Esplosioni dei gasdotti Nord Stream",
+    "en": "Explosions of the Nord Stream pipelines"
   },
   "description": {
-    "it": "Danneggiamento nel Baltico; procure tedesche accusano in seguito sospetti ucraini. Processo e attribuzione allo Stato ucraino non conclusivi."
+    "it": "Danneggiamento nel Baltico; procure tedesche accusano in seguito sospetti ucraini. Processo e attribuzione allo Stato ucraino non conclusivi.",
+    "en": "Damage in the Baltic; German prosecutors later charge Ukrainian suspects. Trial and attribution to the Ukrainian state not conclusive."
   },
   "category": {
-    "it": "Sabotaggio energetico"
+    "it": "Sabotaggio energetico",
+    "en": "Energy sabotage"
   },
   "themes": [
     "hybrid_sabotage",
     "energy"
   ],
   "geography": {
-    "it": "Mar Baltico"
+    "it": "Mar Baltico",
+    "en": "Baltic Sea"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Danno accertato; responsabilità statale contestata"
+    "it": "Danno accertato; responsabilità statale contestata",
+    "en": "Damage established; state responsibility disputed"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9d283b28091b79d6"
+      }
+    }
   },
   "provenance": [
     {

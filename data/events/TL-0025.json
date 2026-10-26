@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Accessi contro l’Electoral Commission britannica"
+    "it": "Accessi contro l’Electoral Commission britannica",
+    "en": "Intrusions against the UK Electoral Commission"
   },
   "description": {
-    "it": "Campagna 2021-2022 e ricognizioni contro parlamentari, successivamente attribuite dal Regno Unito ad APT31; nessuna alterazione del voto accertata."
+    "it": "Campagna 2021-2022 e ricognizioni contro parlamentari, successivamente attribuite dal Regno Unito ad APT31; nessuna alterazione del voto accertata.",
+    "en": "2021-2022 campaign and reconnaissance against parliamentarians, later attributed by the United Kingdom to APT31; no alteration of the vote established."
   },
   "category": {
-    "it": "Cyber / spionaggio"
+    "it": "Cyber / spionaggio",
+    "en": "Cyber / espionage"
   },
   "themes": [
     "cyber",
     "intelligence"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Attribuzione UK nel 2024"
+    "it": "Attribuzione UK nel 2024",
+    "en": "UK attribution in 2024"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "650c71d90987ec3b"
+      }
+    }
   },
   "provenance": [
     {

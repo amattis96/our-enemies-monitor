@@ -8,22 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Designazione statunitense di Suleiman Kerimov"
+    "it": "Designazione statunitense di Suleiman Kerimov",
+    "en": "US designation of Suleiman Kerimov"
   },
   "description": {
-    "it": "Kerimov viene inserito nelle sanzioni USA; seguono indagini su trust e gestori patrimoniali."
+    "it": "Kerimov viene inserito nelle sanzioni USA; seguono indagini su trust e gestori patrimoniali.",
+    "en": "Kerimov is added to US sanctions; investigations into trusts and asset managers follow."
   },
   "category": {
-    "it": "Finanza / sanzioni"
+    "it": "Finanza / sanzioni",
+    "en": "Finance / sanctions"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "USA / Russia"
+    "it": "USA / Russia",
+    "en": "USA / Russia"
   },
+  "places": [
+    "US",
+    "RU"
+  ],
   "evidence_note": {
-    "it": "Atto istituzionale"
+    "it": "Atto istituzionale",
+    "en": "Institutional act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a0bf4b6bd715345c"
+      }
+    }
   },
   "provenance": [
     {

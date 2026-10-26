@@ -8,22 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Xi e Putin rafforzano il coordinamento strategico"
+    "it": "Xi e Putin rafforzano il coordinamento strategico",
+    "en": "Xi and Putin strengthen strategic coordination"
   },
   "description": {
-    "it": "Nuova dichiarazione congiunta e firma di venti documenti economici, commerciali, educativi, scientifici e tecnologici."
+    "it": "Nuova dichiarazione congiunta e firma di venti documenti economici, commerciali, educativi, scientifici e tecnologici.",
+    "en": "New joint statement and signing of twenty economic, trade, educational, scientific and technological documents."
   },
   "category": {
-    "it": "Diplomazia / Cina-Russia"
+    "it": "Diplomazia / Cina-Russia",
+    "en": "Diplomacy / China-Russia"
   },
   "themes": [
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Cina / Russia"
+    "it": "Cina / Russia",
+    "en": "China / Russia"
   },
+  "places": [
+    "CN",
+    "RU"
+  ],
   "evidence_note": {
-    "it": "Documenti ufficiali"
+    "it": "Documenti ufficiali",
+    "en": "Official documents"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "de91f619c790d463"
+      }
+    }
   },
   "provenance": [
     {

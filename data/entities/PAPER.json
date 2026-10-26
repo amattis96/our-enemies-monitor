@@ -2,12 +2,20 @@
   "id": "PAPER",
   "kind": "organization",
   "name": {
-    "it": "Paperwall"
+    "it": "Paperwall",
+    "en": "Paperwall"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "71f81a152f3a137e"
+      }
+    }
   },
   "provenance": [
     {

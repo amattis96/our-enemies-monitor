@@ -2,7 +2,8 @@
   "id": "S00",
   "type": "corpus_document",
   "title": {
-    "it": "La ragnatela delle interferenze e delle pressioni geopolitiche sull'Europa"
+    "it": "La ragnatela delle interferenze e delle pressioni geopolitiche sull'Europa",
+    "en": "The web of interference and geopolitical pressure on Europe"
   },
   "publisher": null,
   "files": [
@@ -12,7 +13,13 @@
   "cited_in": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7e744c46ca2bdf4e"
+      }
+    }
   },
   "provenance": [
     {

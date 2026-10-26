@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Operazioni azere contro interessi francesi"
+    "it": "Operazioni azere contro interessi francesi",
+    "en": "Azerbaijani operations against French interests"
   },
   "description": {
-    "it": "VIGINUM ricostruisce attività del Baku Initiative Group, anche relative a territori francesi d’oltremare, e collegamenti diretti con lo Stato azerbaigiano."
+    "it": "VIGINUM ricostruisce attività del Baku Initiative Group, anche relative a territori francesi d’oltremare, e collegamenti diretti con lo Stato azerbaigiano.",
+    "en": "VIGINUM reconstructs the activities of the Baku Initiative Group, including those concerning French overseas territories, and direct links with the Azerbaijani state."
   },
   "category": {
-    "it": "Guerra informativa"
+    "it": "Guerra informativa",
+    "en": "Information warfare"
   },
   "themes": [
     "information_manipulation"
   ],
   "geography": {
-    "it": "Francia / territori d’oltremare"
+    "it": "Francia / territori d’oltremare",
+    "en": "France / overseas territories"
   },
+  "places": [
+    "FR"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0fe934b6d1da8432"
+      }
+    }
   },
   "provenance": [
     {

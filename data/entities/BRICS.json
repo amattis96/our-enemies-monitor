@@ -2,12 +2,20 @@
   "id": "BRICS",
   "kind": "institution",
   "name": {
-    "it": "BRICS"
+    "it": "BRICS",
+    "en": "BRICS"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ef62abc0bd104063"
+      }
+    }
   },
   "provenance": [
     {

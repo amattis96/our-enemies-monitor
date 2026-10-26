@@ -2,12 +2,20 @@
   "id": "HORMUZ",
   "kind": "asset",
   "name": {
-    "it": "Stretto di Hormuz / traffico energetico"
+    "it": "Stretto di Hormuz / traffico energetico",
+    "en": "Strait of Hormuz / energy traffic"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "af10b9cd89b12403"
+      }
+    }
   },
   "provenance": [
     {

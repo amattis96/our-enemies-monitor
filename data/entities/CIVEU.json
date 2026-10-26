@@ -2,12 +2,20 @@
   "id": "CIVEU",
   "kind": "organization",
   "name": {
-    "it": "Società civile, stampa e corpo elettorale europeo"
+    "it": "Società civile, stampa e corpo elettorale europeo",
+    "en": "European civil society, press and electorate"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d96207828f048285"
+      }
+    }
   },
   "provenance": [
     {

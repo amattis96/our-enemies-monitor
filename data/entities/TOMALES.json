@@ -2,12 +2,20 @@
   "id": "TOMALES",
   "kind": "company",
   "name": {
-    "it": "Tomales Bay Capital"
+    "it": "Tomales Bay Capital",
+    "en": "Tomales Bay Capital"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1b1737ec923e4cbe"
+      }
+    }
   },
   "provenance": [
     {

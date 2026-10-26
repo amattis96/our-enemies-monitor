@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "NotPetya"
+    "it": "NotPetya",
+    "en": "NotPetya"
   },
   "description": {
-    "it": "Malware distruttivo contro infrastrutture ucraine con ricadute globali; governi occidentali e UE lo attribuiscono a Sandworm/GRU."
+    "it": "Malware distruttivo contro infrastrutture ucraine con ricadute globali; governi occidentali e UE lo attribuiscono a Sandworm/GRU.",
+    "en": "Destructive malware against Ukrainian infrastructure with global spillover; Western governments and the EU attribute it to Sandworm/GRU."
   },
   "category": {
-    "it": "Cyber / sabotaggio"
+    "it": "Cyber / sabotaggio",
+    "en": "Cyber / sabotage"
   },
   "themes": [
     "cyber",
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Ucraina / Europa / mondo"
+    "it": "Ucraina / Europa / mondo",
+    "en": "Ukraine / Europe / world"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "da872f88e59fa5e5"
+      }
+    }
   },
   "provenance": [
     {

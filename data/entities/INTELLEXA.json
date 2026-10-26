@@ -2,12 +2,20 @@
   "id": "INTELLEXA",
   "kind": "organization",
   "name": {
-    "it": "Intellexa"
+    "it": "Intellexa",
+    "en": "Intellexa"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b478b10df89e19ae"
+      }
+    }
   },
   "provenance": [
     {

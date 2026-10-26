@@ -8,10 +8,12 @@
     "precision": "day"
   },
   "title": {
-    "it": "Incidente alla base RAF Fairford e nuovi arresti del 20 ottobre"
+    "it": "Incidente alla base RAF Fairford e nuovi arresti del 20 ottobre",
+    "en": "Incident at RAF Fairford base and new arrests on 20 October"
   },
   "description": {
-    "it": "Arresti presso la base il 27 settembre; due nuovamente arrestati il 20 ottobre per sospetta assistenza ai servizi iraniani. Indagine aperta e responsabilità non giudicata."
+    "it": "Arresti presso la base il 27 settembre; due nuovamente arrestati il 20 ottobre per sospetta assistenza ai servizi iraniani. Indagine aperta e responsabilità non giudicata.",
+    "en": "Arrests at the base on 27 September; two re-arrested on 20 October on suspicion of assisting Iranian intelligence services. Investigation open and responsibility not adjudicated."
   },
   "category": null,
   "themes": [
@@ -19,8 +21,13 @@
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Europa / UK / Svezia"
+    "it": "Europa / UK / Svezia",
+    "en": "Europe / UK / Sweden"
   },
+  "places": [
+    "GB",
+    "SE"
+  ],
   "evidence_note": null,
   "evidence_level": "E3",
   "publisher": "Reuters / polizia UK",
@@ -33,7 +40,13 @@
     "status": "imported_unreviewed",
     "notes": [
       "Themes assigned editorially: the record has no original category."
-    ]
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "53ae9f080f4fd731"
+      }
+    }
   },
   "provenance": [
     {

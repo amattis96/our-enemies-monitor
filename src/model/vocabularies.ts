@@ -208,3 +208,16 @@ export const THEME_LABELS = {
 
 export type Theme = keyof typeof THEME_LABELS;
 export const THEMES = Object.keys(THEME_LABELS) as [Theme, ...Theme[]];
+
+export const MEASURE_UNITS = ["percent", "eur_billion", "count", "year"] as const;
+
+/** How the source qualifies a value: "circa", "oltre", "quasi", "meno del". */
+export const MEASURE_QUALIFIERS = ["exact", "approx", "more_than", "less_than", "nearly"] as const;
+
+/** `target`: planned or programmed values (e.g. IRIS² 2030), not observations. */
+export const EXPOSURE_STATUSES = ["observed", "target"] as const;
+
+export const TRANSLATION_STATUSES = ["machine", "reviewed"] as const;
+
+export const LANGUAGES = ["it", "en"] as const;
+export type Language = (typeof LANGUAGES)[number];

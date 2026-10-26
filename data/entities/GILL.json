@@ -2,12 +2,20 @@
   "id": "GILL",
   "kind": "person",
   "name": {
-    "it": "Nathan Gill"
+    "it": "Nathan Gill",
+    "en": "Nathan Gill"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "094aca8faa8109dc"
+      }
+    }
   },
   "provenance": [
     {

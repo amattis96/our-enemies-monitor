@@ -2,7 +2,8 @@
   "id": "F19",
   "type": "external_reference",
   "title": {
-    "it": "Casa Bianca, ordine esecutivo sulle deroghe al Graham Act, 16 ottobre 2026"
+    "it": "Casa Bianca, ordine esecutivo sulle deroghe al Graham Act, 16 ottobre 2026",
+    "en": "White House, executive order on waivers to the Graham Act, 16 October 2026"
   },
   "publisher": "Casa Bianca",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d23e68d8f776d5e7"
+      }
+    }
   },
   "provenance": [
     {

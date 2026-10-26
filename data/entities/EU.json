@@ -2,12 +2,20 @@
   "id": "EU",
   "kind": "institution",
   "name": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9a432bd4e26e0d2d"
+      }
+    }
   },
   "provenance": [
     {

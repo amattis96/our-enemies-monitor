@@ -2,12 +2,20 @@
   "id": "HSE",
   "kind": "institution",
   "name": {
-    "it": "Health Service Executive Irlanda"
+    "it": "Health Service Executive Irlanda",
+    "en": "Health Service Executive Ireland"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "617419aaf6189440"
+      }
+    }
   },
   "provenance": [
     {

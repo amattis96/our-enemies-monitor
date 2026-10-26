@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Eurozona: inflazione al 3,8% e energia in forte crescita"
+    "it": "Eurozona: inflazione al 3,8% e energia in forte crescita",
+    "en": "Euro area: inflation at 3.8% and energy rising sharply"
   },
   "description": {
-    "it": "Il dato finale di settembre mostra energia +18,9% annuo (18,8% nella stima flash); non attribuisce la responsabilità delle singole proteste."
+    "it": "Il dato finale di settembre mostra energia +18,9% annuo (18,8% nella stima flash); non attribuisce la responsabilità delle singole proteste.",
+    "en": "The final September figure shows energy at +18.9% year on year (18.8% in the flash estimate); it does not attribute responsibility for individual protests."
   },
   "category": {
-    "it": "Inflazione / energia"
+    "it": "Inflazione / energia",
+    "en": "Inflation / energy"
   },
   "themes": [
     "energy"
   ],
   "geography": {
-    "it": "Eurozona"
+    "it": "Eurozona",
+    "en": "Euro area"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Dati Eurostat pubblicati in ottobre"
+    "it": "Dati Eurostat pubblicati in ottobre",
+    "en": "Eurostat data published in October"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d2684597182c8405"
+      }
+    }
   },
   "provenance": [
     {

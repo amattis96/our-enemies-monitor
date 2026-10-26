@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Non provato coordinamento operativo Pechino-Mosca"
+    "it": "Non provato coordinamento operativo Pechino-Mosca",
+    "en": "Beijing-Moscow operational coordination not proven"
   },
   "sources": [
     "S02"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9a2eadf1a3343d8e"
+      }
+    }
   },
   "provenance": [
     {

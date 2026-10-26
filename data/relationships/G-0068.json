@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Iran 2026"
+    "it": "Iran 2026",
+    "en": "Iran 2026"
   },
   "sources": [
     "S00",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "45026a00f6ac28db"
+      }
+    }
   },
   "provenance": [
     {

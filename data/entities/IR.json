@@ -2,12 +2,20 @@
   "id": "IR",
   "kind": "state",
   "name": {
-    "it": "Repubblica Islamica dell’Iran"
+    "it": "Repubblica Islamica dell’Iran",
+    "en": "Islamic Republic of Iran"
   },
   "domain": "geopolitics",
+  "country": "IR",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4073b7eeb9c747dc"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "TW",
   "kind": "state",
   "name": {
-    "it": "Taiwan"
+    "it": "Taiwan",
+    "en": "Taiwan"
   },
   "domain": "geopolitics",
+  "country": "TW",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ba30b1be2a656b4b"
+      }
+    }
   },
   "provenance": [
     {

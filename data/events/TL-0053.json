@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Processi politici e referendum in Moldavia"
+    "it": "Processi politici e referendum in Moldavia",
+    "en": "Political processes and referendum in Moldova"
   },
   "description": {
-    "it": "Indagini su compravendita di voti, propaganda, trasferimenti in rubli e reti PSB/Șor/Evrazia; parte attribuita a finanziamenti russi da UE e autorità moldave."
+    "it": "Indagini su compravendita di voti, propaganda, trasferimenti in rubli e reti PSB/Șor/Evrazia; parte attribuita a finanziamenti russi da UE e autorità moldave.",
+    "en": "Investigations into vote buying, propaganda, rouble transfers and PSB/Șor/Evrazia networks; partly attributed to Russian funding by the EU and Moldovan authorities."
   },
   "category": {
-    "it": "Elezioni / influenza"
+    "it": "Elezioni / influenza",
+    "en": "Elections / influence"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Moldavia"
+    "it": "Moldavia",
+    "en": "Moldova"
   },
+  "places": [
+    "MD"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale; effetti sul singolo voto non quantificati"
+    "it": "Attribuzione istituzionale; effetti sul singolo voto non quantificati",
+    "en": "Institutional attribution; effects on individual votes not quantified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4bfb9d753d013de4"
+      }
+    }
   },
   "provenance": [
     {

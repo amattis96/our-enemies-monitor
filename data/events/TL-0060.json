@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Sanzioni UE sul caso Voice of Europe"
+    "it": "Sanzioni UE sul caso Voice of Europe",
+    "en": "EU sanctions in the Voice of Europe case"
   },
   "description": {
-    "it": "Il Consiglio UE designa Voice of Europe, Viktor Medvedchuk e Artem Marchevskyi; formalizza i ruoli nella rete di influenza e pagamento."
+    "it": "Il Consiglio UE designa Voice of Europe, Viktor Medvedchuk e Artem Marchevskyi; formalizza i ruoli nella rete di influenza e pagamento.",
+    "en": "The EU Council designates Voice of Europe, Viktor Medvedchuk and Artem Marchevskyi; it formalises their roles in the influence and payment network."
   },
   "category": {
-    "it": "Sanzioni / reti"
+    "it": "Sanzioni / reti",
+    "en": "Sanctions / networks"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Atto istituzionale"
+    "it": "Atto istituzionale",
+    "en": "Institutional act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "41c25f222e6a0063"
+      }
+    }
   },
   "provenance": [
     {

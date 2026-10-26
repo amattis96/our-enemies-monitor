@@ -2,12 +2,20 @@
   "id": "XDSA",
   "kind": "asset",
   "name": {
-    "it": "Obblighi Digital Services Act verso X"
+    "it": "Obblighi Digital Services Act verso X",
+    "en": "Digital Services Act obligations for X"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cb80d96eb1f2fcd0"
+      }
+    }
   },
   "provenance": [
     {

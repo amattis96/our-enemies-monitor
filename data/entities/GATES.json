@@ -2,12 +2,20 @@
   "id": "GATES",
   "kind": "person",
   "name": {
-    "it": "Rick Gates"
+    "it": "Rick Gates",
+    "en": "Rick Gates"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bd7815f94a4c3f4c"
+      }
+    }
   },
   "provenance": [
     {

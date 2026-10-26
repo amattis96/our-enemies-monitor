@@ -14,7 +14,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Meccanismo macro, non imputazione singoli scioperi"
+    "it": "Meccanismo macro, non imputazione singoli scioperi",
+    "en": "Macro mechanism, not attribution of individual strikes"
   },
   "sources": [
     "S04",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ea0a92813e242150"
+      }
+    }
   },
   "provenance": [
     {

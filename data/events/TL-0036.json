@@ -8,22 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "OFAC sanziona Ilan Șor"
+    "it": "OFAC sanziona Ilan Șor",
+    "en": "OFAC sanctions Ilan Șor"
   },
   "description": {
-    "it": "Autorità USA descrivono attività a beneficio della Federazione Russa e reti di influenza moldave."
+    "it": "Autorità USA descrivono attività a beneficio della Federazione Russa e reti di influenza moldave.",
+    "en": "US authorities describe activities for the benefit of the Russian Federation and Moldovan influence networks."
   },
   "category": {
-    "it": "Sanzioni / finanziamenti"
+    "it": "Sanzioni / finanziamenti",
+    "en": "Sanctions / funding"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Moldavia / Stati Uniti"
+    "it": "Moldavia / Stati Uniti",
+    "en": "Moldova / United States"
   },
+  "places": [
+    "MD",
+    "US"
+  ],
   "evidence_note": {
-    "it": "Designazione ufficiale"
+    "it": "Designazione ufficiale",
+    "en": "Official designation"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cf04b24d4d430eb9"
+      }
+    }
   },
   "provenance": [
     {

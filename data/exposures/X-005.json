@@ -1,0 +1,56 @@
+{
+  "id": "X-005",
+  "sector": {
+    "it": "Minerali energetici strategici",
+    "en": "Strategic energy minerals"
+  },
+  "indicator": {
+    "it": "Cina primo raffinatore in 19 categorie su 20 studiate dall'IEA",
+    "en": "China is the leading refiner in 19 of the 20 categories studied by the IEA"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Categorie IEA in cui la Cina è primo raffinatore",
+        "en": "IEA categories in which China is the leading refiner"
+      },
+      "value": 19,
+      "unit": "count",
+      "qualifier": "exact",
+      "out_of": 20,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Basket IEA, non «19 di tutti i minerali del mondo»",
+    "en": "IEA basket, not «19 of all minerals in the world»"
+  },
+  "consequence": {
+    "it": "Rischio multi-filiera",
+    "en": "Multi-supply-chain risk"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "37f008b3579d7261"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 576,
+      "original": {
+        "text": "| Minerali energetici strategici | Cina primo raffinatore in **19 categorie su 20** studiate dall'IEA | Basket IEA, non «19 di tutti i minerali del mondo» | Rischio multi-filiera [S04] |"
+      }
+    }
+  ]
+}

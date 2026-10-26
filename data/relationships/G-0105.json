@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "2027 target futuro"
+    "it": "2027 target futuro",
+    "en": "2027 future target"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b047cdc6881a101f"
+      }
+    }
   },
   "provenance": [
     {

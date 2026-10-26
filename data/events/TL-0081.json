@@ -8,22 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Musk interviene a favore di AfD"
+    "it": "Musk interviene a favore di AfD",
+    "en": "Musk intervenes in support of AfD"
   },
   "description": {
-    "it": "Sostegno pubblico su X e interviste nel ciclo elettorale tedesco; nessuna prova pubblica di mandato clandestino federale USA o di effetto decisivo sul voto."
+    "it": "Sostegno pubblico su X e interviste nel ciclo elettorale tedesco; nessuna prova pubblica di mandato clandestino federale USA o di effetto decisivo sul voto.",
+    "en": "Public support on X and interviews during the German election cycle; no public evidence of a covert US federal mandate or of a decisive effect on the vote."
   },
   "category": {
-    "it": "Influenza politica pubblica"
+    "it": "Influenza politica pubblica",
+    "en": "Public political influence"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Germania / USA"
+    "it": "Germania / USA",
+    "en": "Germany / USA"
   },
+  "places": [
+    "DE",
+    "US"
+  ],
   "evidence_note": {
-    "it": "Condotta pubblica accertata; effetti non misurati"
+    "it": "Condotta pubblica accertata; effetti non misurati",
+    "en": "Public conduct established; effects not measured"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "21cbef325141fdba"
+      }
+    }
   },
   "provenance": [
     {

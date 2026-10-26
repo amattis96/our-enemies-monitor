@@ -2,12 +2,20 @@
   "id": "AO",
   "kind": "state",
   "name": {
-    "it": "Angola"
+    "it": "Angola",
+    "en": "Angola"
   },
   "domain": "geopolitics",
+  "country": "AO",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "554efc5399dca9a9"
+      }
+    }
   },
   "provenance": [
     {

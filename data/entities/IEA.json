@@ -2,12 +2,20 @@
   "id": "IEA",
   "kind": "institution",
   "name": {
-    "it": "International Energy Agency"
+    "it": "International Energy Agency",
+    "en": "International Energy Agency"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "76c58c8dcd93ca8b"
+      }
+    }
   },
   "provenance": [
     {

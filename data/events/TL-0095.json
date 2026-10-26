@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Cable Security Toolbox e finanziamenti UE"
+    "it": "Cable Security Toolbox e finanziamenti UE",
+    "en": "Cable Security Toolbox and EU funding"
   },
   "description": {
-    "it": "La Commissione vara strumenti di protezione delle reti subacquee e mette a disposizione ulteriori €347 milioni; le fonti non specificano qui il giorno del provvedimento."
+    "it": "La Commissione vara strumenti di protezione delle reti subacquee e mette a disposizione ulteriori €347 milioni; le fonti non specificano qui il giorno del provvedimento.",
+    "en": "The Commission launches protection tools for undersea networks and makes a further €347 million available; the sources do not specify the day of the measure here."
   },
   "category": {
-    "it": "Infrastrutture / cavi"
+    "it": "Infrastrutture / cavi",
+    "en": "Infrastructure / cables"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Intervento UE, data annuale indicativa"
+    "it": "Intervento UE, data annuale indicativa",
+    "en": "EU intervention, indicative annual date"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7bd590d9fdc9fa35"
+      }
+    }
   },
   "provenance": [
     {

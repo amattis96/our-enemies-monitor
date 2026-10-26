@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Avvio di Baltic Sentry"
+    "it": "Avvio di Baltic Sentry",
+    "en": "Launch of Baltic Sentry"
   },
   "description": {
-    "it": "NATO rafforza pattugliamento e protezione delle infrastrutture baltiche dopo incidenti a cavi e interconnettori."
+    "it": "NATO rafforza pattugliamento e protezione delle infrastrutture baltiche dopo incidenti a cavi e interconnettori.",
+    "en": "NATO strengthens patrols and protection of Baltic infrastructure after incidents affecting cables and interconnectors."
   },
   "category": {
-    "it": "NATO / difesa"
+    "it": "NATO / difesa",
+    "en": "NATO / defence"
   },
   "themes": [
     "eu_nato_response",
     "armed_conflict"
   ],
   "geography": {
-    "it": "Mar Baltico"
+    "it": "Mar Baltico",
+    "en": "Baltic Sea"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Iniziativa NATO"
+    "it": "Iniziativa NATO",
+    "en": "NATO initiative"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1dc39d93209f7fd9"
+      }
+    }
   },
   "provenance": [
     {

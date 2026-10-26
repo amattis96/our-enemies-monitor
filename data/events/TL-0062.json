@@ -8,23 +8,29 @@
     "precision": "month"
   },
   "title": {
-    "it": "Rapporto OMS Europa sui determinanti commerciali della salute"
+    "it": "Rapporto OMS Europa sui determinanti commerciali della salute",
+    "en": "WHO Europe report on the commercial determinants of health"
   },
   "description": {
-    "it": "Pubblicazione su influenze industriali sulle politiche sanitarie. Non equivale a prova di un’operazione di intelligence straniera."
+    "it": "Pubblicazione su influenze industriali sulle politiche sanitarie. Non equivale a prova di un’operazione di intelligence straniera.",
+    "en": "Publication on industry influence over health policies. It is not proof of a foreign intelligence operation."
   },
   "category": {
-    "it": "Salute / lobbying"
+    "it": "Salute / lobbying",
+    "en": "Health / lobbying"
   },
   "themes": [
     "society_health",
     "elections_influence"
   ],
   "geography": {
-    "it": "Europa"
+    "it": "Europa",
+    "en": "Europe"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Studio istituzionale"
+    "it": "Studio istituzionale",
+    "en": "Institutional study"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f21e7fd46d827650"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Nuova fase dei controlli export cinesi verso entità UE"
+    "it": "Nuova fase dei controlli export cinesi verso entità UE",
+    "en": "New phase of Chinese export controls on EU entities"
   },
   "description": {
-    "it": "La Cina adotta misure e contromisure nel contesto di tensioni commerciali; la portata precisa varia tra i provvedimenti."
+    "it": "La Cina adotta misure e contromisure nel contesto di tensioni commerciali; la portata precisa varia tra i provvedimenti.",
+    "en": "China adopts measures and countermeasures amid trade tensions; the exact scope varies between measures."
   },
   "category": {
-    "it": "Commercio / industria"
+    "it": "Commercio / industria",
+    "en": "Trade / industry"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Cina / UE"
+    "it": "Cina / UE",
+    "en": "China / EU"
   },
+  "places": [
+    "CN"
+  ],
   "evidence_note": {
-    "it": "Policy commerciali"
+    "it": "Policy commerciali",
+    "en": "Trade policies"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "23bcfbb2d0eb449e"
+      }
+    }
   },
   "provenance": [
     {

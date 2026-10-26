@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Pandemia COVID-19: narrative su vaccini e regolatori"
+    "it": "Pandemia COVID-19: narrative su vaccini e regolatori",
+    "en": "COVID-19 pandemic: narratives about vaccines and regulators"
   },
   "description": {
-    "it": "Il SEAE rileva messaggi fuorvianti diffusi da media/reti collegati a Russia e Cina, anche contro vaccini occidentali ed EMA; impatto clinico attribuibile non misurato."
+    "it": "Il SEAE rileva messaggi fuorvianti diffusi da media/reti collegati a Russia e Cina, anche contro vaccini occidentali ed EMA; impatto clinico attribuibile non misurato.",
+    "en": "The EEAS identifies misleading messages spread by media/networks linked to Russia and China, including against Western vaccines and the EMA; attributable clinical impact not measured."
   },
   "category": {
-    "it": "Disinformazione sanitaria"
+    "it": "Disinformazione sanitaria",
+    "en": "Health disinformation"
   },
   "themes": [
     "information_manipulation",
     "society_health"
   ],
   "geography": {
-    "it": "Europa / mondo"
+    "it": "Europa / mondo",
+    "en": "Europe / world"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Campagne documentate; impatto non quantificato"
+    "it": "Campagne documentate; impatto non quantificato",
+    "en": "Documented campaigns; impact not quantified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2a64b03eab5f2368"
+      }
+    }
   },
   "provenance": [
     {

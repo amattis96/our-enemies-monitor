@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "Aggressione a Leonid Volkov"
+    "it": "Aggressione a Leonid Volkov",
+    "en": "Assault on Leonid Volkov"
   },
   "description": {
-    "it": "Attacco a Vilnius con martello e irritante; sospetti sul coinvolgimento russo, ordinante finale oggetto di piste e indagini differenti."
+    "it": "Attacco a Vilnius con martello e irritante; sospetti sul coinvolgimento russo, ordinante finale oggetto di piste e indagini differenti.",
+    "en": "Attack in Vilnius with a hammer and an irritant; suspicions of Russian involvement, with the final instigator the subject of different leads and investigations."
   },
   "category": {
-    "it": "Aggressione / repressione"
+    "it": "Aggressione / repressione",
+    "en": "Aggression / repression"
   },
   "themes": [
     "armed_conflict"
   ],
   "geography": {
-    "it": "Lituania"
+    "it": "Lituania",
+    "en": "Lithuania"
   },
+  "places": [
+    "LT"
+  ],
   "evidence_note": {
-    "it": "Evento accertato; ordinante contestato"
+    "it": "Evento accertato; ordinante contestato",
+    "en": "Event established; instigator disputed"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0b3f8366cd3b1978"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Accordi Congo-Cina sulla cooperazione mineraria"
+    "it": "Accordi Congo-Cina sulla cooperazione mineraria",
+    "en": "Congo-China agreements on mining cooperation"
   },
   "description": {
-    "it": "Ampliamento della cooperazione su trattamento locale e condivisione di dati geologici; non prova una coercizione contro l’Europa."
+    "it": "Ampliamento della cooperazione su trattamento locale e condivisione di dati geologici; non prova una coercizione contro l’Europa.",
+    "en": "Expanded cooperation on local processing and sharing of geological data; it does not prove coercion against Europe."
   },
   "category": {
-    "it": "Materie prime / Africa"
+    "it": "Materie prime / Africa",
+    "en": "Raw materials / Africa"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Repubblica Democratica del Congo / Cina"
+    "it": "Repubblica Democratica del Congo / Cina",
+    "en": "Democratic Republic of the Congo / China"
   },
+  "places": [
+    "CD",
+    "CN"
+  ],
   "evidence_note": {
-    "it": "Accordi economici documentati"
+    "it": "Accordi economici documentati",
+    "en": "Documented economic agreements"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "307f20a79be0ad06"
+      }
+    }
   },
   "provenance": [
     {

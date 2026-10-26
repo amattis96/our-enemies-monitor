@@ -2,12 +2,20 @@
   "id": "ROKH",
   "kind": "organization",
   "name": {
-    "it": "Rokh Solis"
+    "it": "Rokh Solis",
+    "en": "Rokh Solis"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0a06b3d8051ac619"
+      }
+    }
   },
   "provenance": [
     {

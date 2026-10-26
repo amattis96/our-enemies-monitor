@@ -2,7 +2,8 @@
   "id": "F18",
   "type": "external_reference",
   "title": {
-    "it": "Associated Press, limiti Starshield, 16 ottobre 2026"
+    "it": "Associated Press, limiti Starshield, 16 ottobre 2026",
+    "en": "Associated Press, Starshield limits, 16 October 2026"
   },
   "publisher": "Associated Press",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c56afc7c9f005df4"
+      }
+    }
   },
   "provenance": [
     {

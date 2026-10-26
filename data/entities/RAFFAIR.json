@@ -2,12 +2,20 @@
   "id": "RAFFAIR",
   "kind": "institution",
   "name": {
-    "it": "Base RAF Fairford"
+    "it": "Base RAF Fairford",
+    "en": "RAF Fairford base"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "82a36d728a5aef2f"
+      }
+    }
   },
   "provenance": [
     {

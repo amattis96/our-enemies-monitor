@@ -14,7 +14,8 @@
   "valid_to": null,
   "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
   "caveat": {
-    "it": "Non quantificare effetto su voto individuale"
+    "it": "Non quantificare effetto su voto individuale",
+    "en": "Do not quantify the effect on individual votes"
   },
   "sources": [
     "S01",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "57c9870589bd0434"
+      }
+    }
   },
   "provenance": [
     {

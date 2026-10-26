@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Unità 74455"
+    "it": "Unità 74455",
+    "en": "Unit 74455"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7964d5acc8f948a1"
+      }
+    }
   },
   "provenance": [
     {

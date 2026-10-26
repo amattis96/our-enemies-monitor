@@ -2,12 +2,20 @@
   "id": "OPCW",
   "kind": "institution",
   "name": {
-    "it": "OPCW"
+    "it": "OPCW",
+    "en": "OPCW"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fab17f43e0bd52a9"
+      }
+    }
   },
   "provenance": [
     {

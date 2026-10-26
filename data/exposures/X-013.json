@@ -1,0 +1,67 @@
+{
+  "id": "X-013",
+  "sector": {
+    "it": "Connettività satellitare sovrana",
+    "en": "Sovereign satellite connectivity"
+  },
+  "indicator": {
+    "it": "IRIS²: primi lanci dal 2029, servizi dal 2030",
+    "en": "IRIS²: first launches from 2029, services from 2030"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "IRIS²: primi lanci previsti",
+        "en": "IRIS²: planned first launches"
+      },
+      "value": 2029,
+      "unit": "year",
+      "qualifier": "exact",
+      "out_of": null,
+      "period": null
+    },
+    {
+      "label": {
+        "it": "IRIS²: avvio dei servizi previsto",
+        "en": "IRIS²: planned start of services"
+      },
+      "value": 2030,
+      "unit": "year",
+      "qualifier": "exact",
+      "out_of": null,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Obiettivi e programma, non capacità già operativa",
+    "en": "Targets and programme, not capability already in operation"
+  },
+  "consequence": {
+    "it": "Finestra temporale di dipendenza",
+    "en": "Window of dependence"
+  },
+  "status": "target",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b1aae7719c8669a1"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 584,
+      "original": {
+        "text": "| Connettività satellitare sovrana | IRIS²: primi lanci dal **2029**, servizi dal **2030** | Obiettivi e programma, non capacità già operativa | Finestra temporale di dipendenza [S04] |"
+      }
+    }
+  ]
+}

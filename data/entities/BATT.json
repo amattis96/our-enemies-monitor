@@ -2,12 +2,20 @@
   "id": "BATT",
   "kind": "asset",
   "name": {
-    "it": "Produzione batterie"
+    "it": "Produzione batterie",
+    "en": "Battery production"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ff2b93655bf04d10"
+      }
+    }
   },
   "provenance": [
     {

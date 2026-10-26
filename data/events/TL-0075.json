@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Condanna di Jian G. in Germania"
+    "it": "Condanna di Jian G. in Germania",
+    "en": "Conviction of Jian G. in Germany"
   },
   "description": {
-    "it": "L’ex assistente di un eurodeputato riceve 4 anni e 9 mesi per spionaggio a favore della Cina e sorveglianza di dissidenti."
+    "it": "L’ex assistente di un eurodeputato riceve 4 anni e 9 mesi per spionaggio a favore della Cina e sorveglianza di dissidenti.",
+    "en": "The former assistant of an MEP receives 4 years and 9 months for espionage on behalf of China and surveillance of dissidents."
   },
   "category": {
-    "it": "Giustizia / spionaggio"
+    "it": "Giustizia / spionaggio",
+    "en": "Justice / espionage"
   },
   "themes": [
     "justice",
     "intelligence"
   ],
   "geography": {
-    "it": "Germania / Parlamento europeo"
+    "it": "Germania / Parlamento europeo",
+    "en": "Germany / European Parliament"
   },
+  "places": [
+    "DE"
+  ],
   "evidence_note": {
-    "it": "Accertato giudiziariamente"
+    "it": "Accertato giudiziariamente",
+    "en": "Judicially established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c96af590687397ab"
+      }
+    }
   },
   "provenance": [
     {

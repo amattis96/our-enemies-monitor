@@ -8,23 +8,29 @@
     "precision": "month"
   },
   "title": {
-    "it": "UE amplia misure contro reti di paesi terzi"
+    "it": "UE amplia misure contro reti di paesi terzi",
+    "en": "EU expands measures against third-country networks"
   },
   "description": {
-    "it": "Provvedimenti contro entità extra-russe legate a dual-use, filiere militari e aggiramento sanzioni; prosecuzione anche nei mesi successivi."
+    "it": "Provvedimenti contro entità extra-russe legate a dual-use, filiere militari e aggiramento sanzioni; prosecuzione anche nei mesi successivi.",
+    "en": "Measures against non-Russian entities linked to dual-use goods, military supply chains and sanctions evasion; continued in the following months."
   },
   "category": {
-    "it": "Sanzioni / industria"
+    "it": "Sanzioni / industria",
+    "en": "Sanctions / industry"
   },
   "themes": [
     "finance_sanctions",
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Unione europea / paesi terzi"
+    "it": "Unione europea / paesi terzi",
+    "en": "European Union / third countries"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Designazioni UE"
+    "it": "Designazioni UE",
+    "en": "EU designations"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "39a28a41842de5ba"
+      }
+    }
   },
   "provenance": [
     {

@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Quota 40% circa nel 2021 poi 10% nel 2025"
+    "it": "Quota 40% circa nel 2021 poi 10% nel 2025",
+    "en": "Share about 40% in 2021, then 10% in 2025"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "18d65a8eda3fb7fd"
+      }
+    }
   },
   "provenance": [
     {

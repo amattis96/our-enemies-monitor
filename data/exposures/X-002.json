@@ -1,0 +1,56 @@
+{
+  "id": "X-002",
+  "sector": {
+    "it": "Terre rare magnetiche, raffinazione",
+    "en": "Magnetic rare earths, refining"
+  },
+  "indicator": {
+    "it": "91% produzione mondiale in Cina",
+    "en": "91% of global production in China"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota cinese della produzione mondiale",
+        "en": "Chinese share of global production"
+      },
+      "value": 91,
+      "unit": "percent",
+      "qualifier": "exact",
+      "out_of": null,
+      "period": "2024"
+    }
+  ],
+  "scope": {
+    "it": "IEA 2024, terre rare magnetiche raffinate",
+    "en": "IEA 2024, refined magnetic rare earths"
+  },
+  "consequence": {
+    "it": "Collo di bottiglia chimico-industriale",
+    "en": "Chemical-industrial bottleneck"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "P06"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7da443ddba3f3004"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 573,
+      "original": {
+        "text": "| Terre rare magnetiche, raffinazione | **91%** produzione mondiale in Cina | IEA 2024, terre rare magnetiche raffinate | Collo di bottiglia chimico-industriale [P06] |"
+      }
+    }
+  ]
+}

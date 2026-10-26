@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "National Security Strategy degli Stati Uniti"
+    "it": "National Security Strategy degli Stati Uniti",
+    "en": "United States National Security Strategy"
   },
   "description": {
-    "it": "La strategia ufficiale esprime l’obiettivo di favorire cambiamenti nella traiettoria politica europea e un rapporto più stabile con Mosca; non prova un’operazione clandestina."
+    "it": "La strategia ufficiale esprime l’obiettivo di favorire cambiamenti nella traiettoria politica europea e un rapporto più stabile con Mosca; non prova un’operazione clandestina.",
+    "en": "The official strategy states the aim of encouraging changes in Europe's political trajectory and a more stable relationship with Moscow; it does not prove a covert operation."
   },
   "category": {
-    "it": "Strategia USA / Europa"
+    "it": "Strategia USA / Europa",
+    "en": "US strategy / Europe"
   },
   "themes": [
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "USA / Europa"
+    "it": "USA / Europa",
+    "en": "USA / Europe"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Documento ufficiale, intenzione dichiarata"
+    "it": "Documento ufficiale, intenzione dichiarata",
+    "en": "Official document, declared intention"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6a57ba5b2c87a8f2"
+      }
+    }
   },
   "provenance": [
     {

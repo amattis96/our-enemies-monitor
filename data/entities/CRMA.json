@@ -2,12 +2,20 @@
   "id": "CRMA",
   "kind": "asset",
   "name": {
-    "it": "Critical Raw Materials Act"
+    "it": "Critical Raw Materials Act",
+    "en": "Critical Raw Materials Act"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4e07a42ccebe85ee"
+      }
+    }
   },
   "provenance": [
     {

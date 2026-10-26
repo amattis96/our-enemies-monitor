@@ -2,12 +2,20 @@
   "id": "BY",
   "kind": "state",
   "name": {
-    "it": "Bielorussia"
+    "it": "Bielorussia",
+    "en": "Belarus"
   },
   "domain": "geopolitics",
+  "country": "BY",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3551d0f948a56850"
+      }
+    }
   },
   "provenance": [
     {

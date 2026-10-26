@@ -2,7 +2,8 @@
   "id": "F08",
   "type": "external_reference",
   "title": {
-    "it": "Commissione UE, European Critical Raw Materials Act"
+    "it": "Commissione UE, European Critical Raw Materials Act",
+    "en": "EU Commission, European Critical Raw Materials Act"
   },
   "publisher": "Commissione UE",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "beb4593f87aaf1d4"
+      }
+    }
   },
   "provenance": [
     {

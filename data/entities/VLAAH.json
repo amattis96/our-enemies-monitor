@@ -2,12 +2,20 @@
   "id": "VLAAH",
   "kind": "person",
   "name": {
-    "it": "Irina Vlah"
+    "it": "Irina Vlah",
+    "en": "Irina Vlah"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9a21d9b52b7230d5"
+      }
+    }
   },
   "provenance": [
     {

@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": "https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/",
   "caveat": {
-    "it": "Non confondere identità societarie e operazioni"
+    "it": "Non confondere identità societarie e operazioni",
+    "en": "Do not conflate corporate identities and operations"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "06e9f9f956f991de"
+      }
+    }
   },
   "provenance": [
     {

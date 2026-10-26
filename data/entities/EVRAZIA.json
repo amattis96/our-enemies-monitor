@@ -2,12 +2,20 @@
   "id": "EVRAZIA",
   "kind": "organization",
   "name": {
-    "it": "Evrazia"
+    "it": "Evrazia",
+    "en": "Evrazia"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4aea839f95e33e67"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "UKINT",
   "kind": "institution",
   "name": {
-    "it": "MI5 / intelligence del Regno Unito"
+    "it": "MI5 / intelligence del Regno Unito",
+    "en": "MI5 / UK intelligence"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "39d0b42d6f2586fd"
+      }
+    }
   },
   "provenance": [
     {

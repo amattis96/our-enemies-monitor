@@ -2,12 +2,20 @@
   "id": "PORTALK",
   "kind": "organization",
   "name": {
-    "it": "Portal Kombat"
+    "it": "Portal Kombat",
+    "en": "Portal Kombat"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1ebab4e4bf01d252"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "GELEC",
   "kind": "asset",
   "name": {
-    "it": "Elezioni federali tedesche 2025"
+    "it": "Elezioni federali tedesche 2025",
+    "en": "2025 German federal elections"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "afc31ce2176f2a90"
+      }
+    }
   },
   "provenance": [
     {

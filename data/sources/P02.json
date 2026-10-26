@@ -2,7 +2,8 @@
   "id": "P02",
   "type": "external_reference",
   "title": {
-    "it": "Consiglio UE, Voice of Europe/Medvedchuk/Marchevskyi (27 maggio 2024). Sanzioni, funzione finanziaria e rete di influenza."
+    "it": "Consiglio UE, Voice of Europe/Medvedchuk/Marchevskyi (27 maggio 2024). Sanzioni, funzione finanziaria e rete di influenza.",
+    "en": "EU Council, Voice of Europe/Medvedchuk/Marchevskyi (27 May 2024). Sanctions, financial role and influence network."
   },
   "publisher": "Consiglio UE",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "838360ae20690ce5"
+      }
+    }
   },
   "provenance": [
     {

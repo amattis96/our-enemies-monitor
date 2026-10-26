@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
   "caveat": {
-    "it": "Non trasferire il mandato a ogni reato commesso da Foxtrot"
+    "it": "Non trasferire il mandato a ogni reato commesso da Foxtrot",
+    "en": "Do not extend the instructions to every crime committed by Foxtrot"
   },
   "sources": [
     "WEB-EXT-002"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dcccaf35abdf1a55"
+      }
+    }
   },
   "provenance": [
     {

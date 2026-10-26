@@ -2,12 +2,20 @@
   "id": "HERITAGE",
   "kind": "company",
   "name": {
-    "it": "Heritage Trust"
+    "it": "Heritage Trust",
+    "en": "Heritage Trust"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0ae82fb5a0f4a71f"
+      }
+    }
   },
   "provenance": [
     {

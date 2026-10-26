@@ -2,12 +2,20 @@
   "id": "VIGINUM",
   "kind": "institution",
   "name": {
-    "it": "VIGINUM / SGDSN"
+    "it": "VIGINUM / SGDSN",
+    "en": "VIGINUM / SGDSN"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b4fa2799b31cd452"
+      }
+    }
   },
   "provenance": [
     {

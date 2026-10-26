@@ -4,14 +4,17 @@
   "object": "US",
   "hypothesis_type": "CATENA_DECISIONALE_RESTRIZIONI_2026",
   "question": {
-    "it": "Quale soggetto autorizzò specificamente le limitazioni Starshield e quando?"
+    "it": "Quale soggetto autorizzò specificamente le limitazioni Starshield e quando?",
+    "en": "Who specifically authorised the Starshield restrictions, and when?"
   },
   "current_limit": {
-    "it": "WSJ/Reuters/Telegraph e interessati divergono; non collegare automaticamente a Mosca."
+    "it": "WSJ/Reuters/Telegraph e interessati divergono; non collegare automaticamente a Mosca.",
+    "en": "WSJ/Reuters/Telegraph and those involved diverge; do not automatically link to Moscow."
   },
   "priority": "critical",
   "evidence_needed": {
-    "it": "Ordini contrattuali, tickets tecnici, audit deployment, White House/Pentagon records"
+    "it": "Ordini contrattuali, tickets tecnici, audit deployment, White House/Pentagon records",
+    "en": "Contractual orders, technical tickets, deployment audits, White House/Pentagon records"
   },
   "events": [
     "TL-0137",
@@ -28,7 +31,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5aa549bba75d4cad"
+      }
+    }
   },
   "provenance": [
     {

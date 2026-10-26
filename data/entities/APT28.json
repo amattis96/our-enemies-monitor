@@ -2,12 +2,20 @@
   "id": "APT28",
   "kind": "organization",
   "name": {
-    "it": "APT28 / Fancy Bear"
+    "it": "APT28 / Fancy Bear",
+    "en": "APT28 / Fancy Bear"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4cd29671ce7c6852"
+      }
+    }
   },
   "provenance": [
     {

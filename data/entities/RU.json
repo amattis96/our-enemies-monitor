@@ -2,12 +2,20 @@
   "id": "RU",
   "kind": "state",
   "name": {
-    "it": "Federazione Russa"
+    "it": "Federazione Russa",
+    "en": "Russian Federation"
   },
   "domain": "geopolitics",
+  "country": "RU",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a78efe795886a83b"
+      }
+    }
   },
   "provenance": [
     {

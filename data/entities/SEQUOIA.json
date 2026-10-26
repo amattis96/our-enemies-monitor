@@ -2,12 +2,20 @@
   "id": "SEQUOIA",
   "kind": "company",
   "name": {
-    "it": "Sequoia Capital"
+    "it": "Sequoia Capital",
+    "en": "Sequoia Capital"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f9deb3b09427877e"
+      }
+    }
   },
   "provenance": [
     {

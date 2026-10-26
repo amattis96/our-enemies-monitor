@@ -8,23 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Dichiarazione NATO del vertice di Washington"
+    "it": "Dichiarazione NATO del vertice di Washington",
+    "en": "NATO Washington Summit Declaration"
   },
   "description": {
-    "it": "NATO descrive la minaccia ibrida russa e definisce la Cina “decisive enabler” della base industriale della guerra russa tramite dual-use."
+    "it": "NATO descrive la minaccia ibrida russa e definisce la Cina “decisive enabler” della base industriale della guerra russa tramite dual-use.",
+    "en": "NATO describes the Russian hybrid threat and calls China a “decisive enabler” of Russia's war industrial base through dual-use goods."
   },
   "category": {
-    "it": "NATO / geopolitica"
+    "it": "NATO / geopolitica",
+    "en": "NATO / geopolitics"
   },
   "themes": [
     "eu_nato_response",
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Washington / NATO"
+    "it": "Washington / NATO",
+    "en": "Washington / NATO"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Attribuzione NATO; contestata da Pechino"
+    "it": "Attribuzione NATO; contestata da Pechino",
+    "en": "NATO attribution; disputed by Beijing"
   },
   "evidence_level": null,
   "publisher": null,
@@ -38,7 +46,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "23db02648dd2eb97"
+      }
+    }
   },
   "provenance": [
     {

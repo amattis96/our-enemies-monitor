@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Piattaforma non committente"
+    "it": "Piattaforma non committente",
+    "en": "Platform is not the client"
   },
   "sources": [
     "S02"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9c7b7ca453b4331b"
+      }
+    }
   },
   "provenance": [
     {

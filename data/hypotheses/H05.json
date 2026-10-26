@@ -4,14 +4,17 @@
   "object": "CANDIRU",
   "hypothesis_type": "CLIENTI_E_SURVEILLANCE_EU",
   "question": {
-    "it": "Quali enti effettivamente acquistano, implementano e autorizzano l’uso di Candiru/Discover-Tech?"
+    "it": "Quali enti effettivamente acquistano, implementano e autorizzano l’uso di Candiru/Discover-Tech?",
+    "en": "Which bodies actually purchase, deploy and authorise the use of Candiru/Discover-Tech?"
   },
   "current_limit": {
-    "it": "Catena tecnologica non attribuisce ogni infezione al fornitore o a un governo."
+    "it": "Catena tecnologica non attribuisce ogni infezione al fornitore o a un governo.",
+    "en": "The technology chain does not attribute every infection to the vendor or to a government."
   },
   "priority": "critical",
   "evidence_needed": {
-    "it": "Forensics, contratti procurement, pubblicità e ID, exploit hashes, autorizzazioni giudiziarie"
+    "it": "Forensics, contratti procurement, pubblicità e ID, exploit hashes, autorizzazioni giudiziarie",
+    "en": "Forensics, procurement contracts, advertising and IDs, exploit hashes, judicial authorisations"
   },
   "events": [
     "TL-0138"
@@ -25,7 +28,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e430d5b40bb53f6c"
+      }
+    }
   },
   "provenance": [
     {

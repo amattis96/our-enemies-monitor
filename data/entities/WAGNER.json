@@ -2,12 +2,20 @@
   "id": "WAGNER",
   "kind": "organization",
   "name": {
-    "it": "Rete Wagner / collegati"
+    "it": "Rete Wagner / collegati",
+    "en": "Wagner network / affiliates"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d9befa1ddad86afc"
+      }
+    }
   },
   "provenance": [
     {

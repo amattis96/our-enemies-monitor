@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Strutture patrimoniali di Kerimov negli USA"
+    "it": "Strutture patrimoniali di Kerimov negli USA",
+    "en": "Kerimov's asset structures in the US"
   },
   "description": {
-    "it": "Trust, gestori e intermediari custodiscono attività patrimoniali riconducibili a Suleiman Kerimov, poi oggetto di provvedimenti OFAC."
+    "it": "Trust, gestori e intermediari custodiscono attività patrimoniali riconducibili a Suleiman Kerimov, poi oggetto di provvedimenti OFAC.",
+    "en": "Trusts, managers and intermediaries hold assets traceable to Suleiman Kerimov, later subject to OFAC measures."
   },
   "category": {
-    "it": "Finanza / sanzioni"
+    "it": "Finanza / sanzioni",
+    "en": "Finance / sanctions"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Stati Uniti"
+    "it": "Stati Uniti",
+    "en": "United States"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Corroborato; cronologia della proprietà pluriennale"
+    "it": "Corroborato; cronologia della proprietà pluriennale",
+    "en": "Corroborated; multi-year ownership chronology"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "324e70aee382f605"
+      }
+    }
   },
   "provenance": [
     {

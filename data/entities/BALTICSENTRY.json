@@ -2,12 +2,20 @@
   "id": "BALTICSENTRY",
   "kind": "asset",
   "name": {
-    "it": "Baltic Sentry"
+    "it": "Baltic Sentry",
+    "en": "Baltic Sentry"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "13f7b8f74e1fef2b"
+      }
+    }
   },
   "provenance": [
     {

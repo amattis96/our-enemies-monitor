@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Attacco informatico all’EMA e leak di documenti vaccinali"
+    "it": "Attacco informatico all’EMA e leak di documenti vaccinali",
+    "en": "Cyberattack on the EMA and leak of vaccine documents"
   },
   "description": {
-    "it": "Documenti sottratti e in parte manipolati prima della diffusione; l’EMA non attribuisce pubblicamente l’operazione a uno Stato nella fonte citata."
+    "it": "Documenti sottratti e in parte manipolati prima della diffusione; l’EMA non attribuisce pubblicamente l’operazione a uno Stato nella fonte citata.",
+    "en": "Documents stolen and partly manipulated before release; the EMA does not publicly attribute the operation to a state in the cited source."
   },
   "category": {
-    "it": "Cyber / salute"
+    "it": "Cyber / salute",
+    "en": "Cyber / health"
   },
   "themes": [
     "cyber",
     "society_health"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Attacco accertato; mandante statale non verificato"
+    "it": "Attacco accertato; mandante statale non verificato",
+    "en": "Attack established; state instigator not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e0f7a883c17496cb"
+      }
+    }
   },
   "provenance": [
     {

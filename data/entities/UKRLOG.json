@@ -2,12 +2,20 @@
   "id": "UKRLOG",
   "kind": "asset",
   "name": {
-    "it": "Logistica europea per la difesa ucraina"
+    "it": "Logistica europea per la difesa ucraina",
+    "en": "European logistics for Ukraine's defence"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "28afe94cfc133d18"
+      }
+    }
   },
   "provenance": [
     {

@@ -1,0 +1,56 @@
+{
+  "id": "X-009",
+  "sector": {
+    "it": "Semiconduttori UE",
+    "en": "EU semiconductors"
+  },
+  "indicator": {
+    "it": "Circa 9% quota del mercato mondiale e nessuna open foundry leading-edge UE",
+    "en": "About 9% share of the global market and no leading-edge open foundry in the EU"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota UE del mercato mondiale",
+        "en": "EU share of the global market"
+      },
+      "value": 9,
+      "unit": "percent",
+      "qualifier": "approx",
+      "out_of": null,
+      "period": "2024-2026"
+    }
+  ],
+  "scope": {
+    "it": "Stime 2024-2026, segmenti differenti",
+    "en": "Estimates 2024-2026, different segments"
+  },
+  "consequence": {
+    "it": "Dipendenza da design USA e foundry Taiwan/Corea",
+    "en": "Dependence on US design and Taiwan/Korea foundries"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c6fe8ec26f5362ae"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 580,
+      "original": {
+        "text": "| Semiconduttori UE | Circa **9%** quota del mercato mondiale e nessuna open foundry leading-edge UE | Stime 2024-2026, segmenti differenti | Dipendenza da design USA e foundry Taiwan/Corea [S04] |"
+      }
+    }
+  ]
+}

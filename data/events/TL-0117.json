@@ -8,23 +8,32 @@
     "precision": "month"
   },
   "title": {
-    "it": "Afflusso massivo a Ceuta"
+    "it": "Afflusso massivo a Ceuta",
+    "en": "Mass influx into Ceuta"
   },
   "description": {
-    "it": "Crisi umanitaria al confine con il Marocco. Le fonti divergono su 70–80 mila ingressi e numero di vittime; regia statale marocchina non conclusivamente accertata."
+    "it": "Crisi umanitaria al confine con il Marocco. Le fonti divergono su 70–80 mila ingressi e numero di vittime; regia statale marocchina non conclusivamente accertata.",
+    "en": "Humanitarian crisis at the border with Morocco. Sources diverge on 70,000–80,000 entries and the number of victims; Moroccan state direction not conclusively established."
   },
   "category": {
-    "it": "Coercizione migratoria / crisi"
+    "it": "Coercizione migratoria / crisi",
+    "en": "Migration coercion / crisis"
   },
   "themes": [
     "migration_borders",
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Ceuta / Marocco / Spagna"
+    "it": "Ceuta / Marocco / Spagna",
+    "en": "Ceuta / Morocco / Spain"
   },
+  "places": [
+    "ES",
+    "MA"
+  ],
   "evidence_note": {
-    "it": "Crisi accertata; mandante non verificato"
+    "it": "Crisi accertata; mandante non verificato",
+    "en": "Crisis established; instigator not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d448f1a379efdb1b"
+      }
+    }
   },
   "provenance": [
     {

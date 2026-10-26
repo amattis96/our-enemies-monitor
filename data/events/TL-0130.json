@@ -8,23 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Dichiarazioni ufficiali spagnole su Ceuta"
+    "it": "Dichiarazioni ufficiali spagnole su Ceuta",
+    "en": "Official Spanish statements on Ceuta"
   },
   "description": {
-    "it": "Il governo spagnolo pubblica un bilancio dell’afflusso intorno a 70.000 persone; la ricostruzione delle responsabilità marocchine resta controversa."
+    "it": "Il governo spagnolo pubblica un bilancio dell’afflusso intorno a 70.000 persone; la ricostruzione delle responsabilità marocchine resta controversa.",
+    "en": "The Spanish government publishes an estimate of the influx at around 70,000 people; the reconstruction of Moroccan responsibility remains contested."
   },
   "category": {
-    "it": "Diplomazia / migrazione"
+    "it": "Diplomazia / migrazione",
+    "en": "Diplomacy / migration"
   },
   "themes": [
     "geopolitics_diplomacy",
     "migration_borders"
   ],
   "geography": {
-    "it": "Spagna"
+    "it": "Spagna",
+    "en": "Spain"
   },
+  "places": [
+    "ES"
+  ],
   "evidence_note": {
-    "it": "Dichiarazione istituzionale"
+    "it": "Dichiarazione istituzionale",
+    "en": "Institutional statement"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dcfbb5fb2853feb9"
+      }
+    }
   },
   "provenance": [
     {

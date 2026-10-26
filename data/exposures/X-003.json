@@ -1,0 +1,56 @@
+{
+  "id": "X-003",
+  "sector": {
+    "it": "Magneti permanenti sinterizzati",
+    "en": "Sintered permanent magnets"
+  },
+  "indicator": {
+    "it": "94% produzione mondiale in Cina",
+    "en": "94% of global production in China"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota cinese della produzione mondiale",
+        "en": "Chinese share of global production"
+      },
+      "value": 94,
+      "unit": "percent",
+      "qualifier": "exact",
+      "out_of": null,
+      "period": "2024"
+    }
+  ],
+  "scope": {
+    "it": "IEA 2024, magneti",
+    "en": "IEA 2024, magnets"
+  },
+  "consequence": {
+    "it": "Collo di bottiglia a valle",
+    "en": "Downstream bottleneck"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "P06"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "545e18aaab32fcbe"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 574,
+      "original": {
+        "text": "| Magneti permanenti sinterizzati | **94%** produzione mondiale in Cina | IEA 2024, magneti | Collo di bottiglia a valle [P06] |"
+      }
+    }
+  ]
+}

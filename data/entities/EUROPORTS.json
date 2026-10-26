@@ -2,12 +2,20 @@
   "id": "EUROPORTS",
   "kind": "asset",
   "name": {
-    "it": "EU Ports Strategy"
+    "it": "EU Ports Strategy",
+    "en": "EU Ports Strategy"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "08efaf8e6fc26e8c"
+      }
+    }
   },
   "provenance": [
     {

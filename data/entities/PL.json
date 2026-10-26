@@ -2,12 +2,20 @@
   "id": "PL",
   "kind": "state",
   "name": {
-    "it": "Polonia"
+    "it": "Polonia",
+    "en": "Poland"
   },
   "domain": "geopolitics",
+  "country": "PL",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "29726b0171a07f52"
+      }
+    }
   },
   "provenance": [
     {

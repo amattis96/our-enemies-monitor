@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "La cooperazione anti-abuso bilancia narrativa su limitazioni"
+    "it": "La cooperazione anti-abuso bilancia narrativa su limitazioni",
+    "en": "Anti-abuse cooperation balances the narrative on restrictions"
   },
   "sources": [
     "S00"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "602c5666dbc1c9b4"
+      }
+    }
   },
   "provenance": [
     {

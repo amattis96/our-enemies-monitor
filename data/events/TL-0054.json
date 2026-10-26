@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Regno Unito attribuisce ad APT31 operazioni contro il processo politico"
+    "it": "Regno Unito attribuisce ad APT31 operazioni contro il processo politico",
+    "en": "United Kingdom attributes operations against the political process to APT31"
   },
   "description": {
-    "it": "Attribuzione pubblica di attacchi e ricognizioni 2021-2022 contro Electoral Commission e parlamentari a soggetti affiliati allo Stato cinese."
+    "it": "Attribuzione pubblica di attacchi e ricognizioni 2021-2022 contro Electoral Commission e parlamentari a soggetti affiliati allo Stato cinese.",
+    "en": "Public attribution of 2021-2022 attacks and reconnaissance against the Electoral Commission and parliamentarians to actors affiliated with the Chinese state."
   },
   "category": {
-    "it": "Controspionaggio"
+    "it": "Controspionaggio",
+    "en": "Counter-intelligence"
   },
   "themes": [
     "intelligence"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4aa97b62f4029701"
+      }
+    }
   },
   "provenance": [
     {

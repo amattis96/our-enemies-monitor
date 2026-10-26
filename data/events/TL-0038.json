@@ -8,23 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Attacco Viasat KA-SAT"
+    "it": "Attacco Viasat KA-SAT",
+    "en": "Viasat KA-SAT attack"
   },
   "description": {
-    "it": "Sabotaggio informatico della rete satellitare con disservizi anche per utenze europee; formalmente attribuito alla Federazione Russa da UE e alleati."
+    "it": "Sabotaggio informatico della rete satellitare con disservizi anche per utenze europee; formalmente attribuito alla Federazione Russa da UE e alleati.",
+    "en": "Cyber sabotage of the satellite network, with outages also for European users; formally attributed to the Russian Federation by the EU and allies."
   },
   "category": {
-    "it": "Cyber / satelliti"
+    "it": "Cyber / satelliti",
+    "en": "Cyber / satellites"
   },
   "themes": [
     "cyber",
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Ucraina / Europa"
+    "it": "Ucraina / Europa",
+    "en": "Ukraine / Europe"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d374c930a8dd22f2"
+      }
+    }
   },
   "provenance": [
     {

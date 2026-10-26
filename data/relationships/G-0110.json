@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Perù, flussi logistici globali"
+    "it": "Perù, flussi logistici globali",
+    "en": "Peru, global logistics flows"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "80454a3cbd852351"
+      }
+    }
   },
   "provenance": [
     {

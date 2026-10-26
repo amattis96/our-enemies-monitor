@@ -8,23 +8,29 @@
     "precision": "month"
   },
   "title": {
-    "it": "Revisione del programma IRIS²"
+    "it": "Revisione del programma IRIS²",
+    "en": "Revision of the IRIS² programme"
   },
   "description": {
-    "it": "Accordo rivisto per 348 satelliti (330 LEO, 18 MEO); primi lanci attesi dal 2029, servizi dal 2030."
+    "it": "Accordo rivisto per 348 satelliti (330 LEO, 18 MEO); primi lanci attesi dal 2029, servizi dal 2030.",
+    "en": "Revised agreement for 348 satellites (330 LEO, 18 MEO); first launches expected from 2029, services from 2030."
   },
   "category": {
-    "it": "Satelliti / politica industriale"
+    "it": "Satelliti / politica industriale",
+    "en": "Satellites / industrial policy"
   },
   "themes": [
     "infrastructure_space",
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Decisione/programmazione documentata"
+    "it": "Decisione/programmazione documentata",
+    "en": "Documented decision/programming"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2174cbdea2caa889"
+      }
+    }
   },
   "provenance": [
     {

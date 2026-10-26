@@ -2,12 +2,20 @@
   "id": "VOE",
   "kind": "organization",
   "name": {
-    "it": "Voice of Europe"
+    "it": "Voice of Europe",
+    "en": "Voice of Europe"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bf0c04e639b7873a"
+      }
+    }
   },
   "provenance": [
     {

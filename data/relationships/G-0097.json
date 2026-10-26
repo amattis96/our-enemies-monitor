@@ -11,7 +11,8 @@
   "valid_to": null,
   "primary_url": "https://www.iea.org/reports/rare-earth-elements/executive-summary",
   "caveat": {
-    "it": "Percentuale di mercati documentata da IEA"
+    "it": "Percentuale di mercati documentata da IEA",
+    "en": "Market shares documented by the IEA"
   },
   "sources": [
     "S04",
@@ -19,7 +20,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "98ae5005bde4a5e5"
+      }
+    }
   },
   "provenance": [
     {

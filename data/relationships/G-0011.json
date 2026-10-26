@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
   "caveat": {
-    "it": "Non tutti i rappresentanti contattati furono pagati; non attribuire a tutti corruzione"
+    "it": "Non tutti i rappresentanti contattati furono pagati; non attribuire a tutti corruzione",
+    "en": "Not all the representatives contacted were paid; do not attribute corruption to all of them"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "61f8346fec140917"
+      }
+    }
   },
   "provenance": [
     {

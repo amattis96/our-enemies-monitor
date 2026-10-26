@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Referendum Brexit e operazioni informative"
+    "it": "Referendum Brexit e operazioni informative",
+    "en": "Brexit referendum and information operations"
   },
   "description": {
-    "it": "RT, Sputnik, reti social e account filorussi sono discussi dagli studi; l’effetto sul voto non è determinato e non è provato che la Russia abbia causato la Brexit."
+    "it": "RT, Sputnik, reti social e account filorussi sono discussi dagli studi; l’effetto sul voto non è determinato e non è provato che la Russia abbia causato la Brexit.",
+    "en": "RT, Sputnik, social networks and pro-Russian accounts are discussed by studies; the effect on the vote is not determined and it is not proven that Russia caused Brexit."
   },
   "category": {
-    "it": "Interferenza elettorale"
+    "it": "Interferenza elettorale",
+    "en": "Electoral interference"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Referendum accertato; impatto estero non verificato"
+    "it": "Referendum accertato; impatto estero non verificato",
+    "en": "Referendum established; foreign impact not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "95fea8c4ee321e41"
+      }
+    }
   },
   "provenance": [
     {

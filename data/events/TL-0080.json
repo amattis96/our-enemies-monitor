@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Interferenze FIMI nelle elezioni europee del 2025"
+    "it": "Interferenze FIMI nelle elezioni europee del 2025",
+    "en": "FIMI interference in the 2025 European elections"
   },
   "description": {
-    "it": "Il SEAE documenta tattiche russe in Germania, Polonia, Romania, Moldavia e Cechia; differenziare tentativi e impatto effettivo."
+    "it": "Il SEAE documenta tattiche russe in Germania, Polonia, Romania, Moldavia e Cechia; differenziare tentativi e impatto effettivo.",
+    "en": "The EEAS documents Russian tactics in Germany, Poland, Romania, Moldova and Czechia; attempts and actual impact must be distinguished."
   },
   "category": {
-    "it": "Elezioni / influenza"
+    "it": "Elezioni / influenza",
+    "en": "Elections / influence"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Europa"
+    "it": "Europa",
+    "en": "Europe"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Attività documentate; impatto sul voto ignoto"
+    "it": "Attività documentate; impatto sul voto ignoto",
+    "en": "Documented activities; impact on the vote unknown"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3cdfa8ca785620b6"
+      }
+    }
   },
   "provenance": [
     {

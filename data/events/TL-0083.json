@@ -8,22 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Partnership strategica Russia-Iran"
+    "it": "Partnership strategica Russia-Iran",
+    "en": "Russia-Iran strategic partnership"
   },
   "description": {
-    "it": "Accordo strategico in seguito ratificato da Mosca nel 2025; non comporta una clausola di difesa reciproca automatica tipo NATO."
+    "it": "Accordo strategico in seguito ratificato da Mosca nel 2025; non comporta una clausola di difesa reciproca automatica tipo NATO.",
+    "en": "Strategic agreement later ratified by Moscow in 2025; it does not include an automatic NATO-style mutual defence clause."
   },
   "category": {
-    "it": "Trattati / geopolitica"
+    "it": "Trattati / geopolitica",
+    "en": "Treaties / geopolitics"
   },
   "themes": [
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Russia / Iran"
+    "it": "Russia / Iran",
+    "en": "Russia / Iran"
   },
+  "places": [
+    "RU",
+    "IR"
+  ],
   "evidence_note": {
-    "it": "Trattato / ratifica documentata"
+    "it": "Trattato / ratifica documentata",
+    "en": "Documented treaty / ratification"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5cda571d689ce933"
+      }
+    }
   },
   "provenance": [
     {

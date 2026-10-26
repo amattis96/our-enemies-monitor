@@ -14,7 +14,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Due canali osservati, non rapporto di comando fra loro"
+    "it": "Due canali osservati, non rapporto di comando fra loro",
+    "en": "Two observed channels, not a command relationship between them"
   },
   "sources": [
     "S01",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ad614c97b475ed48"
+      }
+    }
   },
   "provenance": [
     {

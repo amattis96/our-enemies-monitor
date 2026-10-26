@@ -2,12 +2,20 @@
   "id": "EW841",
   "kind": "organization",
   "name": {
-    "it": "841st Separate Electronic Warfare Center"
+    "it": "841st Separate Electronic Warfare Center",
+    "en": "841st Separate Electronic Warfare Center"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cacff17d3de0a3f3"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Mobilitazioni per abitazioni e sindacati in Portogallo"
+    "it": "Mobilitazioni per abitazioni e sindacati in Portogallo",
+    "en": "Housing and trade-union mobilisations in Portugal"
   },
   "description": {
-    "it": "Movimenti e forme di emulazione con manifestazioni iberiche; nessuna prova di comando estero."
+    "it": "Movimenti e forme di emulazione con manifestazioni iberiche; nessuna prova di comando estero.",
+    "en": "Movements and emulation of the Iberian demonstrations; no evidence of foreign command."
   },
   "category": {
-    "it": "Proteste / Portogallo"
+    "it": "Proteste / Portogallo",
+    "en": "Protests / Portugal"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Portogallo"
+    "it": "Portogallo",
+    "en": "Portugal"
   },
+  "places": [
+    "PT"
+  ],
   "evidence_note": {
-    "it": "Proteste documentate"
+    "it": "Proteste documentate",
+    "en": "Documented protests"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "036f9f5e9f0ad868"
+      }
+    }
   },
   "provenance": [
     {

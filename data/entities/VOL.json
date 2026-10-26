@@ -2,12 +2,20 @@
   "id": "VOL",
   "kind": "person",
   "name": {
-    "it": "Oleg Voloshyn"
+    "it": "Oleg Voloshyn",
+    "en": "Oleg Voloshyn"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0e995c93eaa578bb"
+      }
+    }
   },
   "provenance": [
     {

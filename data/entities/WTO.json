@@ -2,12 +2,20 @@
   "id": "WTO",
   "kind": "institution",
   "name": {
-    "it": "Organizzazione mondiale del commercio"
+    "it": "Organizzazione mondiale del commercio",
+    "en": "World Trade Organization"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "00849043f97d9017"
+      }
+    }
   },
   "provenance": [
     {

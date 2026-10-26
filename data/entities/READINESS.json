@@ -2,12 +2,20 @@
   "id": "READINESS",
   "kind": "asset",
   "name": {
-    "it": "Readiness 2030 / SAFE"
+    "it": "Readiness 2030 / SAFE",
+    "en": "Readiness 2030 / SAFE"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e65432a6df4f9b55"
+      }
+    }
   },
   "provenance": [
     {

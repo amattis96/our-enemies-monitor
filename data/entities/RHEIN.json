@@ -2,12 +2,20 @@
   "id": "RHEIN",
   "kind": "company",
   "name": {
-    "it": "Rheinmetall"
+    "it": "Rheinmetall",
+    "en": "Rheinmetall"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f6e6720289750998"
+      }
+    }
   },
   "provenance": [
     {

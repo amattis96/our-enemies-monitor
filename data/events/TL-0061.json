@@ -8,23 +8,29 @@
     "precision": "month"
   },
   "title": {
-    "it": "Elezioni europee 2024 e monitoraggio FIMI"
+    "it": "Elezioni europee 2024 e monitoraggio FIMI",
+    "en": "2024 European elections and FIMI monitoring"
   },
   "description": {
-    "it": "Il SEAE registra 42 episodi russi FIMI intorno al ciclo elettorale, senza rilevare una campagna grave nei giorni del voto; impatto sul risultato non dimostrato."
+    "it": "Il SEAE registra 42 episodi russi FIMI intorno al ciclo elettorale, senza rilevare una campagna grave nei giorni del voto; impatto sul risultato non dimostrato.",
+    "en": "The EEAS records 42 Russian FIMI episodes around the electoral cycle, without detecting a serious campaign on polling days; impact on the result not demonstrated."
   },
   "category": {
-    "it": "Elezioni / FIMI"
+    "it": "Elezioni / FIMI",
+    "en": "Elections / FIMI"
   },
   "themes": [
     "elections_influence",
     "information_manipulation"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Elezioni accertate; monitoraggio istituzionale"
+    "it": "Elezioni accertate; monitoraggio istituzionale",
+    "en": "Elections established; institutional monitoring"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5446997ccd47c67e"
+      }
+    }
   },
   "provenance": [
     {

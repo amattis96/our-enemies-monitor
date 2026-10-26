@@ -2,12 +2,20 @@
   "id": "ICC",
   "kind": "institution",
   "name": {
-    "it": "Corte penale internazionale"
+    "it": "Corte penale internazionale",
+    "en": "International Criminal Court"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "be0bef158863823c"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,23 +8,32 @@
     "precision": "day"
   },
   "title": {
-    "it": "Prime ricostruzioni pubbliche delle restrizioni Starshield"
+    "it": "Prime ricostruzioni pubbliche delle restrizioni Starshield",
+    "en": "First public reconstructions of the Starshield restrictions"
   },
   "description": {
-    "it": "AP/Reuters riportano limitazioni e attribuzioni iniziali interne alla Casa Bianca; Telegraph descrive ruolo propositivo di Musk. Versioni divergenti."
+    "it": "AP/Reuters riportano limitazioni e attribuzioni iniziali interne alla Casa Bianca; Telegraph descrive ruolo propositivo di Musk. Versioni divergenti.",
+    "en": "AP/Reuters report restrictions and initial attributions internal to the White House; the Telegraph describes Musk as proposing them. Diverging accounts."
   },
   "category": {
-    "it": "Satelliti / intelligence"
+    "it": "Satelliti / intelligence",
+    "en": "Satellites / intelligence"
   },
   "themes": [
     "infrastructure_space",
     "intelligence"
   ],
   "geography": {
-    "it": "Ucraina / Stati Uniti"
+    "it": "Ucraina / Stati Uniti",
+    "en": "Ukraine / United States"
   },
+  "places": [
+    "UA",
+    "US"
+  ],
   "evidence_note": {
-    "it": "Reporting giornalistico; responsabilità contestata"
+    "it": "Reporting giornalistico; responsabilità contestata",
+    "en": "Journalistic reporting; responsibility disputed"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +46,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "003aa10b39b743e0"
+      }
+    }
   },
   "provenance": [
     {

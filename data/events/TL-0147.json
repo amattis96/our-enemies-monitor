@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Chiusura temporale delle Deep Search DS-03 e DS-05"
+    "it": "Chiusura temporale delle Deep Search DS-03 e DS-05",
+    "en": "Cut-off of the DS-03 and DS-05 Deep Searches"
   },
   "description": {
-    "it": "Aggiornamento finale delle fonti del progetto su incidenti ibridi e convergenze geopolitiche; è una data di raccolta, non un evento geopolitico."
+    "it": "Aggiornamento finale delle fonti del progetto su incidenti ibridi e convergenze geopolitiche; è una data di raccolta, non un evento geopolitico.",
+    "en": "Final update of the project's sources on hybrid incidents and geopolitical convergences; it is a collection date, not a geopolitical event."
   },
   "category": {
-    "it": "Ricerca / baseline"
+    "it": "Ricerca / baseline",
+    "en": "Research / baseline"
   },
   "themes": [
     "research_metadata"
   ],
   "geography": {
-    "it": "Progetto"
+    "it": "Progetto",
+    "en": "Project"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Metadato documentale"
+    "it": "Metadato documentale",
+    "en": "Documentary metadata"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f2e21897e5cdb33b"
+      }
+    }
   },
   "provenance": [
     {

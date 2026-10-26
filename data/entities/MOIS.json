@@ -2,12 +2,20 @@
   "id": "MOIS",
   "kind": "organization",
   "name": {
-    "it": "Ministero dell’Intelligence iraniana (MOIS)"
+    "it": "Ministero dell’Intelligence iraniana (MOIS)",
+    "en": "Iranian Ministry of Intelligence (MOIS)"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f31e328a91a5bede"
+      }
+    }
   },
   "provenance": [
     {

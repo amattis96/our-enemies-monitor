@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Non significa automaticamente controllo statale di ogni asset"
+    "it": "Non significa automaticamente controllo statale di ogni asset",
+    "en": "Does not automatically mean state control of every asset"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cc024c5540865d5c"
+      }
+    }
   },
   "provenance": [
     {

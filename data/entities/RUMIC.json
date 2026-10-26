@@ -2,12 +2,20 @@
   "id": "RUMIC",
   "kind": "asset",
   "name": {
-    "it": "Base industriale militare russa"
+    "it": "Base industriale militare russa",
+    "en": "Russian military industrial base"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cb4b2954705e41e9"
+      }
+    }
   },
   "provenance": [
     {

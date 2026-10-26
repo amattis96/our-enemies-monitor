@@ -2,12 +2,20 @@
   "id": "OILMARKET",
   "kind": "asset",
   "name": {
-    "it": "Mercato mondiale dei carburanti"
+    "it": "Mercato mondiale dei carburanti",
+    "en": "Global fuel market"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7e9ecf3b5e60fbe1"
+      }
+    }
   },
   "provenance": [
     {

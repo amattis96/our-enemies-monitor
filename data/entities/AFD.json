@@ -2,12 +2,20 @@
   "id": "AFD",
   "kind": "asset",
   "name": {
-    "it": "Alternative für Deutschland"
+    "it": "Alternative für Deutschland",
+    "en": "Alternative für Deutschland"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c3b1570fa58f2b92"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "EAGLES",
   "kind": "company",
   "name": {
-    "it": "Eagle S (nave)"
+    "it": "Eagle S (nave)",
+    "en": "Eagle S (ship)"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7498a3cea6cd36bf"
+      }
+    }
   },
   "provenance": [
     {

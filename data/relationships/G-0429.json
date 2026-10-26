@@ -14,7 +14,8 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "La causa specifica di una protesta non è deducibile meccanicamente"
+    "it": "La causa specifica di una protesta non è deducibile meccanicamente",
+    "en": "The specific cause of a protest cannot be deduced mechanically"
   },
   "sources": [
     "S00",
@@ -23,7 +24,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "77e515c374d263c6"
+      }
+    }
   },
   "provenance": [
     {

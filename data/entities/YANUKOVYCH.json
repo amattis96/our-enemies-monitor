@@ -2,12 +2,20 @@
   "id": "YANUKOVYCH",
   "kind": "person",
   "name": {
-    "it": "Viktor Yanukovych"
+    "it": "Viktor Yanukovych",
+    "en": "Viktor Yanukovych"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e8426068098df5b4"
+      }
+    }
   },
   "provenance": [
     {

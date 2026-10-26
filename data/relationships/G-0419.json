@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Dolo non provato"
+    "it": "Dolo non provato",
+    "en": "Intent not proven"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "913b0bfb22f6a6e6"
+      }
+    }
   },
   "provenance": [
     {

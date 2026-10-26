@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Nessun cavo danneggiato in questo episodio"
+    "it": "Nessun cavo danneggiato in questo episodio",
+    "en": "No cable damaged in this episode"
   },
   "sources": [
     "S03"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ad27c61f779923e0"
+      }
+    }
   },
   "provenance": [
     {

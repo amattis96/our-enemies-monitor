@@ -2,12 +2,20 @@
   "id": "BREXIT",
   "kind": "asset",
   "name": {
-    "it": "Referendum Brexit 2016"
+    "it": "Referendum Brexit 2016",
+    "en": "2016 Brexit referendum"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dd58ba5969c604b6"
+      }
+    }
   },
   "provenance": [
     {

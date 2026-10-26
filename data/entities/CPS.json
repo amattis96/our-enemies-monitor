@@ -2,12 +2,20 @@
   "id": "CPS",
   "kind": "institution",
   "name": {
-    "it": "Crown Prosecution Service UK"
+    "it": "Crown Prosecution Service UK",
+    "en": "Crown Prosecution Service UK"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "86326d2a9747268a"
+      }
+    }
   },
   "provenance": [
     {

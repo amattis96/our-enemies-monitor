@@ -2,12 +2,20 @@
   "id": "EU24",
   "kind": "asset",
   "name": {
-    "it": "Elezioni europee 2024"
+    "it": "Elezioni europee 2024",
+    "en": "2024 European elections"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "97fa127084db143b"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "HEALTH",
   "kind": "organization",
   "name": {
-    "it": "Settore sanitario europeo"
+    "it": "Settore sanitario europeo",
+    "en": "European health sector"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "46bd6e1e61728103"
+      }
+    }
   },
   "provenance": [
     {

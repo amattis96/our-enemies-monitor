@@ -2,12 +2,20 @@
   "id": "TEAMJORGE",
   "kind": "organization",
   "name": {
-    "it": "Team Jorge"
+    "it": "Team Jorge",
+    "en": "Team Jorge"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "410a3858ac058eb2"
+      }
+    }
   },
   "provenance": [
     {

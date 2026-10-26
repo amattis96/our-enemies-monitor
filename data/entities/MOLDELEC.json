@@ -2,12 +2,20 @@
   "id": "MOLDELEC",
   "kind": "asset",
   "name": {
-    "it": "Elezioni moldave 2024-2025"
+    "it": "Elezioni moldave 2024-2025",
+    "en": "Moldovan elections 2024-2025"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fbc14f139a5dcfcc"
+      }
+    }
   },
   "provenance": [
     {

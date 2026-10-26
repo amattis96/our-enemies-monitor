@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Nuove sanzioni USA contro CPI e reazione UE"
+    "it": "Nuove sanzioni USA contro CPI e reazione UE",
+    "en": "New US sanctions against the ICC and the EU response"
   },
   "description": {
-    "it": "Nel mese di ottobre Washington estende misure restrittive, mentre l’UE riafferma il sostegno all’indipendenza della Corte."
+    "it": "Nel mese di ottobre Washington estende misure restrittive, mentre l’UE riafferma il sostegno all’indipendenza della Corte.",
+    "en": "In October Washington extends restrictive measures, while the EU reaffirms its support for the Court's independence."
   },
   "category": {
-    "it": "Diplomazia / CPI"
+    "it": "Diplomazia / CPI",
+    "en": "Diplomacy / ICC"
   },
   "themes": [
     "geopolitics_diplomacy",
     "justice"
   ],
   "geography": {
-    "it": "Stati Uniti / Unione europea"
+    "it": "Stati Uniti / Unione europea",
+    "en": "United States / European Union"
   },
+  "places": [
+    "US"
+  ],
   "evidence_note": {
-    "it": "Atti e posizioni ufficiali; giorno non specificato"
+    "it": "Atti e posizioni ufficiali; giorno non specificato",
+    "en": "Official acts and positions; day not specified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e270cc43f4f6f1b6"
+      }
+    }
   },
   "provenance": [
     {

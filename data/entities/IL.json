@@ -2,12 +2,20 @@
   "id": "IL",
   "kind": "state",
   "name": {
-    "it": "Stato di Israele"
+    "it": "Stato di Israele",
+    "en": "State of Israel"
   },
   "domain": "geopolitics",
+  "country": "IL",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "44b31b366cdacab6"
+      }
+    }
   },
   "provenance": [
     {

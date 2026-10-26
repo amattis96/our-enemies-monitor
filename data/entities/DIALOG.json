@@ -2,12 +2,20 @@
   "id": "DIALOG",
   "kind": "organization",
   "name": {
-    "it": "ANO Dialog"
+    "it": "ANO Dialog",
+    "en": "ANO Dialog"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "02224563b9665f9f"
+      }
+    }
   },
   "provenance": [
     {

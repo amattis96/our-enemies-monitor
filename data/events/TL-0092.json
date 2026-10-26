@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Condanna di Nathan Gill"
+    "it": "Condanna di Nathan Gill",
+    "en": "Conviction of Nathan Gill"
   },
   "description": {
-    "it": "Gill, dopo aver ammesso otto reati, riceve una pena di 10 anni e 6 mesi; documentati circa £40.000 per attività politiche filorusse."
+    "it": "Gill, dopo aver ammesso otto reati, riceve una pena di 10 anni e 6 mesi; documentati circa £40.000 per attività politiche filorusse.",
+    "en": "Gill, having admitted eight offences, receives a sentence of 10 years and 6 months; about £40,000 documented for pro-Russian political activities."
   },
   "category": {
-    "it": "Giustizia / corruzione"
+    "it": "Giustizia / corruzione",
+    "en": "Justice / corruption"
   },
   "themes": [
     "justice",
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Accertato giudiziariamente"
+    "it": "Accertato giudiziariamente",
+    "en": "Judicially established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d51444d3c135a1ba"
+      }
+    }
   },
   "provenance": [
     {

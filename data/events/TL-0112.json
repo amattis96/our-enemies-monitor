@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Iniziativa europea Chips Act 2.0"
+    "it": "Iniziativa europea Chips Act 2.0",
+    "en": "European Chips Act 2.0 initiative"
   },
   "description": {
-    "it": "L’UE promuove una nuova fase di autonomia industriale per ridurre dipendenze leading-edge; l’assenza di foundry UE aperte sotto 10 nm resta un limite."
+    "it": "L’UE promuove una nuova fase di autonomia industriale per ridurre dipendenze leading-edge; l’assenza di foundry UE aperte sotto 10 nm resta un limite.",
+    "en": "The EU launches a new phase of industrial autonomy to reduce leading-edge dependencies; the lack of open EU foundries below 10 nm remains a limitation."
   },
   "category": {
-    "it": "Industria / semiconduttori"
+    "it": "Industria / semiconduttori",
+    "en": "Industry / semiconductors"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Iniziativa istituzionale"
+    "it": "Iniziativa istituzionale",
+    "en": "Institutional initiative"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bad721b33c262d3a"
+      }
+    }
   },
   "provenance": [
     {

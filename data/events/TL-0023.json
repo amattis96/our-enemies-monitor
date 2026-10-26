@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Russia Report del comitato intelligence britannico"
+    "it": "Russia Report del comitato intelligence britannico",
+    "en": "Russia Report of the UK Intelligence and Security Committee"
   },
   "description": {
-    "it": "Il rapporto UK critica la mancata valutazione post-Brexit dell’interferenza; non stabilisce che Mosca abbia determinato il referendum."
+    "it": "Il rapporto UK critica la mancata valutazione post-Brexit dell’interferenza; non stabilisce che Mosca abbia determinato il referendum.",
+    "en": "The UK report criticises the failure to assess interference after Brexit; it does not establish that Moscow determined the referendum."
   },
   "category": {
-    "it": "Indagine parlamentare"
+    "it": "Indagine parlamentare",
+    "en": "Parliamentary inquiry"
   },
   "themes": [
     "justice"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Atto parlamentare"
+    "it": "Atto parlamentare",
+    "en": "Parliamentary act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0aac2dfaf9ae31a7"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "PUTIN",
   "kind": "person",
   "name": {
-    "it": "Vladimir Putin"
+    "it": "Vladimir Putin",
+    "en": "Vladimir Putin"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7169db462149d13c"
+      }
+    }
   },
   "provenance": [
     {

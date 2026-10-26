@@ -5,9 +5,12 @@ import {
   ENTITY_KINDS,
   EVENT_RECORD_TYPES,
   EVIDENCE_LEVELS,
+  EXPOSURE_STATUSES,
   HYPOTHESIS_PRIORITIES,
   HYPOTHESIS_STATUSES,
   KNOWN_ISSUE_CODES,
+  MEASURE_QUALIFIERS,
+  MEASURE_UNITS,
   RELATION_CLASSES,
   RELATIONSHIP_EVIDENCE_LEVELS,
   RELATIONSHIP_EVIDENCE_STATUSES,
@@ -15,6 +18,7 @@ import {
   SOURCE_TYPES,
   THEMES,
   TIMELINE_STATUSES,
+  TRANSLATION_STATUSES,
 } from "./vocabularies.ts";
 
 // ---------------------------------------------------------------------------
@@ -25,12 +29,17 @@ export const ENTITY_ID = /^[A-Z][A-Z0-9_]*$/;
 export const RELATIONSHIP_ID = /^G-\d{4}$/;
 export const HYPOTHESIS_ID = /^H\d{2}$/;
 export const SOURCE_ID = /^(S\d{2}|F\d{2}|P\d{2}|WEB|WEB-EXT-\d{3})$/;
+export const EXPOSURE_ID = /^X-\d{3}$/;
+/** ISO 3166-1 alpha-2 country code. */
+export const COUNTRY_CODE = /^[A-Z]{2}$/;
 
 export const EventId = z.string().regex(EVENT_ID);
 export const EntityId = z.string().regex(ENTITY_ID);
 export const RelationshipId = z.string().regex(RELATIONSHIP_ID);
 export const HypothesisId = z.string().regex(HYPOTHESIS_ID);
 export const SourceId = z.string().regex(SOURCE_ID);
+export const ExposureId = z.string().regex(EXPOSURE_ID);
+export const CountryCode = z.string().regex(COUNTRY_CODE);
 /** Endpoint of a relationship or hypothesis: an entity or an event. */
 export const NodeId = z.union([EntityId, EventId]);
 
@@ -100,9 +109,20 @@ export const ProvenanceEntry = z.union([
   }),
 ]);
 
+/**
+ * Translation state per language. `source_hash` fingerprints the Italian
+ * texts the translation was made from, so a later change of the Italian
+ * text marks the translation as stale.
+ */
+export const TranslationState = z.strictObject({
+  status: z.enum(TRANSLATION_STATUSES),
+  source_hash: z.string().regex(/^[0-9a-f]{16}$/),
+});
+
 export const Review = z.strictObject({
   status: z.enum(REVIEW_STATUSES),
   notes: z.array(z.string().min(1)),
+  translations: z.strictObject({ en: TranslationState.optional() }).optional(),
 });
 
 export const KnownIssue = z.strictObject({
@@ -127,8 +147,10 @@ export const Event = z.strictObject({
   category: LocalizedText.nullable(),
   /** Editorial themes for filtering (src/pipeline/baseline/themes.ts). */
   themes: z.array(z.enum(THEMES)).min(1),
-  /** Original free-text geography; normalized places come later (M3). */
+  /** Original free-text geography: the reference for `places`. */
   geography: LocalizedText.nullable(),
+  /** Countries named by the geography (src/pipeline/baseline/places.ts); areas without a country stay out. */
+  places: z.array(CountryCode),
   /** Original free-text evidence assessment of the timeline record. */
   evidence_note: LocalizedText.nullable(),
   evidence_level: z.enum(EVIDENCE_LEVELS).nullable(),
@@ -145,6 +167,8 @@ export const Entity = z.strictObject({
   kind: z.enum(ENTITY_KINDS),
   name: LocalizedText,
   domain: z.enum(ENTITY_DOMAINS),
+  /** ISO country code of a `state` entity; null for every other kind. */
+  country: CountryCode.nullable(),
   review: Review,
   provenance: z.array(ProvenanceEntry),
 });
@@ -199,6 +223,36 @@ export const Source = z.strictObject({
   provenance: z.array(ProvenanceEntry),
 });
 
+export const Measure = z.strictObject({
+  label: LocalizedText,
+  value: z.number(),
+  unit: z.enum(MEASURE_UNITS),
+  qualifier: z.enum(MEASURE_QUALIFIERS),
+  /** Denominator for counts ("19 of 20"), when the source gives one. */
+  out_of: z.number().positive().nullable(),
+  /** Reference period as stated by the source (`2024`, `2024-2026`), else null. */
+  period: z
+    .string()
+    .regex(/^\d{4}(-\d{4})?$/)
+    .nullable(),
+});
+
+/** A quantified strategic dependency, with the scope of its denominator. */
+export const Exposure = z.strictObject({
+  id: ExposureId,
+  sector: LocalizedText,
+  /** Original indicator text. */
+  indicator: LocalizedText,
+  measures: z.array(Measure).min(1),
+  /** What the value measures: denominator, universe, data series. */
+  scope: LocalizedText,
+  consequence: LocalizedText,
+  status: z.enum(EXPOSURE_STATUSES),
+  sources: sourceRefs,
+  review: Review,
+  provenance: z.array(ProvenanceEntry),
+});
+
 export type LocalizedText = z.infer<typeof LocalizedText>;
 export type ProvenanceEntry = z.infer<typeof ProvenanceEntry>;
 export type Review = z.infer<typeof Review>;
@@ -208,6 +262,8 @@ export type Entity = z.infer<typeof Entity>;
 export type Relationship = z.infer<typeof Relationship>;
 export type Hypothesis = z.infer<typeof Hypothesis>;
 export type Source = z.infer<typeof Source>;
+export type Exposure = z.infer<typeof Exposure>;
+export type Measure = z.infer<typeof Measure>;
 
 /** Collections in `data/<name>/<id>.json`. */
 export const COLLECTIONS = {
@@ -216,6 +272,7 @@ export const COLLECTIONS = {
   relationships: Relationship,
   hypotheses: Hypothesis,
   sources: Source,
+  exposures: Exposure,
 } as const;
 
 export type CollectionName = keyof typeof COLLECTIONS;
@@ -227,4 +284,5 @@ export type Dataset = {
   relationships: Relationship[];
   hypotheses: Hypothesis[];
   sources: Source[];
+  exposures: Exposure[];
 };

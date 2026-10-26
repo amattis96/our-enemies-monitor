@@ -2,12 +2,20 @@
   "id": "VIASAT",
   "kind": "company",
   "name": {
-    "it": "Viasat / KA-SAT"
+    "it": "Viasat / KA-SAT",
+    "en": "Viasat / KA-SAT"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b03130b2802625fc"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,23 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Incendio contro Milrem Robotics"
+    "it": "Incendio contro Milrem Robotics",
+    "en": "Arson attack against Milrem Robotics"
   },
   "description": {
-    "it": "Attacco a Tallinn contro un fornitore di veicoli terrestri per l’Ucraina; KAPO attribuisce l’operazione ai servizi russi tramite intermediari, tre sospetti arrestati."
+    "it": "Attacco a Tallinn contro un fornitore di veicoli terrestri per l’Ucraina; KAPO attribuisce l’operazione ai servizi russi tramite intermediari, tre sospetti arrestati.",
+    "en": "Attack in Tallinn against a supplier of ground vehicles for Ukraine; KAPO attributes the operation to Russian services acting through intermediaries, three suspects arrested."
   },
   "category": {
-    "it": "Sabotaggio / industria"
+    "it": "Sabotaggio / industria",
+    "en": "Sabotage / industry"
   },
   "themes": [
     "hybrid_sabotage",
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Estonia"
+    "it": "Estonia",
+    "en": "Estonia"
   },
+  "places": [
+    "EE"
+  ],
   "evidence_note": {
-    "it": "Attribuzione KAPO; processo non concluso"
+    "it": "Attribuzione KAPO; processo non concluso",
+    "en": "KAPO attribution; trial not concluded"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4f433346f9ae43b3"
+      }
+    }
   },
   "provenance": [
     {

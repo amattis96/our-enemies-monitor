@@ -14,14 +14,21 @@
   "valid_to": null,
   "primary_url": "https://eur-lex.europa.eu/eli/dec/2023/891/2026-06-15/eng",
   "caveat": {
-    "it": "Singoli destinatari da verificare"
+    "it": "Singoli destinatari da verificare",
+    "en": "Individual recipients to be verified"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6161afb645133d00"
+      }
+    }
   },
   "provenance": [
     {

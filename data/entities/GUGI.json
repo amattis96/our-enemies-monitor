@@ -2,12 +2,20 @@
   "id": "GUGI",
   "kind": "organization",
   "name": {
-    "it": "GUGI (apparato subacqueo russo)"
+    "it": "GUGI (apparato subacqueo russo)",
+    "en": "GUGI (Russian deep-sea directorate)"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cfbd352292405665"
+      }
+    }
   },
   "provenance": [
     {

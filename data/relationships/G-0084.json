@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
   "caveat": {
-    "it": "Nessun diritto decisionale operativo dimostrato"
+    "it": "Nessun diritto decisionale operativo dimostrato",
+    "en": "No operational decision-making rights demonstrated"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b8dab97411696daa"
+      }
+    }
   },
   "provenance": [
     {

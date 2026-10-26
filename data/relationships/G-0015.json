@@ -14,14 +14,21 @@
   "valid_to": null,
   "primary_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
   "caveat": {
-    "it": "Condanna per corruzione UK"
+    "it": "Condanna per corruzione UK",
+    "en": "UK corruption conviction"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "369caa579f76c954"
+      }
+    }
   },
   "provenance": [
     {

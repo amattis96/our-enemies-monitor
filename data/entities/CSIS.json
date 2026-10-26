@@ -2,12 +2,20 @@
   "id": "CSIS",
   "kind": "institution",
   "name": {
-    "it": "Center for Strategic and International Studies"
+    "it": "Center for Strategic and International Studies",
+    "en": "Center for Strategic and International Studies"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "48903fff17cef717"
+      }
+    }
   },
   "provenance": [
     {

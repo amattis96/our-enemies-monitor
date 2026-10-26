@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
   "caveat": {
-    "it": "Attribuzione USA su mandato per l’ambasciata, non giudizio universale per tutti attacchi Foxtrot"
+    "it": "Attribuzione USA su mandato per l’ambasciata, non giudizio universale per tutti attacchi Foxtrot",
+    "en": "US attribution of instructions for the embassy attack, not a universal judgment on all Foxtrot attacks"
   },
   "sources": [
     "WEB-EXT-001"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1af0a049332ec46d"
+      }
+    }
   },
   "provenance": [
     {

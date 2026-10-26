@@ -2,12 +2,20 @@
   "id": "TRUMP",
   "kind": "person",
   "name": {
-    "it": "Donald Trump"
+    "it": "Donald Trump",
+    "en": "Donald Trump"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1886cc47e3ef13b0"
+      }
+    }
   },
   "provenance": [
     {

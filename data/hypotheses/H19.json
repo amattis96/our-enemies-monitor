@@ -4,14 +4,17 @@
   "object": "MOIS",
   "hypothesis_type": "ORDINE_IRANIANO_SINGOLO_CASO_NATLAND",
   "question": {
-    "it": "La condanna Natland prova un ordine specifico da intelligence iraniana?"
+    "it": "La condanna Natland prova un ordine specifico da intelligence iraniana?",
+    "en": "Does the Natland conviction prove a specific order from Iranian intelligence?"
   },
   "current_limit": {
-    "it": "No; CPS accerta complotto Foxtrot, OFAC attribuisce altri specifici episodi al MOIS."
+    "it": "No; CPS accerta complotto Foxtrot, OFAC attribuisce altri specifici episodi al MOIS.",
+    "en": "No; the CPS establishes a Foxtrot plot, OFAC attributes other specific episodes to the MOIS."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Atti dibattimentali, comunicazioni, procurement criminali, intelligence disclosure"
+    "it": "Atti dibattimentali, comunicazioni, procurement criminali, intelligence disclosure",
+    "en": "Trial records, communications, criminal procurement, intelligence disclosure"
   },
   "events": [],
   "external_url": null,
@@ -22,7 +25,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0c7d60e2ce6f0fde"
+      }
+    }
   },
   "provenance": [
     {

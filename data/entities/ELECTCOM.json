@@ -2,12 +2,20 @@
   "id": "ELECTCOM",
   "kind": "institution",
   "name": {
-    "it": "Electoral Commission UK"
+    "it": "Electoral Commission UK",
+    "en": "UK Electoral Commission"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f943915540e47777"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "APT31",
   "kind": "organization",
   "name": {
-    "it": "APT31 / attori cyber affiliati alla Cina"
+    "it": "APT31 / attori cyber affiliati alla Cina",
+    "en": "APT31 / China-affiliated cyber actors"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c8dca68c04e6eb23"
+      }
+    }
   },
   "provenance": [
     {

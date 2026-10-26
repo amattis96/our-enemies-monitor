@@ -2,12 +2,20 @@
   "id": "BYD",
   "kind": "company",
   "name": {
-    "it": "BYD"
+    "it": "BYD",
+    "en": "BYD"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dd7e182979366440"
+      }
+    }
   },
   "provenance": [
     {

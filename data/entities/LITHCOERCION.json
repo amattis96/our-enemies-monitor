@@ -2,12 +2,20 @@
   "id": "LITHCOERCION",
   "kind": "asset",
   "name": {
-    "it": "Coercizione commerciale contro la Lituania"
+    "it": "Coercizione commerciale contro la Lituania",
+    "en": "Trade coercion against Lithuania"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "793058ef5a28c58b"
+      }
+    }
   },
   "provenance": [
     {

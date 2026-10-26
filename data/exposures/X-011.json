@@ -1,0 +1,67 @@
+{
+  "id": "X-011",
+  "sector": {
+    "it": "Gas russo / domanda UE",
+    "en": "Russian gas / EU demand"
+  },
+  "indicator": {
+    "it": "Da quasi 40% nel 2021 a circa 10% nel 2025",
+    "en": "From almost 40% in 2021 to about 10% in 2025"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota russa della domanda di gas UE",
+        "en": "Russian share of EU gas demand"
+      },
+      "value": 40,
+      "unit": "percent",
+      "qualifier": "nearly",
+      "out_of": null,
+      "period": "2021"
+    },
+    {
+      "label": {
+        "it": "Quota russa della domanda di gas UE",
+        "en": "Russian share of EU gas demand"
+      },
+      "value": 10,
+      "unit": "percent",
+      "qualifier": "approx",
+      "out_of": null,
+      "period": "2025"
+    }
+  ],
+  "scope": {
+    "it": "Quota della domanda di gas UE, valori approssimati",
+    "en": "Share of EU gas demand, approximate values"
+  },
+  "consequence": {
+    "it": "De-risking significativo, ma nuova esposizione al LNG globale",
+    "en": "Significant de-risking, but new exposure to global LNG"
+  },
+  "status": "observed",
+  "sources": [
+    "S08",
+    "S04"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6322e61ba1b9a458"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 582,
+      "original": {
+        "text": "| Gas russo / domanda UE | Da quasi **40% nel 2021** a circa **10% nel 2025** | Quota della domanda di gas UE, valori approssimati | De-risking significativo, ma nuova esposizione al LNG globale [S04] |"
+      }
+    }
+  ]
+}

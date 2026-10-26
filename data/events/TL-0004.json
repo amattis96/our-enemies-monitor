@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Avvio e ampliamento del regime sanzionatorio UE sulla Russia"
+    "it": "Avvio e ampliamento del regime sanzionatorio UE sulla Russia",
+    "en": "Launch and expansion of the EU sanctions regime on Russia"
   },
   "description": {
-    "it": "L’UE costruisce le misure restrittive in risposta alla violazione della sovranità ucraina."
+    "it": "L’UE costruisce le misure restrittive in risposta alla violazione della sovranità ucraina.",
+    "en": "The EU builds restrictive measures in response to the violation of Ukrainian sovereignty."
   },
   "category": {
-    "it": "Sanzioni / diplomazia"
+    "it": "Sanzioni / diplomazia",
+    "en": "Sanctions / diplomacy"
   },
   "themes": [
     "finance_sanctions",
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Atto istituzionale"
+    "it": "Atto istituzionale",
+    "en": "Institutional act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "eaadc43d847914b7"
+      }
+    }
   },
   "provenance": [
     {

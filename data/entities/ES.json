@@ -2,12 +2,20 @@
   "id": "ES",
   "kind": "state",
   "name": {
-    "it": "Spagna"
+    "it": "Spagna",
+    "en": "Spain"
   },
   "domain": "geopolitics",
+  "country": "ES",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bbfe0cd89b49d2cf"
+      }
+    }
   },
   "provenance": [
     {

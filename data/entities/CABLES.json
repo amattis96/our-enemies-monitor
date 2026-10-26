@@ -2,12 +2,20 @@
   "id": "CABLES",
   "kind": "asset",
   "name": {
-    "it": "Cavi sottomarini baltici"
+    "it": "Cavi sottomarini baltici",
+    "en": "Baltic undersea cables"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "820a76fa719c8ae3"
+      }
+    }
   },
   "provenance": [
     {

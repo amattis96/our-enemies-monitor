@@ -14,7 +14,8 @@
   "valid_to": null,
   "primary_url": "https://www.sgdsn.gouv.fr/viginum/publications/rokh-solis-analyse-dun-mode-operatoire-informationnel-ayant-cible-les",
   "caveat": {
-    "it": "Committente non identificato"
+    "it": "Committente non identificato",
+    "en": "Client not identified"
   },
   "sources": [
     "S01",
@@ -23,7 +24,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "232ef5cbe6f1a137"
+      }
+    }
   },
   "provenance": [
     {

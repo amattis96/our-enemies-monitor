@@ -2,12 +2,20 @@
   "id": "BLACK",
   "kind": "organization",
   "name": {
-    "it": "BlackCore"
+    "it": "BlackCore",
+    "en": "BlackCore"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8c2d5ab02365a2f9"
+      }
+    }
   },
   "provenance": [
     {

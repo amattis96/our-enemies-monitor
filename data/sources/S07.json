@@ -2,7 +2,8 @@
   "id": "S07",
   "type": "corpus_document",
   "title": {
-    "it": "Fonte_07 — La ragnatela delle pressioni, infiltrazioni e dipendenze geopolitiche sull’Europa"
+    "it": "Fonte_07 — La ragnatela delle pressioni, infiltrazioni e dipendenze geopolitiche sull’Europa",
+    "en": "Fonte_07 — The web of pressures, infiltration and geopolitical dependencies on Europe"
   },
   "publisher": null,
   "files": [
@@ -17,7 +18,13 @@
   "cited_in": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7f99415df6215877"
+      }
+    }
   },
   "provenance": [
     {

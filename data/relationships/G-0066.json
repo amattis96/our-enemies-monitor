@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Nessun obbligo automatico di difesa tipo NATO"
+    "it": "Nessun obbligo automatico di difesa tipo NATO",
+    "en": "No automatic NATO-style defence obligation"
   },
   "sources": [
     "S05"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "21881a9619087921"
+      }
+    }
   },
   "provenance": [
     {

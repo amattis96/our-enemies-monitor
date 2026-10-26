@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
   "caveat": {
-    "it": "~$10 milioni nel fondo intermediato"
+    "it": "~$10 milioni nel fondo intermediato",
+    "en": "~$10 million in the intermediated fund"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f358d65da010e85f"
+      }
+    }
   },
   "provenance": [
     {

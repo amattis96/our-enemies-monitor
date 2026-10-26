@@ -4,14 +4,17 @@
   "object": "US",
   "hypothesis_type": "COORDINAMENTO_POLITICO_USA_E_INTERVENTI_MUSK",
   "question": {
-    "it": "Esistono ordini, accordi e contatti governativi relativi al sostegno Musk ad AfD?"
+    "it": "Esistono ordini, accordi e contatti governativi relativi al sostegno Musk ad AfD?",
+    "en": "Are there government orders, agreements and contacts relating to Musk's support for AfD?"
   },
   "current_limit": {
-    "it": "Sostegno pubblico accertato, regia clandestina federale non dimostrata."
+    "it": "Sostegno pubblico accertato, regia clandestina federale non dimostrata.",
+    "en": "Public support established; covert federal direction not demonstrated."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Records Casa Bianca/FARA, agenda contatti, contratti, testimonianze, log moderazione"
+    "it": "Records Casa Bianca/FARA, agenda contatti, contratti, testimonianze, log moderazione",
+    "en": "White House/FARA records, contact schedules, contracts, testimony, moderation logs"
   },
   "events": [
     "TL-0081",
@@ -26,7 +29,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "075aa4871cc53dd6"
+      }
+    }
   },
   "provenance": [
     {

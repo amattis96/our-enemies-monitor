@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Intrusioni contro ministeri estoni"
+    "it": "Intrusioni contro ministeri estoni",
+    "en": "Intrusions against Estonian ministries"
   },
   "description": {
-    "it": "Compromissione e sottrazione di documenti; la UE attribuirà l’operazione alla GRU Unit 29155 e sanzionerà nel 2025."
+    "it": "Compromissione e sottrazione di documenti; la UE attribuirà l’operazione alla GRU Unit 29155 e sanzionerà nel 2025.",
+    "en": "Compromise and theft of documents; the EU would attribute the operation to GRU Unit 29155 and impose sanctions in 2025."
   },
   "category": {
-    "it": "Cyber / intelligence"
+    "it": "Cyber / intelligence",
+    "en": "Cyber / intelligence"
   },
   "themes": [
     "cyber",
     "intelligence"
   ],
   "geography": {
-    "it": "Estonia"
+    "it": "Estonia",
+    "en": "Estonia"
   },
+  "places": [
+    "EE"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale successiva"
+    "it": "Attribuzione istituzionale successiva",
+    "en": "Later institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "84bcf4d82dfb58d9"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "FR",
   "kind": "state",
   "name": {
-    "it": "Francia"
+    "it": "Francia",
+    "en": "France"
   },
   "domain": "geopolitics",
+  "country": "FR",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1a8fb3ddf62945f4"
+      }
+    }
   },
   "provenance": [
     {

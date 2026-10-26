@@ -4,14 +4,17 @@
   "object": "HAL9001",
   "hypothesis_type": "FLUSSO_DI_CAPITALE_KERIMOV_SPACEX",
   "question": {
-    "it": "Esiste prova bancaria di fondi Kerimov entrati nell’investimento HAL9001 o SpaceX?"
+    "it": "Esiste prova bancaria di fondi Kerimov entrati nell’investimento HAL9001 o SpaceX?",
+    "en": "Is there banking evidence of Kerimov funds entering the HAL9001 or SpaceX investment?"
   },
   "current_limit": {
-    "it": "NESSUNA prova nel corpus; vietata la catena per semplice vicinanza Sob-GVA."
+    "it": "NESSUNA prova nel corpus; vietata la catena per semplice vicinanza Sob-GVA.",
+    "en": "NO evidence in the corpus; a chain based on mere Sob-GVA proximity is not allowed."
   },
   "priority": "critical",
   "evidence_needed": {
-    "it": "LP register HAL9001, wire transfers, UBO KYC, side letters, documenti di fondi"
+    "it": "LP register HAL9001, wire transfers, UBO KYC, side letters, documenti di fondi",
+    "en": "HAL9001 LP register, wire transfers, UBO KYC, side letters, fund documents"
   },
   "events": [
     "TL-0084",
@@ -26,7 +29,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b591929c8734a30e"
+      }
+    }
   },
   "provenance": [
     {

@@ -7,11 +7,13 @@ import {
   type Dataset,
   type ProvenanceEntry,
   RELATION_CLASS_GROUP,
+  type Review,
 } from "../model/index.ts";
 import type { DataFile } from "./load.ts";
 import { repoPath } from "./paths.ts";
 import { serializeRecord } from "./serialize.ts";
 import { SourceReader } from "./sources.ts";
+import { translationProblem } from "./translations.ts";
 
 export type Issue = { severity: "error" | "warning"; file: string; message: string };
 
@@ -36,6 +38,7 @@ export function validateDataFiles(
     relationships: [],
     hypotheses: [],
     sources: [],
+    exposures: [],
   };
   const error = (file: string, message: string) =>
     issues.push({ severity: "error", file, message });
@@ -91,6 +94,7 @@ export function validateDataFiles(
     ...dataset.relationships,
     ...dataset.hypotheses,
     ...dataset.sources,
+    ...dataset.exposures,
   ]) {
     const refs = "cited_in" in record ? record.cited_in : record.sources;
     checkRefs(record.id, "source", refs, sourceIds);
@@ -105,6 +109,29 @@ export function validateDataFiles(
     for (const file of source.files) {
       if (!existsSync(repoPath(file))) error(pathOf(source.id), `file "${file}" does not exist`);
     }
+  }
+
+  // Countries: real ISO codes; only states carry one
+  for (const event of dataset.events) {
+    for (const code of event.places) {
+      if (!isCountry(code)) error(pathOf(event.id), `place "${code}" is not an ISO country code`);
+    }
+  }
+  for (const entity of dataset.entities) {
+    if ((entity.kind === "state") !== (entity.country !== null)) {
+      error(pathOf(entity.id), "country must be set for states and only for states");
+    }
+    if (entity.country !== null && !isCountry(entity.country)) {
+      error(pathOf(entity.id), `country "${entity.country}" is not an ISO country code`);
+    }
+  }
+
+  // Translations: complete, tracked and not stale
+  for (const record of COLLECTION_NAMES.flatMap(
+    (c): { id: string; review: Review }[] => dataset[c],
+  )) {
+    const problem = translationProblem(record);
+    if (problem) error(pathOf(record.id), problem);
   }
 
   // 5. Event participation must point at an event (otherwise it reads as a direct link)
@@ -166,5 +193,12 @@ export function summarize(dataset: Dataset) {
     direct_relationships: dataset.relationships.length - participation,
     hypotheses: dataset.hypotheses.length,
     sources: dataset.sources.length,
+    exposures: dataset.exposures.length,
   };
+}
+
+const regionNames = new Intl.DisplayNames(["en"], { type: "region", fallback: "none" });
+
+function isCountry(code: string): boolean {
+  return code !== "ZZ" && regionNames.of(code) !== undefined;
 }

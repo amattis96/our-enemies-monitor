@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Condanna tedesca 2025"
+    "it": "Condanna tedesca 2025",
+    "en": "German conviction 2025"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "865f72e9dab75451"
+      }
+    }
   },
   "provenance": [
     {

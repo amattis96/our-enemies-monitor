@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "MacronLeaks nelle presidenziali francesi"
+    "it": "MacronLeaks nelle presidenziali francesi",
+    "en": "MacronLeaks in the French presidential election"
   },
   "description": {
-    "it": "Operazione hack-and-leak, phishing e amplificazione online; la Francia non attribuisce formalmente l’episodio a uno Stato, pur emergendo indizi russi in analisi successive."
+    "it": "Operazione hack-and-leak, phishing e amplificazione online; la Francia non attribuisce formalmente l’episodio a uno Stato, pur emergendo indizi russi in analisi successive.",
+    "en": "Hack-and-leak operation, phishing and online amplification; France does not formally attribute the episode to a state, although later analyses point to Russian indicators."
   },
   "category": {
-    "it": "Interferenza elettorale"
+    "it": "Interferenza elettorale",
+    "en": "Electoral interference"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Francia"
+    "it": "Francia",
+    "en": "France"
   },
+  "places": [
+    "FR"
+  ],
   "evidence_note": {
-    "it": "Evento accertato; attribuzione statale non conclusiva"
+    "it": "Evento accertato; attribuzione statale non conclusiva",
+    "en": "Event established; state attribution not conclusive"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5087e761a5eeae17"
+      }
+    }
   },
   "provenance": [
     {

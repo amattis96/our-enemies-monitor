@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Condanna di Ilan Șor"
+    "it": "Condanna di Ilan Șor",
+    "en": "Conviction of Ilan Șor"
   },
   "description": {
-    "it": "Condanna definitiva a 15 anni in Moldavia per frode bancaria e riciclaggio; le reti di influenza collegate continuano ad operare."
+    "it": "Condanna definitiva a 15 anni in Moldavia per frode bancaria e riciclaggio; le reti di influenza collegate continuano ad operare.",
+    "en": "Final 15-year sentence in Moldova for bank fraud and money laundering; the linked influence networks continue to operate."
   },
   "category": {
-    "it": "Finanza / giustizia"
+    "it": "Finanza / giustizia",
+    "en": "Finance / justice"
   },
   "themes": [
     "finance_sanctions",
     "justice"
   ],
   "geography": {
-    "it": "Moldavia"
+    "it": "Moldavia",
+    "en": "Moldova"
   },
+  "places": [
+    "MD"
+  ],
   "evidence_note": {
-    "it": "Accertato giudiziariamente"
+    "it": "Accertato giudiziariamente",
+    "en": "Judicially established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a4c5aa0a01504b4e"
+      }
+    }
   },
   "provenance": [
     {

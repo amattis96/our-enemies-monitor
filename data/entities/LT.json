@@ -2,12 +2,20 @@
   "id": "LT",
   "kind": "state",
   "name": {
-    "it": "Lituania"
+    "it": "Lituania",
+    "en": "Lithuania"
   },
   "domain": "geopolitics",
+  "country": "LT",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e0b5d3a2b444cde6"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "HAPSBURG",
   "kind": "organization",
   "name": {
-    "it": "Hapsburg Group"
+    "it": "Hapsburg Group",
+    "en": "Hapsburg Group"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7165ff5872dc53fc"
+      }
+    }
   },
   "provenance": [
     {

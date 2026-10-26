@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
   "caveat": {
-    "it": "OFAC parla di leader criminale e di cooperazione con MOIS"
+    "it": "OFAC parla di leader criminale e di cooperazione con MOIS",
+    "en": "OFAC refers to a criminal leader and cooperation with the MOIS"
   },
   "sources": [
     "WEB-EXT-002"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "90d7de27a0468586"
+      }
+    }
   },
   "provenance": [
     {

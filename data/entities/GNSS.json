@@ -2,12 +2,20 @@
   "id": "GNSS",
   "kind": "asset",
   "name": {
-    "it": "Segnale GNSS civile baltico"
+    "it": "Segnale GNSS civile baltico",
+    "en": "Baltic civilian GNSS signal"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a305913732d1d495"
+      }
+    }
   },
   "provenance": [
     {

@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": "https://home.treasury.gov/news/press-releases/sb0047",
   "caveat": {
-    "it": "OFAC collega l’operazione al gruppo"
+    "it": "OFAC collega l’operazione al gruppo",
+    "en": "OFAC links the operation to the group"
   },
   "sources": [
     "WEB-EXT-001"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6512f190e662a47c"
+      }
+    }
   },
   "provenance": [
     {

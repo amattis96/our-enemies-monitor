@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Hybrid Symposium NATO"
+    "it": "Hybrid Symposium NATO",
+    "en": "NATO Hybrid Symposium"
   },
   "description": {
-    "it": "Il simposio 15-16 ottobre si concentra su sabotaggi, droni e cyber minacce attribuite all’ecosistema russo."
+    "it": "Il simposio 15-16 ottobre si concentra su sabotaggi, droni e cyber minacce attribuite all’ecosistema russo.",
+    "en": "The 15-16 October symposium focuses on sabotage, drones and cyber threats attributed to the Russian ecosystem."
   },
   "category": {
-    "it": "NATO / sicurezza"
+    "it": "NATO / sicurezza",
+    "en": "NATO / security"
   },
   "themes": [
     "eu_nato_response"
   ],
   "geography": {
-    "it": "NATO"
+    "it": "NATO",
+    "en": "NATO"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Evento NATO"
+    "it": "Evento NATO",
+    "en": "NATO event"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b6cf90c67be2cb98"
+      }
+    }
   },
   "provenance": [
     {

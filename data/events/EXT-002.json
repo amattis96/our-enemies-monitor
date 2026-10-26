@@ -8,18 +8,25 @@
     "precision": "day"
   },
   "title": {
-    "it": "OFAC sanziona Foxtrot Network e Rawa Majid"
+    "it": "OFAC sanziona Foxtrot Network e Rawa Majid",
+    "en": "OFAC sanctions Foxtrot Network and Rawa Majid"
   },
   "description": {
-    "it": "Designazione Foxtrot come organizzazione criminale transnazionale e del leader Rawa Majid; OFAC dichiara cooperazione Majid-MOIS."
+    "it": "Designazione Foxtrot come organizzazione criminale transnazionale e del leader Rawa Majid; OFAC dichiara cooperazione Majid-MOIS.",
+    "en": "Designation of Foxtrot as a transnational criminal organisation and of its leader Rawa Majid; OFAC states Majid-MOIS cooperation."
   },
   "category": null,
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Europa / UK / Svezia"
+    "it": "Europa / UK / Svezia",
+    "en": "Europe / UK / Sweden"
   },
+  "places": [
+    "GB",
+    "SE"
+  ],
   "evidence_note": null,
   "evidence_level": "E1",
   "publisher": "US Treasury OFAC",
@@ -32,7 +39,13 @@
     "status": "imported_unreviewed",
     "notes": [
       "Themes assigned editorially: the record has no original category."
-    ]
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2c8414567fa612a9"
+      }
+    }
   },
   "provenance": [
     {

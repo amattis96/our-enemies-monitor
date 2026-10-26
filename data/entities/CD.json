@@ -2,12 +2,20 @@
   "id": "CD",
   "kind": "state",
   "name": {
-    "it": "Repubblica Democratica del Congo"
+    "it": "Repubblica Democratica del Congo",
+    "en": "Democratic Republic of the Congo"
   },
   "domain": "geopolitics",
+  "country": "CD",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4b90058c1eefdd00"
+      }
+    }
   },
   "provenance": [
     {

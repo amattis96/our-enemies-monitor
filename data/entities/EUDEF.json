@@ -2,12 +2,20 @@
   "id": "EUDEF",
   "kind": "asset",
   "name": {
-    "it": "Capacità difensiva europea"
+    "it": "Capacità difensiva europea",
+    "en": "European defence capability"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "51132495be51097f"
+      }
+    }
   },
   "provenance": [
     {

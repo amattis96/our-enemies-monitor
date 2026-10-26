@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Municipali francesi e operazione Rokh Solis"
+    "it": "Municipali francesi e operazione Rokh Solis",
+    "en": "French municipal elections and the Rokh Solis operation"
   },
   "description": {
-    "it": "VIGINUM classifica l’operazione come ingerenza digitale straniera e identifica indicatori verso BlackCore, società israeliana; committenti non stabiliti."
+    "it": "VIGINUM classifica l’operazione come ingerenza digitale straniera e identifica indicatori verso BlackCore, società israeliana; committenti non stabiliti.",
+    "en": "VIGINUM classifies the operation as foreign digital interference and identifies indicators pointing to BlackCore, an Israeli company; clients not established."
   },
   "category": {
-    "it": "Influenza digitale"
+    "it": "Influenza digitale",
+    "en": "Digital influence"
   },
   "themes": [
     "elections_influence",
     "information_manipulation"
   ],
   "geography": {
-    "it": "Francia"
+    "it": "Francia",
+    "en": "France"
   },
+  "places": [
+    "FR"
+  ],
   "evidence_note": {
-    "it": "INE attribuita; committente non verificato"
+    "it": "INE attribuita; committente non verificato",
+    "en": "Foreign digital interference (INE) attributed; client not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -39,7 +47,8 @@
     {
       "code": "date_reflects_publication",
       "note": {
-        "it": "Rokh Solis è datato 2026-06 (pubblicazione del rapporto VIGINUM), ma le municipali francesi si sono svolte nel marzo 2026: separare data dell'evento e data di pubblicazione."
+        "it": "Rokh Solis è datato 2026-06 (pubblicazione del rapporto VIGINUM), ma le municipali francesi si sono svolte nel marzo 2026: separare data dell'evento e data di pubblicazione.",
+        "en": "Rokh Solis is dated 2026-06 (publication of the VIGINUM report), but the French municipal elections took place in March 2026: separate the event date from the publication date."
       },
       "reported_in": [
         "S07",
@@ -49,7 +58,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2788c51f1350a3a6"
+      }
+    }
   },
   "provenance": [
     {

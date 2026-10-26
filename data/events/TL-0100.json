@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "USA e Israele attaccano l’Iran"
+    "it": "USA e Israele attaccano l’Iran",
+    "en": "The US and Israel attack Iran"
   },
   "description": {
-    "it": "Inizio della guerra del 2026, con ripercussioni sulla navigazione a Hormuz e sui mercati energetici mondiali."
+    "it": "Inizio della guerra del 2026, con ripercussioni sulla navigazione a Hormuz e sui mercati energetici mondiali.",
+    "en": "Start of the 2026 war, with repercussions on shipping through Hormuz and on world energy markets."
   },
   "category": {
-    "it": "Guerra / Medio Oriente"
+    "it": "Guerra / Medio Oriente",
+    "en": "War / Middle East"
   },
   "themes": [
     "armed_conflict"
   ],
   "geography": {
-    "it": "Iran / Medio Oriente"
+    "it": "Iran / Medio Oriente",
+    "en": "Iran / Middle East"
   },
+  "places": [
+    "IR"
+  ],
   "evidence_note": {
-    "it": "Operazioni militari accertate"
+    "it": "Operazioni militari accertate",
+    "en": "Military operations established"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c6033f8f91028f14"
+      }
+    }
   },
   "provenance": [
     {

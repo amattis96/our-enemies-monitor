@@ -2,12 +2,20 @@
   "id": "MATRY",
   "kind": "organization",
   "name": {
-    "it": "Matryoshka"
+    "it": "Matryoshka",
+    "en": "Matryoshka"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a12e535bab142254"
+      }
+    }
   },
   "provenance": [
     {

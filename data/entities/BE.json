@@ -2,12 +2,20 @@
   "id": "BE",
   "kind": "state",
   "name": {
-    "it": "Belgio"
+    "it": "Belgio",
+    "en": "Belgium"
   },
   "domain": "geopolitics",
+  "country": "BE",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "58b0eb5f1882b6a5"
+      }
+    }
   },
   "provenance": [
     {

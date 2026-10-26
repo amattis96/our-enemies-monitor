@@ -2,12 +2,20 @@
   "id": "ISREMB",
   "kind": "institution",
   "name": {
-    "it": "Ambasciata israeliana a Stoccolma"
+    "it": "Ambasciata israeliana a Stoccolma",
+    "en": "Israeli embassy in Stockholm"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "343b8048ae2e1639"
+      }
+    }
   },
   "provenance": [
     {

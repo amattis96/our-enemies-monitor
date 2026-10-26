@@ -8,23 +8,32 @@
     "precision": "month"
   },
   "title": {
-    "it": "Intesa USA-Russia per il diesel russo"
+    "it": "Intesa USA-Russia per il diesel russo",
+    "en": "US-Russia understanding on Russian diesel"
   },
   "description": {
-    "it": "Washington attenua restrizioni e favorisce il ritorno di flussi di gasolio russo a mercati terzi; beneficio economico a Mosca non prova coordinamento clandestino."
+    "it": "Washington attenua restrizioni e favorisce il ritorno di flussi di gasolio russo a mercati terzi; beneficio economico a Mosca non prova coordinamento clandestino.",
+    "en": "Washington eases restrictions and enables the return of Russian diesel flows to third markets; an economic benefit to Moscow does not prove covert coordination."
   },
   "category": {
-    "it": "Energia / Russia-USA"
+    "it": "Energia / Russia-USA",
+    "en": "Energy / Russia-USA"
   },
   "themes": [
     "energy",
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "USA / Russia / mercati globali"
+    "it": "USA / Russia / mercati globali",
+    "en": "USA / Russia / global markets"
   },
+  "places": [
+    "US",
+    "RU"
+  ],
   "evidence_note": {
-    "it": "Decisioni/documenti e reporting; interpretazione strategica aperta"
+    "it": "Decisioni/documenti e reporting; interpretazione strategica aperta",
+    "en": "Decisions/documents and reporting; strategic interpretation open"
   },
   "evidence_level": null,
   "publisher": null,
@@ -38,7 +47,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "34a1a74bd9d61b64"
+      }
+    }
   },
   "provenance": [
     {

@@ -4,14 +4,17 @@
   "object": "PAPER",
   "hypothesis_type": "SCAMBIO_NARRATIVE_CINA_RUSSIA",
   "question": {
-    "it": "Il riuso Paperwall di fonti russe deriva da accordi editoriali, aggregazione automatica o istruzioni statali?"
+    "it": "Il riuso Paperwall di fonti russe deriva da accordi editoriali, aggregazione automatica o istruzioni statali?",
+    "en": "Does Paperwall's reuse of Russian sources stem from editorial agreements, automated aggregation or state instructions?"
   },
   "current_limit": {
-    "it": "Ripresa di contenuti dimostrata; coordinamento non dimostrato."
+    "it": "Ripresa di contenuti dimostrata; coordinamento non dimostrato.",
+    "en": "Content reuse demonstrated; coordination not demonstrated."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Timestamp post originali, RSS/API, domini, hosting, partnership contrattuali, diffusione cross-platform"
+    "it": "Timestamp post originali, RSS/API, domini, hosting, partnership contrattuali, diffusione cross-platform",
+    "en": "Original post timestamps, RSS/API, domains, hosting, contractual partnerships, cross-platform spread"
   },
   "events": [
     "TL-0082"
@@ -24,7 +27,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8c44c7989dc87e86"
+      }
+    }
   },
   "provenance": [
     {

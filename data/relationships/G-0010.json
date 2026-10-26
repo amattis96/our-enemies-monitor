@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
   "caveat": {
-    "it": "Attribuzione Consiglio UE"
+    "it": "Attribuzione Consiglio UE",
+    "en": "EU Council attribution"
   },
   "sources": [
     "S01",
@@ -21,7 +22,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a6e8421b791bf406"
+      }
+    }
   },
   "provenance": [
     {

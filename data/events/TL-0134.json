@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Stima flash dell’inflazione eurozona di settembre"
+    "it": "Stima flash dell’inflazione eurozona di settembre",
+    "en": "Flash estimate of euro area inflation for September"
   },
   "description": {
-    "it": "Eurostat pubblica il 3,8% annuo e una componente energia al +18,8%; verrà aggiornata nella release definitiva."
+    "it": "Eurostat pubblica il 3,8% annuo e una componente energia al +18,8%; verrà aggiornata nella release definitiva.",
+    "en": "Eurostat publishes 3.8% annual inflation and an energy component at +18.8%; it will be updated in the final release."
   },
   "category": {
-    "it": "Eurostat / energia"
+    "it": "Eurostat / energia",
+    "en": "Eurostat / energy"
   },
   "themes": [
     "energy"
   ],
   "geography": {
-    "it": "Eurozona"
+    "it": "Eurozona",
+    "en": "Euro area"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Dato statistico istituzionale"
+    "it": "Dato statistico istituzionale",
+    "en": "Institutional statistical data"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "394e9647009b01c9"
+      }
+    }
   },
   "provenance": [
     {

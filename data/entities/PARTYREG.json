@@ -2,12 +2,20 @@
   "id": "PARTYREG",
   "kind": "organization",
   "name": {
-    "it": "Party of Regions"
+    "it": "Party of Regions",
+    "en": "Party of Regions"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0eaa0175028475c0"
+      }
+    }
   },
   "provenance": [
     {

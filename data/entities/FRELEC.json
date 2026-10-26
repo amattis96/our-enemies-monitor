@@ -2,12 +2,20 @@
   "id": "FRELEC",
   "kind": "asset",
   "name": {
-    "it": "Municipali francesi 2026"
+    "it": "Municipali francesi 2026",
+    "en": "2026 French municipal elections"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f416061ebd4df07f"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "NATLAND",
   "kind": "person",
   "name": {
-    "it": "Johannes Natland"
+    "it": "Johannes Natland",
+    "en": "Johannes Natland"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "56b38700103b885d"
+      }
+    }
   },
   "provenance": [
     {

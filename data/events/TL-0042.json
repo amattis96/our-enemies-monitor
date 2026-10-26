@@ -8,22 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Afflusso migratorio al confine russo-finlandese"
+    "it": "Afflusso migratorio al confine russo-finlandese",
+    "en": "Migrant influx at the Russian-Finnish border"
   },
   "description": {
-    "it": "Incremento e chiusure dei valichi nel 2023-2024; la Finlandia attribuisce alla Russia una facilitazione strumentale dei flussi."
+    "it": "Incremento e chiusure dei valichi nel 2023-2024; la Finlandia attribuisce alla Russia una facilitazione strumentale dei flussi.",
+    "en": "Rise in crossings and border closures in 2023-2024; Finland attributes to Russia an instrumental facilitation of the flows."
   },
   "category": {
-    "it": "Pressione migratoria"
+    "it": "Pressione migratoria",
+    "en": "Migration pressure"
   },
   "themes": [
     "migration_borders"
   ],
   "geography": {
-    "it": "Finlandia / Russia"
+    "it": "Finlandia / Russia",
+    "en": "Finland / Russia"
   },
+  "places": [
+    "FI",
+    "RU"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale finlandese"
+    "it": "Attribuzione istituzionale finlandese",
+    "en": "Finnish institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e3ebf6ee81a8e5c0"
+      }
+    }
   },
   "provenance": [
     {

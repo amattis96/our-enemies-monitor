@@ -8,23 +8,29 @@
     "precision": "day"
   },
   "title": {
-    "it": "Multa UE da 120 milioni di euro a X"
+    "it": "Multa UE da 120 milioni di euro a X",
+    "en": "EU fine of 120 million euros on X"
   },
   "description": {
-    "it": "Decisione della Commissione europea per obblighi di trasparenza DSA: non è una sanzione per collusione con Mosca."
+    "it": "Decisione della Commissione europea per obblighi di trasparenza DSA: non è una sanzione per collusione con Mosca.",
+    "en": "European Commission decision on DSA transparency obligations: it is not a sanction for collusion with Moscow."
   },
   "category": {
-    "it": "DSA / piattaforme"
+    "it": "DSA / piattaforme",
+    "en": "DSA / platforms"
   },
   "themes": [
     "platforms_technology",
     "eu_nato_response"
   ],
   "geography": {
-    "it": "Unione europea / X"
+    "it": "Unione europea / X",
+    "en": "European Union / X"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Provvedimento UE"
+    "it": "Provvedimento UE",
+    "en": "EU measure"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +41,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5dcbde4839b0dd24"
+      }
+    }
   },
   "provenance": [
     {

@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": "https://www.reuters.com/world/uk/uk-police-re-arrest-pair-suspicion-helping-iranian-intelligence-over-raf-2026-10-20/",
   "caveat": {
-    "it": "Non risultano imputazioni o condanne nel corpus"
+    "it": "Non risultano imputazioni o condanne nel corpus",
+    "en": "No charges or convictions appear in the corpus"
   },
   "sources": [
     "WEB-EXT-004"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c65d4fa69b5bb3c9"
+      }
+    }
   },
   "provenance": [
     {

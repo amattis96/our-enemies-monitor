@@ -8,22 +8,28 @@
     "precision": "month"
   },
   "title": {
-    "it": "Citizen Lab documenta Pegasus contro ex eurodeputato PEGA"
+    "it": "Citizen Lab documenta Pegasus contro ex eurodeputato PEGA",
+    "en": "Citizen Lab documents Pegasus against former MEP (PEGA)"
   },
   "description": {
-    "it": "Confermata forensicamente compromissione di Stelios Kouloglou mentre lavorava nella commissione PEGA; operatore finale non determinato."
+    "it": "Confermata forensicamente compromissione di Stelios Kouloglou mentre lavorava nella commissione PEGA; operatore finale non determinato.",
+    "en": "Forensically confirmed compromise of Stelios Kouloglou while he worked on the PEGA committee; final operator not determined."
   },
   "category": {
-    "it": "Spyware"
+    "it": "Spyware",
+    "en": "Spyware"
   },
   "themes": [
     "surveillance_spyware"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Forense; operatore non verificato"
+    "it": "Forense; operatore non verificato",
+    "en": "Forensics; operator not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "00d0b4344ab86422"
+      }
+    }
   },
   "provenance": [
     {

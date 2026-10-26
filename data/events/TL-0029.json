@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Attacco Conti al servizio sanitario irlandese"
+    "it": "Attacco Conti al servizio sanitario irlandese",
+    "en": "Conti attack on the Irish health service"
   },
   "description": {
-    "it": "Ransomware colpisce Health Service Executive; attribuzione al gruppo criminale Conti, non a un mandato del Cremlino."
+    "it": "Ransomware colpisce Health Service Executive; attribuzione al gruppo criminale Conti, non a un mandato del Cremlino.",
+    "en": "Ransomware hits the Health Service Executive; attributed to the Conti criminal group, not to Kremlin instructions."
   },
   "category": {
-    "it": "Ransomware / salute"
+    "it": "Ransomware / salute",
+    "en": "Ransomware / health"
   },
   "themes": [
     "cyber",
     "society_health"
   ],
   "geography": {
-    "it": "Irlanda"
+    "it": "Irlanda",
+    "en": "Ireland"
   },
+  "places": [
+    "IE"
+  ],
   "evidence_note": {
-    "it": "Attacco accertato; ordine statale non verificato"
+    "it": "Attacco accertato; ordine statale non verificato",
+    "en": "Attack established; state order not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d10588aac917b59c"
+      }
+    }
   },
   "provenance": [
     {

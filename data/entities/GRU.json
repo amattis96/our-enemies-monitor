@@ -2,12 +2,20 @@
   "id": "GRU",
   "kind": "organization",
   "name": {
-    "it": "GRU / intelligence militare russa"
+    "it": "GRU / intelligence militare russa",
+    "en": "GRU / Russian military intelligence"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3422d059bb26dc3a"
+      }
+    }
   },
   "provenance": [
     {

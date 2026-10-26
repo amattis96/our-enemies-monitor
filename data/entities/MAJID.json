@@ -2,12 +2,20 @@
   "id": "MAJID",
   "kind": "person",
   "name": {
-    "it": "Rawa Majid"
+    "it": "Rawa Majid",
+    "en": "Rawa Majid"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "648a33480ad0429f"
+      }
+    }
   },
   "provenance": [
     {

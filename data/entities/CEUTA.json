@@ -2,12 +2,20 @@
   "id": "CEUTA",
   "kind": "asset",
   "name": {
-    "it": "Crisi migratoria Ceuta 2026"
+    "it": "Crisi migratoria Ceuta 2026",
+    "en": "Ceuta migration crisis 2026"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "36bda140827e5929"
+      }
+    }
   },
   "provenance": [
     {

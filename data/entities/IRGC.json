@@ -2,12 +2,20 @@
   "id": "IRGC",
   "kind": "organization",
   "name": {
-    "it": "Corpo delle Guardie della Rivoluzione iraniane (IRGC)"
+    "it": "Corpo delle Guardie della Rivoluzione iraniane (IRGC)",
+    "en": "Islamic Revolutionary Guard Corps (IRGC)"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3bea966c8321d2d6"
+      }
+    }
   },
   "provenance": [
     {

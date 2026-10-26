@@ -2,12 +2,20 @@
   "id": "UFWD",
   "kind": "organization",
   "name": {
-    "it": "United Front Work Department"
+    "it": "United Front Work Department",
+    "en": "United Front Work Department"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "51051139be4c5252"
+      }
+    }
   },
   "provenance": [
     {

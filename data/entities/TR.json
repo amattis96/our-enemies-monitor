@@ -2,12 +2,20 @@
   "id": "TR",
   "kind": "state",
   "name": {
-    "it": "Turchia"
+    "it": "Turchia",
+    "en": "Turkey"
   },
   "domain": "geopolitics",
+  "country": "TR",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "eea4216ea30d2e7a"
+      }
+    }
   },
   "provenance": [
     {

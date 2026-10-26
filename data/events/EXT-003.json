@@ -8,10 +8,12 @@
     "precision": "day"
   },
   "title": {
-    "it": "Condanna Natland per complotto omicida Foxtrot nel Regno Unito"
+    "it": "Condanna Natland per complotto omicida Foxtrot nel Regno Unito",
+    "en": "Natland convicted in the UK over a Foxtrot murder plot"
   },
   "description": {
-    "it": "CPS aggiorna il 16 ottobre la condanna a 20 anni per un tentativo di omicidio su commissione nel marzo 2025; il singolo ordine iraniano non è dimostrato nel caso."
+    "it": "CPS aggiorna il 16 ottobre la condanna a 20 anni per un tentativo di omicidio su commissione nel marzo 2025; il singolo ordine iraniano non è dimostrato nel caso.",
+    "en": "On 16 October the CPS reports the 20-year sentence for an attempted contract killing in March 2025; the specific Iranian order is not proven in the case."
   },
   "category": null,
   "themes": [
@@ -19,8 +21,13 @@
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Europa / UK / Svezia"
+    "it": "Europa / UK / Svezia",
+    "en": "Europe / UK / Sweden"
   },
+  "places": [
+    "GB",
+    "SE"
+  ],
   "evidence_note": null,
   "evidence_level": "E1",
   "publisher": "UK Crown Prosecution Service",
@@ -33,7 +40,13 @@
     "status": "imported_unreviewed",
     "notes": [
       "Themes assigned editorially: the record has no original category."
-    ]
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0abf52b3fe6042a3"
+      }
+    }
   },
   "provenance": [
     {

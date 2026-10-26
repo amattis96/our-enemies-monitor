@@ -2,12 +2,20 @@
   "id": "MILREM",
   "kind": "company",
   "name": {
-    "it": "Milrem Robotics"
+    "it": "Milrem Robotics",
+    "en": "Milrem Robotics"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3b4d83d9a3cfa55a"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,22 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "WSJ pubblica una nuova ricostruzione Starshield"
+    "it": "WSJ pubblica una nuova ricostruzione Starshield",
+    "en": "WSJ publishes a new reconstruction of Starshield"
   },
   "description": {
-    "it": "Fonti WSJ attribuiscono a Musk un ordine personale e colloqui con Trump; interessati contestano, Reuters non conferma indipendentemente quella ricostruzione."
+    "it": "Fonti WSJ attribuiscono a Musk un ordine personale e colloqui con Trump; interessati contestano, Reuters non conferma indipendentemente quella ricostruzione.",
+    "en": "WSJ sources attribute a personal order and talks with Trump to Musk; those involved dispute it, and Reuters does not independently confirm that account."
   },
   "category": {
-    "it": "Satelliti / responsabilità"
+    "it": "Satelliti / responsabilità",
+    "en": "Satellites / responsibility"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Stati Uniti / Ucraina"
+    "it": "Stati Uniti / Ucraina",
+    "en": "United States / Ukraine"
   },
+  "places": [
+    "US",
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Ricostruzione contestata"
+    "it": "Ricostruzione contestata",
+    "en": "Contested reconstruction"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4415aebf7ab05288"
+      }
+    }
   },
   "provenance": [
     {

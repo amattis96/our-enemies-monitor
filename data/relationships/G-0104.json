@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Pianificato 2029-2030, non operativo alla baseline"
+    "it": "Pianificato 2029-2030, non operativo alla baseline",
+    "en": "Planned for 2029-2030, not operational at the baseline"
   },
   "sources": [
     "S04"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c21a1add8494ac39"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "CN",
   "kind": "state",
   "name": {
-    "it": "Repubblica Popolare Cinese"
+    "it": "Repubblica Popolare Cinese",
+    "en": "People's Republic of China"
   },
   "domain": "geopolitics",
+  "country": "CN",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "49a2cf6eac48abd1"
+      }
+    }
   },
   "provenance": [
     {

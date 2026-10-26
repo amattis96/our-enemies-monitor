@@ -8,23 +8,29 @@
     "precision": "day"
   },
   "title": {
-    "it": "Quinto pacchetto sanzioni UE contro la Bielorussia"
+    "it": "Quinto pacchetto sanzioni UE contro la Bielorussia",
+    "en": "Fifth EU sanctions package against Belarus"
   },
   "description": {
-    "it": "UE sanziona anche operatori commerciali per strumentalizzazione dei migranti."
+    "it": "UE sanziona anche operatori commerciali per strumentalizzazione dei migranti.",
+    "en": "The EU also sanctions commercial operators for the instrumentalisation of migrants."
   },
   "category": {
-    "it": "Sanzioni / frontiere"
+    "it": "Sanzioni / frontiere",
+    "en": "Sanctions / borders"
   },
   "themes": [
     "finance_sanctions",
     "migration_borders"
   ],
   "geography": {
-    "it": "Unione europea"
+    "it": "Unione europea",
+    "en": "European Union"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Atto istituzionale"
+    "it": "Atto istituzionale",
+    "en": "Institutional act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d24fe82093bf90a7"
+      }
+    }
   },
   "provenance": [
     {

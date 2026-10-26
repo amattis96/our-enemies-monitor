@@ -2,12 +2,20 @@
   "id": "FI",
   "kind": "state",
   "name": {
-    "it": "Finlandia"
+    "it": "Finlandia",
+    "en": "Finland"
   },
   "domain": "geopolitics",
+  "country": "FI",
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3a227c99a9f7e30f"
+      }
+    }
   },
   "provenance": [
     {

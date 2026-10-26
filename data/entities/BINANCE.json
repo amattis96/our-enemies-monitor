@@ -2,12 +2,20 @@
   "id": "BINANCE",
   "kind": "company",
   "name": {
-    "it": "Binance"
+    "it": "Binance",
+    "en": "Binance"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "41e40f6666acb21c"
+      }
+    }
   },
   "provenance": [
     {

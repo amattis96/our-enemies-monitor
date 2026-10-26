@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://nato.int/en/about-us/official-texts-and-resources/official-texts/2024/07/10/washington-summit-declaration",
   "caveat": {
-    "it": "Formulazione NATO decisive enabler, contestata da Pechino"
+    "it": "Formulazione NATO decisive enabler, contestata da Pechino",
+    "en": "NATO's «decisive enabler» wording, disputed by Beijing"
   },
   "sources": [
     "S00",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "424b920e3cfe24ad"
+      }
+    }
   },
   "provenance": [
     {

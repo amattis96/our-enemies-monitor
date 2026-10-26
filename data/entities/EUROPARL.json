@@ -2,12 +2,20 @@
   "id": "EUROPARL",
   "kind": "institution",
   "name": {
-    "it": "Parlamento europeo"
+    "it": "Parlamento europeo",
+    "en": "European Parliament"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "93e418a14a239635"
+      }
+    }
   },
   "provenance": [
     {

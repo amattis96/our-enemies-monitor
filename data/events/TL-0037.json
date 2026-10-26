@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Sostegno occidentale all’Ucraina e sanzioni ampliate"
+    "it": "Sostegno occidentale all’Ucraina e sanzioni ampliate",
+    "en": "Western support for Ukraine and expanded sanctions"
   },
   "description": {
-    "it": "UE e alleati ampliano sanzioni e aiuti; le reti Starlink acquistano importanza in comunicazioni e operazioni ucraine."
+    "it": "UE e alleati ampliano sanzioni e aiuti; le reti Starlink acquistano importanza in comunicazioni e operazioni ucraine.",
+    "en": "The EU and allies expand sanctions and aid; Starlink networks become important for Ukrainian communications and operations."
   },
   "category": {
-    "it": "Guerra / sanzioni"
+    "it": "Guerra / sanzioni",
+    "en": "War / sanctions"
   },
   "themes": [
     "armed_conflict",
     "finance_sanctions"
   ],
   "geography": {
-    "it": "UE / Ucraina"
+    "it": "UE / Ucraina",
+    "en": "EU / Ukraine"
   },
+  "places": [
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Atti pubblici e impieghi documentati"
+    "it": "Atti pubblici e impieghi documentati",
+    "en": "Documented public acts and appointments"
   },
   "evidence_level": null,
   "publisher": null,
@@ -38,7 +46,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2497fdc3cb2789a9"
+      }
+    }
   },
   "provenance": [
     {

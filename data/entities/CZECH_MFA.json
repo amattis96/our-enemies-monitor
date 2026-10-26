@@ -2,12 +2,20 @@
   "id": "CZECH_MFA",
   "kind": "institution",
   "name": {
-    "it": "Ministero degli Esteri ceco"
+    "it": "Ministero degli Esteri ceco",
+    "en": "Czech Ministry of Foreign Affairs"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "16fa15a87d6c7531"
+      }
+    }
   },
   "provenance": [
     {

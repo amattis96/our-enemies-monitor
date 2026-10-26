@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Cina limita l’esportazione di sette terre rare pesanti"
+    "it": "Cina limita l’esportazione di sette terre rare pesanti",
+    "en": "China restricts exports of seven heavy rare earths"
   },
   "description": {
-    "it": "Export controls sulle terre rare magnetiche; si osservano difficoltà nell’automotive e in altre industrie occidentali."
+    "it": "Export controls sulle terre rare magnetiche; si osservano difficoltà nell’automotive e in altre industrie occidentali.",
+    "en": "Export controls on magnetic rare earths; difficulties observed in the automotive sector and other Western industries."
   },
   "category": {
-    "it": "Commercio / industria"
+    "it": "Commercio / industria",
+    "en": "Trade / industry"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Cina / UE"
+    "it": "Cina / UE",
+    "en": "China / EU"
   },
+  "places": [
+    "CN"
+  ],
   "evidence_note": {
-    "it": "Provvedimento pubblico"
+    "it": "Provvedimento pubblico",
+    "en": "Public measure"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1e50edcb417316da"
+      }
+    }
   },
   "provenance": [
     {

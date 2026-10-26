@@ -2,12 +2,20 @@
   "id": "PAPP",
   "kind": "person",
   "name": {
-    "it": "Armin Papperger"
+    "it": "Armin Papperger",
+    "en": "Armin Papperger"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a43c15720be21159"
+      }
+    }
   },
   "provenance": [
     {

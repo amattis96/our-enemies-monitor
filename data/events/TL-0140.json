@@ -8,22 +8,28 @@
     "precision": "day"
   },
   "title": {
-    "it": "Dato definitivo Eurostat per settembre 2026"
+    "it": "Dato definitivo Eurostat per settembre 2026",
+    "en": "Final Eurostat figure for September 2026"
   },
   "description": {
-    "it": "Inflazione eurozona 3,8%, energia +18,9% annuo, aggiornamento della stima del 2 ottobre."
+    "it": "Inflazione eurozona 3,8%, energia +18,9% annuo, aggiornamento della stima del 2 ottobre.",
+    "en": "Euro area inflation 3.8%, energy +18.9% year on year, update of the 2 October estimate."
   },
   "category": {
-    "it": "Eurostat / energia"
+    "it": "Eurostat / energia",
+    "en": "Eurostat / energy"
   },
   "themes": [
     "energy"
   ],
   "geography": {
-    "it": "Eurozona"
+    "it": "Eurozona",
+    "en": "Euro area"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Dato statistico istituzionale"
+    "it": "Dato statistico istituzionale",
+    "en": "Institutional statistical data"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0e3980484964cd61"
+      }
+    }
   },
   "provenance": [
     {

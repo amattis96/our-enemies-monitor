@@ -8,23 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Cyberattacchi durante la guerra russo-georgiana"
+    "it": "Cyberattacchi durante la guerra russo-georgiana",
+    "en": "Cyberattacks during the Russo-Georgian war"
   },
   "description": {
-    "it": "DDoS e compromissioni di siti accompagnano l’offensiva militare russa; catena di comando cyber statale incompleta nelle fonti aperte."
+    "it": "DDoS e compromissioni di siti accompagnano l’offensiva militare russa; catena di comando cyber statale incompleta nelle fonti aperte.",
+    "en": "DDoS attacks and website compromises accompany the Russian military offensive; the state cyber chain of command is incomplete in open sources."
   },
   "category": {
-    "it": "Cyber / guerra"
+    "it": "Cyber / guerra",
+    "en": "Cyber / war"
   },
   "themes": [
     "cyber",
     "armed_conflict"
   ],
   "geography": {
-    "it": "Georgia"
+    "it": "Georgia",
+    "en": "Georgia"
   },
+  "places": [
+    "GE"
+  ],
   "evidence_note": {
-    "it": "Evento corroborato; regia cyber non conclusiva"
+    "it": "Evento corroborato; regia cyber non conclusiva",
+    "en": "Event corroborated; cyber direction not conclusive"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1f8b92867e6cec8e"
+      }
+    }
   },
   "provenance": [
     {

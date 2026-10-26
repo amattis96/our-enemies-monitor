@@ -2,12 +2,20 @@
   "id": "RU_PRESS",
   "kind": "institution",
   "name": {
-    "it": "Media statali russi RT / Sputnik"
+    "it": "Media statali russi RT / Sputnik",
+    "en": "Russian state media RT / Sputnik"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "95120af142aba792"
+      }
+    }
   },
   "provenance": [
     {

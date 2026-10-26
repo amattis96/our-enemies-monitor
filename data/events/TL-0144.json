@@ -8,22 +8,31 @@
     "precision": "day"
   },
   "title": {
-    "it": "Reporting Reuters sulle tensioni Trump-Zelensky"
+    "it": "Reporting Reuters sulle tensioni Trump-Zelensky",
+    "en": "Reuters reporting on Trump-Zelensky tensions"
   },
   "description": {
-    "it": "Ricostruite pressioni su Kiev, discussioni su difesa, intelligence, diesel e attacchi alle raffinerie russe; non prova un’unica intesa segreta contro l’Europa."
+    "it": "Ricostruite pressioni su Kiev, discussioni su difesa, intelligence, diesel e attacchi alle raffinerie russe; non prova un’unica intesa segreta contro l’Europa.",
+    "en": "Pressure on Kyiv, discussions on defence, intelligence, diesel and attacks on Russian refineries are reconstructed; this does not prove a single secret understanding against Europe."
   },
   "category": {
-    "it": "Relazioni USA-Ucraina"
+    "it": "Relazioni USA-Ucraina",
+    "en": "US-Ukraine relations"
   },
   "themes": [
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Stati Uniti / Ucraina"
+    "it": "Stati Uniti / Ucraina",
+    "en": "United States / Ukraine"
   },
+  "places": [
+    "US",
+    "UA"
+  ],
   "evidence_note": {
-    "it": "Inchiesta giornalistica"
+    "it": "Inchiesta giornalistica",
+    "en": "Journalistic investigation"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3c70842ad37fa449"
+      }
+    }
   },
   "provenance": [
     {

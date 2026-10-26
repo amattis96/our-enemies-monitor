@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Proteste dei Gilet gialli"
+    "it": "Proteste dei Gilet gialli",
+    "en": "Yellow vests protests"
   },
   "description": {
-    "it": "Mobilitazione francese su temi economici; studi sulla centralità dei bot non dimostrano un’origine artificiale o una regia russa del movimento."
+    "it": "Mobilitazione francese su temi economici; studi sulla centralità dei bot non dimostrano un’origine artificiale o una regia russa del movimento.",
+    "en": "French mobilisation on economic issues; studies on the centrality of bots do not demonstrate an artificial origin or Russian direction of the movement."
   },
   "category": {
-    "it": "Movimenti sociali"
+    "it": "Movimenti sociali",
+    "en": "Social movements"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Francia"
+    "it": "Francia",
+    "en": "France"
   },
+  "places": [
+    "FR"
+  ],
   "evidence_note": {
-    "it": "Proteste accertate; regia estera non provata"
+    "it": "Proteste accertate; regia estera non provata",
+    "en": "Protests established; foreign direction not proven"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "37244a3516c12683"
+      }
+    }
   },
   "provenance": [
     {

@@ -13,7 +13,8 @@
   "valid_to": null,
   "primary_url": "https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/",
   "caveat": {
-    "it": "Non ogni pubblicità ha recapitato spyware"
+    "it": "Non ogni pubblicità ha recapitato spyware",
+    "en": "Not every advertisement delivered spyware"
   },
   "sources": [
     "S01",
@@ -22,7 +23,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "054266a3682c6cb5"
+      }
+    }
   },
   "provenance": [
     {

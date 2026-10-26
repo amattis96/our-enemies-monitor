@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "Mobilitazione francese del 17 ottobre"
+    "it": "Mobilitazione francese del 17 ottobre",
+    "en": "French mobilisation of 17 October"
   },
   "description": {
-    "it": "Grandi manifestazioni con motivazioni economiche e sociali; VIGINUM non identifica prima dell’evento una regia estera, ma amplificazione estera opportunistica e di bassa portata."
+    "it": "Grandi manifestazioni con motivazioni economiche e sociali; VIGINUM non identifica prima dell’evento una regia estera, ma amplificazione estera opportunistica e di bassa portata.",
+    "en": "Large demonstrations with economic and social motives; VIGINUM does not identify foreign direction before the event, but opportunistic, low-reach foreign amplification."
   },
   "category": {
-    "it": "Proteste / Francia"
+    "it": "Proteste / Francia",
+    "en": "Protests / France"
   },
   "themes": [
     "society_health"
   ],
   "geography": {
-    "it": "Francia"
+    "it": "Francia",
+    "en": "France"
   },
+  "places": [
+    "FR"
+  ],
   "evidence_note": {
-    "it": "Protesta accertata; regia estera non verificata"
+    "it": "Protesta accertata; regia estera non verificata",
+    "en": "Protest established; foreign direction not verified"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d72f7c4c6a031d0b"
+      }
+    }
   },
   "provenance": [
     {

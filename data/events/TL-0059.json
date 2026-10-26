@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Incendio di Marywilska 44"
+    "it": "Incendio di Marywilska 44",
+    "en": "Marywilska 44 fire"
   },
   "description": {
-    "it": "Distruzione del centro commerciale a Varsavia; il governo polacco attribuisce l’ordine ai servizi russi, che negano."
+    "it": "Distruzione del centro commerciale a Varsavia; il governo polacco attribuisce l’ordine ai servizi russi, che negano.",
+    "en": "Destruction of a shopping centre in Warsaw; the Polish government attributes the order to Russian services, which deny it."
   },
   "category": {
-    "it": "Sabotaggio"
+    "it": "Sabotaggio",
+    "en": "Sabotage"
   },
   "themes": [
     "hybrid_sabotage"
   ],
   "geography": {
-    "it": "Polonia"
+    "it": "Polonia",
+    "en": "Poland"
   },
+  "places": [
+    "PL"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale contestata dalla Russia"
+    "it": "Attribuzione istituzionale contestata dalla Russia",
+    "en": "Institutional attribution disputed by Russia"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1eed64debef1730d"
+      }
+    }
   },
   "provenance": [
     {

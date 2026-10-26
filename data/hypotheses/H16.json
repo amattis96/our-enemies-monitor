@@ -4,14 +4,17 @@
   "object": "LNG",
   "hypothesis_type": "ESPOSIZIONE_SOVRAPPOSTA_ENERGIA",
   "question": {
-    "it": "Quanto del rischio energetico eliminato con REPowerEU è migrato al mercato LNG globale e Hormuz?"
+    "it": "Quanto del rischio energetico eliminato con REPowerEU è migrato al mercato LNG globale e Hormuz?",
+    "en": "How much of the energy risk eliminated by REPowerEU has migrated to the global LNG market and Hormuz?"
   },
   "current_limit": {
-    "it": "Rischio macro misurabile, non prova azione deliberata contro proteste UE."
+    "it": "Rischio macro misurabile, non prova azione deliberata contro proteste UE.",
+    "en": "Measurable macro risk, not proof of deliberate action against EU protests."
   },
   "priority": "high",
   "evidence_needed": {
-    "it": "Mix fornitori mensile, stress test, GNSS shipping, spot, prezzi, IEA"
+    "it": "Mix fornitori mensile, stress test, GNSS shipping, spot, prezzi, IEA",
+    "en": "Monthly supplier mix, stress tests, GNSS shipping, spot prices, IEA"
   },
   "events": [
     "TL-0076",
@@ -26,7 +29,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "78fd548179a5a385"
+      }
+    }
   },
   "provenance": [
     {

@@ -114,3 +114,52 @@ describe("validator", () => {
     expect(warnings.every((w) => w.message.includes("without primary_url"))).toBe(true);
   });
 });
+
+describe("validator (M3 rules)", () => {
+  /** Change one committed record (with translations) and return the errors. */
+  function committedErrorsAfter(target: string, change: (record: Record<string, unknown>) => void) {
+    const files = readDataFiles().map((file) => {
+      if (file.path !== target) return file;
+      const record = JSON.parse(file.text);
+      change(record);
+      return { ...file, text: serializeRecord(record) };
+    });
+    return validateDataFiles(files)
+      .issues.filter((i) => i.severity === "error")
+      .map((i) => `${i.file}: ${i.message}`);
+  }
+
+  it("flags a translation made stale by a change of the Italian text", () => {
+    const errors = committedErrorsAfter("events/TL-0001.json", (r) => {
+      (r.title as { it: string }).it = "Titolo modificato";
+    });
+    expect(errors).toContainEqual(expect.stringContaining("translation is stale"));
+  });
+
+  it("flags English text without a translation state", () => {
+    const errors = committedErrorsAfter("events/TL-0001.json", (r) => {
+      (r.review as { translations?: unknown }).translations = undefined;
+    });
+    expect(errors).toContainEqual(expect.stringContaining("no review.translations.en state"));
+  });
+
+  it("flags an incomplete translation", () => {
+    const errors = committedErrorsAfter("events/TL-0001.json", (r) => {
+      delete (r.description as { en?: string }).en;
+    });
+    expect(errors).toContainEqual(expect.stringContaining("translation incomplete"));
+  });
+
+  it("rejects unknown country codes and countries on non-states", () => {
+    expect(
+      committedErrorsAfter("events/TL-0001.json", (r) => {
+        r.places = ["ZZ"];
+      }),
+    ).toContainEqual(expect.stringContaining('place "ZZ" is not an ISO country code'));
+    expect(
+      committedErrorsAfter("entities/GRU.json", (r) => {
+        r.country = "RU";
+      }),
+    ).toContainEqual(expect.stringContaining("country must be set for states and only for states"));
+  });
+});

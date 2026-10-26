@@ -2,12 +2,20 @@
   "id": "TSMC",
   "kind": "company",
   "name": {
-    "it": "TSMC"
+    "it": "TSMC",
+    "en": "TSMC"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9395571e7511a08f"
+      }
+    }
   },
   "provenance": [
     {

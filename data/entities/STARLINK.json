@@ -2,12 +2,20 @@
   "id": "STARLINK",
   "kind": "company",
   "name": {
-    "it": "Starlink"
+    "it": "Starlink",
+    "en": "Starlink"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dd0c11b85e2c5ae5"
+      }
+    }
   },
   "provenance": [
     {

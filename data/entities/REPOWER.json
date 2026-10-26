@@ -2,12 +2,20 @@
   "id": "REPOWER",
   "kind": "asset",
   "name": {
-    "it": "REPowerEU / uscita dal gas russo"
+    "it": "REPowerEU / uscita dal gas russo",
+    "en": "REPowerEU / phase-out of Russian gas"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "222380f24eeb15d6"
+      }
+    }
   },
   "provenance": [
     {

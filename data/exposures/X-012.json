@@ -1,0 +1,66 @@
+{
+  "id": "X-012",
+  "sector": {
+    "it": "LNG / offerta UE di gas",
+    "en": "LNG / EU gas supply"
+  },
+  "indicator": {
+    "it": "Da meno del 20% a quasi 45%, nei dati riportati",
+    "en": "From less than 20% to almost 45%, in the reported data"
+  },
+  "measures": [
+    {
+      "label": {
+        "it": "Quota LNG nell'offerta di gas UE (prima)",
+        "en": "LNG share of EU gas supply (before)"
+      },
+      "value": 20,
+      "unit": "percent",
+      "qualifier": "less_than",
+      "out_of": null,
+      "period": null
+    },
+    {
+      "label": {
+        "it": "Quota LNG nell'offerta di gas UE (dopo)",
+        "en": "LNG share of EU gas supply (after)"
+      },
+      "value": 45,
+      "unit": "percent",
+      "qualifier": "nearly",
+      "out_of": null,
+      "period": null
+    }
+  ],
+  "scope": {
+    "it": "Mix delle forniture in S04",
+    "en": "Supply mix in S04"
+  },
+  "consequence": {
+    "it": "Nuova dipendenza da prezzi e trasporto globale",
+    "en": "New dependence on global prices and transport"
+  },
+  "status": "observed",
+  "sources": [
+    "S08"
+  ],
+  "review": {
+    "status": "imported_unreviewed",
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7ea3ef999adbedd3"
+      }
+    }
+  },
+  "provenance": [
+    {
+      "file": "sources/original/Fonte_08_Consolidamento_Strategico_Europa_Minacce_Reti_Dipendenze_2026-10-21.md",
+      "line": 583,
+      "original": {
+        "text": "| LNG / offerta UE di gas | Da meno del **20%** a quasi **45%**, nei dati riportati | Mix delle forniture in S04 | Nuova dipendenza da prezzi e trasporto globale |"
+      }
+    }
+  ]
+}

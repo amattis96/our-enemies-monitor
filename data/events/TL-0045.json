@@ -8,23 +8,29 @@
     "precision": "year"
   },
   "title": {
-    "it": "Matryoshka e Storm-1516 si consolidano"
+    "it": "Matryoshka e Storm-1516 si consolidano",
+    "en": "Matryoshka and Storm-1516 consolidate"
   },
   "description": {
-    "it": "Campagne multicanale filorusse con pseudo-media, video falsi, seeding su Telegram e amplificazione su X; inizi documentati nel 2023."
+    "it": "Campagne multicanale filorusse con pseudo-media, video falsi, seeding su Telegram e amplificazione su X; inizi documentati nel 2023.",
+    "en": "Pro-Russian multichannel campaigns with pseudo-media, fake videos, seeding on Telegram and amplification on X; beginnings documented in 2023."
   },
   "category": {
-    "it": "Interferenze / FIMI"
+    "it": "Interferenze / FIMI",
+    "en": "Interference / FIMI"
   },
   "themes": [
     "information_manipulation",
     "elections_influence"
   ],
   "geography": {
-    "it": "Europa / mondo"
+    "it": "Europa / mondo",
+    "en": "Europe / world"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Campagne corroborate"
+    "it": "Campagne corroborate",
+    "en": "Corroborated campaigns"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0bcf549a8759df7d"
+      }
+    }
   },
   "provenance": [
     {

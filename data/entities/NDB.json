@@ -2,12 +2,20 @@
   "id": "NDB",
   "kind": "institution",
   "name": {
-    "it": "New Development Bank"
+    "it": "New Development Bank",
+    "en": "New Development Bank"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7737d496b5a78af1"
+      }
+    }
   },
   "provenance": [
     {

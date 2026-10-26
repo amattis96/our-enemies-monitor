@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Concentrazione cinese delle filiere batterie"
+    "it": "Concentrazione cinese delle filiere batterie",
+    "en": "Chinese concentration of battery supply chains"
   },
   "description": {
-    "it": "Nel 2025 Cina oltre 80% celle mondiali; circa 85% materiali catodici e oltre 90% anodici. Indicatore strutturale."
+    "it": "Nel 2025 Cina oltre 80% celle mondiali; circa 85% materiali catodici e oltre 90% anodici. Indicatore strutturale.",
+    "en": "In 2025 China has over 80% of global cells; about 85% of cathode materials and over 90% of anode materials. A structural indicator."
   },
   "category": {
-    "it": "Industria / batterie"
+    "it": "Industria / batterie",
+    "en": "Industry / batteries"
   },
   "themes": [
     "industry_dependencies"
   ],
   "geography": {
-    "it": "Cina / mercato globale"
+    "it": "Cina / mercato globale",
+    "en": "China / global market"
   },
+  "places": [
+    "CN"
+  ],
   "evidence_note": {
-    "it": "Dati IEA"
+    "it": "Dati IEA",
+    "en": "IEA data"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fc5074e37bbf15b4"
+      }
+    }
   },
   "provenance": [
     {

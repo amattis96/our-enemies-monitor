@@ -8,22 +8,31 @@
     "precision": "month"
   },
   "title": {
-    "it": "Le autorità ceche scoprono la rete Voice of Europe"
+    "it": "Le autorità ceche scoprono la rete Voice of Europe",
+    "en": "Czech authorities uncover the Voice of Europe network"
   },
   "description": {
-    "it": "BIS e autorità polacche documentano un canale mediatico e finanziario legato a Medvedchuk/Marchevskyi, con pagamenti e contatti politici."
+    "it": "BIS e autorità polacche documentano un canale mediatico e finanziario legato a Medvedchuk/Marchevskyi, con pagamenti e contatti politici.",
+    "en": "BIS and Polish authorities document a media and financial channel linked to Medvedchuk/Marchevskyi, with payments and political contacts."
   },
   "category": {
-    "it": "Influenza politica"
+    "it": "Influenza politica",
+    "en": "Political influence"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Cechia / Polonia / UE"
+    "it": "Cechia / Polonia / UE",
+    "en": "Czechia / Poland / EU"
   },
+  "places": [
+    "CZ",
+    "PL"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +45,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ea6c7c7541acd8d4"
+      }
+    }
   },
   "provenance": [
     {

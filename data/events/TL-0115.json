@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "Nuove sanzioni UE su reti Șor/Evrazia"
+    "it": "Nuove sanzioni UE su reti Șor/Evrazia",
+    "en": "New EU sanctions on Șor/Evrazia networks"
   },
   "description": {
-    "it": "Consiglio UE designa sei persone per attività destabilizzanti in Moldavia e uso di reti di reclutamento/propaganda."
+    "it": "Consiglio UE designa sei persone per attività destabilizzanti in Moldavia e uso di reti di reclutamento/propaganda.",
+    "en": "The EU Council designates six people for destabilising activities in Moldova and the use of recruitment/propaganda networks."
   },
   "category": {
-    "it": "Sanzioni / Moldavia"
+    "it": "Sanzioni / Moldavia",
+    "en": "Sanctions / Moldova"
   },
   "themes": [
     "finance_sanctions"
   ],
   "geography": {
-    "it": "Unione europea / Moldavia"
+    "it": "Unione europea / Moldavia",
+    "en": "European Union / Moldova"
   },
+  "places": [
+    "MD"
+  ],
   "evidence_note": {
-    "it": "Atto istituzionale"
+    "it": "Atto istituzionale",
+    "en": "Institutional act"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e13e70eb128d7bb3"
+      }
+    }
   },
   "provenance": [
     {

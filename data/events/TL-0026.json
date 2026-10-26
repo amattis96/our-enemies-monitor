@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Caso Christine Lee e UFWD"
+    "it": "Caso Christine Lee e UFWD",
+    "en": "Christine Lee case and the UFWD"
   },
   "description": {
-    "it": "MI5 indaga rapporti politici e finanziamenti di Christine Lee, che sfoceranno nell’interference alert del 2022."
+    "it": "MI5 indaga rapporti politici e finanziamenti di Christine Lee, che sfoceranno nell’interference alert del 2022.",
+    "en": "MI5 investigates Christine Lee's political relationships and funding, which will lead to the 2022 interference alert."
   },
   "category": {
-    "it": "Influenza politica"
+    "it": "Influenza politica",
+    "en": "Political influence"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Regno Unito"
+    "it": "Regno Unito",
+    "en": "United Kingdom"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale, non condanna"
+    "it": "Attribuzione istituzionale, non condanna",
+    "en": "Institutional attribution, not a conviction"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7adb3192d78697e2"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "CHNREFINE",
   "kind": "asset",
   "name": {
-    "it": "Raffinazione cinese dei minerali"
+    "it": "Raffinazione cinese dei minerali",
+    "en": "Chinese refining of minerals"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0fe3f73ce7c702d6"
+      }
+    }
   },
   "provenance": [
     {

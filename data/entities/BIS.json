@@ -2,12 +2,20 @@
   "id": "BIS",
   "kind": "institution",
   "name": {
-    "it": "BIS (intelligence ceca)"
+    "it": "BIS (intelligence ceca)",
+    "en": "BIS (Czech intelligence)"
   },
   "domain": "institutional",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f498f8f696dc37de"
+      }
+    }
   },
   "provenance": [
     {

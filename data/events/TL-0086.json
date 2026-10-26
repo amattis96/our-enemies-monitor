@@ -8,22 +8,28 @@
     "precision": "year"
   },
   "title": {
-    "it": "Serie di danneggiamenti a cavi nel Baltico"
+    "it": "Serie di danneggiamenti a cavi nel Baltico",
+    "en": "Series of cable damage incidents in the Baltic"
   },
   "description": {
-    "it": "Fonti Reuters riportano almeno 11 cavi danneggiati fra ottobre 2023 e fine 2025, con cause differenti e attribuzioni da distinguere."
+    "it": "Fonti Reuters riportano almeno 11 cavi danneggiati fra ottobre 2023 e fine 2025, con cause differenti e attribuzioni da distinguere.",
+    "en": "Reuters sources report at least 11 cables damaged between October 2023 and the end of 2025, with different causes and attributions to be distinguished."
   },
   "category": {
-    "it": "Infrastrutture / cavi"
+    "it": "Infrastrutture / cavi",
+    "en": "Infrastructure / cables"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Mar Baltico"
+    "it": "Mar Baltico",
+    "en": "Baltic Sea"
   },
+  "places": [],
   "evidence_note": {
-    "it": "Dato aggregato di monitoraggio"
+    "it": "Dato aggregato di monitoraggio",
+    "en": "Aggregate monitoring data"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +40,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b97558b3abdbecfb"
+      }
+    }
   },
   "provenance": [
     {

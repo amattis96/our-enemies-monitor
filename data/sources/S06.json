@@ -2,7 +2,8 @@
   "id": "S06",
   "type": "corpus_document",
   "title": {
-    "it": "Fonte_06 — Cronologia integrata degli eventi documentati: Europa, 2007–21 ottobre 2026"
+    "it": "Fonte_06 — Cronologia integrata degli eventi documentati: Europa, 2007–21 ottobre 2026",
+    "en": "Fonte_06 — Integrated chronology of documented events: Europe, 2007–21 October 2026"
   },
   "publisher": null,
   "files": [
@@ -13,7 +14,13 @@
   "cited_in": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "090f5c6549faf9d2"
+      }
+    }
   },
   "provenance": [
     {

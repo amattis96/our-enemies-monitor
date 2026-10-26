@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Elezioni moldave e reti di influenza russe"
+    "it": "Elezioni moldave e reti di influenza russe",
+    "en": "Moldovan elections and Russian influence networks"
   },
   "description": {
-    "it": "Reti collegate a Șor/Evrazia e meccanismi finanziari indagati; procedimenti e designazioni UE si sviluppano fra 2024 e 2026."
+    "it": "Reti collegate a Șor/Evrazia e meccanismi finanziari indagati; procedimenti e designazioni UE si sviluppano fra 2024 e 2026.",
+    "en": "Networks linked to Șor/Evrazia and financial mechanisms under investigation; EU proceedings and designations develop between 2024 and 2026."
   },
   "category": {
-    "it": "Elezioni / interferenze"
+    "it": "Elezioni / interferenze",
+    "en": "Elections / interference"
   },
   "themes": [
     "elections_influence"
   ],
   "geography": {
-    "it": "Moldavia"
+    "it": "Moldavia",
+    "en": "Moldova"
   },
+  "places": [
+    "MD"
+  ],
   "evidence_note": {
-    "it": "Interferenze attribuite; impatto sul voto individuale ignoto"
+    "it": "Interferenze attribuite; impatto sul voto individuale ignoto",
+    "en": "Interference attributed; impact on individual votes unknown"
   },
   "evidence_level": null,
   "publisher": null,
@@ -36,7 +44,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c4f48da8c8cd513e"
+      }
+    }
   },
   "provenance": [
     {

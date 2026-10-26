@@ -32,6 +32,7 @@ describe("baseline import", () => {
       direct_relationships: 153,
       hypotheses: 22,
       sources: 55,
+      exposures: 14,
     });
   });
 
@@ -81,6 +82,39 @@ describe("baseline import", () => {
   it("produces data that validates without errors", () => {
     const { issues } = validateDataFiles(datasetToFiles(dataset));
     expect(issues.filter((i) => i.severity === "error")).toEqual([]);
+  });
+});
+
+describe("baseline classifications (M3)", () => {
+  it("maps geography to countries without inventing places", () => {
+    expect(byId(dataset.events, "TL-0001").places).toEqual(["EE"]);
+    expect(byId(dataset.events, "EXT-001").places).toEqual(["GB", "SE"]);
+    // Supranational or maritime geographies name no country.
+    const baltic = dataset.events.filter((e) => e.geography?.it === "Mar Baltico");
+    expect(baltic.length).toBeGreaterThan(0);
+    expect(baltic.every((e) => e.places.length === 0)).toBe(true);
+  });
+
+  it("gives an ISO country code to states and only to states", () => {
+    for (const entity of dataset.entities) {
+      expect(entity.country).toBe(entity.kind === "state" ? entity.id : null);
+    }
+  });
+
+  it("transcribes the Fonte_08 §12.2 exposure matrix with provenance", () => {
+    expect(dataset.exposures).toHaveLength(14);
+    expect(byId(dataset.exposures, "X-013").status).toBe("target");
+    const x007 = byId(dataset.exposures, "X-007");
+    expect(x007.measures.map((m) => [m.value, m.qualifier])).toEqual([
+      [85, "approx"],
+      [90, "more_than"],
+    ]);
+    for (const exposure of dataset.exposures) {
+      const [entry] = exposure.provenance;
+      expect(
+        entry && "line" in entry && entry.original.text.startsWith(`| ${exposure.sector.it} |`),
+      ).toBe(true);
+    }
   });
 });
 

@@ -2,7 +2,8 @@
   "id": "F30",
   "type": "external_reference",
   "title": {
-    "it": "Eurostat, commercio UE-Cina 2025, 10 aprile 2026"
+    "it": "Eurostat, commercio UE-Cina 2025, 10 aprile 2026",
+    "en": "Eurostat, EU-China trade 2025, 10 April 2026"
   },
   "publisher": "Eurostat",
   "files": [],
@@ -14,7 +15,13 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4052eff2ba563aa1"
+      }
+    }
   },
   "provenance": [
     {

@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Non equivalenza quote 2026"
+    "it": "Non equivalenza quote 2026",
+    "en": "2026 shares are not equivalent"
   },
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "384990eac0f7d3ea"
+      }
+    }
   },
   "provenance": [
     {

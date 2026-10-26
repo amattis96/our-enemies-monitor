@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Pagamenti all’eurodeputato Nathan Gill"
+    "it": "Pagamenti all’eurodeputato Nathan Gill",
+    "en": "Payments to MEP Nathan Gill"
   },
   "description": {
-    "it": "Fra 2018 e 2019 Gill riceve denaro per interventi e dichiarazioni favorevoli a narrative filorusse; successiva confessione e condanna."
+    "it": "Fra 2018 e 2019 Gill riceve denaro per interventi e dichiarazioni favorevoli a narrative filorusse; successiva confessione e condanna.",
+    "en": "Between 2018 and 2019 Gill receives money for speeches and statements favourable to pro-Russian narratives; later confession and conviction."
   },
   "category": {
-    "it": "Corruzione / influenza"
+    "it": "Corruzione / influenza",
+    "en": "Corruption / influence"
   },
   "themes": [
     "finance_sanctions",
     "elections_influence"
   ],
   "geography": {
-    "it": "Regno Unito / Parlamento europeo"
+    "it": "Regno Unito / Parlamento europeo",
+    "en": "United Kingdom / European Parliament"
   },
+  "places": [
+    "GB"
+  ],
   "evidence_note": {
-    "it": "Accertato penalmente nel 2025"
+    "it": "Accertato penalmente nel 2025",
+    "en": "Criminally established in 2025"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "97c036b86d5f97d0"
+      }
+    }
   },
   "provenance": [
     {

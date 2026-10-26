@@ -2,12 +2,20 @@
   "id": "SEMICON",
   "kind": "asset",
   "name": {
-    "it": "Semiconduttori avanzati"
+    "it": "Semiconduttori avanzati",
+    "en": "Advanced semiconductors"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a7a022d1d23442c4"
+      }
+    }
   },
   "provenance": [
     {

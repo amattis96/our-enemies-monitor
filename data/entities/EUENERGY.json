@@ -2,12 +2,20 @@
   "id": "EUENERGY",
   "kind": "asset",
   "name": {
-    "it": "Mercato energetico europeo"
+    "it": "Mercato energetico europeo",
+    "en": "European energy market"
   },
   "domain": "dependencies",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3748cb7b27697411"
+      }
+    }
   },
   "provenance": [
     {

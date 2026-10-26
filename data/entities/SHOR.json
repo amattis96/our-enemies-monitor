@@ -2,12 +2,20 @@
   "id": "SHOR",
   "kind": "person",
   "name": {
-    "it": "Ilan Șor"
+    "it": "Ilan Șor",
+    "en": "Ilan Șor"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "21825c4b4557688e"
+      }
+    }
   },
   "provenance": [
     {

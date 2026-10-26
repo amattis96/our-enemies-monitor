@@ -13,14 +13,21 @@
   "valid_to": null,
   "primary_url": null,
   "caveat": {
-    "it": "Colpiti interessi francesi oltremare"
+    "it": "Colpiti interessi francesi oltremare",
+    "en": "French overseas interests targeted"
   },
   "sources": [
     "S05"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "0156583adeafc33a"
+      }
+    }
   },
   "provenance": [
     {

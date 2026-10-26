@@ -11,14 +11,21 @@
   "valid_to": null,
   "primary_url": "https://www.cps.gov.uk/national-news/news/teen-hitman-guilty-uk-murder-plot",
   "caveat": {
-    "it": "Condanna UK; non prova mandato iraniano del singolo ordine"
+    "it": "Condanna UK; non prova mandato iraniano del singolo ordine",
+    "en": "UK conviction; does not prove Iranian instructions for the specific order"
   },
   "sources": [
     "WEB-EXT-003"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e63e1e0e593e8517"
+      }
+    }
   },
   "provenance": [
     {

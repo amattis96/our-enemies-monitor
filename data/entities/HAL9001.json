@@ -2,12 +2,20 @@
   "id": "HAL9001",
   "kind": "company",
   "name": {
-    "it": "HAL9001 Partners Fund I"
+    "it": "HAL9001 Partners Fund I",
+    "en": "HAL9001 Partners Fund I"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "761676ff4a57c420"
+      }
+    }
   },
   "provenance": [
     {

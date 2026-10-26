@@ -2,12 +2,20 @@
   "id": "X",
   "kind": "company",
   "name": {
-    "it": "X (ex Twitter)"
+    "it": "X (ex Twitter)",
+    "en": "X (formerly Twitter)"
   },
   "domain": "commerce-infrastructure",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "550ca515a3b6eef3"
+      }
+    }
   },
   "provenance": [
     {

@@ -8,23 +8,31 @@
     "precision": "year"
   },
   "title": {
-    "it": "Attribuzione ceca del cyber-spionaggio APT31 sul Ministero degli Esteri"
+    "it": "Attribuzione ceca del cyber-spionaggio APT31 sul Ministero degli Esteri",
+    "en": "Czech attribution of APT31 cyber-espionage against the Ministry of Foreign Affairs"
   },
   "description": {
-    "it": "La Cechia denuncia attività persistente dal 2022 collegate ai servizi di sicurezza cinesi."
+    "it": "La Cechia denuncia attività persistente dal 2022 collegate ai servizi di sicurezza cinesi.",
+    "en": "Czechia denounces persistent activity since 2022 linked to Chinese security services."
   },
   "category": {
-    "it": "Cyber / spionaggio"
+    "it": "Cyber / spionaggio",
+    "en": "Cyber / espionage"
   },
   "themes": [
     "cyber",
     "intelligence"
   ],
   "geography": {
-    "it": "Cechia"
+    "it": "Cechia",
+    "en": "Czechia"
   },
+  "places": [
+    "CZ"
+  ],
   "evidence_note": {
-    "it": "Attribuzione istituzionale"
+    "it": "Attribuzione istituzionale",
+    "en": "Institutional attribution"
   },
   "evidence_level": null,
   "publisher": null,
@@ -35,7 +43,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e165d7648c13c4b1"
+      }
+    }
   },
   "provenance": [
     {

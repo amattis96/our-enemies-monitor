@@ -2,12 +2,20 @@
   "id": "JIANG",
   "kind": "person",
   "name": {
-    "it": "Jian G."
+    "it": "Jian G.",
+    "en": "Jian G."
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b390ceda8f5865fd"
+      }
+    }
   },
   "provenance": [
     {

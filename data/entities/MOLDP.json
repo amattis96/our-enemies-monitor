@@ -2,12 +2,20 @@
   "id": "MOLDP",
   "kind": "organization",
   "name": {
-    "it": "Reti politiche locali moldave / blocco Victory-Pobeda"
+    "it": "Reti politiche locali moldave / blocco Victory-Pobeda",
+    "en": "Moldovan local political networks / Victory-Pobeda bloc"
   },
   "domain": "influence-technology",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4d8b70633a927607"
+      }
+    }
   },
   "provenance": [
     {

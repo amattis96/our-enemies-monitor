@@ -8,22 +8,30 @@
     "precision": "year"
   },
   "title": {
-    "it": "Intercettazione di attività GUGI alle Svalbard"
+    "it": "Intercettazione di attività GUGI alle Svalbard",
+    "en": "Interception of GUGI activity off Svalbard"
   },
   "description": {
-    "it": "Unità russa impegnata in esercitazione clandestina con tecnologie subacquee, secondo fonti occidentali; nessun cavo danneggiato. La data è indicata come primavera dalle fonti."
+    "it": "Unità russa impegnata in esercitazione clandestina con tecnologie subacquee, secondo fonti occidentali; nessun cavo danneggiato. La data è indicata come primavera dalle fonti.",
+    "en": "Russian unit engaged in a covert exercise with undersea technologies, according to Western sources; no cable damaged. The sources give the date as spring."
   },
   "category": {
-    "it": "Infrastrutture / cavi"
+    "it": "Infrastrutture / cavi",
+    "en": "Infrastructure / cables"
   },
   "themes": [
     "infrastructure_space"
   ],
   "geography": {
-    "it": "Svalbard / Artico"
+    "it": "Svalbard / Artico",
+    "en": "Svalbard / Arctic"
   },
+  "places": [
+    "NO"
+  ],
   "evidence_note": {
-    "it": "Corroborato; nessun sabotaggio materiale"
+    "it": "Corroborato; nessun sabotaggio materiale",
+    "en": "Corroborated; no physical sabotage"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4422ac9b48510ed0"
+      }
+    }
   },
   "provenance": [
     {

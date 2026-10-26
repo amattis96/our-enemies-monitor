@@ -8,23 +8,32 @@
     "precision": "year"
   },
   "title": {
-    "it": "Misure cinesi contro Lituania e catene di fornitura"
+    "it": "Misure cinesi contro Lituania e catene di fornitura",
+    "en": "Chinese measures against Lithuania and supply chains"
   },
   "description": {
-    "it": "La Commissione contesta restrizioni discriminatorie su beni e imprese; il caso arriva alla controversia WTO WT/DS610."
+    "it": "La Commissione contesta restrizioni discriminatorie su beni e imprese; il caso arriva alla controversia WTO WT/DS610.",
+    "en": "The Commission challenges discriminatory restrictions on goods and companies; the case goes to WTO dispute WT/DS610."
   },
   "category": {
-    "it": "Coercizione commerciale"
+    "it": "Coercizione commerciale",
+    "en": "Trade coercion"
   },
   "themes": [
     "industry_dependencies",
     "geopolitics_diplomacy"
   ],
   "geography": {
-    "it": "Cina / Lituania / UE"
+    "it": "Cina / Lituania / UE",
+    "en": "China / Lithuania / EU"
   },
+  "places": [
+    "CN",
+    "LT"
+  ],
   "evidence_note": {
-    "it": "Denuncia/azione istituzionale UE"
+    "it": "Denuncia/azione istituzionale UE",
+    "en": "EU complaint/institutional action"
   },
   "evidence_level": null,
   "publisher": null,
@@ -37,7 +46,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7926e5ed30895afa"
+      }
+    }
   },
   "provenance": [
     {

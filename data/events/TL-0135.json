@@ -8,22 +8,30 @@
     "precision": "day"
   },
   "title": {
-    "it": "Briefing EPRS sulla crisi di Ceuta"
+    "it": "Briefing EPRS sulla crisi di Ceuta",
+    "en": "EPRS briefing on the Ceuta crisis"
   },
   "description": {
-    "it": "Il briefing cita ~80.000 ingressi e almeno 141 decessi nella sintesi, con discrepanze interne; non trasformare in conteggio consolidato."
+    "it": "Il briefing cita ~80.000 ingressi e almeno 141 decessi nella sintesi, con discrepanze interne; non trasformare in conteggio consolidato.",
+    "en": "The briefing cites ~80,000 entries and at least 141 deaths in its summary, with internal discrepancies; do not turn this into a consolidated count."
   },
   "category": {
-    "it": "Migrazione / rapporto"
+    "it": "Migrazione / rapporto",
+    "en": "Migration / report"
   },
   "themes": [
     "migration_borders"
   ],
   "geography": {
-    "it": "Unione europea / Ceuta"
+    "it": "Unione europea / Ceuta",
+    "en": "European Union / Ceuta"
   },
+  "places": [
+    "ES"
+  ],
   "evidence_note": {
-    "it": "Pubblicazione istituzionale, dati discordanti"
+    "it": "Pubblicazione istituzionale, dati discordanti",
+    "en": "Institutional publication, conflicting data"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b59ca042e7e0e8e9"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "FOXTROT",
   "kind": "organization",
   "name": {
-    "it": "Foxtrot Network (organizzazione criminale)"
+    "it": "Foxtrot Network (organizzazione criminale)",
+    "en": "Foxtrot Network (criminal organisation)"
   },
   "domain": "intelligence-security",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1bb3cc436e660195"
+      }
+    }
   },
   "provenance": [
     {

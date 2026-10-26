@@ -8,22 +8,30 @@
     "precision": "month"
   },
   "title": {
-    "it": "Complotto contro Armin Papperger"
+    "it": "Complotto contro Armin Papperger",
+    "en": "Plot against Armin Papperger"
   },
   "description": {
-    "it": "Servizi occidentali segnalano un piano russo per uccidere il dirigente Rheinmetall; non risulta sentenza pubblica sul complotto."
+    "it": "Servizi occidentali segnalano un piano russo per uccidere il dirigente Rheinmetall; non risulta sentenza pubblica sul complotto.",
+    "en": "Western services report a Russian plan to kill the Rheinmetall chief executive; no public judgment on the plot is on record."
   },
   "category": {
-    "it": "Intelligence / sicurezza"
+    "it": "Intelligence / sicurezza",
+    "en": "Intelligence / security"
   },
   "themes": [
     "intelligence"
   ],
   "geography": {
-    "it": "Germania"
+    "it": "Germania",
+    "en": "Germany"
   },
+  "places": [
+    "DE"
+  ],
   "evidence_note": {
-    "it": "Corroborato da reporting di intelligence"
+    "it": "Corroborato da reporting di intelligence",
+    "en": "Corroborated by intelligence reporting"
   },
   "evidence_level": null,
   "publisher": null,
@@ -34,7 +42,13 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9bfe091bb77623f0"
+      }
+    }
   },
   "provenance": [
     {

@@ -2,12 +2,20 @@
   "id": "EUPARTIES",
   "kind": "institution",
   "name": {
-    "it": "Partiti e rappresentanti politici europei"
+    "it": "Partiti e rappresentanti politici europei",
+    "en": "European political parties and representatives"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9c7d2238f0983a31"
+      }
+    }
   },
   "provenance": [
     {

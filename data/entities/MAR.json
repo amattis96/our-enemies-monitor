@@ -2,12 +2,20 @@
   "id": "MAR",
   "kind": "person",
   "name": {
-    "it": "Artem Marchevskyi"
+    "it": "Artem Marchevskyi",
+    "en": "Artem Marchevskyi"
   },
   "domain": "persons",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c38fc5537c1953e9"
+      }
+    }
   },
   "provenance": [
     {

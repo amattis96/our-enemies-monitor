@@ -2,12 +2,20 @@
   "id": "EMA",
   "kind": "institution",
   "name": {
-    "it": "European Medicines Agency"
+    "it": "European Medicines Agency",
+    "en": "European Medicines Agency"
   },
   "domain": "targets",
+  "country": null,
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "539915bed241e626"
+      }
+    }
   },
   "provenance": [
     {
