@@ -16,6 +16,10 @@
   "category": {
     "it": "Finanza / tecnologia"
   },
+  "themes": [
+    "finance_sanctions",
+    "platforms_technology"
+  ],
   "geography": {
     "it": "Stati Uniti / investitori globali"
   },

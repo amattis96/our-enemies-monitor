@@ -16,6 +16,9 @@
   "category": {
     "it": "Sanzioni / Russia"
   },
+  "themes": [
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "Unione europea"
   },

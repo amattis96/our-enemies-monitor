@@ -16,6 +16,10 @@
   "category": {
     "it": "Sabotaggio / trasporti"
   },
+  "themes": [
+    "hybrid_sabotage",
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Germania / Polonia / UK"
   },

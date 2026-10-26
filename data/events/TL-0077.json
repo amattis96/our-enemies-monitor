@@ -16,6 +16,9 @@
   "category": {
     "it": "Elezioni / interferenze"
   },
+  "themes": [
+    "elections_influence"
+  ],
   "geography": {
     "it": "Moldavia"
   },

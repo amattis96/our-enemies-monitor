@@ -14,6 +14,9 @@
     "it": "OFAC sostiene che Foxtrot organizzò l’attacco per conto dell’Iran. Si tratta di attribuzione USA, distinta da sentenza sul mandato."
   },
   "category": null,
+  "themes": [
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Europa / UK / Svezia"
   },
@@ -27,7 +30,9 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "Themes assigned editorially: the record has no original category."
+    ]
   },
   "provenance": [
     {

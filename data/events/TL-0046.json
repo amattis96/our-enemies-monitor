@@ -16,6 +16,9 @@
   "category": {
     "it": "Infrastrutture sottomarine"
   },
+  "themes": [
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Golfo di Finlandia"
   },

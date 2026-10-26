@@ -16,6 +16,9 @@
   "category": {
     "it": "Attacco chimico"
   },
+  "themes": [
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Regno Unito"
   },

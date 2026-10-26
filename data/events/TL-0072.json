@@ -16,6 +16,10 @@
   "category": {
     "it": "NATO / difesa"
   },
+  "themes": [
+    "eu_nato_response",
+    "armed_conflict"
+  ],
   "geography": {
     "it": "Mar Baltico"
   },

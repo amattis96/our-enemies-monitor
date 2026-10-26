@@ -16,6 +16,10 @@
   "category": {
     "it": "Industria / infrastrutture"
   },
+  "themes": [
+    "industry_dependencies",
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Unione europea"
   },

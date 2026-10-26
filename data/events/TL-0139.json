@@ -16,6 +16,9 @@
   "category": {
     "it": "NATO / sicurezza"
   },
+  "themes": [
+    "eu_nato_response"
+  ],
   "geography": {
     "it": "NATO"
   },

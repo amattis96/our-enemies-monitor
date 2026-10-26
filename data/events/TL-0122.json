@@ -16,6 +16,9 @@
   "category": {
     "it": "Inflazione / energia"
   },
+  "themes": [
+    "energy"
+  ],
   "geography": {
     "it": "Eurozona"
   },

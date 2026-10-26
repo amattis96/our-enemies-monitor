@@ -16,6 +16,9 @@
   "category": {
     "it": "Ricerca forense / FIMI"
   },
+  "themes": [
+    "information_manipulation"
+  ],
   "geography": {
     "it": "Israele / Europa / Angola"
   },

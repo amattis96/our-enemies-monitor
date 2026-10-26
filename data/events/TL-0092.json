@@ -16,6 +16,10 @@
   "category": {
     "it": "Giustizia / corruzione"
   },
+  "themes": [
+    "justice",
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "Regno Unito"
   },

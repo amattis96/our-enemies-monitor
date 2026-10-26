@@ -16,6 +16,9 @@
   "category": {
     "it": "Sanzioni / finanziamenti"
   },
+  "themes": [
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "Moldavia / Stati Uniti"
   },

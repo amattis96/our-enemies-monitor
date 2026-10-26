@@ -16,6 +16,10 @@
   "category": {
     "it": "Sabotaggio / logistica"
   },
+  "themes": [
+    "hybrid_sabotage",
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Regno Unito"
   },

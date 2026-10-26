@@ -16,6 +16,10 @@
   "category": {
     "it": "Attacchi / NATO"
   },
+  "themes": [
+    "hybrid_sabotage",
+    "eu_nato_response"
+  ],
   "geography": {
     "it": "Europa / NATO"
   },

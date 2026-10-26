@@ -16,6 +16,10 @@
   "category": {
     "it": "Diplomazia / migrazione"
   },
+  "themes": [
+    "geopolitics_diplomacy",
+    "migration_borders"
+  ],
   "geography": {
     "it": "Spagna"
   },

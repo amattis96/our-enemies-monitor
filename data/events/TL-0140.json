@@ -16,6 +16,9 @@
   "category": {
     "it": "Eurostat / energia"
   },
+  "themes": [
+    "energy"
+  ],
   "geography": {
     "it": "Eurozona"
   },

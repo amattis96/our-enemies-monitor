@@ -16,6 +16,10 @@
   "category": {
     "it": "Energia / trasporti"
   },
+  "themes": [
+    "energy",
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Russia / Turchia / Brasile / Marocco"
   },

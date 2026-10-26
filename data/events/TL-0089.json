@@ -16,6 +16,9 @@
   "category": {
     "it": "Commercio / industria"
   },
+  "themes": [
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Cina / UE"
   },

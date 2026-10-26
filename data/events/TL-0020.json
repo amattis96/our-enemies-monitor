@@ -16,6 +16,10 @@
   "category": {
     "it": "Cyber / salute"
   },
+  "themes": [
+    "cyber",
+    "society_health"
+  ],
   "geography": {
     "it": "Unione europea"
   },

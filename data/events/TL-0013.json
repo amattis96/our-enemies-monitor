@@ -16,6 +16,10 @@
   "category": {
     "it": "Cyber / sabotaggio"
   },
+  "themes": [
+    "cyber",
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Ucraina / Europa / mondo"
   },

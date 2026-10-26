@@ -16,6 +16,9 @@
   "category": {
     "it": "Migrazione / rapporto"
   },
+  "themes": [
+    "migration_borders"
+  ],
   "geography": {
     "it": "Unione europea / Ceuta"
   },

@@ -16,6 +16,10 @@
   "category": {
     "it": "Interferenze / FIMI"
   },
+  "themes": [
+    "information_manipulation",
+    "elections_influence"
+  ],
   "geography": {
     "it": "Europa / mondo"
   },

@@ -16,6 +16,10 @@
   "category": {
     "it": "CPI / sanzioni"
   },
+  "themes": [
+    "justice",
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "Stati Uniti / CPI"
   },

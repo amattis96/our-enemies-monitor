@@ -16,6 +16,9 @@
   "category": {
     "it": "Semiconduttori / export"
   },
+  "themes": [
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Stati Uniti / Cina"
   },

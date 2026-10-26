@@ -16,6 +16,10 @@
   "category": {
     "it": "Satelliti / intelligence"
   },
+  "themes": [
+    "infrastructure_space",
+    "intelligence"
+  ],
   "geography": {
     "it": "Ucraina / Stati Uniti"
   },

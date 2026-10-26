@@ -16,6 +16,10 @@
   "category": {
     "it": "Cyber / contromisure"
   },
+  "themes": [
+    "cyber",
+    "eu_nato_response"
+  ],
   "geography": {
     "it": "Unione europea / Cina"
   },

@@ -16,6 +16,9 @@
   "category": {
     "it": "Infrastrutture / cavi"
   },
+  "themes": [
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Unione europea"
   },

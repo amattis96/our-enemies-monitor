@@ -16,6 +16,10 @@
   "category": {
     "it": "Finanza / giustizia"
   },
+  "themes": [
+    "finance_sanctions",
+    "justice"
+  ],
   "geography": {
     "it": "Moldavia"
   },

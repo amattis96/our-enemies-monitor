@@ -165,3 +165,46 @@ export const SOURCE_TYPES = ["corpus_document", "external_reference", "unspecifi
 export const REVIEW_STATUSES = ["imported_unreviewed", "needs_review", "reviewed"] as const;
 
 export const KNOWN_ISSUE_CODES = ["misclassified_category", "date_reflects_publication"] as const;
+
+/**
+ * Editorial themes of events, used for filtering. Assigned from the original
+ * category (which stays the reference), never inferred from free text.
+ */
+export const THEME_LABELS = {
+  armed_conflict: { it: "Conflitto armato e difesa", en: "Armed conflict and defence" },
+  hybrid_sabotage: { it: "Sabotaggio e operazioni ibride", en: "Sabotage and hybrid operations" },
+  cyber: { it: "Cyber", en: "Cyber" },
+  intelligence: { it: "Intelligence e spionaggio", en: "Intelligence and espionage" },
+  information_manipulation: {
+    it: "Manipolazione informativa (FIMI)",
+    en: "Information manipulation (FIMI)",
+  },
+  elections_influence: {
+    it: "Elezioni e influenza politica",
+    en: "Elections and political influence",
+  },
+  finance_sanctions: {
+    it: "Finanza, sanzioni e corruzione",
+    en: "Finance, sanctions and corruption",
+  },
+  justice: { it: "Giustizia e indagini", en: "Justice and investigations" },
+  energy: { it: "Energia", en: "Energy" },
+  industry_dependencies: {
+    it: "Industria, materie prime e dipendenze",
+    en: "Industry, raw materials and dependencies",
+  },
+  infrastructure_space: {
+    it: "Infrastrutture critiche e spazio",
+    en: "Critical infrastructure and space",
+  },
+  surveillance_spyware: { it: "Spyware e sorveglianza", en: "Spyware and surveillance" },
+  migration_borders: { it: "Migrazione e frontiere", en: "Migration and borders" },
+  geopolitics_diplomacy: { it: "Geopolitica e diplomazia", en: "Geopolitics and diplomacy" },
+  eu_nato_response: { it: "Risposte UE e NATO", en: "EU and NATO responses" },
+  society_health: { it: "Società, proteste e salute", en: "Society, protests and health" },
+  platforms_technology: { it: "Piattaforme e tecnologia", en: "Platforms and technology" },
+  research_metadata: { it: "Metadati della ricerca", en: "Research metadata" },
+} as const satisfies Record<string, Label>;
+
+export type Theme = keyof typeof THEME_LABELS;
+export const THEMES = Object.keys(THEME_LABELS) as [Theme, ...Theme[]];

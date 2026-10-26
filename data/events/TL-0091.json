@@ -16,6 +16,10 @@
   "category": {
     "it": "Sabotaggio / ferrovie"
   },
+  "themes": [
+    "hybrid_sabotage",
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Polonia"
   },

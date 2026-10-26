@@ -16,6 +16,10 @@
   "category": {
     "it": "Tecnologia / società"
   },
+  "themes": [
+    "platforms_technology",
+    "society_health"
+  ],
   "geography": {
     "it": "Stati Uniti"
   },

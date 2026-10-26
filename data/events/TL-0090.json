@@ -16,6 +16,10 @@
   "category": {
     "it": "Guerra elettronica / sanzioni"
   },
+  "themes": [
+    "hybrid_sabotage",
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "Russia / Baltico"
   },

@@ -16,6 +16,10 @@
   "category": {
     "it": "Sanzioni / frontiere"
   },
+  "themes": [
+    "finance_sanctions",
+    "migration_borders"
+  ],
   "geography": {
     "it": "Unione europea"
   },

@@ -16,6 +16,10 @@
   "category": {
     "it": "Sabotaggio / industria"
   },
+  "themes": [
+    "hybrid_sabotage",
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Estonia"
   },

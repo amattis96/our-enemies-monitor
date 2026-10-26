@@ -16,6 +16,10 @@
   "category": {
     "it": "Investimenti / tecnologia"
   },
+  "themes": [
+    "industry_dependencies",
+    "platforms_technology"
+  ],
   "geography": {
     "it": "Stati Uniti / mondo"
   },

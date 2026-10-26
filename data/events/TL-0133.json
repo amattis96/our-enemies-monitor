@@ -16,6 +16,10 @@
   "category": {
     "it": "Diplomazia / CPI"
   },
+  "themes": [
+    "geopolitics_diplomacy",
+    "justice"
+  ],
   "geography": {
     "it": "Stati Uniti / Unione europea"
   },

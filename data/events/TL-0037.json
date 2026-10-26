@@ -16,6 +16,10 @@
   "category": {
     "it": "Guerra / sanzioni"
   },
+  "themes": [
+    "armed_conflict",
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "UE / Ucraina"
   },

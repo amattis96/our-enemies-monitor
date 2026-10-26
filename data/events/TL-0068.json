@@ -16,6 +16,10 @@
   "category": {
     "it": "Elezioni / istituzioni"
   },
+  "themes": [
+    "elections_influence",
+    "eu_nato_response"
+  ],
   "geography": {
     "it": "Romania"
   },

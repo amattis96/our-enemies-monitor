@@ -16,6 +16,9 @@
   "category": {
     "it": "Materie prime / Africa"
   },
+  "themes": [
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Repubblica Democratica del Congo / Cina"
   },

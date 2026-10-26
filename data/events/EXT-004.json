@@ -14,6 +14,10 @@
     "it": "Arresti presso la base il 27 settembre; due nuovamente arrestati il 20 ottobre per sospetta assistenza ai servizi iraniani. Indagine aperta e responsabilità non giudicata."
   },
   "category": null,
+  "themes": [
+    "intelligence",
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Europa / UK / Svezia"
   },
@@ -27,7 +31,9 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "Themes assigned editorially: the record has no original category."
+    ]
   },
   "provenance": [
     {

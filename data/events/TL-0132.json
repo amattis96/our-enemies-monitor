@@ -16,6 +16,10 @@
   "category": {
     "it": "Energia / Russia-USA"
   },
+  "themes": [
+    "energy",
+    "geopolitics_diplomacy"
+  ],
   "geography": {
     "it": "USA / Russia / mercati globali"
   },

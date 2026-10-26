@@ -16,6 +16,10 @@
   "category": {
     "it": "Energia / risposta"
   },
+  "themes": [
+    "energy",
+    "eu_nato_response"
+  ],
   "geography": {
     "it": "Mercato petrolifero mondiale"
   },

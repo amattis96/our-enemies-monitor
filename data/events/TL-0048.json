@@ -16,6 +16,10 @@
   "category": {
     "it": "Spyware / diritti"
   },
+  "themes": [
+    "justice",
+    "geopolitics_diplomacy"
+  ],
   "geography": {
     "it": "Corte penale internazionale"
   },
@@ -42,7 +46,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "Themes follow the reclassification reported in S07 §11 / S08 §20.2, not the original category."
+    ]
   },
   "provenance": [
     {

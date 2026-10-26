@@ -16,6 +16,9 @@
   "category": {
     "it": "Trattati / geopolitica"
   },
+  "themes": [
+    "geopolitics_diplomacy"
+  ],
   "geography": {
     "it": "Russia / Iran"
   },

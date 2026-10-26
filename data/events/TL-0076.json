@@ -16,6 +16,10 @@
   "category": {
     "it": "Energia / resilienza"
   },
+  "themes": [
+    "energy",
+    "eu_nato_response"
+  ],
   "geography": {
     "it": "Unione europea"
   },

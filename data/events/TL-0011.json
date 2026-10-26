@@ -16,6 +16,9 @@
   "category": {
     "it": "Interferenza elettorale"
   },
+  "themes": [
+    "elections_influence"
+  ],
   "geography": {
     "it": "Francia"
   },

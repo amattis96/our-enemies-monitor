@@ -16,6 +16,7 @@ import {
 import { type CsvRow, SourceReader } from "../sources.ts";
 import { BASELINE_FILES, CORPUS_DOCUMENTS, REFERENCE_REGISTRIES } from "./files.ts";
 import { DATASET_METADATA_EVENTS, KNOWN_ISSUES } from "./known-issues.ts";
+import { CATEGORY_THEMES, EVENT_THEME_OVERRIDES } from "./themes.ts";
 
 /**
  * One-time conversion of the original baseline (sources/original/) into
@@ -103,6 +104,18 @@ function takeEventNode(eventNodes: Map<string, { row: number; original: CsvRow }
   return { file: BASELINE_FILES.nodesCsv, ...node };
 }
 
+function themesOf(id: string, category: string | null): Event["themes"] {
+  const themes =
+    EVENT_THEME_OVERRIDES[id]?.themes ?? (category ? CATEGORY_THEMES[category] : undefined);
+  if (!themes) throw new Error(`${id}: no theme mapping for category "${category}"`);
+  return themes;
+}
+
+function themeReview(id: string): Review {
+  const override = EVENT_THEME_OVERRIDES[id];
+  return override ? { status: "imported_unreviewed", notes: [override.note] } : UNREVIEWED;
+}
+
 function importTimeline(
   reader: SourceReader,
   eventNodes: Map<string, { row: number; original: CsvRow }>,
@@ -133,6 +146,7 @@ function importTimeline(
       title: text(field(original, "title")),
       description: text(field(original, "description")),
       category: optionalText(field(original, "category")),
+      themes: themesOf(id, field(original, "category")),
       geography: optionalText(field(original, "geography")),
       evidence_note: optionalText(field(original, "evidence_status")),
       evidence_level: null,
@@ -140,7 +154,7 @@ function importTimeline(
       url: null,
       sources: sourceList(field(original, "source_docs")),
       known_issues: KNOWN_ISSUES[id] ?? [],
-      review: UNREVIEWED,
+      review: themeReview(id),
       provenance: [
         { file, row, original },
         { file: node.file, row: node.row, original: node.original },
@@ -168,6 +182,7 @@ function importNewEvidence(
       title: text(field(original, "title")),
       description: text(field(original, "description")),
       category: null,
+      themes: themesOf(id, null),
       geography: optionalText(field(node.original, "geo")),
       evidence_note: null,
       evidence_level: field(original, "evidence_level") as Event["evidence_level"],
@@ -175,7 +190,7 @@ function importNewEvidence(
       url: orNull(field(original, "url")),
       sources: sourceList(field(node.original, "source_docs")),
       known_issues: [],
-      review: UNREVIEWED,
+      review: themeReview(id),
       provenance: [
         { file, row, original },
         { file: node.file, row: node.row, original: node.original },

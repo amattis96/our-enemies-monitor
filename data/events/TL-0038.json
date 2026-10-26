@@ -16,6 +16,10 @@
   "category": {
     "it": "Cyber / satelliti"
   },
+  "themes": [
+    "cyber",
+    "infrastructure_space"
+  ],
   "geography": {
     "it": "Ucraina / Europa"
   },

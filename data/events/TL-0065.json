@@ -16,6 +16,10 @@
   "category": {
     "it": "NATO / geopolitica"
   },
+  "themes": [
+    "eu_nato_response",
+    "geopolitics_diplomacy"
+  ],
   "geography": {
     "it": "Washington / NATO"
   },

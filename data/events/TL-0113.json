@@ -16,6 +16,10 @@
   "category": {
     "it": "Influenza digitale"
   },
+  "themes": [
+    "elections_influence",
+    "information_manipulation"
+  ],
   "geography": {
     "it": "Francia"
   },

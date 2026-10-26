@@ -16,6 +16,10 @@
   "category": {
     "it": "Sanzioni / cyber"
   },
+  "themes": [
+    "finance_sanctions",
+    "cyber"
+  ],
   "geography": {
     "it": "Unione europea / Iran"
   },

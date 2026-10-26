@@ -16,6 +16,10 @@
   "category": {
     "it": "Satelliti / politica industriale"
   },
+  "themes": [
+    "infrastructure_space",
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Unione europea"
   },

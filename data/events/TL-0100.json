@@ -16,6 +16,9 @@
   "category": {
     "it": "Guerra / Medio Oriente"
   },
+  "themes": [
+    "armed_conflict"
+  ],
   "geography": {
     "it": "Iran / Medio Oriente"
   },

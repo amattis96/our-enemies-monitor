@@ -16,6 +16,9 @@
   "category": {
     "it": "Sanzioni / Moldavia"
   },
+  "themes": [
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "Unione europea / Moldavia"
   },

@@ -16,6 +16,9 @@
   "category": {
     "it": "Pressione migratoria"
   },
+  "themes": [
+    "migration_borders"
+  ],
   "geography": {
     "it": "Finlandia / Russia"
   },

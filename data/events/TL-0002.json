@@ -16,6 +16,10 @@
   "category": {
     "it": "Cyber / guerra"
   },
+  "themes": [
+    "cyber",
+    "armed_conflict"
+  ],
   "geography": {
     "it": "Georgia"
   },

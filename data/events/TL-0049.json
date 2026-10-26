@@ -16,6 +16,9 @@
   "category": {
     "it": "Guerra informativa"
   },
+  "themes": [
+    "information_manipulation"
+  ],
   "geography": {
     "it": "Francia / territori d’oltremare"
   },

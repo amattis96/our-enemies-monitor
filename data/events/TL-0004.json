@@ -16,6 +16,10 @@
   "category": {
     "it": "Sanzioni / diplomazia"
   },
+  "themes": [
+    "finance_sanctions",
+    "geopolitics_diplomacy"
+  ],
   "geography": {
     "it": "Unione europea"
   },

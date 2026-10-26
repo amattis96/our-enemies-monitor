@@ -16,6 +16,10 @@
   "category": {
     "it": "Salute / lobbying"
   },
+  "themes": [
+    "society_health",
+    "elections_influence"
+  ],
   "geography": {
     "it": "Europa"
   },

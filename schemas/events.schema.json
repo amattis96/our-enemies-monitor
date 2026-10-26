@@ -114,6 +114,33 @@
         }
       ]
     },
+    "themes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "armed_conflict",
+          "hybrid_sabotage",
+          "cyber",
+          "intelligence",
+          "information_manipulation",
+          "elections_influence",
+          "finance_sanctions",
+          "justice",
+          "energy",
+          "industry_dependencies",
+          "infrastructure_space",
+          "surveillance_spyware",
+          "migration_borders",
+          "geopolitics_diplomacy",
+          "eu_nato_response",
+          "society_health",
+          "platforms_technology",
+          "research_metadata"
+        ]
+      }
+    },
     "geography": {
       "anyOf": [
         {
@@ -358,6 +385,7 @@
     "title",
     "description",
     "category",
+    "themes",
     "geography",
     "evidence_note",
     "evidence_level",

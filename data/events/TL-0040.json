@@ -16,6 +16,10 @@
   "category": {
     "it": "Cyber / guerra ibrida"
   },
+  "themes": [
+    "cyber",
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Albania"
   },

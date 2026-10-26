@@ -13,6 +13,7 @@ import {
   RELATIONSHIP_EVIDENCE_STATUSES,
   REVIEW_STATUSES,
   SOURCE_TYPES,
+  THEMES,
   TIMELINE_STATUSES,
 } from "./vocabularies.ts";
 
@@ -122,8 +123,10 @@ export const Event = z.strictObject({
   date: DateRange,
   title: LocalizedText,
   description: LocalizedText,
-  /** Original free-text category; normalized themes come later (M2). */
+  /** Original free-text category: the reference for `themes`. */
   category: LocalizedText.nullable(),
+  /** Editorial themes for filtering (src/pipeline/baseline/themes.ts). */
+  themes: z.array(z.enum(THEMES)).min(1),
   /** Original free-text geography; normalized places come later (M3). */
   geography: LocalizedText.nullable(),
   /** Original free-text evidence assessment of the timeline record. */

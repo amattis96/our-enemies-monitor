@@ -16,6 +16,9 @@
   "category": {
     "it": "Sabotaggio / difesa"
   },
+  "themes": [
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Germania"
   },

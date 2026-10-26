@@ -16,6 +16,9 @@
   "category": {
     "it": "Reti FIMI / report"
   },
+  "themes": [
+    "information_manipulation"
+  ],
   "geography": {
     "it": "Unione europea"
   },

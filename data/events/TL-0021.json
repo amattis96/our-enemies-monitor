@@ -16,6 +16,10 @@
   "category": {
     "it": "Cyber / intelligence"
   },
+  "themes": [
+    "cyber",
+    "intelligence"
+  ],
   "geography": {
     "it": "Estonia"
   },

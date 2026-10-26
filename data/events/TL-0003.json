@@ -16,6 +16,9 @@
   "category": {
     "it": "Influenza politica"
   },
+  "themes": [
+    "elections_influence"
+  ],
   "geography": {
     "it": "Europa / Ucraina"
   },

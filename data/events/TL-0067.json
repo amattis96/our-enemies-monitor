@@ -16,6 +16,10 @@
   "category": {
     "it": "Elezioni / piattaforme"
   },
+  "themes": [
+    "elections_influence",
+    "platforms_technology"
+  ],
   "geography": {
     "it": "Romania"
   },

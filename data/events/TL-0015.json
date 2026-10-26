@@ -16,6 +16,10 @@
   "category": {
     "it": "Corruzione / influenza"
   },
+  "themes": [
+    "finance_sanctions",
+    "elections_influence"
+  ],
   "geography": {
     "it": "Regno Unito / Parlamento europeo"
   },

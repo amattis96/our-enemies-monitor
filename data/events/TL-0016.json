@@ -16,6 +16,9 @@
   "category": {
     "it": "Movimenti sociali"
   },
+  "themes": [
+    "society_health"
+  ],
   "geography": {
     "it": "Francia"
   },

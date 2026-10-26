@@ -16,6 +16,9 @@
   "category": {
     "it": "Sanzioni / Stati Uniti"
   },
+  "themes": [
+    "finance_sanctions"
+  ],
   "geography": {
     "it": "Stati Uniti / Russia"
   },

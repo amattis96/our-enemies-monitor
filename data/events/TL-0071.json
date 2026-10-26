@@ -16,6 +16,10 @@
   "category": {
     "it": "FIMI / tecnologia"
   },
+  "themes": [
+    "information_manipulation",
+    "platforms_technology"
+  ],
   "geography": {
     "it": "Europa / web"
   },

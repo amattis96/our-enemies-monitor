@@ -16,6 +16,9 @@
   "category": {
     "it": "Ricerca / baseline"
   },
+  "themes": [
+    "research_metadata"
+  ],
   "geography": {
     "it": "Progetto"
   },

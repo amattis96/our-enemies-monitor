@@ -16,6 +16,10 @@
   "category": {
     "it": "Coercizione commerciale"
   },
+  "themes": [
+    "industry_dependencies",
+    "geopolitics_diplomacy"
+  ],
   "geography": {
     "it": "Cina / Lituania / UE"
   },

@@ -16,6 +16,10 @@
   "category": {
     "it": "Giustizia / spionaggio"
   },
+  "themes": [
+    "justice",
+    "intelligence"
+  ],
   "geography": {
     "it": "Germania / Parlamento europeo"
   },

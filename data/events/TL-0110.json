@@ -16,6 +16,9 @@
   "category": {
     "it": "Diplomazia / Cina-Russia"
   },
+  "themes": [
+    "geopolitics_diplomacy"
+  ],
   "geography": {
     "it": "Cina / Russia"
   },

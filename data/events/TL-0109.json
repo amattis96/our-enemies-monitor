@@ -16,6 +16,10 @@
   "category": {
     "it": "Sanzioni / industria"
   },
+  "themes": [
+    "finance_sanctions",
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Unione europea / paesi terzi"
   },

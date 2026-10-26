@@ -16,6 +16,9 @@
   "category": {
     "it": "Guerra"
   },
+  "themes": [
+    "armed_conflict"
+  ],
   "geography": {
     "it": "Crimea / Ucraina"
   },

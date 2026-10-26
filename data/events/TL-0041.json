@@ -16,6 +16,10 @@
   "category": {
     "it": "Sabotaggio energetico"
   },
+  "themes": [
+    "hybrid_sabotage",
+    "energy"
+  ],
   "geography": {
     "it": "Mar Baltico"
   },

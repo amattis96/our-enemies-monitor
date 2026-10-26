@@ -16,6 +16,10 @@
   "category": {
     "it": "Disinformazione sanitaria"
   },
+  "themes": [
+    "information_manipulation",
+    "society_health"
+  ],
   "geography": {
     "it": "Europa / mondo"
   },

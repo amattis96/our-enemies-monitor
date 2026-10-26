@@ -16,6 +16,9 @@
   "category": {
     "it": "Materie prime / UE"
   },
+  "themes": [
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Unione europea"
   },

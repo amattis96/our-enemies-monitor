@@ -16,6 +16,9 @@
   "category": {
     "it": "Industria / batterie"
   },
+  "themes": [
+    "industry_dependencies"
+  ],
   "geography": {
     "it": "Cina / mercato globale"
   },

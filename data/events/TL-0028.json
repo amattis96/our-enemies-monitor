@@ -16,6 +16,10 @@
   "category": {
     "it": "Coercizione migratoria"
   },
+  "themes": [
+    "migration_borders",
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Bielorussia / frontiera UE"
   },

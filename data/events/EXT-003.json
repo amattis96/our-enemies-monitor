@@ -14,6 +14,10 @@
     "it": "CPS aggiorna il 16 ottobre la condanna a 20 anni per un tentativo di omicidio su commissione nel marzo 2025; il singolo ordine iraniano non è dimostrato nel caso."
   },
   "category": null,
+  "themes": [
+    "justice",
+    "hybrid_sabotage"
+  ],
   "geography": {
     "it": "Europa / UK / Svezia"
   },
@@ -27,7 +31,9 @@
   "known_issues": [],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "Themes assigned editorially: the record has no original category."
+    ]
   },
   "provenance": [
     {

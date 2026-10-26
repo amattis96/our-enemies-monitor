@@ -16,6 +16,10 @@
   "category": {
     "it": "Elezioni / FIMI"
   },
+  "themes": [
+    "elections_influence",
+    "information_manipulation"
+  ],
   "geography": {
     "it": "Unione europea"
   },

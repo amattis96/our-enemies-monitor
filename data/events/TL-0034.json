@@ -16,6 +16,10 @@
   "category": {
     "it": "FIMI / contromisure"
   },
+  "themes": [
+    "information_manipulation",
+    "eu_nato_response"
+  ],
   "geography": {
     "it": "Europa / Meta"
   },
