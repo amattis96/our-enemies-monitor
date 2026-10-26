@@ -1,310 +1,227 @@
-# Proposed technical architecture
+# Technical architecture
 
-**Status:** design proposal, not yet implemented. **Date:** 2026-10-26.
+**Status:** adopted 2026-10-26. M1 (data foundation) implemented; M2–M4 planned.
+This document describes the architecture as it is built. Keep it in sync
+with the code (see [AGENTS.md](../AGENTS.md)).
 
-## Architectural decision
+## Principles
 
-Our Enemies Monitor will be a **React + TypeScript static-first research portal**,
-built reproducibly from a versioned, validated corpus in Git. The website
-will use generated structured JSON; it must not parse free-form Markdown,
-CSV or GraphML in the user's browser.
+1. **Git is the database.** The repository alone must be sufficient to rebuild
+   the public portal and every published claim. No hosted database, paid API
+   or private account is needed to build, view or mirror the project.
+2. **Original sources are immutable.** `sources/original/` keeps the 15
+   historical files byte-for-byte. Corrections live in the canonical data,
+   never in the originals.
+3. **Canonical data is the single editable truth.** After the one-time
+   baseline import, humans and agents edit `data/`, not the source files.
+4. **Facts, attributions and hypotheses stay separate.** E5 hypotheses never
+   enter the relationship graph; event participation is never shown as
+   control or financing.
+5. **No false precision.** Unknown dates, places, figures and causal links
+   stay unknown (`null` or empty). Free-text original values are preserved
+   verbatim until an editor classifies them.
+6. **One language, one toolchain.** TypeScript end to end, so the schemas
+   are written once and shared by the pipeline and the website.
+7. **Size-appropriate technology.** The corpus has hundreds of records, not
+   millions: everything is computed in memory at build time.
 
-The research corpus, and not a proprietary search index or deployed database,
-must be sufficient to reconstruct the public portal and all publicly visible
-relationships and claims.
+## Stack
 
-### Separation of responsibilities
-
-1. **Immutable historical source files:** preserve the 15 original files in
-   `sources/original/` (Fonte_00–Fonte_08, including CSV/GraphML exports).
-2. **Canonical approved records:** normalize into stable, validated,
-   reviewable JSON/JSONL in `data/` with original IDs, citations,
-   evidence levels, revision history and temporal fields.
-3. **Ingestion and validation pipeline:** read Markdown, CSV, GraphML and
-   later JSON through format-specific importers. Preserve provenance and
-   reject unverifiable or ambiguous automatic upgrades of evidence.
-4. **Disposable relational build index:** materialize canonical records
-   to local SQLite during CI/build for integrity, joins, full-text indexing
-   and relationship analysis. Regenerate it from Git content; do not make
-   a privately hosted database indispensable.
-5. **Published read models:** export versioned and sharded JSON, GeoJSON,
-   graph subsets and per-language search indexes for the React UI.
-6. **Static-first public frontend:** pre-render linkable content pages,
-   hydrate interactive views client-side, deploy on any static host.
-7. **Optional future online services:** PostgreSQL (with optional
-   PostGIS/pgvector), server search, API and incremental ingestion when
-   dataset size or operational requirements warrant them.
-
-## Proposed technology stack
-
-| Layer | Proposal | Rationale |
+| Concern | Choice | Notes |
 | --- | --- | --- |
-| Frontend | React + TypeScript + Next.js static export | React ecosystem; pre-rendered indexable pages; serverless hosting |
-| UI | Tailwind CSS + accessible component primitives | Reusable responsive design |
-| Network graphs | Cytoscape.js | Typed entities/edges, filters, neighborhood exploration |
-| Geography | MapLibre GL JS + GeoJSON | Interactive cartographic views; provider-independent JS client |
-| Time | vis-timeline | Zoomable and filterable historical chronology |
-| Quantitative figures | Apache ECharts | Multi-axis exposure and contextual indicators |
-| Content parsing | Python 3.12+ | CSV, Markdown and GraphML importers; research tooling |
-| Data validation | Pydantic + JSON Schema | Explicit contracts and reproducible checks |
-| Graph transformations | NetworkX | Network computations performed *offline*, with edge-type filters |
-| Local relational index | SQLite + FTS5 | Lightweight disposable build/search database |
-| Live DB if required | PostgreSQL + optional PostGIS/pgvector | Transactions, spatial and semantic search at future scale |
-| Local static search | Precomputed language-aware index | Public search without a permanent server |
-| CI/CD | GitHub Actions | Build, validation, release artifacts and deployment |
-| AI contributions | Claude Code, Codex or scheduled API workers | Proposed changes through branches and pull requests |
+| Runtime | Node.js 26 (native TypeScript type stripping) | No transpile step for scripts; erasable TS syntax only |
+| Package manager | pnpm 12 | Exact versions pinned in `package.json` |
+| Language / types | TypeScript 7 | `tsc --noEmit` as type checker |
+| Schemas | Zod 4 | Source of truth for types, validation and exported JSON Schema |
+| Tests | Vitest 5 | Importer and validator suites |
+| Lint / format | Biome 2 | Code formatting and lint; data formatting is done by the pipeline |
+| CI | GitHub Actions | `pnpm check` on every push and PR |
+| Website (M2) | Astro 7 + React 19 islands | Static HTML pages; React only for interactive views |
+| Styling (M2) | Tailwind CSS 4 + React Aria Components | Accessible primitives |
+| Network graph (M2) | Cytoscape.js | Edge styles per relation group, hypotheses on a separate layer |
+| Search (M2) | Pagefind | Static, multilingual index built from the generated pages |
+| Atlas (M3) | Country-level SVG (d3-geo + Natural Earth) | No point coordinates exist in the data; no tile server |
+| Hosting (M2) | GitHub Pages | Portable static output, works on any static host |
 
-Versions and exact libraries must be pinned when implementation starts.
-This document does not assert that any implementation or hosting has
-already been deployed.
+Deliberately **not** used: Next.js (static export loses i18n routing and adds
+RSC runtime for a content site), Python in the build (would duplicate the
+schemas), SQLite/PostgreSQL (unnecessary at this scale), graph or vector
+databases, map tile servers. Reconsider only with measured need.
 
-## Planned repository organization
-
-```text
-sources/
-  original/              # Historical sources: do not rewrite
-  external/              # Rights-cleared snapshots OR source metadata/links
-data/
-  entities/
-  events/
-  claims/
-  evidence/
-  relationships/
-  hypotheses/
-  exposures/
-  assessments/
-  corrections/
-  schemas/               # JSON Schema; provenance and validity rules
-research/
-  chatgpt/
-  claude/
-locales/
-  it/
-  en/
-web/                     # React/Next.js portal
-pipeline/
-  importers/             # CSV, GraphML, Markdown, JSON
-  validate/              # Referential, evidence and temporal checks
-  build/                 # SQLite materialization, JSON read models, indexes
-docs/
-  ARCHITECTURE.md
-.github/workflows/
-AGENTS.md
-CLAUDE.md
-README.md
-LICENSE
-LICENSE-DATA.md
-```
-
-The paths other than the existing baseline and license files are proposals.
-
-## Baseline import: preserve the source-specific contracts
-
-**Fonte_06 timeline CSV** supplies stable `TL-*` IDs, event dates and
-precision, category, title, description, status, internal source references,
-and geography. It must not be interpreted as containing verified coordinates.
-
-**Fonte_07 node CSV** supplies entity/node IDs, name, kind, domain, geography,
-date range, internal provenance and limits.
-
-**Fonte_07 edge CSV** supplies `G-*` edges with `source`, `target`,
-`predicate`, `relation_class`, `evidence_level`,
-`evidence_status`, `source_docs`, timeline references, primary URL
-and evidence caveats. The distinction between direct entity relationships,
-event-participation edges and contextual links must survive ingestion.
-
-**Fonte_07 hypotheses CSV** supplies open `H*` questions and required
-counterchecks. These must not become factual published edges automatically.
-
-**Fonte_07 new-evidence CSV** supplies additional records that must be
-reconciled explicitly with the timeline, not counted as already merged.
-
-**GraphML** is a structural interoperability and consistency-check input;
-its nodes and edges must not be imported twice alongside the CSV exports.
-
-**Markdown dossiers** are original analyses and supporting context.
-The parser may index their text and references. AI may suggest further
-claims extracted from prose, but **unreviewed extracted claims are proposals,
-not canonical confirmed data**.
-
-### Canonical record requirements
-
-At minimum, store:
-
-- Stable `id`, typed class, source-file/row provenance and content hash.
-- An explicit relationship between claims, evidence, subjects and objects.
-- `evidence_level` E1–E5 and a separate `evidence_status`.
-- `claim_type`, `attribution_confidence` and `impact_confidence`
-  when applicable.
-- `event_date_start`, `event_date_end`, `date_precision`,
-  `valid_from`, `valid_to` as separate temporal concepts.
-- `source_published_at`, `observed_at`, `last_checked_at`,
-  `reviewed_at` and `retracted_at` when known.
-- `source_url`, source publisher, source snapshot/hash and license.
-- `review_status`, contradictions and correction/supersession links.
-
-Unknown values remain null. Do not infer precision for ambiguous dates
-or places. Represent competing attributions as separate provenance-linked
-claims, never silently overwrite one with another.
-
-## Deterministic build pipeline
+## Repository layout
 
 ```text
-sources/original + sources/external + data/canonical
-                      |
-                      v
-       deterministic source importers
-                      |
-                      v
-       normalized, reviewable records
-                      |
-                      v
-        schema + referential validation
-                      |
-                      v
-        temporary SQLite + typed graph
-                      |
-                      v
-       static JSON / GeoJSON / indexes
-                      |
-                      v
-           React static page build
-                      |
-                      v
-       portable HTML/CSS/JS + data
+sources/original/      Immutable historical corpus (Fonte_00–Fonte_08)
+data/                  Canonical records, one JSON file per record
+  events/              TL-*.json (timeline) and EXT-*.json (pending integration)
+  entities/            <ENTITY_ID>.json (states, persons, organizations, ...)
+  relationships/       G-*.json (typed, sourced graph edges)
+  hypotheses/          H*.json (open questions, never graph edges)
+  sources/             S*/F*/P*/WEB*.json (corpus documents and external references)
+schemas/               JSON Schema generated from the Zod model (do not edit)
+src/
+  model/               Zod schemas, controlled vocabularies, types
+  pipeline/            Loading (load.ts), source reading (sources.ts),
+                       canonical serialization (serialize.ts), validation (validate.ts)
+    baseline/          One-time importer, file registry, known-issue registry
+  cli/                 Entry points used by package scripts
+test/                  Vitest suites
+docs/                  Architecture and project documentation
+.github/workflows/     CI
+web/                   Astro portal (M2, not yet created)
 ```
 
-Separate **one-time baseline extraction** from the **incremental approved
-data pipeline**. After initial migration, the importers must not overwrite
-human-corrected canonical records from raw original files on each build.
+## Data model
 
-Generate a manifest with schema version, content version, Git commit SHA,
-last published timestamp and the SHA-256 digest of each generated dataset.
-Reproducibility tests should compare normalized outputs where feasible.
+All records are validated by the Zod schemas in `src/model/`. Every file is
+stored at `data/<collection>/<id>.json` and must equal its canonical
+serialization (schema key order, 2-space indent, trailing newline), so diffs
+are minimal and deterministic. Free text is a localized object
+`{ "it": "...", "en"?: "..." }`: **Italian is the canonical language** of the
+corpus; other languages are translations.
 
-### Static read models (examples)
+### Identifiers
+
+| Collection | Pattern | Origin |
+| --- | --- | --- |
+| Event | `TL-0001` … / `EXT-001` … | Fonte_06 timeline / Fonte_07 new evidence |
+| Entity | `RU`, `GRU`, `VOE`, `RU_PRESS` (uppercase code) | Fonte_07 nodes (non-event) |
+| Relationship | `G-0001` … (gaps allowed) | Fonte_07 edges |
+| Hypothesis | `H01` … | Fonte_07 hypotheses |
+| Source | `S00`–`S08`, `F01`–`F30`, `P01`–`P11`, `WEB`, `WEB-EXT-001`… | Corpus documents and cited references |
+
+Original IDs are never renumbered. Fonte_07 duplicates every timeline event
+as a graph node (`EV_TL-0001`, `EV_EXT-001`); the importer merges them into
+the single event record and rewrites edge endpoints to the event ID. ID
+namespaces are disjoint, so a relationship endpoint is resolved by its ID.
+
+### Records
+
+- **Event:** dated record with `date {start, end, precision}` (partial ISO
+  `YYYY`, `YYYY-MM`, `YYYY-MM-DD`), `record_type` (`event` or
+  `dataset_metadata`), `timeline_status` (`integrated` or
+  `pending_integration`), title, description, original category, original
+  evidence note, original geography, source references, optional publisher,
+  URL and evidence level (EXT records), `known_issues`.
+- **Entity:** `kind` (`state`, `institution`, `person`, `organization`,
+  `company`, `asset`), name, original domain.
+- **Relationship:** `subject`, `object`, original `predicate`,
+  `relation_class` (controlled vocabulary of the 30 observed classes, each
+  mapped to a display `relation group`), `evidence_level` E1–E4 (E5 is
+  rejected by the schema), `evidence_status`, sources, linked events,
+  validity dates, primary URL, caveat.
+- **Hypothesis:** subject, object, type, verification question, current
+  limit, priority, evidence needed, sources, linked events, status.
+- **Source:** corpus document (with its file path) or external reference
+  (title, URLs, citing documents).
+
+Every record also carries:
+
+- `provenance[]`: for each source row it was built from, the file, the
+  1-based CSV data row (or Markdown `line`) and the verbatim `original`
+  values, so provenance can be re-checked forever and nothing is lost by
+  normalization. Events have two entries (timeline row and graph node row).
+  Records added later by editors may have an empty list;
+- `review`: `{ status, notes }` with status `imported_unreviewed`,
+  `needs_review` or `reviewed`.
+
+### Not yet modeled (by design)
+
+Claims, evidence documents with snapshots/hashes, exposures, assessments
+and corrections as separate collections are introduced when real data
+exists for them (M3–M4). The baseline has no claim-level data, and inventing
+that structure would be false precision. Until then each relationship is the
+claim, its sources are the evidence, and Git history plus `review.notes`
+record corrections. Normalized themes (from the ~90 free-text categories),
+places (from free-text geography), canonical predicates (from 290 original
+predicates) and the event/attribution/impact status split (from free-text
+evidence notes) are **editorial classifications** scheduled for M2/M3; the
+original values remain the reference.
+
+## Baseline in numbers
+
+After import (`pnpm validate`): 151 events (147 timeline + 4 pending
+integration), 202 entities, 444 relationships (291 event participation, 153
+direct), 22 hypotheses, 55 sources (S00–S08, WEB, 4 WEB-EXT, F01–F30,
+P01–P11). The GraphML export is verified by tests to be identical to the node
+and edge CSV files, so it is not imported.
+
+## Pipeline
 
 ```text
-public/data/v1/manifest.json
-public/data/v1/events/index.json
-public/data/v1/events/TL-0001.json
-public/data/v1/entities/index.json
-public/data/v1/entities/<id>.json
-public/data/v1/relationships/by-entity/<id>.json
-public/data/v1/geo/events.geojson
-public/data/v1/search/it.json
-public/data/v1/search/en.json
-public/data/v1/hypotheses/index.json
+sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
+                                                                    |
+                                    pnpm validate  <----------------+
+                                         |
+                    schema, canonical form, unique IDs, references,
+                    temporal rules, provenance vs. original files,
+                    sensitive-person report
+                                         |
+                    (M2) build read models --> Astro static site --> Pages
 ```
 
-Avoid a monolithic JSON containing all documents, all translations, every
-graph edge and every source excerpt. Request on-demand record and graph
-neighborhood files. Make the canonical data export downloadable separately.
+- `pnpm import:baseline` refuses to overwrite an existing `data/` unless
+  `--force` is passed. After M1 it is only a reproducibility tool.
+- `pnpm validate` fails on errors and prints warnings (e.g. relationships
+  involving a named person without a primary URL: 36 in the baseline).
+- `pnpm schemas` regenerates `schemas/*.schema.json`; `pnpm check` fails if
+  they are stale.
+- `pnpm format:data` rewrites data files in canonical form.
+- `pnpm check` = lint + typecheck + tests + validate + schema freshness. It is
+  what CI runs.
 
-## Public views
+### Validation rules
 
-- **Timeline:** date slider, temporal precision, discovery vs event date,
-  multi-filter comparison and deep-linked case records.
-- **Atlas:** place of event, affected target, alleged origin and strategic
-  exposure as separate spatial layers. Do not place vague countries at
-  fabricated point coordinates or imply the origin from event location.
-- **Evidence network:** filters by `relation_class`, `predicate`,
-  evidence status and time range; interactive one/two-hop neighborhoods;
-  distinguish context, participation, hypothesis and command explicitly.
-- **Profiles:** entity, institution, case and strategic asset pages with
-  direct references to evidence, counterevidence and correction history.
-- **Strategic dependencies:** multi-axis metrics including unit, year,
-  geographic scope, numerator/denominator and reference period.
-- **Changes:** approved updates, revised claims, exonerations, corrections,
-  and documented retractions.
-- **Multilingual:** stable IDs and source links; translations inherit
-  canonical evidence and expose translation review status.
+1. Each file parses against its schema; file name equals record ID.
+2. Each file is in canonical serialization.
+3. IDs are unique across collections.
+4. All references resolve: relationship endpoints, hypothesis subject/object,
+   linked events, source codes.
+5. No E5 relationships (schema); hypotheses live only in `data/hypotheses/`.
+   An `event_participation` relationship must have an event endpoint;
+   subject and object differ.
+6. Dates are real calendar dates, match their precision, and `end >= start`.
+7. Every `provenance` entry still equals its row/line in `sources/original/`.
+8. Warning: relationships touching a `person` entity without a `primary_url`
+   (they will be restricted on the public site until reviewed).
 
-## Search: factual queries versus semantic retrieval
+## Website (M2–M3)
 
-Start with filters, stable IDs and **full-text search**. These searches are
-reliable and inspectable for names, dates, geographic fields and claim types.
+Static-first Astro site reading `data/` through the same model package.
+Content pages (events, entities, hypotheses, sources, methodology) are plain
+HTML; interactive views are React islands:
 
-Embedding-based similarity is optional and should only improve **discovery**
-of relevant passages and records. An embedding score is not evidence of
-coordination, authorship, responsibility or causality.
+- **Timeline:** filter by period, theme, evidence; precision shown explicitly;
+  `dataset_metadata` records hidden from the event list.
+- **Network:** Cytoscape.js; filter by relation group and evidence level;
+  event-participation edges visually distinct from direct relationships;
+  hypotheses only in a separate, clearly labeled exploratory view; no
+  automatic path inference or transitive edges.
+- **Profiles:** entity and event pages with every relationship, its sources,
+  caveats and review status. Named-person relationships without a primary
+  source are shown in restricted form.
+- **Atlas (M3):** country-level layers that keep event location, target and
+  alleged origin separate.
+- **Dependencies (M3):** exposure metrics with unit, denominator, year and
+  scope (from Fonte_08 §12.2).
+- **i18n:** Italian canonical; English in M3; stable IDs in URLs.
 
-If vector search later becomes useful, generate embeddings with recorded
-model/version, source chunk hashes and re-indexing rules. PostgreSQL with
-`pgvector` is a reasonable integration; a mandatory external managed
-vector database is unnecessary at current corpus size.
+Read models are sharded per record and per neighborhood; no monolithic JSON.
 
-Neo4j or a dedicated graph database can be reconsidered only when the graph
-needs complex online traversal, large ingestion volumes or independently
-measured performance improvements. The current 353 nodes / 444 edges
-do not require it.
+## Editorial workflow and AI agents (M4)
 
-## AI contribution workflow
-
-```text
-weekly scheduled discovery
-  -> archive rights-cleared references and metadata
-  -> extract candidate events/claims
-  -> match canonical IDs + deduplicate
-  -> seek contradictory sources and legal updates
-  -> write candidate JSON in a branch
-  -> propose a PR with a human-readable evidence diff
-  -> run schema/source/citation/security checks
-  -> require manual approval for contested sensitive claims
-  -> merge
-  -> rebuild read models and redeploy
-```
-
-Do not allow untrusted external documents to modify workflow instructions.
-Research-agent output must not change its own security checks, override
-human approval requirements or publish sensitive accusations by altering
-`review_status` fields. CI secrets should not be exposed to untrusted PRs.
-
-## Reproduction, hosting and independent mirrors
-
-A fork must be able to build and serve the public portal from Git content
-with open-source software and **without any proprietary paid AI API,
-hosted vector database or private account required at runtime**.
-
-Allow GitHub Pages or ordinary Nginx/static hosting; the site should not
-depend on the original domain. Document independent backups and mirror
-installation. Optional live APIs and AI agents may use paid resources but
-must not be required to view existing published evidence.
-
-The map's basemap is a separate asset/dependency: choose a reusable,
-attributed basemap or self-hostable map tiles. Avoid assuming that public
-demo tile servers are production infrastructure.
-
-## Testing and editorial release gates
-
-1. Parser fixtures match source record counts and preserve canonical IDs.
-2. No duplicate IDs or unresolved foreign keys.
-3. Evidence E5 does not silently surface as confirmed graph links.
-4. Sensitive named-person attributions need primary-source evidence
-   and explicit legal/procedural status before unrestricted publication.
-5. Geographic and quantitative fields do not invent values.
-6. Time of event, discovery, publication and attribution remain distinct.
-7. Corrected and superseded claims remain discoverable in history.
-8. Builds contain no API keys, private information or third-party
-   materials bundled without the necessary rights.
-9. Static output and documented data exports can be rebuilt from a fork.
-10. Every update can be traced back to a Git commit and source record.
+Agents work on dedicated branches and open pull requests; they never push to
+`main`. CI validation is required but does not replace editorial review.
+Serious allegations about identifiable people, contested attributions and
+promotion of a hypothesis to a relationship require human approval. Agent
+output must not modify CI workflows, schemas, validation rules or review
+statuses of sensitive records; CODEOWNERS and branch protection enforce this.
 
 ## Milestones
 
-**M0:** Freeze and verify baseline; document licenses and source inventory.
-
-**M1:** Implement schemas, baseline import, stable-ID reference checks,
-canonical JSON and deterministic test fixtures.
-
-**M2:** Deliver basic React interface with timeline, graph, atlas,
-profiles, full-text search and source provenance.
-
-**M3:** Add multilingual translations and rich metric visualizations;
-enable accessible mobile design and deep links.
-
-**M4:** Introduce weekly agent-generated pull requests, reviews,
-regression checks and automatic public deployment.
-
-**M5 (optional):** PostgreSQL/PostGIS/pgvector and runtime API,
-after requirements demonstrate a benefit over static datasets.
+| Milestone | Scope | Status |
+| --- | --- | --- |
+| **M1** Data foundation | Toolchain, Zod model, baseline import, validators, tests, CI, AGENTS.md | Done |
+| **M2** Italian MVP portal | Astro site: timeline, event/entity pages, network, hypotheses, sources, methodology, Pagefind search, GitHub Pages; theme classification | Planned |
+| **M3** English, atlas, dependencies | EN translations with review status, country atlas, exposure dataset, a11y/mobile pass, downloadable data and schemas | Planned |
+| **M4** Editorial workflow and agents | Contribution templates, PR evidence diff, CODEOWNERS/branch protection, scheduled research agent PRs, changes/corrections page | Planned |

@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: documentary baseline imported into GitHub; normalized-data migration, public website and automated update workflows planned.**
+**Phase: canonical data layer and validation pipeline in place (M1); public website and automated update workflows planned.**
 
 The initial research corpus has a cutoff of **21 October 2026** and covers **2007–2026**, with earlier context where relevant. These are curated records, not an exhaustive census of all incidents in Europe.
 
@@ -95,29 +95,32 @@ Guiding principles:
 6. **No false precision.** Unknown dates, figures, ownership shares and causal links should remain unknown.
 7. **Counterevidence matters.** Actively seek credible alternative explanations and contradictory findings.
 
-## Proposed technical architecture
+## Technical architecture
 
-The repository is the durable source of truth. A **static-first React portal** is proposed, with a deterministic pipeline that turns approved, typed research records into frontend datasets. The historical files under `sources/original/` stay unchanged; a separately maintained canonical data layer will preserve exact IDs, citations, classifications and corrections.
-
-**Proposed stack (not yet implemented):**
+The repository is the durable source of truth. A **static-first portal** is built by a deterministic TypeScript pipeline from validated canonical records in `data/`. The historical files under `sources/original/` stay unchanged; the canonical layer preserves their exact IDs, provenance and original values.
 
 | Component | Technology |
 | --- | --- |
-| Public web app | React, TypeScript, Next.js static export |
-| Source import and validation | Python, Pydantic, CSV / Markdown / GraphML importers |
-| Canonical data | Validated JSON/JSONL, versioned in Git |
-| Build-time relational/search index | SQLite + FTS5, fully rebuildable |
-| Network graphs | Cytoscape.js |
-| Interactive maps | MapLibre GL JS + GeoJSON |
-| Timeline and quantitative charts | vis-timeline and Apache ECharts |
-| Optional future online backend | PostgreSQL, optional PostGIS / pgvector |
-| Publishing | GitHub Actions, portable static output for any host |
+| Runtime and tooling | Node.js 26, pnpm 12, TypeScript 7, Biome 2, Vitest 5 |
+| Data model and validation | Zod 4 schemas, exported as JSON Schema |
+| Canonical data | One JSON file per record in `data/`, versioned in Git |
+| Public web app (M2) | Astro 7 static site with React 19 islands, Tailwind CSS 4 |
+| Network graphs (M2) | Cytoscape.js |
+| Search (M2) | Pagefind static index |
+| Atlas (M3) | Country-level SVG maps (d3-geo, Natural Earth) |
+| Publishing | GitHub Actions, GitHub Pages, portable static output |
 
-A dedicated graph database or mandatory paid semantic search service is **not needed** for the baseline corpus. Optional embedding-based retrieval must support discovery only, never establish attribution or causal claims.
+No database, graph database, map tile server or paid service is needed to build or mirror the site.
 
-**Full rationale, proposed tree, import rules, CI checks, public read models and Claude Code implementation milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+**Working with the data:**
 
-**Current status:** the original source files, licenses, README and design proposal are committed; the framework and data pipeline remain to be implemented.
+```bash
+pnpm install
+pnpm check        # lint, typecheck, tests, data validation, schema freshness
+pnpm validate     # validate data/ only
+```
+
+**Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 
 ## AI-assisted weekly updates
 
@@ -178,7 +181,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Produce timeline CSV, graph CSV/GraphML and hypothesis register.
 - [x] Import the 15 original source files into GitHub without losing identifiers or provenance.
 - [x] Publish permissive licenses for code and original project data.
-- [ ] Define and validate normalized schemas for events, claims and relationships.
+- [x] Define and validate normalized schemas and import the baseline into canonical data (M1).
 - [ ] Audit sensitive claims against stable primary-source references.
 - [ ] Build the interactive timeline, map, graph and profile pages.
 - [ ] Introduce multilingual navigation and translation review.
