@@ -60,7 +60,10 @@ describe("M5 publication quarantine", () => {
     for (const relation of [...visible.relationships, ...visible.hypotheses]) {
       expect(nodes.has(relation.subject), relation.id).toBe(true);
       expect(nodes.has(relation.object), relation.id).toBe(true);
-      expect(relation.events.every((id) => events.has(id)), relation.id).toBe(true);
+      expect(
+        relation.events.every((id) => events.has(id)),
+        relation.id,
+      ).toBe(true);
     }
     for (const record of [
       ...visible.events,
@@ -68,7 +71,10 @@ describe("M5 publication quarantine", () => {
       ...visible.hypotheses,
       ...visible.exposures,
     ]) {
-      expect(record.sources.every((id) => sources.has(id)), record.id).toBe(true);
+      expect(
+        record.sources.every((id) => sources.has(id)),
+        record.id,
+      ).toBe(true);
     }
     expect(visible.events.some((event) => event.review.status === "imported_unreviewed")).toBe(
       true,

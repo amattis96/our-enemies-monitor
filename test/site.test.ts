@@ -8,8 +8,8 @@ import {
   formatPredicate,
 } from "../src/site/format.ts";
 import { dataHistory } from "../src/site/history.ts";
-import { publishedDataset } from "../src/site/publication.ts";
 import { languagePaths, pick } from "../src/site/i18n.ts";
+import { publishedDataset } from "../src/site/publication.ts";
 import {
   atlasRows,
   evidenceGraph,

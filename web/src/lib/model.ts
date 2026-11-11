@@ -1,5 +1,5 @@
-import { buildReadModel, loadReadModel, type ReadModel } from "../../../src/site/read-model.ts";
 import { publishedDataset } from "../../../src/site/publication.ts";
+import { buildReadModel, loadReadModel, type ReadModel } from "../../../src/site/read-model.ts";
 
 let model: ReadModel | undefined;
 

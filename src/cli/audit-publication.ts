@@ -1,5 +1,5 @@
 import { readDataFiles } from "../pipeline/load.ts";
-import { validateDataFiles, summarize } from "../pipeline/validate.ts";
+import { summarize, validateDataFiles } from "../pipeline/validate.ts";
 import { publishedDataset } from "../site/publication.ts";
 
 const { issues, dataset } = validateDataFiles(readDataFiles());
