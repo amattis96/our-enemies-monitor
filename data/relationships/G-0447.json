@@ -1,0 +1,37 @@
+{
+  "id": "G-0447",
+  "subject": "FR_MFA",
+  "predicate": "ATTRIBUISCE_A",
+  "object": "SHAHIDKAVEH",
+  "relation_class": "intelligence",
+  "evidence_level": "E2",
+  "evidence_status": "institutional_attribution",
+  "events": [
+    "EXT-005"
+  ],
+  "valid_from": "2026-11-09",
+  "valid_to": null,
+  "primary_url": "https://www.diplomatie.gouv.fr/en/presse-et-ressources/decouvrir-et-informer/actualites/declaration-d-attribution-a-l-iran-de-cyberattaques-visant-la-france",
+  "caveat": {
+    "it": "Attribuzione istituzionale francese (E2) per la sola campagna francese dell’11–12 ottobre 2026; l’Iran la contesta. Non è una sentenza e non si estende alla seconda ondata UE né a NoName057(16) o Z-Pentest.",
+    "en": "French institutional attribution (E2) for the French campaign of 11–12 October 2026 only; Iran contests it. It is not a judgment and does not extend to the second EU wave or to NoName057(16) or Z-Pentest."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-005",
+    "WEB-EXT-006"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8ce1d4a4f411f799"
+      }
+    }
+  },
+  "provenance": []
+}

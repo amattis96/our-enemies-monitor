@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-031",
+  "type": "external_reference",
+  "title": {
+    "it": "Risultati chiave delle elezioni di metà mandato (aggiornamento del 10/11/2026)",
+    "en": "Key midterm election results (update of 10/11/2026)"
+  },
+  "publisher": "CQ Roll Call",
+  "files": [],
+  "urls": [
+    "https://rollcall.com/2026/11/03/key-midterm-election-results/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-27. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "eb74b64aa962a681"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,38 @@
+{
+  "id": "G-0457",
+  "subject": "AP",
+  "predicate": "PROIETTA_CONTROLLO",
+  "object": "EXT-020",
+  "relation_class": "political",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "EXT-020"
+  ],
+  "valid_from": "2026-11-03",
+  "valid_to": null,
+  "primary_url": "https://www.ap.org/the-definitive-source/behind-the-news/calling-control-of-congress-in-the-2026-midterm-elections/",
+  "caveat": {
+    "it": "Proiezione di AP: controllo democratico del Senato (notte del 3 novembre) e della Camera (inizio del 4 novembre). Fonte elettorale qualificata, non risultato finale certificato; alcuni collegi restano da assegnare.",
+    "en": "AP projection: Democratic control of the Senate (night of 3 November) and the House (early 4 November). A qualified electoral source, not a certified final result; some districts remain to be called."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-030",
+    "WEB-EXT-031",
+    "WEB-EXT-032"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "55e8d82273cc5b6f"
+      }
+    }
+  },
+  "provenance": []
+}

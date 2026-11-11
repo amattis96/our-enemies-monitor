@@ -1,0 +1,23 @@
+{
+  "id": "HELSINKICOURT",
+  "kind": "institution",
+  "name": {
+    "it": "Tribunale distrettuale di Helsinki",
+    "en": "Helsinki District Court"
+  },
+  "domain": "institutional",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f26aeff94253276d"
+      }
+    }
+  },
+  "provenance": []
+}

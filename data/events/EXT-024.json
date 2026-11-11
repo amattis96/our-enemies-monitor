@@ -1,0 +1,56 @@
+{
+  "id": "EXT-024",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-11",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Gli ambasciatori UE concordano 145 nuove designazioni anti-russe, non ancora adottate",
+    "en": "EU ambassadors agree 145 new anti-Russian designations, not yet adopted"
+  },
+  "description": {
+    "it": "Secondo Reuters, l’11 novembre gli ambasciatori degli Stati UE hanno raggiunto un accordo politico su 145 nuove designazioni riguardanti soggetti collegati al sistema bancario russo, reti della flotta ombra e campagne di manipolazione informativa: 113 nel regime principale sull’Ucraina, 31 nel regime sulle attività ibride, una nel regime cyber; tra i soggetti circa 50 banche russe, e una designazione ibrida sarebbe collegata al tentato attacco presso Leipzig/Halle già attribuito alla Russia dalla Germania. Il Consiglio deve ancora adottare formalmente le misure (riunione indicata per il 16 novembre): fino alla pubblicazione negli atti UE si tratta di una proposta concordata e nessun soggetto va considerato sanzionato.",
+    "en": "According to Reuters, on 11 November EU member-state ambassadors reached a political agreement on 145 new designations of entities linked to the Russian banking system, shadow fleet networks and information manipulation campaigns: 113 under the main Ukraine regime, 31 under the hybrid activities regime, one under the cyber regime; the entities include about 50 Russian banks, and one hybrid designation would be linked to the attempted attack at Leipzig/Halle already attributed to Russia by Germany. The Council must still formally adopt the measures (meeting indicated for 16 November): until publication in the EU acts this is an agreed proposal and no entity should be considered sanctioned."
+  },
+  "category": null,
+  "themes": [
+    "finance_sanctions",
+    "eu_nato_response"
+  ],
+  "geography": {
+    "it": "Unione europea",
+    "en": "European Union"
+  },
+  "places": [],
+  "evidence_note": {
+    "it": "E3 accordo diplomatico; non ancora E1 regime vigente",
+    "en": "E3 diplomatic agreement; not yet E1 regime in force"
+  },
+  "evidence_level": "E3",
+  "publisher": "Reuters",
+  "url": "https://www.reuters.com/business/finance/eu-envoys-agree-new-russia-sanctions-listings-banks-shadow-fleet-misinformation-2026-11-11/",
+  "sources": [
+    "S09",
+    "WEB-EXT-039"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-020, update type NEW_POLICY. Evidence level of the main link per Fonte_09: E3 accordo diplomatico; non ancora E1 regime vigente.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "PROPOSTA_CONCORDATA: do not add the 145 subjects to the sanctions relationships without an EUR-Lex identifier. Possible link to TL-0119 (Leipzig/Halle drone, 4 August) to be verified: not asserted here.",
+      "Keep separate from H02, H21 and H31."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "65651a73a2937121"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "H31",
+  "subject": "EUENVOYS",
+  "object": "SHADOW",
+  "hypothesis_type": "BENEFICIARI_DESIGNAZIONI_UE",
+  "question": {
+    "it": "Chi sono i beneficiari finali, gli armatori, i broker e gli assicuratori delle nuove designazioni UE?",
+    "en": "Who are the ultimate beneficiaries, shipowners, brokers and insurers of the new EU designations?"
+  },
+  "current_limit": {
+    "it": "Le 145 designazioni non sono ancora adottate; non indagare per sola nazionalità.",
+    "en": "The 145 designations are not yet adopted; do not investigate on nationality alone."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Regolamenti finali, registri UBO, IMO, proprietà e passaggi di bandiera.",
+    "en": "Final regulations, UBO registers, IMO, ownership and flag changes."
+  },
+  "events": [
+    "EXT-024"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-039"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "05f81a05d1df6462"
+      }
+    }
+  },
+  "provenance": []
+}

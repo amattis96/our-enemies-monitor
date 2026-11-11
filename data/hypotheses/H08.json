@@ -19,7 +19,8 @@
   "events": [
     "TL-0137",
     "TL-0142",
-    "TL-0146"
+    "TL-0146",
+    "EXT-025"
   ],
   "external_url": null,
   "status": "open_unproven",
@@ -27,11 +28,15 @@
     "S00",
     "S03",
     "S04",
-    "S05"
+    "S05",
+    "S09",
+    "WEB-EXT-040"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: the G7 calls for satellite redundancy; no new direct evidence on the October Starshield order. Strategic risk reinforced, original hypothesis unchanged."
+    ],
     "translations": {
       "en": {
         "status": "machine",

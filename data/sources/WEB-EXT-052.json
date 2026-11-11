@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-052",
+  "type": "external_reference",
+  "title": {
+    "it": "Tajani: attacchi ibridi in Italia da hacker filorussi, mandante statale non noto (09/11/2026)",
+    "en": "Tajani: hybrid attacks in Italy by pro-Russian hackers, state sponsor unknown (09/11/2026)"
+  },
+  "publisher": "ANSA",
+  "files": [],
+  "urls": [
+    "https://www.ansa.it/sito/notizie/mondo/europa/2026/11/09/tajani-attacchi-ibridi-da-iran-quelli-contro-italia-sono-di-hacker-filorussi_7ac25056-1510-46cf-998b-97dbec48cf0c.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-48. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8ee97549fff5106d"
+      }
+    }
+  },
+  "provenance": []
+}

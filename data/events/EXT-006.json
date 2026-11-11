@@ -1,0 +1,58 @@
+{
+  "id": "EXT-006",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-01",
+    "end": "2026-11-02",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Seconda ondata di incidenti cyber alla refrigerazione commerciale in più Stati UE",
+    "en": "Second wave of cyber incidents in commercial refrigeration across several EU states"
+  },
+  "description": {
+    "it": "Il 4 novembre Commissione europea, ENISA, Europol/EC3, rete CSIRT ed EU-CyCLONe hanno diffuso una dichiarazione congiunta su incidenti cyber ai sistemi di refrigerazione commerciale in vari Stati membri tra il 1° e il 2 novembre 2026. Gli autori non sono stabiliti in modo conclusivo: non è dimostrato che coincidano con l’operatore del caso francese di ottobre.",
+    "en": "On 4 November the European Commission, ENISA, Europol/EC3, the CSIRTs network and EU-CyCLONe issued a joint statement on cyber incidents in commercial refrigeration systems in several member states between 1 and 2 November 2026. The perpetrators are not conclusively established: it is not demonstrated that they coincide with the operator of the French case of October."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "hybrid_sabotage",
+    "infrastructure_space"
+  ],
+  "geography": {
+    "it": "Unione europea (vari Stati membri)",
+    "en": "European Union (several member states)"
+  },
+  "places": [],
+  "evidence_note": {
+    "it": "E1 incidente confermato istituzionalmente; autori non conclusivi",
+    "en": "E1 incident confirmed institutionally; perpetrators not conclusive"
+  },
+  "evidence_level": "E1",
+  "publisher": "Commissione europea (DG CNECT)",
+  "url": "https://digital-strategy.ec.europa.eu/en/news/joint-statement-cyber-incidents-refrigeration-systems-across-eu",
+  "sources": [
+    "S09",
+    "WEB-EXT-007",
+    "WEB-EXT-008"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-002, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1 incidente confermato istituzionalmente; autori non conclusivi.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Italy's share of this wave is recorded separately in EXT-007.",
+      "Keep separate from H23 and H24."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "363813d55cc22953"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-054",
+  "type": "external_reference",
+  "title": {
+    "it": "Dichiarazione congiunta sull’Iran, RAF Fairford e minacce statali (12/10/2026; solo contesto)",
+    "en": "Joint statement on Iran, RAF Fairford and state threats (12/10/2026; context only)"
+  },
+  "publisher": "Governo britannico / FCDO",
+  "files": [],
+  "urls": [
+    "https://www.gov.uk/government/news/joint-statement-on-iran-12-october"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-50. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fc7e4e849d3e3067"
+      }
+    }
+  },
+  "provenance": []
+}

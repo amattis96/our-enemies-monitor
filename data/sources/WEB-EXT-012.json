@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-012",
+  "type": "external_reference",
+  "title": {
+    "it": "Due gruppi di hacker filorussi rivendicano gli attacchi ai supermercati (04/11/2026)",
+    "en": "Two pro-Russian hacker groups claim the attacks on supermarkets (04/11/2026)"
+  },
+  "publisher": "ANSA / Tg1",
+  "files": [],
+  "urls": [
+    "https://www.ansa.it/sito/notizie/cronaca/2026/11/04/tg1-due-gruppi-di-hacker-filorussi-rivendicano-attacchi-ai-supermercati_0cc61f52-06bc-4f69-8ba2-fb6d70f5dc79.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-08. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "269f30bc6f9e0ff8"
+      }
+    }
+  },
+  "provenance": []
+}

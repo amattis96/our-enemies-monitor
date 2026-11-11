@@ -1,0 +1,45 @@
+{
+  "id": "H28",
+  "subject": "ROSSTAT",
+  "object": "EXT-016",
+  "hypothesis_type": "AUTENTICITA_DATASET_ROSSTAT",
+  "question": {
+    "it": "Il dataset Rosstat può essere autenticato, deduplicato e comparato con decessi documentati indipendenti?",
+    "en": "Can the Rosstat dataset be authenticated, deduplicated and compared with independently documented deaths?"
+  },
+  "current_limit": {
+    "it": "Integrità e definizioni non risolte: 392,7k, 412,6k e 450,1k sono versioni e universi distinti.",
+    "en": "Integrity and definitions unresolved: 392.7k, 412.6k and 450.1k are distinct versions and universes."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Campione verificabile, dizionario dei codici, triangolazione forense. Non condividere registri nominativi sensibili.",
+    "en": "Verifiable sample, code dictionary, forensic triangulation. Do not share sensitive nominative records."
+  },
+  "events": [
+    "EXT-016"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-022",
+    "WEB-EXT-023",
+    "WEB-EXT-024"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "00dbc69b431c840d"
+      }
+    }
+  },
+  "provenance": []
+}

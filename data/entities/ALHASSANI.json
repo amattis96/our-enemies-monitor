@@ -1,0 +1,23 @@
+{
+  "id": "ALHASSANI",
+  "kind": "person",
+  "name": {
+    "it": "Mohammad Ali al-Hassani",
+    "en": "Mohammad Ali al-Hassani"
+  },
+  "domain": "persons",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "063aba1c18e1ebf4"
+      }
+    }
+  },
+  "provenance": []
+}

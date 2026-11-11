@@ -1,0 +1,23 @@
+{
+  "id": "EBRD",
+  "kind": "institution",
+  "name": {
+    "it": "Banca europea per la ricostruzione e lo sviluppo (BERD/EBRD)",
+    "en": "European Bank for Reconstruction and Development (EBRD)"
+  },
+  "domain": "institutional",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "40ba74ccc76e4b71"
+      }
+    }
+  },
+  "provenance": []
+}

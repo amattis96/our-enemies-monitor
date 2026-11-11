@@ -1,0 +1,23 @@
+{
+  "id": "ROSSTAT",
+  "kind": "institution",
+  "name": {
+    "it": "Rosstat (servizio statistico federale russo)",
+    "en": "Rosstat (Russian federal statistics service)"
+  },
+  "domain": "targets",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9d71a37346ad0cd8"
+      }
+    }
+  },
+  "provenance": []
+}

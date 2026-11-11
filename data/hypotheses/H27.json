@@ -1,0 +1,44 @@
+{
+  "id": "H27",
+  "subject": "STORM",
+  "object": "EXT-021",
+  "hypothesis_type": "NODI_STORM1516_MIDTERM",
+  "question": {
+    "it": "Quali nodi Storm-1516 delle mid-term coincidono tecnicamente con le campagne europee 2025–26?",
+    "en": "Which Storm-1516 nodes of the midterms technically coincide with the European campaigns of 2025–26?"
+  },
+  "current_limit": {
+    "it": "Indicatori compatibili rilevati da ricercatori (E3); non dedurre l’impatto sul voto.",
+    "en": "Compatible indicators detected by researchers (E3); do not infer an impact on the vote."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Domini, hosting, contenuti e account correlati da ricercatori indipendenti, comunicati delle piattaforme.",
+    "en": "Domains, hosting, content and accounts correlated by independent researchers, platform statements."
+  },
+  "events": [
+    "EXT-021"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-033",
+    "WEB-EXT-034"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4eef254a47c29f8e"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -17,17 +17,23 @@
     "en": "AIS/VDR, route plans, forensics, judgments, contacts"
   },
   "events": [
-    "TL-0066"
+    "TL-0066",
+    "EXT-019"
   ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
     "S03",
-    "S06"
+    "S06",
+    "S09",
+    "WEB-EXT-028",
+    "WEB-EXT-029"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: the Fitburg judgment is a separate precedent of individual intent recognised at first instance; it does not resolve H10/H11/H12, which concern other vessels."
+    ],
     "translations": {
       "en": {
         "status": "machine",

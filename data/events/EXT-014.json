@@ -1,0 +1,58 @@
+{
+  "id": "EXT-014",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Il ministro dell’Interno ridimensiona il presunto attacco alla Direzione Investigativa Antimafia",
+    "en": "The Interior Minister downplays the alleged attack on the Anti-Mafia Investigative Directorate"
+  },
+  "description": {
+    "it": "Il 9 novembre il ministro dell’Interno ha precisato che, dopo le verifiche allora disponibili, per il presunto attacco alla Direzione Investigativa Antimafia non risultavano compromessi i sistemi né sottratti dati riservati. La mera circolazione sul dark web di materiale asseritamente della DIA non prova una compromissione. Registrato come correzione, non come attacco accertato; le verifiche proseguono.",
+    "en": "On 9 November the Interior Minister clarified that, after the checks then available, for the alleged attack on the Anti-Mafia Investigative Directorate no systems were found compromised nor confidential data stolen. The mere circulation on the dark web of material allegedly from the DIA does not prove a compromise. Recorded as a correction, not as an established attack; checks continue."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "justice"
+  ],
+  "geography": {
+    "it": "Italia",
+    "en": "Italy"
+  },
+  "places": [
+    "IT"
+  ],
+  "evidence_note": {
+    "it": "E1 dichiarazione ministeriale",
+    "en": "E1 ministerial statement"
+  },
+  "evidence_level": "E1",
+  "publisher": "Euronews",
+  "url": "https://it.euronews.com/2026/11/09/italia-nessun-attacco-hacker-ai-sistemi-della-dia-verifiche-in-corso-su-dark-web-dice-mini",
+  "sources": [
+    "S09",
+    "WEB-EXT-020"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-010, update type CORRECTION. Evidence level of the main link per Fonte_09: E1 dichiarazione ministeriale.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Update type CORRECTION: reduces the scope of an earlier report. No earlier DIA record exists in the corpus.",
+      "The ministerial statement was not acquired; the source is a press report."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b9a5d25106d0f0d3"
+      }
+    }
+  },
+  "provenance": []
+}

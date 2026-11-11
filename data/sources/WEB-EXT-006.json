@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-006",
+  "type": "external_reference",
+  "title": {
+    "it": "La Francia convoca l’inviato iraniano per l’attacco informatico ai frigoriferi dei supermercati e avverte di una risposta (10/11/2026)",
+    "en": "France summons Iran's envoy over the supermarket refrigerator cyber attack and warns of a response (10/11/2026)"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/europe/france-summons-iran-envoy-over-supermarket-fridge-hack-warns-response-2026-11-10/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-02. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ce2d6539a1d6c223"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-024",
+  "type": "external_reference",
+  "title": {
+    "it": "Registri sottratti mostrano un bilancio impressionante dei morti russi (09/11/2026)",
+    "en": "Hacked records show staggering Russian death toll (09/11/2026)"
+  },
+  "publisher": "Stars and Stripes",
+  "files": [],
+  "urls": [
+    "https://www.stripes.com/theaters/europe/2026-11-09/ukraine-war-russian-casualty-numbers-23410343.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-20. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "aac4c31c32c19ea5"
+      }
+    }
+  },
+  "provenance": []
+}

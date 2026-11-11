@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-040",
+  "type": "external_reference",
+  "title": {
+    "it": "Dichiarazione congiunta dei ministri degli Esteri del G7, Parigi 9–10 novembre 2026 (11/11/2026)",
+    "en": "Joint statement of the G7 foreign ministers, Paris 9–10 November 2026 (11/11/2026)"
+  },
+  "publisher": "Ministero degli Esteri italiano (Farnesina)",
+  "files": [],
+  "urls": [
+    "https://www.esteri.it/it/sala_stampa/archivionotizie/comunicati/2026/11/dichiarazione-congiunta-a-seguito-della-riunione-dei-ministri-degli-esteri-del-g7-tenutasi-a-parigi-il-9-e-10-novembre-2026/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-36. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2ae27dff6e6db83d"
+      }
+    }
+  },
+  "provenance": []
+}

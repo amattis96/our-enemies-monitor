@@ -1,0 +1,58 @@
+{
+  "id": "EXT-008",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-04",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "NoName057(16) e Z-Pentest rivendicano gli attacchi alla catena del freddo",
+    "en": "NoName057(16) and Z-Pentest claim the attacks on the cold chain"
+  },
+  "description": {
+    "it": "Un video diffuso sui social e riportato da Tg1/ANSA il 4 novembre attribuisce la campagna ai collettivi dichiaratamente filorussi NoName057(16) e Z-Pentest. È una rivendicazione non verificata. La rivendicazione non annulla l’attribuzione francese all’IRGC per il caso di ottobre, ma non prova nemmeno una cooperazione Russia–Iran né un mandato del governo russo (il 9 novembre il ministro Tajani ha dichiarato che per gli attacchi italiani non vi sono prove di responsabilità del governo russo).",
+    "en": "A video circulated on social media and reported by Tg1/ANSA on 4 November attributes the campaign to the self-declared pro-Russian collectives NoName057(16) and Z-Pentest. It is an unverified claim. The claim does not negate the French attribution to the IRGC for the October case, but neither does it prove Russia–Iran cooperation or a Russian government mandate (on 9 November Minister Tajani stated that for the Italian attacks there is no proof of Russian government responsibility)."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "information_manipulation"
+  ],
+  "geography": {
+    "it": "Italia / Unione europea",
+    "en": "Italy / European Union"
+  },
+  "places": [],
+  "evidence_note": {
+    "it": "E4 rivendicazione",
+    "en": "E4 claim"
+  },
+  "evidence_level": "E4",
+  "publisher": "ANSA / Tg1",
+  "url": "https://www.ansa.it/sito/notizie/cronaca/2026/11/04/tg1-due-gruppi-di-hacker-filorussi-rivendicano-attacchi-ai-supermercati_0cc61f52-06bc-4f69-8ba2-fb6d70f5dc79.html",
+  "sources": [
+    "S09",
+    "WEB-EXT-012",
+    "WEB-EXT-052",
+    "WEB-EXT-005"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-004, update type NEW_EVIDENCE. Evidence level of the main link per Fonte_09: E4 rivendicazione.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "A claim is not an attribution (E4). Forbidden edges (Fonte_09 §8.3): IRGC/GRU commanding NoName057(16) or Z-Pentest; state-ordered attacks.",
+      "Keep separate from H23."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "bbf437572752685f"
+      }
+    }
+  },
+  "provenance": []
+}

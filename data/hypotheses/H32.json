@@ -1,0 +1,46 @@
+{
+  "id": "H32",
+  "subject": "EXT-030",
+  "object": "NATO",
+  "hypothesis_type": "DRONI_BALTICO_DELIBERATI_O_ACCIDENTALI",
+  "question": {
+    "it": "Come distinguere le incursioni militari deliberate dagli sconfinamenti accidentali di droni nel Baltico?",
+    "en": "How can deliberate military incursions be distinguished from accidental drone straying in the Baltic?"
+  },
+  "current_limit": {
+    "it": "Mai attribuire automaticamente ogni oggetto alla Russia; alcuni droni sono compatibili con sconfinamenti dovuti alla guerra in Ucraina.",
+    "en": "Never automatically attribute every object to Russia; some drones are compatible with straying caused by the war in Ukraine."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Tracciamento delle rotte, detriti e comunicati ufficiali.",
+    "en": "Route tracking, debris and official statements."
+  },
+  "events": [
+    "EXT-030",
+    "EXT-031"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-046",
+    "WEB-EXT-047",
+    "WEB-EXT-048"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "182da069255e3f37"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-014",
+  "type": "external_reference",
+  "title": {
+    "it": "Avviata un’indagine sulla diffusione dei dati di Tajani, Gabrielli e Lo Voi (09/11/2026)",
+    "en": "Investigation opened into the dissemination of data of Tajani, Gabrielli and Lo Voi (09/11/2026)"
+  },
+  "publisher": "ANSA",
+  "files": [],
+  "urls": [
+    "https://www.ansa.it/sito/notizie/cronaca/2026/11/09/avviata-una-indagine-sulla-diffusione-dei-dati-di-tajani-e-gabrielli-e-lo-voi_217a25ea-2d5f-432d-98ba-51fd3560f4ca.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-10. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7aa207ce0094b3ee"
+      }
+    }
+  },
+  "provenance": []
+}

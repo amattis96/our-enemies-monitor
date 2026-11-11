@@ -1,0 +1,23 @@
+{
+  "id": "FR_MFA",
+  "kind": "institution",
+  "name": {
+    "it": "Ministero degli Esteri francese",
+    "en": "French Foreign Ministry"
+  },
+  "domain": "institutional",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9d32b1cc20f9edf7"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,58 @@
+{
+  "id": "EXT-027",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": "2026-11-11",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Hormuz: blocco navale, attacchi al naviglio e crisi energetica ancora aperti",
+    "en": "Hormuz: naval blockade, attacks on shipping and energy crisis still open"
+  },
+  "description": {
+    "it": "All’11 novembre Reuters riferisce che il traffico nello Stretto di Hormuz è risalito rispetto ai minimi di guerra, ma gli attacchi restano frequenti: in ottobre 31 navi LNG sono uscite dall’area e si sono contati 37 attacchi a navi; l’IMO è citata per 130 incidenti dall’inizio della crisi e almeno 25 marinai morti (categorie e periodi diversi, da non sommare). Il 10 novembre risulta che il presidente Trump ha sospeso per ora nuove offensive aeree dirette ma mantiene il blocco navale, mentre Teheran respinge le condizioni negoziali USA. Impatto sull’Europa: prezzi dei carburanti, costi di trasporto e assicurazione, volatilità dell’LNG. L’ipotesi che la crisi sia stata orchestrata per generare specifiche proteste europee non è dimostrata.",
+    "en": "As of 11 November, Reuters reports that traffic in the Strait of Hormuz has risen from its wartime lows, but attacks remain frequent: in October 31 LNG ships left the area and 37 attacks on ships were counted; the IMO is cited for 130 incidents since the start of the crisis and at least 25 seafarers dead (different categories and periods, not to be added up). On 10 November President Trump reportedly suspended new direct air offensives for now but maintains the naval blockade, while Tehran rejects the US negotiating conditions. Impact on Europe: fuel prices, transport and insurance costs, LNG volatility. The hypothesis that the crisis was orchestrated to generate specific European protests is not demonstrated."
+  },
+  "category": null,
+  "themes": [
+    "energy",
+    "armed_conflict",
+    "geopolitics_diplomacy"
+  ],
+  "geography": {
+    "it": "Stretto di Hormuz",
+    "en": "Strait of Hormuz"
+  },
+  "places": [],
+  "evidence_note": {
+    "it": "E3 reporting/IMO",
+    "en": "E3 reporting/IMO"
+  },
+  "evidence_level": "E3",
+  "publisher": "Reuters",
+  "url": "https://www.reuters.com/world/middle-east/hormuz-traffic-is-up-so-are-attacks-2026-11-11/",
+  "sources": [
+    "S09",
+    "WEB-EXT-042",
+    "WEB-EXT-043"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-023, update type ONGOING_UPDATE. Evidence level of the main link per Fonte_09: E3 reporting/IMO.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Related context: TL-0100, TL-0103. H16 updated as persistent energy/logistics exposure, not as an information operation.",
+      "Proposed indicators (not yet modelled): vessels transiting Hormuz by month, commercial attacks by month, EU LNG spot premium, energy inflation by member state."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "90fce8fda578c659"
+      }
+    }
+  },
+  "provenance": []
+}

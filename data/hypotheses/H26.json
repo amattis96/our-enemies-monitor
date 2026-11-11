@@ -1,0 +1,45 @@
+{
+  "id": "H26",
+  "subject": "EXT-012",
+  "object": "EXT-013",
+  "hypothesis_type": "INFRASTRUTTURA_ALLARMI_FALSI",
+  "question": {
+    "it": "Gli allarmi ai voli e quelli alle scuole condividono infrastruttura di invio e coordinamento operativo?",
+    "en": "Do the flight alarms and the school alarms share sending infrastructure and operational coordination?"
+  },
+  "current_limit": {
+    "it": "Slogan e firma falsificabile non bastano; mittenti ignoti.",
+    "en": "Slogans and a forgeable signature are not enough; senders unknown."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Header, metadati, account, timeline, indagini Europol e di polizia.",
+    "en": "Headers, metadata, accounts, timeline, Europol and police investigations."
+  },
+  "events": [
+    "EXT-012",
+    "EXT-013"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-018",
+    "WEB-EXT-019"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "95d7d8e41cbe9b26"
+      }
+    }
+  },
+  "provenance": []
+}

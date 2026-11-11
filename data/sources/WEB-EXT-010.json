@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-010",
+  "type": "external_reference",
+  "title": {
+    "it": "Allarme hacker nella filiera alimentare, verifiche su due aziende toscane (03/11/2026)",
+    "en": "Hacker alarm in the food supply chain, checks on two Tuscan companies (03/11/2026)"
+  },
+  "publisher": "RaiNews Toscana",
+  "files": [],
+  "urls": [
+    "https://www.rainews.it/tgr/toscana/articoli/2026/11/allarme-hacker-nella-filiera-alimentare-verifiche-su-due-aziende-toscane-6359a32e-616f-4efd-a209-9bf27bb2d48a.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-06. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a75dce551f59d1e9"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,62 @@
+{
+  "id": "EXT-017",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-10",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Il DOJ statunitense incrimina tre persone per una rete legata a IRGC e Kata’ib Hizballah (HAYI, RAF Fairford)",
+    "en": "US DOJ indicts three people over a network linked to the IRGC and Kata'ib Hizballah (HAYI, RAF Fairford)"
+  },
+  "description": {
+    "it": "Il 10 novembre il Department of Justice ha pubblicato un atto d’accusa integrativo contro Mohammad Baqer Saad Dawood al-Saadi, Mohsen Mohajeri e Mohammad Ali al-Hassani. Secondo i procuratori i tre avrebbero partecipato a una rete a sostegno di IRGC e Kata’ib Hizballah, collegata ad attacchi rivendicati da Harakat Ashab al-Yamin al-Islamiya (HAYI): circa 18 attacchi in Europa nella primavera 2026 (incendi, esplosivi, violenza contro persone) oltre al presunto complotto per RAF Fairford; parte dei piani sarebbe stata coordinata con messaggi codificati inviati da al-Saadi mentre era detenuto negli USA. Sono contestazioni giudiziarie, non fatti accertati da sentenza: gli imputati conservano la presunzione di innocenza e Teheran nega il coinvolgimento. Il caso non collega HAYI a SHAHID KAVEH né alla campagna sui refrigeratori.",
+    "en": "On 10 November the Department of Justice published a superseding indictment against Mohammad Baqer Saad Dawood al-Saadi, Mohsen Mohajeri and Mohammad Ali al-Hassani. According to prosecutors the three allegedly took part in a network supporting the IRGC and Kata'ib Hizballah, linked to attacks claimed by Harakat Ashab al-Yamin al-Islamiya (HAYI): about 18 attacks in Europe in spring 2026 (arson, explosives, violence against people) in addition to the alleged plot against RAF Fairford; part of the plans was allegedly coordinated with coded messages sent by al-Saadi while already detained in the US. These are judicial allegations, not facts established by a judgment: the defendants keep the presumption of innocence and Tehran denies involvement. The case does not link HAYI to SHAHID KAVEH or to the refrigerator campaign."
+  },
+  "category": null,
+  "themes": [
+    "justice",
+    "intelligence",
+    "hybrid_sabotage"
+  ],
+  "geography": {
+    "it": "Stati Uniti / Regno Unito / Europa",
+    "en": "United States / United Kingdom / Europe"
+  },
+  "places": [
+    "US",
+    "GB"
+  ],
+  "evidence_note": {
+    "it": "E1 esistenza imputazione / E4 responsabilità asserita",
+    "en": "E1 existence of the indictment / E4 asserted responsibility"
+  },
+  "evidence_level": "E1",
+  "publisher": "US Department of Justice",
+  "url": "https://www.justice.gov/opa/pr/three-iranian-backed-operatives-indicted-their-roles-nearly-20-terrorist-attacks-and",
+  "sources": [
+    "S09",
+    "WEB-EXT-025",
+    "WEB-EXT-026"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-013, update type NEW_JUDICIAL. Evidence level of the main link per Fonte_09: E1 esistenza imputazione / E4 responsabilità asserita.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Related: EXT-004 (RAF Fairford, 27 September); H19, H20, H30. The UK charges (EXT-018) are an autonomous proceeding and are not merged with the US ones.",
+      "Full text of the indictment not acquired; which cases make up the 'nearly twenty' episodes is still to be identified.",
+      "Denial: Tehran denies involvement. Forbidden edge: HAYI coinciding with SHAHID KAVEH."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9d61420db29cf5b3"
+      }
+    }
+  },
+  "provenance": []
+}

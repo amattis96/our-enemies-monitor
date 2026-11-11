@@ -1,0 +1,57 @@
+{
+  "id": "EXT-015",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-11",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "NoName057(16) rivendica un attacco a impianti termici italiani",
+    "en": "NoName057(16) claims an attack on Italian heating plants"
+  },
+  "description": {
+    "it": "L’11 novembre NoName057(16) ha rivendicato nuovi accessi a sistemi di riscaldamento e impianti industriali italiani. Secondo la ricostruzione giornalistica, l’ACN ha ritenuto verosimile l’interessamento di un sistema di dimensioni modeste. Identità del bersaglio, impatto e autenticità delle dimostrazioni restano da verificare: la rivendicazione non va presentata come sabotaggio critico riuscito.",
+    "en": "On 11 November NoName057(16) claimed new access to Italian heating systems and industrial plants. According to the journalistic reconstruction, the ACN considered plausible the involvement of a small system. Identity of the target, impact and authenticity of the demonstrations remain to be verified: the claim must not be presented as a successful critical sabotage."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "energy"
+  ],
+  "geography": {
+    "it": "Italia",
+    "en": "Italy"
+  },
+  "places": [
+    "IT"
+  ],
+  "evidence_note": {
+    "it": "E4 rivendicazione, verifica parziale",
+    "en": "E4 claim, partial verification"
+  },
+  "evidence_level": "E4",
+  "publisher": "Il Fatto Quotidiano",
+  "url": "https://www.ilfattoquotidiano.it/2026/11/11/noname057-attacco-hacker-sistemi-industriali-notizie/8568458/",
+  "sources": [
+    "S09",
+    "WEB-EXT-021"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-011, update type NEW_EVIDENCE. Evidence level of the main link per Fonte_09: E4 rivendicazione, verifica parziale.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Claim only (E4); partial verification per press reconstruction."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f3bce17570b6e996"
+      }
+    }
+  },
+  "provenance": []
+}

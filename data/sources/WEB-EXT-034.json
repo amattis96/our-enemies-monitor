@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-034",
+  "type": "external_reference",
+  "title": {
+    "it": "Video di disinformazione, probabilmente dalla Russia, sfruttano persone reali per denigrare candidati al Senato (27/10/2026)",
+    "en": "Disinformation videos, likely from Russia, exploiting real people to malign Senate candidates (27/10/2026)"
+  },
+  "publisher": "Associated Press (ripubblicato da The Washington Post)",
+  "files": [],
+  "urls": [
+    "https://www.washingtonpost.com/politics/2026/10/27/midterm-election-disinformation-russia-talarico-brown/bcafa960-d264-11f1-9931-2a41b76fc976_story.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-30. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f01610908135ac13"
+      }
+    }
+  },
+  "provenance": []
+}

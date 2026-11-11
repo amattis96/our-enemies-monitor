@@ -1,0 +1,60 @@
+{
+  "id": "EXT-034",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-10",
+    "end": "2026-11-11",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Parigi convoca l’ambasciatore iraniano e ipotizza sanzioni UE; l’Iran contesta l’attribuzione",
+    "en": "Paris summons the Iranian ambassador and hints at EU sanctions; Iran contests the attribution"
+  },
+  "description": {
+    "it": "Dopo l’attribuzione del 9–10 novembre, la Francia ha convocato l’ambasciatore iraniano per l’attacco informatico ai frigoriferi dei supermercati e ha avvertito di una risposta, ipotizzando sanzioni UE (Reuters, 10 novembre). Teheran respinge l’accusa. La convocazione è un atto diplomatico (E1); l’attribuzione sottostante resta una posizione di Stato contestata, non una sentenza.",
+    "en": "After the attribution of 9–10 November, France summoned the Iranian ambassador over the cyber attack on supermarket refrigerators and warned of a response, hinting at EU sanctions (Reuters, 10 November). Tehran rejects the accusation. The summons is a diplomatic act (E1); the underlying attribution remains a contested state position, not a judgment."
+  },
+  "category": null,
+  "themes": [
+    "geopolitics_diplomacy",
+    "cyber"
+  ],
+  "geography": {
+    "it": "Francia / Iran",
+    "en": "France / Iran"
+  },
+  "places": [
+    "FR",
+    "IR"
+  ],
+  "evidence_note": {
+    "it": "E1 atto diplomatico / E2 attribuzione contestata",
+    "en": "E1 diplomatic act / E2 contested attribution"
+  },
+  "evidence_level": "E1",
+  "publisher": "Reuters",
+  "url": "https://www.reuters.com/world/europe/france-summons-iran-envoy-over-supermarket-fridge-hack-warns-response-2026-11-10/",
+  "sources": [
+    "S09",
+    "WEB-EXT-006",
+    "WEB-EXT-051"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-030, update type NEW_POLICY. Evidence level of the main link per Fonte_09: E1 atto diplomatico / E2 attribuzione contestata.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Fonte_09 dates this item 11 November, while its sources are dated 10 November; the range 10–11 November covers both.",
+      "Denial: Iran contests the French attribution. Sanctions are a hypothesis, not a decision."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6c96c0d438b9bd82"
+      }
+    }
+  },
+  "provenance": []
+}

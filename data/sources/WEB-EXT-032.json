@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-032",
+  "type": "external_reference",
+  "title": {
+    "it": "Più di una dozzina di sfide chiave restano troppo vicine per essere assegnate (11/11/2026)",
+    "en": "More than a dozen key races remain too early to call (11/11/2026)"
+  },
+  "publisher": "Associated Press",
+  "files": [],
+  "urls": [
+    "https://apnews.com/article/90ce111a971a0f70ba938d27fe69f65d"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-28. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8ec9d410cc2d3451"
+      }
+    }
+  },
+  "provenance": []
+}

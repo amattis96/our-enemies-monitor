@@ -17,17 +17,23 @@
     "en": "VDR, beneficial ownership, incident report, court documents"
   },
   "events": [
-    "TL-0069"
+    "TL-0069",
+    "EXT-019"
   ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
     "S03",
-    "S06"
+    "S06",
+    "S09",
+    "WEB-EXT-028",
+    "WEB-EXT-029"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: the Fitburg judgment is a separate precedent of individual intent recognised at first instance; it does not resolve H10/H11/H12, which concern other vessels."
+    ],
     "translations": {
       "en": {
         "status": "machine",

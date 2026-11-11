@@ -1,0 +1,61 @@
+{
+  "id": "EXT-019",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-05",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Il tribunale di Helsinki condanna in primo grado capitano e nostromo della Fitburg per i cavi del 31 dicembre 2025",
+    "en": "Helsinki court convicts the Fitburg captain and boatswain at first instance over the cables of 31 December 2025"
+  },
+  "description": {
+    "it": "Il 5 novembre 2026 il Tribunale distrettuale di Helsinki ha condannato in primo grado per sabotaggio aggravato il capitano russo Andrei Maksimenko (3 anni e 6 mesi) e il nostromo azero Vusal Majidov (2 anni e 10 mesi) della nave Fitburg, per il trascinamento dell’ancora per circa 130 km sul fondale del Golfo di Finlandia con danni a due cavi di telecomunicazioni il 31 dicembre 2025. I condannati negano e la decisione è impugnabile. Il tribunale ha ritenuto che i due non potessero ignorare il trascinamento; non emerge un ordine del governo russo, del GRU o di Pechino. Nazionalità, bandiera o porto di provenienza non costituiscono da soli un legame statale.",
+    "en": "On 5 November 2026 the Helsinki District Court convicted at first instance of aggravated sabotage the Russian captain Andrei Maksimenko (3 years 6 months) and the Azerbaijani boatswain Vusal Majidov (2 years 10 months) of the ship Fitburg, for dragging the anchor for about 130 km along the seabed of the Gulf of Finland, damaging two telecommunications cables on 31 December 2025. The convicted deny the charges and the decision can be appealed. The court held that the two could not have been unaware of the dragging; no order from the Russian government, the GRU or Beijing emerges. Nationality, flag or port of origin do not by themselves constitute a state link."
+  },
+  "category": null,
+  "themes": [
+    "justice",
+    "infrastructure_space",
+    "hybrid_sabotage"
+  ],
+  "geography": {
+    "it": "Finlandia (Golfo di Finlandia)",
+    "en": "Finland (Gulf of Finland)"
+  },
+  "places": [
+    "FI"
+  ],
+  "evidence_note": {
+    "it": "E1 sentenza di primo grado; ordine statale non provato",
+    "en": "E1 first-instance judgment; state order not proven"
+  },
+  "evidence_level": "E1",
+  "publisher": "Tribunali finlandesi",
+  "url": "https://www.tuomioistuimet.fi/ajankohtaista/tiedotteet/karajaoikeus-on-antanut-tuomion-ns-fitburg-asiassa/",
+  "sources": [
+    "S09",
+    "WEB-EXT-028",
+    "WEB-EXT-029"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-015, update type NEW_JUDICIAL. Evidence level of the main link per Fonte_09: E1 sentenza di primo grado; ordine statale non provato.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "The date is that of the judgment; the conduct dates from 31 December 2025 (no earlier record in the corpus).",
+      "Distinct from Eagle S, Yi Peng 3 and NewNew Polar Bear (H10/H11/H12 are not resolved). Forbidden edge: Russian state ordering the Fitburg sabotage.",
+      "Denial: both convicted persons deny the charges; appeal possible."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "27e76723082c7be8"
+      }
+    }
+  },
+  "provenance": []
+}

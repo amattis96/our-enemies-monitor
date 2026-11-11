@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-039",
+  "type": "external_reference",
+  "title": {
+    "it": "Gli inviati UE concordano nuove designazioni anti-russe su banche, flotta ombra e disinformazione (11/11/2026)",
+    "en": "EU envoys agree new anti-Russian listings on banks, shadow fleet and disinformation (11/11/2026)"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/business/finance/eu-envoys-agree-new-russia-sanctions-listings-banks-shadow-fleet-misinformation-2026-11-11/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-35. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5489bd8ac3e2315f"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,60 @@
+{
+  "id": "EXT-010",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-07",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "BBT SE rende nota un’intrusione informatica del 17 ottobre nel progetto del Tunnel del Brennero",
+    "en": "BBT SE discloses a 17 October cyber intrusion in the Brenner Tunnel project"
+  },
+  "description": {
+    "it": "Il 7 novembre BBT SE, società responsabile del Tunnel di base del Brennero, ha confermato un accesso informatico non autorizzato a dati aziendali, che secondo ANSA risale al 17 ottobre. I sistemi sono stati isolati e sono stati avviati accertamenti forensi; la società dichiara nessun impatto sulla prosecuzione dei lavori. Prime piste giornalistiche menzionano Everest, ecosistema russofono di estorsione/ransomware: non è provato un ordine dello Stato russo, né è pubblicamente descritta la sensibilità dei dati sottratti.",
+    "en": "On 7 November BBT SE, the company responsible for the Brenner Base Tunnel, confirmed unauthorised cyber access to company data, which according to ANSA dates from 17 October. The systems were isolated and forensic checks were started; the company states no impact on the continuation of the works. Early press leads mention Everest, a Russian-speaking extortion/ransomware ecosystem: a Russian state order is not proven, nor is the sensitivity of the stolen data publicly described."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "infrastructure_space"
+  ],
+  "geography": {
+    "it": "Italia",
+    "en": "Italy"
+  },
+  "places": [
+    "IT"
+  ],
+  "evidence_note": {
+    "it": "E1 conferma aziendale; autore E4",
+    "en": "E1 company confirmation; perpetrator E4"
+  },
+  "evidence_level": "E1",
+  "publisher": "RaiNews Trento",
+  "url": "https://www.rainews.it/tgr/trento/articoli/2026/11/attacco-ai-server-del-tunnel-del-brennero-bbt-se-nessun-impatto-sui-lavori-societa-bbt-se-23898787-f31f-42d4-8988-8c26f0460347.html",
+  "sources": [
+    "S09",
+    "WEB-EXT-016",
+    "WEB-EXT-017"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-006, update type NEW_EVIDENCE. Evidence level of the main link per Fonte_09: E1 conferma aziendale; autore E4.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "The date is that of the disclosure (7 November); the intrusion dates from 17 October per ANSA.",
+      "The company's own statement was not acquired; the sources are press reports.",
+      "Forbidden edge: Russian state ordering the BBT SE intrusion."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a44b8c29d1aa9a40"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-026",
+  "type": "external_reference",
+  "title": {
+    "it": "Gli USA incriminano tre uomini per complotti terroristici, tra cui RAF Fairford (10/11/2026)",
+    "en": "US charges three men over terror plots, including RAF Fairford (10/11/2026)"
+  },
+  "publisher": "Associated Press",
+  "files": [],
+  "urls": [
+    "https://apnews.com/article/b9c7812aeb1d74a2cfbc4c4df1431095"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-22. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7216b9bb670185d4"
+      }
+    }
+  },
+  "provenance": []
+}

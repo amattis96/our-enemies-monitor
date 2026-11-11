@@ -1,0 +1,36 @@
+{
+  "id": "G-0449",
+  "subject": "ENISA",
+  "predicate": "CONFERMA_MONITORAGGIO_DI",
+  "object": "EXT-006",
+  "relation_class": "oversight",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "EXT-006"
+  ],
+  "valid_from": "2026-11-04",
+  "valid_to": null,
+  "primary_url": "https://digital-strategy.ec.europa.eu/en/news/joint-statement-cyber-incidents-refrigeration-systems-across-eu",
+  "caveat": {
+    "it": "Conferma, in una dichiarazione congiunta del 4 novembre con Commissione, Europol/EC3, rete CSIRT ed EU-CyCLONe, il monitoraggio degli incidenti del 1–2 novembre; non attribuisce gli incidenti ad alcun attore.",
+    "en": "Confirms, in a joint statement of 4 November with the Commission, Europol/EC3, the CSIRTs network and EU-CyCLONe, the monitoring of the incidents of 1–2 November; it does not attribute the incidents to any actor."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-007"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fdc696d1670bb61d"
+      }
+    }
+  },
+  "provenance": []
+}

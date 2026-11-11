@@ -1,0 +1,23 @@
+{
+  "id": "EUENVOYS",
+  "kind": "institution",
+  "name": {
+    "it": "Ambasciatori degli Stati UE (Rappresentanti permanenti)",
+    "en": "Ambassadors of the EU member states (Permanent Representatives)"
+  },
+  "domain": "institutional",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a7882a125b2b677e"
+      }
+    }
+  },
+  "provenance": []
+}

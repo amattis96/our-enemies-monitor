@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-007",
+  "type": "external_reference",
+  "title": {
+    "it": "Dichiarazione congiunta sugli incidenti cyber ai sistemi di refrigerazione nell’UE (04/11/2026)",
+    "en": "Joint statement on cyber incidents in refrigeration systems across the EU (04/11/2026)"
+  },
+  "publisher": "Commissione europea / DG CNECT",
+  "files": [],
+  "urls": [
+    "https://digital-strategy.ec.europa.eu/en/news/joint-statement-cyber-incidents-refrigeration-systems-across-eu"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-03. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "f086e5c3033743ee"
+      }
+    }
+  },
+  "provenance": []
+}

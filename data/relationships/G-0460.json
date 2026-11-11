@@ -1,0 +1,36 @@
+{
+  "id": "G-0460",
+  "subject": "EBRD",
+  "predicate": "ANNUNCIA_IMPEGNI_PER",
+  "object": "EXT-028",
+  "relation_class": "policy",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "EXT-028"
+  ],
+  "valid_from": "2026-11-09",
+  "valid_to": null,
+  "primary_url": "https://www.ebrd.com/home/what-we-do/focus-areas/nuclear-safety/making-chornobyl-safe.html",
+  "caveat": {
+    "it": "Impegni annunciati (303 milioni di euro) per il ripristino del New Safe Confinement; sono promesse, non pagamenti conclusi né lavori completati.",
+    "en": "Pledges announced (€303 million) for restoring the New Safe Confinement; they are promises, not completed payments or finished works."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-044"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "29a41731139b2b30"
+      }
+    }
+  },
+  "provenance": []
+}

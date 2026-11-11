@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-016",
+  "type": "external_reference",
+  "title": {
+    "it": "Attacco ai server del tunnel del Brennero, BBT SE: nessun impatto sui lavori (07/11/2026)",
+    "en": "Attack on the Brenner tunnel servers, BBT SE: no impact on works (07/11/2026)"
+  },
+  "publisher": "RaiNews Trento",
+  "files": [],
+  "urls": [
+    "https://www.rainews.it/tgr/trento/articoli/2026/11/attacco-ai-server-del-tunnel-del-brennero-bbt-se-nessun-impatto-sui-lavori-societa-bbt-se-23898787-f31f-42d4-8988-8c26f0460347.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-12. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2e2f42a29af2c434"
+      }
+    }
+  },
+  "provenance": []
+}

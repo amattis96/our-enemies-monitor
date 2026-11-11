@@ -18,17 +18,22 @@
   },
   "events": [
     "TL-0085",
-    "TL-0112"
+    "TL-0112",
+    "EXT-026"
   ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
     "S04",
-    "S05"
+    "S05",
+    "S09",
+    "WEB-EXT-041"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: new time indicator, the 10 January 2027 expiry of the Chinese suspension of some export controls."
+    ],
     "translations": {
       "en": {
         "status": "machine",

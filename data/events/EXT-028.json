@@ -1,0 +1,58 @@
+{
+  "id": "EXT-028",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Conferenza dei donatori: promessi 303 milioni di euro per il confinamento di Chornobyl",
+    "en": "Donor conference: €303 million pledged for the Chornobyl confinement"
+  },
+  "description": {
+    "it": "Il 9 novembre, a una conferenza a Parigi organizzata da Ucraina, Francia e BERD, 14 Stati e organizzazioni hanno promesso 303 milioni di euro per riparare il New Safe Confinement della centrale di Chornobyl, danneggiato dal colpo di drone russo del 14 febbraio 2025 secondo le fonti EBRD e ucraine. I costi di riparazione sono stimati in almeno 500 milioni di euro, con obiettivo di piena funzionalità entro il 2030; hanno partecipato rappresentanti di 34 Stati e organizzazioni. Sono impegni, non somme versate né lavori completati. Non indica un secondo attacco nel novembre 2026.",
+    "en": "On 9 November, at a conference in Paris organised by Ukraine, France and the EBRD, 14 states and organisations pledged €303 million to repair the New Safe Confinement of the Chornobyl plant, damaged by the Russian drone strike of 14 February 2025 according to EBRD and Ukrainian sources. Repair costs are estimated at at least €500 million, with the goal of full functionality by 2030; representatives of 34 states and organisations took part. These are pledges, not sums paid nor completed works. It does not indicate a second attack in November 2026."
+  },
+  "category": null,
+  "themes": [
+    "infrastructure_space",
+    "energy",
+    "armed_conflict"
+  ],
+  "geography": {
+    "it": "Ucraina (conferenza a Parigi)",
+    "en": "Ukraine (conference in Paris)"
+  },
+  "places": [
+    "UA"
+  ],
+  "evidence_note": {
+    "it": "E1 comunicazione EBRD",
+    "en": "E1 EBRD communication"
+  },
+  "evidence_level": "E1",
+  "publisher": "EBRD",
+  "url": "https://www.ebrd.com/home/what-we-do/focus-areas/nuclear-safety/making-chornobyl-safe.html",
+  "sources": [
+    "S09",
+    "WEB-EXT-044"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-024, update type NEW_POLICY. Evidence level of the main link per Fonte_09: E1 comunicazione EBRD.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "The 14 February 2025 damage has no earlier record in the corpus; this record concerns the November 2026 pledges only."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e2b58a38194b832d"
+      }
+    }
+  },
+  "provenance": []
+}

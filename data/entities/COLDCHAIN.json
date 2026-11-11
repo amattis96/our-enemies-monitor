@@ -1,0 +1,23 @@
+{
+  "id": "COLDCHAIN",
+  "kind": "asset",
+  "name": {
+    "it": "Catena del freddo e refrigerazione commerciale europea",
+    "en": "European cold chain and commercial refrigeration"
+  },
+  "domain": "dependencies",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1980267e96bcfd65"
+      }
+    }
+  },
+  "provenance": []
+}

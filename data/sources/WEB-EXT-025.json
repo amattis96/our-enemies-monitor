@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-025",
+  "type": "external_reference",
+  "title": {
+    "it": "Tre operativi sostenuti dall’Iran incriminati per quasi venti attacchi (10/11/2026)",
+    "en": "Three Iranian-backed operatives indicted for nearly 20 attacks (10/11/2026)"
+  },
+  "publisher": "US Department of Justice",
+  "files": [],
+  "urls": [
+    "https://www.justice.gov/opa/pr/three-iranian-backed-operatives-indicted-their-roles-nearly-20-terrorist-attacks-and"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-21. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "41749965a91be372"
+      }
+    }
+  },
+  "provenance": []
+}

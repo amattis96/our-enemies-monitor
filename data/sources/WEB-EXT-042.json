@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-042",
+  "type": "external_reference",
+  "title": {
+    "it": "Il traffico a Hormuz è in aumento, e con esso gli attacchi (11/11/2026)",
+    "en": "Hormuz traffic is up, and so are the attacks (11/11/2026)"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/middle-east/hormuz-traffic-is-up-so-are-attacks-2026-11-11/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-38. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9a946ed7e55489d1"
+      }
+    }
+  },
+  "provenance": []
+}

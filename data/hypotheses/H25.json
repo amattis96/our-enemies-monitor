@@ -1,0 +1,45 @@
+{
+  "id": "H25",
+  "subject": "NONAME057",
+  "object": "EXT-009",
+  "hypothesis_type": "ORIGINE_DATI_PERSONALI",
+  "question": {
+    "it": "Da quali categorie di fonte provengono i dati personali usati per intimidire figure pubbliche italiane?",
+    "en": "From which categories of source do the personal data used to intimidate Italian public figures come?"
+  },
+  "current_limit": {
+    "it": "Origine dei dati ignota: intrusione, scraping, data broker o archivi già divulgati non sono distinti; il legame con NoName057(16) è riportato dalla stampa, non accertato.",
+    "en": "Origin of the data unknown: intrusion, scraping, data brokers or already leaked archives are not distinguished; the link to NoName057(16) is reported by the press, not established."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Indagini, data lineage, forensic matching con archivi esposti. Non riprodurre i dati delle vittime.",
+    "en": "Investigations, data lineage, forensic matching with exposed archives. Do not reproduce victims' data."
+  },
+  "events": [
+    "EXT-009"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-013",
+    "WEB-EXT-014",
+    "WEB-EXT-015"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b1c0f70c5c76d81b"
+      }
+    }
+  },
+  "provenance": []
+}

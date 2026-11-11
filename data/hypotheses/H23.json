@@ -1,0 +1,50 @@
+{
+  "id": "H23",
+  "subject": "SHAHIDKAVEH",
+  "object": "NONAME057",
+  "hypothesis_type": "CATENA_COMUNE_REFRIGERAZIONE",
+  "question": {
+    "it": "Vi è una catena tecnica o finanziaria comune tra SHAHID KAVEH, NoName057(16), Z-Pentest e la seconda ondata UE?",
+    "en": "Is there a common technical or financial chain between SHAHID KAVEH, NoName057(16), Z-Pentest and the second EU wave?"
+  },
+  "current_limit": {
+    "it": "Attribuzione francese all’IRGC (E2) e rivendicazioni filorusse (E4) restano distinte; non bastano slogan o contemporaneità.",
+    "en": "The French attribution to the IRGC (E2) and the pro-Russian claims (E4) remain distinct; slogans or simultaneity are not enough."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "IOC indipendenti, infrastruttura condivisa, flussi, comunicazioni o attribuzione congiunta.",
+    "en": "Independent IOCs, shared infrastructure, flows, communications or joint attribution."
+  },
+  "events": [
+    "EXT-005",
+    "EXT-006",
+    "EXT-007",
+    "EXT-008"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-005",
+    "WEB-EXT-006",
+    "WEB-EXT-007",
+    "WEB-EXT-012",
+    "WEB-EXT-052"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c15f1eef6dde54e8"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -16,15 +16,25 @@
     "it": "Atti giudiziari, National Security Act charge sheets, evidence police, CCTV",
     "en": "Court records, National Security Act charge sheets, police evidence, CCTV"
   },
-  "events": [],
+  "events": [
+    "EXT-017",
+    "EXT-018"
+  ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
-    "WEB-EXT-004"
+    "WEB-EXT-004",
+    "S09",
+    "WEB-EXT-025",
+    "WEB-EXT-026",
+    "WEB-EXT-027",
+    "WEB-EXT-054"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: UK charges (27 October) and US superseding indictment (10 November) with details of an alleged HAYI/IRGC chain. Accusatory side strengthened; not concluded, no conviction."
+    ],
     "translations": {
       "en": {
         "status": "machine",

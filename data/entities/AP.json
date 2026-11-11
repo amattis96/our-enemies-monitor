@@ -1,0 +1,23 @@
+{
+  "id": "AP",
+  "kind": "organization",
+  "name": {
+    "it": "Associated Press",
+    "en": "Associated Press"
+  },
+  "domain": "influence-technology",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a66cec26fab31235"
+      }
+    }
+  },
+  "provenance": []
+}

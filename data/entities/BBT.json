@@ -1,0 +1,23 @@
+{
+  "id": "BBT",
+  "kind": "company",
+  "name": {
+    "it": "BBT SE (Tunnel di base del Brennero)",
+    "en": "BBT SE (Brenner Base Tunnel)"
+  },
+  "domain": "targets",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "718453e8d4586762"
+      }
+    }
+  },
+  "provenance": []
+}

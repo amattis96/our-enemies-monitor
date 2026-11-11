@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-037",
+  "type": "external_reference",
+  "title": {
+    "it": "I colloqui sull’Ucraina ad Abu Dhabi portano progressi sui prigionieri ma non sulla pace (11/11/2026)",
+    "en": "Ukraine talks in Abu Dhabi bring progress on prisoners but not on peace (11/11/2026)"
+  },
+  "publisher": "The Guardian",
+  "files": [],
+  "urls": [
+    "https://www.theguardian.com/world/2026/nov/11/ukraine-talks-in-abu-dhabi-bring-progress-on-prisoners-but-not-on-peace"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-33. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "986657481bddb3d2"
+      }
+    }
+  },
+  "provenance": []
+}

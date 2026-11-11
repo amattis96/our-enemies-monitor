@@ -1,0 +1,61 @@
+{
+  "id": "EXT-020",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-03",
+    "end": "2026-11-10",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Elezioni di metà mandato USA: AP proietta la maggioranza democratica in Senato e Camera",
+    "en": "US midterm elections: AP projects a Democratic majority in the Senate and House"
+  },
+  "description": {
+    "it": "Il 3 novembre 2026 si sono svolte le elezioni di metà mandato per il Congresso statunitense. Associated Press ha chiamato il controllo democratico del Senato la notte del 3 novembre e della Camera all’inizio del 4 novembre; all’11 novembre restano collegi e contestazioni non risolti, quindi non si indica un numero definitivo di seggi. Roll Call registra, al 10 novembre, 44 seggi alla Camera e 7 al Senato passati da repubblicani a democratici (collegi assegnati a quella data). Le nuove camere entreranno in carica nel gennaio 2027 e il presidente conserva ampi poteri in politica estera: ogni conseguenza su aiuti a Kiev o sanzioni è una possibilità, non un fatto. Evento politico sistemico, non un attacco; nessun singolo fattore è trattato come causa del voto.",
+    "en": "On 3 November 2026 the US congressional midterm elections took place. The Associated Press called Democratic control of the Senate on the night of 3 November and of the House early on 4 November; as of 11 November some districts and disputes remain unresolved, so no definitive seat count is given. Roll Call records, as of 10 November, 44 House seats and 7 Senate seats that flipped from Republican to Democratic (districts called by that date). The new chambers take office in January 2027 and the president retains broad foreign-policy powers: any consequence for aid to Kyiv or sanctions is a possibility, not a fact. A systemic political event, not an attack; no single factor is treated as the cause of the vote."
+  },
+  "category": null,
+  "themes": [
+    "elections_influence",
+    "geopolitics_diplomacy"
+  ],
+  "geography": {
+    "it": "Stati Uniti",
+    "en": "United States"
+  },
+  "places": [
+    "US"
+  ],
+  "evidence_note": {
+    "it": "E1 voto / E3 proiezione AP",
+    "en": "E1 vote / E3 AP projection"
+  },
+  "evidence_level": "E3",
+  "publisher": "Associated Press",
+  "url": "https://www.ap.org/the-definitive-source/behind-the-news/calling-control-of-congress-in-the-2026-midterm-elections/",
+  "sources": [
+    "S09",
+    "WEB-EXT-030",
+    "WEB-EXT-031",
+    "WEB-EXT-032",
+    "WEB-EXT-053"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-016, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1 voto / E3 proiezione AP.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Projection by AP, not a certified final result. Forbidden edge: Storm-1516 causing the US election result; US Democrats already repealing sanctions waivers.",
+      "Keep separate from H29."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2b9bee2271636ff7"
+      }
+    }
+  },
+  "provenance": []
+}

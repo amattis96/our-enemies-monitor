@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-044",
+  "type": "external_reference",
+  "title": {
+    "it": "Rendere sicura Chornobyl: pagina BERD sul New Safe Confinement (aggiornamento 09–10/11/2026)",
+    "en": "Making Chornobyl safe: EBRD page on the New Safe Confinement (update 09–10/11/2026)"
+  },
+  "publisher": "EBRD",
+  "files": [],
+  "urls": [
+    "https://www.ebrd.com/home/what-we-do/focus-areas/nuclear-safety/making-chornobyl-safe.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-40. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "873b659f81b38c76"
+      }
+    }
+  },
+  "provenance": []
+}

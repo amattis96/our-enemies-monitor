@@ -1,0 +1,59 @@
+{
+  "id": "EXT-018",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-10-27",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "La CPS britannica incrimina due uomini per l’episodio di RAF Fairford del 27 settembre",
+    "en": "The UK CPS charges two men over the RAF Fairford incident of 27 September"
+  },
+  "description": {
+    "it": "Il 27 ottobre la Crown Prosecution Service ha annunciato imputazioni a carico di due uomini ai sensi del National Security Act in relazione all’episodio presso la base RAF Fairford del 27 settembre 2026. L’annuncio non prova la colpevolezza né la collocazione degli imputati in una catena statale. Londra aveva già attribuito il coinvolgimento nell’episodio all’Iran in una dichiarazione internazionale del 12 ottobre (precedente alla baseline, qui solo contesto).",
+    "en": "On 27 October the Crown Prosecution Service announced charges against two men under the National Security Act in connection with the incident at RAF Fairford on 27 September 2026. The announcement proves neither guilt nor the defendants' place in a state chain. London had already attributed involvement in the incident to Iran in an international statement of 12 October (before the baseline, context only here)."
+  },
+  "category": null,
+  "themes": [
+    "justice",
+    "intelligence"
+  ],
+  "geography": {
+    "it": "Regno Unito",
+    "en": "United Kingdom"
+  },
+  "places": [
+    "GB"
+  ],
+  "evidence_note": {
+    "it": "E1 procedimento / E4 ipotesi accusatoria",
+    "en": "E1 proceedings / E4 prosecution hypothesis"
+  },
+  "evidence_level": "E1",
+  "publisher": "Crown Prosecution Service",
+  "url": "https://www.cps.gov.uk/national-news/news/cps-announces-two-men-charged-national-security-act-offences-following-raf",
+  "sources": [
+    "S09",
+    "WEB-EXT-027",
+    "WEB-EXT-054"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-014, update type NEW_JUDICIAL. Evidence level of the main link per Fonte_09: E1 procedimento / E4 ipotesi accusatoria.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Related: EXT-004, EXT-017, H20. Suspects are not convicted.",
+      "The two defendants are not named in Fonte_09 and are not recorded as entities."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2a43e43c864f85dd"
+      }
+    }
+  },
+  "provenance": []
+}

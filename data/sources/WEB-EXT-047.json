@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-047",
+  "type": "external_reference",
+  "title": {
+    "it": "Incidenti con droni nel 2026 (dati consultati l’11/11/2026)",
+    "en": "Drone incidents in 2026 (data consulted on 11/11/2026)"
+  },
+  "publisher": "European Observatory of Drone Incidents",
+  "files": [],
+  "urls": [
+    "https://droneobservatory.eu/en/incidents/2026"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-43. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "dd575b5d215e075a"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -18,16 +18,21 @@
   },
   "events": [
     "TL-0109",
-    "TL-0114"
+    "TL-0114",
+    "EXT-024"
   ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
-    "S05"
+    "S05",
+    "S09",
+    "WEB-EXT-039"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: 145 designations agreed by EU ambassadors on 11 November, final adoption pending. Future verifiable nodes and edges, not yet active."
+    ],
     "translations": {
       "en": {
         "status": "machine",

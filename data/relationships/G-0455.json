@@ -1,0 +1,38 @@
+{
+  "id": "G-0455",
+  "subject": "HELSINKICOURT",
+  "predicate": "CONDANNA_IN_PRIMO_GRADO",
+  "object": "MAKSIMENKO",
+  "relation_class": "legal",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "EXT-019"
+  ],
+  "valid_from": "2026-11-05",
+  "valid_to": null,
+  "primary_url": "https://www.tuomioistuimet.fi/ajankohtaista/tiedotteet/karajaoikeus-on-antanut-tuomion-ns-fitburg-asiassa/",
+  "caveat": {
+    "it": "Stato procedurale: Andrei Maksimenko è stato condannato in primo grado per sabotaggio aggravato a 3 anni e 6 mesi (5 novembre 2026); nega le accuse e la sentenza è impugnabile. La sentenza non accerta un ordine di uno Stato.",
+    "en": "Procedural status: Andrei Maksimenko was convicted at first instance of aggravated sabotage to 3 years 6 months (5 November 2026); he denies the charges and the judgment can be appealed. The judgment does not establish an order from a state."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-028",
+    "WEB-EXT-029"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship.",
+      "Named person: primary source is the Finnish courts' press release (in Finnish)."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7c761522035b7902"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,59 @@
+{
+  "id": "EXT-021",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-10-27",
+    "end": "2026-10-30",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Video e false accuse contro candidati democratici al Senato riconducibili da esperti a Storm-1516",
+    "en": "Videos and false accusations against Democratic Senate candidates attributed by experts to Storm-1516"
+  },
+  "description": {
+    "it": "Tra il 27 e il 30 ottobre Associated Press e PolitiFact, citando esperti di comunicazione forense e di reti di disinformazione, hanno documentato false accuse diffuse con video e post contro i candidati democratici al Senato Sherrod Brown (Ohio), James Talarico (Texas) e Troy Jackson (Maine), con uso improprio di immagini di persone reali ed elementi manipolati o generati con AI. Gli esperti rilevano indicatori e continuità di infrastruttura compatibili con la campagna russa Storm-1516. È un’attribuzione di ricercatori, non la prova di un ordine specifico del Cremlino per ciascun video; non esiste una misura affidabile dell’effetto sul voto. I candidati sono bersagli di FIMI, non responsabili delle condotte loro falsamente attribuite.",
+    "en": "Between 27 and 30 October the Associated Press and PolitiFact, citing experts in forensic communication and disinformation networks, documented false accusations spread through videos and posts against Democratic Senate candidates Sherrod Brown (Ohio), James Talarico (Texas) and Troy Jackson (Maine), with improper use of images of real people and manipulated or AI-generated elements. The experts detect indicators and infrastructure continuity compatible with the Russian campaign Storm-1516. This is an attribution by researchers, not proof of a specific Kremlin order for each video; there is no reliable measure of the effect on the vote. The candidates are targets of FIMI, not responsible for the conduct falsely attributed to them."
+  },
+  "category": null,
+  "themes": [
+    "information_manipulation",
+    "elections_influence"
+  ],
+  "geography": {
+    "it": "Stati Uniti",
+    "en": "United States"
+  },
+  "places": [
+    "US"
+  ],
+  "evidence_note": {
+    "it": "E3 tecnica/ricercatori; impatto elettorale non provato",
+    "en": "E3 technical/researchers; electoral impact not proven"
+  },
+  "evidence_level": "E3",
+  "publisher": "PolitiFact",
+  "url": "https://politifact.com/article/2026/oct/30/russia-talarico-jackson-brown-storm-1516-senate/",
+  "sources": [
+    "S09",
+    "WEB-EXT-033",
+    "WEB-EXT-034"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-017, update type NEW_EVIDENCE. Evidence level of the main link per Fonte_09: E3 tecnica/ricercatori; impatto elettorale non provato.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Related context: TL-0045 and TL-0073 (Storm-1516). Keep separate from H13 and H27.",
+      "Register the targets with a BERSAGLIO_DI_FIMI-type link, never RESPONSABILE_DI; no such relationship is created here."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ca900d321c1cfb45"
+      }
+    }
+  },
+  "provenance": []
+}

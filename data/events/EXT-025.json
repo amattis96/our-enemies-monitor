@@ -1,0 +1,57 @@
+{
+  "id": "EXT-025",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": "2026-11-11",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Dichiarazione congiunta dei ministri degli Esteri del G7 (Parigi, 9–10 novembre)",
+    "en": "Joint statement of the G7 foreign ministers (Paris, 9–10 November)"
+  },
+  "description": {
+    "it": "La dichiarazione, pubblicata l’11 novembre dopo la riunione del 9–10 novembre, esprime una posizione diplomatica comune su: condanna degli attacchi a infrastrutture e navigazione civile nel Mar Nero e necessità di includere gli europei nei negoziati sulla loro sicurezza; condanna dell’assistenza militare di Iran e Corea del Nord alla Russia e della fornitura di armi, formazione e componenti dual-use da parte della Cina; rafforzamento del coordinamento contro la flotta ombra e gli intermediari delle elusioni; cessazione degli attacchi a navi civili a Hormuz e richiamo all’attribuzione britannica dell’episodio di RAF Fairford; condanna di sabotaggi, cyberattacchi, FIMI e pressioni migratorie; ridondanza e ripristino di satelliti, stazioni a terra, alimentazione elettrica e cavi. È una posizione comune, non un’operazione comune: non prova l’esecuzione degli impegni né un comando comune dei soggetti criticati.",
+    "en": "The statement, published on 11 November after the meeting of 9–10 November, expresses a common diplomatic position on: condemnation of attacks on infrastructure and civilian navigation in the Black Sea and the need to include Europeans in negotiations on their security; condemnation of the military assistance of Iran and North Korea to Russia and of the supply of weapons, training and dual-use components by China; strengthening coordination against the shadow fleet and the intermediaries of evasion; an end to attacks on civilian ships at Hormuz and a reference to the British attribution of the RAF Fairford incident; condemnation of sabotage, cyber attacks, FIMI and migratory pressure; redundancy and restoration of satellites, ground stations, power supply and cables. It is a common position, not a common operation: it proves neither that the commitments will be carried out nor a common command of the actors criticised."
+  },
+  "category": null,
+  "themes": [
+    "geopolitics_diplomacy",
+    "eu_nato_response"
+  ],
+  "geography": {
+    "it": "Francia (Parigi)",
+    "en": "France (Paris)"
+  },
+  "places": [
+    "FR"
+  ],
+  "evidence_note": {
+    "it": "E1 dichiarazione",
+    "en": "E1 statement"
+  },
+  "evidence_level": "E1",
+  "publisher": "Ministero degli Esteri italiano (Farnesina)",
+  "url": "https://www.esteri.it/it/sala_stampa/archivionotizie/comunicati/2026/11/dichiarazione-congiunta-a-seguito-della-riunione-dei-ministri-degli-esteri-del-g7-tenutasi-a-parigi-il-9-e-10-novembre-2026/",
+  "sources": [
+    "S09",
+    "WEB-EXT-040"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-021, update type NEW_POLICY. Evidence level of the main link per Fonte_09: E1 dichiarazione.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Keep separate from H08 (satellite redundancy). Institutional position (E2-like content) recorded as a public statement."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4ef5e8728d61d8c4"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,57 @@
+{
+  "id": "EXT-029",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Il direttore del SIS moldavo avverte di nuove attività di influenza russa in Gagauzia",
+    "en": "Moldovan SIS director warns of new Russian influence activity in Gagauzia"
+  },
+  "description": {
+    "it": "Il 9 novembre il direttore del Servizio di informazione e sicurezza moldavo (SIS), Alexandru Musteața, ha dichiarato a una conferenza a Chișinău che il servizio osserva segnali di intensificazione delle attività russe di influenza in vista dei cicli elettorali nella regione autonoma della Gagauzia, compresa l’elezione del Bashkan e dell’assemblea popolare. È un’allerta istituzionale: non sono stati resi pubblici elementi operativi né nominativi e non è una prova di compravendita di voti o di finanziamenti in specifiche competizioni. Le reti già documentate (Șor, Evrazia, Promsvyazbank) non possono essere promosse automaticamente ad autrici di ogni nuovo episodio.",
+    "en": "On 9 November the director of the Moldovan Information and Security Service (SIS), Alexandru Musteața, stated at a conference in Chișinău that the service observes signs of intensifying Russian influence activity ahead of the electoral cycles in the autonomous region of Gagauzia, including the election of the Bashkan and the people's assembly. It is an institutional alert: no operational details or names were made public and it is not proof of vote buying or funding in specific contests. The networks already documented (Șor, Evrazia, Promsvyazbank) cannot automatically be promoted to authors of every new episode."
+  },
+  "category": null,
+  "themes": [
+    "elections_influence",
+    "intelligence"
+  ],
+  "geography": {
+    "it": "Moldova (Gagauzia)",
+    "en": "Moldova (Gagauzia)"
+  },
+  "places": [
+    "MD"
+  ],
+  "evidence_note": {
+    "it": "E2 dichiarazione di intelligence",
+    "en": "E2 intelligence statement"
+  },
+  "evidence_level": "E2",
+  "publisher": "Radio Moldova",
+  "url": "https://radiomoldova.md/p/89312/sis-chief-warns-of-increased-russian-interference-ahead-of-elections",
+  "sources": [
+    "S09",
+    "WEB-EXT-045"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-025, update type NEW_EVIDENCE. Evidence level of the main link per Fonte_09: E2 dichiarazione di intelligence.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "The statement is reported by Radio Moldova; the SIS act was not acquired. To cross-check: Moldovan electoral authorities, OSCE/ODIHR, EU sanctions."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "44d448e2f1dc44b1"
+      }
+    }
+  },
+  "provenance": []
+}

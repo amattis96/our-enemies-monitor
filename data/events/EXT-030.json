@@ -1,0 +1,64 @@
+{
+  "id": "EXT-030",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-10-28",
+    "end": "2026-11-10",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Baltico: intercettazioni NATO di velivoli russi e segnalazioni di droni",
+    "en": "Baltic: NATO interceptions of Russian aircraft and drone reports"
+  },
+  "description": {
+    "it": "Il ministero della Difesa lituano documenta interventi di velivoli NATO il 28 e 30 ottobre e nella settimana 2–8 novembre per identificare o scortare velivoli russi (tra cui SU-24M, AN-26 e IL-20) in spazio aereo internazionale, in alcuni casi senza piano di volo o con transponder spento: non sono incursioni nello spazio aereo sovrano NATO. Le segnalazioni di droni del periodo sono eterogenee (interruzioni all’aeroporto di Leipzig/Halle il 7–8 novembre, allarmi in Romania, Lettonia, Lituania e Moldova): l’Osservatorio europeo degli incidenti con droni distingue casi confermati, segnalati e attribuiti, molti senza autore identificato, e il loro numero non misura le azioni ostili della Russia.",
+    "en": "The Lithuanian Ministry of Defence documents NATO aircraft interventions on 28 and 30 October and in the week 2–8 November to identify or escort Russian aircraft (including SU-24M, AN-26 and IL-20) in international airspace, in some cases without a flight plan or with the transponder off: these are not incursions into NATO sovereign airspace. Drone reports in the period are heterogeneous (disruptions at Leipzig/Halle airport on 7–8 November, alarms in Romania, Latvia, Lithuania and Moldova): the European Observatory of Drone Incidents distinguishes confirmed, reported and attributed cases, many without an identified perpetrator, and their number does not measure Russia's hostile actions."
+  },
+  "category": null,
+  "themes": [
+    "armed_conflict",
+    "hybrid_sabotage",
+    "infrastructure_space"
+  ],
+  "geography": {
+    "it": "Baltico e fianco orientale (Lituania, Lettonia, Romania, Moldova, Germania)",
+    "en": "Baltic and eastern flank (Lithuania, Latvia, Romania, Moldova, Germany)"
+  },
+  "places": [
+    "LT",
+    "LV",
+    "RO",
+    "MD",
+    "DE"
+  ],
+  "evidence_note": {
+    "it": "E1 attività NATO; autore droni da verificare",
+    "en": "E1 NATO activity; drone perpetrator to be verified"
+  },
+  "evidence_level": "E1",
+  "publisher": "Ministero della Difesa lituano",
+  "url": "https://kam.lt/en/data-on-interceptions-of-aircraft-completed-near-the-baltic-states-borders-on-october-26-november-1-2026/",
+  "sources": [
+    "S09",
+    "WEB-EXT-046",
+    "WEB-EXT-047"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-026, update type ONGOING_UPDATE. Evidence level of the main link per Fonte_09: E1 attività NATO; autore droni da verificare.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Record aggregates heterogeneous episodes, so 'places' lists the countries named. Keep separate from H32. Forbidden edge: attributing every sighting to Russia. Related context: TL-0119 (Leipzig/Halle, 4 August).",
+      "Suggested fields to keep distinct when modelled: cross_border_airspace_incursion, origin_confirmed, operator_attributed, target_type, civilian_damage, NATO_response."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "16aaeeff07f13dd3"
+      }
+    }
+  },
+  "provenance": []
+}

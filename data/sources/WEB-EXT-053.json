@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-053",
+  "type": "external_reference",
+  "title": {
+    "it": "Le elezioni di metà mandato hanno sconvolto il Congresso ma Trump guida ancora la politica estera (05/11/2026)",
+    "en": "Midterms upended Congress but Trump still commands foreign policy (05/11/2026)"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/us/midterms-upended-congress-trump-still-commands-foreign-policy-2026-11-05/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-49. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5668543be3ce8aa5"
+      }
+    }
+  },
+  "provenance": []
+}

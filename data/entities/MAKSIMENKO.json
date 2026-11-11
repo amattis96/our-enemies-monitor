@@ -1,0 +1,23 @@
+{
+  "id": "MAKSIMENKO",
+  "kind": "person",
+  "name": {
+    "it": "Andrei Maksimenko",
+    "en": "Andrei Maksimenko"
+  },
+  "domain": "persons",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "8c130e903cf84a46"
+      }
+    }
+  },
+  "provenance": []
+}

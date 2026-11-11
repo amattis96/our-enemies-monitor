@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-033",
+  "type": "external_reference",
+  "title": {
+    "it": "Operazione di influenza russa collegata ad attacchi contro candidati democratici in Maine, Ohio e Texas (30/10/2026)",
+    "en": "Russian influence operation linked to attacks targeting Democrats in Maine, Ohio and Texas (30/10/2026)"
+  },
+  "publisher": "PolitiFact",
+  "files": [],
+  "urls": [
+    "https://politifact.com/article/2026/oct/30/russia-talarico-jackson-brown-storm-1516-senate/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-29. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "1860cdc182602e61"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-027",
+  "type": "external_reference",
+  "title": {
+    "it": "Due uomini incriminati ai sensi del National Security Act dopo l’episodio di RAF Fairford (27/10/2026)",
+    "en": "Two men charged under the National Security Act after the RAF Fairford incident (27/10/2026)"
+  },
+  "publisher": "Crown Prosecution Service",
+  "files": [],
+  "urls": [
+    "https://www.cps.gov.uk/national-news/news/cps-announces-two-men-charged-national-security-act-offences-following-raf"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-23. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b3e339245fcc845a"
+      }
+    }
+  },
+  "provenance": []
+}

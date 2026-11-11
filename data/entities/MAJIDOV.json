@@ -1,0 +1,23 @@
+{
+  "id": "MAJIDOV",
+  "kind": "person",
+  "name": {
+    "it": "Vusal Majidov",
+    "en": "Vusal Majidov"
+  },
+  "domain": "persons",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b9c4bead8ac209aa"
+      }
+    }
+  },
+  "provenance": []
+}

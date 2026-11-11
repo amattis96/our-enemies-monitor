@@ -1,0 +1,23 @@
+{
+  "id": "HAYI",
+  "kind": "organization",
+  "name": {
+    "it": "Harakat Ashab al-Yamin al-Islamiya (HAYI)",
+    "en": "Harakat Ashab al-Yamin al-Islamiya (HAYI)"
+  },
+  "domain": "intelligence-security",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9cfecf4d53f4c117"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-028",
+  "type": "external_reference",
+  "title": {
+    "it": "Comunicato (in finlandese) sulla sentenza di primo grado nel caso Fitburg (05/11/2026)",
+    "en": "Press release (in Finnish) on the first-instance judgment in the Fitburg case (05/11/2026)"
+  },
+  "publisher": "Tribunali finlandesi",
+  "files": [],
+  "urls": [
+    "https://www.tuomioistuimet.fi/ajankohtaista/tiedotteet/karajaoikeus-on-antanut-tuomion-ns-fitburg-asiassa/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-24. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6447b742b94aae92"
+      }
+    }
+  },
+  "provenance": []
+}

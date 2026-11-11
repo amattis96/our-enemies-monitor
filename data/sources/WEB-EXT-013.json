@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-013",
+  "type": "external_reference",
+  "title": {
+    "it": "Comunicato: dati personali del ministro Tajani diffusi sul dark web, solidarietà a Lo Voi, Gabrielli e Tassan-Zanin (07/11/2026)",
+    "en": "Press release: personal data of Minister Tajani spread on the dark web, solidarity with Lo Voi, Gabrielli and Tassan-Zanin (07/11/2026)"
+  },
+  "publisher": "Ministero degli Esteri italiano",
+  "files": [],
+  "urls": [
+    "https://www.esteri.it/it/sala_stampa/archivionotizie/comunicati/2026/11/tajani-dati-personali-diffusi-sul-dark-web-chiesto-di-trattare-minacce-ibride-al-prossimo-g7-esteri-solidarieta-a-lo-voi-gabrielli-e-tassan-zanin/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-09. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ea7277b5804d9ba1"
+      }
+    }
+  },
+  "provenance": []
+}

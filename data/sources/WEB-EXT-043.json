@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-043",
+  "type": "external_reference",
+  "title": {
+    "it": "Trump sospende nuovi attacchi all’Iran e mantiene il blocco di Hormuz (10/11/2026)",
+    "en": "Trump holds off on new Iran strikes, keeps Hormuz blockade (10/11/2026)"
+  },
+  "publisher": "Quartz (da Reuters)",
+  "files": [],
+  "urls": [
+    "https://qz.com/trump-hold-off-iran-strikes-hormuz-blockade-111026"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-39. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9415d83c647654b7"
+      }
+    }
+  },
+  "provenance": []
+}

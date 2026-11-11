@@ -1,0 +1,38 @@
+{
+  "id": "G-0454",
+  "subject": "DOJ",
+  "predicate": "INCRIMINA",
+  "object": "ALHASSANI",
+  "relation_class": "legal",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "EXT-017"
+  ],
+  "valid_from": "2026-11-10",
+  "valid_to": null,
+  "primary_url": "https://www.justice.gov/opa/pr/three-iranian-backed-operatives-indicted-their-roles-nearly-20-terrorist-attacks-and",
+  "caveat": {
+    "it": "Stato procedurale: Mohammad Ali al-Hassani è imputato nell’atto d’accusa integrativo (superseding indictment) del DOJ del 10 novembre 2026; non è condannato e conserva la presunzione di innocenza. Le accuse (rete a sostegno di IRGC e Kata’ib Hizballah, attacchi rivendicati da HAYI, RAF Fairford) sono contestazioni giudiziarie, non fatti accertati; Teheran nega.",
+    "en": "Procedural status: Mohammad Ali al-Hassani is a defendant in the DOJ superseding indictment of 10 November 2026; he is not convicted and keeps the presumption of innocence. The allegations (network supporting the IRGC and Kata'ib Hizballah, attacks claimed by HAYI, RAF Fairford) are judicial allegations, not established facts; Tehran denies them."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-025",
+    "WEB-EXT-026"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship.",
+      "Named person: primary source is the DOJ press release; the indictment text itself was not acquired."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "b75fb4ef431fc3f1"
+      }
+    }
+  },
+  "provenance": []
+}

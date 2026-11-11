@@ -1,0 +1,57 @@
+{
+  "id": "EXT-031",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-11",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Raid ucraino contro il porto russo di Ust-Luga e allerta droni nei Paesi baltici",
+    "en": "Ukrainian raid on the Russian port of Ust-Luga and drone alert in the Baltic countries"
+  },
+  "description": {
+    "it": "L’11 novembre Reuters riporta un attacco ucraino contro infrastrutture del porto russo di Ust-Luga sul Baltico, con incendio e danni a serbatoi secondo le dichiarazioni di Kiev, mentre le autorità russe riferiscono feriti e abbattimenti di droni. In concomitanza sono scattati allarmi e decolli NATO per possibili o effettivi sconfinamenti in Stati baltici. È un’operazione ucraina contro un obiettivo in Russia, non un sabotaggio russo dell’Europa; la responsabilità di ogni singolo drone che attraversa un confine richiede identificazione autonoma.",
+    "en": "On 11 November Reuters reports a Ukrainian attack on infrastructure of the Russian Baltic port of Ust-Luga, with fire and damage to tanks according to Kyiv, while Russian authorities report injuries and drones shot down. At the same time NATO alarms and scrambles were triggered over possible or actual straying into Baltic states. It is a Ukrainian operation against a target in Russia, not a Russian sabotage of Europe; responsibility for each individual drone crossing a border requires separate identification."
+  },
+  "category": null,
+  "themes": [
+    "armed_conflict",
+    "energy"
+  ],
+  "geography": {
+    "it": "Russia (porto di Ust-Luga)",
+    "en": "Russia (port of Ust-Luga)"
+  },
+  "places": [
+    "RU"
+  ],
+  "evidence_note": {
+    "it": "E1 rapporti ufficiali / E3 Reuters; attribuzioni specifiche",
+    "en": "E1 official reports / E3 Reuters; specific attributions"
+  },
+  "evidence_level": "E3",
+  "publisher": "Reuters",
+  "url": "https://www.reuters.com/world/drone-attack-causes-fire-russias-baltic-sea-port-ust-luga-governor-says-2026-11-11/",
+  "sources": [
+    "S09",
+    "WEB-EXT-048"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-027, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1 rapporti ufficiali / E3 Reuters; attribuzioni specifiche.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Related: EXT-030. Do not relabel as Russian sabotage of Europe."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ad04f69b9963d7c1"
+      }
+    }
+  },
+  "provenance": []
+}

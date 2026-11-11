@@ -1,0 +1,23 @@
+{
+  "id": "SHAHIDKAVEH",
+  "kind": "organization",
+  "name": {
+    "it": "SHAHID KAVEH (unità cyber indicata dalla Francia come affiliata all’IRGC)",
+    "en": "SHAHID KAVEH (cyber unit indicated by France as affiliated with the IRGC)"
+  },
+  "domain": "intelligence-security",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7b7ca55cea44bb18"
+      }
+    }
+  },
+  "provenance": []
+}

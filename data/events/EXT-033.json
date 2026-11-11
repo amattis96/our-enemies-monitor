@@ -1,0 +1,65 @@
+{
+  "id": "EXT-033",
+  "record_type": "dataset_metadata",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-10",
+    "end": null,
+    "precision": "month"
+  },
+  "title": {
+    "it": "L’EBU pubblica una mappa di incidenti ibridi collegati alla Russia in 17 Stati",
+    "en": "EBU publishes a map of hybrid incidents linked to Russia in 17 states"
+  },
+  "description": {
+    "it": "Eurovision News Spotlight/EBU, con giornalisti di 17 emittenti pubbliche europee, ha pubblicato alla fine di ottobre 2026 una mappa OSINT di centinaia di incidenti riportati tra il 1° aprile e il 15 ottobre 2026 in 17 Paesi, classificati per tipologia e grado/fonte di attribuzione alla Russia, con criteri di cautela. Il periodo osservato è prevalentemente anteriore alla baseline. I suoi numeri non vanno sommati a quelli del corpus né a quelli delle serie CSIS/IISS: universi statistici, fonti delle attribuzioni, finestre temporali e criteri di inclusione differiscono; non è un accertamento giudiziario.",
+    "en": "Eurovision News Spotlight/EBU, with journalists from 17 European public broadcasters, published at the end of October 2026 an OSINT map of hundreds of reported incidents between 1 April and 15 October 2026 in 17 countries, classified by type and degree/source of attribution to Russia, with cautious criteria. The observed period largely precedes the baseline. Its figures must not be added to those of the corpus or of the CSIS/IISS series: statistical universes, attribution sources, time windows and inclusion criteria differ; it is not a judicial finding."
+  },
+  "category": null,
+  "themes": [
+    "research_metadata"
+  ],
+  "geography": {
+    "it": "Europa (17 Paesi)",
+    "en": "Europe (17 countries)"
+  },
+  "places": [],
+  "evidence_note": {
+    "it": "E3 dataset giornalistico con attribuzioni graduate",
+    "en": "E3 journalistic dataset with graded attributions"
+  },
+  "evidence_level": "E3",
+  "publisher": "Eurovision News Spotlight / EBU",
+  "url": "https://spotlight.ebu.ch/p/russia-hybrid-war-europe-incidents-map",
+  "sources": [
+    "S09",
+    "WEB-EXT-050"
+  ],
+  "known_issues": [
+    {
+      "code": "date_reflects_publication",
+      "note": {
+        "it": "La data è quella di pubblicazione del dataset (fine ottobre 2026), non quella degli incidenti, che coprono 1 aprile–15 ottobre 2026.",
+        "en": "The date is that of the dataset's publication (end of October 2026), not that of the incidents, which cover 1 April–15 October 2026."
+      },
+      "reported_in": [
+        "S09"
+      ]
+    }
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-029, update type NEW_EVIDENCE. Evidence level of the main link per Fonte_09: E3 dataset giornalistico con attribuzioni graduate.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Dataset metadata, not an incident. The 147 timeline entries are a curatorial selection, not the total of European cases."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "36a54a88bf1cc1bb"
+      }
+    }
+  },
+  "provenance": []
+}

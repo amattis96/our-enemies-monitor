@@ -1,0 +1,56 @@
+{
+  "id": "EXT-032",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": "2026-11-11",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Disputa UE sul finanziamento all’Ucraina per il 2027 e sulla ripartizione dei costi",
+    "en": "EU dispute over financing Ukraine in 2027 and sharing of the costs"
+  },
+  "description": {
+    "it": "All’11 novembre, secondo Le Monde, il cancelliere tedesco Friedrich Merz ha collegato il sostegno finanziario all’Ucraina per il 2027 al nuovo quadro di bilancio pluriennale UE 2028–2034 e ha contestato le esenzioni richieste da alcuni governi dall’obbligo di partecipare a nuovi prestiti; il fabbisogno indicato è di circa 70 miliardi di euro per il 2027, in parte rilevante da coprire attraverso l’UE. Vari governi, tra cui quello slovacco, contestano l’approccio. Non risulta una decisione definitiva di taglio dei fondi né di approvazione di un nuovo prestito. Il dissenso di uno Stato non implica un suo controllo da parte della Russia.",
+    "en": "As of 11 November, according to Le Monde, German Chancellor Friedrich Merz linked financial support for Ukraine in 2027 to the new 2028–2034 EU multiannual budget framework and challenged the exemptions requested by some governments from taking part in new loans; the stated need is about €70 billion for 2027, a significant part to be covered through the EU. Several governments, including the Slovak one, contest the approach. No final decision to cut funds or approve a new loan is reported. A state's dissent does not imply it is controlled by Russia."
+  },
+  "category": null,
+  "themes": [
+    "eu_nato_response",
+    "finance_sanctions",
+    "geopolitics_diplomacy"
+  ],
+  "geography": {
+    "it": "Unione europea",
+    "en": "European Union"
+  },
+  "places": [],
+  "evidence_note": {
+    "it": "E3 diplomazia/inchiesta",
+    "en": "E3 diplomacy/investigation"
+  },
+  "evidence_level": "E3",
+  "publisher": "Le Monde",
+  "url": "https://www.lemonde.fr/en/international/article/2026/11/11/merz-threatens-to-cut-eu-funds-for-member-states-that-don-t-support-ukraine_6778019_4.html",
+  "sources": [
+    "S09",
+    "WEB-EXT-049"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-028, update type NEW_POLICY. Evidence level of the main link per Fonte_09: E3 diplomazia/inchiesta.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Policy dispute only; relations between dissenting governments and any foreign actor must be analysed separately with pertinent sources."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "454f8d2cde7e1be4"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-035",
+  "type": "external_reference",
+  "title": {
+    "it": "Russia e Ucraina riferiscono alcuni progressi nei colloqui, gli USA citano la mancanza di fiducia (11/11/2026)",
+    "en": "Russia and Ukraine say some progress made at talks, US cites lack of trust (11/11/2026)"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/europe/us-russia-ukraine-start-second-day-abu-dhabi-peace-talks-2026-11-11/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-31. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "af65cf1d3bd470fd"
+      }
+    }
+  },
+  "provenance": []
+}

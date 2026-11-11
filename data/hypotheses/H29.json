@@ -1,0 +1,45 @@
+{
+  "id": "H29",
+  "subject": "US",
+  "object": "EXT-020",
+  "hypothesis_type": "LEVE_PARLAMENTARI_POST_MIDTERM",
+  "question": {
+    "it": "Quali leve parlamentari USA post-mid-term incidono effettivamente su aiuti a Kiev e sanzioni russe dal 2027?",
+    "en": "Which US parliamentary levers after the midterms actually affect aid to Kyiv and Russia sanctions from 2027?"
+  },
+  "current_limit": {
+    "it": "Le nuove camere entrano in carica a gennaio 2027 e il presidente conserva ampi poteri; non presumere un’inversione politica automatica.",
+    "en": "The new chambers take office in January 2027 and the president retains broad powers; do not presume an automatic political reversal."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Testi di legge, bilanci, votazioni, executive order.",
+    "en": "Legislative texts, budgets, votes, executive orders."
+  },
+  "events": [
+    "EXT-020"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-030",
+    "WEB-EXT-031",
+    "WEB-EXT-053"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d614e7573f3b529f"
+      }
+    }
+  },
+  "provenance": []
+}

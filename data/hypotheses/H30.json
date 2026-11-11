@@ -1,0 +1,46 @@
+{
+  "id": "H30",
+  "subject": "HAYI",
+  "object": "FOXTROT",
+  "hypothesis_type": "RETE_PROXY_COMUNE",
+  "question": {
+    "it": "Quali delle operazioni attribuite dal DOJ a HAYI condividono persone e risorse con altre reti proxy iraniane europee?",
+    "en": "Which of the operations attributed by the DOJ to HAYI share people and resources with other Iranian proxy networks in Europe?"
+  },
+  "current_limit": {
+    "it": "Le accuse del DOJ sono contestazioni giudiziarie; non assimilare HAYI a ogni gruppo sciita o iraniano né al caso Foxtrot (H19).",
+    "en": "The DOJ's allegations are judicial allegations; do not equate HAYI with every Shiite or Iranian group nor with the Foxtrot case (H19)."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Atti giudiziari, trasferimenti e indagini sui singoli episodi.",
+    "en": "Court records, transfers and investigations into the individual episodes."
+  },
+  "events": [
+    "EXT-017",
+    "EXT-018"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-025",
+    "WEB-EXT-026",
+    "WEB-EXT-027"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "215b15baa10a45ed"
+      }
+    }
+  },
+  "provenance": []
+}

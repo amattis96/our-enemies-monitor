@@ -1,0 +1,30 @@
+{
+  "id": "WEB-EXT-046",
+  "type": "external_reference",
+  "title": {
+    "it": "Dati sulle intercettazioni di velivoli presso i confini degli Stati baltici (26 ottobre–1 novembre e 2–8 novembre 2026)",
+    "en": "Data on aircraft interceptions near the borders of the Baltic states (26 October–1 November and 2–8 November 2026)"
+  },
+  "publisher": "Ministero della Difesa lituano",
+  "files": [],
+  "urls": [
+    "https://kam.lt/en/data-on-interceptions-of-aircraft-completed-near-the-baltic-states-borders-on-october-26-november-1-2026/",
+    "https://kam.lt/en/data-on-interceptions-of-aircraft-completed-near-the-baltic-states-borders-on-november-2-8-2026/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-42. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "91b05b3d18872122"
+      }
+    }
+  },
+  "provenance": []
+}

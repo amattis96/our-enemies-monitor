@@ -19,17 +19,23 @@
   "events": [
     "TL-0076",
     "TL-0103",
-    "TL-0122"
+    "TL-0122",
+    "EXT-027"
   ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
     "S04",
-    "S05"
+    "S05",
+    "S09",
+    "WEB-EXT-042",
+    "WEB-EXT-043"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: updated as persistent energy and logistics exposure with new monthly transit and attack data; not turned into an information operation."
+    ],
     "translations": {
       "en": {
         "status": "machine",

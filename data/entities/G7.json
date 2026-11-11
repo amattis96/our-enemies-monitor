@@ -1,0 +1,23 @@
+{
+  "id": "G7",
+  "kind": "institution",
+  "name": {
+    "it": "G7",
+    "en": "G7"
+  },
+  "domain": "institutional",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "4bbe1392ab9d8fb7"
+      }
+    }
+  },
+  "provenance": []
+}

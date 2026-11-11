@@ -1,0 +1,58 @@
+{
+  "id": "EXT-013",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-11",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Email con falsi allarmi bomba a oltre 6.300 scuole italiane",
+    "en": "Emails with false bomb alarms to more than 6,300 Italian schools"
+  },
+  "description": {
+    "it": "L’11 novembre un’ondata di email di minaccia ha raggiunto più di 6.300 scuole italiane, secondo il Ministero dell’Istruzione citato da AP; parte degli istituti ha effettuato verifiche o evacuazioni, senza ordigni né feriti. Messaggi analoghi sono stati ricevuti in Irlanda e in parti del Regno Unito. Una stessa firma riportata in alcuni messaggi compare in precedenti intimidazioni a emittenti europee ma non identifica il responsabile. La presidente del Consiglio Meloni ha convocato un vertice interministeriale con intelligence e ACN; una regia statale è non dimostrata.",
+    "en": "On 11 November a wave of threat emails reached more than 6,300 Italian schools, according to the Ministry of Education cited by AP; some schools carried out checks or evacuations, with no devices or injuries. Similar messages were received in Ireland and parts of the United Kingdom. The same signature reported in some messages appears in earlier intimidation of European broadcasters but does not identify the person responsible. Prime Minister Meloni convened an inter-ministerial summit with intelligence and the ACN; a state mastermind is not demonstrated."
+  },
+  "category": null,
+  "themes": [
+    "hybrid_sabotage",
+    "society_health"
+  ],
+  "geography": {
+    "it": "Italia",
+    "en": "Italy"
+  },
+  "places": [
+    "IT"
+  ],
+  "evidence_note": {
+    "it": "E1 invii/controlli; mandante ignoto",
+    "en": "E1 mailings/checks; instigator unknown"
+  },
+  "evidence_level": "E1",
+  "publisher": "Associated Press",
+  "url": "https://apnews.com/article/0f312fda4ee2e9cdcebd0d6e1a40d9e8",
+  "sources": [
+    "S09",
+    "WEB-EXT-019"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-009, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1 invii/controlli; mandante ignoto.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "A false alarm has real consequences but does not prove an explosive existed. Link messages only by header, server, template and documented infrastructure (H26).",
+      "Forbidden edge: Russian state commanding all November bomb alarms."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "52b672767bb1bc44"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,23 @@
+{
+  "id": "DOJ",
+  "kind": "institution",
+  "name": {
+    "it": "Department of Justice degli Stati Uniti (DOJ)",
+    "en": "United States Department of Justice (DOJ)"
+  },
+  "domain": "institutional",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "31d067f70295b264"
+      }
+    }
+  },
+  "provenance": []
+}

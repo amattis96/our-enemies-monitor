@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-050",
+  "type": "external_reference",
+  "title": {
+    "it": "Mappa della guerra ibrida: attacchi collegati alla Russia in Europa (fine ottobre 2026)",
+    "en": "Hybrid war map: attacks linked to Russia in Europe (end of October 2026)"
+  },
+  "publisher": "Eurovision News Spotlight / EBU",
+  "files": [],
+  "urls": [
+    "https://spotlight.ebu.ch/p/russia-hybrid-war-europe-incidents-map"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-46. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cf2599e3a8f2845a"
+      }
+    }
+  },
+  "provenance": []
+}

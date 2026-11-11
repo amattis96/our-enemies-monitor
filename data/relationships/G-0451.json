@@ -1,0 +1,36 @@
+{
+  "id": "G-0451",
+  "subject": "CPS",
+  "predicate": "INCRIMINA",
+  "object": "EXT-018",
+  "relation_class": "legal",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "EXT-018"
+  ],
+  "valid_from": "2026-10-27",
+  "valid_to": null,
+  "primary_url": "https://www.cps.gov.uk/national-news/news/cps-announces-two-men-charged-national-security-act-offences-following-raf",
+  "caveat": {
+    "it": "La CPS ha annunciato imputazioni a carico di due uomini, non nominati nella fonte, ai sensi del National Security Act per l’episodio RAF Fairford del 27 settembre 2026. Atto di accusa, non giudizio: la responsabilità non è accertata.",
+    "en": "The CPS announced charges against two men, not named in the source, under the National Security Act for the RAF Fairford incident of 27 September 2026. A charge, not a judgment: responsibility is not established."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-027"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "485e26da1e14243f"
+      }
+    }
+  },
+  "provenance": []
+}

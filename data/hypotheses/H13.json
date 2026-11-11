@@ -18,18 +18,24 @@
   },
   "events": [
     "TL-0010",
-    "TL-0023"
+    "TL-0023",
+    "EXT-021"
   ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
     "S00",
     "S01",
-    "S02"
+    "S02",
+    "S09",
+    "WEB-EXT-033",
+    "WEB-EXT-034"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: new videos attributed by experts to Storm-1516 during the US mid-terms, with observable reach; electoral causality remains unknown."
+    ],
     "translations": {
       "en": {
         "status": "machine",

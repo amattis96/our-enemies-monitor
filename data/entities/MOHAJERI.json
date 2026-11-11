@@ -1,0 +1,23 @@
+{
+  "id": "MOHAJERI",
+  "kind": "person",
+  "name": {
+    "it": "Mohsen Mohajeri",
+    "en": "Mohsen Mohajeri"
+  },
+  "domain": "persons",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7cc1dac3996244b6"
+      }
+    }
+  },
+  "provenance": []
+}

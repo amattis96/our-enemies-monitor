@@ -1,0 +1,23 @@
+{
+  "id": "NONAME057",
+  "kind": "organization",
+  "name": {
+    "it": "NoName057(16)",
+    "en": "NoName057(16)"
+  },
+  "domain": "influence-technology",
+  "country": null,
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Created for Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "31b24601c8e279ae"
+      }
+    }
+  },
+  "provenance": []
+}

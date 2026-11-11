@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-019",
+  "type": "external_reference",
+  "title": {
+    "it": "Meloni: le minacce cyber mirano a diffondere paura, scuole colpite da allarmi bomba (11/11/2026)",
+    "en": "Meloni: cyber threats are meant to spread fear, schools hit by bomb threats (11/11/2026)"
+  },
+  "publisher": "Associated Press",
+  "files": [],
+  "urls": [
+    "https://apnews.com/article/0f312fda4ee2e9cdcebd0d6e1a40d9e8"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-15. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "edea58feb3c5b77b"
+      }
+    }
+  },
+  "provenance": []
+}

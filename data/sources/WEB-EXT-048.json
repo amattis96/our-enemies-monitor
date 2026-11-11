@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-048",
+  "type": "external_reference",
+  "title": {
+    "it": "Un attacco di droni provoca un incendio nel porto russo baltico di Ust-Luga (11/11/2026)",
+    "en": "Drone attack triggers fire in Russia's Baltic port of Ust-Luga (11/11/2026)"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/drone-attack-causes-fire-russias-baltic-sea-port-ust-luga-governor-says-2026-11-11/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-44. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "7e09f7f611e61894"
+      }
+    }
+  },
+  "provenance": []
+}

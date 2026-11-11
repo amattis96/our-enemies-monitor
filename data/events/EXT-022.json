@@ -1,0 +1,59 @@
+{
+  "id": "EXT-022",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-02",
+    "end": "2026-11-11",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Ripresa dei colloqui USA–Russia–Ucraina ad Abu Dhabi",
+    "en": "Resumption of US–Russia–Ukraine talks in Abu Dhabi"
+  },
+  "description": {
+    "it": "Annunciati dagli USA il 2 novembre, i colloqui del 10–11 novembre ad Abu Dhabi sono i primi diretti mediati da Washington da febbraio; gli emissari statunitensi Steve Witkoff e Jared Kushner hanno avviato colloqui su sicurezza del dopoguerra, misure umanitarie, cessate il fuoco e territori. L’11 novembre Reuters riferisce progressi limitati e un’intesa per un importante scambio di prigionieri, senza svolta sui territori (Mosca chiede l’intero Donbas, Kiev respinge una soluzione che legittimi la conquista). Germania, Francia, Regno Unito, Italia, UE e NATO hanno avuto contatti paralleli, ma la Russia non ha accettato la loro partecipazione al tavolo trilaterale. Negoziare non equivale ad accettare le richieste russe; lo scambio di prigionieri non è ancora verificato come eseguito.",
+    "en": "Announced by the US on 2 November, the 10–11 November talks in Abu Dhabi are the first direct talks mediated by Washington since February; US envoys Steve Witkoff and Jared Kushner opened talks on post-war security, humanitarian measures, ceasefire and territories. On 11 November Reuters reports limited progress and an agreement on a major prisoner exchange, with no breakthrough on territory (Moscow demands the whole of Donbas, Kyiv rejects a solution that legitimises the conquest). Germany, France, the United Kingdom, Italy, the EU and NATO held parallel contacts, but Russia did not accept their participation in the trilateral table. Negotiating does not mean accepting Russian demands; the prisoner exchange is not yet verified as carried out."
+  },
+  "category": null,
+  "themes": [
+    "geopolitics_diplomacy",
+    "armed_conflict"
+  ],
+  "geography": {
+    "it": "Abu Dhabi (Emirati Arabi Uniti)",
+    "en": "Abu Dhabi (United Arab Emirates)"
+  },
+  "places": [
+    "AE"
+  ],
+  "evidence_note": {
+    "it": "E1 incontri / E3 reporting negoziale",
+    "en": "E1 meetings / E3 negotiation reporting"
+  },
+  "evidence_level": "E3",
+  "publisher": "Reuters",
+  "url": "https://www.reuters.com/world/europe/us-russia-ukraine-start-second-day-abu-dhabi-peace-talks-2026-11-11/",
+  "sources": [
+    "S09",
+    "WEB-EXT-035",
+    "WEB-EXT-036",
+    "WEB-EXT-037"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-018, update type ONGOING_UPDATE. Evidence level of the main link per Fonte_09: E1 incontri / E3 reporting negoziale.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Monitor separately: trilateral talks, executed humanitarian agreements, ceasefire, territorial concessions, sanctions changes."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5d9e4e8bd19cd1f4"
+      }
+    }
+  },
+  "provenance": []
+}

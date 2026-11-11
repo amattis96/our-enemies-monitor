@@ -1,0 +1,28 @@
+{
+  "id": "S09",
+  "type": "corpus_document",
+  "title": {
+    "it": "Fonte 09 | Aggiornamento OSINT: nuove evidenze, operazioni ibride, elezioni e pressioni strategiche sull’Europa (22 ottobre–11 novembre 2026)",
+    "en": "Source 09 | OSINT update: new evidence, hybrid operations, elections and strategic pressures on Europe (22 October–11 November 2026)"
+  },
+  "publisher": null,
+  "files": [
+    "sources/incremental/Fonte_09_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-11.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Incremental source v1.0 (cut-off 2026-11-11T23:00+01:00), stored in sources/incremental/ because sources/original/ is the immutable Fonte_00–Fonte_08 baseline.",
+      "The OEM26-* and SRC-* identifiers are proposals of the document; this archive assigns EXT-005..EXT-034 and WEB-EXT-005..WEB-EXT-054 (OEM26-n -> EXT-(n+4), SRC-n -> WEB-EXT-(n+4))."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a2359f2f42359198"
+      }
+    }
+  },
+  "provenance": []
+}

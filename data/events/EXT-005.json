@@ -1,0 +1,62 @@
+{
+  "id": "EXT-005",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": "2026-11-10",
+    "precision": "day"
+  },
+  "title": {
+    "it": "La Francia attribuisce all’Iran il sabotaggio cyber della refrigerazione commerciale dell’11–12 ottobre",
+    "en": "France attributes to Iran the cyber sabotage of commercial refrigeration of 11–12 October"
+  },
+  "description": {
+    "it": "Il 9 novembre (comunicato in inglese del 10 novembre) il ministero degli Esteri francese attribuisce a SHAHID KAVEH, unità cyber offensiva affiliata all’IRGC, la compromissione dei controllori di refrigerazione commerciale di oltre 700 siti francesi nella notte tra l’11 e il 12 ottobre 2026, con deterioramento di derrate, danni (decine di milioni di euro secondo il ministero) e in alcuni casi principi di incendio. Si tratta di un’attribuzione istituzionale (E2), non di una sentenza; l’Iran la contesta. Non si estende alla seconda ondata del 1–2 novembre né alle rivendicazioni filorusse.",
+    "en": "On 9 November (statement in English of 10 November) the French foreign ministry attributes to SHAHID KAVEH, an offensive cyber unit affiliated with the IRGC, the compromise of commercial refrigeration controllers at more than 700 French sites on the night of 11–12 October 2026, with spoiled goods, damage (tens of millions of euros according to the ministry) and in some cases fire starts. This is an institutional attribution (E2), not a judgment; Iran contests it. It does not extend to the second wave of 1–2 November or to the pro-Russian claims."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "hybrid_sabotage",
+    "geopolitics_diplomacy"
+  ],
+  "geography": {
+    "it": "Francia",
+    "en": "France"
+  },
+  "places": [
+    "FR"
+  ],
+  "evidence_note": {
+    "it": "E1 atto / E2 attribuzione",
+    "en": "E1 act / E2 attribution"
+  },
+  "evidence_level": "E2",
+  "publisher": "Ministero degli Esteri francese",
+  "url": "https://www.diplomatie.gouv.fr/en/presse-et-ressources/decouvrir-et-informer/actualites/declaration-d-attribution-a-l-iran-de-cyberattaques-visant-la-france",
+  "sources": [
+    "S09",
+    "WEB-EXT-005",
+    "WEB-EXT-006",
+    "WEB-EXT-051"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-001, update type NEW_ATTRIBUTION. Evidence level of the main link per Fonte_09: E1 atto / E2 attribuzione.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Denial / right of reply: Iran rejects the French attribution (SRC-47).",
+      "The 11–12 October attack itself has no earlier record in the corpus; the date of this record is that of the attribution, not of the conduct.",
+      "Keep separate from H23 and H24."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "28ea864c626c7e68"
+      }
+    }
+  },
+  "provenance": []
+}

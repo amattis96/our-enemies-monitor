@@ -1,0 +1,47 @@
+{
+  "id": "H24",
+  "subject": "EXT-006",
+  "object": "COLDCHAIN",
+  "hypothesis_type": "FAMIGLIE_OT_E_ACCESSO",
+  "question": {
+    "it": "Quali famiglie di dispositivi OT e quali modalità di accesso hanno permesso le compromissioni della filiera alimentare?",
+    "en": "Which OT device families and access methods enabled the compromises of the food supply chain?"
+  },
+  "current_limit": {
+    "it": "Non presumere una CVE o una credenziale unica; software obsoleto e gestione da remoto sono fattori di esposizione, non prova di una causa comune.",
+    "en": "Do not presume a single CVE or credential; outdated software and remote management are exposure factors, not proof of a common cause."
+  },
+  "priority": "medium",
+  "evidence_needed": {
+    "it": "Analisi dei CERT su firmware, configurazioni, log e installazioni.",
+    "en": "CERT analysis of firmware, configurations, logs and installations."
+  },
+  "events": [
+    "EXT-005",
+    "EXT-006",
+    "EXT-007"
+  ],
+  "external_url": null,
+  "status": "open_unproven",
+  "sources": [
+    "S09",
+    "WEB-EXT-005",
+    "WEB-EXT-009",
+    "WEB-EXT-011"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "New open hypothesis proposed by Fonte_09 §7. Never a relationship: promotion needs a cited primary source and explicit human approval.",
+      "Fonte_09 gives no priority; 'medium' is a provisional editorial placeholder.",
+      "The subject/object are anchors for the graph of hypotheses and do not assert a link between them."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d8d08bd2f96328b9"
+      }
+    }
+  },
+  "provenance": []
+}

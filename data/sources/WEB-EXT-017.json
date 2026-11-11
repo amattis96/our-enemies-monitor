@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-017",
+  "type": "external_reference",
+  "title": {
+    "it": "Attacco hacker al tunnel del Brennero e dati Smartbox (07/11/2026)",
+    "en": "Hacker attack on the Brenner tunnel and Smartbox data (07/11/2026)"
+  },
+  "publisher": "la Repubblica",
+  "files": [],
+  "urls": [
+    "https://www.repubblica.it/cronaca/2026/11/07/news/attacco_hacker_tunnel_brennero-425706419/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-13. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d7080057fa21346d"
+      }
+    }
+  },
+  "provenance": []
+}

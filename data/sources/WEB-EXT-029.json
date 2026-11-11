@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-029",
+  "type": "external_reference",
+  "title": {
+    "it": "Il tribunale di Helsinki condanna due membri dell’equipaggio della Fitburg per il danno ai cavi sottomarini (05/11/2026)",
+    "en": "Helsinki court jails two Fitburg crew members over subsea cable damage (05/11/2026)"
+  },
+  "publisher": "Yle",
+  "files": [],
+  "urls": [
+    "https://yle.fi/a/74-20255306"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-25. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "159bd32bec036e11"
+      }
+    }
+  },
+  "provenance": []
+}

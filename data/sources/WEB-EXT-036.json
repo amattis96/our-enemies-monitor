@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-036",
+  "type": "external_reference",
+  "title": {
+    "it": "Gli USA mediano colloqui trilaterali con Ucraina e Russia ad Abu Dhabi (02/11/2026)",
+    "en": "US to mediate trilateral talks with Ukraine and Russia in Abu Dhabi (02/11/2026)"
+  },
+  "publisher": "Reuters (via Investing.com)",
+  "files": [],
+  "urls": [
+    "https://www.investing.com/news/world-news/us-to-hold-trilateral-talks-with-ukraine-russia-in-abu-dhabi-next-weekus-official-4993163"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-32. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "d31c4a7fda5e54ff"
+      }
+    }
+  },
+  "provenance": []
+}

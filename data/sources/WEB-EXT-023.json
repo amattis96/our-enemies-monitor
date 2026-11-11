@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-023",
+  "type": "external_reference",
+  "title": {
+    "it": "Il bilancio dei morti che Putin ha cercato di nascondere: quasi 400.000 russi uccisi nella guerra in Ucraina (10/11/2026)",
+    "en": "The death toll Putin has tried to hide: nearly 400,000 Russians killed in the Ukraine war (10/11/2026)"
+  },
+  "publisher": "Le Monde",
+  "files": [],
+  "urls": [
+    "https://www.lemonde.fr/en/international/article/2026/11/10/the-death-toll-putin-has-tried-to-hide-nearly-400-000-russians-killed-in-the-ukraine-war_6776332_4.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-19. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "cac6f5e7e025c2f6"
+      }
+    }
+  },
+  "provenance": []
+}

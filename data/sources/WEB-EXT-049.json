@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-049",
+  "type": "external_reference",
+  "title": {
+    "it": "Merz minaccia di tagliare i fondi UE agli Stati membri che non sostengono l’Ucraina (11/11/2026)",
+    "en": "Merz threatens to cut EU funds for member states that do not support Ukraine (11/11/2026)"
+  },
+  "publisher": "Le Monde",
+  "files": [],
+  "urls": [
+    "https://www.lemonde.fr/en/international/article/2026/11/11/merz-threatens-to-cut-eu-funds-for-member-states-that-don-t-support-ukraine_6778019_4.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-45. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "75953ed2990e8b94"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-022",
+  "type": "external_reference",
+  "title": {
+    "it": "Più di 400.000 russi uccisi nella guerra in Ucraina, suggeriscono dati trapelati (09/11/2026)",
+    "en": "More than 400,000 Russians killed fighting in the Ukraine war, leaked data suggests (09/11/2026)"
+  },
+  "publisher": "The Guardian",
+  "files": [],
+  "urls": [
+    "https://www.theguardian.com/world/2026/nov/09/russians-killed-ukraine-war-leaked-data"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-18. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "3e2b7b59385e6b46"
+      }
+    }
+  },
+  "provenance": []
+}

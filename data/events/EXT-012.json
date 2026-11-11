@@ -1,0 +1,55 @@
+{
+  "id": "EXT-012",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-05",
+    "end": "2026-11-06",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Falsi allarmi bomba contro numerosi voli commerciali europei",
+    "en": "False bomb alarms against numerous European commercial flights"
+  },
+  "description": {
+    "it": "Il 5 novembre numerosi voli commerciali in Europa hanno ricevuto falsi allarmi bomba: AP riporta oltre una dozzina di voli coinvolti, con interventi di caccia, atterraggi di precauzione, dirottamenti, controlli e ritardi, senza riscontro di esplosivi, e segnalazioni analoghe nei giorni precedenti. Mittenti e nessi tra i casi non sono stati stabiliti; alcuni messaggi invocano nomi di gruppi o slogan diversi, non verificati come responsabilità operative.",
+    "en": "On 5 November numerous commercial flights in Europe received false bomb alarms: AP reports more than a dozen flights involved, with fighter jet interventions, precautionary landings, diversions, checks and delays, with no sign of explosives, and similar reports in the preceding days. Senders and links between the cases have not been established; some messages invoke different group names or slogans, not verified as operational responsibilities."
+  },
+  "category": null,
+  "themes": [
+    "hybrid_sabotage",
+    "infrastructure_space"
+  ],
+  "geography": {
+    "it": "Europa",
+    "en": "Europe"
+  },
+  "places": [],
+  "evidence_note": {
+    "it": "E1 disservizi; responsabili ignoti",
+    "en": "E1 disruptions; perpetrators unknown"
+  },
+  "evidence_level": "E1",
+  "publisher": "Associated Press",
+  "url": "https://apnews.com/article/6585ff565ee1ccb9f19b73074aa2fec4",
+  "sources": [
+    "S09",
+    "WEB-EXT-018"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-008, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1 disservizi; responsabili ignoti.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Keep separate from H26. Forbidden edge: Russian state commanding all November bomb alarms."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "2a1207adb6ce4f66"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-015",
+  "type": "external_reference",
+  "title": {
+    "it": "Tajani denuncia nuove minacce hacker, intimidita anche la famiglia (11/11/2026)",
+    "en": "Tajani reports new hacker threats, family intimidated too (11/11/2026)"
+  },
+  "publisher": "RaiNews",
+  "files": [],
+  "urls": [
+    "https://www.rainews.it/articoli/2026/11/tajani-denuncia-nuove-minacce-hacker-intimidita-anche-la-mia-famiglia-compresi-i-minori-85e7c1c5-ed9a-4506-b28e-abdd1c1659b5.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-11. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "9e1fcfd1fc4ec540"
+      }
+    }
+  },
+  "provenance": []
+}

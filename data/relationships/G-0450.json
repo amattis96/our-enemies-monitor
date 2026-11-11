@@ -1,0 +1,38 @@
+{
+  "id": "G-0450",
+  "subject": "BBT",
+  "predicate": "DICHIARA_INCIDENTE",
+  "object": "EXT-010",
+  "relation_class": "context",
+  "evidence_level": "E1",
+  "evidence_status": "documented",
+  "events": [
+    "EXT-010"
+  ],
+  "valid_from": "2026-11-07",
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Dichiarazione aziendale di un accesso non autorizzato a dati aziendali (secondo ANSA del 17 ottobre), riportata dalla stampa: il comunicato della società non è stato acquisito. Autore non accertato; nessun ordine statale provato.",
+    "en": "Company statement of unauthorised access to company data (on 17 October per ANSA), reported by the press: the company's own release was not acquired. Perpetrator not established; no state order proven."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-016",
+    "WEB-EXT-017"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship.",
+      "No primary document acquired: the company statement is known through press reports."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "870073c09773bfa4"
+      }
+    }
+  },
+  "provenance": []
+}

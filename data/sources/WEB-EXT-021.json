@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-021",
+  "type": "external_reference",
+  "title": {
+    "it": "NoName057 rivendica un attacco a impianti di riscaldamento (11/11/2026)",
+    "en": "NoName057 claims an attack on heating systems (11/11/2026)"
+  },
+  "publisher": "Il Fatto Quotidiano",
+  "files": [],
+  "urls": [
+    "https://www.ilfattoquotidiano.it/2026/11/11/noname057-attacco-hacker-sistemi-industriali-notizie/8568458/"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-17. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "ee5a75e719b22260"
+      }
+    }
+  },
+  "provenance": []
+}

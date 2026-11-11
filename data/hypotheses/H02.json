@@ -21,17 +21,22 @@
     "TL-0063",
     "TL-0064",
     "TL-0119",
-    "TL-0120"
+    "TL-0120",
+    "EXT-024"
   ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
     "S03",
-    "S06"
+    "S06",
+    "S09",
+    "WEB-EXT-039"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: new EU sanctions proposals could include the Leipzig/Halle case; monitor final acts and identified subjects. New lead, no general proof of a common principal."
+    ],
     "translations": {
       "en": {
         "status": "machine",

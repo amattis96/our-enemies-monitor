@@ -1,0 +1,56 @@
+{
+  "id": "EXT-023",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-05",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Incontro alla Casa Bianca tra Trump e l’inviato russo Kirill Dmitriev",
+    "en": "White House meeting between Trump and Russian envoy Kirill Dmitriev"
+  },
+  "description": {
+    "it": "Il 5 novembre Associated Press ha riferito di un incontro alla Casa Bianca tra Donald Trump e Kirill Dmitriev, in parallelo a consultazioni con altri rappresentanti ucraini e occidentali. È un contatto diplomatico pubblico riportato dalla stampa, non prova di coordinamento clandestino.",
+    "en": "On 5 November the Associated Press reported a White House meeting between Donald Trump and Kirill Dmitriev, in parallel with consultations with other Ukrainian and Western representatives. It is a public diplomatic contact reported by the press, not proof of covert coordination."
+  },
+  "category": null,
+  "themes": [
+    "geopolitics_diplomacy"
+  ],
+  "geography": {
+    "it": "Stati Uniti",
+    "en": "United States"
+  },
+  "places": [
+    "US"
+  ],
+  "evidence_note": {
+    "it": "E3 reporting",
+    "en": "E3 reporting"
+  },
+  "evidence_level": "E3",
+  "publisher": "Associated Press",
+  "url": "https://apnews.com/article/3ae35835dbc87ab348478c62c6c25ee3",
+  "sources": [
+    "S09",
+    "WEB-EXT-038"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-019, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E3 reporting.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Diplomatic contact only; no relationship recorded."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e0101fe1d3a02392"
+      }
+    }
+  },
+  "provenance": []
+}

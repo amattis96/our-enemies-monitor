@@ -1,0 +1,61 @@
+{
+  "id": "EXT-009",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-07",
+    "end": "2026-11-11",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Diffusione di dati personali e minacce contro il ministro Tajani e altre figure istituzionali italiane",
+    "en": "Dissemination of personal data and threats against Minister Tajani and other Italian institutional figures"
+  },
+  "description": {
+    "it": "Il 7 novembre la Farnesina ha comunicato il rinvenimento sul dark web di dati personali del ministro degli Esteri Antonio Tajani e minacce anche contro il procuratore di Roma Francesco Lo Voi, il direttore della Polizia postale Ivano Gabrielli e il sindaco Paolo Tassan-Zanin. Il 9 novembre risulta aperto un fascicolo presso la Procura di Roma (accesso abusivo e minacce; il segmento relativo a Lo Voi è destinato a Perugia); l’11 novembre Tajani ha riferito in Parlamento ulteriori intimidazioni, anche verso familiari minorenni. La stampa collega le pubblicazioni a NoName057(16): il nesso non è accertato, né lo è la provenienza dei dati (intrusione, scraping, data broker o archivi già divulgati). Nessun dato personale, recapito o minaccia è riprodotto in questo archivio.",
+    "en": "On 7 November the Farnesina announced the discovery on the dark web of personal data of Foreign Minister Antonio Tajani and threats also against Rome prosecutor Francesco Lo Voi, Postal Police director Ivano Gabrielli and mayor Paolo Tassan-Zanin. On 9 November a case file was reported open at the Rome Prosecutor's Office (unauthorised access and threats; the part concerning Lo Voi is destined for Perugia); on 11 November Tajani reported in Parliament further intimidation, including towards minor family members. The press links the publications to NoName057(16): the link is not established, nor is the origin of the data (intrusion, scraping, data brokers or already leaked archives). No personal data, contact details or threats are reproduced in this archive."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "justice"
+  ],
+  "geography": {
+    "it": "Italia",
+    "en": "Italy"
+  },
+  "places": [
+    "IT"
+  ],
+  "evidence_note": {
+    "it": "E1 esistenza divulgazione; nesso autore E3/E4",
+    "en": "E1 existence of the disclosure; link to perpetrator E3/E4"
+  },
+  "evidence_level": "E1",
+  "publisher": "Ministero degli Esteri italiano",
+  "url": "https://www.esteri.it/it/sala_stampa/archivionotizie/comunicati/2026/11/tajani-dati-personali-diffusi-sul-dark-web-chiesto-di-trattare-minacce-ibride-al-prossimo-g7-esteri-solidarieta-a-lo-voi-gabrielli-e-tassan-zanin/",
+  "sources": [
+    "S09",
+    "WEB-EXT-013",
+    "WEB-EXT-014",
+    "WEB-EXT-015"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-005, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1 esistenza divulgazione; nesso autore E3/E4.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Do not republish personal data, addresses, contact details, threat text or dark-web URLs (Fonte_09 §3).",
+      "No relationship with the named public officials is recorded; origin of the data unknown (H25).",
+      "Forbidden edge: GRU commanding NoName057(16) for these attacks."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "71e2fa09955ea854"
+      }
+    }
+  },
+  "provenance": []
+}

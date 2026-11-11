@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-009",
+  "type": "external_reference",
+  "title": {
+    "it": "Supermercati sotto attacco hacker anche in Italia, riunione a Palazzo Chigi (03/11/2026)",
+    "en": "Supermarkets under hacker attack in Italy too, meeting at Palazzo Chigi (03/11/2026)"
+  },
+  "publisher": "ANSA",
+  "files": [],
+  "urls": [
+    "https://www.ansa.it/sito/notizie/mondo/europa/2026/11/02/supermercati-sotto-attacco-hacker-anche-in-italia-riunione-a-palazzo-chigi-con_5e6f0b27-05c9-468a-9004-087167137119.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-05. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e49a9592746d2a57"
+      }
+    }
+  },
+  "provenance": []
+}

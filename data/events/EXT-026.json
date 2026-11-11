@@ -1,0 +1,57 @@
+{
+  "id": "EXT-026",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-09",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "La Cina proroga al 10 gennaio 2027 la sospensione di alcuni controlli alle esportazioni su terre rare",
+    "en": "China extends to 10 January 2027 the suspension of some export controls on rare earths"
+  },
+  "description": {
+    "it": "Il 9 novembre il ministero del Commercio cinese ha annunciato, secondo Reuters, una proroga di due mesi, fino al 10 gennaio 2027, della sospensione di alcune restrizioni all’export su terre rare e altri materiali e tecnologie industriali, nel contesto dei negoziati commerciali con Washington. Non equivale alla rimozione permanente: alcuni controlli precedenti restano vigenti. Per l’Europa non è un’interruzione di fornitura già avvenuta, ma la persistenza di un rischio regolatorio concentrato (scadenze, licenze, decisioni bilaterali USA–Cina).",
+    "en": "On 9 November the Chinese Ministry of Commerce announced, according to Reuters, a two-month extension, until 10 January 2027, of the suspension of some export restrictions on rare earths and other industrial materials and technologies, in the context of trade negotiations with Washington. It does not amount to permanent removal: some earlier controls remain in force. For Europe it is not a supply interruption that has already occurred, but the persistence of a concentrated regulatory risk (deadlines, licences, bilateral US–China decisions)."
+  },
+  "category": null,
+  "themes": [
+    "industry_dependencies",
+    "geopolitics_diplomacy"
+  ],
+  "geography": {
+    "it": "Cina",
+    "en": "China"
+  },
+  "places": [
+    "CN"
+  ],
+  "evidence_note": {
+    "it": "E1 dichiarazione cinese riferita da Reuters",
+    "en": "E1 Chinese statement reported by Reuters"
+  },
+  "evidence_level": "E1",
+  "publisher": "Reuters",
+  "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/11/09/china-extends-suspension-of-new-rare-earth-controls-until-january",
+  "sources": [
+    "S09",
+    "WEB-EXT-041"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-022, update type NEW_POLICY. Evidence level of the main link per Fonte_09: E1 dichiarazione cinese riferita da Reuters.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Statement by the Chinese ministry reported by Reuters; the ministerial act was not acquired. To update: exact list of products suspended, controls unchanged, EU import shares. Relates to H17."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "86f877ea1e016e1b"
+      }
+    }
+  },
+  "provenance": []
+}

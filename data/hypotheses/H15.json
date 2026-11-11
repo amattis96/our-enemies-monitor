@@ -25,11 +25,14 @@
   "sources": [
     "S00",
     "S02",
-    "S03"
+    "S03",
+    "S09"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: new crises and intimidation do not demonstrate foreign direction of the 2026 European protests. Unchanged."
+    ],
     "translations": {
       "en": {
         "status": "machine",

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-020",
+  "type": "external_reference",
+  "title": {
+    "it": "Nessun attacco hacker ai sistemi della DIA secondo il ministro dell’Interno (09/11/2026)",
+    "en": "No hacker attack on DIA systems according to the Interior Minister (09/11/2026)"
+  },
+  "publisher": "Euronews",
+  "files": [],
+  "urls": [
+    "https://it.euronews.com/2026/11/09/italia-nessun-attacco-hacker-ai-sistemi-della-dia-verifiche-in-corso-su-dark-web-dice-mini"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-16. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "02b99f064e52be26"
+      }
+    }
+  },
+  "provenance": []
+}

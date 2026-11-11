@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-045",
+  "type": "external_reference",
+  "title": {
+    "it": "Il capo del SIS avverte di maggiori interferenze russe in vista delle elezioni (09/11/2026)",
+    "en": "SIS chief warns of increased Russian interference ahead of elections (09/11/2026)"
+  },
+  "publisher": "Radio Moldova",
+  "files": [],
+  "urls": [
+    "https://radiomoldova.md/p/89312/sis-chief-warns-of-increased-russian-interference-ahead-of-elections"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-41. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "c4920a0beced5f4e"
+      }
+    }
+  },
+  "provenance": []
+}

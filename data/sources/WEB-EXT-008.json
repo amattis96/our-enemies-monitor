@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-008",
+  "type": "external_reference",
+  "title": {
+    "it": "Attacchi hacker ai supermercati, allerta dell’Agenzia cyber in Italia (02/11/2026)",
+    "en": "Hacker attacks on supermarkets, alert from the Cybersecurity Agency in Italy (02/11/2026)"
+  },
+  "publisher": "ANSA",
+  "files": [],
+  "urls": [
+    "https://www.ansa.it/emiliaromagna/notizie/2026/11/02/attacchi-hacker-ai-supermercati-alert-agenzia-cyber-in-italia_eff28fef-14f0-46e0-b627-2b25473a9613.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-04. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "5b15696e1c52fec7"
+      }
+    }
+  },
+  "provenance": []
+}

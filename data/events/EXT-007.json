@@ -1,0 +1,61 @@
+{
+  "id": "EXT-007",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-02",
+    "end": "2026-11-04",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Compromissioni e anomalie alla refrigerazione in punti vendita e aziende alimentari italiane",
+    "en": "Compromises and anomalies in refrigeration at Italian stores and food companies"
+  },
+  "description": {
+    "it": "Tra il 2 e il 4 novembre ANSA e gli operatori riferiscono compromissioni dei sistemi in almeno quattro punti vendita Coop gestiti da Radenza in Sicilia (tre a Catania, uno a Palermo) e verifiche dell’ACN su una società toscana di ristorazione collettiva e una società emiliana dei surgelati; accertamenti locali riguardano anche SIAF (sei celle interessate e perdita di materie prime stimata in circa 500 euro, cifra locale che non rappresenta i danni italiani complessivi) e Valpizza. Il direttore generale dell’ACN ha attribuito la maggiore esposizione di alcune installazioni a software obsoleti o non aggiornabili e alla gestione da remoto: sono vulnerabilità tecniche, non prova di una stessa vulnerabilità o credenziale usata ovunque. Attribuzione aperta.",
+    "en": "Between 2 and 4 November ANSA and the operators report system compromises in at least four Coop stores run by Radenza in Sicily (three in Catania, one in Palermo) and ACN checks on a Tuscan catering company and an Emilian frozen-food company; local checks also concern SIAF (six cells affected and a loss of raw materials estimated at about €500, a local figure that does not represent total Italian damage) and Valpizza. The ACN director general attributed the greater exposure of some installations to obsolete or non-updatable software and to remote management: these are technical vulnerabilities, not proof of the same vulnerability or credential used everywhere. Attribution open."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "hybrid_sabotage",
+    "infrastructure_space"
+  ],
+  "geography": {
+    "it": "Italia (Sicilia, Toscana, Emilia-Romagna)",
+    "en": "Italy (Sicily, Tuscany, Emilia-Romagna)"
+  },
+  "places": [
+    "IT"
+  ],
+  "evidence_note": {
+    "it": "E1/E3 incidente; attribuzione aperta",
+    "en": "E1/E3 incident; attribution open"
+  },
+  "evidence_level": "E3",
+  "publisher": "ANSA",
+  "url": "https://www.ansa.it/sito/notizie/mondo/europa/2026/11/02/supermercati-sotto-attacco-hacker-anche-in-italia-riunione-a-palazzo-chigi-con_5e6f0b27-05c9-468a-9004-087167137119.html",
+  "sources": [
+    "S09",
+    "WEB-EXT-009",
+    "WEB-EXT-010",
+    "WEB-EXT-011"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-003, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1/E3 incidente; attribuzione aperta.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Tajani stated on 9 November that Italian attacks have pro-Russian claims but no proof of Russian-government responsibility (SRC-48).",
+      "Keep separate from H23 and H24."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "6c92cbec05458813"
+      }
+    }
+  },
+  "provenance": []
+}

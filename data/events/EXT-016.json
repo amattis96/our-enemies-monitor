@@ -1,0 +1,62 @@
+{
+  "id": "EXT-016",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-10-29",
+    "end": "2026-11-09",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Presunto leak di Rosstat e nuove stime dei militari russi morti in guerra",
+    "en": "Alleged Rosstat leak and new estimates of Russian military deaths in the war"
+  },
+  "description": {
+    "it": "I collettivi Cyber Partisans (opposizione bielorussa) e Silent Crow (filo-ucraino) dichiarano di aver sottratto dati a Rosstat tra il 29 ottobre e il 1° novembre 2026 (circa 23 TB, registrazioni anagrafiche dei decessi); Rosstat ha riconosciuto attacchi informatici ma nega che database sensibili siano stati compromessi. Il 9 novembre The Guardian ha riferito di oltre 11 milioni di certificati di morte con 412.576 decessi esplicitamente collegati alla guerra; Le Monde (10 novembre) riporta circa 392.700 certificati; le ricostruzioni dei gruppi parlano di circa 450.100 morti fino al 28 agosto 2026. Sono versioni e universi statistici distinti, non censimenti ufficiali intercambiabili né il totale delle perdite militari; il file completo non è replicabile pubblicamente e l’autenticità integrale non è verificata in modo indipendente.",
+    "en": "The collectives Cyber Partisans (Belarusian opposition) and Silent Crow (pro-Ukrainian) claim to have stolen data from Rosstat between 29 October and 1 November 2026 (about 23 TB, civil-registry records of deaths); Rosstat acknowledged cyber attacks but denies that sensitive databases were compromised. On 9 November The Guardian reported over 11 million death certificates with 412,576 deaths explicitly linked to the war; Le Monde (10 November) reports about 392,700 certificates; the groups' reconstructions speak of about 450,100 deaths up to 28 August 2026. These are distinct versions and statistical universes, not interchangeable official censuses nor the total of military losses; the full file is not publicly replicable and its overall authenticity is not independently verified."
+  },
+  "category": null,
+  "themes": [
+    "intelligence",
+    "armed_conflict",
+    "cyber"
+  ],
+  "geography": {
+    "it": "Russia",
+    "en": "Russia"
+  },
+  "places": [
+    "RU"
+  ],
+  "evidence_note": {
+    "it": "E3 raccolta giornalistica; integrità non indipendentemente verificata",
+    "en": "E3 journalistic collection; integrity not independently verified"
+  },
+  "evidence_level": "E3",
+  "publisher": "The Guardian",
+  "url": "https://www.theguardian.com/world/2026/nov/09/russians-killed-ukraine-war-leaked-data",
+  "sources": [
+    "S09",
+    "WEB-EXT-022",
+    "WEB-EXT-023",
+    "WEB-EXT-024"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-012, update type NEW_EVIDENCE. Evidence level of the main link per Fonte_09: E3 raccolta giornalistica; integrità non indipendentemente verificata.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "The date range spans the claimed acquisition (29 Oct–1 Nov) and the reporting (9–10 Nov).",
+      "Keep separate from H28. Do not share nominative death records. No financial or subordination link between the hacker groups and any government can be inferred from their pro-Ukrainian aims.",
+      "Denial: Rosstat denies that sensitive databases were compromised."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "fbc9c2e1cfa69912"
+      }
+    }
+  },
+  "provenance": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-041",
+  "type": "external_reference",
+  "title": {
+    "it": "La Cina proroga fino a gennaio la sospensione dei nuovi controlli sulle terre rare (09/11/2026)",
+    "en": "China extends suspension of new rare earth controls until January (09/11/2026)"
+  },
+  "publisher": "Reuters (via Internazionale)",
+  "files": [],
+  "urls": [
+    "https://www.internazionale.it/ultime-notizie-reuters/2026/11/09/china-extends-suspension-of-new-rare-earth-controls-until-january"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-37. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "a2898c651cb62596"
+      }
+    }
+  },
+  "provenance": []
+}

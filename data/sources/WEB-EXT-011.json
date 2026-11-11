@@ -1,0 +1,29 @@
+{
+  "id": "WEB-EXT-011",
+  "type": "external_reference",
+  "title": {
+    "it": "Agenzia per la cybersicurezza: attacchi ai frigoriferi favoriti da software non aggiornati (05/11/2026)",
+    "en": "Cybersecurity Agency: attacks on refrigerators facilitated by outdated software (05/11/2026)"
+  },
+  "publisher": "ANSA",
+  "files": [],
+  "urls": [
+    "https://www.ansa.it/sito/notizie/cronaca/2026/11/05/lagenzia-per-la-cybersicurezza-gli-attacchi-hacker-ai-frigo-favoriti-da-software-non_4fba4e05-6c60-4229-b452-d361a91e23be.html"
+  ],
+  "cited_in": [
+    "S09"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 SRC-07. Title is an Italian description of the page; the date in brackets is the publication date given by Fonte_09."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "aed12f374a405009"
+      }
+    }
+  },
+  "provenance": []
+}

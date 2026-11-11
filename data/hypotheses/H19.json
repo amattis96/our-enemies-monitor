@@ -16,16 +16,23 @@
     "it": "Atti dibattimentali, comunicazioni, procurement criminali, intelligence disclosure",
     "en": "Trial records, communications, criminal procurement, intelligence disclosure"
   },
-  "events": [],
+  "events": [
+    "EXT-017"
+  ],
   "external_url": null,
   "status": "open_unproven",
   "sources": [
     "WEB-EXT-002",
-    "WEB-EXT-003"
+    "WEB-EXT-003",
+    "S09",
+    "WEB-EXT-025",
+    "WEB-EXT-026"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "Fonte_09 §7: the US HAYI indictment widens the evidence on alleged proxies but does not prove an Iranian mandate in the distinct Foxtrot case. Comparison, not merger."
+    ],
     "translations": {
       "en": {
         "status": "machine",

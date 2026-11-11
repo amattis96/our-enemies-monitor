@@ -1,0 +1,37 @@
+{
+  "id": "G-0459",
+  "subject": "EUENVOYS",
+  "predicate": "RAGGIUNGONO_ACCORDO_SU",
+  "object": "EXT-024",
+  "relation_class": "policy",
+  "evidence_level": "E3",
+  "evidence_status": "corroborated",
+  "events": [
+    "EXT-024"
+  ],
+  "valid_from": "2026-11-11",
+  "valid_to": null,
+  "primary_url": null,
+  "caveat": {
+    "it": "Accordo politico riferito da Reuters su 145 designazioni; non è una sanzione in vigore: il Consiglio deve ancora adottarle e pubblicarle nella Gazzetta ufficiale UE.",
+    "en": "Political agreement reported by Reuters on 145 designations; it is not a sanction in force: the Council has yet to adopt them and publish them in the EU Official Journal."
+  },
+  "sources": [
+    "S09",
+    "WEB-EXT-039"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 §8.2 candidate relationship.",
+      "No primary document: Reuters report of a diplomatic agreement."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "28645574ba31ae7b"
+      }
+    }
+  },
+  "provenance": []
+}

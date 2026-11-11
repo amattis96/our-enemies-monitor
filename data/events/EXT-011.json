@@ -1,0 +1,52 @@
+{
+  "id": "EXT-011",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-03",
+    "end": "2026-11-07",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Smartbox comunica un accesso non autorizzato alla propria piattaforma",
+    "en": "Smartbox reports unauthorised access to its platform"
+  },
+  "description": {
+    "it": "Smartbox ha comunicato un accesso abusivo a una piattaforma con possibile consultazione di nomi ed email dei clienti; secondo la società non erano accessibili password né dati delle carte. Non emerge evidenza pubblica di un collegamento tecnico con BBT SE, con le minacce a figure pubbliche o con la refrigerazione: registrato come contesto sulle intrusioni, non come parte di una campagna statale unitaria.",
+    "en": "Smartbox reported unauthorised access to a platform with possible viewing of customers' names and emails; according to the company, passwords and card data were not accessible. No public evidence emerges of a technical link with BBT SE, with the threats against public figures or with refrigeration: recorded as context on intrusions, not as part of a unitary state campaign."
+  },
+  "category": null,
+  "themes": [
+    "cyber"
+  ],
+  "geography": null,
+  "places": [],
+  "evidence_note": {
+    "it": "E1 dichiarazione aziendale",
+    "en": "E1 company statement"
+  },
+  "evidence_level": "E1",
+  "publisher": "la Repubblica",
+  "url": "https://www.repubblica.it/cronaca/2026/11/07/news/attacco_hacker_tunnel_brennero-425706419/",
+  "sources": [
+    "S09",
+    "WEB-EXT-017"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "Fonte_09 OEM26-007, update type NEW_EVENT. Evidence level of the main link per Fonte_09: E1 dichiarazione aziendale.",
+      "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
+      "Exact date of the access not stated in Fonte_09 (range 3–7 November from the quick register).",
+      "The company's own statement was not acquired; the source is a press report."
+    ],
+    "translations": {
+      "en": {
+        "status": "machine",
+        "source_hash": "e52bd8a9a1e4ad18"
+      }
+    }
+  },
+  "provenance": []
+}
