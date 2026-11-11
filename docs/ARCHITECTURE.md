@@ -13,7 +13,8 @@ with the code (see [AGENTS.md](../AGENTS.md)).
    or private account is needed to build, view or mirror the project.
 2. **Original sources are immutable.** `sources/original/` keeps the 15
    historical files byte-for-byte. Corrections live in the canonical data,
-   never in the originals.
+   never in the originals. Later incremental sources (Fonte_09 onwards) are
+   archived unchanged in `sources/incremental/`.
 3. **Canonical data is the single editable truth.** After the one-time
    baseline import, humans and agents edit `data/`, not the source files.
 4. **Facts, attributions and hypotheses stay separate.** E5 hypotheses never
@@ -61,6 +62,7 @@ in `.astro` files, so its unused-import/variable rules are off for them.
 
 ```text
 sources/original/      Immutable historical corpus (Fonte_00–Fonte_08)
+sources/incremental/   Later incremental sources, archived as received (Fonte_09)
 data/                  Canonical records, one JSON file per record
   events/              TL-*.json (timeline) and EXT-*.json (pending integration)
   entities/            <ENTITY_ID>.json (states, persons, organizations, ...)
@@ -110,11 +112,11 @@ corpus; other languages are translations.
 
 | Collection | Pattern | Origin |
 | --- | --- | --- |
-| Event | `TL-0001` … / `EXT-001` … | Fonte_06 timeline / Fonte_07 new evidence |
+| Event | `TL-0001` … / `EXT-001` … | Fonte_06 timeline / Fonte_07 new evidence (`EXT-001`–`004`) / Fonte_09 (`EXT-005`–`034`) |
 | Entity | `RU`, `GRU`, `VOE`, `RU_PRESS` (uppercase code) | Fonte_07 nodes (non-event) |
 | Relationship | `G-0001` … (gaps allowed) | Fonte_07 edges |
-| Hypothesis | `H01` … | Fonte_07 hypotheses |
-| Source | `S00`–`S08`, `F01`–`F30`, `P01`–`P11`, `WEB`, `WEB-EXT-001`… | Corpus documents and cited references |
+| Hypothesis | `H01` … | Fonte_07 hypotheses (`H01`–`H22`) / Fonte_09 (`H23`–`H32`) |
+| Source | `S00`–`S09`, `F01`–`F30`, `P01`–`P11`, `WEB`, `WEB-EXT-001`… | Corpus documents and cited references (`S09`, `WEB-EXT-005`–`054`: Fonte_09) |
 | Exposure | `X-001` … | Fonte_08 §12.2 exposure matrix (one row each) |
 
 Original IDs are never renumbered. Fonte_07 duplicates every timeline event
@@ -200,11 +202,42 @@ translation state. The baseline's 1,087 unique texts were machine-translated
 
 ## Baseline in numbers
 
-After import (`pnpm validate`): 151 events (147 timeline + 4 pending
-integration), 202 entities, 444 relationships (291 event participation, 153
-direct), 22 hypotheses, 55 sources (S00–S08, WEB, 4 WEB-EXT, F01–F30,
-P01–P11), 14 exposures. The GraphML export is verified by tests to be identical to the node
+After the baseline import (`pnpm import:baseline`): 151 events (147 timeline +
+4 pending integration), 202 entities, 444 relationships (291 event
+participation, 153 direct), 22 hypotheses, 55 sources (S00–S08, WEB, 4
+WEB-EXT, F01–F30, P01–P11), 14 exposures.
+
+After the Fonte_09 update (`pnpm validate`, current `data/`): 181 events (147
+timeline + 34 pending integration), 220 entities, 458 relationships (291 event
+participation, 167 direct), 32 hypotheses, 106 sources (adds S09 and
+WEB-EXT-005–054), 14 exposures. The GraphML export is verified by tests to be identical to the node
 and edge CSV files, so it is not imported.
+
+### Incremental sources (Fonte_09)
+
+Fonte_09 (OSINT update 22 October–11 November 2026, 30 proposed items
+`OEM26-001`…`030`, 50 references `SRC-01`…`050`, hypotheses `H23`–`H32`) is
+**not** part of the baseline and is not read by the baseline importer. It was
+imported by hand as ordinary editorial records:
+
+- the document is archived byte-for-byte in `sources/incremental/` and
+  registered as corpus document `S09`;
+- `OEM26-n` → event `EXT-(n+4)` (`pending_integration`, `needs_review`, empty
+  `provenance`), `SRC-n` → `WEB-EXT-(n+4)`; the original identifiers are kept
+  in each record's `review.notes`. The 30 items are *candidate items*, not 30
+  independent attacks: several are later phases of one case, and none has been
+  merged into the 147 timeline events;
+- every event states its update type (NEW_ATTRIBUTION, NEW_JUDICIAL, …) and,
+  where it exists, the denial or right of reply in `review.notes`; where the
+  document gives two evidence levels for one item (e.g. "E1 act / E2
+  attribution") the lower one is the record's single `evidence_level` and the
+  original wording is kept in `evidence_note`;
+- the 10 candidate relationship rows of Fonte_09 §8.2 became `G-0447`–`G-0460`
+  (the ten forbidden links of §8.3 are not recorded, and a test guards
+  them); the new hypotheses are in `data/hypotheses/` with a provisional
+  `medium` priority, since the document gives none;
+- existing hypotheses touched by §7 only gained event/source links and a
+  `review.notes` entry; their Italian texts and provenance are unchanged.
 
 ## Pipeline
 
@@ -223,7 +256,7 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 - `pnpm import:baseline` refuses to overwrite an existing `data/` unless
   `--force` is passed. After M1 it is only a reproducibility tool.
 - `pnpm validate` fails on errors and prints warnings (e.g. relationships
-  involving a named person without a primary URL: 36 in the baseline).
+  involving a named person without a primary URL: 36, all from the baseline).
 - `pnpm schemas` regenerates `schemas/*.schema.json`; `pnpm check` fails if
   they are stale.
 - `pnpm format:data` rewrites data files in canonical form.
@@ -260,7 +293,7 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 Static Astro site (`web/`) in Italian (root, canonical) and English
 (`/en/`). It loads `data/` through `src/site/read-model.ts`, which re-runs
 validation and fails the build on any error, so invalid data is never
-published. Build output is ~887 static pages; Pagefind builds a separate
+published. Build output is ~1,100 static pages; Pagefind builds a separate
 index per language from `<html lang>`.
 
 | Route (also under `/en/`) | Content |
@@ -371,3 +404,4 @@ contributor / research agent          maintainer
 | **M2** Italian MVP portal | Astro site: timeline, event/entity pages, network, hypotheses, sources, methodology, Pagefind search, GitHub Pages; theme classification | Done |
 | **M3** English, atlas, dependencies | EN translations with review status, country atlas, exposure dataset, a11y/mobile pass, downloadable data and schemas, link checking | Done |
 | **M4** Editorial workflow and agents | Contribution templates, PR evidence diff, CODEOWNERS/branch protection, scheduled research agent PRs, changes/corrections page | Done |
+| **Fonte_09** Incremental update | First incremental source (cut-off 2026-11-11): 30 candidate events, 50 references, 18 entities, 14 relationships, hypotheses H23–H32; English machine-translated, editorial review pending | Imported (needs review) |

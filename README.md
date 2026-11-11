@@ -25,6 +25,8 @@ The initial research corpus has a cutoff of **21 October 2026** and covers **200
 | Open investigative hypotheses | 22 |
 | Additional externally verified records pending timeline integration | 4 |
 
+**Update of 11 November 2026 (Fonte_09):** a first incremental source adds 30 candidate events and 50 web references (22 October–11 November 2026), 10 new hypotheses (H23–H32), 18 entities and 14 sourced relationships. They are pending timeline integration and editorial review, are not part of the baseline counts above, and the 30 items are not 30 independent attacks. Current totals in `data/`: 181 events, 458 relationships, 32 hypotheses, 106 sources.
+
 The graph includes contextual and event-participation edges. **Not every edge represents financing, operational control or attribution.** These counts describe the structure of the current research corpus and must not be used as a quantitative measure of hostility.
 
 ## Research scope
@@ -196,6 +198,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Set up agent-specific research branches, CI checks, evidence diffs and pull requests (M4).
 - [x] Enable scheduled research (needs the `ANTHROPIC_API_KEY` secret), editorial review and automatic deployment (M4).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
+- [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.
 - [ ] Editorial review of imported records, starting with the 36 restricted named-person relationships.
 
 ## Contributing and corrections

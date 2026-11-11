@@ -34,6 +34,11 @@ rules for unattended research runs.
    (21 October 2026): new judgments, acquittals, charges, sanctions,
    designations, official attributions or retractions concerning existing
    events (`TL-*`, `EXT-*`) and relationships. Record them as new events.
+   Fonte_09 already covers 22 October–11 November 2026 as `EXT-005`…`EXT-034`
+   (pending editorial review): check those records first and do not
+   duplicate them. Two of its relationships (`G-0450`, `G-0459`) lack a
+   `primary_url`: finding the company statement and the Council act is a good
+   use of a run.
 3. **New, distinguishable events** within the project scope (sabotage, cyber
    operations, FIMI campaigns with technical attribution, sanctions and
    designations, judicial outcomes, coercion through dependencies) documented

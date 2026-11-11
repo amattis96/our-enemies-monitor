@@ -145,7 +145,7 @@ describe("exports", () => {
     expect(manifest.files).toHaveLength(files.length);
     expect(manifest.counts.exposures).toBe(14);
     expect(JSON.parse(files.find((f) => f.path === "all.json")?.text ?? "{}").events).toHaveLength(
-      151,
+      model.dataset.events.length,
     );
   });
 });

@@ -34,6 +34,7 @@ const ISO_NUMERIC: Record<string, string> = {
   IR: "364",
   IT: "380",
   LT: "440",
+  LV: "428",
   MA: "504",
   MD: "498",
   NL: "528",

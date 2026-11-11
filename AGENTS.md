@@ -14,7 +14,8 @@ its evidence level, and never imply more than the source establishes.
 
 1. **Never modify `sources/original/`.** Those 15 files are the immutable
    historical baseline (exact bytes, encoding, trailing newlines). Fix data in
-   `data/`, never in the originals.
+   `data/`, never in the originals. Later incremental sources (Fonte_09 onwards)
+   are archived unchanged in `sources/incremental/` and are never edited either.
 2. **Edit records only in `data/`**, one JSON file per record, file name =
    record ID. Never renumber or reuse an ID. Run `pnpm format:data` after
    manual edits; never hand-format.
@@ -80,6 +81,10 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - `src/model/` — Zod schemas (`schemas.ts`), vocabularies (`vocabularies.ts`).
   The single source of truth for record shapes. After changes run
   `pnpm schemas` and update `docs/ARCHITECTURE.md` (Data model).
+- `sources/incremental/` — archived incremental sources (Fonte_09). They are
+  imported as ordinary `data/` records (`S09`, `EXT-005`…, `WEB-EXT-005`…),
+  not by the baseline importer; see "Incremental sources" in
+  `docs/ARCHITECTURE.md`.
 - `src/pipeline/` — loading, canonical serialization (`serialize.ts`),
   validation (`validate.ts`). `baseline/` holds the one-time importer and the
   known-issue registry for the original files.
