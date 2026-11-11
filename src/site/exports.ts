@@ -5,6 +5,7 @@ import path from "node:path";
 import { COLLECTION_NAMES, type Dataset } from "../model/index.ts";
 import { REPO_ROOT, SCHEMAS_DIR } from "../pipeline/paths.ts";
 import { summarize } from "../pipeline/validate.ts";
+import { publishedDataset } from "./publication.ts";
 
 /**
  * Downloadable data exports published under `data/v1/`. Content is
@@ -15,7 +16,8 @@ export type ExportFile = { path: string; text: string };
 
 export const EXPORT_VERSION = "v1";
 
-export function exportFiles(dataset: Dataset): ExportFile[] {
+export function exportFiles(input: Dataset): ExportFile[] {
+  const dataset = publishedDataset(input);
   const collections = COLLECTION_NAMES.map((name) => ({
     path: `${name}.json`,
     text: `${JSON.stringify(dataset[name], null, 2)}\n`,
@@ -46,7 +48,7 @@ export function buildManifest(dataset: Dataset, files: ExportFile[]): Manifest {
     license: "CC0-1.0 (project-original data); see LICENSE-DATA.md",
     commit: gitValue(["rev-parse", "HEAD"]) ?? process.env.GITHUB_SHA ?? null,
     commit_date: gitValue(["log", "-1", "--format=%cI"]),
-    counts: summarize(dataset),
+    counts: summarize(publishedDataset(dataset)),
     files: files.map((file) => ({
       path: file.path,
       bytes: Buffer.byteLength(file.text),

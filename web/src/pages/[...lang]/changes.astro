@@ -13,7 +13,19 @@ export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
 const model = getModel();
-const history = dataHistory();
+const publishedIds = new Set(
+  (["events", "entities", "relationships", "hypotheses", "sources", "exposures"] as const).flatMap(
+    (name) => model.dataset[name].map((record) => `${name}/${record.id}`),
+  ),
+);
+const history = dataHistory()
+  .map((commit) => ({
+    ...commit,
+    records: commit.records.filter((record) =>
+      publishedIds.has(`${record.collection}/${record.id}`),
+    ),
+  }))
+  .filter((commit) => commit.records.length > 0);
 const repo = "https://github.com/amattis96/our-enemies-monitor";
 
 const withIssues = model.events.filter((e) => e.known_issues.length > 0);

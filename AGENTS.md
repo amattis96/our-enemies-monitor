@@ -146,6 +146,16 @@ records must be `needs_review` with empty provenance, and new relationships
 need a `primary_url`. Changing these rules requires a human-authored pull
 request.
 
+## Publication gate (M5)
+
+`src/site/publication.ts` applies the same policy to pages, graphs and exports:
+`needs_review` candidates, pending timeline records and named-person links
+without `primary_url` are excluded. Historical `imported_unreviewed` records
+remain provisionally visible, **not** as verified facts. Never change a review
+status just to force publication: validate the specific claim first. Run
+`pnpm audit:publication` to list missing primary links and review counts.
+Canonical data remains available in Git even when withheld from the portal.
+
 ## Adding or correcting data
 
 1. Find or create the record in `data/<collection>/<ID>.json`.

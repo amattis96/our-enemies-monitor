@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: canonical data layer, bilingual portal (Italian/English), atlas, dependency metrics, open-data exports, editorial workflow and weekly research agent in place (M1–M4). Records are imported from the baseline and await editorial review.**
+**Phase: M1–M4 implemented; M5 publication quarantine added, with primary-source and claim-level audits still open. Legacy records remain provisionally visible, while incremental candidates are held for review.**
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -190,7 +190,9 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Import the 15 original source files into GitHub without losing identifiers or provenance.
 - [x] Publish permissive licenses for code and original project data.
 - [x] Define and validate normalized schemas and import the baseline into canonical data (M1).
-- [ ] Audit sensitive claims against stable primary-source references.
+- [x] Add an M5 publication gate for candidates and unsourced named-person relationships (site and exports).
+- [x] Add a reproducible publication audit command (`pnpm audit:publication`).
+- [ ] Audit sensitive claims against stable primary-source references; review and integrate Fonte_09 candidates.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).
 - [x] Introduce multilingual navigation (Italian/English) with tracked translation status (M3).
