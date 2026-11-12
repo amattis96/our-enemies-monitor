@@ -15,6 +15,7 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/ex
 ---
 
 <Base title={ui(lang).navDependencies} lang={lang} description={c("Esposizioni strategiche quantificate dell'Europa, con denominatori e periodi.", "Europe's quantified strategic exposures, with denominators and periods.")} searchable>
+  <p class="kicker">{ui(lang).navExplore}</p>
   <h1>{c("Dipendenze strategiche", "Strategic dependencies")}</h1>
   <div class="max-w-3xl">
     <p>
@@ -34,14 +35,14 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/ex
   <ul class="grid gap-4 md:grid-cols-2 mt-4">
     {
       exposures.map((x) => (
-        <li class="card" id={x.id}>
+        <li class="card exposure" id={x.id}>
           <p class="meta mb-1">
             <span class="font-mono">{x.id}</span>
             {x.status === "target" && (
-              <span class="badge ml-2">{c("obiettivo/programma, non osservato", "target/programme, not observed")}</span>
+              <span class="status status-caution ml-2">{c("obiettivo/programma, non osservato", "target/programme, not observed")}</span>
             )}
           </p>
-          <h2 class="mt-0 text-lg"><T text={x.sector} lang={lang} /></h2>
+          <h2 class="mt-1 text-xl"><T text={x.sector} lang={lang} /></h2>
           <TranslationNotice review={x.review} lang={lang} />
           <ul class="space-y-2">
             {x.measures.map((m) => (
@@ -51,14 +52,14 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/ex
                   <strong>{formatMeasure(m, lang)}</strong>
                 </div>
                 {m.unit === "percent" && (
-                  <div class="h-2 bg-wash rounded" aria-hidden="true">
-                    <div class="h-2 rounded bg-accent" style={`width:${Math.min(m.value, 100)}%`} />
+                  <div class:list={["meter", x.status === "target" && "meter-target"]} aria-hidden="true">
+                    <div style={`width:${Math.min(m.value, 100)}%`} />
                   </div>
                 )}
               </li>
             ))}
           </ul>
-          <dl class="mt-3 text-sm space-y-1">
+          <dl class="facts mt-4 text-sm">
             <dt class="font-semibold">{c("Cosa misura", "What it measures")}</dt>
             <dd><T text={x.scope} lang={lang} /></dd>
             <dt class="font-semibold">{c("Conseguenza e cautela", "Consequence and caveat")}</dt>
@@ -76,3 +77,26 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/ex
     }
   </ul>
 </Base>
+
+<style>
+  .exposure strong {
+    font: 600 var(--text-xl) / 1 var(--font-serif);
+    font-variant-numeric: tabular-nums;
+  }
+  .meter {
+    height: 0.5rem;
+    margin-top: 0.4rem;
+    background: var(--paper-sunken);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .meter > div {
+    height: 100%;
+    background: var(--ink);
+    border-radius: 2px;
+  }
+  .meter-target > div {
+    background: repeating-linear-gradient(135deg, var(--ink) 0 3px, transparent 3px 6px);
+    box-shadow: inset 0 0 0 1px var(--ink);
+  }
+</style>

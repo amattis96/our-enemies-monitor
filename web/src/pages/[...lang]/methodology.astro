@@ -7,7 +7,14 @@ import {
 } from "../../../../src/model/index.ts";
 import { RELATION_GROUP_LABELS } from "../../../../src/site/format.ts";
 import { languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
-import EvidenceBadge from "../../components/EvidenceBadge.astro";
+import {
+  EVIDENCE_THREAD,
+  RELATION_GROUP_COLOR,
+  RELATION_GROUP_ICON,
+} from "../../../../src/site/visual.ts";
+import EvidenceStamp from "../../components/EvidenceStamp.astro";
+import Icon from "../../components/Icon.astro";
+import Illustration from "../../components/Illustration.astro";
 import Base from "../../layouts/Base.astro";
 import { href } from "../../lib/links.ts";
 
@@ -175,17 +182,33 @@ const t = CONTENT[lang];
 ---
 
 <Base title={ui(lang).navMethodology} lang={lang} searchable>
+  <p class="kicker">{ui(lang).navMethod}</p>
   <h1>{ui(lang).navMethodology}</h1>
-  <p class="max-w-3xl">{t.intro}</p>
+  <p class="lede">{t.intro}</p>
 
-  <h2>{t.levelsTitle}</h2>
-  <p class="max-w-3xl">{t.levelsText}</p>
+  <h2 class="section-title">{t.levelsTitle}</h2>
+  <div class="method-hero">
+    <Illustration name="evidence-ladder" />
+    <p>{t.levelsText}</p>
+  </div>
   <div class="relative overflow-x-auto max-w-3xl">
     <table>
-      <thead><tr><th scope="col">{t.levelCol}</th><th scope="col">{t.meaningCol}</th></tr></thead>
+      <thead><tr><th scope="col">{t.levelCol}</th><th scope="col">{t.meaningCol}</th><th scope="col"><span class="sr-only">—</span></th></tr></thead>
       <tbody>
         {EVIDENCE_LEVELS.map((level) => (
-          <tr><td><EvidenceBadge level={level} lang={lang} /></td><td>{EVIDENCE_LEVEL_LABELS[level][lang]}</td></tr>
+          <tr>
+            <td><EvidenceStamp level={level} lang={lang} /></td>
+            <td>{EVIDENCE_LEVEL_LABELS[level][lang]}</td>
+            <td aria-hidden="true">
+              <svg class="thread-swatch" viewBox="0 0 96 12">
+                {EVIDENCE_THREAD[level].double ? (
+                  <path d="M2 4h92M2 8h92" stroke="currentColor" stroke-width="1.4" />
+                ) : (
+                  <path d="M2 6h92" stroke={level === "E5" ? "var(--signal)" : "currentColor"} stroke-width={EVIDENCE_THREAD[level].width} stroke-dasharray={EVIDENCE_THREAD[level].dash ?? undefined} stroke-linecap="round" />
+                )}
+              </svg>
+            </td>
+          </tr>
         ))}
       </tbody>
     </table>
@@ -194,43 +217,85 @@ const t = CONTENT[lang];
     {t.e5Note}{" "}<a href={href("hypotheses/", lang)}>{t.e5Link}</a>.
   </p>
 
-  <h2>{t.principlesTitle}</h2>
+  <h2 class="section-title">{t.principlesTitle}</h2>
   <ol class="list-decimal pl-5 max-w-3xl space-y-1">
     {t.principles.map(([title, text]) => <li><strong>{title}</strong> {text}</li>)}
   </ol>
 
-  <h2>{t.groupsTitle}</h2>
+  <div class="method-pair">
+    <figure><Illustration name="not-transitive" /><figcaption class="meta">{lang === "it" ? "A → B e B → C non implicano A → C." : "A → B and B → C do not imply A → C."}</figcaption></figure>
+    <figure><Illustration name="separate-claims" /><figcaption class="meta">{lang === "it" ? "Evento, autore, mandante, movente e impatto: cinque affermazioni distinte." : "Event, perpetrator, sponsor, motive and impact: five separate claims."}</figcaption></figure>
+  </div>
+
+  <h2 class="section-title">{t.groupsTitle}</h2>
   <p class="max-w-3xl">{t.groupsText}</p>
   <div class="relative overflow-x-auto max-w-3xl">
     <table>
       <thead><tr><th scope="col">{t.groupCol}</th><th scope="col">{t.classesCol}</th></tr></thead>
       <tbody>
         {classesByGroup.map(({ group, classes }) => (
-          <tr><td>{RELATION_GROUP_LABELS[group][lang]}</td><td class="font-mono text-xs">{classes.join(", ")}</td></tr>
+          <tr><td><span class="inline-flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style={`background:${RELATION_GROUP_COLOR[group]}`} /><Icon name={RELATION_GROUP_ICON[group]} />{RELATION_GROUP_LABELS[group][lang]}</span></td><td class="font-mono text-xs">{classes.join(", ")}</td></tr>
         ))}
       </tbody>
     </table>
   </div>
 
-  <h2>{t.personsTitle}</h2>
+  <h2 class="section-title">{t.personsTitle}</h2>
   <p class="max-w-3xl">{t.personsText}</p>
-  <h2>{t.datesTitle}</h2>
+  <h2 class="section-title">{t.datesTitle}</h2>
   <p class="max-w-3xl">{t.datesText}</p>
-  <h2>{t.classificationTitle}</h2>
+  <h2 class="section-title">{t.classificationTitle}</h2>
   <p class="max-w-3xl">{t.classificationText}</p>
-  <h2>{t.dependenciesTitle}</h2>
+  <h2 class="section-title">{t.dependenciesTitle}</h2>
   <p class="max-w-3xl">{t.dependenciesText}</p>
-  <h2>{t.languageTitle}</h2>
+  <h2 class="section-title">{t.languageTitle}</h2>
   <p class="max-w-3xl">{t.languageText}</p>
 
-  <h2>{t.limitsTitle}</h2>
+  <h2 class="section-title">{t.limitsTitle}</h2>
   <ul class="list-disc pl-5 max-w-3xl space-y-1">
     {t.limits.map((item) => <li>{item}</li>)}
   </ul>
 
-  <h2>{t.correctionsTitle}</h2>
+  <h2 class="section-title">{t.correctionsTitle}</h2>
   <p class="max-w-3xl">
     {t.correctionsText}{" "}
     <a href="https://github.com/amattis96/our-enemies-monitor/blob/main/CONTRIBUTING.md">{t.correctionsLink}</a>.
   </p>
 </Base>
+
+<style>
+  .method-hero {
+    display: grid;
+    gap: var(--space-5);
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+  @media (min-width: 900px) {
+    .method-hero {
+      grid-template-columns: minmax(20rem, 1fr) 1fr;
+    }
+  }
+  .method-pair {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+  @media (min-width: 760px) {
+    .method-pair {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .method-pair figcaption {
+    margin-top: var(--space-2);
+  }
+  :global(.illustration svg) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .thread-swatch {
+    width: 96px;
+    height: 12px;
+    display: block;
+  }
+</style>

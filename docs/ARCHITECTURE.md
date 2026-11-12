@@ -44,12 +44,12 @@ with the code (see [AGENTS.md](../AGENTS.md)).
 | Tests | Vitest 5 | Importer, validator and read-model suites |
 | Lint / format | Biome 2 | Code and Astro formatting/lint; data formatting is done by the pipeline |
 | CI / CD | GitHub Actions | `pnpm check` and `pnpm build` on every push and PR; deploy to Pages from `main` |
-| Website | Astro 7 + React 19 islands | Static HTML pages; React only for timeline and network |
-| Styling | Tailwind CSS 4 | Functional MVP styling with native form controls; a dedicated UI/UX design study will replace it (React Aria Components to be evaluated then) |
-| Network graph | Cytoscape.js | Edge styles per relation group, hypotheses on a separate layer |
+| Website | Astro 7 + React 19 islands | Static HTML pages; React only for the timeline and the evidence boards |
+| Styling | Tailwind CSS 4 + *Dossier* design system | Tokens, icon sprite, logo, favicon and illustrations live in `docs/design/` (single source) and are imported by the site: `web/src/styles/global.css` imports `docs/design/tokens.css`; `/icons.svg` and `/favicon.svg` are endpoints serving `docs/design/assets/`. Light/dark/system themes; fonts self-hosted via Fontsource (Newsreader, IBM Plex Sans, IBM Plex Mono) |
+| Evidence board | Custom SVG React island + d3-force (build-time layout) + d3-zoom | Paper cards per entity kind, thread colour = relation group, thread pattern = evidence level; hypotheses on a separate board |
 | Search | Pagefind | Static, multilingual index built from the generated pages |
 | Articles | YAML front matter (`yaml`) + micromark with GFM | Markdown rendered at build time; raw HTML escaped, unsafe URL schemes dropped |
-| Atlas | d3-geo + world-atlas (Natural Earth), static SVG rendered at build time | Country level only; no client JavaScript, no tile server |
+| Atlas | d3-geo + world-atlas (Natural Earth), static SVG rendered at build time | Country level only, no tile server; a small script adds Europe/World switch, zoom/pan, country panel and table sorting |
 | i18n | Astro rest-param routes (`[...lang]`) | Italian at the root, English under `/en/`, same IDs in URLs |
 | Hosting | GitHub Pages | Portable static output, works on any static host |
 
@@ -107,9 +107,12 @@ web/                   Astro portal
   src/pages/[...lang]/ Page routes, generated for `it` (root) and `en`
   src/pages/data/v1/   Language-neutral JSON endpoints (graph, exports, manifest, schemas)
   src/components/      Shared .astro components
-  src/islands/         React islands: TimelineExplorer, NetworkExplorer
+  src/islands/         React islands: TimelineExplorer, EvidenceBoard
+  src/styles/          global.css (Tailwind + Dossier tokens/components), shell.css, board.css
   src/lib/             Base-path/language links, cached read model, SVG map rendering
 docs/                  Architecture and project documentation
+  design/              Dossier design system v1: concept, foundations, components, page blueprints,
+                       UI/UX audit, M7 plan, tokens.css, SVG assets, specimen.html (not yet used by web/)
 .github/workflows/     CI (evidence diff, Pages deployment); no LLM API job
 .github/agent/         Legacy agent prompt pointer; M6 rules live in docs/
 .github/ISSUE_TEMPLATE/ Correction and new-evidence forms
@@ -424,20 +427,20 @@ index per language from `<html lang>`.
 
 | Route (also under `/en/`) | Content |
 | --- | --- |
-| `/` | Purpose, disclaimer, counts, entry points |
-| `/timeline/` | React island: filter by theme (`?tema=` / `?theme=` deep link), period, text; EXT records flagged; `dataset_metadata` hidden by default; `<noscript>` list |
+| `/` | Front page: masthead, latest integrated event, latest entries, counts, explore tiles, how to read evidence (ladder illustration, stamps, disclaimer), themes |
+| `/timeline/` | React island, server-rendered: newest first (toggle), year density bar as period filter, theme and text filters synced to the URL (`?tema=`, `?theme=`, `da`, `a`, `q`, `ext`, `meta`, `ordine`); EXT records dashed; `dataset_metadata` hidden by default; date precision shown visually |
 | `/events/<id>/` | Date with precision, known issues, evidence note, themes, original category, countries, actors and roles, direct relationships citing the event, linked hypotheses, provenance |
 | `/entities/`, `/entities/<id>/` | Index by kind; profile with direct relationships, event participations, hypotheses, person notice |
-| `/network/` | React island (Cytoscape.js) over `/data/v1/graph.json`: filter by relation group and evidence level (E1–E2 solid, E3 dashed, E4 dotted); participation off by default; node selection panel; text list of visible links as accessible alternative |
-| `/network/hypotheses/` | Separate exploratory graph over `/data/v1/hypotheses-graph.json`, labeled as non-factual |
-| `/atlas/` | Static SVG maps (Europe, world) of events by country of location; country table separating events located in the country from the literal roles of the state in events |
+| `/network/` | Evidence board island over `/data/v1/graph.json` with a build-time layout (`src/site/board-layout.ts`): filter by relation group and evidence level (E1 double, E2 solid, E3 dashed, E4 dotted thread); participation off by default; semantic zoom; drag; case-file drawer; `?focus=<ID>` deep link; List view as the accessible equivalent |
+| `/network/hypotheses/` | Separate hypotheses board over `/data/v1/hypotheses-graph.json`, red dash-dot threads only, labeled as non-factual |
+| `/atlas/` | One map with Europe/World switch, zoom and pan, country panel (`#CODE` deep link), "outside the map" tray of supranational geographies; sortable country table separating events located in the country from the literal roles of the state in events |
 | `/dependencies/` | Exposure cards: measures with qualifier and period, what each value measures, consequence; no cross-comparison chart and no index |
 | `/hypotheses/`, `/hypotheses/<id>/` | Register by priority, detail with limits and evidence needed |
 | `/sources/`, `/sources/<id>/` | Corpus documents and references, URLs, repository files, citing records |
 | `/methodology/` | Evidence levels, principles, relation groups, person rule, dates, classifications, languages, limits |
 | `/data/` | Open-data downloads with size and SHA-256, format notes, rebuild instructions |
 | `/changes/` | Known anomalies, review notes and the Git history of data changes |
-| `/search/` | Pagefind UI over pages marked `data-pagefind-body`, per language |
+| `/search/` | Pagefind UI over pages marked `data-pagefind-body`, per language; every page also has a ⌘K / Ctrl K palette on the Pagefind JS API |
 | `/articles/`, `/articles/<id>/` | Public articles, newest first; detail with test banner (fixtures), review and translation notices, Markdown body, numbered references, linked records grouped by collection, downloads and Git links; indexed by Pagefind. Event, entity and hypothesis pages list the public articles that link them |
 
 Language-neutral article downloads: `/articles/<ID>.it.md` and, when
@@ -550,3 +553,4 @@ contributor / research agent          maintainer
 
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
 | **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; sidecar contract and `pnpm ingest` implemented; article model, validation, gate and pages done (demo fixtures only); Task A sidecar prompt, unattended run and Task B pending |
+| **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); implementation in the portal | Done (2026-11-12): themes, shell, evidence stamps, newest-first timeline, evidence board, interactive atlas; deferred items listed in `docs/design/IMPLEMENTATION_PLAN.md` |

@@ -197,6 +197,8 @@ export type TimelineItem = {
   geography: string | null;
   pending: boolean;
   metadata: boolean;
+  evidence_level: Event["evidence_level"];
+  places: string[];
 };
 
 export function timelineItems(model: ReadModel, lang: Language = "it"): TimelineItem[] {
@@ -211,6 +213,8 @@ export function timelineItems(model: ReadModel, lang: Language = "it"): Timeline
     geography: e.geography ? textOf(e.geography, lang) : null,
     pending: e.timeline_status === "pending_integration",
     metadata: e.record_type === "dataset_metadata",
+    evidence_level: e.evidence_level ?? null,
+    places: e.places,
   }));
 }
 

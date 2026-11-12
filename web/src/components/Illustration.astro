@@ -1,0 +1,19 @@
+---
+import { inlineSvg } from "../lib/design.ts";
+
+// Text-free explanatory illustration, inlined so it follows the theme.
+interface Props {
+  name:
+    | "evidence-ladder"
+    | "not-transitive"
+    | "location-not-responsibility"
+    | "separate-claims"
+    | "empty-board"
+    | "not-found";
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+const svg = inlineSvg(`illustrations/${name}.svg`, `il-${name}`);
+---
+
+<div class:list={["illustration", className]} set:html={svg} />

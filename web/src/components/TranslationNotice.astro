@@ -1,6 +1,7 @@
 ---
 import type { Language, Review } from "../../../src/model/index.ts";
 import { ui } from "../../../src/site/i18n.ts";
+import StatusLabel from "./StatusLabel.astro";
 
 // Shown on English pages whose record has an unreviewed machine translation.
 interface Props {
@@ -11,4 +12,4 @@ const { review, lang } = Astro.props;
 const machine = lang === "en" && review.translations?.en?.status === "machine";
 ---
 
-{machine && <p class="meta italic" data-pagefind-ignore>{ui(lang).translationNotice}</p>}
+{machine && <p class="my-3" data-pagefind-ignore><StatusLabel icon="st-machine">{ui(lang).translationNotice}</StatusLabel></p>}

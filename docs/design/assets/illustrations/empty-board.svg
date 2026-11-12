@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" fill="none" aria-hidden="true">
+  <!-- Empty state of the corkboard: no cards match the current filters. -->
+  <defs>
+    <pattern id="eb-grain" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="3" cy="4" r="1.1" fill="var(--cork-grain, #a9875a)"/><circle cx="10" cy="9" r=".8" fill="var(--cork-grain, #a9875a)"/><circle cx="7" cy="12.5" r=".6" fill="var(--cork-grain, #a9875a)"/><circle cx="12" cy="2" r=".5" fill="var(--cork-grain, #a9875a)"/></pattern>
+    <radialGradient id="eb-vignette" cx=".5" cy=".5" r=".7"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></radialGradient>
+    <pattern id="eb-wood" width="40" height="6" patternUnits="userSpaceOnUse"><path d="M0 3c10-2 20 2 40 0" stroke="#000" stroke-width=".6" opacity=".25"/></pattern>
+  </defs>
+  <rect x="14" y="12" width="452" height="246" rx="5" fill="var(--board-frame, #6b4f2f)"/><rect x="14" y="12" width="452" height="246" rx="5" fill="url(#eb-wood)"/>
+  <rect x="28" y="26" width="424" height="218" fill="var(--cork, #c9a878)"/><rect x="28" y="26" width="424" height="218" fill="url(#eb-grain)" opacity=".75"/><rect x="28" y="26" width="424" height="218" fill="url(#eb-vignette)"/>
+  <path d="M28 26h424M28 26v218" stroke="#000" stroke-width="2" opacity=".25"/><path d="M452 26v218H28" stroke="#fff" stroke-width="1" opacity=".18"/>
+  <g transform="rotate(-3 248 138)">
+    <rect x="178" y="94" width="140" height="92" fill="#000" opacity=".22" transform="translate(3 6)"/>
+    <rect x="178" y="94" width="140" height="92" fill="var(--card, #fffdf6)"/>
+    <path d="M178 114h140" stroke="#b3261e" stroke-width="1" opacity=".55"/>
+    <path d="M178 130h140M178 146h140M178 162h140M178 178h140" stroke="#7aa0c8" stroke-width=".9" opacity=".45"/>
+    <path d="M192 108h46" stroke="var(--card-ink, #22252b)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5" opacity=".35"/>
+  <circle cx="249.4" cy="98" r="7" fill="#000" opacity=".25"/><circle cx="248" cy="96" r="7" fill="var(--pin-brass, #b08a3e)" stroke="var(--card-ink, #22252b)" stroke-width=".9"/><circle cx="245.6" cy="93.6" r="2" fill="#fff" opacity=".6"/>
+  </g>
+  <path d="M104 72c7 26-16 44-3 70s30 22 20 56" stroke="#000" stroke-width="4.5" stroke-linecap="round" opacity=".18"/><path d="M104 70c7 26-16 44-3 70s30 22 20 56" stroke="var(--signal, #b3261e)" stroke-width="2.25" stroke-linecap="round"/>
+  <circle cx="105.5" cy="72" r="7" fill="#000" opacity=".25"/><circle cx="104" cy="70" r="7" fill="var(--pin, #b3261e)" stroke="var(--card-ink, #22252b)" stroke-width=".9"/><circle cx="101.6" cy="67.6" r="2" fill="#fff" opacity=".6"/>
+  <circle cx="381.4" cy="68" r="6" fill="#000" opacity=".25"/><circle cx="380" cy="66" r="6" fill="var(--pin-brass, #b08a3e)" stroke="var(--card-ink, #22252b)" stroke-width=".9"/><circle cx="378" cy="64" r="1.8" fill="#fff" opacity=".6"/>
+  <circle cx="403.4" cy="198" r="6" fill="#000" opacity=".25"/><circle cx="402" cy="196" r="6" fill="var(--pin, #b3261e)" stroke="var(--card-ink, #22252b)" stroke-width=".9"/><circle cx="400" cy="194" r="1.8" fill="#fff" opacity=".6"/>
+  <g transform="rotate(-18 336 206)"><path d="M336 206h18" stroke="var(--card-ink, #22252b)" stroke-width="1.5" stroke-linecap="round"/><rect x="326" y="201" width="10" height="10" rx="3" fill="var(--pin, #b3261e)" stroke="var(--card-ink, #22252b)" stroke-width=".9"/><path d="M322 203v6" stroke="var(--card-ink, #22252b)" stroke-width="3" stroke-linecap="round"/></g>
+
+</svg>

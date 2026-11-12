@@ -1,0 +1,40 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { ui } from "../../../src/site/i18n.ts";
+import { alternatePath } from "../lib/links.ts";
+
+// Segmented IT | EN toggle; each option links to the same page in that language.
+interface Props {
+  lang: Language;
+  translated: boolean;
+  class?: string;
+}
+const { lang, translated, class: className } = Astro.props;
+const current = Astro.url.pathname;
+const options = [
+  ["it", "IT", "Italiano"],
+  ["en", "EN", "English"],
+] as const;
+---
+
+<nav class:list={["seg", className]} aria-label={ui(lang).languageLabel}>
+  {
+    options.map(([code, short, name]) =>
+      code === lang ? (
+        <span aria-current="true" lang={code} title={name}>
+          {short}
+          <span class="sr-only"> {name}</span>
+        </span>
+      ) : translated ? (
+        <a href={alternatePath(current, code)} hreflang={code} lang={code} title={name}>
+          {short}
+          <span class="sr-only"> {name}</span>
+        </a>
+      ) : (
+        <span aria-disabled="true" lang={code} title={name}>
+          {short}
+        </span>
+      ),
+    )
+  }
+</nav>

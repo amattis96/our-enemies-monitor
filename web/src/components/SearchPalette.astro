@@ -1,0 +1,203 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { ui } from "../../../src/site/i18n.ts";
+import { assetHref, href } from "../lib/links.ts";
+import Icon from "./Icon.astro";
+
+// ⌘K / Ctrl K command palette over the static Pagefind index.
+interface Props {
+  lang: Language;
+}
+const { lang } = Astro.props;
+const t = ui(lang);
+const sections = [
+  ["timeline/", t.navTimeline, "nav-timeline"],
+  ["network/", t.navNetwork, "nav-network"],
+  ["atlas/", t.navAtlas, "nav-atlas"],
+  ["dependencies/", t.navDependencies, "nav-dependencies"],
+  ["entities/", t.navEntities, "nav-entities"],
+  ["articles/", t.navArticles, "nav-investigations"],
+  ["methodology/", t.navMethodology, "nav-methodology"],
+] as const;
+---
+
+<button type="button" class="search-trigger" data-search-open aria-haspopup="dialog" aria-controls="search-dialog">
+  <Icon name="nav-search" />
+  <span class="search-trigger-label">{t.searchPlaceholder}</span>
+  <kbd class="search-kbd">⌘K</kbd>
+  <span class="sr-only">(Ctrl K)</span>
+</button>
+
+<dialog
+  id="search-dialog"
+  class="palette"
+  aria-label={t.navSearch}
+  data-bundle={assetHref("pagefind/")}
+  data-base={assetHref("")}
+  data-empty={t.searchEmpty}
+  data-unavailable={t.searchUnavailable}
+>
+  <form method="dialog" class="palette-bar" role="search">
+    <Icon name="nav-search" />
+    <input
+      type="search"
+      name="q"
+      autocomplete="off"
+      spellcheck="false"
+      placeholder={t.searchHint}
+      aria-label={t.searchPlaceholder}
+      aria-controls="search-results"
+      aria-autocomplete="list"
+      data-search-input
+    />
+    <button type="submit" class="palette-close" aria-label={t.searchClose}><kbd>Esc</kbd></button>
+  </form>
+  <div class="palette-body">
+    <ul id="search-results" role="listbox" aria-label={t.navSearch} data-search-results hidden></ul>
+    <p class="palette-status meta" data-search-status aria-live="polite"></p>
+    <nav class="palette-shortcuts" data-search-shortcuts aria-label={t.navExplore}>
+      <p class="kicker">{t.navExplore}</p>
+      <ul>
+        {
+          sections.map(([path, label, icon]) => (
+            <li>
+              <a href={href(path, lang)}>
+                <Icon name={icon} />
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+  <footer class="palette-foot meta">
+    <span><kbd>↑</kbd> <kbd>↓</kbd> <kbd>↵</kbd></span>
+    <a href={href("search/", lang)}>{t.searchOpenPage}</a>
+  </footer>
+</dialog>
+
+<script>
+  type PagefindResult = { data: () => Promise<{ url: string; excerpt: string; meta: { title?: string } }> };
+  type Pagefind = {
+    options: (o: Record<string, string>) => Promise<void>;
+    debouncedSearch: (q: string) => Promise<{ results: PagefindResult[] } | null>;
+  };
+
+  const dialog = document.getElementById("search-dialog") as HTMLDialogElement | null;
+  if (dialog) {
+    const input = dialog.querySelector<HTMLInputElement>("[data-search-input]");
+    const list = dialog.querySelector<HTMLUListElement>("[data-search-results]");
+    const status = dialog.querySelector<HTMLElement>("[data-search-status]");
+    const shortcuts = dialog.querySelector<HTMLElement>("[data-search-shortcuts]");
+    const sprite = `${dialog.dataset.base}icons.svg`;
+    let pagefind: Promise<Pagefind | null> | null = null;
+    let active = -1;
+
+    const load = () => {
+      pagefind ??= import(/* @vite-ignore */ `${dialog.dataset.bundle}pagefind.js`)
+        .then(async (pf: Pagefind) => {
+          await pf.options({ bundlePath: dialog.dataset.bundle ?? "", baseUrl: dialog.dataset.base ?? "/" });
+          return pf;
+        })
+        .catch(() => null);
+      return pagefind;
+    };
+
+    const iconFor = (url: string) => {
+      const kinds: [string, string][] = [
+        ["/events/", "kind-event"],
+        ["/entities/", "nav-entities"],
+        ["/sources/", "nav-sources"],
+        ["/hypotheses/", "nav-hypotheses"],
+        ["/articles/", "nav-investigations"],
+      ];
+      return kinds.find(([part]) => url.includes(part))?.[1] ?? "nav-observatory";
+    };
+
+    const open = () => {
+      if (dialog.open) return;
+      dialog.showModal();
+      input?.focus();
+      input?.select();
+      void load();
+    };
+
+    const highlight = (index: number) => {
+      const items = [...(list?.querySelectorAll<HTMLAnchorElement>("a") ?? [])];
+      active = Math.max(-1, Math.min(index, items.length - 1));
+      items.forEach((a, i) => a.setAttribute("aria-selected", String(i === active)));
+      items[active]?.scrollIntoView({ block: "nearest" });
+    };
+
+    const render = async (query: string) => {
+      if (!list || !status || !shortcuts) return;
+      if (query.trim() === "") {
+        list.hidden = true;
+        list.replaceChildren();
+        status.textContent = "";
+        shortcuts.hidden = false;
+        return;
+      }
+      shortcuts.hidden = true;
+      const pf = await load();
+      if (!pf) {
+        status.textContent = dialog.dataset.unavailable ?? "";
+        return;
+      }
+      const search = await pf.debouncedSearch(query);
+      if (!search) return;
+      const data = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+      list.replaceChildren(
+        ...data.map((item, index) => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = item.url;
+          a.id = `search-option-${index}`;
+          a.setAttribute("role", "option");
+          a.innerHTML = `<svg class="icon" aria-hidden="true"><use href="${sprite}#${iconFor(item.url)}"/></svg><span><strong></strong><span class="palette-excerpt"></span></span>`;
+          const strong = a.querySelector("strong");
+          if (strong) strong.textContent = item.meta.title ?? item.url;
+          const excerpt = a.querySelector(".palette-excerpt");
+          // Pagefind excerpts contain only <mark> highlighting of the indexed text.
+          if (excerpt) excerpt.innerHTML = item.excerpt;
+          li.append(a);
+          return li;
+        }),
+      );
+      list.hidden = data.length === 0;
+      status.textContent = data.length === 0 ? (dialog.dataset.empty ?? "") : "";
+      highlight(0);
+    };
+
+    input?.addEventListener("input", () => void render(input.value));
+    input?.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        highlight(active + 1);
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        highlight(active - 1);
+      } else if (event.key === "Enter") {
+        const target = list?.querySelectorAll<HTMLAnchorElement>("a")[active];
+        if (target) {
+          event.preventDefault();
+          window.location.href = target.href;
+        }
+      }
+    });
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    for (const trigger of document.querySelectorAll("[data-search-open]")) {
+      trigger.addEventListener("click", open);
+    }
+    window.addEventListener("keydown", (event) => {
+      const typing = event.target instanceof HTMLElement && event.target.closest("input, textarea, select");
+      if ((event.key === "k" && (event.metaKey || event.ctrlKey)) || (event.key === "/" && !typing)) {
+        event.preventDefault();
+        open();
+      }
+    });
+  }
+</script>

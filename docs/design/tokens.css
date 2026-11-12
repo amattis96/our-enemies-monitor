@@ -1,0 +1,264 @@
+/*
+ * Our Enemies Monitor — "Dossier" design tokens (v1).
+ *
+ * Specification file: NOT yet imported by the site. During implementation
+ * (milestone M7, see docs/design/IMPLEMENTATION_PLAN.md) it moves to
+ * web/src/styles/tokens.css and is mapped into Tailwind with @theme inline.
+ *
+ * Theme model: `data-theme="light" | "dark"` on <html>; absent = follow the
+ * system. Semantic tokens only in components; raw ramps never.
+ * Contrast ratios are verified by docs/design/scripts/check-contrast.mjs.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* ── Typography ─────────────────────────────────────────────── */
+  --font-serif: "Newsreader Variable", "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans:
+    "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Fluid type scale (1.250 at 360px → 1.333 at 1440px). */
+  --text-micro: 0.6875rem; /* 11px — console labels, uppercase mono only */
+  --text-xs: 0.75rem; /* 12px — meta, captions */
+  --text-sm: 0.875rem; /* 14px — UI, tables */
+  --text-base: 1rem; /* 16px — UI body */
+  --text-read: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem); /* 17→19px — article body (serif) */
+  --text-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+  --text-xl: clamp(1.3125rem, 1.15rem + 0.6vw, 1.75rem);
+  --text-2xl: clamp(1.625rem, 1.35rem + 1.1vw, 2.375rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2vw, 3.375rem);
+  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.75rem);
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.25;
+  --leading-ui: 1.45;
+  --leading-read: 1.62;
+  --tracking-caps: 0.08em;
+  --tracking-display: -0.015em;
+  --measure: 66ch;
+
+  /* ── Space (4px base) ───────────────────────────────────────── */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --page-max: 80rem; /* 1280px */
+  --page-wide: 96rem; /* 1536px, console views */
+
+  /* ── Shape ──────────────────────────────────────────────────── */
+  --radius-0: 0; /* editorial surfaces are square */
+  --radius-1: 2px; /* stamps, tags */
+  --radius-2: 4px; /* inputs, buttons, console panels */
+  --radius-3: 8px; /* drawers, popovers */
+  --radius-pill: 999px;
+  --rule-hair: 1px;
+  --rule-heavy: 3px; /* masthead / section rules */
+  --rule-double: 4px; /* double rule = 1 + 2 gap + 1 */
+
+  /* ── Motion ─────────────────────────────────────────────────── */
+  --dur-instant: 80ms;
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+  --dur-slow: 360ms;
+  --dur-deliberate: 600ms;
+  --dur-ambient: 2400ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --ease-paper: cubic-bezier(0.34, 1.36, 0.64, 1); /* pin drop, slight overshoot */
+  --stagger: 40ms;
+
+  /* ── Elevation (paper stacks, not glows) ────────────────────── */
+  --z-base: 0;
+  --z-sticky: 20;
+  --z-drawer: 40;
+  --z-popover: 50;
+  --z-toast: 60;
+}
+
+/* ── Light theme: "Press" (newsprint) ─────────────────────────── */
+:root,
+:root[data-theme="light"] {
+  --paper: #f7f4ee;
+  --paper-raised: #fffdf9;
+  --paper-sunken: #eee9df;
+  --ink: #15171b;
+  --ink-2: #3f444d;
+  --ink-3: #5c626c;
+  --rule: #ddd6c9;
+  --rule-strong: #15171b;
+
+  --accent: #1f4e8f; /* links, focus, primary actions */
+  --accent-strong: #163a6b;
+  --accent-wash: #e3eaf4;
+  --signal: #b3261e; /* brand red: masthead dot, live, hypothesis thread */
+  --signal-wash: #f8e3e0;
+  --caution: #845400;
+  --caution-wash: #fbf0d9;
+  --ok: #1e6b45;
+  --ok-wash: #e2f1e8;
+  --fixture: #8b1a6b;
+  --fixture-wash: #f7e6f2;
+
+  /* Data: categorical (relation groups), fixed order — validated */
+  --series-1: #2a6fc9; /* security_intelligence */
+  --series-2: #d2552b; /* control */
+  --series-3: #13996b; /* economic_dependency */
+  --series-4: #c08000; /* financial */
+  --series-5: #c8457e; /* influence_information */
+  --series-6: #6250d6; /* institutional */
+  --series-neutral: #8a8478; /* participation, context */
+
+  /* Data: sequential (atlas choropleth), one hue, light → dark */
+  --seq-0: #e9e4da; /* zero / no data, sits on paper */
+  --seq-1: #c9d8eb;
+  --seq-2: #9bbbe0;
+  --seq-3: #6893cc;
+  --seq-4: #3a6aac;
+  --seq-5: #1c447c;
+
+  /* Corkboard (network) */
+  --cork: #c9a878;
+  --cork-grain: #a9875a;
+  --card: #fffdf6;
+  --card-ink: #22252b;
+  --pin: #b3261e;
+  --pin-brass: #b08a3e;
+  --thread-casing: rgb(30 22 12 / 0.35);
+  --board-frame: #6b4f2f;
+
+  --shadow-1: 0 1px 0 rgb(21 23 27 / 0.06), 0 1px 2px rgb(21 23 27 / 0.08);
+  --shadow-2: 0 2px 4px rgb(21 23 27 / 0.08), 0 8px 16px -4px rgb(21 23 27 / 0.12);
+  --shadow-card: 0 1px 1px rgb(40 26 8 / 0.25), 0 6px 10px -4px rgb(40 26 8 / 0.35);
+  --shadow-lifted: 0 4px 6px rgb(40 26 8 / 0.2), 0 18px 28px -8px rgb(40 26 8 / 0.45);
+}
+
+/* ── Dark theme: "Console" (night operations room) ────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1217;
+    --paper-raised: #161b22;
+    --paper-sunken: #0a0d11;
+    --ink: #e8eaee;
+    --ink-2: #b7bdc8;
+    --ink-3: #8d96a3;
+    --rule: #262d37;
+    --rule-strong: #e8eaee;
+    --accent: #8db4ff;
+    --accent-strong: #b5ceff;
+    --accent-wash: #172338;
+    --signal: #ff7366;
+    --signal-wash: #3a1714;
+    --caution: #f2ba55;
+    --caution-wash: #33260e;
+    --ok: #5acb8e;
+    --ok-wash: #10291c;
+    --fixture: #f08ad4;
+    --fixture-wash: #331429;
+    --series-1: #4f8be6;
+    --series-2: #e0643a;
+    --series-3: #1fa372;
+    --series-4: #bf850c;
+    --series-5: #d4608f;
+    --series-6: #8a7fea;
+    --series-neutral: #7d8592;
+    --seq-0: #1b2028;
+    --seq-1: #1d2d45;
+    --seq-2: #24446d;
+    --seq-3: #2f5f98;
+    --seq-4: #4f86cc;
+    --seq-5: #93b8ec;
+    --cork: #3a2e22;
+    --cork-grain: #2b2219;
+    --card: #e9e3d4;
+    --card-ink: #1d2026;
+    --pin: #e0473c;
+    --pin-brass: #c9a24f;
+    --thread-casing: rgb(0 0 0 / 0.55);
+    --board-frame: #1a140e;
+    --shadow-1: 0 1px 0 rgb(0 0 0 / 0.4);
+    --shadow-2: 0 2px 4px rgb(0 0 0 / 0.4), 0 8px 16px -4px rgb(0 0 0 / 0.6);
+    --shadow-card: 0 1px 1px rgb(0 0 0 / 0.5), 0 6px 10px -4px rgb(0 0 0 / 0.7);
+    --shadow-lifted: 0 4px 6px rgb(0 0 0 / 0.45), 0 18px 28px -8px rgb(0 0 0 / 0.8);
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1217;
+  --paper-raised: #161b22;
+  --paper-sunken: #0a0d11;
+  --ink: #e8eaee;
+  --ink-2: #b7bdc8;
+  --ink-3: #8d96a3;
+  --rule: #262d37;
+  --rule-strong: #e8eaee;
+  --accent: #8db4ff;
+  --accent-strong: #b5ceff;
+  --accent-wash: #172338;
+  --signal: #ff7366;
+  --signal-wash: #3a1714;
+  --caution: #f2ba55;
+  --caution-wash: #33260e;
+  --ok: #5acb8e;
+  --ok-wash: #10291c;
+  --fixture: #f08ad4;
+  --fixture-wash: #331429;
+  --series-1: #4f8be6;
+  --series-2: #e0643a;
+  --series-3: #1fa372;
+  --series-4: #bf850c;
+  --series-5: #d4608f;
+  --series-6: #8a7fea;
+  --series-neutral: #7d8592;
+  --seq-0: #1b2028;
+  --seq-1: #1d2d45;
+  --seq-2: #24446d;
+  --seq-3: #2f5f98;
+  --seq-4: #4f86cc;
+  --seq-5: #93b8ec;
+  --cork: #3a2e22;
+  --cork-grain: #2b2219;
+  --card: #e9e3d4;
+  --card-ink: #1d2026;
+  --pin: #e0473c;
+  --pin-brass: #c9a24f;
+  --thread-casing: rgb(0 0 0 / 0.55);
+  --board-frame: #1a140e;
+  --shadow-1: 0 1px 0 rgb(0 0 0 / 0.4);
+  --shadow-2: 0 2px 4px rgb(0 0 0 / 0.4), 0 8px 16px -4px rgb(0 0 0 / 0.6);
+  --shadow-card: 0 1px 1px rgb(0 0 0 / 0.5), 0 6px 10px -4px rgb(0 0 0 / 0.7);
+  --shadow-lifted: 0 4px 6px rgb(0 0 0 / 0.45), 0 18px 28px -8px rgb(0 0 0 / 0.8);
+}
+
+/* Reduced motion: keep state changes, drop travel. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+    --dur-deliberate: 1ms;
+    --dur-ambient: 0ms;
+    --stagger: 0ms;
+  }
+}
+
+/* Forced colors: evidence and threads keep their pattern, drop their hue. */
+@media (forced-colors: active) {
+  :root {
+    --series-1: CanvasText;
+    --series-2: CanvasText;
+    --series-3: CanvasText;
+    --series-4: CanvasText;
+    --series-5: CanvasText;
+    --series-6: CanvasText;
+    --accent: LinkText;
+    --signal: Highlight;
+  }
+}

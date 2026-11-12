@@ -1,118 +1,418 @@
 ---
+import { EVIDENCE_LEVELS, THEME_LABELS, type Theme } from "../../../../src/model/index.ts";
 import { summarize } from "../../../../src/pipeline/validate.ts";
-import { languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import { formatDateRange, formatPartialDate } from "../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths, textOf, ui } from "../../../../src/site/i18n.ts";
+import { THEME_ICON } from "../../../../src/site/visual.ts";
+import EvidenceStamp from "../../components/EvidenceStamp.astro";
+import Icon from "../../components/Icon.astro";
+import Illustration from "../../components/Illustration.astro";
+import T from "../../components/T.astro";
+import ThemeList from "../../components/ThemeList.astro";
 import Base from "../../layouts/Base.astro";
+import { inlineSvg } from "../../lib/design.ts";
 import { href } from "../../lib/links.ts";
-import { getModel } from "../../lib/model.ts";
+import { getArticles, getModel } from "../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const t = ui(lang);
-const c = summarize(getModel().dataset);
-const it = lang === "it";
-const sections = [
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const counts = summarize(model.dataset);
+
+// Most recent integrated events, newest first (the "wire").
+const recent = model.events
+  .filter((e) => e.record_type === "event" && e.timeline_status === "integrated")
+  .toReversed()
+  .slice(0, 6);
+const [lead, ...wire] = recent;
+const stories = getArticles()
+  .filter((a) => !a.fixture)
+  .slice(0, 3);
+
+const kpis = [
+  ["timeline/", counts.timeline_events, c("eventi in cronologia", "timeline events")],
+  ["network/", counts.direct_relationships, c("relazioni dirette", "direct relationships")],
+  ["entities/", counts.entities, c("entità", "entities")],
+  ["hypotheses/", counts.hypotheses, c("ipotesi aperte", "open hypotheses")],
+  ["sources/", counts.sources, c("fonti", "sources")],
+  ["dependencies/", counts.exposures, c("esposizioni", "exposures")],
+] as const;
+
+const explore = [
   [
     "timeline/",
     t.navTimeline,
-    it
-      ? `${c.timeline_events} eventi documentati dal 2007 al 2026, filtrabili per tema e periodo.`
-      : `${c.timeline_events} documented events from 2007 to 2026, filterable by theme and period.`,
+    "nav-timeline",
+    c(
+      "Dal più recente al più lontano, filtrabile per tema, periodo e livello di evidenza.",
+      "From the most recent backwards, filterable by theme, period and evidence level.",
+    ),
   ],
   [
     "network/",
     t.navNetwork,
-    it
-      ? `${c.direct_relationships} relazioni dirette tipizzate e ${c.event_participation} partecipazioni a eventi.`
-      : `${c.direct_relationships} typed direct relationships and ${c.event_participation} event participations.`,
+    "nav-network",
+    c(
+      "Le relazioni documentate come una bacheca investigativa: schede, puntine e fili.",
+      "Documented relationships as an investigation board: cards, pins and threads.",
+    ),
   ],
   [
     "atlas/",
     t.navAtlas,
-    it
-      ? "Dove sono avvenuti gli eventi e in quali ruoli compaiono gli Stati, a livello di paese."
-      : "Where events took place and in which roles states appear, at country level.",
+    "nav-atlas",
+    c(
+      "Dove sono avvenuti gli eventi e con quali ruoli compaiono gli Stati.",
+      "Where events took place and in which roles states appear.",
+    ),
   ],
   [
     "dependencies/",
     t.navDependencies,
-    it
-      ? `${c.exposures} esposizioni strategiche quantificate, ciascuna con il proprio denominatore.`
-      : `${c.exposures} quantified strategic exposures, each with its own denominator.`,
-  ],
-  [
-    "entities/",
-    t.navEntities,
-    it
-      ? `${c.entities} Stati, istituzioni, organizzazioni, imprese, persone e asset strategici.`
-      : `${c.entities} states, institutions, organisations, companies, people and strategic assets.`,
-  ],
-  [
-    "hypotheses/",
-    t.navHypotheses,
-    it
-      ? `${c.hypotheses} domande investigative, tenute separate dai fatti documentati.`
-      : `${c.hypotheses} investigative questions, kept separate from documented facts.`,
-  ],
-  [
-    "sources/",
-    t.navSources,
-    it
-      ? `${c.sources} documenti del corpus e riferimenti esterni citati.`
-      : `${c.sources} corpus documents and cited external references.`,
-  ],
-  [
-    "methodology/",
-    t.navMethodology,
-    it
-      ? "Livelli di evidenza E1–E5, regole di attribuzione e limiti del corpus."
-      : "Evidence levels E1–E5, attribution rules and limits of the corpus.",
-  ],
-  [
-    "changes/",
-    t.navChanges,
-    it
-      ? "Storia delle modifiche ai dati, anomalie note e correzioni."
-      : "History of data changes, known anomalies and corrections.",
-  ],
-  [
-    "data/",
-    t.navData,
-    it
-      ? "Scarica i dati canonici e gli schemi JSON (CC0)."
-      : "Download the canonical data and JSON Schemas (CC0).",
+    "nav-dependencies",
+    c(
+      "Esposizioni strategiche quantificate, ciascuna con il proprio denominatore.",
+      "Quantified strategic exposures, each with its own denominator.",
+    ),
   ],
 ] as const;
+
+const archive = [
+  ["entities/", t.navEntities, "nav-entities", counts.entities],
+  ["hypotheses/", t.navHypotheses, "nav-hypotheses", counts.hypotheses],
+  ["sources/", t.navSources, "nav-sources", counts.sources],
+] as const;
+
+const themeCounts = new Map<Theme, number>();
+for (const event of model.events)
+  for (const th of event.themes) themeCounts.set(th, (themeCounts.get(th) ?? 0) + 1);
+const themes = (Object.keys(THEME_LABELS) as Theme[]).filter(
+  (th) => (themeCounts.get(th) ?? 0) > 0 && th !== "research_metadata",
+);
+const mark = inlineSvg("logo-mark.svg", "mast");
 ---
 
 <Base title="Our Enemies Monitor" lang={lang} description={t.siteTagline} searchable>
-  <h1>Our Enemies Monitor</h1>
-  <p class="text-lg max-w-3xl">{t.siteTagline}</p>
-  <div class="notice max-w-3xl">
-    <p class="mb-0">
+  <Fragment slot="masthead">
+    <div class="dateline" data-pagefind-ignore>
+      <div class="dateline-inner">
+        <span>{t.editionLabel}</span>
+        <span class="live">{t.dataCutoff} · {counts.timeline_events} {c("eventi", "events")} · {counts.relationships} {c("relazioni", "relationships")}</span>
+      </div>
+    </div>
+    <header class="masthead">
+      <div class="masthead-lockup">
+        <span class="masthead-mark" set:html={mark} />
+        <h1 class="masthead-title">Our Enemies Monitor</h1>
+      </div>
+      <p class="masthead-tagline">{t.siteTagline}</p>
+    </header>
+    <div class="masthead-rule"></div>
+  </Fragment>
+
+  <div class="front">
+    <section class="front-lead" aria-labelledby="lead-title">
+      <p class="kicker kicker-signal">{c("Dalla cronologia · ultimo evento integrato", "From the timeline · latest integrated event")}</p>
       {
-        it
-          ? "«Enemies» è il nome del progetto, non una qualifica giuridica o investigativa. La presenza nel database non implica illecito, intento ostile, controllo straniero o complicità. Una dipendenza commerciale, un disaccordo politico o un collegamento nel grafo non dimostrano da soli un'operazione illecita o un coordinamento."
-          : "“Enemies” is the name of the project, not a legal or investigative designation. Appearing in the database does not imply wrongdoing, hostile intent, foreign control or complicity. A commercial dependency, a political disagreement or a link in the graph does not by itself demonstrate an illicit operation or coordination."
+        lead && (
+          <article>
+            <h2 id="lead-title" class="front-lead-title">
+              <a href={href(`events/${lead.id}/`, lang)}><T text={lead.title} lang={lang} /></a>
+            </h2>
+            <p class="lede"><T text={lead.description} lang={lang} /></p>
+            <p class="front-meta">
+              <span class="mono">{formatDateRange(lead.date.start, lead.date.end, lang)}</span>
+              {lead.geography && <span><T text={lead.geography} lang={lang} /></span>}
+              <span class="mono">{lead.id}</span>
+              {lead.evidence_level && <EvidenceStamp level={lead.evidence_level} lang={lang} />}
+            </p>
+            <ThemeList themes={lead.themes} lang={lang} />
+          </article>
+        )
       }
-    </p>
+    </section>
+
+    <section class="front-wire" aria-labelledby="wire-title">
+      <h2 id="wire-title" class="kicker">{c("Ultime voci", "Latest entries")}</h2>
+      <ol>
+        {
+          wire.map((event) => (
+            <li>
+              <span class="mono meta">{formatDateRange(event.date.start, event.date.end, lang)}</span>
+              <a href={href(`events/${event.id}/`, lang)}><T text={event.title} lang={lang} /></a>
+            </li>
+          ))
+        }
+      </ol>
+      <a class="more" href={href("timeline/", lang)}>{c("Tutta la cronologia", "Full timeline")} <Icon name="ui-arrow-right" /></a>
+    </section>
   </div>
-  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
-    {
-      sections.map(([path, title, text]) => (
-        <li class="card">
-          <h2 class="mt-0 text-lg">
-            <a href={href(path, lang)}>{title}</a>
-          </h2>
-          <p class="mb-0 meta">{text}</p>
-        </li>
-      ))
-    }
-  </ul>
-  <p class="meta mt-6">
-    {
-      it
-        ? "Baseline di ricerca con cutoff al 21 ottobre 2026, ancora in revisione editoriale. Le proposte di Fonte_09 (fino all’11 novembre 2026) restano nel repository e non sono incluse nel portale finché non saranno integrate e revisionate. La presenza di un record della baseline non implica verifica indipendente."
-        : "Provisional research baseline with a cut-off of 21 October 2026, not an exhaustive census. Fonte_09 proposals (up to 11 November 2026) remain in Git and are not published until integrated and reviewed. Baseline records have not all been independently verified; English texts are machine translations pending review."
-    }
-  </p>
+
+  <section aria-labelledby="console-title" class="mt-12">
+    <h2 id="console-title" class="section-title">{c("Il monitor in cifre", "The monitor in figures")}</h2>
+    <div class="kpis">
+      {
+        kpis.map(([path, value, label]) => (
+          <a class="kpi" href={href(path, lang)}>
+            <b data-count={value}>{value}</b>
+            <span class="kicker">{label}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section aria-labelledby="explore-title" class="mt-12">
+    <h2 id="explore-title" class="section-title">{t.navExplore}</h2>
+    <ul class="explore">
+      {
+        explore.map(([path, title, icon, text]) => (
+          <li>
+            <a href={href(path, lang)}>
+              <Icon name={icon} class="explore-icon" />
+              <span class="explore-title">{title}</span>
+              <span class="explore-text">{text}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="archive-row">
+      {
+        archive.map(([path, title, icon, count]) => (
+          <li>
+            <a class="chip" href={href(path, lang)}><Icon name={icon} />{title} <span class="mono">{count}</span></a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    stories.length > 0 && (
+      <section aria-labelledby="stories-title" class="mt-12">
+        <h2 id="stories-title" class="section-title">{t.navArticles}</h2>
+        <ul class="grid gap-6 md:grid-cols-3">
+          {stories.map((article) => (
+            <li class="story">
+              <p class="kicker">{formatPartialDate(article.date, lang)}</p>
+              <h3><a href={href(`articles/${article.id}/`, lang)}><T text={article.title} lang={lang} /></a></h3>
+              <p class="meta"><T text={article.summary} lang={lang} /></p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <section aria-labelledby="read-title" class="mt-12">
+    <h2 id="read-title" class="section-title">{c("Come leggere il monitor", "How to read the monitor")}</h2>
+    <div class="read-grid">
+      <Illustration name="evidence-ladder" />
+      <div>
+        <p>
+          {c(
+            "Ogni affermazione porta il proprio livello di evidenza, indicato da forma, codice ed etichetta. E1–E4 sono una scala ordinale, non un punteggio. Le ipotesi (E5) stanno in una bacheca separata e non diventano mai relazioni.",
+            "Every statement carries its own evidence level, shown by shape, code and label. E1–E4 form an ordinal scale, not a score. Hypotheses (E5) live on a separate board and never become relationships.",
+          )}
+        </p>
+        <ul class="flex flex-wrap gap-2 my-4">
+          {EVIDENCE_LEVELS.map((level) => <li><EvidenceStamp level={level} lang={lang} /></li>)}
+        </ul>
+        <div class="notice">
+          <p>
+            {c(
+              "«Enemies» è il nome del progetto, non una qualifica giuridica o investigativa. La presenza nel database non implica illecito, intento ostile, controllo straniero o complicità. Una dipendenza commerciale, un disaccordo politico o un collegamento nel grafo non dimostrano da soli un'operazione illecita o un coordinamento.",
+              "“Enemies” is the name of the project, not a legal or investigative designation. Appearing in the database does not imply wrongdoing, hostile intent, foreign control or complicity. A commercial dependency, a political disagreement or a link in the graph does not by itself demonstrate an illicit operation or coordination.",
+            )}
+          </p>
+        </div>
+        <p class="meta">
+          {c(
+            "Baseline di ricerca con cutoff al 21 ottobre 2026, ancora in revisione editoriale. Le proposte di Fonte_09 (fino all’11 novembre 2026) restano nel repository e non sono incluse nel portale finché non saranno integrate e revisionate. La presenza di un record della baseline non implica verifica indipendente.",
+            "Provisional research baseline with a cut-off of 21 October 2026, not an exhaustive census. Fonte_09 proposals (up to 11 November 2026) remain in Git and are not published until integrated and reviewed. Baseline records have not all been independently verified; English texts are machine translations pending review.",
+          )}{" "}
+          <a href={href("methodology/", lang)}>{t.navMethodology}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="themes-title" class="mt-12">
+    <h2 id="themes-title" class="section-title">{c("Temi", "Themes")}</h2>
+    <ul class="flex flex-wrap gap-2">
+      {
+        themes.map((th) => (
+          <li>
+            <a class="chip" href={href(`timeline/?tema=${th}`, lang)}>
+              <Icon name={THEME_ICON(th)} />
+              {THEME_LABELS[th][lang]} <span class="mono text-muted">{themeCounts.get(th)}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Base>
+
+<script>
+  // Count-up of the KPI figures, once, when they come into view.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const figures = document.querySelectorAll<HTMLElement>("[data-count]");
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        const el = entry.target as HTMLElement;
+        const target = Number(el.dataset.count);
+        const start = performance.now();
+        const step = (now: number) => {
+          const t = Math.min(1, (now - start) / 600);
+          el.textContent = String(Math.round(target * (1 - (1 - t) ** 3)));
+          if (t < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    });
+    for (const el of figures) observer.observe(el);
+  }
+</script>
+
+<style>
+  .front {
+    display: grid;
+    gap: var(--space-6);
+    padding-top: var(--space-3);
+  }
+  @media (min-width: 1024px) {
+    .front {
+      grid-template-columns: 2fr 1fr;
+    }
+    .front-wire {
+      border-left: 1px solid var(--rule);
+      padding-left: var(--space-5);
+    }
+  }
+  .front-lead-title {
+    margin: var(--space-2) 0 var(--space-3);
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    font-variation-settings: "opsz" 72;
+  }
+  .front-lead-title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .front-lead-title a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--signal);
+    text-decoration-thickness: 2px;
+  }
+  .front-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    align-items: center;
+    color: var(--ink-3);
+    font-size: var(--text-sm);
+  }
+  .front-wire h2 {
+    margin: 0 0 var(--space-3);
+  }
+  .front-wire ol {
+    display: grid;
+  }
+  .front-wire li {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .front-wire li a {
+    color: var(--ink);
+    text-decoration: none;
+    font: 600 var(--text-base) / 1.3 var(--font-serif);
+  }
+  .front-wire li a:hover {
+    text-decoration: underline;
+  }
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: var(--space-3);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+  .explore {
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (min-width: 760px) {
+    .explore {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1180px) {
+    .explore {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .explore a {
+    display: grid;
+    gap: 0.5rem;
+    height: 100%;
+    padding: var(--space-5) var(--space-4);
+    background: var(--paper-raised);
+    color: var(--ink);
+    text-decoration: none;
+    transition: background-color var(--dur-fast) var(--ease-standard);
+  }
+  .explore a:hover {
+    background: var(--paper-sunken);
+  }
+  .explore a :global(.explore-icon) {
+    width: 2rem;
+    height: 2rem;
+    color: var(--ink);
+  }
+  .explore-title {
+    font: 600 var(--text-xl) / 1.15 var(--font-serif);
+  }
+  .explore-text {
+    color: var(--ink-3);
+    font-size: var(--text-sm);
+  }
+  .archive-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .story h3 {
+    margin-top: 0.35rem;
+  }
+  .story h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .read-grid {
+    display: grid;
+    gap: var(--space-5);
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .read-grid {
+      grid-template-columns: minmax(18rem, 2fr) 3fr;
+    }
+  }
+  .read-grid :global(.illustration svg) {
+    width: 100%;
+    height: auto;
+  }
+</style>

@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["preview", "--port", "4321"],
       "port": 4321
+    },
+    {
+      "name": "design-specimen",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4400", "--directory", "docs/design"],
+      "port": 4400
     }
   ]
 }

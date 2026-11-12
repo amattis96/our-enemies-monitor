@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" fill="none" aria-hidden="true">
+  <!-- Evidence ladder: E1–E4 climb as an ordinal scale with glyph, code and thread style; E5 stands apart behind a dashed wall (hypotheses are not relationships). -->
+  <defs>
+    <pattern id="el-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v5" stroke="currentColor" stroke-width="0.8" opacity="0.28"/></pattern>
+  </defs>
+  <path d="M136 214V182H218V146H300V110H382V74H464V214Z" fill="var(--paper-sunken, #eee9df)"/>
+  <path d="M136 214V182H218V146H300V110H382V74H464V214Z" fill="url(#el-hatch)"/>
+  <path d="M136 214V182H218V146H300V110H382V74H464V214Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M218 182V214M300 146V214M382 110V214" stroke="currentColor" stroke-width="1" opacity=".45"/>
+  <path d="M139 185h76" stroke="var(--paper-raised, #fffdf9)" stroke-width="2"/>
+  <path d="M221 149h76" stroke="var(--paper-raised, #fffdf9)" stroke-width="2"/>
+  <path d="M303 113h76" stroke="var(--paper-raised, #fffdf9)" stroke-width="2"/>
+  <path d="M385 77h76" stroke="var(--paper-raised, #fffdf9)" stroke-width="2"/>
+  <rect x="160.0" y="194" width="34" height="20" rx="2" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/><text x="177.0" y="208.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">E4</text>
+  <rect x="242.0" y="158" width="34" height="20" rx="2" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/><text x="259.0" y="172.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">E3</text>
+  <rect x="324.0" y="122" width="34" height="20" rx="2" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/><text x="341.0" y="136.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">E2</text>
+  <rect x="406.0" y="86" width="34" height="20" rx="2" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/><text x="423.0" y="100.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">E1</text>
+  <rect x="415.0" y="46" width="16" height="16" fill="currentColor"/>
+  <path d="M341.0 81l9.5 17h-19z" fill="currentColor"/>
+  <circle cx="259.0" cy="126" r="8" stroke="currentColor" stroke-width="2"/><path d="M259.0 118a8 8 0 0 0 0 16z" fill="currentColor"/>
+  <circle cx="177.0" cy="162" r="8" stroke="currentColor" stroke-width="2"/>
+  <rect x="24" y="190" width="82" height="24" fill="var(--signal-wash, #f8e3e0)" stroke="var(--signal, #b3261e)" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="65.0" y="207" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12" font-weight="600" fill="var(--signal, #b3261e)" text-anchor="middle">E5</text>
+  <path d="M65.0 160l10 10-10 10-10-10z" stroke="var(--signal, #b3261e)" stroke-width="2" stroke-dasharray="3 2.6" stroke-linejoin="round"/>
+  <path d="M121 54V214" stroke="currentColor" stroke-width="1.25" stroke-dasharray="2 4" opacity=".55"/>
+  <path d="M14 214H466" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M24 214v5 M106 214v5 M136 214v5 M218 214v5 M300 214v5 M382 214v5 M464 214v5" stroke="currentColor" stroke-width="1"/>
+  <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M395.0 241h56M395.0 247h56" stroke-width="1.5"/>
+    <path d="M313.0 244h56" stroke-width="2.5"/>
+    <path d="M231.0 244h56" stroke-dasharray="8 5"/>
+    <path d="M149.0 244h56" stroke-width="2.5" stroke-dasharray=".5 5.5"/>
+    <path d="M37.0 244h56" stroke="var(--signal, #b3261e)" stroke-dasharray="10 4 1 4"/>
+  </g>
+
+</svg>

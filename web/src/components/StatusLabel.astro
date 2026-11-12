@@ -1,0 +1,12 @@
+---
+import Icon from "./Icon.astro";
+
+// Status label: icon + text on a tone wash (never colour alone).
+interface Props {
+  icon: string;
+  tone?: "ok" | "caution" | "neutral" | "fixture";
+}
+const { icon, tone = "neutral" } = Astro.props;
+---
+
+<span class:list={["status", tone !== "neutral" && `status-${tone}`]}><Icon name={icon} /><slot /></span>

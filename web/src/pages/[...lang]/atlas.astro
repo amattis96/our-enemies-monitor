@@ -1,7 +1,9 @@
 ---
 import { countryName, formatDateRange, formatPredicate } from "../../../../src/site/format.ts";
-import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import { choose, languageFromParam, languagePaths, textOf, ui } from "../../../../src/site/i18n.ts";
 import { atlasRows } from "../../../../src/site/read-model.ts";
+import Icon from "../../components/Icon.astro";
+import LimitsNote from "../../components/LimitsNote.astro";
 import NodeLink from "../../components/NodeLink.astro";
 import T from "../../components/T.astro";
 import Base from "../../layouts/Base.astro";
@@ -24,6 +26,14 @@ const maps = [
 const unplaced = model.events.filter(
   (e) => e.record_type === "event" && e.geography !== null && e.places.length === 0,
 );
+const tray = [
+  ...unplaced
+    .reduce((m, e) => {
+      const key = e.geography ? textOf(e.geography, lang) : "";
+      return m.set(key, (m.get(key) ?? 0) + 1);
+    }, new Map<string, number>())
+    .entries(),
+].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], lang));
 const legend = [
   { color: EMPTY_COLOR, label: "0" },
   ...BUCKETS.map((b) => ({
@@ -36,100 +46,177 @@ const legend = [
           : `${b.min}–${b.max}`,
   })),
 ];
+// Country details for the selection panel (client script).
+const details = Object.fromEntries(
+  rows.map((row) => [
+    row.code,
+    {
+      name: countryName(row.code, lang),
+      events: [...row.located]
+        .reverse()
+        .slice(0, 12)
+        .map((e) => ({
+          url: href(`events/${e.id}/`, lang),
+          date: formatDateRange(e.date.start, e.date.end, lang),
+          title: textOf(e.title, lang),
+        })),
+      count: row.located.length,
+      roles: row.roles.map((r) => ({
+        predicate: formatPredicate(r.predicate),
+        count: r.events.length,
+      })),
+      direct: row.direct,
+      state: row.state
+        ? {
+            url: href(`entities/${row.state.id}/`, lang),
+            board: `${href("network/", lang)}?focus=${row.state.id}`,
+          }
+        : null,
+    },
+  ]),
+);
+const labels = {
+  events: c("eventi nel paese", "events in the country"),
+  direct: c("relazioni dirette dello Stato", "direct relationships of the state"),
+  roles: c(
+    "Ruoli dello Stato negli eventi (predicati letterali)",
+    "Roles of the state in events (literal predicates)",
+  ),
+  latest: c("Eventi più recenti", "Most recent events"),
+  open: c("Scheda dello Stato", "State profile"),
+  board: c("Sulla bacheca", "On the board"),
+  none: c("Nessun ruolo registrato.", "No role recorded."),
+  more: c("altri nella tabella", "more in the table"),
+};
 ---
 
-<Base title={ui(lang).navAtlas} lang={lang} description={c("Atlante a livello di paese degli eventi documentati.", "Country-level atlas of documented events.")}>
-  <h1>{c("Atlante", "Atlas")}</h1>
-  <div class="max-w-3xl">
-    <p>
+<Base title={ui(lang).navAtlas} lang={lang} wide description={c("Atlante a livello di paese degli eventi documentati.", "Country-level atlas of documented events.")}>
+  <header class="page-head">
+    <p class="kicker">{ui(lang).navExplore}</p>
+    <h1>{c("Atlante", "Atlas")}</h1>
+    <p class="lede">
       {c(
-        "Le mappe mostrano dove sono avvenuti gli eventi della cronologia, secondo la geografia indicata nel corpus. Il luogo di un evento non indica chi ne è responsabile: autore, mandante e bersaglio sono informazioni distinte, riportate nella tabella come ruoli letterali.",
-        "The maps show where timeline events took place, according to the geography given in the corpus. The location of an event does not indicate who is responsible: perpetrator, sponsor and target are distinct pieces of information, given in the table as literal roles.",
+        "Dove sono avvenuti gli eventi della cronologia, secondo la geografia indicata nel corpus. Solo livello di paese, senza coordinate inventate; un evento che nomina più paesi è contato in ciascuno.",
+        "Where timeline events took place, according to the geography given in the corpus. Country level only, with no invented coordinates; an event naming several countries is counted in each.",
       )}
     </p>
-    <p class="meta">
-      {c(
-        `Solo livello di paese, senza coordinate inventate. ${unplaced.length} eventi hanno una geografia sovranazionale, marittima o generica (es. «Unione europea», «Mar Baltico») e non compaiono sulla mappa. Un evento che nomina più paesi è contato in ciascuno.`,
-        `Country level only, with no invented coordinates. ${unplaced.length} events have a supranational, maritime or generic geography (e.g. “European Union”, “Baltic Sea”) and do not appear on the map. An event naming several countries is counted in each.`,
-      )}
-    </p>
-  </div>
+  </header>
 
-  <ul class="flex flex-wrap gap-3 text-sm my-3" aria-label={c("Legenda: numero di eventi", "Legend: number of events")}>
-    {legend.map((item) => (
-      <li class="flex items-center gap-1">
-        <span aria-hidden="true" class="inline-block w-4 h-4 border border-line" style={`background:${item.color}`}></span>
-        {item.label}
-      </li>
-    ))}
-  </ul>
+  <div class="atlas" data-atlas data-details={JSON.stringify(details)} data-labels={JSON.stringify(labels)}>
+    <div class="atlas-map">
+      <div class="atlas-tools">
+        <fieldset class="seg">
+          <legend class="sr-only">{c("Estensione della mappa", "Map extent")}</legend>
+          {maps.map((m, i) => <button type="button" data-extent={m.id} aria-pressed={i === 0 ? "true" : "false"}>{m.title}</button>)}
+        </fieldset>
+        <div class="atlas-zoom">
+          <button type="button" data-zoom="in" aria-label={c("Avvicina", "Zoom in")}><Icon name="ui-zoom-in" /></button>
+          <button type="button" data-zoom="out" aria-label={c("Allontana", "Zoom out")}><Icon name="ui-zoom-out" /></button>
+          <button type="button" data-zoom="fit" aria-label={c("Vista intera", "Whole view")}><Icon name="ui-fit" /></button>
+        </div>
+      </div>
+      {
+        maps.map(({ id, title, map }, index) => (
+          <figure class="atlas-figure" data-map={id} hidden={index !== 0}>
+            <figcaption class="sr-only" id={`map-${id}`}>{title}</figcaption>
+            <svg viewBox={`0 0 ${map.width} ${map.height}`} data-base-viewbox={`0 0 ${map.width} ${map.height}`} role="group" aria-labelledby={`map-${id}`}>
+              <rect width={map.width} height={map.height} class="atlas-sea" />
+              {map.shapes.map((shape) =>
+                shape.code && shape.value > 0 ? (
+                  <a href={`#${shape.code}`} data-code={shape.code} class="atlas-country">
+                    <path d={shape.d} fill={colorFor(shape.value)}>
+                      <title>{`${countryName(shape.code, lang)}: ${shape.value}`}</title>
+                    </path>
+                  </a>
+                ) : (
+                  <path d={shape.d} fill={EMPTY_COLOR} class="atlas-land" />
+                ),
+              )}
+              <g class="atlas-labels" aria-hidden="true">
+                {map.shapes.filter((s) => s.label && s.code && (id === "europe" || s.value >= 4)).map((s) => (
+                  <text x={s.label?.[0]} y={s.label?.[1]}>{s.code}</text>
+                ))}
+              </g>
+            </svg>
+          </figure>
+        ))
+      }
+      <ul class="atlas-legend" aria-label={c("Legenda: numero di eventi", "Legend: number of events")}>
+        {legend.map((item) => (
+          <li><span aria-hidden="true" style={`background:${item.color}`} />{item.label}</li>
+        ))}
+      </ul>
+    </div>
 
-  <div class="grid gap-6 lg:grid-cols-2">
-    {
-      maps.map(({ id, title, map }) => (
-        <figure>
-          <figcaption class="font-semibold mb-1" id={`map-${id}`}>{title}</figcaption>
-          <svg
-            viewBox={`0 0 ${map.width} ${map.height}`}
-            class="w-full h-auto border border-line rounded bg-[#f7f9fc]"
-            role="group"
-            aria-labelledby={`map-${id}`}
-          >
-            {map.shapes.map((shape) =>
-              shape.code && shape.value > 0 ? (
-                <a href={`#${shape.code}`}>
-                  <path d={shape.d} fill={colorFor(shape.value)} stroke="#ffffff" stroke-width="0.5">
-                    <title>{`${countryName(shape.code, lang)}: ${shape.value}`}</title>
-                  </path>
-                </a>
-              ) : (
-                <path d={shape.d} fill={EMPTY_COLOR} stroke="#ffffff" stroke-width="0.5" />
-              ),
-            )}
-          </svg>
-        </figure>
-      ))
-    }
+    <aside class="atlas-panel" aria-live="polite" data-panel>
+      <div data-panel-empty>
+        <p class="kicker">{c("Seleziona un paese", "Select a country")}</p>
+        <p class="meta">{c("Clic o Invio su un paese colorato, oppure scegli dalla tabella.", "Click or press Enter on a coloured country, or choose from the table.")}</p>
+        <p class="kicker mt-6 flex items-center gap-1.5"><Icon name="ui-no-location" />{c("Fuori mappa", "Outside the map")}</p>
+        <p class="meta">
+          {c(
+            `${unplaced.length} eventi hanno una geografia sovranazionale, marittima o generica e non compaiono sulla mappa.`,
+            `${unplaced.length} events have a supranational, maritime or generic geography and do not appear on the map.`,
+          )}
+        </p>
+        <ul class="flex flex-wrap gap-1.5">
+          {tray.map(([place, count]) => (
+            <li><a class="chip" href={`${href("timeline/", lang)}?q=${encodeURIComponent(place)}`}>{place} <span class="mono text-muted">{count}</span></a></li>
+          ))}
+        </ul>
+      </div>
+      <div data-panel-country hidden></div>
+    </aside>
   </div>
   <p class="meta mt-2">
     {c("Confini: Natural Earth (pubblico dominio) tramite world-atlas.", "Borders: Natural Earth (public domain) via world-atlas.")}
   </p>
 
-  <h2>{c("Paesi", "Countries")}</h2>
-  <p class="meta max-w-3xl">
+  <LimitsNote lang={lang} illustration="location-not-responsibility">
+    <p>
+      {c(
+        "Il luogo di un evento non indica chi ne è responsabile: autore, mandante e bersaglio sono informazioni distinte, riportate come ruoli letterali. I colori contano gli eventi nel paese, non misurano ostilità.",
+        "The location of an event does not indicate who is responsible: perpetrator, sponsor and target are distinct pieces of information, given as literal roles. Colours count events in the country; they do not measure hostility.",
+      )}
+    </p>
+  </LimitsNote>
+
+  <h2 class="section-title">{c("Paesi", "Countries")}</h2>
+  <p class="meta prose-measure">
     {c(
       "«Eventi nel paese» deriva dalla geografia dell'evento. «Ruoli dello Stato» elenca i predicati originali (in italiano) con cui lo Stato compare negli eventi: includono bersagli, autorità che attribuiscono o sanzionano, contesto. Non è una misura di ostilità.",
       "“Events in the country” comes from the event geography. “Roles of the state” lists the original predicates (in Italian) with which the state appears in events: they include targets, authorities attributing or sanctioning, context. It is not a measure of hostility.",
     )}
   </p>
-  <div class="relative overflow-x-auto">
-    <table>
+  <div class="table-wrap">
+    <table class="stack" data-sortable>
       <thead>
         <tr>
-          <th scope="col">{c("Paese", "Country")}</th>
-          <th scope="col">{c("Eventi nel paese", "Events in the country")}</th>
+          <th scope="col" aria-sort="ascending"><button type="button" class="sort-btn" data-sort="name">{c("Paese", "Country")}</button></th>
+          <th scope="col"><button type="button" class="sort-btn" data-sort="events">{c("Eventi nel paese", "Events in the country")}</button></th>
           <th scope="col">{c("Ruoli dello Stato negli eventi", "Roles of the state in events")}</th>
-          <th scope="col">{c("Relazioni dirette dello Stato", "Direct relationships of the state")}</th>
+          <th scope="col"><button type="button" class="sort-btn" data-sort="direct">{c("Relazioni dirette dello Stato", "Direct relationships of the state")}</button></th>
         </tr>
       </thead>
       <tbody>
         {
           rows.map((row) => (
-            <tr id={row.code}>
+            <tr id={row.code} data-name={countryName(row.code, lang)} data-events={row.located.length} data-direct={row.direct}>
               <th scope="row" class="font-normal">
-                {countryName(row.code, lang)} <span class="meta font-mono">{row.code}</span>
+                <button type="button" class="link-like" data-select={row.code}>{countryName(row.code, lang)}</button>{" "}
+                <span class="meta mono">{row.code}</span>
                 {row.state && (
                   <div class="meta">
                     <NodeLink id={row.state.id} lang={lang} />
                   </div>
                 )}
               </th>
-              <td>
+              <td data-label={c("Eventi nel paese", "Events in the country")}>
                 {row.located.length === 0 ? (
                   <span class="meta">0</span>
                 ) : (
                   <details>
-                    <summary class="cursor-pointer">{row.located.length}</summary>
+                    <summary class="mono">{row.located.length}</summary>
                     <ul class="mt-1 space-y-1">
                       {row.located.map((event) => (
                         <li>
@@ -141,7 +228,7 @@ const legend = [
                   </details>
                 )}
               </td>
-              <td>
+              <td data-label={c("Ruoli dello Stato", "Roles of the state")}>
                 {row.roles.length === 0 ? (
                   <span class="meta">—</span>
                 ) : (
@@ -154,7 +241,7 @@ const legend = [
                   </ul>
                 )}
               </td>
-              <td>{row.state ? row.direct : <span class="meta">—</span>}</td>
+              <td data-label={c("Relazioni dirette", "Direct relationships")} class="mono">{row.state ? row.direct : <span class="meta">—</span>}</td>
             </tr>
           ))
         }
@@ -162,3 +249,361 @@ const legend = [
     </table>
   </div>
 </Base>
+
+<script>
+  type Detail = {
+    name: string;
+    count: number;
+    direct: number;
+    events: { url: string; date: string; title: string }[];
+    roles: { predicate: string; count: number }[];
+    state: { url: string; board: string } | null;
+  };
+
+  const root = document.querySelector<HTMLElement>("[data-atlas]");
+  if (root) {
+    const details = JSON.parse(root.dataset.details ?? "{}") as Record<string, Detail>;
+    const labels = JSON.parse(root.dataset.labels ?? "{}") as Record<string, string>;
+    const panelEmpty = root.querySelector<HTMLElement>("[data-panel-empty]");
+    const panelCountry = root.querySelector<HTMLElement>("[data-panel-country]");
+    const figures = [...root.querySelectorAll<HTMLElement>("[data-map]")];
+    let current = figures[0];
+
+    const el = (tag: string, cls?: string, text?: string) => {
+      const node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    };
+
+    const select = (code: string | null) => {
+      for (const a of root.querySelectorAll(".atlas-country")) {
+        a.classList.toggle("is-selected", a.getAttribute("data-code") === code);
+      }
+      const d = code ? details[code] : undefined;
+      if (!panelEmpty || !panelCountry) return;
+      panelEmpty.hidden = Boolean(d);
+      panelCountry.hidden = !d;
+      if (!d) return;
+      const kpis = el("div", "kpis atlas-kpis");
+      for (const [value, label] of [
+        [d.count, labels.events],
+        [d.direct, labels.direct],
+      ] as const) {
+        const box = el("div");
+        box.append(el("b", "", String(value)), el("span", "kicker", label));
+        kpis.append(box);
+      }
+      const roles = el("div");
+      roles.append(el("p", "kicker", labels.roles));
+      const roleList = el("ul", "atlas-roles");
+      for (const r of d.roles) {
+        const li = el("li");
+        const p = el("span", "", r.predicate);
+        p.lang = "it";
+        li.append(p, el("span", "meta", ` (${r.count})`));
+        roleList.append(li);
+      }
+      roles.append(d.roles.length ? roleList : el("p", "meta", labels.none));
+      const events = el("div");
+      events.append(el("p", "kicker", labels.latest));
+      const list = el("ul", "atlas-events");
+      for (const e of d.events) {
+        const li = el("li");
+        const a = el("a", "", e.title) as HTMLAnchorElement;
+        a.href = e.url;
+        li.append(el("span", "meta mono", e.date), a);
+        list.append(li);
+      }
+      events.append(list);
+      if (d.count > d.events.length) events.append(el("p", "meta", `+${d.count - d.events.length} ${labels.more}`));
+      const actions = el("div", "flex flex-wrap gap-2");
+      if (d.state) {
+        const profile = el("a", "btn", labels.open) as HTMLAnchorElement;
+        profile.href = d.state.url;
+        const board = el("a", "btn btn-ghost", labels.board) as HTMLAnchorElement;
+        board.href = d.state.board;
+        actions.append(profile, board);
+      }
+      panelCountry.replaceChildren(el("p", "kicker", code ?? ""), el("h2", "atlas-panel-title", d.name), kpis, actions, roles, events);
+    };
+
+    // Map extent toggle.
+    for (const button of root.querySelectorAll<HTMLButtonElement>("[data-extent]")) {
+      button.addEventListener("click", () => {
+        for (const b of root.querySelectorAll("[data-extent]")) b.setAttribute("aria-pressed", String(b === button));
+        for (const f of figures) f.hidden = f.dataset.map !== button.dataset.extent;
+        current = figures.find((f) => !f.hidden) ?? figures[0];
+      });
+    }
+
+    // Zoom by viewBox: buttons, ⌘/Ctrl + wheel, drag to pan.
+    const box = (svg: SVGSVGElement) => svg.getAttribute("viewBox")?.split(" ").map(Number) ?? [0, 0, 960, 720];
+    const base = (svg: SVGSVGElement) => svg.dataset.baseViewbox?.split(" ").map(Number) ?? [0, 0, 960, 720];
+    const setBox = (svg: SVGSVGElement, [x, y, w, h]: number[]) => {
+      const [, , bw, bh] = base(svg);
+      const width = Math.min(bw, Math.max(bw / 8, w));
+      const height = (width / bw) * bh;
+      const nx = Math.min(bw - width, Math.max(0, x + (w - width) / 2));
+      const ny = Math.min(bh - height, Math.max(0, y + (h - height) / 2));
+      svg.setAttribute("viewBox", `${nx} ${ny} ${width} ${height}`);
+    };
+    const zoom = (factor: number) => {
+      const svg = current.querySelector("svg");
+      if (!svg) return;
+      const [x, y, w, h] = box(svg);
+      setBox(svg, [x, y, w / factor, h / factor]);
+    };
+    for (const button of root.querySelectorAll<HTMLButtonElement>("[data-zoom]")) {
+      button.addEventListener("click", () => {
+        const svg = current.querySelector("svg");
+        if (button.dataset.zoom === "fit" && svg) svg.setAttribute("viewBox", base(svg).join(" "));
+        else zoom(button.dataset.zoom === "in" ? 1.5 : 1 / 1.5);
+      });
+    }
+    for (const figure of figures) {
+      const svg = figure.querySelector("svg");
+      if (!svg) continue;
+      svg.addEventListener(
+        "wheel",
+        (event) => {
+          if (!event.ctrlKey && !event.metaKey) return;
+          event.preventDefault();
+          zoom(event.deltaY < 0 ? 1.2 : 1 / 1.2);
+        },
+        { passive: false },
+      );
+      let start: { x: number; y: number; box: number[]; moved: boolean } | null = null;
+      svg.addEventListener("pointerdown", (event) => {
+        start = { x: event.clientX, y: event.clientY, box: box(svg), moved: false };
+      });
+      svg.addEventListener("pointermove", (event) => {
+        if (!start) return;
+        const rect = svg.getBoundingClientRect();
+        const dx = ((event.clientX - start.x) / rect.width) * start.box[2];
+        const dy = ((event.clientY - start.y) / rect.height) * start.box[3];
+        if (Math.abs(dx) + Math.abs(dy) > 2) {
+          start.moved = true;
+          setBox(svg, [start.box[0] - dx, start.box[1] - dy, start.box[2], start.box[3]]);
+        }
+      });
+      svg.addEventListener("pointerup", () => {
+        window.setTimeout(() => {
+          start = null;
+        });
+      });
+      svg.addEventListener("click", (event) => {
+        if (start?.moved) event.preventDefault();
+      });
+    }
+
+    // Selection from the map (links keep #CODE deep links), the table and the hash.
+    for (const a of root.querySelectorAll<SVGAElement>(".atlas-country")) {
+      a.addEventListener("click", (event) => {
+        event.preventDefault();
+        const code = a.getAttribute("data-code");
+        history.replaceState(null, "", `#${code}`);
+        select(code);
+      });
+    }
+    for (const button of document.querySelectorAll<HTMLButtonElement>("[data-select]")) {
+      button.addEventListener("click", () => {
+        history.replaceState(null, "", `#${button.dataset.select}`);
+        select(button.dataset.select ?? null);
+        root.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      });
+    }
+    const fromHash = location.hash.slice(1);
+    if (details[fromHash]) select(fromHash);
+
+    // Sortable country table.
+    const table = document.querySelector<HTMLTableElement>("[data-sortable]");
+    for (const button of table?.querySelectorAll<HTMLButtonElement>("[data-sort]") ?? []) {
+      button.addEventListener("click", () => {
+        const key = button.dataset.sort ?? "name";
+        const th = button.closest("th");
+        const ascending = th?.getAttribute("aria-sort") !== "ascending";
+        for (const h of table?.querySelectorAll("th[aria-sort]") ?? []) h.removeAttribute("aria-sort");
+        th?.setAttribute("aria-sort", ascending ? "ascending" : "descending");
+        const body = table?.tBodies[0];
+        const rowsSorted = [...(body?.rows ?? [])].sort((a, b) => {
+          const va = a.dataset[key] ?? "";
+          const vb = b.dataset[key] ?? "";
+          const cmp = key === "name" ? va.localeCompare(vb) : Number(va) - Number(vb);
+          return ascending ? cmp : -cmp;
+        });
+        body?.append(...rowsSorted);
+      });
+    }
+  }
+</script>
+
+<style is:global>
+  .atlas {
+    display: grid;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-2);
+    background: var(--paper-raised);
+    overflow: hidden;
+  }
+  @media (min-width: 1024px) {
+    .atlas {
+      grid-template-columns: 1fr 22rem;
+    }
+  }
+  .atlas-map {
+    position: relative;
+    background: var(--paper-sunken);
+  }
+  .atlas-tools {
+    position: absolute;
+    z-index: 2;
+    left: 0.75rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    pointer-events: none;
+  }
+  .atlas-tools > * {
+    pointer-events: auto;
+  }
+  .atlas-zoom {
+    display: flex;
+    gap: 0.35rem;
+  }
+  .atlas-zoom button {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-2);
+    background: var(--paper-raised);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .atlas-figure {
+    margin: 0;
+  }
+  .atlas-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: grab;
+    touch-action: pan-y;
+  }
+  .atlas-sea {
+    fill: var(--paper-sunken);
+  }
+  .atlas-land {
+    stroke: var(--paper-raised);
+    stroke-width: 0.5;
+  }
+  .atlas-country path {
+    stroke: var(--paper-raised);
+    stroke-width: 0.6;
+    transition: opacity var(--dur-fast) var(--ease-standard);
+  }
+  .atlas-country:hover path,
+  .atlas-country:focus-visible path {
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  .atlas-country:focus-visible {
+    outline: none;
+  }
+  .atlas-country.is-selected path {
+    stroke: var(--ink);
+    stroke-width: 2.4;
+  }
+  .atlas-labels text {
+    font: 600 11px var(--font-mono);
+    fill: var(--ink);
+    text-anchor: middle;
+    dominant-baseline: middle;
+    paint-order: stroke;
+    stroke: var(--paper-raised);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+  .atlas-legend {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--radius-2);
+    background: color-mix(in srgb, var(--paper-raised) 90%, transparent);
+    font: 500 var(--text-micro) / 1 var(--font-mono);
+    color: var(--ink-2);
+  }
+  .atlas-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .atlas-legend span {
+    width: 0.9rem;
+    height: 0.65rem;
+    border: 1px solid var(--rule);
+  }
+  .atlas-panel {
+    padding: var(--space-4);
+    border-top: 1px solid var(--rule);
+    max-height: 46rem;
+    overflow-y: auto;
+  }
+  @media (min-width: 1024px) {
+    .atlas-panel {
+      border-top: 0;
+      border-left: 1px solid var(--rule);
+    }
+  }
+  .atlas-panel-title {
+    margin: 0.2rem 0 0.75rem;
+    font-size: var(--text-2xl);
+  }
+  .atlas-panel .atlas-kpis {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: var(--space-3);
+  }
+  .atlas-panel .kicker {
+    margin: var(--space-4) 0 0.4rem;
+  }
+  .atlas-roles li,
+  .atlas-events li {
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: var(--text-sm);
+  }
+  .atlas-events li {
+    display: grid;
+    gap: 0.1rem;
+  }
+  .sort-btn,
+  .link-like {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+  }
+  .link-like {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+  th[aria-sort="ascending"] .sort-btn::after {
+    content: " ↑";
+  }
+  th[aria-sort="descending"] .sort-btn::after {
+    content: " ↓";
+  }
+</style>

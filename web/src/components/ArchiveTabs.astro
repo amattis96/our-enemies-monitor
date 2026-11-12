@@ -1,0 +1,32 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { ui } from "../../../src/site/i18n.ts";
+import { href } from "../lib/links.ts";
+import Icon from "./Icon.astro";
+
+// Tabs of the Archive area: entities, hypotheses and sources indexes.
+interface Props {
+  lang: Language;
+  current: "entities" | "hypotheses" | "sources";
+  counts: Record<"entities" | "hypotheses" | "sources", number>;
+}
+const { lang, current, counts } = Astro.props;
+const t = ui(lang);
+const tabs = [
+  ["entities", t.navEntities, "nav-entities"],
+  ["hypotheses", t.navHypotheses, "nav-hypotheses"],
+  ["sources", t.navSources, "nav-sources"],
+] as const;
+---
+
+<p class="kicker">{t.navArchive}</p>
+<nav class="tabs" aria-label={t.navArchive}>
+  {
+    tabs.map(([key, label, icon]) => (
+      <a href={href(`${key}/`, lang)} aria-current={key === current ? "page" : undefined}>
+        <Icon name={icon} />
+        {label} <span class="mono text-muted">{counts[key]}</span>
+      </a>
+    ))
+  }
+</nav>

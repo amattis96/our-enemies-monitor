@@ -1,0 +1,24 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import Illustration from "./Illustration.astro";
+
+// "What this does not prove": explanatory illustration + short text.
+interface Props {
+  lang: Language;
+  illustration:
+    | "evidence-ladder"
+    | "not-transitive"
+    | "location-not-responsibility"
+    | "separate-claims";
+}
+const { lang, illustration } = Astro.props;
+---
+
+<aside class="limits" aria-label={choose(lang, "Limiti di lettura", "Reading limits")}>
+  <Illustration name={illustration} />
+  <div>
+    <p class="kicker">{choose(lang, "Limiti di lettura", "Reading limits")}</p>
+    <slot />
+  </div>
+</aside>

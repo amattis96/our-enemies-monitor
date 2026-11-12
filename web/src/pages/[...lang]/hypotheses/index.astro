@@ -2,6 +2,7 @@
 import { HYPOTHESIS_PRIORITIES } from "../../../../../src/model/index.ts";
 import { HYPOTHESIS_STATUS_LABELS, PRIORITY_LABELS } from "../../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import ArchiveTabs from "../../../components/ArchiveTabs.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import T from "../../../components/T.astro";
 import Base from "../../../layouts/Base.astro";
@@ -19,6 +20,7 @@ const groups = HYPOTHESIS_PRIORITIES.map((priority) => ({
 ---
 
 <Base title={c("Ipotesi aperte", "Open hypotheses")} lang={lang}>
+  <ArchiveTabs lang={lang} current="hypotheses" counts={{ entities: getModel().dataset.entities.length, hypotheses: getModel().dataset.hypotheses.length, sources: getModel().dataset.sources.length }} />
   <h1>{c("Registro delle ipotesi aperte", "Register of open hypotheses")}</h1>
   <div class="notice max-w-3xl">
     {c(

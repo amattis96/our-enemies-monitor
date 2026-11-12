@@ -57,7 +57,8 @@ A change whose docs describe something the code does not do is incomplete.
 
 ```bash
 pnpm install            # exact pinned versions
-pnpm check              # everything CI runs: lint, typecheck, test, validate, schema freshness
+pnpm check              # everything CI runs: lint, typecheck, test, validate, schema freshness, contrast
+pnpm check:contrast     # WCAG contrast of the Dossier colour tokens (docs/design/tokens.css)
 pnpm validate           # data validation only (errors fail, warnings print)
 pnpm validate:articles  # content/articles/ validation + publication gate report
 pnpm articles:hash [--write]  # English source_hash of each article
@@ -115,6 +116,14 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
   links.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
+- `docs/design/` — Dossier design system v1: the single source of the
+  tokens (`tokens.css`), icon sprite, logo, favicon and illustrations the site
+  imports, plus component and page specs, audit and M7 plan. UI work follows
+  it: semantic tokens only (no hard-coded colours in components), icons via
+  `Icon.astro`, evidence via `EvidenceStamp.astro` (glyph + code + label,
+  never colour alone), icon/colour/thread choices in `src/site/visual.ts`,
+  illustrations without words. A new theme, kind or relation group needs a
+  sprite symbol (tested). Run `pnpm check:contrast` after changing colours.
 - `content/articles/` — editorial articles (Markdown + YAML front matter),
   not canonical records. Model in `src/model/article.ts`, loading and checks
   in `src/pipeline/articles.ts`, publication gate and rendering in
