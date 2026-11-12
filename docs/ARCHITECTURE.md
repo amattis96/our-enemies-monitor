@@ -45,7 +45,7 @@ with the code (see [AGENTS.md](../AGENTS.md)).
 | Lint / format | Biome 2 | Code and Astro formatting/lint; data formatting is done by the pipeline |
 | CI / CD | GitHub Actions | `pnpm check` and `pnpm build` on every push and PR; deploy to Pages from `main` |
 | Website | Astro 7 + React 19 islands | Static HTML pages; React only for timeline and network |
-| Styling | Tailwind CSS 4 | Functional MVP styling with native form controls; a dedicated UI/UX design study will replace it (React Aria Components to be evaluated then) |
+| Styling | Tailwind CSS 4 | Functional MVP styling with native form controls today. The replacement, the *Dossier* design system (tokens, fonts, icons, illustrations, component and page specs), is specified in `docs/design/` and is implemented in milestone M7 |
 | Network graph | Cytoscape.js | Edge styles per relation group, hypotheses on a separate layer |
 | Search | Pagefind | Static, multilingual index built from the generated pages |
 | Articles | YAML front matter (`yaml`) + micromark with GFM | Markdown rendered at build time; raw HTML escaped, unsafe URL schemes dropped |
@@ -110,6 +110,8 @@ web/                   Astro portal
   src/islands/         React islands: TimelineExplorer, NetworkExplorer
   src/lib/             Base-path/language links, cached read model, SVG map rendering
 docs/                  Architecture and project documentation
+  design/              Dossier design system v1: concept, foundations, components, page blueprints,
+                       UI/UX audit, M7 plan, tokens.css, SVG assets, specimen.html (not yet used by web/)
 .github/workflows/     CI (evidence diff, Pages deployment); no LLM API job
 .github/agent/         Legacy agent prompt pointer; M6 rules live in docs/
 .github/ISSUE_TEMPLATE/ Correction and new-evidence forms
@@ -550,3 +552,4 @@ contributor / research agent          maintainer
 
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
 | **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; sidecar contract and `pnpm ingest` implemented; article model, validation, gate and pages done (demo fixtures only); Task A sidecar prompt, unattended run and Task B pending |
+| **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); phased implementation in the portal | Design done (2026-11-12); implementation pending (phases 7.1–7.8 in `docs/design/IMPLEMENTATION_PLAN.md`) |

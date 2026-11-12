@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" fill="none" aria-hidden="true">
+  <!-- A → B and B → C do not imply A → C: proximity on the board is not coordination. -->
+  <defs>
+    <marker id="nt-tag" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="12" markerHeight="12" orient="auto"><path d="M1 2 11 6 1 10 3 6z" fill="currentColor"/></marker>
+    <pattern id="nt-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="currentColor" stroke-width="0.8" opacity="0.12"/></pattern>
+  </defs>
+  <path d="M88 119Q164.0 119.0 240 51" stroke="currentColor" stroke-width="4.75" opacity=".12" stroke-linecap="round"/><path d="M88 119Q164.0 119.0 240 51" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+  <path d="M240 51Q316.0 119.0 392 119" stroke="currentColor" stroke-width="4.75" opacity=".12" stroke-linecap="round"/><path d="M240 51Q316.0 119.0 392 119" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+  <path d="M-7 -5 7 0-7 5-4 0z" transform="translate(171.6 98.4) rotate(-26.2)" fill="currentColor"/>
+  <path d="M-7 -5 7 0-7 5-4 0z" transform="translate(323.6 105.2) rotate(21.9)" fill="currentColor"/>
+  <path d="M88 184Q240 260 392 184" stroke="var(--signal, #b3261e)" stroke-width="2.25" stroke-dasharray="7 6" stroke-linecap="round"/>
+  <g stroke="var(--signal, #b3261e)" stroke-width="2.5" stroke-linecap="round"><circle cx="240" cy="222.0" r="15" fill="var(--paper, #f7f4ee)"/><path d="m232 214.0 16 16M248 214.0l-16 16"/></g>
+  <g transform="rotate(-3 88 150)">
+    <rect x="42.0" y="121.0" width="96" height="66" fill="currentColor" opacity=".12"/>
+    <rect x="40.0" y="117.0" width="96" height="66" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M44 132h88" stroke="var(--signal, #b3261e)" stroke-width=".9" opacity=".55"/>
+    <text x="88" y="166" font-family="Newsreader, Georgia, serif" font-size="30" font-weight="600" fill="currentColor" text-anchor="middle">A</text>
+  <circle cx="89.4" cy="121.0" r="6" fill="currentColor" opacity=".18"/><circle cx="88" cy="119.0" r="6" fill="var(--pin, #b3261e)" stroke="currentColor" stroke-width=".9"/><circle cx="85.9" cy="116.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+  <g transform="rotate(1.5 240 82)">
+    <rect x="194.0" y="53.0" width="96" height="66" fill="currentColor" opacity=".12"/>
+    <rect x="192.0" y="49.0" width="96" height="66" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M196 64h88" stroke="var(--signal, #b3261e)" stroke-width=".9" opacity=".55"/>
+    <text x="240" y="98" font-family="Newsreader, Georgia, serif" font-size="30" font-weight="600" fill="currentColor" text-anchor="middle">B</text>
+  <circle cx="241.4" cy="53.0" r="6" fill="currentColor" opacity=".18"/><circle cx="240" cy="51.0" r="6" fill="var(--pin-brass, #b08a3e)" stroke="currentColor" stroke-width=".9"/><circle cx="237.9" cy="48.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+  <g transform="rotate(3 392 150)">
+    <rect x="346.0" y="121.0" width="96" height="66" fill="currentColor" opacity=".12"/>
+    <rect x="344.0" y="117.0" width="96" height="66" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M348 132h88" stroke="var(--signal, #b3261e)" stroke-width=".9" opacity=".55"/>
+    <text x="392" y="166" font-family="Newsreader, Georgia, serif" font-size="30" font-weight="600" fill="currentColor" text-anchor="middle">C</text>
+  <circle cx="393.4" cy="121.0" r="6" fill="currentColor" opacity=".18"/><circle cx="392" cy="119.0" r="6" fill="var(--pin, #b3261e)" stroke="currentColor" stroke-width=".9"/><circle cx="389.9" cy="116.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" fill="none" aria-hidden="true">
+  <!-- Event, perpetrator, sponsor, motive and impact are five separate claims, each with its own evidence level. -->
+  <defs>
+    <symbol id="sc-event" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><rect x="3" y="4.5" width="18" height="16.5" rx="1.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="m12 12 3 3-3 3-3-3z" fill="currentColor"/></g></symbol>
+    <symbol id="sc-person" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="12" cy="8" r="3.75"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></g></symbol>
+    <symbol id="sc-sponsor" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.4a4.5 4.5 0 1 0 0 7.2"/><path d="M7 10.8h6M7 13.2h6"/></g></symbol>
+    <symbol id="sc-motive" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><path d="M12 1.5v4M12 18.5v4M1.5 12h4M18.5 12h4"/></g></symbol>
+    <symbol id="sc-impact" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="12" cy="12" r="1.6" fill="currentColor"/><path d="M8 8a5.7 5.7 0 0 0 0 8M16 8a5.7 5.7 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></g></symbol>
+    <pattern id="sc-hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v4" stroke="currentColor" stroke-width="0.8" opacity="0.25"/></pattern>
+  </defs>
+  <path d="M12 236H468" stroke="currentColor" stroke-width="1"/><path d="M52 232v8 M146 232v8 M240 232v8 M334 232v8 M428 232v8" stroke="currentColor" stroke-width="1"/>
+  <path d="M99 70v136 M193 70v136 M287 70v136 M381 70v136" stroke="currentColor" stroke-width="1.25" stroke-dasharray="2 4" opacity=".45"/>
+  <g transform="rotate(-2 52 138)">
+    <rect x="14.0" y="76.0" width="80" height="132" fill="currentColor" opacity=".12"/>
+    <rect x="12.0" y="72.0" width="80" height="132" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="12.0" y="72.0" width="80" height="46" fill="var(--paper-sunken, #eee9df)"/><rect x="12.0" y="72.0" width="80" height="46" fill="url(#sc-hatch)"/><path d="M12.0 118.0h80" stroke="currentColor" stroke-width="1.25"/>
+    <rect x="35" y="80.0" width="34" height="34" rx="17" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/>
+    <use href="#sc-event" x="41" y="86.0" width="22" height="22"/>
+  <path d="M24.0 134.0h56 M24.0 144.0h56 M24.0 154.0h34" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M18.0 170.0h68" stroke="currentColor" stroke-width=".75" stroke-dasharray="2 2.5" opacity=".6"/>
+    <path d="M28.0 178.0l7 12.5h-14z" fill="currentColor"/><text x="40.0" y="189.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" font-weight="600" fill="currentColor">E2</text>
+  <circle cx="53.4" cy="76.0" r="6" fill="currentColor" opacity=".18"/><circle cx="52" cy="74.0" r="6" fill="var(--pin, #b3261e)" stroke="currentColor" stroke-width=".9"/><circle cx="49.9" cy="71.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+  <g transform="rotate(1.5 146 138)">
+    <rect x="108.0" y="76.0" width="80" height="132" fill="currentColor" opacity=".12"/>
+    <rect x="106.0" y="72.0" width="80" height="132" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="106.0" y="72.0" width="80" height="46" fill="var(--paper-sunken, #eee9df)"/><rect x="106.0" y="72.0" width="80" height="46" fill="url(#sc-hatch)"/><path d="M106.0 118.0h80" stroke="currentColor" stroke-width="1.25"/>
+    <rect x="129" y="80.0" width="34" height="34" rx="17" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/>
+    <use href="#sc-person" x="135" y="86.0" width="22" height="22"/>
+  <path d="M118.0 134.0h56 M118.0 144.0h56 M118.0 154.0h34" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M112.0 170.0h68" stroke="currentColor" stroke-width=".75" stroke-dasharray="2 2.5" opacity=".6"/>
+    <circle cx="122.0" cy="185.0" r="6" stroke="currentColor" stroke-width="1.75"/><path d="M122.0 179.0a6 6 0 0 0 0 12z" fill="currentColor"/><text x="134.0" y="189.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" font-weight="600" fill="currentColor">E3</text>
+  <circle cx="147.4" cy="76.0" r="6" fill="currentColor" opacity=".18"/><circle cx="146" cy="74.0" r="6" fill="var(--pin-brass, #b08a3e)" stroke="currentColor" stroke-width=".9"/><circle cx="143.9" cy="71.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+  <g transform="rotate(-1 240 138)">
+    <rect x="202.0" y="76.0" width="80" height="132" fill="currentColor" opacity=".12"/>
+    <rect x="200.0" y="72.0" width="80" height="132" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="200.0" y="72.0" width="80" height="46" fill="var(--paper-sunken, #eee9df)"/><rect x="200.0" y="72.0" width="80" height="46" fill="url(#sc-hatch)"/><path d="M200.0 118.0h80" stroke="currentColor" stroke-width="1.25"/>
+    <rect x="223" y="80.0" width="34" height="34" rx="17" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/>
+    <use href="#sc-sponsor" x="229" y="86.0" width="22" height="22"/>
+  <path d="M212.0 134.0h56 M212.0 144.0h56 M212.0 154.0h34" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M206.0 170.0h68" stroke="currentColor" stroke-width=".75" stroke-dasharray="2 2.5" opacity=".6"/>
+    <circle cx="216.0" cy="185.0" r="6" stroke="currentColor" stroke-width="1.75"/><text x="228.0" y="189.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" font-weight="600" fill="currentColor">E4</text>
+  <circle cx="241.4" cy="76.0" r="6" fill="currentColor" opacity=".18"/><circle cx="240" cy="74.0" r="6" fill="var(--pin, #b3261e)" stroke="currentColor" stroke-width=".9"/><circle cx="237.9" cy="71.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+  <g transform="rotate(2 334 138)">
+    <rect x="296.0" y="76.0" width="80" height="132" fill="currentColor" opacity=".12"/>
+    <rect x="294.0" y="72.0" width="80" height="132" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="294.0" y="72.0" width="80" height="46" fill="var(--paper-sunken, #eee9df)"/><rect x="294.0" y="72.0" width="80" height="46" fill="url(#sc-hatch)"/><path d="M294.0 118.0h80" stroke="currentColor" stroke-width="1.25"/>
+    <rect x="317" y="80.0" width="34" height="34" rx="17" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/>
+    <use href="#sc-motive" x="323" y="86.0" width="22" height="22"/>
+  <path d="M306.0 134.0h56 M306.0 144.0h56 M306.0 154.0h34" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M300.0 170.0h68" stroke="currentColor" stroke-width=".75" stroke-dasharray="2 2.5" opacity=".6"/>
+    <path d="m310.0 177.0 8 8-8 8-8-8z" stroke="var(--signal, #b3261e)" stroke-width="1.75" stroke-dasharray="2.6 2.2"/><text x="322.0" y="189.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" font-weight="600" fill="var(--signal, #b3261e)">E5</text>
+  <circle cx="335.4" cy="76.0" r="6" fill="currentColor" opacity=".18"/><circle cx="334" cy="74.0" r="6" fill="var(--pin-brass, #b08a3e)" stroke="currentColor" stroke-width=".9"/><circle cx="331.9" cy="71.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+  <g transform="rotate(-1.5 428 138)">
+    <rect x="390.0" y="76.0" width="80" height="132" fill="currentColor" opacity=".12"/>
+    <rect x="388.0" y="72.0" width="80" height="132" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="388.0" y="72.0" width="80" height="46" fill="var(--paper-sunken, #eee9df)"/><rect x="388.0" y="72.0" width="80" height="46" fill="url(#sc-hatch)"/><path d="M388.0 118.0h80" stroke="currentColor" stroke-width="1.25"/>
+    <rect x="411" y="80.0" width="34" height="34" rx="17" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/>
+    <use href="#sc-impact" x="417" y="86.0" width="22" height="22"/>
+  <path d="M400.0 134.0h56 M400.0 144.0h56 M400.0 154.0h34" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M394.0 170.0h68" stroke="currentColor" stroke-width=".75" stroke-dasharray="2 2.5" opacity=".6"/>
+    <circle cx="404.0" cy="185.0" r="6" stroke="currentColor" stroke-width="1.75"/><path d="M404.0 179.0a6 6 0 0 0 0 12z" fill="currentColor"/><text x="416.0" y="189.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11" font-weight="600" fill="currentColor">E3</text>
+  <circle cx="429.4" cy="76.0" r="6" fill="currentColor" opacity=".18"/><circle cx="428" cy="74.0" r="6" fill="var(--pin, #b3261e)" stroke="currentColor" stroke-width=".9"/><circle cx="425.9" cy="71.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+
+</svg>

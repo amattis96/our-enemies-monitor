@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" fill="none" aria-hidden="true">
+  <!-- Where an event happened is not who is responsible for it. Abstract territory, not a real country. -->
+  <defs>
+    <pattern id="lr-hatch" width="4.5" height="4.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v4.5" stroke="currentColor" stroke-width="0.8" opacity="0.3"/></pattern>
+    <pattern id="lr-sea" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(0)"><path d="M0 0v6" stroke="currentColor" stroke-width="0.6" opacity="0.1"/></pattern>
+  </defs>
+  <rect x="22" y="30" width="214" height="210" fill="var(--paper-sunken, #eee9df)"/><rect x="22" y="30" width="214" height="210" fill="url(#lr-sea)"/>
+  <path d="M22 72h214 M22 114h214 M22 156h214 M22 198h214 M65 30v210 M108 30v210 M151 30v210 M194 30v210" stroke="currentColor" stroke-width=".75" stroke-dasharray="2 3" opacity=".4"/>
+  <path d="M52 104l30-28 42 8 28-22 42 16 12 38-22 26 10 38-44 20-40-12-36 12-26-28 8-36z" stroke="currentColor" stroke-width="7" opacity=".1" stroke-linejoin="round"/>
+  <path d="M52 104l30-28 42 8 28-22 42 16 12 38-22 26 10 38-44 20-40-12-36 12-26-28 8-36z" fill="var(--seq-2, #9bbbe0)"/><path d="M52 104l30-28 42 8 28-22 42 16 12 38-22 26 10 38-44 20-40-12-36 12-26-28 8-36z" fill="url(#lr-hatch)"/><path d="M52 104l30-28 42 8 28-22 42 16 12 38-22 26 10 38-44 20-40-12-36 12-26-28 8-36z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="22" y="30" width="214" height="210" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M43.4 30v4 M64.8 30v4 M86.2 30v4 M107.6 30v4 M129.0 30v4 M150.4 30v4 M171.8 30v4 M193.2 30v4 M214.6 30v4 M22 51.0h4 M22 72.0h4 M22 93.0h4 M22 114.0h4 M22 135.0h4 M22 156.0h4 M22 177.0h4 M22 198.0h4 M22 219.0h4" stroke="currentColor" stroke-width="1"/>
+  <g transform="translate(212 56)"><circle r="11" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1"/><path d="M0 -8 3 0 0 8 -3 0z" fill="currentColor"/><path d="M0 -8 3 0H-3z" fill="var(--signal, #b3261e)"/></g>
+  <ellipse cx="131" cy="151" rx="11" ry="3.5" fill="currentColor" opacity=".22"/>
+  <path d="M128 150s-21-21-21-37a21 21 0 0 1 42 0c0 16-21 37-21 37z" fill="var(--signal, #b3261e)" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><circle cx="128" cy="113" r="8" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.25"/>
+  <g stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-dasharray="7 6"><path d="M150 112Q205 104 252 124"/><path d="M290 132Q306 138 322 136"/></g>
+  <g stroke="var(--signal, #b3261e)" stroke-width="2.5" stroke-linecap="round"><circle cx="271" cy="128" r="15" fill="var(--paper, #f7f4ee)"/><path d="m263 120 16 16M279 120l-16 16"/></g>
+  <g transform="rotate(2.5 390 138)">
+    <rect x="332.0" y="62.0" width="120" height="160" fill="currentColor" opacity=".12"/>
+    <rect x="330.0" y="58.0" width="120" height="160" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="340" y="72" width="100" height="92" fill="var(--paper-sunken, #eee9df)"/>
+    <rect x="340" y="72" width="100" height="92" fill="url(#lr-hatch)" opacity=".5"/>
+    <circle cx="390" cy="104" r="15" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="2"/>
+    <path d="M363 164a27 27 0 0 1 54 0z" fill="var(--paper-raised, #fffdf9)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M346 182h88 M346 192h53" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+  <circle cx="391.4" cy="62.0" r="6" fill="currentColor" opacity=".18"/><circle cx="390" cy="60.0" r="6" fill="var(--pin-brass, #b08a3e)" stroke="currentColor" stroke-width=".9"/><circle cx="387.9" cy="57.9" r="1.8" fill="#fff" opacity=".65"/>
+  </g>
+
+</svg>

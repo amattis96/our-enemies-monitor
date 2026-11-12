@@ -222,6 +222,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Implement the article contract, validation, publication gate and IT/EN article pages with Markdown downloads (M6, demo fixtures only).
 - [ ] Schedule independent ChatGPT Task B and publish its first reviewed article (M6).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
+- [x] Design the *Dossier* design system and audit the portal UI/UX ([docs/design/](docs/design/README.md), M7 design).
+- [ ] Implement the Dossier design in the portal: themes, navigation, evidence stamps, newest-first timeline, investigation board, interactive atlas (M7).
 - [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.
 - [ ] Final editorial approval of the 36 person-link assessments (35 now referenced, one still restricted) and of all contested Fonte_09 claims. No record is automatically promoted to reviewed.
 

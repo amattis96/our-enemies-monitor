@@ -115,6 +115,11 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
   links.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
+- `docs/design/` — Dossier design system v1 (tokens, icons, illustrations,
+  component and page specs, audit, M7 plan). UI work follows it: semantic
+  tokens only (no hard-coded colours), evidence shown by glyph + pattern +
+  text (never colour alone), illustrations without words. Run
+  `node docs/design/scripts/check-contrast.mjs` after changing colours.
 - `content/articles/` — editorial articles (Markdown + YAML front matter),
   not canonical records. Model in `src/model/article.ts`, loading and checks
   in `src/pipeline/articles.ts`, publication gate and rendering in
