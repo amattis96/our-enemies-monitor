@@ -11,14 +11,16 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.medienservice.sachsen.de/medien/news/1090967",
   "caveat": null,
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "M5 2026-11-12 primary-source check: Dresden court explicitly cites collection and analysis of European Parliament information; distinguish from unproven additional allegations."
+    ]
   },
   "provenance": [
     {

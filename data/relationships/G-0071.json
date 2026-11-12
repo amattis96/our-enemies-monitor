@@ -11,14 +11,16 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.whitehouse.gov/administration/",
   "caveat": null,
   "sources": [
     "S05"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "M5 2026-11-12 primary-source check: US White House documents office holder, not a covert act or illicit affiliation."
+    ]
   },
   "provenance": [
     {

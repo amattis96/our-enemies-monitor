@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.afd.de/afd-kanzlerkandidatin-alice-weidel-und-bundessprecher-tino-chrupalla-eroeffneten-in-halle-an-der-saale-vor-rund-4-500-gaesten-den-bundestagswahlkampf/",
   "caveat": {
     "it": "Non provato incarico federale o effetto elettorale determinante",
     "en": "Federal mandate or decisive electoral effect not proven"
@@ -22,7 +22,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: Primary statement by the beneficiary AfD documents Musk's public campaign appearance; independently reported by Reuters. This is not evidence of federal mandate or decisive electoral effect."
+    ],
     "translations": {
       "en": {
         "status": "machine",

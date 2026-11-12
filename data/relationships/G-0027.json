@@ -11,14 +11,16 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.justice.gov/archives/sco/file/1094156",
   "caveat": null,
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "M5 2026-11-12 primary-source check: Court-filed factual background identifies Yanukovych as leader of Party of Regions."
+    ]
   },
   "provenance": [
     {

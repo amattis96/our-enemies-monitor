@@ -7,11 +7,11 @@
   "evidence_level": "E2",
   "evidence_status": "institutional_attribution",
   "events": [
-    "TL-0024"
+    "TL-0035"
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.gov.uk/government/publications/the-rycroft-review-report-of-the-independent-review-into-countering-foreign-financial-influence-and-interference-in-uk-politics/the-rycroft-review-report-of-the-independent-review-into-countering-foreign-financial-influence-and-interference-in-uk-politics",
   "caveat": {
     "it": "MI5 Interference Alert",
     "en": "MI5 Interference Alert"
@@ -21,7 +21,10 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: According to MI5 alert as described in official UK review, funding provenance was concealed; allegation/status must be attributed to MI5, not stated as a conviction.",
+      "M5 correction: original TL-0024 refers to the US Senate 2016 election report, not Christine Lee; linked the 2022 MI5 alert event TL-0035 instead. Immutable provenance preserved."
+    ],
     "translations": {
       "en": {
         "status": "machine",
