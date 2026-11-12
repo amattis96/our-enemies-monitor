@@ -2,8 +2,9 @@
 
 **Status:** adopted 2026-10-26. Milestones M1–M4 implemented: data foundation,
 bilingual portal, atlas, dependencies, open data, editorial workflow and
-research agent. M5 publication quarantine is implemented; primary-source audit
-and claim-level verification remain in progress.
+research agent. M5 publication quarantine, initial source matching, structured
+Fonte_09 reconciliation, claim-level staging and automated audit are implemented.
+Human editorial approval and individual publication decisions remain open.
 This document describes the architecture as it is built. Keep it in sync
 with the code (see [AGENTS.md](../AGENTS.md)).
 
@@ -112,8 +113,12 @@ its real review state. Historical `imported_unreviewed` baseline records remain
 visible as **provisional** research, not editorially verified findings.
 `reviewed` does not waive the person-primary-source requirement.
 
-The [M5 evidence audit register](M5_EVIDENCE_AUDIT.md) documents the initial
-36 person-link gaps and the Fonte_09 source spot checks.
+The [M5 evidence audit register](M5_EVIDENCE_AUDIT.md) and the structured
+[25-source / 36-relationship / 30-decision / 20-claim file](audit/M5_2026-11-12.json)
+document the first review pass. `src/editorial/m5.ts` validates its schema and
+cross-checks source URLs, claim references, source completeness and pending
+editorial approvals against canonical JSON. `pnpm audit:m5` runs in CI, without
+marking unapproved claims as reviewed or modifying original provenance.
 
 `pnpm audit:publication` lists canonical/public counts, states per collection and
 named-person links missing a primary reference. This is an audit work queue,

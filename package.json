@@ -14,7 +14,7 @@
     "build": "astro build --root web && pagefind --site web/dist",
     "preview": "astro preview --root web",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm validate && pnpm schemas --check && pnpm audit:m5",
-    "lint": "biome check .",
+    "lint": "biome check --max-diagnostics=200 .",
     "lint:fix": "biome check --write .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

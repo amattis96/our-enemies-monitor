@@ -843,9 +843,7 @@
       "aspect": "occurrence",
       "evidence_level": "E1",
       "proposition_it": "Tra l'11 e il 12 ottobre 2026 autorità francesi hanno descritto una campagna contro controllori frigoriferi in oltre 700 punti vendita.",
-      "source_ids": [
-        "FR-REFRIG"
-      ],
+      "source_ids": ["FR-REFRIG"],
       "limitation_it": "Il conteggio e i danni sono attribuiti al ministero francese, non a una perizia indipendente.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -858,9 +856,7 @@
       "aspect": "attribution",
       "evidence_level": "E2",
       "proposition_it": "Il 10 novembre 2026 la Francia ha attribuito l'attacco dell'11–12 ottobre all'unità SHAHID KAVEH affiliata all'IRGC.",
-      "source_ids": [
-        "FR-REFRIG"
-      ],
+      "source_ids": ["FR-REFRIG"],
       "limitation_it": "Attribuzione istituzionale contestata dall'Iran, non una sentenza giudiziaria.",
       "contrary_evidence_it": null,
       "attribution_confidence": "institutional_claim",
@@ -873,9 +869,7 @@
       "aspect": "occurrence",
       "evidence_level": "E1",
       "proposition_it": "ENISA e Commissione europea hanno confermato una nuova ondata di incidenti il 1–2 novembre 2026.",
-      "source_ids": [
-        "EU-ENISA"
-      ],
+      "source_ids": ["EU-ENISA"],
       "limitation_it": "Il comunicato UE non stabilisce chi abbia ordinato la seconda ondata.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -888,9 +882,7 @@
       "aspect": "judicial_outcome",
       "evidence_level": "E1",
       "proposition_it": "Il 30 settembre 2025 il tribunale di Dresda ha condannato Jian G. a quattro anni e nove mesi per spionaggio a favore della Cina.",
-      "source_ids": [
-        "DE-JIAN"
-      ],
+      "source_ids": ["DE-JIAN"],
       "limitation_it": "La nota giudiziaria indicava una finestra per l'impugnazione; non assume irrevocabilità.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -903,9 +895,7 @@
       "aspect": "material_actor",
       "evidence_level": "E1",
       "proposition_it": "Secondo il tribunale di Dresda Jian G. ha raccolto informazioni sul Parlamento europeo durante l'impiego presso un eurodeputato.",
-      "source_ids": [
-        "DE-JIAN"
-      ],
+      "source_ids": ["DE-JIAN"],
       "limitation_it": "La fonte attesta il giudizio del tribunale sui fatti esaminati; non prova ogni altro collegamento politico.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -918,9 +908,7 @@
       "aspect": "attribution",
       "evidence_level": "E2",
       "proposition_it": "MI5 ha attribuito a Christine Lee attività di influenza collegate all'United Front Work Department.",
-      "source_ids": [
-        "UK-MI5"
-      ],
+      "source_ids": ["UK-MI5"],
       "limitation_it": "Riscontro di un alert MI5 nella revisione governativa, non condanna penale.",
       "contrary_evidence_it": null,
       "attribution_confidence": "institutional_claim",
@@ -933,9 +921,7 @@
       "aspect": "corporate_control",
       "evidence_level": "E1",
       "proposition_it": "Un prospetto SEC 2026 attribuisce a Elon Musk una quota maggioritaria dei diritti di voto di SpaceX.",
-      "source_ids": [
-        "US-SEC-SPX"
-      ],
+      "source_ids": ["US-SEC-SPX"],
       "limitation_it": "Quota societaria riferita al contesto del prospetto, non a ogni fase storica.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -948,9 +934,7 @@
       "aspect": "corporate_control",
       "evidence_level": "E1",
       "proposition_it": "Il filing SEC 2026 documenta l'integrazione di X Holdings nel gruppo xAI e poi SpaceX.",
-      "source_ids": [
-        "US-SEC-X26"
-      ],
+      "source_ids": ["US-SEC-X26"],
       "limitation_it": "La relazione storica diretta Musk→X va qualificata con i cambi di controllo societario 2025–2026.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -963,9 +947,7 @@
       "aspect": "public_statement",
       "evidence_level": "E1",
       "proposition_it": "Il partito AfD ha confermato la partecipazione pubblica di Elon Musk al proprio evento elettorale di Halle del gennaio 2025.",
-      "source_ids": [
-        "DE-AFD"
-      ],
+      "source_ids": ["DE-AFD"],
       "limitation_it": "Fonte primaria interessata: verifica la presenza, non la legittimità politica, un mandato federale o l'effetto sui voti.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -978,9 +960,7 @@
       "aspect": "administrative_act",
       "evidence_level": "E1",
       "proposition_it": "Nel giugno 2025 OFAC ha inflitto a GVA Capital una sanzione civile relativa alla gestione di un investimento riconducibile a Kerimov.",
-      "source_ids": [
-        "US-OFAC-GVA"
-      ],
+      "source_ids": ["US-OFAC-GVA"],
       "limitation_it": "Nessuna conclusione su investimenti SpaceX di HAL9001.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -993,9 +973,7 @@
       "aspect": "administrative_act",
       "evidence_level": "E1",
       "proposition_it": "Il 30 giugno 2022 OFAC ha comunicato una determinazione su un interesse patrimoniale di Kerimov nel Heritage Trust.",
-      "source_ids": [
-        "US-OFAC-HER"
-      ],
+      "source_ids": ["US-OFAC-HER"],
       "limitation_it": "Blocco amministrativo, non condanna penale.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1008,9 +986,7 @@
       "aspect": "administrative_act",
       "evidence_level": "E1",
       "proposition_it": "Il 2 dicembre 2025 OFAC ha annunciato un accordo transattivo con IPI Partners su investimenti di Kerimov.",
-      "source_ids": [
-        "US-OFAC-IPI"
-      ],
+      "source_ids": ["US-OFAC-IPI"],
       "limitation_it": "L'accordo non dimostra collegamento con HAL9001 o SpaceX.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1023,9 +999,7 @@
       "aspect": "judicial_outcome",
       "evidence_level": "E1",
       "proposition_it": "Nel novembre 2025 Nathan Gill è stato condannato a dieci anni e sei mesi dopo aver ammesso otto reati di corruzione.",
-      "source_ids": [
-        "GB-CPS-GILL"
-      ],
+      "source_ids": ["GB-CPS-GILL"],
       "limitation_it": "La sentenza non dimostra la responsabilità di ogni altro interlocutore.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1038,9 +1012,7 @@
       "aspect": "legal_proceeding",
       "evidence_level": "E1",
       "proposition_it": "La Counter Terrorism Policing britannica riferisce che Oleg Voloshyn è accusato di associazione finalizzata alla corruzione nel caso Gill.",
-      "source_ids": [
-        "GB-CTP-GILL"
-      ],
+      "source_ids": ["GB-CTP-GILL"],
       "limitation_it": "Voloshyn non è stato condannato nel caso e risulta ricercato: responsabilità personale non provata penalmente.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1053,9 +1025,7 @@
       "aspect": "judicial_outcome",
       "evidence_level": "E1",
       "proposition_it": "La procura moldava registra il rigetto definitivo del ricorso di Ilan Șor nel dicembre 2024 per frode e riciclaggio.",
-      "source_ids": [
-        "MD-SHOR-COURT"
-      ],
+      "source_ids": ["MD-SHOR-COURT"],
       "limitation_it": "Non è una condanna per le attività di influenza elettorale successive.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1068,9 +1038,7 @@
       "aspect": "institutional_attribution",
       "evidence_level": "E2",
       "proposition_it": "La BIS ceca ha pubblicamente descritto nel marzo 2024 una rete di influenza che coinvolge Medvedchuk e Voice of Europe.",
-      "source_ids": [
-        "CZ-BIS"
-      ],
+      "source_ids": ["CZ-BIS"],
       "limitation_it": "Riconoscere la natura di attribuzione istituzionale.",
       "contrary_evidence_it": null,
       "attribution_confidence": "institutional_claim",
@@ -1083,9 +1051,7 @@
       "aspect": "forensic_finding",
       "evidence_level": "E3",
       "proposition_it": "Citizen Lab ha documentato una compromissione Pegasus ai danni di Stelios Kouloglou durante il periodo nella commissione PEGA.",
-      "source_ids": [
-        "CA-CIT"
-      ],
+      "source_ids": ["CA-CIT"],
       "limitation_it": "Il rapporto non identifica conclusivamente il committente.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1098,9 +1064,7 @@
       "aspect": "legal_proceeding",
       "evidence_level": "E1",
       "proposition_it": "Il 10 novembre 2026 il DOJ ha reso pubblica un'incriminazione contro tre persone per presunti atti legati alla rete HAYI.",
-      "source_ids": [
-        "US-RAF"
-      ],
+      "source_ids": ["US-RAF"],
       "limitation_it": "L'atto di accusa non è una condanna; l'attribuzione dei fatti contestati rimane E4.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1113,9 +1077,7 @@
       "aspect": "reported_outcome",
       "evidence_level": "E3",
       "proposition_it": "Associated Press ha proiettato la conquista democratica del controllo di Camera e Senato USA nel voto del 3 novembre 2026.",
-      "source_ids": [
-        "US-AP26"
-      ],
+      "source_ids": ["US-AP26"],
       "limitation_it": "Chiamata giornalistica non è certificazione elettorale finale.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",
@@ -1128,9 +1090,7 @@
       "aspect": "reported_dataset",
       "evidence_level": "E3",
       "proposition_it": "The Guardian ha riportato nuove stime di decessi russi a partire da un presunto archivio Rosstat sottratto.",
-      "source_ids": [
-        "UK-GUARD-ROS"
-      ],
+      "source_ids": ["UK-GUARD-ROS"],
       "limitation_it": "Autenticità integrale, criteri di conteggio e confronto con altre stime non verificati indipendentemente.",
       "contrary_evidence_it": null,
       "attribution_confidence": "not_quantified",

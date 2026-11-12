@@ -2,15 +2,17 @@
 
 **Scope:** canonical dataset at commit `3fbad89` (Fonte_00–Fonte_09) and the M5 publication gate in PR #2.
 
-**Status:** evidence verification in progress. This is a **work queue**, not a finding of culpability, human editorial approval, or a completed source-by-source audit. No `review.status` was promoted to `reviewed`.
+**Status, 12 November 2026:** first-pass source matching and automated reconciliation completed. **35 of 36 sensitive person relationships now have a primary or institutional reference attached** with explicit claim limitations; `G-0230` remains restricted because no matching authoritative primary document was found. This audit is not a finding of culpability, exhaustive source authentication or human editorial approval. No `review.status` has been promoted to `reviewed`.
+
+The versioned machine-readable register is [M5_2026-11-12.json](audit/M5_2026-11-12.json). It contains **25 source metadata entries, 36 person-edge assessments, 30 Fonte_09 decisions and 20 individually sourced atomic claims**. All records explicitly retain `human_approved: false`, and the exact claims still require editorial confirmation. `pnpm audit:m5` checks structural and evidentiary consistency in CI.
 
 ## Reproducibility and baseline
 
 Run `pnpm audit:publication` to report current canonical/public counts, review-state distribution and person relationships missing `primary_url`. The original `sources/original/` and `sources/incremental/` files remain untouched.
 
-The immutable Fonte_07 edge/node CSV files contain **36** relationships with a person as subject or object but no `primary_url`: **15 direct relationships** and **21 event-participation links**. There are **17 other person relationships that already include a primary URL**. These are counts of **edges**, not allegations or persons under suspicion. The 36 edges are quarantined from public site and exports by the M5 gate; their canonical records and Git history remain accessible.
+The immutable Fonte_07 edge/node CSV files contain **36** relationships with a person as subject or object but no `primary_url`: **15 direct relationships** and **21 event-participation links**. There are **17 other person relationships that already include a primary URL**. These are counts of **edges**, not allegations or persons under suspicion. Following first-pass remediation, 35 edges carry their matched primary/institutional URL and notes about legal status and scope; only `G-0230` remains excluded by the person-primary-source publication gate. The other 35 are still labelled `imported_unreviewed` in the public provisional baseline and **must not be described as editorially approved**. The raw canonical records and Git history remain accessible.
 
-The new Fonte_09 contains 30 proposed `EXT-005`–`EXT-034` event/update records, including multiple phases of the *same* incident. None should be counted as 30 separate attacks. They remain `needs_review` and `pending_integration`, absent from public projections.
+The new Fonte_09 contains 30 proposed `EXT-005`–`EXT-034` event/update records, including multiple phases of the *same* incident. None should be counted as 30 separate attacks. They remain `needs_review` and `pending_integration`, absent from public projections. The 30-item reconciliation in the JSON register groups multiple records by underlying case and identifies independent attacks versus procedural updates, corrections, announcements and sources.
 
 ## Queue A: direct relationships without a primary URL (15)
 
@@ -63,13 +65,21 @@ Event participation is a navigation/role link, **not** evidence of command, fina
 
 These checks do **not** verify all figures, exact chronology, target counts, downstream damages, or each link in the proposed Fonte_09 graph.
 
+## Implemented controls and remaining editorial decisions
+
+- **Completed, structural:** 36/36 original person links assessed, 35 primary/institutional URLs attached with limitations, one withheld (`G-0230`); inappropriate Christine Lee references to `TL-0024` corrected to `TL-0035` without altering provenance.
+- **Completed, staging:** each of 30 Fonte_09 items has a proposed canonical action and case identifier, including merging Italy's November refrigeration wave with the European campaign, treating RAF Fairford filings as procedural acts, and splitting the Ust-Luga raid from Baltic drone alerts.
+- **Completed, staging:** 20 claim-level assertions represent occurrence, attribution, procedural status, material responsibility, control and reported outcome separately; each has at least one source and a limitation.
+- **Completed, metadata:** 25 dated source-register entries with publisher, URL, issued date where established, lookup date, archival and checksum fields explicitly set to null where not obtained. Do not interpret a URL match as independent certification of all text.
+- **Completed, automation:** `src/editorial/m5.ts`, `test/m5.test.ts`, and `pnpm audit:m5` check IDs, referential integrity, source-to-edge URL match, publication quarantine, Fonte_09 action coverage and false approval states.
+- **Open, editorial:** exact paragraph-level verification, rights of reply and per-record human sign-off are needed before any record becomes `reviewed`, or a pending event is integrated. This register deliberately contains zero approved claims.
+
 ## Acceptance criteria still open
 
-1. Verify the exact predicate of each of the 15 direct sensitive edges against a stable primary source and check contradictions, court status and dates; then separately check the 21 event-role edges.
-2. For Fonte_09, group the 30 update records by underlying incident, compare with `TL-*` and `EXT-001`–`EXT-004` to prevent event duplication, and document the decision for each: merge, update, standalone event or reject.
-3. Move from record-wide E1–E4 labels to individually sourced atomic claims for event occurrence, material actor, alleged sponsor, intent and measured impact. One label cannot imply the entire paragraph or graph path is proven.
-4. Introduce durable reference metadata (publisher, issued/published date, retrieved date, archived URL/checksum when rights permit, exact supported proposition, disputed response) without rewriting historic `provenance`.
-5. Have a human reviewer approve material claims before marking records `reviewed` and integrating pending candidates. Machine audits and primary source URLs alone do not constitute that approval.
-6. Keep GitHub Actions `pnpm check`, `pnpm build`, `pnpm check:links` green and perform manual spot checks on representative pages and exported artifacts.
+1. Complete exact paragraph-level source authentication and contrary-evidence checks where a matched institutional press statement is not sufficient, especially corporate-control edges and inconclusive sabotage allegations. Keep `G-0230` restricted without primary evidence.
+2. Obtain explicit human approval for material person-level claims, rights of reply and Fonte_09 deduplication decisions before modifying editorial `review.status` or `timeline_status`.
+3. Where publication-ready, apply the logged Fonte_09 actions in controlled changesets; preserve original IDs as audit links and dates of the action versus the incident.
+4. Obtain archival copies and SHA-256 only for material legally reproducible; null is correct until actually acquired.
+5. Keep CI green and manually spot-check pages and exports after approvals. Machine validation demonstrates consistency, **not** the truth of every claim.
 
 **Editorial note:** This PR deliberately prefers a conservative, reversible publication boundary over bulk-promoting evidence whose exact scope has not been individually checked.

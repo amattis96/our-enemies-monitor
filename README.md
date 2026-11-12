@@ -192,7 +192,9 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Define and validate normalized schemas and import the baseline into canonical data (M1).
 - [x] Add an M5 publication gate for candidates and unsourced named-person relationships (site and exports).
 - [x] Add a reproducible publication audit command (`pnpm audit:publication`) and [M5 evidence work queue](docs/M5_EVIDENCE_AUDIT.md).
-- [ ] Audit sensitive claims against stable primary-source references; review and integrate Fonte_09 candidates.
+- [x] First-pass source matching on 36 sensitive relationships (35 referenced, 1 restricted) and 30 Fonte_09 case/reconciliation decisions.
+- [x] Stage 20 atomic claims and 25 durable source metadata entries, guarded by `pnpm audit:m5`.
+- [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).
 - [x] Introduce multilingual navigation (Italian/English) with tracked translation status (M3).
@@ -201,7 +203,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Enable scheduled research (needs the `ANTHROPIC_API_KEY` secret), editorial review and automatic deployment (M4).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.
-- [ ] Editorial review of imported records, starting with the 36 restricted named-person relationships.
+- [ ] Final editorial approval of the 36 person-link assessments (35 now referenced, one still restricted) and of all contested Fonte_09 claims. No record is automatically promoted to reviewed.
 
 ## Contributing and corrections
 
