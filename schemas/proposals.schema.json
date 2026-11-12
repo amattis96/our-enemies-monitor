@@ -1,0 +1,1528 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "proposals.schema.json",
+  "title": "proposals",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^S\\d{2}$"
+        },
+        "file": {
+          "type": "string",
+          "pattern": "^sources\\/incremental\\/Fonte_\\d{2}[^/]*\\.md$"
+        },
+        "title": {
+          "type": "object",
+          "properties": {
+            "it": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "it"
+          ],
+          "additionalProperties": false
+        },
+        "created_at": {
+          "type": "string",
+          "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+        },
+        "coverage": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string",
+              "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+            },
+            "end": {
+              "type": "string",
+              "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ],
+          "additionalProperties": false
+        },
+        "baseline_source": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "repository_commit": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "code",
+        "file",
+        "title",
+        "created_at",
+        "coverage",
+        "baseline_source",
+        "repository_commit"
+      ],
+      "additionalProperties": false
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^R\\d{2,3}$"
+          },
+          "title": {
+            "type": "object",
+            "properties": {
+              "it": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "it"
+            ],
+            "additionalProperties": false
+          },
+          "publisher": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "published": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "key",
+          "title",
+          "publisher",
+          "url",
+          "published"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "create_event"
+              },
+              "ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "item": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sources": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^R\\d{2,3}$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  ]
+                }
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "update_type": {
+                "type": "string",
+                "enum": [
+                  "NEW_EVENT",
+                  "EVENT_UPDATE",
+                  "NEW_ATTRIBUTION",
+                  "NEW_EVIDENCE",
+                  "NEW_JUDICIAL",
+                  "NEW_POLICY",
+                  "CORRECTION",
+                  "NEW_RELATIONSHIP",
+                  "HYPOTHESIS_UPDATE",
+                  "STRATEGIC_UPDATE"
+                ]
+              },
+              "evidence_level": {
+                "type": "string",
+                "enum": [
+                  "E1",
+                  "E2",
+                  "E3",
+                  "E4"
+                ]
+              },
+              "title": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              },
+              "description": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              },
+              "date": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string",
+                    "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                  },
+                  "end": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "precision": {
+                    "type": "string",
+                    "enum": [
+                      "year",
+                      "month",
+                      "day"
+                    ]
+                  }
+                },
+                "required": [
+                  "start",
+                  "end",
+                  "precision"
+                ],
+                "additionalProperties": false
+              },
+              "published": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "themes": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "armed_conflict",
+                    "hybrid_sabotage",
+                    "cyber",
+                    "intelligence",
+                    "information_manipulation",
+                    "elections_influence",
+                    "finance_sanctions",
+                    "justice",
+                    "energy",
+                    "industry_dependencies",
+                    "infrastructure_space",
+                    "surveillance_spyware",
+                    "migration_borders",
+                    "geopolitics_diplomacy",
+                    "eu_nato_response",
+                    "society_health",
+                    "platforms_technology",
+                    "research_metadata"
+                  ]
+                }
+              },
+              "geography": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "it": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "it"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "places": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{2}$"
+                }
+              },
+              "evidence_note": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "it": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "it"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "publisher": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "url": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "claims": {
+                "type": "object",
+                "properties": {
+                  "perpetrator": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "text": {
+                            "type": "object",
+                            "properties": {
+                              "it": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "it"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "evidence_level": {
+                            "type": "string",
+                            "enum": [
+                              "E1",
+                              "E2",
+                              "E3",
+                              "E4"
+                            ]
+                          },
+                          "sources": {
+                            "minItems": 1,
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^R\\d{2,3}$"
+                                },
+                                {
+                                  "type": "string",
+                                  "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "text",
+                          "evidence_level",
+                          "sources"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "sponsor": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "text": {
+                            "type": "object",
+                            "properties": {
+                              "it": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "it"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "evidence_level": {
+                            "type": "string",
+                            "enum": [
+                              "E1",
+                              "E2",
+                              "E3",
+                              "E4"
+                            ]
+                          },
+                          "sources": {
+                            "minItems": 1,
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^R\\d{2,3}$"
+                                },
+                                {
+                                  "type": "string",
+                                  "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "text",
+                          "evidence_level",
+                          "sources"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "motive": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "text": {
+                            "type": "object",
+                            "properties": {
+                              "it": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "it"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "evidence_level": {
+                            "type": "string",
+                            "enum": [
+                              "E1",
+                              "E2",
+                              "E3",
+                              "E4"
+                            ]
+                          },
+                          "sources": {
+                            "minItems": 1,
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^R\\d{2,3}$"
+                                },
+                                {
+                                  "type": "string",
+                                  "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "text",
+                          "evidence_level",
+                          "sources"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "impact": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "text": {
+                            "type": "object",
+                            "properties": {
+                              "it": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "it"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "evidence_level": {
+                            "type": "string",
+                            "enum": [
+                              "E1",
+                              "E2",
+                              "E3",
+                              "E4"
+                            ]
+                          },
+                          "sources": {
+                            "minItems": 1,
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^R\\d{2,3}$"
+                                },
+                                {
+                                  "type": "string",
+                                  "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "format": "uri"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "text",
+                          "evidence_level",
+                          "sources"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "perpetrator",
+                  "sponsor",
+                  "motive",
+                  "impact"
+                ],
+                "additionalProperties": false
+              },
+              "contrary_evidence": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "it": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "it"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "related": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Z][A-Z0-9_]*$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^H\\d{2}$"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "op",
+              "ref",
+              "item",
+              "sources",
+              "notes",
+              "update_type",
+              "evidence_level",
+              "title",
+              "description",
+              "date",
+              "published",
+              "themes",
+              "geography",
+              "places",
+              "evidence_note",
+              "publisher",
+              "url",
+              "claims",
+              "contrary_evidence",
+              "related"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "create_entity"
+              },
+              "ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "item": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sources": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^R\\d{2,3}$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  ]
+                }
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "evidence_level": {
+                "type": "string",
+                "enum": [
+                  "E1",
+                  "E2",
+                  "E3",
+                  "E4"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9_]*$"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "state",
+                  "institution",
+                  "person",
+                  "organization",
+                  "company",
+                  "asset"
+                ]
+              },
+              "name": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "domain": {
+                "type": "string",
+                "enum": [
+                  "commerce-infrastructure",
+                  "dependencies",
+                  "geopolitics",
+                  "influence-technology",
+                  "institutional",
+                  "intelligence-security",
+                  "persons",
+                  "targets"
+                ]
+              },
+              "country": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Z]{2}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "public_relevance": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "it": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "it"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "op",
+              "ref",
+              "item",
+              "sources",
+              "notes",
+              "evidence_level",
+              "id",
+              "kind",
+              "name",
+              "aliases",
+              "domain",
+              "country",
+              "public_relevance"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "create_relationship"
+              },
+              "ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "item": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sources": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^R\\d{2,3}$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  ]
+                }
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "evidence_level": {
+                "type": "string",
+                "enum": [
+                  "E1",
+                  "E2",
+                  "E3",
+                  "E4"
+                ]
+              },
+              "subject": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Z0-9_]*$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$"
+                  }
+                ]
+              },
+              "predicate": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9_]*$"
+              },
+              "object": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Z0-9_]*$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$"
+                  }
+                ]
+              },
+              "relation_class": {
+                "type": "string",
+                "enum": [
+                  "event_participation",
+                  "operational",
+                  "ownership",
+                  "governance",
+                  "financial",
+                  "influence",
+                  "information",
+                  "information_flow",
+                  "platform",
+                  "political",
+                  "intelligence",
+                  "technical",
+                  "security",
+                  "surveillance",
+                  "military",
+                  "hybrid",
+                  "supply",
+                  "dependency",
+                  "infrastructure",
+                  "technology",
+                  "trade",
+                  "commerce",
+                  "commercial",
+                  "competition",
+                  "policy",
+                  "legal",
+                  "diplomacy",
+                  "oversight",
+                  "context",
+                  "consequence"
+                ]
+              },
+              "evidence_status": {
+                "type": "string",
+                "enum": [
+                  "documented",
+                  "corroborated",
+                  "institutional_attribution",
+                  "allegation"
+                ]
+              },
+              "events": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$"
+                    }
+                  ]
+                }
+              },
+              "valid_from": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valid_to": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "primary_url": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "caveat": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "it": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "it"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "person_status": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "legal_status": {
+                        "type": "object",
+                        "properties": {
+                          "it": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "it"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "status_date": {
+                        "type": "string",
+                        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                      }
+                    },
+                    "required": [
+                      "legal_status",
+                      "status_date"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "op",
+              "ref",
+              "item",
+              "sources",
+              "notes",
+              "evidence_level",
+              "subject",
+              "predicate",
+              "object",
+              "relation_class",
+              "evidence_status",
+              "events",
+              "valid_from",
+              "valid_to",
+              "primary_url",
+              "caveat",
+              "person_status"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "create_hypothesis"
+              },
+              "ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "item": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sources": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^R\\d{2,3}$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  ]
+                }
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "evidence_level": {
+                "type": "string",
+                "const": "E5"
+              },
+              "subject": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Z0-9_]*$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$"
+                  }
+                ]
+              },
+              "object": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Z][A-Z0-9_]*$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$"
+                  }
+                ]
+              },
+              "hypothesis_type": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9_]*$"
+              },
+              "question": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              },
+              "current_limit": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              },
+              "evidence_needed": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              },
+              "priority": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "critical",
+                      "high",
+                      "medium",
+                      "low"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "events": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^@[A-Za-z0-9][A-Za-z0-9._-]*$"
+                    }
+                  ]
+                }
+              },
+              "external_url": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "op",
+              "ref",
+              "item",
+              "sources",
+              "notes",
+              "evidence_level",
+              "subject",
+              "object",
+              "hypothesis_type",
+              "question",
+              "current_limit",
+              "evidence_needed",
+              "priority",
+              "events",
+              "external_url"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "add_citation"
+              },
+              "ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "item": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sources": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^R\\d{2,3}$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  ]
+                }
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "evidence_level": {
+                "type": "string",
+                "enum": [
+                  "E1",
+                  "E2",
+                  "E3",
+                  "E4",
+                  "E5"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^G-\\d{4}$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^H\\d{2}$"
+                  }
+                ]
+              },
+              "note": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "op",
+              "ref",
+              "item",
+              "sources",
+              "notes",
+              "evidence_level",
+              "target",
+              "note"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string",
+                "const": "propose_correction"
+              },
+              "ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+              },
+              "item": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sources": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^R\\d{2,3}$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                    },
+                    {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  ]
+                }
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "evidence_level": {
+                "type": "string",
+                "enum": [
+                  "E1",
+                  "E2",
+                  "E3",
+                  "E4",
+                  "E5"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^G-\\d{4}$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^H\\d{2}$"
+                  }
+                ]
+              },
+              "field": {
+                "type": "string",
+                "pattern": "^[a-z_]+(\\.[a-z_]+)*$"
+              },
+              "observed": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "it": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "it"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "proposed": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              },
+              "rationale": {
+                "type": "object",
+                "properties": {
+                  "it": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "it"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "op",
+              "ref",
+              "item",
+              "sources",
+              "notes",
+              "evidence_level",
+              "target",
+              "field",
+              "observed",
+              "proposed",
+              "rationale"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "source",
+    "references",
+    "operations"
+  ],
+  "additionalProperties": false
+}

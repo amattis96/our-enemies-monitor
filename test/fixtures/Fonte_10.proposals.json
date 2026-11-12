@@ -1,0 +1,386 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "code": "S10",
+    "file": "sources/incremental/Fonte_10_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-12.md",
+    "title": {
+      "it": "Fonte_10 | Aggiornamento OSINT incrementale per l'Europa | 12 novembre 2026"
+    },
+    "created_at": "2026-11-12",
+    "coverage": { "start": "2026-11-08", "end": "2026-11-12" },
+    "baseline_source": "S09",
+    "repository_commit": "8d3884689434b9daa9b61af988e8b3e9ed7e9854"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": { "it": "Zarzuty za szpiegostwo i akty dywersji na rzecz rosyjskiego wywiadu" },
+      "publisher": "Prokuratura Krajowa",
+      "url": "https://www.gov.pl/web/prokuratura-krajowa/zarzuty-za-szpiegostwo-i-akty-dywersji-na-rzecz-rosyjskiego-wywiadu",
+      "published": "2026-11-10"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "ABW zatrzymała dwóch podejrzanych o szpiegostwo i dywersję na rzecz Rosji"
+      },
+      "publisher": "ABW",
+      "url": "https://www.abw.gov.pl/pl/aktualnosci/2851%2CABW-zatrzymala-dwoch-podejrzanych-o-szpiegostwo-i-dywersje-na-rzecz-Rosji.html",
+      "published": "2026-11-10"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Member of US army arrested as part of Counter Terrorism Policing investigation"
+      },
+      "publisher": "Metropolitan Police / Counter Terrorism Policing",
+      "url": "https://news.met.police.uk/news/member-of-us-army-arrested-as-part-of-counter-terrorism-policing-investigation-514875",
+      "published": "2026-11-10"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "US soldier assigned to NATO unit arrested in Britain on suspicion of espionage linked to Russia"
+      },
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/f1a3d4abf8233d064e246e4de0ad21f4",
+      "published": "2026-11-10"
+    },
+    {
+      "key": "R05",
+      "title": { "it": "Ukraine struck Russian warship near Finland" },
+      "publisher": "Yle News",
+      "url": "https://yle.fi/a/74-20256496",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R06",
+      "title": { "it": "Finland says it detects strike on Russian warship in Baltic Sea" },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/finland-says-it-detects-strike-russian-warship-baltic-sea-2026-11-12/",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R09",
+      "title": {
+        "it": "Joint statement by President Costa and President von der Leyen following their meeting with President Zelenskyy in Dublin"
+      },
+      "publisher": "Consiglio europeo",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/11/12/joint-statement-by-president-costa-and-president-von-der-leyen-following-their-meeting-with-president-zelenskyy-in-dublin/",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R11",
+      "title": {
+        "it": "Norway security service says Russian intelligence could carry out sabotage in coming year"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/aerospace-defense/norway-security-service-says-russian-intelligence-could-carry-out-sabotage-2026-11-12/",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R12",
+      "title": { "it": "PST til NTB: Sabotasjetrusselen i Norge er skjerpet" },
+      "publisher": "NTB via Aftenposten",
+      "url": "https://www.aftenposten.no/norge/politikk/i/vkQWxp/pst-til-ntb-sabotasjetrusselen-i-norge-er-skjerpet-forventer-russisk-sabotasje-det-kommende-aaret",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R13",
+      "title": {
+        "it": "Council of Europe Congress to observe elections in the Autonomous Territorial Unit of Gagauzia (Republic of Moldova)"
+      },
+      "publisher": "Consiglio d'Europa, Congresso dei poteri locali e regionali",
+      "url": "https://www.coe.int/de/web/congress/-/council-of-europe-congress-to-observe-elections-in-the-autonomous-territorial-unit-of-gagauzia-republic-of-moldova-",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R14",
+      "title": { "it": "SIS chief warns of increased Russian interference ahead of elections" },
+      "publisher": "Radio Moldova",
+      "url": "https://radiomoldova.md/p/89312/sis-chief-warns-of-increased-russian-interference-ahead-of-elections",
+      "published": "2026-11-09"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261112-001",
+      "item": "OEM-20261112-001",
+      "sources": ["R01", "R02"],
+      "notes": [],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Polonia: arresti e contestazioni per incendi di veicoli e ricognizione di infrastrutture, con presunti incarichi d'intelligence russi"
+      },
+      "description": {
+        "it": "Secondo la procura nazionale polacca, il 3 novembre l'ABW ha arrestato due cittadini ucraini e il 4 novembre ha contestato loro reati ai sensi dell'art. 130, paragrafi 1 e 7, del codice penale polacco, per ricognizioni di installazioni militari e infrastrutture critiche e per l'incendio di veicoli su cui erano state apposte targhe simili a quelle militari ucraine. Il giudice ha disposto la custodia cautelare per tre mesi. Sono addebiti, non condanne."
+      },
+      "date": { "start": "2026-11-03", "end": "2026-11-04", "precision": "day" },
+      "published": "2026-11-10",
+      "themes": ["hybrid_sabotage", "justice", "intelligence"],
+      "geography": { "it": "Polonia (arresti a Mińsk Mazowiecki)" },
+      "places": ["PL"],
+      "evidence_note": {
+        "it": "E1 arresti e addebiti / E2 attribuzione dell'accusa ai servizi russi / E4 responsabilità personale contestata"
+      },
+      "publisher": "Prokuratura Krajowa",
+      "url": "https://www.gov.pl/web/prokuratura-krajowa/zarzuty-za-szpiegostwo-i-akty-dywersji-na-rzecz-rosyjskiego-wywiadu",
+      "claims": {
+        "perpetrator": {
+          "text": {
+            "it": "La responsabilità personale dei due indagati per spionaggio e incendi è contestata; nessuna condanna risulta dalle fonti consultate."
+          },
+          "evidence_level": "E4",
+          "sources": ["R01", "R02"]
+        },
+        "sponsor": {
+          "text": {
+            "it": "La procura e l'ABW attribuiscono la presunta committenza ai servizi d'intelligence russi: attribuzione dell'autorità inquirente, non accertamento dibattimentale."
+          },
+          "evidence_level": "E2",
+          "sources": ["R01", "R02"]
+        },
+        "motive": {
+          "text": {
+            "it": "Secondo la procura, l'intento era fomentare sentimenti antiucraini mediante targhe simili a quelle militari ucraine."
+          },
+          "evidence_level": "E2",
+          "sources": ["R01"]
+        },
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Non sono disponibili atti probatori completi né prove pubbliche di legami con altri episodi. La nazionalità dei sospettati non consente inferenze sulla collettività ucraina."
+      },
+      "related": ["TL-0091", "TL-0119"]
+    },
+    {
+      "op": "create_entity",
+      "ref": "OEM-20261112-001-prokuratura",
+      "item": "OEM-20261112-001",
+      "sources": ["R01"],
+      "notes": [],
+      "evidence_level": "E1",
+      "id": "PL_PROKURATURA",
+      "kind": "institution",
+      "name": { "it": "Prokuratura Krajowa (Procura nazionale polacca)" },
+      "aliases": ["Prokuratura Krajowa", "Procura nazionale polacca"],
+      "domain": "institutional",
+      "country": null,
+      "public_relevance": null
+    },
+    {
+      "op": "create_relationship",
+      "ref": "OEM-20261112-001-addebiti",
+      "item": "OEM-20261112-001",
+      "sources": ["R01"],
+      "notes": ["Fonte_10 §D.1: procedural communication (E1), not individual guilt."],
+      "evidence_level": "E1",
+      "subject": "@OEM-20261112-001-prokuratura",
+      "predicate": "CONTESTA_ADDEBITI",
+      "object": "@OEM-20261112-001",
+      "relation_class": "legal",
+      "evidence_status": "documented",
+      "events": ["@OEM-20261112-001"],
+      "valid_from": "2026-11-04",
+      "valid_to": null,
+      "primary_url": "https://www.gov.pl/web/prokuratura-krajowa/zarzuty-za-szpiegostwo-i-akty-dywersji-na-rzecz-rosyjskiego-wywiadu",
+      "caveat": {
+        "it": "Addebiti contestati a due indagati non nominati: non è una condanna. La committenza russa è un'attribuzione dell'accusa (E2), non un ordine provato."
+      },
+      "person_status": null
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261112-002",
+      "item": "OEM-20261112-002",
+      "sources": ["R03", "R04"],
+      "notes": [
+        "Distinct from EXT-017/EXT-018 (RAF Fairford): the Met states it is not linked to its other investigations."
+      ],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Regno Unito: militare dell'esercito USA arrestato in un'indagine per possibile spionaggio legato alla Russia"
+      },
+      "description": {
+        "it": "Il 10 novembre la polizia britannica ha arrestato vicino a Gloucester un militare statunitense di 41 anni, non nominato, sul sospetto di reati previsti dalle sezioni 1 e 3 del National Security Act 2023; due località della contea sono state perquisite e l'indagine è condotta con l'FBI e le autorità militari statunitensi. È un arresto, non un'incriminazione né una condanna."
+      },
+      "date": { "start": "2026-11-10", "end": null, "precision": "day" },
+      "published": null,
+      "themes": ["intelligence", "justice"],
+      "geography": { "it": "Gloucestershire, Regno Unito" },
+      "places": ["GB"],
+      "evidence_note": {
+        "it": "E1 arresto e basi legali / E2 Paese indicato dalla polizia / E3 assegnazione NATO riferita da AP"
+      },
+      "publisher": "Metropolitan Police / Counter Terrorism Policing",
+      "url": "https://news.met.police.uk/news/member-of-us-army-arrested-as-part-of-counter-terrorism-policing-investigation-514875",
+      "claims": {
+        "perpetrator": {
+          "text": {
+            "it": "La sottrazione o il trasferimento di segreti restano sospetti da accertare; nessuna incriminazione formale o condanna risulta dal comunicato."
+          },
+          "evidence_level": "E4",
+          "sources": ["R03"]
+        },
+        "sponsor": {
+          "text": {
+            "it": "La polizia indica la Russia come il Paese a cui si riferiscono i sospetti: oggetto dell'indagine, non conclusione giudiziaria."
+          },
+          "evidence_level": "E2",
+          "sources": ["R03"]
+        },
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "La polizia non ha reso nota l'identità e non descrive materiale effettivamente consegnato. L'assegnazione a un'unità NATO a Imjin Barracks è riferita da AP su fonti non nominate."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261112-003",
+      "item": "OEM-20261112-003",
+      "sources": ["R05", "R06"],
+      "notes": [],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E3",
+      "title": {
+        "it": "Golfo di Finlandia: colpo rilevato contro una nave militare russa, distinto dalla rivendicazione ucraina"
+      },
+      "description": {
+        "it": "L'11 novembre le Forze di difesa finlandesi hanno confermato a Reuters e Yle di aver rilevato un colpo contro una nave militare russa nel Golfo di Finlandia e hanno adottato restrizioni temporanee di prudenza su aree marittime e aeree, senza segnalare una minaccia militare immediata al proprio territorio. Posizione esatta, dinamica e danni non sono confermati."
+      },
+      "date": { "start": "2026-11-11", "end": null, "precision": "day" },
+      "published": "2026-11-12",
+      "themes": ["armed_conflict"],
+      "geography": {
+        "it": "Golfo di Finlandia (area dell'isola di Gogland/Suursaari secondo Yle)"
+      },
+      "places": [],
+      "evidence_note": {
+        "it": "E3 osservazione corroborata / E4 rivendicazione SBU e identità della nave"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/finland-says-it-detects-strike-russian-warship-baltic-sea-2026-11-12/",
+      "claims": {
+        "perpetrator": {
+          "text": {
+            "it": "Secondo Yle, l'SBU ha rivendicato un attacco con droni alla nave lanciamissili Naro-Fominsk (classe Buyan-M): rivendicazione non verificata indipendentemente."
+          },
+          "evidence_level": "E4",
+          "sources": ["R05"]
+        },
+        "sponsor": null,
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Le autorità finlandesi non hanno reso noti luogo, dinamica e vittime. Nessuna prova di un attacco contro Finlandia o Estonia; non è un sabotaggio russo contro Stati UE."
+      },
+      "related": ["EXT-031", "H32"]
+    },
+    {
+      "op": "add_citation",
+      "ref": "OEM-20261112-003-h32",
+      "item": "OEM-20261112-003",
+      "sources": ["R05", "R06"],
+      "notes": [],
+      "evidence_level": "E3",
+      "target": "H32",
+      "note": {
+        "it": "Il colpo contro una nave russa vicino a Finlandia ed Estonia accresce la rilevanza della domanda, ma non prova né un'origine russa per ogni drone né un'intrusione deliberata."
+      }
+    },
+    {
+      "op": "propose_correction",
+      "ref": "OEM-20261112-005-ext022",
+      "item": "OEM-20261112-005",
+      "sources": ["R09"],
+      "notes": [],
+      "evidence_level": "E1",
+      "target": "EXT-022",
+      "field": "description",
+      "observed": {
+        "it": "la Russia non ha accettato la loro partecipazione al tavolo trilaterale"
+      },
+      "proposed": {
+        "it": "Aggiungere che la dichiarazione congiunta Costa–von der Leyen del 12 novembre afferma che l'UE era rappresentata ai colloqui di Abu Dhabi e resterà coinvolta in quel formato, conservando la versione precedente e documentando la discrepanza."
+      },
+      "rationale": {
+        "it": "Le due versioni potrebbero riferirsi a delegazioni, sessioni o formati diversi: servono agenda, elenco dei partecipanti e verbale prima di rettificare il record."
+      }
+    },
+    {
+      "op": "add_citation",
+      "ref": "OEM-20261112-005-ext032",
+      "item": "OEM-20261112-005",
+      "sources": ["R09"],
+      "notes": [],
+      "evidence_level": "E1",
+      "target": "EXT-032",
+      "note": {
+        "it": "La dichiarazione del 12 novembre annuncia una discussione sulle esigenze finanziarie ucraine per il 2027 al Consiglio europeo del 26–27 novembre: è un annuncio, non una decisione."
+      }
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261112-006",
+      "item": "OEM-20261112-006",
+      "sources": ["R11", "R12"],
+      "notes": [
+        "Threat assessment, not a sabotage event: no attack in Norway is recorded. The original PST release has no stable URL in Fonte_10."
+      ],
+      "update_type": "STRATEGIC_UPDATE",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Norvegia: il PST aggrava la valutazione del rischio di sabotaggi da parte dell'intelligence russa"
+      },
+      "description": {
+        "it": "Il 12 novembre la sicurezza interna norvegese PST ha comunicato un aggravamento della minaccia di sabotaggio, ritenendo ragionevole attendersi tentativi russi contro obiettivi norvegesi nell'anno successivo (difesa, industria collegata, logistica, energia). Il PST afferma di non aver individuato tentativi di sabotaggio contro obiettivi norvegesi."
+      },
+      "date": { "start": "2026-11-12", "end": null, "precision": "day" },
+      "published": null,
+      "themes": ["intelligence", "hybrid_sabotage"],
+      "geography": { "it": "Norvegia" },
+      "places": ["NO"],
+      "evidence_note": {
+        "it": "E1 dichiarazione PST (riportata da Reuters e NTB) / E2 attribuzione delle ricognizioni"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/aerospace-defense/norway-security-service-says-russian-intelligence-could-carry-out-sabotage-2026-11-12/",
+      "claims": {
+        "perpetrator": {
+          "text": {
+            "it": "Il PST attribuisce attività di ricognizione a soggetti legati all'intelligence russa; le prove operative non sono pubblicate."
+          },
+          "evidence_level": "E2",
+          "sources": ["R11", "R12"]
+        },
+        "sponsor": null,
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "La previsione è qualitativa, senza percentuale ufficiale; il PST stesso invita a non interpretare ogni incidente europeo come azione russa."
+      },
+      "related": ["TL-0119"]
+    },
+    {
+      "op": "add_citation",
+      "ref": "OEM-20261112-007",
+      "item": "OEM-20261112-007",
+      "sources": ["R13", "R14"],
+      "notes": [],
+      "evidence_level": "E1",
+      "target": "EXT-029",
+      "note": {
+        "it": "Il Congresso dei poteri locali e regionali del Consiglio d'Europa osserva le elezioni gagauze del 15 novembre (missione 12–16 novembre). L'osservazione è un atto indipendente, non una prova di interferenza russa."
+      }
+    }
+  ]
+}

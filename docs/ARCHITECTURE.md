@@ -6,8 +6,8 @@ research agent. M5 publication quarantine, initial source matching, structured
 Fonte_09 reconciliation, claim-level staging and automated audit are implemented.
 Human editorial approval and individual publication decisions remain open.
 The M6 ChatGPT-scheduled, API-free research architecture is adopted; its
-editorial article section is implemented (demo fixtures only), its
-deterministic ingest is not.
+deterministic sidecar ingest (`pnpm ingest`) and the editorial article
+section (demo fixtures only) are implemented.
 This document describes the architecture as it is built. Keep it in sync
 with the code (see [AGENTS.md](../AGENTS.md)).
 
@@ -68,7 +68,8 @@ in `.astro` files, so its unused-import/variable rules are off for them.
 
 ```text
 sources/original/      Immutable historical corpus (Fonte_00–Fonte_08)
-sources/incremental/   Later incremental sources, archived as received (Fonte_09)
+sources/incremental/   Later incremental sources, archived as received (Fonte_09), with
+                       their M6 proposals sidecars (Fonte_XX.proposals.json) when present
 data/                  Canonical records, one JSON file per record
   events/              TL-*.json (timeline) and EXT-*.json (pending integration)
   entities/            <ENTITY_ID>.json (states, persons, organizations, ...)
@@ -77,9 +78,12 @@ data/                  Canonical records, one JSON file per record
   sources/             S*/F*/P*/WEB*.json (corpus documents and external references)
   exposures/           X-*.json (quantified strategic dependencies)
 content/articles/      Editorial articles: <ID>.it.md (canonical) + optional <ID>.en.md
-schemas/               JSON Schema generated from the Zod model (do not edit)
+schemas/               JSON Schema generated from the Zod model, one per collection plus
+                       article front matter and proposals.schema.json (M6 sidecar
+                       contract) (do not edit)
 src/
-  model/               Zod schemas, controlled vocabularies, types (article.ts: articles)
+  model/               Zod schemas, controlled vocabularies, types (article.ts: articles;
+                       proposals.ts: M6 proposals sidecar contract)
   pipeline/            Loading (load.ts), source reading (sources.ts),
                        canonical serialization (serialize.ts), validation (validate.ts)
     baseline/          One-time importer, file registry, known-issue registry
@@ -89,12 +93,15 @@ src/
     translations.ts    Localized-text traversal, source hash, translation checks
     diff.ts            Evidence diff between two versions of data/
     articles.ts        Article file loading, front matter parsing, schema and reference checks
+    ingest/            M6 sidecar reconciliation (plan.ts), matching (match.ts),
+                       validation/writing of the plan (apply.ts), reports (report.ts)
   site/                Read model (indexes, restriction rule, graph, timeline and
                        atlas projections), i18n strings, formatting, data exports,
                        articles.ts (article publication gate, back-links, HTML and
                        Markdown rendering)
   cli/                 Entry points used by package scripts
-test/                  Vitest suites
+test/                  Vitest suites; fixtures/ holds hand-authored test inputs
+                       (Fonte_10.proposals.json, a faithful subset of PR #3)
 web/                   Astro portal
   astro.config.ts      SITE_URL / BASE_PATH configurable for mirrors
   src/pages/[...lang]/ Page routes, generated for `it` (root) and `en`
@@ -154,6 +161,9 @@ corpus; other languages are translations.
 | Source | `S00`–`S09`, `F01`–`F30`, `P01`–`P11`, `WEB`, `WEB-EXT-001`… | Corpus documents and cited references (`S09`, `WEB-EXT-005`–`054`: Fonte_09) |
 | Exposure | `X-001` … | Fonte_08 §12.2 exposure matrix (one row each) |
 
+Later incremental sources ingested with `pnpm ingest` get the next free
+`EXT-NNN`, `G-NNNN`, `H##` and `WEB-EXT-NNN` (highest existing + 1, gaps never
+filled), and register their document as corpus source `S10`, `S11`, ….
 Original IDs are never renumbered. Fonte_07 duplicates every timeline event
 as a graph node (`EV_TL-0001`, `EV_EXT-001`); the importer merges them into
 the single event record and rewrites edge endpoints to the event ID. ID
@@ -308,6 +318,42 @@ imported by hand as ordinary editorial records:
 - existing hypotheses touched by §7 only gained event/source links and a
   `review.notes` entry; their Italian texts and provenance are unchanged.
 
+### Incremental ingest (M6, `pnpm ingest`)
+
+From Fonte_10 onwards an incremental source is a pair: the Markdown report
+and a structured sidecar `sources/incremental/Fonte_XX.proposals.json`
+(contract: `src/model/proposals.ts`, `schemas/proposals.schema.json`; full
+field-by-field description, example and the Task A prompt change in
+[M6 ChatGPT OSINT workflow §4](M6_CHATGPT_OSINT_WORKFLOW.md)). The sidecar
+lists typed operations: `create_event`, `create_entity`,
+`create_relationship`, `create_hypothesis` (E5 only), `add_citation` and
+`propose_correction`, each with its evidence level, citations and Italian
+text. Event descriptions carry only the documented conduct; perpetrator,
+sponsor, motive and impact are separate claims with their own level.
+
+`src/pipeline/ingest/plan.ts` reconciles the operations with `data/`, without
+touching disk:
+
+- matches by ID, normalized entity names/aliases, event URL and date overlap
+  plus title similarity, relationship triple, hypothesis type, and source URL
+  (an existing source is reused, not duplicated). It also matches against the
+  other archived sidecars, `--compare` files (open PRs) and URLs already quoted in
+  other incremental Markdown;
+- classifies each operation as `new`, `enrichment`, `duplicate`,
+  `already_applied`, `conflict` or `rejected` (e.g. a relationship touching a
+  person without `primary_url` and legal/procedural status with date);
+- allocates IDs deterministically and writes only `needs_review` candidates
+  with empty `provenance`. It enriches only records that are already
+  `needs_review`, so the public M5 projection does not change (tested);
+- marks each written record with an `[ingest <code> <ref>]` review note, so a
+  rerun is `already_applied` and writes nothing (idempotent).
+
+`apply.ts` validates `data/` as it would be after the plan with the full
+validator. `src/cli/ingest.ts` prints the text or JSON report and, with
+`--write`, writes the planned files in canonical form. It never runs in CI or
+on merge, and never touches `sources/` or any provenance. The Markdown source
+must be merged before `--write`.
+
 ## Pipeline
 
 ```text
@@ -326,8 +372,8 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
   `--force` is passed. After M1 it is only a reproducibility tool.
 - `pnpm validate` fails on errors and prints warnings (e.g. relationships
   involving a named person without a primary URL: 36, all from the baseline).
-- `pnpm schemas` regenerates `schemas/*.schema.json`; `pnpm check` fails if
-  they are stale.
+- `pnpm schemas` regenerates `schemas/*.schema.json` (collections and the
+  proposals sidecar); `pnpm check` fails if they are stale.
 - `pnpm format:data` rewrites data files in canonical form.
 - `pnpm check` = lint + typecheck + tests + validate + schema freshness.
 - `pnpm build` builds the site into `web/dist/` and indexes it with Pagefind;
@@ -336,6 +382,9 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
   site (CI runs it after the build).
 - `pnpm data:diff` writes the evidence diff of `data/` against a Git ref
   (see Editorial workflow).
+- `pnpm ingest <Fonte_XX.proposals.json> [--write] [--json] [--report f]
+  [--compare f]` plans (dry run) or writes the candidates of an M6 sidecar
+  (see Incremental ingest).
 - `pnpm validate:articles` validates `content/articles/` and lists which
   articles the publication gate shows or withholds, and why (part of
   `pnpm check`); `pnpm articles:hash [--write]` computes English source hashes.
@@ -398,7 +447,8 @@ references and linked records with absolute URLs).
 
 Language-neutral endpoints under `/data/v1/`: `graph.json`,
 `hypotheses-graph.json`, one file per collection, `all.json`,
-`schemas/<collection>.schema.json` and `manifest.json` (export version,
+`schemas/<collection>.schema.json` (plus `schemas/proposals.schema.json`, the
+M6 sidecar contract) and `manifest.json` (export version,
 commit, commit date, counts, size and SHA-256 of every file; no build
 timestamp, so a mirror built from the same commit publishes identical files).
 
@@ -469,9 +519,12 @@ contributor / research agent          maintainer
   proposes a new immutable `sources/incremental/Fonte_XX*.md` on a dedicated
   branch and PR. The first manual proof-of-concept produced PR #3; the first
   unattended execution (2026-11-13) and its permissions are still unverified.
-  The complementary ChatGPT thematic/article task and deterministic
-  source-to-data ingestion are planned but not implemented; the multilingual
-  article section and its file contract are implemented (demo fixtures only).
+  Deterministic source-to-data ingestion from a structured sidecar is
+  implemented (`pnpm ingest`, run manually on an `agent/*` branch; see
+  Incremental ingest); the Task A prompt still has to be updated to emit the
+  sidecar. The multilingual article section and its file contract are
+  implemented (demo fixtures only); the complementary ChatGPT thematic/article
+  task (Task B) is planned but not configured.
   Read [M6 ChatGPT OSINT workflow](M6_CHATGPT_OSINT_WORKFLOW.md) for exact
   contracts, state and instructions. GitHub Actions remains responsible for
   CI, evidence checks, build and deployment, **not LLM inference**.
@@ -496,4 +549,4 @@ contributor / research agent          maintainer
 | **Fonte_09** Incremental update | First incremental source (cut-off 2026-11-11): 30 candidate events, 50 references, 18 entities, 14 relationships, hypotheses H23–H32; English machine-translated, editorial review pending | Imported (needs review) |
 
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
-| **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; article model, validation, gate and pages done (demo fixtures only); Task B, unattended run and ingest pending |
+| **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; sidecar contract and `pnpm ingest` implemented; article model, validation, gate and pages done (demo fixtures only); Task A sidecar prompt, unattended run and Task B pending |
