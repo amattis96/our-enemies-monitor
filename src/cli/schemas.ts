@@ -1,15 +1,15 @@
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { z } from "zod";
-import { COLLECTIONS } from "../model/index.ts";
+import { ARTICLE_SCHEMAS, COLLECTIONS } from "../model/index.ts";
 import { SCHEMAS_DIR } from "../pipeline/paths.ts";
 
-// Generate JSON Schema for each collection from the Zod model.
+// Generate JSON Schema for each collection and the article files from the Zod model.
 // With --check, fail instead of writing when the files are stale.
 const check = process.argv.includes("--check");
 
 const expected = new Map(
-  Object.entries(COLLECTIONS).map(([collection, schema]) => {
+  Object.entries({ ...COLLECTIONS, ...ARTICLE_SCHEMAS }).map(([collection, schema]) => {
     const json = z.toJSONSchema(schema, { target: "draft-2020-12", io: "input" });
     const document = {
       $schema: json.$schema,
