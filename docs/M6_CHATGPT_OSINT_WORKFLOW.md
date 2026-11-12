@@ -1,7 +1,7 @@
 # M6: ChatGPT-scheduled OSINT collection and editorial research
 
 **Decision date:** 2026-11-12  
-**Status:** Architecture adopted; ingestion pipeline and article publishing not yet implemented.  
+**Status:** Architecture adopted; article contract and pages implemented (demo fixtures only, 2026-11-12); ingestion pipeline and Task B not yet implemented.  
 **Owner/source of truth:** [Our Enemies Monitor](https://github.com/amattis96/our-enemies-monitor), branch `main`.  
 **Related:** [AGENTS.md](../AGENTS.md), [ARCHITECTURE.md](ARCHITECTURE.md), [M5 evidence audit](M5_EVIDENCE_AUDIT.md).
 
@@ -30,13 +30,13 @@ GitHub branches + separate PRs          GitHub branches + separate PRs
       |                                    |
   Structured ingest (to build)      Astro editorial publishing (to build)
       |                                    |
-  data/ canonical JSON               content/articles/ (planned)
+  data/ canonical JSON               content/articles/ (implemented)
       |                                    |
   Existing graph/timeline/atlas       IT/EN articles, evidence links, downloads
       +------------------ GitHub Pages ------------------+
 ```
 
-**Important:** The diagram's ingest/article steps are **target architecture**, not active automation. At present merging an MD source does **not** itself update `data/`. No automated article writer or article UI has been implemented.
+**Important:** The ingest step is **target architecture**, not active automation: merging an MD source does **not** itself update `data/`. The article side is built: a merged, valid and reviewed `content/articles/` file is published by the normal build. No automated article writer (Task B) runs yet; the section shows only demo fixtures.
 
 ## 2. Task A: incremental OSINT source acquisition (active)
 
@@ -90,11 +90,71 @@ Deliverables:
 
 - A substantive article in canonical **Italian** and a corresponding **English** translation, generated during the same research task where feasible, sharing one stable article ID (proposed: `ART-0001`).
 - Explicit citations to claim/source IDs, event/entity/edge/hypothesis IDs, source URLs, chronology, counter-evidence, alternate interpretations, limitations and source-check dates.
-- A proposed `content/articles/ART-0001.it.md` and `content/articles/ART-0001.en.md` layout (not an existing directory/schema).
+- `content/articles/ART-NNNN.it.md` and `content/articles/ART-NNNN.en.md` following the article contract below (implemented and validated).
 - A separate candidate evidence manifest when investigation reveals previously unrecorded facts. These suggestions must enter the **same evidence-validation and deduplication pipeline** as Task A; they do not silently modify the graph.
-- Future article pages in Astro with subject navigation, graph/timeline cross-links, Markdown export and **PDF export as a later feature**, not as a capability already implemented.
+- Article pages are implemented in Astro (`/articles/`, `/articles/<ID>/`, IT and EN) with links to the cited records, back-links from event/entity/hypothesis pages, a reference list and Markdown downloads. Subject navigation and **PDF export remain later features**.
 
 Articles must not convert graph proximity, shared interests or competing allegations into proof of coordination. Keep original reporting, institutional claims, independent findings, criticism and hypotheses explicitly separate.
+
+### Article contract (what Task B must output)
+
+One PR on a dedicated branch (proposed `research/article-YYYYMMDD-<topic>`) adding **only** files under `content/articles/` (plus, separately, any candidate evidence manifest). Validation: `pnpm validate:articles` (part of `pnpm check`). JSON Schemas: `schemas/article-it-front-matter.schema.json`, `schemas/article-en-front-matter.schema.json`. See `content/articles/README.md` and the demo fixtures for complete examples.
+
+1. **ID.** The next unused `ART-NNNN` (four digits), checking `main` **and open PRs**. Never reuse or renumber. `ART-DEMO-NNN` is reserved for test fixtures.
+2. **`content/articles/ART-NNNN.it.md` (canonical).** YAML front matter, then the Markdown body:
+
+   ```yaml
+   ---
+   id: ART-0001
+   lang: it
+   fixture: false                    # mandatory; true only for ART-DEMO-NNN
+   title: "Titolo"
+   summary: "Sommario di una o due frasi."
+   date: "2026-11-26"                # publication date, YYYY-MM-DD
+   updated: null                     # or YYYY-MM-DD >= date
+   generated_by:
+     kind: ai                        # ai | human (fixture is reserved)
+     tool: "ChatGPT scheduled task B"
+     run_date: "2026-11-26"          # or null
+   links:                            # existing canonical IDs only
+     events: [TL-0001]
+     entities: [RU]
+     relationships: [G-0002]
+     hypotheses: [H03]
+   references:                       # at least one
+     - source: S06                   # existing source code in data/sources/
+       note: "Per che cosa è usata"  # or null
+     - url: "https://example.org/report"
+       title: "Titolo del documento"
+       publisher: "Editore"          # or null
+       published: "2026-11-20"       # YYYY, YYYY-MM, YYYY-MM-DD or null
+       accessed: "2026-11-26"        # date the URL was checked
+   review:
+     status: needs_review            # never reviewed: only a human editor sets it
+     notes: []
+   ---
+   ## Prima sezione
+   ...
+   ```
+
+   Body rules: sections start at `##` (the title is the only `#`); no raw HTML (it is escaped, and validation rejects it); GitHub-flavoured Markdown tables and lists are allowed. Record IDs may be named in the text; the clickable links come from `links`. Counter-evidence, alternative interpretations, limitations and source-check dates belong in the body.
+3. **`content/articles/ART-NNNN.en.md` (translation, optional but expected).** Same body structure, translated:
+
+   ```yaml
+   ---
+   id: ART-0001
+   lang: en
+   title: "Title"
+   summary: "Summary."
+   translation:
+     status: machine                 # never reviewed from an AI task
+     source_hash: "0123456789abcdef"
+   ---
+   ```
+
+   `source_hash` = first 16 hex digits of SHA-256 of the UTF-8 JSON array `[title, summary, body]` of the **Italian** file (body trimmed; no spaces between JSON tokens; non-ASCII not escaped), e.g. in Python `hashlib.sha256(json.dumps([t, s, b], ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()[:16]`. If the task cannot compute it, the maintainer runs `pnpm articles:hash --write`; CI fails until it matches.
+4. **Publication gate.** A merged article appears on the site only when an editor sets `review.status: reviewed` **and** every linked record and cited source is public under the M5 policy. Linking a `needs_review` / `pending_integration` record (e.g. a Fonte_09 candidate) or a restricted person relationship keeps the whole article withheld until that record is published: an article never surfaces withheld evidence. `pnpm validate:articles` prints each article's state and the reasons.
+5. **Not allowed:** editing `data/`, sources or other articles; setting `reviewed` (article or translation); `fixture: true`; inventing record IDs or citing URLs that do not support the stated proposition. New facts found during the investigation go in a **separate** candidate evidence proposal for the Task A/ingest pipeline, not into `links`.
 
 ## 4. Repository-driven ingest: next implementation milestone
 
@@ -139,7 +199,7 @@ The user-facing notion of "assimilation" means **canonical data reconciliation a
 | Fonte_10 integration | **PR open at adoption** | Appropriate review and merge to `main`; no automatic merge |
 | Markdown + sidecar ingest | **Not implemented** | Schema-validated, deterministic, idempotent source-to-`data/` PR |
 | Task B | **Planned** | Independent scheduled thematic research creates source-backed IT/EN article PR |
-| Editorial website | **Not implemented** | Navigable multilingual articles, evidence cross-links and downloadable formats |
+| Editorial website | **Implemented** with demo fixtures (2026-11-12) | Navigable multilingual articles, evidence cross-links and Markdown downloads; PDF later |
 
 **Next verification:** inspect the ChatGPT Task A run scheduled for **2026-11-13 01:00 Europe/Rome** and check GitHub actions/PRs; distinguish a successful run from an absence of substantive news. Only then decide whether task prompts, permissions or cadence require adjustment.
 

@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M5 technical milestones implemented; M6 ChatGPT research design adopted, with Task A manually proven and scheduled. Automated ingest and the article section are pending. M5 evidence-review items remain tracked, and incremental data candidates remain quarantined.**
+**Phase: M1–M5 technical milestones implemented; M6 ChatGPT research design adopted, with Task A manually proven and scheduled. The bilingual article section is built (with demo fixtures only); automated ingest and the scheduled Task B are pending. M5 evidence-review items remain tracked, and incremental data candidates remain quarantined.**
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -123,6 +123,7 @@ No database, graph database, map tile server or paid service is needed to build 
 pnpm install
 pnpm check        # lint, typecheck, tests, data validation, schema freshness
 pnpm validate     # validate data/ only
+pnpm validate:articles  # validate content/articles/ and show the publication gate
 pnpm build        # build the static site into web/dist (with search index)
 pnpm preview      # serve the built site locally
 pnpm check:links  # verify every internal link of the built site
@@ -147,10 +148,13 @@ deterministic ingestion, indexing, website generation and publication.
 - **Task B: in-depth investigations (planned).** Independent research from
   hypotheses, network evidence and strategic questions, producing
   citation-linked articles in Italian and English. A suggested two-week
-  cadence is **not** yet configured.
+  cadence is **not** yet configured. The article contract (`content/articles/`
+  Markdown with YAML front matter), validation and the `/articles/` pages are
+  implemented; the section currently shows only clearly labelled **DEMO / TEST**
+  fixtures.
 - **GitHub Actions (existing):** CI, evidence diff, build and GitHub Pages
-  deployment. **Planned:** schema-validated, idempotent source-to-canonical
-  ingestion and article publishing. No live model APIs are involved.
+  deployment and article publishing. **Planned:** schema-validated, idempotent
+  source-to-canonical ingestion. No live model APIs are involved.
 - **Safeguards:** original/incremental sources stay immutable once merged;
   no invented links or certainty, no automated promotion to `reviewed`,
   source-specific approvals and M5 publication gates remain in place.
@@ -167,7 +171,7 @@ flowchart TD
     D --> E
     E -->|Approved| F[Merge to main]
     F --> G[Deterministic ingest - planned]
-    F --> H[Astro editorial section - planned]
+    F --> H[Astro editorial section]
     G --> I[Canonical data and existing site]
     H --> I
 ```
@@ -209,7 +213,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Configure daily 01:00 Europe/Rome ChatGPT OSINT Task A and prove manual GitHub source PR write (Fonte_10, PR #3).
 - [ ] Verify the first unattended daily ChatGPT OSINT execution and GitHub PR permissions.
 - [ ] Implement deterministic, validated and idempotent source-to-canonical ingestion without model API calls (M6).
-- [ ] Schedule independent ChatGPT Task B and implement source-linked IT/EN articles and editorial pages (M6).
+- [x] Implement the article contract, validation, publication gate and IT/EN article pages with Markdown downloads (M6, demo fixtures only).
+- [ ] Schedule independent ChatGPT Task B and publish its first reviewed article (M6).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.
 - [ ] Final editorial approval of the 36 person-link assessments (35 now referenced, one still restricted) and of all contested Fonte_09 claims. No record is automatically promoted to reviewed.
