@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M5 technical milestones implemented; M6 ChatGPT research design adopted, with Task A manually proven and scheduled. Automated ingest and the article section are pending. M5 evidence-review items remain tracked, and incremental data candidates remain quarantined.**
+**Phase: M1–M5 technical milestones implemented; M6 ChatGPT research design adopted, with Task A manually proven and scheduled. The deterministic sidecar ingest (`pnpm ingest`) is implemented; the Task A sidecar output and the article section are pending. M5 evidence-review items remain tracked, and incremental data candidates remain quarantined.**
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -126,6 +126,7 @@ pnpm validate     # validate data/ only
 pnpm build        # build the static site into web/dist (with search index)
 pnpm preview      # serve the built site locally
 pnpm check:links  # verify every internal link of the built site
+pnpm ingest <Fonte_XX.proposals.json>  # dry run of an M6 sidecar ingest (--write to create candidates)
 ```
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
@@ -149,8 +150,12 @@ deterministic ingestion, indexing, website generation and publication.
   citation-linked articles in Italian and English. A suggested two-week
   cadence is **not** yet configured.
 - **GitHub Actions (existing):** CI, evidence diff, build and GitHub Pages
-  deployment. **Planned:** schema-validated, idempotent source-to-canonical
-  ingestion and article publishing. No live model APIs are involved.
+  deployment. **Planned:** article publishing. No live model APIs are involved.
+- **Ingest (implemented, run manually):** each source PR will carry a
+  structured `Fonte_XX.proposals.json` sidecar next to the Markdown;
+  `pnpm ingest` validates it, deduplicates against existing records and other
+  sources, and writes only `needs_review` candidates (withheld from the site)
+  for a reviewed `agent/*` PR. Task A does not emit the sidecar yet.
 - **Safeguards:** original/incremental sources stay immutable once merged;
   no invented links or certainty, no automated promotion to `reviewed`,
   source-specific approvals and M5 publication gates remain in place.
@@ -166,7 +171,7 @@ flowchart TD
     C --> E{CI and evidence review}
     D --> E
     E -->|Approved| F[Merge to main]
-    F --> G[Deterministic ingest - planned]
+    F --> G[pnpm ingest of the sidecar - manual]
     F --> H[Astro editorial section - planned]
     G --> I[Canonical data and existing site]
     H --> I
@@ -208,7 +213,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Implement the M4 contribution/review/CI mechanism and GitHub Pages deployment; retire its legacy paid Anthropic research job in favor of the M6 design.
 - [x] Configure daily 01:00 Europe/Rome ChatGPT OSINT Task A and prove manual GitHub source PR write (Fonte_10, PR #3).
 - [ ] Verify the first unattended daily ChatGPT OSINT execution and GitHub PR permissions.
-- [ ] Implement deterministic, validated and idempotent source-to-canonical ingestion without model API calls (M6).
+- [x] Implement deterministic, validated and idempotent source-to-canonical ingestion without model API calls (M6: `pnpm ingest` + proposals sidecar contract).
+- [ ] Update ChatGPT Task A to emit the `Fonte_XX.proposals.json` sidecar and ingest Fonte_10 once merged (M6).
 - [ ] Schedule independent ChatGPT Task B and implement source-linked IT/EN articles and editorial pages (M6).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.

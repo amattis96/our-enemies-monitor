@@ -27,7 +27,8 @@
     "check:links": "node src/cli/check-links.ts",
     "data:diff": "node src/cli/data-diff.ts",
     "audit:publication": "node src/cli/audit-publication.ts",
-    "audit:m5": "node src/cli/audit-m5.ts"
+    "audit:m5": "node src/cli/audit-m5.ts",
+    "ingest": "node src/cli/ingest.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",

@@ -71,6 +71,7 @@ pnpm check:links        # internal links of the built site (after pnpm build)
 pnpm i18n:export <f>    # untranslated/stale Italian texts → { it: "" }
 pnpm i18n:import <f> --status machine|reviewed   # apply { it: en } translations
 pnpm data:diff [--base origin/main] [--agent]     # evidence diff of data/ vs a Git ref
+pnpm ingest <Fonte_XX.proposals.json> [--write]   # M6 sidecar → needs_review candidates (dry run by default)
 ```
 
 Before declaring work done, run `pnpm check` (and `pnpm build` plus
@@ -78,14 +79,18 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 
 ## Where things are
 
-- `src/model/` — Zod schemas (`schemas.ts`), vocabularies (`vocabularies.ts`).
+- `src/model/` — Zod schemas (`schemas.ts`), vocabularies (`vocabularies.ts`),
+  M6 proposals sidecar contract (`proposals.ts`).
   The single source of truth for record shapes. After changes run
   `pnpm schemas` and update `docs/ARCHITECTURE.md` (Data model).
 - `sources/incremental/` — immutable, versioned incremental sources (Fonte_09
-  and subsequent merged proposals). A new Markdown file **does not**
+  and subsequent merged proposals), each from Fonte_10 on with its
+  `Fonte_XX.proposals.json` sidecar. A new Markdown file **does not**
   automatically create canonical records. Fonte_09 was imported manually into
-  `data/`; see the M6 ingestion plan and "Incremental sources" in
-  `docs/ARCHITECTURE.md`.
+  `data/`; later sources go through `pnpm ingest` (see "Incremental ingest" in
+  `docs/ARCHITECTURE.md` and §4 of the M6 workflow).
+- `src/pipeline/ingest/` — sidecar reconciliation, ID allocation, plan
+  validation and reports used by `src/cli/ingest.ts`.
 - `src/pipeline/` — loading, canonical serialization (`serialize.ts`),
   validation (`validate.ts`). `baseline/` holds the one-time importer and the
   known-issue registry for the original files.
@@ -152,10 +157,17 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
 - **Task B (planned, not configured):** independent topical investigation,
   source-backed Italian and English article drafts, plus separate proposed
   evidence updates. The article schema and pages are future work.
-- **Local coding agents:** implement a deterministic, schema-validated,
-  idempotent intake from structured proposals to canonical `data/` in a
-  separate, reviewable PR. A free-form MD source alone is not a reliable
-  deterministic semantic importer; a typed sidecar contract is required.
+- **Local coding agents — ingest:** turn a merged sidecar into candidates only
+  with `pnpm ingest` (dry run first, then `--write`) on an `agent/*` branch,
+  then `pnpm format:data && pnpm check` and `pnpm data:diff --agent`, and
+  open a PR. Never hand-extract records from the Markdown, never edit the
+  sidecar or Markdown, never apply a `propose_correction` yourself, and
+  resolve `conflict`/`rejected` operations by asking the maintainer rather
+  than forcing them in. Ingest is never wired into CI or run on merge.
+- **Sidecar contract changes:** bump `schema_version`, run `pnpm schemas`,
+  update the tests, `docs/M6_CHATGPT_OSINT_WORKFLOW.md` §4 and the Task A
+  prompt text (§4.6) in the same change. Do not relax the person,
+  E5-only-in-hypotheses or needs_review rules to make a sidecar pass.
 - **Existing safeguards still apply:** `pnpm data:diff --agent` remains
   available for `agent/*` branches that change `data/`, but is **not**
   the rule set for ChatGPT's source-only `research/*` branches.
