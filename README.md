@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M4 implemented; M5 publication quarantine added, with primary-source and claim-level audits still open. Legacy records remain provisionally visible, while incremental candidates are held for review.**
+**Phase: M1–M5 technical milestones implemented; M6 ChatGPT research design adopted, with Task A manually proven and scheduled. Automated ingest and the article section are pending. M5 evidence-review items remain tracked, and incremental data candidates remain quarantined.**
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -130,42 +130,47 @@ pnpm check:links  # verify every internal link of the built site
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 
-## AI-assisted weekly updates
+## M6: ChatGPT-scheduled research without paid model APIs
 
-The target workflow is to use independent research agents, potentially built with ChatGPT, Codex, Claude or API-based automation, to propose **small, reviewable changes** instead of rewriting the whole corpus.
+**Adopted workflow:** two complementary **ChatGPT product scheduled tasks**,
+not Claude/Anthropic API automation. Research and writing occur in ChatGPT;
+GitHub provides versioning, review and CI; TypeScript/Astro performs
+deterministic ingestion, indexing, website generation and publication.
+
+- **Task A: incremental OSINT (active).** Daily at **01:00 Europe/Rome**.
+  Inspect the last *merged* source plus open PRs, re-scan with at least
+  72 hours of overlap, verify evidence, deduplicate, and open a PR adding
+  a new immutable Markdown `sources/incremental/Fonte_XX*.md` only when
+  relevant findings exist. No changes to canonical `data/` and no auto-merge.
+  The manual POC created [PR #3](https://github.com/amattis96/our-enemies-monitor/pull/3)
+  with Fonte_10; **unattended scheduled GitHub permissions are not yet proven**.
+- **Task B: in-depth investigations (planned).** Independent research from
+  hypotheses, network evidence and strategic questions, producing
+  citation-linked articles in Italian and English. A suggested two-week
+  cadence is **not** yet configured.
+- **GitHub Actions (existing):** CI, evidence diff, build and GitHub Pages
+  deployment. **Planned:** schema-validated, idempotent source-to-canonical
+  ingestion and article publishing. No live model APIs are involved.
+- **Safeguards:** original/incremental sources stay immutable once merged;
+  no invented links or certainty, no automated promotion to `reviewed`,
+  source-specific approvals and M5 publication gates remain in place.
+
+The previous weekly Anthropic/Claude API workflow has been retired.
+**Detailed contracts, task states and instructions for local coding agents:**
+[docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
 
 ```mermaid
 flowchart TD
-    A[Public institutions, primary sources and investigations] --> B[Scheduled research agents]
-    B --> C[Source verification and structured extraction]
-    C --> D[Deduplication and cross-checks]
-    D --> E[Branch and pull request]
-    E --> F{Validation and required review}
-    F -->|Approved| G[Merge into GitHub main]
-    F -->|Needs work| C
-    G --> H[Build and deploy public website]
+    A[ChatGPT Task A: OSINT] --> C[GitHub source MD PR]
+    B[ChatGPT Task B: articles - planned] --> D[GitHub article IT/EN PR]
+    C --> E{CI and evidence review}
+    D --> E
+    E -->|Approved| F[Merge to main]
+    F --> G[Deterministic ingest - planned]
+    F --> H[Astro editorial section - planned]
+    G --> I[Canonical data and existing site]
+    H --> I
 ```
-
-The automation should:
-
-- Detect **new evidence, genuinely new events and material developments** in existing cases.
-- Resolve entities and aliases against existing IDs and deduplicate sources.
-- Record original URLs, publisher, publication date, observation date, quoted or summarized support and source retrieval metadata.
-- Check for contrary evidence and identify sources that merely republish the same claim.
-- Propose additions or corrections with explicit provenance, evidence level and review status.
-- Preserve prior interpretations and append an audit trail rather than silently overwriting history.
-- Request human review for serious allegations about identifiable people, contested attribution and promotions of investigative hypotheses into factual assertions.
-- Generate translations **after** the canonical-language content has been approved.
-
-The precise ability of any scheduled assistant to write to GitHub depends on its configured integrations, permissions and environment. Recurring jobs and direct GitHub writes should not be assumed to be available together by default.
-
-### Pull request and deployment policy
-
-- Research agents should write on **dedicated branches**, not directly to `main`.
-- Checks should validate schema, identifiers, references, evidence metadata, chronology and the separation of hypotheses.
-- A successful check does **not** replace substantive editorial review.
-- Merges to `main` may trigger a static-site build and automated deployment.
-- A self-hosted installation may instead pull approved changes and run its build script; a `git pull` alone is insufficient when the website requires compilation.
 
 ## Data model and temporal integrity
 
@@ -200,7 +205,11 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Introduce multilingual navigation (Italian/English) with tracked translation status (M3).
 - [ ] Review the English machine translations.
 - [x] Set up agent-specific research branches, CI checks, evidence diffs and pull requests (M4).
-- [x] Enable scheduled research (needs the `ANTHROPIC_API_KEY` secret), editorial review and automatic deployment (M4).
+- [x] Implement the M4 contribution/review/CI mechanism and GitHub Pages deployment; retire its legacy paid Anthropic research job in favor of the M6 design.
+- [x] Configure daily 01:00 Europe/Rome ChatGPT OSINT Task A and prove manual GitHub source PR write (Fonte_10, PR #3).
+- [ ] Verify the first unattended daily ChatGPT OSINT execution and GitHub PR permissions.
+- [ ] Implement deterministic, validated and idempotent source-to-canonical ingestion without model API calls (M6).
+- [ ] Schedule independent ChatGPT Task B and implement source-linked IT/EN articles and editorial pages (M6).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.
 - [ ] Final editorial approval of the 36 person-link assessments (35 now referenced, one still restricted) and of all contested Fonte_09 claims. No record is automatically promoted to reviewed.
