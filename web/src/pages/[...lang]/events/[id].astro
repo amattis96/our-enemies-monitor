@@ -3,6 +3,7 @@ import type { Event } from "../../../../../src/model/index.ts";
 import { countryName, formatDateRange, PRECISION_LABELS } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf, ui } from "../../../../../src/site/i18n.ts";
 import { isParticipation } from "../../../../../src/site/read-model.ts";
+import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
 import EvidenceBadge from "../../../components/EvidenceBadge.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import RecordFooter from "../../../components/RecordFooter.astro";
@@ -168,6 +169,8 @@ const hypotheses = model.dataset.hypotheses.filter((h) => h.events.includes(even
       </>
     )
   }
+
+  <ArticleBacklinks id={event.id} lang={lang} />
 
   <RecordFooter id={event.id} collection="events" review={event.review} provenance={event.provenance} lang={lang} />
 </Base>

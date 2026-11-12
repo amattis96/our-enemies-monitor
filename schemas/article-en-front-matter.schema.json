@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "article-en-front-matter.schema.json",
+  "title": "article-en-front-matter",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^ART-(\\d{4}|DEMO-\\d{3})$"
+    },
+    "lang": {
+      "type": "string",
+      "const": "en"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "translation": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "machine",
+            "reviewed"
+          ]
+        },
+        "source_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
+      },
+      "required": [
+        "status",
+        "source_hash"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "lang",
+    "title",
+    "summary",
+    "translation"
+  ],
+  "additionalProperties": false
+}

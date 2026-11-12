@@ -6,6 +6,7 @@ import {
   PRIORITY_LABELS,
 } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf } from "../../../../../src/site/i18n.ts";
+import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import RecordFooter from "../../../components/RecordFooter.astro";
 import SourceRefs from "../../../components/SourceRefs.astro";
@@ -73,5 +74,7 @@ const c = (it: string, en: string) => choose(lang, it, en);
     <dt class="font-semibold">{c("Fonti del corpus", "Corpus sources")}</dt>
     <dd><SourceRefs ids={h.sources} lang={lang} /></dd>
   </dl>
+  <ArticleBacklinks id={h.id} lang={lang} />
+
   <RecordFooter id={h.id} collection="hypotheses" review={h.review} provenance={h.provenance} lang={lang} />
 </Base>
