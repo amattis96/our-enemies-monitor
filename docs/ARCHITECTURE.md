@@ -5,6 +5,8 @@ bilingual portal, atlas, dependencies, open data, editorial workflow and
 research agent. M5 publication quarantine, initial source matching, structured
 Fonte_09 reconciliation, claim-level staging and automated audit are implemented.
 Human editorial approval and individual publication decisions remain open.
+The M6 ChatGPT-scheduled, API-free research architecture is adopted but its
+deterministic ingest and article site are not implemented.
 This document describes the architecture as it is built. Keep it in sync
 with the code (see [AGENTS.md](../AGENTS.md)).
 
@@ -95,8 +97,8 @@ web/                   Astro portal
   src/islands/         React islands: TimelineExplorer, NetworkExplorer
   src/lib/             Base-path/language links, cached read model, SVG map rendering
 docs/                  Architecture and project documentation
-.github/workflows/     CI (+ evidence diff, Pages deployment) and the research agent
-.github/agent/         Versioned instructions of the research agent
+.github/workflows/     CI (evidence diff, Pages deployment); no LLM API job
+.github/agent/         Legacy agent prompt pointer; M6 rules live in docs/
 .github/ISSUE_TEMPLATE/ Correction and new-evidence forms
 CONTRIBUTING.md        Contribution and evidence rules (EN/IT)
 ```
@@ -401,18 +403,17 @@ contributor / research agent          maintainer
   without `primary_url`. The CI `evidence-diff` job runs it on every pull
   request (agent rules on `agent/*` branches) and publishes the report in the
   job summary.
-- **Research agent:** `.github/workflows/research-agent.yml` runs weekly
-  (Mondays 05:00 UTC) and on demand (`workflow_dispatch` with an optional
-  focus). It runs Claude Code (`anthropics/claude-code-action@v1`) with the
-  versioned instructions in `.github/agent/research-prompt.md` and a tool
-  allow-list that permits writing only under `data/` (plus the run report).
-  The workflow then runs `pnpm format:data`, `pnpm check` and the agent-mode
-  evidence diff, and only if all pass pushes an `agent/research-<date>-<run>`
-  branch and opens a pull request labeled `agent` and `needs-review`, with the
-  agent's report and the evidence diff as description. It never writes to
-  `main`. Requires the `ANTHROPIC_API_KEY` secret (skipped otherwise);
-  `AGENT_PR_TOKEN` (fine-grained PAT) is optional and makes CI run on the
-  agent's pull requests, which GitHub does not do for `GITHUB_TOKEN`.
+- **M6 research design:** the paid Anthropic API weekly research workflow has
+  been retired. Regular ChatGPT scheduled task **Our Enemies Monitor OSINT**
+  runs daily at 01:00 Europe/Rome, performs independent OSINT research and
+  proposes a new immutable `sources/incremental/Fonte_XX*.md` on a dedicated
+  branch and PR. The first manual proof-of-concept produced PR #3; the first
+  unattended execution (2026-11-13) and its permissions are still unverified.
+  The complementary ChatGPT thematic/article task, deterministic source-to-data
+  ingestion, and multilingual article section are planned but not implemented.
+  Read [M6 ChatGPT OSINT workflow](M6_CHATGPT_OSINT_WORKFLOW.md) for exact
+  contracts, state and instructions. GitHub Actions remains responsible for
+  CI, evidence checks, build and deployment, **not LLM inference**.
 - **Protection:** `.github/CODEOWNERS` assigns every path to the maintainer.
   Branch protection on `main` requires the `check` status and a code-owner
   review for pull requests, forbids force pushes and deletion; the
@@ -432,3 +433,6 @@ contributor / research agent          maintainer
 | **M3** English, atlas, dependencies | EN translations with review status, country atlas, exposure dataset, a11y/mobile pass, downloadable data and schemas, link checking | Done |
 | **M4** Editorial workflow and agents | Contribution templates, PR evidence diff, CODEOWNERS/branch protection, scheduled research agent PRs, changes/corrections page | Done |
 | **Fonte_09** Incremental update | First incremental source (cut-off 2026-11-11): 30 candidate events, 50 references, 18 entities, 14 relationships, hypotheses H23–H32; English machine-translated, editorial review pending | Imported (needs review) |
+
+| **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
+| **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; unattended run and implementation pending |

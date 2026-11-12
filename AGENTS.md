@@ -81,9 +81,10 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - `src/model/` — Zod schemas (`schemas.ts`), vocabularies (`vocabularies.ts`).
   The single source of truth for record shapes. After changes run
   `pnpm schemas` and update `docs/ARCHITECTURE.md` (Data model).
-- `sources/incremental/` — archived incremental sources (Fonte_09). They are
-  imported as ordinary `data/` records (`S09`, `EXT-005`…, `WEB-EXT-005`…),
-  not by the baseline importer; see "Incremental sources" in
+- `sources/incremental/` — immutable, versioned incremental sources (Fonte_09
+  and subsequent merged proposals). A new Markdown file **does not**
+  automatically create canonical records. Fonte_09 was imported manually into
+  `data/`; see the M6 ingestion plan and "Incremental sources" in
   `docs/ARCHITECTURE.md`.
 - `src/pipeline/` — loading, canonical serialization (`serialize.ts`),
   validation (`validate.ts`). `baseline/` holds the one-time importer and the
@@ -136,15 +137,32 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
   reviewer may import with `--status reviewed`.
 - Relationship predicates stay in Italian on every page (they are literal).
 
-## Automated research runs
+## Scheduled research and M6 agent guidance
 
-The weekly research agent follows `.github/agent/research-prompt.md` in
-addition to this file. Agent runs (and any `agent/*` branch) are checked with
-`pnpm data:diff --agent`: only `data/` may change; no deletions, provenance
-edits, self-review, reviewed translations or hypothesis promotions; new
-records must be `needs_review` with empty provenance, and new relationships
-need a `primary_url`. Changing these rules requires a human-authored pull
-request.
+**Current direction:** [M6 ChatGPT OSINT workflow](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
+The paid Anthropic API weekly research workflow is retired; do not reactivate
+`ANTHROPIC_API_KEY`-based agents or install an LLM runtime in GitHub Actions.
+The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt.
+
+- **Task A (active, outside this repository):** daily 01:00 `Europe/Rome`
+  ChatGPT scheduled OSINT research. On material news, create **only** a new
+  immutable `sources/incremental/Fonte_XX*.md` in a dedicated branch and PR;
+  never change `data/`, approve its contents or merge. The manual PR #3
+  worked; the first unattended scheduled run is still unverified.
+- **Task B (planned, not configured):** independent topical investigation,
+  source-backed Italian and English article drafts, plus separate proposed
+  evidence updates. The article schema and pages are future work.
+- **Local coding agents:** implement a deterministic, schema-validated,
+  idempotent intake from structured proposals to canonical `data/` in a
+  separate, reviewable PR. A free-form MD source alone is not a reliable
+  deterministic semantic importer; a typed sidecar contract is required.
+- **Existing safeguards still apply:** `pnpm data:diff --agent` remains
+  available for `agent/*` branches that change `data/`, but is **not**
+  the rule set for ChatGPT's source-only `research/*` branches.
+  Never mark candidate records reviewed, alter original provenance or weaken
+  M5 publication controls to make an import visible.
+- Source snapshots in open PRs must be considered to avoid duplication;
+  the committed coverage baseline advances only after merging to `main`.
 
 ## Publication gate (M5)
 
