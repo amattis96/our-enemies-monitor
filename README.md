@@ -191,7 +191,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Publish permissive licenses for code and original project data.
 - [x] Define and validate normalized schemas and import the baseline into canonical data (M1).
 - [x] Add an M5 publication gate for candidates and unsourced named-person relationships (site and exports).
-- [x] Add a reproducible publication audit command (`pnpm audit:publication`).
+- [x] Add a reproducible publication audit command (`pnpm audit:publication`) and [M5 evidence work queue](docs/M5_EVIDENCE_AUDIT.md).
 - [ ] Audit sensitive claims against stable primary-source references; review and integrate Fonte_09 candidates.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).

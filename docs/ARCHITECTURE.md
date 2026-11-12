@@ -112,6 +112,9 @@ its real review state. Historical `imported_unreviewed` baseline records remain
 visible as **provisional** research, not editorially verified findings.
 `reviewed` does not waive the person-primary-source requirement.
 
+The [M5 evidence audit register](M5_EVIDENCE_AUDIT.md) documents the initial
+36 person-link gaps and the Fonte_09 source spot checks.
+
 `pnpm audit:publication` lists canonical/public counts, states per collection and
 named-person links missing a primary reference. This is an audit work queue,
 not a declaration that source URLs or all baseline claims are verified.
