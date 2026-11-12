@@ -59,6 +59,8 @@ A change whose docs describe something the code does not do is incomplete.
 pnpm install            # exact pinned versions
 pnpm check              # everything CI runs: lint, typecheck, test, validate, schema freshness
 pnpm validate           # data validation only (errors fail, warnings print)
+pnpm validate:articles  # content/articles/ validation + publication gate report
+pnpm articles:hash [--write]  # English source_hash of each article
 pnpm test               # Vitest
 pnpm format:data        # rewrite data/ in canonical form
 pnpm schemas            # regenerate schemas/*.schema.json after model changes
@@ -113,6 +115,11 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
   links.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
+- `content/articles/` — editorial articles (Markdown + YAML front matter),
+  not canonical records. Model in `src/model/article.ts`, loading and checks
+  in `src/pipeline/articles.ts`, publication gate and rendering in
+  `src/site/articles.ts`. `ART-DEMO-*` files are test fixtures: `fixture:
+  true`, `DEMO / TEST` titles, never reviewed, linked only to public records.
 
 ## Code conventions
 
@@ -156,7 +163,10 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
   worked; the first unattended scheduled run is still unverified.
 - **Task B (planned, not configured):** independent topical investigation,
   source-backed Italian and English article drafts, plus separate proposed
-  evidence updates. The article schema and pages are future work.
+  evidence updates. The article contract, validation and pages are built:
+  articles are `content/articles/<ID>.it.md` + `<ID>.en.md` (see the M6 doc,
+  "Article contract"). Agents never set an article or its translation to
+  `reviewed` and never create `ART-DEMO-*` fixtures as real content.
 - **Local coding agents — ingest:** turn a merged sidecar into candidates only
   with `pnpm ingest` (dry run first, then `--write`) on an `agent/*` branch,
   then `pnpm format:data && pnpm check` and `pnpm data:diff --agent`, and

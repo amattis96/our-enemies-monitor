@@ -6,8 +6,8 @@ research agent. M5 publication quarantine, initial source matching, structured
 Fonte_09 reconciliation, claim-level staging and automated audit are implemented.
 Human editorial approval and individual publication decisions remain open.
 The M6 ChatGPT-scheduled, API-free research architecture is adopted; its
-deterministic sidecar ingest (`pnpm ingest`) is implemented, the article site
-is not.
+deterministic sidecar ingest (`pnpm ingest`) and the editorial article
+section (demo fixtures only) are implemented.
 This document describes the architecture as it is built. Keep it in sync
 with the code (see [AGENTS.md](../AGENTS.md)).
 
@@ -48,6 +48,7 @@ with the code (see [AGENTS.md](../AGENTS.md)).
 | Styling | Tailwind CSS 4 | Functional MVP styling with native form controls; a dedicated UI/UX design study will replace it (React Aria Components to be evaluated then) |
 | Network graph | Cytoscape.js | Edge styles per relation group, hypotheses on a separate layer |
 | Search | Pagefind | Static, multilingual index built from the generated pages |
+| Articles | YAML front matter (`yaml`) + micromark with GFM | Markdown rendered at build time; raw HTML escaped, unsafe URL schemes dropped |
 | Atlas | d3-geo + world-atlas (Natural Earth), static SVG rendered at build time | Country level only; no client JavaScript, no tile server |
 | i18n | Astro rest-param routes (`[...lang]`) | Italian at the root, English under `/en/`, same IDs in URLs |
 | Hosting | GitHub Pages | Portable static output, works on any static host |
@@ -76,11 +77,13 @@ data/                  Canonical records, one JSON file per record
   hypotheses/          H*.json (open questions, never graph edges)
   sources/             S*/F*/P*/WEB*.json (corpus documents and external references)
   exposures/           X-*.json (quantified strategic dependencies)
+content/articles/      Editorial articles: <ID>.it.md (canonical) + optional <ID>.en.md
 schemas/               JSON Schema generated from the Zod model, one per collection plus
-                       proposals.schema.json (M6 sidecar contract) (do not edit)
+                       article front matter and proposals.schema.json (M6 sidecar
+                       contract) (do not edit)
 src/
-  model/               Zod schemas, controlled vocabularies, types;
-                       proposals.ts: M6 proposals sidecar contract
+  model/               Zod schemas, controlled vocabularies, types (article.ts: articles;
+                       proposals.ts: M6 proposals sidecar contract)
   pipeline/            Loading (load.ts), source reading (sources.ts),
                        canonical serialization (serialize.ts), validation (validate.ts)
     baseline/          One-time importer, file registry, known-issue registry
@@ -89,10 +92,13 @@ src/
     baseline/exposures.ts Transcription of the Fonte_08 §12.2 exposure matrix
     translations.ts    Localized-text traversal, source hash, translation checks
     diff.ts            Evidence diff between two versions of data/
+    articles.ts        Article file loading, front matter parsing, schema and reference checks
     ingest/            M6 sidecar reconciliation (plan.ts), matching (match.ts),
                        validation/writing of the plan (apply.ts), reports (report.ts)
   site/                Read model (indexes, restriction rule, graph, timeline and
-                       atlas projections), i18n strings, formatting, data exports
+                       atlas projections), i18n strings, formatting, data exports,
+                       articles.ts (article publication gate, back-links, HTML and
+                       Markdown rendering)
   cli/                 Entry points used by package scripts
 test/                  Vitest suites; fixtures/ holds hand-authored test inputs
                        (Fonte_10.proposals.json, a faithful subset of PR #3)
@@ -202,6 +208,40 @@ Every record also carries:
   `imported_unreviewed`, `needs_review` or `reviewed`. `translations.en` =
   `{ status: machine | reviewed, source_hash }`, where `source_hash`
   fingerprints the Italian texts the translation was made from.
+
+### Editorial articles (M6)
+
+Articles are authored analyses that **cite** canonical records; they are not
+canonical records, so they live in `content/articles/`, not in `data/`. They
+are Markdown because they are long prose reviewed in pull requests (a JSON
+string body would make every diff one line), and because ChatGPT Task B writes
+Markdown natively. `data/` keeps its one-JSON-record-per-file contract, and
+`pnpm format:data`, `pnpm data:diff` and the M5 audit are unaffected.
+
+- **Files:** `<ID>.it.md` (canonical, all metadata in its YAML front matter)
+  and an optional `<ID>.en.md` (title, summary, body and `translation:
+  { status, source_hash }`). `src/model/article.ts` defines both front
+  matters and the assembled `Article` (localized `title`, `summary`, `body`);
+  `pnpm schemas` writes `article-it-front-matter`, `article-en-front-matter`
+  and `articles` JSON Schemas next to the collection schemas.
+- **IDs:** `ART-0001`… for real articles, `ART-DEMO-001`… for demo/test
+  fixtures. The ID is also the URL slug (`/articles/<ID>/`), like every other
+  record page.
+- **Fields:** `fixture` (mandatory boolean), `date` and `updated` (full
+  days), `generated_by { kind: human | ai | fixture, tool, run_date }`,
+  `links { events, entities, relationships, hypotheses }` (canonical IDs),
+  `references` (at least one: `{ source: <code>, note }` or `{ url, title,
+  publisher, published, accessed }`), `review { status: needs_review |
+  reviewed, notes }`. Articles are never `imported_unreviewed`.
+- **Fixtures are unmistakable:** `fixture: true` exactly for `ART-DEMO-NNN`
+  IDs, titles start with `DEMO / TEST` in every language, `generated_by.kind:
+  fixture`, never `reviewed`. Pages show a dashed **DEMO / TEST** banner and
+  badge; the Markdown export carries it too. Delete the fixtures when the first
+  real article is published.
+- **Translation:** `source_hash` is `sha256(JSON.stringify([title, summary,
+  body]))` of the Italian texts, first 16 hex digits (the record convention of
+  `src/pipeline/translations.ts`); `pnpm articles:hash [--write]` prints or
+  sets it. A changed Italian text makes the English file stale (error).
 
 ### Not yet modeled (by design)
 
@@ -345,6 +385,9 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 - `pnpm ingest <Fonte_XX.proposals.json> [--write] [--json] [--report f]
   [--compare f]` plans (dry run) or writes the candidates of an M6 sidecar
   (see Incremental ingest).
+- `pnpm validate:articles` validates `content/articles/` and lists which
+  articles the publication gate shows or withholds, and why (part of
+  `pnpm check`); `pnpm articles:hash [--write]` computes English source hashes.
 
 ### Validation rules
 
@@ -365,6 +408,11 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    Italian (a changed Italian text makes the translation stale → error).
 10. Warning: relationships touching a `person` entity without a `primary_url`
    (they will be restricted on the public site until reviewed).
+11. Articles (`pnpm validate:articles`): front matter schema, file name = ID,
+   Italian file present, every linked event/entity/relationship/hypothesis
+   and source code exists in `data/`, no duplicate links, `updated >= date`,
+   fixture rules, English source hash, and a Markdown body without raw HTML
+   or level-1 headings. A fixture that links a withheld record is an error.
 
 ## Website
 
@@ -390,6 +438,12 @@ index per language from `<html lang>`.
 | `/data/` | Open-data downloads with size and SHA-256, format notes, rebuild instructions |
 | `/changes/` | Known anomalies, review notes and the Git history of data changes |
 | `/search/` | Pagefind UI over pages marked `data-pagefind-body`, per language |
+| `/articles/`, `/articles/<id>/` | Public articles, newest first; detail with test banner (fixtures), review and translation notices, Markdown body, numbered references, linked records grouped by collection, downloads and Git links; indexed by Pagefind. Event, entity and hypothesis pages list the public articles that link them |
+
+Language-neutral article downloads: `/articles/<ID>.it.md` and, when
+translated, `/articles/<ID>.en.md` (front matter with ID, language, dates,
+fixture flag, review and translation status and canonical URL; notices; body;
+references and linked records with absolute URLs).
 
 Language-neutral endpoints under `/data/v1/`: `graph.json`,
 `hypotheses-graph.json`, one file per collection, `all.json`,
@@ -411,6 +465,12 @@ Public-facing rules implemented in the read model and tested:
   first within a year (technical ordering, stated on the page).
 - **Languages:** missing English falls back to Italian marked `lang="it"`;
   machine-translated records show a notice on English pages.
+- **Articles:** an article is public only when `reviewed` and every linked
+  record and cited source is in the M5 public projection, so an article can
+  never surface a withheld record (a `needs_review` Fonte_09 candidate, a
+  restricted person relationship). `needs_review` articles stay in Git only;
+  demo fixtures are the single exception and always show the test banner.
+  Back-links come only from public articles.
 
 **Accessibility and mobile (M3 pass):** axe-core reports no WCAG 2.1 A/AA
 violations on the main page types; no horizontal overflow at 375 px (tables
@@ -462,8 +522,9 @@ contributor / research agent          maintainer
   Deterministic source-to-data ingestion from a structured sidecar is
   implemented (`pnpm ingest`, run manually on an `agent/*` branch; see
   Incremental ingest); the Task A prompt still has to be updated to emit the
-  sidecar. The complementary ChatGPT thematic/article task and multilingual
-  article section are planned but not implemented.
+  sidecar. The multilingual article section and its file contract are
+  implemented (demo fixtures only); the complementary ChatGPT thematic/article
+  task (Task B) is planned but not configured.
   Read [M6 ChatGPT OSINT workflow](M6_CHATGPT_OSINT_WORKFLOW.md) for exact
   contracts, state and instructions. GitHub Actions remains responsible for
   CI, evidence checks, build and deployment, **not LLM inference**.
@@ -488,4 +549,4 @@ contributor / research agent          maintainer
 | **Fonte_09** Incremental update | First incremental source (cut-off 2026-11-11): 30 candidate events, 50 references, 18 entities, 14 relationships, hypotheses H23–H32; English machine-translated, editorial review pending | Imported (needs review) |
 
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
-| **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; sidecar contract and `pnpm ingest` implemented; Task A sidecar prompt, unattended run, Task B and articles pending |
+| **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; sidecar contract and `pnpm ingest` implemented; article model, validation, gate and pages done (demo fixtures only); Task A sidecar prompt, unattended run and Task B pending |

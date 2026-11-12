@@ -1,0 +1,32 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import { href } from "../lib/links.ts";
+import { articlesLinking } from "../lib/model.ts";
+import FixtureBanner from "./FixtureBanner.astro";
+import T from "./T.astro";
+
+// Public editorial articles that link this record (back-links).
+interface Props {
+  id: string;
+  lang: Language;
+}
+const { id, lang } = Astro.props;
+const articles = articlesLinking(id);
+---
+
+{
+  articles.length > 0 && (
+    <section>
+      <h2>{choose(lang, "Articoli che citano questo record", "Articles citing this record")}</h2>
+      <ul class="list-disc pl-5">
+        {articles.map((article) => (
+          <li>
+            {article.fixture && <><FixtureBanner lang={lang} compact />{" "}</>}
+            <a href={href(`articles/${article.id}/`, lang)}><T text={article.title} lang={lang} /></a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

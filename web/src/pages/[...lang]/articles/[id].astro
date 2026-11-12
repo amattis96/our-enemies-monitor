@@ -1,0 +1,170 @@
+---
+import type { Article } from "../../../../../src/model/index.ts";
+import {
+  articleLanguages,
+  linkedRecords,
+  renderArticleHtml,
+} from "../../../../../src/site/articles.ts";
+import {
+  ARTICLE_GENERATOR_LABELS,
+  formatPartialDate,
+  REVIEW_STATUS_LABELS,
+  TRANSLATION_STATUS_LABELS,
+} from "../../../../../src/site/format.ts";
+import {
+  choose,
+  langParam,
+  languageFromParam,
+  pick,
+  textOf,
+  ui,
+} from "../../../../../src/site/i18n.ts";
+import FixtureBanner from "../../../components/FixtureBanner.astro";
+import T from "../../../components/T.astro";
+import TranslationNotice from "../../../components/TranslationNotice.astro";
+import Base from "../../../layouts/Base.astro";
+import { assetHref, href } from "../../../lib/links.ts";
+import { getArticles, getModel } from "../../../lib/model.ts";
+
+export function getStaticPaths() {
+  return (["it", "en"] as const).flatMap((lang) =>
+    getArticles().map((article) => ({
+      params: { lang: langParam(lang), id: article.id },
+      props: { article },
+    })),
+  );
+}
+
+const { article } = Astro.props as { article: Article };
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const body = pick(article.body, lang);
+const linked = linkedRecords(article, model, lang);
+const groups = [
+  ["events", c("Eventi", "Events")],
+  ["entities", c("Entità", "Entities")],
+  ["relationships", c("Relazioni", "Relationships")],
+  ["hypotheses", c("Ipotesi aperte (non accertate)", "Open hypotheses (not established)")],
+] as const;
+const downloads = articleLanguages(article);
+const repo = "https://github.com/amattis96/our-enemies-monitor";
+const translation = article.review.translations?.en;
+const { kind, tool, run_date } = article.generated_by;
+const generation = [
+  ARTICLE_GENERATOR_LABELS[kind][lang],
+  tool && `: ${tool}`,
+  run_date && ` (${formatPartialDate(run_date, lang)})`,
+]
+  .filter(Boolean)
+  .join("");
+---
+
+<Base title={textOf(article.title, lang)} lang={lang} description={textOf(article.summary, lang)} searchable>
+  <p class="meta">
+    <a href={href("articles/", lang)}>{ui(lang).navArticles}</a> · <span class="font-mono">{article.id}</span>
+  </p>
+  {article.fixture && <FixtureBanner lang={lang} />}
+  <article class="max-w-3xl">
+    <h1><T text={article.title} lang={lang} /></h1>
+    <p class="meta">
+      {[
+        formatPartialDate(article.date, lang),
+        article.updated && `${c("aggiornato il", "updated")} ${formatPartialDate(article.updated, lang)}`,
+        ARTICLE_GENERATOR_LABELS[article.generated_by.kind][lang],
+        REVIEW_STATUS_LABELS[article.review.status][lang],
+      ]
+        .filter(Boolean)
+        .join(" · ")}
+    </p>
+    {
+      article.review.status !== "reviewed" && !article.fixture && (
+        <div class="notice">{c("Bozza in attesa di revisione editoriale.", "Draft awaiting editorial review.")}</div>
+      )
+    }
+    <TranslationNotice review={article.review} lang={lang} />
+    {
+      body.fallback && (
+        <p class="meta italic" data-pagefind-ignore>
+          No English translation yet: the Italian original is shown.
+        </p>
+      )
+    }
+    <p class="text-lg"><T text={article.summary} lang={lang} /></p>
+    <div class="article-body" lang={body.fallback ? "it" : undefined} set:html={renderArticleHtml(body.value)} />
+
+    <h2 id="references">{c("Riferimenti", "References")}</h2>
+    <ol class="list-decimal pl-6 space-y-1 wrap-anywhere">
+      {
+        article.references.map((reference) =>
+          "source" in reference ? (
+            <li>
+              <a class="badge font-mono" href={href(`sources/${reference.source}/`, lang)}>{reference.source}</a>{" "}
+              {model.source(reference.source) ? <T text={model.source(reference.source)!.title} lang={lang} /> : reference.source}
+              {reference.note && <> — <span lang="it">{reference.note}</span></>}
+            </li>
+          ) : (
+            <li>
+              <a href={reference.url} rel="noopener">{reference.title}</a>
+              {reference.publisher && <>. {reference.publisher}</>}
+              {reference.published && <>, {formatPartialDate(reference.published, lang)}</>}.{" "}
+              <span class="meta">{c("Consultato il", "Accessed")} {formatPartialDate(reference.accessed, lang)}</span>
+            </li>
+          ),
+        )
+      }
+    </ol>
+  </article>
+
+  {
+    linked.length > 0 && (
+      <section data-pagefind-ignore>
+        <h2 id="linked">{c("Record collegati", "Linked records")}</h2>
+        <p class="meta max-w-3xl">
+          {c(
+            "Record canonici discussi dall'articolo. Le evidenze, i livelli e lo stato di revisione sono quelli delle rispettive pagine.",
+            "Canonical records discussed by the article. Evidence, levels and review status are those of their own pages.",
+          )}
+        </p>
+        {groups.map(([collection, label]) => {
+          const items = linked.filter((record) => record.collection === collection);
+          return items.length > 0 && (
+            <>
+              <h3>{label}</h3>
+              <ul class="list-disc pl-5">
+                {items.map((record) => (
+                  <li><a href={href(record.path, lang)}><span class="font-mono">{record.id}</span></a>: {record.label}</li>
+                ))}
+              </ul>
+            </>
+          );
+        })}
+      </section>
+    )
+  }
+
+  <section class="mt-10 border-t border-line pt-4 meta" data-pagefind-ignore>
+    <h2 class="text-base">{c("Download e provenienza", "Download and provenance")}</h2>
+    <ul class="list-disc pl-5 wrap-anywhere">
+      {
+        downloads.map((code) => (
+          <li>
+            <a href={assetHref(`articles/${article.id}.${code}.md`)} download hreflang={code}>
+              Markdown ({code === "it" ? "italiano" : "English"})
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href={`${repo}/blob/main/content/articles/${article.id}.it.md`}>{c("File canonico", "Canonical file")} {article.id}.it.md</a>{" "}
+        (<a href={`${repo}/commits/main/content/articles/${article.id}.it.md`}>{ui(lang).recordHistory}</a>)
+      </li>
+    </ul>
+    <p>
+      {generation}.{" "}
+      {ui(lang).reviewStatus}: {REVIEW_STATUS_LABELS[article.review.status][lang]}
+      {translation && <> · English: {TRANSLATION_STATUS_LABELS[translation.status][lang]}</>}.
+      {article.review.notes.map((note) => <span class="block" lang="it">{note}</span>)}
+    </p>
+  </section>
+</Base>

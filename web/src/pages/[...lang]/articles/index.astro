@@ -1,0 +1,61 @@
+---
+import { formatPartialDate, REVIEW_STATUS_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import FixtureBanner from "../../../components/FixtureBanner.astro";
+import T from "../../../components/T.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getArticles } from "../../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const articles = getArticles();
+const fixtures = articles.some((article) => article.fixture);
+---
+
+<Base
+  title={c("Articoli", "Articles")}
+  lang={lang}
+  description={c("Analisi tematiche basate sulle fonti, collegate ai record della base di conoscenza.", "Source-based thematic analyses linked to the records of the knowledge base.")}
+>
+  <h1>{c("Articoli e analisi", "Articles and analyses")}</h1>
+  <p class="max-w-3xl">
+    {c(
+      "Analisi tematiche in italiano e inglese. Ogni articolo cita le proprie fonti e rimanda ai record canonici che discute: le evidenze restano nei record, con il loro livello e il loro stato di revisione. Un articolo non trasforma una vicinanza nel grafo o un'ipotesi in una prova.",
+      "Thematic analyses in Italian and English. Each article cites its sources and links the canonical records it discusses: the evidence stays in those records, with their level and review status. An article does not turn graph proximity or a hypothesis into proof.",
+    )}
+  </p>
+  {
+    fixtures && (
+      <div class="test-banner max-w-3xl" role="note">
+        <strong>DEMO / TEST</strong>{" "}
+        {c(
+          "Gli articoli marcati DEMO / TEST sono contenuti di prova: servono a verificare la sezione finché non arrivano analisi reali.",
+          "Articles marked DEMO / TEST are test content: they exercise this section until real analyses arrive.",
+        )}
+      </div>
+    )
+  }
+  {
+    articles.length === 0 ? (
+      <p class="meta">{c("Nessun articolo pubblicato.", "No article published.")}</p>
+    ) : (
+      <ul class="grid gap-4 max-w-3xl">
+        {articles.map((article) => (
+          <li class:list={["card", article.fixture && "card-test"]}>
+            <p class="meta">
+              {article.fixture && <><FixtureBanner lang={lang} compact />{" "}</>}
+              <time datetime={article.date}>{formatPartialDate(article.date, lang)}</time> ·{" "}
+              <span class="font-mono">{article.id}</span> · {REVIEW_STATUS_LABELS[article.review.status][lang]}
+            </p>
+            <h2 class="mt-1 text-lg">
+              <a href={href(`articles/${article.id}/`, lang)}><T text={article.title} lang={lang} /></a>
+            </h2>
+            <p class="mb-0"><T text={article.summary} lang={lang} /></p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>
