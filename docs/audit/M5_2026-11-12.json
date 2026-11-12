@@ -278,6 +278,17 @@
       "archived_url": null,
       "content_sha256": null,
       "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-OFAC-2018",
+      "publisher": "US Treasury",
+      "url": "https://home.treasury.gov/news/press-releases/sm0338",
+      "issued_at": "2018-04-06",
+      "source_type": "administrative_action",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
     }
   ],
   "relationship_reviews": [
@@ -402,7 +413,7 @@
     },
     {
       "id": "G-0137",
-      "source_id": "US-OFAC-HER",
+      "source_id": "US-OFAC-2018",
       "assessment": "matched_with_scope_limits",
       "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
       "human_approved": false

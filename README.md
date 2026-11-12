@@ -193,7 +193,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Add an M5 publication gate for candidates and unsourced named-person relationships (site and exports).
 - [x] Add a reproducible publication audit command (`pnpm audit:publication`) and [M5 evidence work queue](docs/M5_EVIDENCE_AUDIT.md).
 - [x] First-pass source matching on 36 sensitive relationships (35 referenced, 1 restricted) and 30 Fonte_09 case/reconciliation decisions.
-- [x] Stage 20 atomic claims and 25 durable source metadata entries, guarded by `pnpm audit:m5`.
+- [x] Stage 20 atomic claims and 26 durable source metadata entries, guarded by `pnpm audit:m5`.
 - [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).

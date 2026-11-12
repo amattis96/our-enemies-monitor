@@ -4,7 +4,7 @@
 
 **Status, 12 November 2026:** first-pass source matching and automated reconciliation completed. **35 of 36 sensitive person relationships now have a primary or institutional reference attached** with explicit claim limitations; `G-0230` remains restricted because no matching authoritative primary document was found. This audit is not a finding of culpability, exhaustive source authentication or human editorial approval. No `review.status` has been promoted to `reviewed`.
 
-The versioned machine-readable register is [M5_2026-11-12.json](audit/M5_2026-11-12.json). It contains **25 source metadata entries, 36 person-edge assessments, 30 Fonte_09 decisions and 20 individually sourced atomic claims**. All records explicitly retain `human_approved: false`, and the exact claims still require editorial confirmation. `pnpm audit:m5` checks structural and evidentiary consistency in CI.
+The versioned machine-readable register is [M5_2026-11-12.json](audit/M5_2026-11-12.json). It contains **26 source metadata entries, 36 person-edge assessments, 30 Fonte_09 decisions and 20 individually sourced atomic claims**. All records explicitly retain `human_approved: false`, and the exact claims still require editorial confirmation. `pnpm audit:m5` checks structural and evidentiary consistency in CI.
 
 ## Reproducibility and baseline
 
@@ -41,7 +41,7 @@ The new Fonte_09 contains 30 proposed `EXT-005`–`EXT-034` event/update records
 | Group / event involvement | Record IDs | Verification priority |
 | --- | --- | --- |
 | Manafort and Hapsburg timeline | `G-0117` | Court record and event/role date |
-| Kerimov finances/sanctions | `G-0132`, `G-0137`, `G-0274` | OFAC/Treasury decisions; do not infer unrelated ownership |
+| Kerimov finances/sanctions | `G-0132`, `G-0137`, `G-0274` | OFAC/Treasury decisions including [original April 2018 designation](https://home.treasury.gov/news/press-releases/sm0338); do not infer unrelated ownership |
 | Gill payments, intermediary, conviction | `G-0138`, `G-0139`, `G-0287` | [Crown Prosecution Service, 21 November 2025](https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes); ascertain each person's procedural status individually |
 | Christine Lee and MI5 alert | `G-0159`, `G-0176` | Official MI5/public review and wording of the alert |
 | Musk acquisition, public support | `G-0170`, `G-0266` | Dated corporate transaction and primary public statement |
@@ -70,7 +70,7 @@ These checks do **not** verify all figures, exact chronology, target counts, dow
 - **Completed, structural:** 36/36 original person links assessed, 35 primary/institutional URLs attached with limitations, one withheld (`G-0230`); inappropriate Christine Lee references to `TL-0024` corrected to `TL-0035` without altering provenance.
 - **Completed, staging:** each of 30 Fonte_09 items has a proposed canonical action and case identifier, including merging Italy's November refrigeration wave with the European campaign, treating RAF Fairford filings as procedural acts, and splitting the Ust-Luga raid from Baltic drone alerts.
 - **Completed, staging:** 20 claim-level assertions represent occurrence, attribution, procedural status, material responsibility, control and reported outcome separately; each has at least one source and a limitation.
-- **Completed, metadata:** 25 dated source-register entries with publisher, URL, issued date where established, lookup date, archival and checksum fields explicitly set to null where not obtained. Do not interpret a URL match as independent certification of all text.
+- **Completed, metadata:** 26 dated source-register entries with publisher, URL, issued date where established, lookup date, archival and checksum fields explicitly set to null where not obtained. Do not interpret a URL match as independent certification of all text.
 - **Completed, automation:** `src/editorial/m5.ts`, `test/m5.test.ts`, and `pnpm audit:m5` check IDs, referential integrity, source-to-edge URL match, publication quarantine, Fonte_09 action coverage and false approval states.
 - **Open, editorial:** exact paragraph-level verification, rights of reply and per-record human sign-off are needed before any record becomes `reviewed`, or a pending event is integrated. This register deliberately contains zero approved claims.
 

@@ -114,7 +114,7 @@ visible as **provisional** research, not editorially verified findings.
 `reviewed` does not waive the person-primary-source requirement.
 
 The [M5 evidence audit register](M5_EVIDENCE_AUDIT.md) and the structured
-[25-source / 36-relationship / 30-decision / 20-claim file](audit/M5_2026-11-12.json)
+[26-source / 36-relationship / 30-decision / 20-claim file](audit/M5_2026-11-12.json)
 document the first review pass. `src/editorial/m5.ts` validates its schema and
 cross-checks source URLs, claim references, source completeness and pending
 editorial approvals against canonical JSON. `pnpm audit:m5` runs in CI, without
