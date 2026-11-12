@@ -108,8 +108,8 @@ The repository is the durable source of truth. A **static-first portal** is buil
 | Runtime and tooling | Node.js 26, pnpm 12, TypeScript 7, Biome 2, Vitest 5 |
 | Data model and validation | Zod 4 schemas, exported as JSON Schema |
 | Canonical data | One JSON file per record in `data/`, versioned in Git |
-| Public web app | Astro 7 static site with React 19 islands, Tailwind CSS 4 |
-| Network graphs | Cytoscape.js |
+| Public web app | Astro 7 static site with React 19 islands, Tailwind CSS 4, [Dossier design system](docs/design/README.md) |
+| Evidence board | Custom SVG island, d3-force build-time layout, d3-zoom |
 | Search | Pagefind static index |
 | Atlas | Static country-level SVG maps (d3-geo, Natural Earth) |
 | Languages | Italian (canonical) and English, translation status tracked per record |
@@ -121,7 +121,7 @@ No database, graph database, map tile server or paid service is needed to build 
 
 ```bash
 pnpm install
-pnpm check        # lint, typecheck, tests, data validation, schema freshness
+pnpm check        # lint, typecheck, tests, data validation, schema freshness, contrast
 pnpm validate     # validate data/ only
 pnpm validate:articles  # validate content/articles/ and show the publication gate
 pnpm build        # build the static site into web/dist (with search index)
@@ -223,7 +223,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [ ] Schedule independent ChatGPT Task B and publish its first reviewed article (M6).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Design the *Dossier* design system and audit the portal UI/UX ([docs/design/](docs/design/README.md), M7 design).
-- [ ] Implement the Dossier design in the portal: themes, navigation, evidence stamps, newest-first timeline, investigation board, interactive atlas (M7).
+- [x] Implement the Dossier design in the portal: themes, navigation, evidence stamps, newest-first timeline, investigation board, interactive atlas (M7).
 - [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.
 - [ ] Final editorial approval of the 36 person-link assessments (35 now referenced, one still restricted) and of all contested Fonte_09 claims. No record is automatically promoted to reviewed.
 

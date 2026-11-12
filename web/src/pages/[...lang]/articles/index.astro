@@ -15,12 +15,13 @@ const fixtures = articles.some((article) => article.fixture);
 ---
 
 <Base
-  title={c("Articoli", "Articles")}
+  title={c("Indagini", "Investigations")}
   lang={lang}
   description={c("Analisi tematiche basate sulle fonti, collegate ai record della base di conoscenza.", "Source-based thematic analyses linked to the records of the knowledge base.")}
 >
-  <h1>{c("Articoli e analisi", "Articles and analyses")}</h1>
-  <p class="max-w-3xl">
+  <p class="kicker kicker-signal">{c("Indagini", "Investigations")}</p>
+  <h1>{c("Indagini e analisi", "Investigations and analyses")}</h1>
+  <p class="lede">
     {c(
       "Analisi tematiche in italiano e inglese. Ogni articolo cita le proprie fonti e rimanda ai record canonici che discute: le evidenze restano nei record, con il loro livello e il loro stato di revisione. Un articolo non trasforma una vicinanza nel grafo o un'ipotesi in una prova.",
       "Thematic analyses in Italian and English. Each article cites its sources and links the canonical records it discusses: the evidence stays in those records, with their level and review status. An article does not turn graph proximity or a hypothesis into proof.",
@@ -41,7 +42,7 @@ const fixtures = articles.some((article) => article.fixture);
     articles.length === 0 ? (
       <p class="meta">{c("Nessun articolo pubblicato.", "No article published.")}</p>
     ) : (
-      <ul class="grid gap-4 max-w-3xl">
+      <ul class="grid gap-6 md:grid-cols-2 mt-6">
         {articles.map((article) => (
           <li class:list={["card", article.fixture && "card-test"]}>
             <p class="meta">
@@ -49,7 +50,7 @@ const fixtures = articles.some((article) => article.fixture);
               <time datetime={article.date}>{formatPartialDate(article.date, lang)}</time> ·{" "}
               <span class="font-mono">{article.id}</span> · {REVIEW_STATUS_LABELS[article.review.status][lang]}
             </p>
-            <h2 class="mt-1 text-lg">
+            <h2 class="mt-2 text-xl">
               <a href={href(`articles/${article.id}/`, lang)}><T text={article.title} lang={lang} /></a>
             </h2>
             <p class="mb-0"><T text={article.summary} lang={lang} /></p>

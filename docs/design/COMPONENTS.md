@@ -46,9 +46,9 @@ toggle (`aria-pressed`).
 
 ### `ClaimLink` (articles)
 
-Inline claim in article prose: underline-highlight in accent wash + dotted
+*Deferred (needs a Markdown extension in the article contract).* Inline
+claim in article prose: underline-highlight in accent wash + dotted
 underline, followed by an `EvidenceStamp compact` that links to the record.
-Hover/focus shows a popover with record ID, title, level and sources.
 
 ### `LimitsNote`
 
@@ -102,16 +102,16 @@ primary items with `nav-*` icons; active item gets a 3 px signal underline
 and `aria-current="page"`. Right: `SearchTrigger`, `LanguagePicker`,
 `ThemeSwitch`.
 
-- **Explore menu** (desktop): disclosure button opening a two-column panel
-  — left the console views (Timeline, Board, Atlas, Dependencies), right the
-  archive (Entities, Hypotheses, Sources) with counts and one-line
-  descriptions (the current home cards' copy).
-- **Mobile (< 760 px):** mark + short wordmark, search icon, menu button.
+- **Desktop (≥ 1180 px):** seven direct items — Investigations, Timeline,
+  Board, Atlas, Dependencies, Archive (entities, hypotheses, sources,
+  events), Method (methodology, data, changes); the home is the brand link.
+  *Deferred:* an Explore disclosure menu.
+- **Below 1180 px:** mark + wordmark, search button, menu button (language
+  and theme controls also stay in the bar from 760 px).
   Menu = full-height sheet with the three areas as large rows with icons,
-  then Method links, then language and theme controls. Focus trapped,
-  `Esc` closes, returns focus to the button.
-- **Console tab bar (mobile, console pages only):** bottom bar with
-  Timeline / Board / Atlas / Archive, 56 px, safe-area aware.
+  then Method links, then language and theme controls. Native `<dialog>`
+  (`showModal`): focus trapped, `Esc` closes, focus returns to the button.
+  *Deferred:* a bottom console tab bar on phones.
 
 ### `ThemeSwitch`
 
@@ -136,12 +136,19 @@ names and a check on the current one.
 
 Button styled as a search field ("Cerca nel monitor", `⌘K` / `Ctrl K`
 hint). Opens a modal command palette using the Pagefind JS API (not the
-default UI): results grouped by type with `kind-*` / `nav-*` icons, record ID
-in mono, evidence stamp where relevant, keyboard navigation (↑ ↓ Enter Esc),
-recent searches stored locally, "Go to" section shortcuts when the query is
-empty. `/search/` stays as a full page with filters for no-JS and deep links.
+default UI) with `kind-*` / `nav-*` icons per result type,
+keyboard navigation (↑ ↓ Enter Esc, `/` also opens it), "Go to" section
+shortcuts when the query is empty, top 8 results with a type icon and a
+two-line excerpt. `/search/` stays as the full page. *Deferred:* grouping
+by type and recent searches.
 
 ## 4. Content components
+
+> Implemented: kicker, section titles, `KpiTile`, stacked `DataTable`
+> (sortable on the atlas), `Callout`, `LimitsNote`, `EmptyState`, `Button`,
+> `Tabs`, chips, `StatusLabel`, `RecordFooter` (copy ID, report a
+> correction). *Deferred:* `Citation` popovers, `Pagination`, story-card
+> variants beyond the home and investigations grids, `Sparkline`.
 
 | Component | Spec |
 | --- | --- |

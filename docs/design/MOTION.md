@@ -24,20 +24,20 @@ or glows. Motion always explains a change of state or place.
 
 | Pattern | Where | Spec |
 | --- | --- | --- |
-| **Page transition** | All pages (Astro `<ClientRouter />` view transitions) | Cross-fade 220 ms; masthead/nav persist (`transition:persist`); entity title morphs from list item to page H1 via `transition:name` |
-| **Masthead collapse** | Press pages | Scroll-driven (`animation-timeline: scroll()`), progressive enhancement; fallback is a static compact bar |
-| **Reveal on scroll** | Timeline items, home sections | 8 px rise + fade, `--dur-base`, `--ease-enter`, once per item via IntersectionObserver; disabled for items already in view at load |
-| **Year scrub** | Timeline density bar | Selected bar fills with signal; list scrolls smoothly to the year (`scroll-behavior: smooth` unless reduced motion) |
-| **Stamp tooltip** | Evidence stamps | Popover with level definition, 140 ms fade, 4 px offset slide |
-| **Drawer** | Case file (board), country panel (atlas), filters sheet (mobile) | Slide from right (bottom on mobile) 360 ms enter / 250 ms exit; scrim fades 220 ms |
-| **Pin drop** | Board initial render, filter re-add | Cards fall 14 px with `--ease-paper`, staggered; pins appear 60 ms after their card |
+| **Page transition** | All pages | Cross-document view transitions (`@view-transition { navigation: auto; }`, CSS only, no client router): the browser cross-fades between pages where supported, plain navigation elsewhere |
+| **Masthead** | Home | Full masthead on the home page only; every page has the compact sticky bar. *Deferred:* scroll-driven collapse |
+| **Reveal on scroll** | Timeline items | 10 px rise + fade driven by a CSS view timeline (`animation-timeline: view()`, the `.reveal` class), no JavaScript; browsers without support show items at once |
+| **Year scrub** | Timeline density bar | Selected bar fills with signal and filters the list to that year (click again to clear); bar heights ease when other filters change |
+| **Stamp tooltip** | Evidence stamps | Native tooltip with the level definition (also in visually hidden text). *Deferred:* styled popover |
+| **Drawer / sheet** | Board case file, mobile menu, search palette | Case file and menu slide in from the right (case file from the bottom on phones) with `--dur-slow` / `--ease-enter`; the palette fades and settles 8 px; dialogs dim the page behind |
+| **Pin drop** | Board initial render | Cards (with their pin) fall 14 px with `--ease-paper`, staggered 18 ms; skipped above 150 visible cards |
 | **Thread draw** | Board | Solid threads draw with `stroke-dashoffset` over 600 ms; patterned threads (E3/E4/E5) fade in instead, so the pattern never animates into a false solid |
-| **Card lift** | Board hover/drag | Translate −3 px, shadow from `--shadow-card` to `--shadow-lifted`, rotation eases to 0 while dragging and back to its resting angle on drop |
-| **Neighbourhood focus** | Board selection | Non-neighbours fade to 18 % over 220 ms; threads of the selection thicken by 1 px |
-| **Map zoom** | Atlas Europe ↔ World | Projection interpolated over 600 ms (`d3-geo` + `requestAnimationFrame`); selected country outline stays drawn |
+| **Card lift** | Board hover/focus | Paper rises 3 px with `--ease-paper` and its drawn shadow moves out (no CSS filters, cheap on phones) |
+| **Neighbourhood focus** | Board selection | Non-neighbouring cards and threads fade to 16 % over 220 ms |
+| **Map switch and zoom** | Atlas | Europe ↔ World swaps two build-time maps; zoom and pan change the SVG viewBox. *Deferred:* projection interpolation |
 | **Counter tick** | Home KPIs | Numbers count up once on first view, 600 ms, tabular figures so width never jitters |
-| **Live dot** | Dateline | Soft ring pulse every 2.4 s; stops when the tab is hidden |
-| **Theme change** | Global | Background and ink cross-fade 360 ms; islands re-render without animation |
+| **Live dot** | Dateline | Soft ring pulse every 2.4 s (CSS); off with reduced motion |
+| **Theme change** | Global | Page background and ink cross-fade 360 ms; inline SVG follows the tokens immediately |
 
 ## Reduced motion
 

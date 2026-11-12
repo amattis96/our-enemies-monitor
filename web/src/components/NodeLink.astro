@@ -1,15 +1,19 @@
 ---
 import type { Language } from "../../../src/model/index.ts";
+import { KIND_ICON } from "../../../src/site/visual.ts";
 import { nodeHref } from "../lib/links.ts";
 import { getModel } from "../lib/model.ts";
+import Icon from "./Icon.astro";
 import T from "./T.astro";
 
 interface Props {
   id: string;
   lang: Language;
+  icon?: boolean;
 }
-const { id, lang } = Astro.props;
+const { id, lang, icon = true } = Astro.props;
 const model = getModel();
+const kind = model.nodeKind(id) ?? "event";
 ---
 
-<a href={nodeHref(id, model.nodeKind(id), lang)}><T text={model.nodeName(id)} lang={lang} /></a>
+<a class="node-link" href={nodeHref(id, model.nodeKind(id), lang)}>{icon && <Icon name={KIND_ICON[kind]} class="node-icon" />}<T text={model.nodeName(id)} lang={lang} /></a>

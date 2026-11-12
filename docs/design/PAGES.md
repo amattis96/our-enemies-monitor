@@ -1,5 +1,8 @@
 # Page blueprints
 
+> **Status:** implemented in M7 except where a section says *Deferred*;
+> the summary is in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md#status-after-m7).
+
 Wireframe-level specifications. Every page keeps its current URL, data and
 publication-gate behaviour (`src/site/publication.ts`); only presentation and
 interaction change. ASCII sketches are desktop; mobile notes follow.
@@ -16,7 +19,7 @@ interaction change. ASCII sketches are desktop; mobile notes follow.
 │                                          │ → Cronologia                   │
 ├───────────────────────────────────────────────────────────────────────────┤
 │ THE CONSOLE  KPI tiles: events · relationships · entities · hypotheses ·  │
-│ sources · exposures (counts from the dataset, sparkline per year)         │
+│ sources · exposures (published counts, count-up once on view)            │
 ├───────────────────────────────────────────────────────────────────────────┤
 │ EXPLORE  4 large tiles with illustration-icon: Timeline · Board · Atlas · │
 │ Dependencies  + Archive row (Entities · Hypotheses · Sources)             │
@@ -24,7 +27,7 @@ interaction change. ASCII sketches are desktop; mobile notes follow.
 │ HOW TO READ THIS MONITOR  evidence ladder illustration + 5 stamps +       │
 │ "Enemies is the name of the project…" disclaimer (kept verbatim)          │
 ├───────────────────────────────────────────────────────────────────────────┤
-│ MORE INVESTIGATIONS (3 cards)  ·  THEMES (18 theme chips with th- icons)  │
+│ MORE INVESTIGATIONS (non-fixture only) · THEMES (chips with th- icons)    │
 └───────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -32,14 +35,15 @@ interaction change. ASCII sketches are desktop; mobile notes follow.
   recent integrated timeline event as a "dispatch" with an explicit
   "Dalla cronologia / From the timeline" kicker; fixture articles never
   appear on the home page.
-- The baseline/cut-off paragraph becomes the dateline plus a "Stato del
-  corpus / Corpus status" note in the How-to-read block.
+- The baseline/cut-off paragraph stays in the How-to-read block; the
+  dateline shows edition, data cut-off and counts (no build date, which
+  would go stale on a static site).
 - Mobile: masthead compresses, sections stack, KPI tiles 2 × 3.
 
 ## Investigations index (Press)
 
-- Lead + grid of `StoryCard`s; filters as chips: theme, region, actor
-  (from article front matter); sort newest first.
+- Grid of story cards, newest first. *Deferred:* filter chips (theme,
+  region, actor) until there are enough real articles.
 - Fixture articles shown only with the magenta DEMO/TEST styling and grouped
   at the end (current gate rules unchanged).
 
@@ -64,6 +68,11 @@ Limits of this article · Record footer
   strip.
 - Reading progress: 2 px signal bar under the nav (scroll-driven, optional).
 
+*Implemented:* kicker, display title, italic deck, mono byline, serif body
+with drop cap, references and linked records. *Deferred:* the "In the file"
+rail, inline `ClaimLink` stamps (needs a Markdown extension), citation
+popovers and the reading-progress bar.
+
 ## Timeline — "Cronologia" (Console)
 
 Goal: **from today going back**, scannable by year, honest about date
@@ -71,7 +80,7 @@ precision, fast to filter.
 
 ```
 ┌ FilterBar (sticky) ──────────────────────────────────────────────────────┐
-│ [search ID/text/place] [Themes ▾ multi] [Level E1..E4 chips]             │
+│ [search ID/text/place] [Theme ▾]  [Newest | Oldest]                      │
 │ [☐ pending EXT] [☐ dataset metadata]   146 of 147 · Reset                │
 ├──────────────────────────────────────────────────────────────────────────┤
 │ DensityBar 2026 ▮▮▮▮▮▮▯▯▯▯▯▯▯▯▯▯▯▯▯▯ 2007   (click = jump, drag = range)    │
@@ -93,17 +102,20 @@ precision, fast to filter.
 - **Date precision:** `DateWithPrecision` (fuzzy band for month/year
   precision), never a fake day.
 - **Item:** date + place + mono ID meta row, serif title link, evidence stamp
-  of the event assessment where available, theme chips with `th-` icons,
+  where the record has a level (today only the EXT records pending
+  integration; integrated events carry the corpus assessment as text, so
+  the timeline offers **no evidence-level filter**: it would silently hide
+  every integrated event), theme chips with `th-` icons,
   review/pending status. Pending (EXT) items: dashed outline, transparent
   background. Metadata records: hidden by default as today.
 - **Density bar:** years as columns (newest left), selected years in
   signal; it doubles as the period filter (replaces the two selects).
-- **Filters:** URL-synced (`?tema=…&da=…&a=…&q=…&livello=…`), keeping
+- **Filters:** URL-synced (`?tema=…&da=…&a=…&q=…&ext=0&meta=1&ordine=asc`), keeping
   the existing `?tema=` / `?theme=` deep links.
-- **Performance:** 181 records render as static HTML at build (SEO, no-JS);
-  the island only filters/hides, it does not re-render the whole list.
-- **Mobile:** filters in a bottom sheet behind a "Filtri (2)" button; year
-  labels become sticky section headers; density bar scrolls horizontally.
+- **Performance:** the island is server-rendered (`client:load`), so the full
+  list is static HTML for no-JS readers and search engines.
+- **Mobile:** filters stack above the list (not sticky); year labels become
+  sticky section headers. *Deferred:* a "Filtri (n)" bottom sheet.
 
 ## Evidence board — "Bacheca" (network, evidence mode)
 
@@ -139,17 +151,20 @@ stable between visits), with `--shadow-card`. Text uses `--card-ink` on
 
 ### Interaction
 
-- Pan (drag background / arrows), zoom (wheel, pinch, + / − buttons, `fit`).
-- **Semantic zoom:** < 45 % shows pins + threads only; 45–90 % shows cards
-  with titles; > 90 % shows full cards with kind label and counts.
-- Drag a card to rearrange (positions kept for the session); click opens
-  the **case file drawer** (manila folder styling): title, kind, ID, all
-  relationships grouped by group with predicate, level stamp, sources, links
-  to entity page, timeline (filtered) and investigations citing it.
-- Double-click (or `Enter` + `F`) isolates the neighbourhood; `Esc` clears.
-- Keyboard: Tab moves across cards in reading order (top-left to
-  bottom-right), arrow keys move to the nearest neighbour along threads,
-  `Enter` opens the drawer.
+- Pan (drag the background), zoom (⌘/Ctrl + wheel, pinch, + / − buttons,
+  `fit`); the plain wheel keeps scrolling the page. The initial view fits the
+  visible cards but never starts below 30 % scale, so phones open on part of
+  the board.
+- **Semantic zoom:** < 38 % shows blank paper cards, pins and threads;
+  38–80 % adds titles; > 80 % adds kind label and record ID.
+- Drag a card to rearrange (positions kept until reload); click opens
+  the **case file drawer** (manila folder styling): title, kind, ID, every
+  visible relationship with predicate, family and level stamp, a link to the
+  full profile and a button that isolates the neighbourhood. Neighbours in
+  the drawer are buttons that move the selection.
+- `?focus=<ID>` (used by entity pages) opens the board on that card.
+- Keyboard: every card is a focusable button (Tab), `Enter`/`Space` opens
+  the drawer, `Esc` clears. *Deferred:* arrow-key travel along threads.
 - **Board / List toggle** (`ui-board` / `ui-list`): the list view is the
   full accessible twin (current "text list of visible links", upgraded to a
   sortable `DataTable`).
@@ -158,17 +173,15 @@ stable between visits), with `--shadow-card`. Text uses `--card-ink` on
   `LimitsNote` with *not-transitive.svg*.
 - Empty state: *empty-board.svg* + "Reset filters".
 
-### Rendering decision for the implementation
+### Rendering (implemented)
 
-Recommended: replace Cytoscape on this page with a **custom SVG renderer**
-(React island) using `d3-force` for layout and `d3-zoom` for pan/zoom:
-cards are rich SVG/HTML, which Cytoscape renders poorly (no rich labels, no
-paper shapes, limited accessibility). ~400 nodes / ~170 direct edges are
-well within SVG limits with semantic zoom. Layout is computed once at build
-time (`d3-force` run in Node, positions emitted into `graph.json`) so the
-board is stable and appears instantly; the client only refines on drag. If
-the corpus grows beyond ~1,500 visible cards, switch the thread layer to
-Canvas while keeping cards in SVG/HTML.
+Custom SVG renderer (`web/src/islands/EvidenceBoard.tsx`) with `d3-zoom`
+for pan/zoom. The layout is computed at build time by
+`src/site/board-layout.ts` (`d3-force`, fixed-seed, two passes: the
+default-visible relationships first, then the participation-only nodes
+around them) and passed to the island as props, so `graph.json` stays a
+pure data export and the board is identical on every visit. If the corpus
+grows beyond ~1,500 visible cards, move the thread layer to Canvas.
 
 ## Hypotheses board (network/hypotheses)
 
@@ -176,11 +189,11 @@ Same board, different material, so it can never be mistaken for evidence:
 
 - A strip of masking tape across the top: "IPOTESI E5 — NON SONO FATTI
   DOCUMENTATI / HYPOTHESES E5 — NOT DOCUMENTED FACTS".
-- Hypotheses are **yellow sticky notes** with the H-ID and question; nodes
-  they mention are the same cards as on the evidence board, desaturated.
-- Only **red dash-dot thread**; no relation-group colours.
-- Priority shown as a number of pins (critical 3, high 2, medium 1, low 0)
-  plus text; status as a stamp ("open", "under review", "refuted"…).
+- Each hypothesis is a **red dash-dot thread** with a yellow tag carrying its
+  H-ID; nodes are the same paper cards as on the evidence board, on a
+  slightly desaturated cork. No relation-group colours.
+- Priority is in the List view. *Deferred:* sticky-note cards per
+  hypothesis and priority shown as pins.
 
 ## Atlas — "Atlante" (Console)
 
@@ -200,89 +213,89 @@ Goal: one navigable, beautiful map instead of two static ones.
 │ Countries table (sortable, searchable): country · events · roles · direct │
 ```
 
-- **Single map** with animated switch Europe ↔ World (projection
-  interpolation), zoom and pan (`d3-zoom`), hover outline + tooltip (name,
-  count), click/Enter selects and opens the panel (drawer on mobile).
-- **Keyboard:** the map is a `listbox`-like group: Tab enters, arrows move
-  between countries with events (sorted west→east), Enter selects; the table
-  below is the full twin.
-- **Labels** only for countries with events, collision-avoided, in Plex Sans
-  12 px with paper halo.
+- **Single map** with a Europe ↔ World switch (two build-time projections,
+  World at 110m resolution), zoom by buttons or ⌘/Ctrl + wheel, drag to pan
+  (viewBox), hover outline + native tooltip (name, count), click/Enter
+  selects and fills the panel (below the map on narrow screens).
+- **Keyboard:** coloured countries are links (Tab, Enter); the table rows
+  have a button that selects the country; the table is the full twin.
+- **Labels:** ISO codes at the projected centroid of countries with events
+  (World: only 4+ events), mono 11 px with paper halo.
+  *Deferred:* animated projection interpolation, collision avoidance.
 - **Outside the map tray** lists supranational/maritime/generic geographies
   as chips with counts (no invented coordinates); clicking filters the
   timeline.
 - `LimitsNote` with *location-not-responsibility.svg*: the map counts where
   events took place, not who did them.
 - Deep link: `#IT`-style hash selects a country (keeps current anchors).
-- Map geometry stays build-time (`d3-geo` + `world-atlas`), shipped as one
-  inline SVG for no-JS; the island adds zoom/selection.
+- Map geometry stays build-time (`d3-geo` + `world-atlas`), inline SVG for
+  no-JS; a small page script adds the switch, zoom, selection and table
+  sorting.
 
 ## Dependencies (Console)
 
 - Grid of exposure cards: title, `ExposureMeter` with the value always
   labelled and the denominator in words, observed vs target (hatched),
   "what it measures / consequence and caution" in two short blocks, sources.
-- Group by domain (raw materials, energy, space, digital…), sort by value
-  within a group. `LimitsNote`: values are not comparable across cards; no
-  composite index (kept from today's notice).
+- Order and notice as in the data (values are not comparable across cards;
+  no composite index). *Deferred:* grouping by domain.
 
 ## Archive (Console)
 
-- Landing with three tabs: **Entities** (filter by kind with `kind-` icon
-  chips, search, sort by name / number of relationships), **Hypotheses**
-  (priority, status), **Sources** (type, publisher, year, primary-URL
-  presence).
-- Entity list rows: icon, name, mono ID, counts, status; on mobile a card
-  list. Alphabet jump bar for long lists.
+- Three tabs over the existing indexes (`/entities/`, `/hypotheses/`,
+  `/sources/`) with counts. Entities: jump chips per kind with `kind-`
+  icons, rows with name, mono ID and relationship count.
+  *Deferred:* in-page search, sorting and the alphabet bar.
 
 ## Entity page (Press head, Console body)
 
 ```
-kicker: kind icon + kind · domain          [Open on the board] [Timeline ⟶]
-H1 serif name · aliases · country
-summary (serif) + LimitsNote where relevant (persons: legal status + date)
-KPI strip: relationships · events · sources · investigations
-Tabs: Relationships (DataTable grouped by group, stamps, sources) ·
-      Events (mini timeline, newest first) · Mini-board (1-hop, static SVG) ·
-      Investigations · Sources
-RecordFooter
+kicker: Archive / kind icon + kind · ID · domain · country (→ atlas)
+H1 serif name
+KPI strip: direct relationships · events · open on the board · hypotheses
+person notice (real person: literal reading, restricted links)
+Direct relationships (DataTable, stamps, family chip, sources)
+Events it appears in (date, role predicate, stamp)
+Open hypotheses · Articles citing the record
+RecordFooter (ID copy, review status, provenance, report a correction)
 ```
+*Deferred:* tabs, mini-board, summary text (the model has none yet).
 
 ## Event page
 
-- Header: date with precision, place, ID, theme chips, assessment stamp.
-- **Separate claims block** (event, perpetrator, sponsor, motive, impact)
-  as five labelled rows with their own stamps and sources, using
-  *separate-claims.svg* in the limits note. Participation rows keep the
+- Header: date with precision, place (atlas or "no location" icon), ID,
+  evidence stamp when the record has a level, pending status.
+- A `LimitsNote` with *separate-claims.svg* explains that event,
+  perpetrator, sponsor, motive and impact are separate claims (the data does
+  not yet model them as five fields, so no five-row block is shown). Participation rows keep the
   current wording ("presence or role, not command, financing or
   coordination").
 - Actors and roles table → `DataTable`; related events (same theme ±1 year).
 
 ## Source page
 
-- Document card styling (paper sheet): title, publisher, date, type,
-  primary URL button (`ui-external`), corpus file link, "cited by" counts
-  and lists (events, relationships, hypotheses, articles).
+- Page head with type and code kicker and serif title; body as before
+  (URLs, repository files, citing records). *Deferred:* paper-sheet card.
 
 ## Methodology (Press)
 
-- Long-form article layout with a sticky table of contents, the evidence
-  ladder illustration as hero, the full `EvidenceStamp` legend, and the four
-  "limits" illustrations at their sections.
+- Evidence ladder as hero, the full `EvidenceStamp` legend with a thread
+  swatch per level, *not-transitive* and *separate-claims* illustrations,
+  relation groups with colour dot and icon. *Deferred:* sticky table of
+  contents.
 
 ## Data, changes
 
-- **Data:** download cards per file (format, size, SHA-256 short, licence
-  CC0) with `ui-download`/`ui-copy`; manifest summary as KPI strip.
-- **Changes:** vertical log (newest first) styled like the timeline but
-  with commit IDs; known anomalies as `Callout caution`.
+- Restyled through the shared components (kicker, tables, callouts).
+  *Deferred:* download cards and a timeline-style change log.
 
 ## Search
 
-- Full page with grouped results and filters (type, language), same result
-  rows as the command palette.
+- Pagefind UI themed with the Dossier tokens; the ⌘K palette (every page)
+  uses the Pagefind JS API with type icons. *Deferred:* grouped results and
+  type filters.
 
 ## 404
 
-- *not-found.svg*, one sentence in both languages, search field, links to
-  the three areas.
+- *not-found.svg*, one sentence in both languages, links to the home page
+  and to search.

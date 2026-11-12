@@ -13,9 +13,10 @@ why they are what they are and how to use them.
 
 Rules:
 
-- Load only Latin + Latin Extended subsets (Italian and English need no
-  more). Preload the Newsreader display cut and Plex Sans regular;
-  `font-display: swap`. Never request fonts from a third-party CDN.
+- Self-hosted through Fontsource (`Base.astro` imports the CSS); the
+  `unicode-range` of each subset means browsers download only the Latin
+  files Italian and English need; `font-display: swap`. Never request fonts
+  from a third-party CDN.
 - **Optical size:** set `font-variation-settings: "opsz"` to 60–72 for
   display and H1, 16–24 for article text (the specimen shows both).
 - **Figures:** `font-variant-numeric: tabular-nums` in tables, timeline
@@ -174,9 +175,12 @@ always ship with icon + label and are never reused as data colours.
   script in `<head>` before first paint (no flash).
 - `color-scheme: light dark` so form controls and scrollbars follow.
 - `<meta name="theme-color">` for both schemes.
-- Islands (Cytoscape/board, maps) read tokens with `getComputedStyle` and
-  re-render on a `themechange` event dispatched by the theme switch, never
-  from hard-coded hex.
+- Islands and maps are inline SVG that reference the tokens directly
+  (`fill="var(--series-1)"`), so they follow the theme with no re-render;
+  the theme switch also dispatches a `themechange` event for any future
+  canvas renderer. Never hard-coded hex in components (the board's paper
+  stock colours are the one deliberate exception: paper does not change
+  colour at night).
 - **Print:** Press styles print as a newspaper page: no nav, URLs after
   links in source lists, evidence stamps kept, board replaced by its list.
 

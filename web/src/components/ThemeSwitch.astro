@@ -1,0 +1,66 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { ui } from "../../../src/site/i18n.ts";
+import Icon from "./Icon.astro";
+
+// Light / system / dark. Applied before first paint by the head script in
+// Base.astro; this control only changes and persists the choice.
+interface Props {
+  lang: Language;
+  labels?: boolean;
+  class?: string;
+}
+const { lang, labels = false, class: className } = Astro.props;
+const t = ui(lang);
+const options = [
+  ["light", "ui-sun", t.themeLight],
+  ["system", "ui-system", t.themeSystem],
+  ["dark", "ui-moon", t.themeDark],
+] as const;
+---
+
+<fieldset class:list={["seg theme-switch", className]} data-theme-switch>
+  <legend class="sr-only">{t.themeLabel}</legend>
+  {
+    options.map(([value, icon, label]) => (
+      <button type="button" data-theme-value={value} aria-pressed="false" title={label}>
+        <Icon name={icon} />
+        {labels ? <span class="ml-1.5 font-sans font-medium tracking-normal">{label}</span> : <span class="sr-only">{label}</span>}
+      </button>
+    ))
+  }
+</fieldset>
+
+<script>
+  const KEY = "oem-theme";
+  const read = (): string => {
+    try {
+      return localStorage.getItem(KEY) ?? "system";
+    } catch {
+      return "system";
+    }
+  };
+  const sync = () => {
+    const current = read();
+    for (const button of document.querySelectorAll<HTMLButtonElement>("[data-theme-value]")) {
+      button.setAttribute("aria-pressed", String(button.dataset.themeValue === current));
+    }
+  };
+  const apply = (value: string) => {
+    const root = document.documentElement;
+    if (value === "light" || value === "dark") root.dataset.theme = value;
+    else delete root.dataset.theme;
+    try {
+      if (value === "system") localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, value);
+    } catch {
+      // Storage unavailable: the choice lasts for this page only.
+    }
+    sync();
+    window.dispatchEvent(new CustomEvent("themechange"));
+  };
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-theme-value]")) {
+    button.addEventListener("click", () => apply(button.dataset.themeValue ?? "system"));
+  }
+  sync();
+</script>

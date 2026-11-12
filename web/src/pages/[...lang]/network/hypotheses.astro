@@ -1,35 +1,46 @@
 ---
-import { ENTITY_KIND_LABELS } from "../../../../../src/site/format.ts";
+import { layoutBoard } from "../../../../../src/site/board-layout.ts";
+import { ENTITY_KIND_LABELS, PRIORITY_LABELS } from "../../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
-import NetworkExplorer from "../../../islands/NetworkExplorer.tsx";
+import { hypothesisGraph } from "../../../../../src/site/read-model.ts";
+import EvidenceBoard from "../../../islands/EvidenceBoard.tsx";
+import "../../../styles/board.css";
 import Base from "../../../layouts/Base.astro";
 import { assetHref, href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
-const kindLabels = Object.fromEntries(
-  Object.entries(ENTITY_KIND_LABELS).map(([k, v]) => [k, v[lang]]),
-);
+const labels = (table: Record<string, { it: string; en: string }>) =>
+  Object.fromEntries(Object.entries(table).map(([k, v]) => [k, v[lang]]));
+const graph = hypothesisGraph(getModel());
+const layout = layoutBoard(graph.nodes, graph.edges, { spacing: 100 });
 ---
 
-<Base title={c("Grafo delle ipotesi (esplorativo)", "Hypothesis graph (exploratory)")} lang={lang}>
-  <h1>{c("Grafo delle ipotesi — esplorativo", "Hypothesis graph — exploratory")}</h1>
-  <div class="notice max-w-3xl">
-    {c(
-      "Questo grafo non mostra fatti: ogni collegamento è una domanda investigativa aperta e non dimostrata (livello E5). Non va letto né citato come una relazione accertata.",
-      "This graph does not show facts: every link is an open, unproven investigative question (level E5). It must not be read or cited as an established relationship.",
-    )}{" "}
-    <a href={href("network/", lang)}>{c("Rete delle evidenze", "Evidence network")}</a>.
-  </div>
-  <NetworkExplorer
+<Base title={c("Bacheca delle ipotesi (esplorativa)", "Hypotheses board (exploratory)")} lang={lang} wide>
+  <header class="page-head">
+    <p class="kicker kicker-signal">{c("Ipotesi E5 · esplorativo", "Hypotheses E5 · exploratory")}</p>
+    <h1>{c("Bacheca delle ipotesi", "Hypotheses board")}</h1>
+    <div class="notice">
+      {c(
+        "Questa bacheca non mostra fatti: ogni filo rosso è una domanda investigativa aperta e non dimostrata (livello E5). Non va letto né citato come una relazione accertata.",
+        "This board does not show facts: every red thread is an open, unproven investigative question (level E5). It must not be read or cited as an established relationship.",
+      )}{" "}
+      <a href={href("network/", lang)}>{c("Bacheca delle evidenze", "Evidence board")}</a>.
+    </div>
+  </header>
+  <EvidenceBoard
     client:only="react"
     lang={lang}
     mode="hypotheses"
     dataUrl={assetHref("data/v1/hypotheses-graph.json")}
+    layout={layout}
     entityBase={href("entities/", lang)}
     eventBase={href("events/", lang)}
     groupLabels={{}}
-    kindLabels={kindLabels}
+    kindLabels={labels(ENTITY_KIND_LABELS)}
+    priorityLabels={labels(PRIORITY_LABELS)}
+    sprite={assetHref("icons.svg")}
   />
 </Base>

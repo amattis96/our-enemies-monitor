@@ -29,8 +29,10 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main";
 ---
 
 <Base title={`${s.id} · ${textOf(s.title, lang)}`} lang={lang} searchable>
-  <p class="meta"><a href={href("sources/", lang)}>{ui(lang).navSources}</a> · {SOURCE_TYPE_LABELS[s.type][lang]}</p>
-  <h1><span class="font-mono">{s.id}</span> <T text={s.title} lang={lang} /></h1>
+  <header class="page-head">
+    <p class="kicker"><a href={href("sources/", lang)}>{ui(lang).navSources}</a> / {SOURCE_TYPE_LABELS[s.type][lang]} · {s.id}</p>
+    <h1><T text={s.title} lang={lang} /></h1>
+  </header>
   <TranslationNotice review={s.review} lang={lang} />
   <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
     {s.publisher && (<><dt class="font-semibold">{c("Editore / autorità", "Publisher / authority")}</dt><dd>{s.publisher}</dd></>)}

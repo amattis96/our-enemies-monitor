@@ -1,0 +1,131 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { ui } from "../../../src/site/i18n.ts";
+import { inlineSvg } from "../lib/design.ts";
+import { href } from "../lib/links.ts";
+import Icon from "./Icon.astro";
+import LanguagePicker from "./LanguagePicker.astro";
+import SearchPalette from "./SearchPalette.astro";
+import ThemeSwitch from "./ThemeSwitch.astro";
+
+interface Props {
+  lang: Language;
+  translated: boolean;
+}
+const { lang, translated } = Astro.props;
+const t = ui(lang);
+const current = Astro.url.pathname;
+const home = href("", lang);
+
+/** Primary areas; `also` marks sub-pages that keep the item active. */
+const items = [
+  { path: "articles/", label: t.navArticles, icon: "nav-investigations", also: [] },
+  { path: "timeline/", label: t.navTimeline, icon: "nav-timeline", also: [] },
+  { path: "network/", label: t.navNetwork, icon: "nav-network", also: [] },
+  { path: "atlas/", label: t.navAtlas, icon: "nav-atlas", also: [] },
+  { path: "dependencies/", label: t.navDependencies, icon: "nav-dependencies", also: [] },
+  {
+    path: "entities/",
+    label: t.navArchive,
+    icon: "nav-entities",
+    also: ["hypotheses/", "sources/", "events/"],
+  },
+  {
+    path: "methodology/",
+    label: t.navMethod,
+    icon: "nav-methodology",
+    also: ["data/", "changes/"],
+  },
+].map((item) => {
+  const target = href(item.path, lang);
+  const active = [item.path, ...item.also].some((p) => current.startsWith(href(p, lang)));
+  return { ...item, target, active };
+});
+const mark = inlineSvg("logo-mark.svg", "hdr");
+---
+
+<header class="site-header" data-pagefind-ignore>
+  <div class="site-header-inner">
+    <a class="brand" href={home} aria-label={`Our Enemies Monitor — ${t.navHome}`}>
+      <span class="brand-mark" set:html={mark} />
+      <span class="brand-name">Our Enemies Monitor</span>
+    </a>
+    <nav class="primary-nav" aria-label={t.mainNav}>
+      <ul>
+        {
+          items.map((item) => (
+            <li>
+              <a href={item.target} aria-current={item.active ? "page" : undefined}>
+                <Icon name={item.icon} />
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="site-tools">
+      <SearchPalette lang={lang} />
+      <LanguagePicker lang={lang} translated={translated} class="tool-wide" />
+      <ThemeSwitch lang={lang} class="tool-wide" />
+      <button type="button" class="menu-button" aria-haspopup="dialog" aria-controls="site-menu" data-menu-open>
+        <Icon name="ui-menu" />
+        <span class="sr-only">{t.navMenu}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog id="site-menu" class="sheet" aria-label={t.mainNav}>
+  <div class="sheet-head">
+    <a class="brand" href={home}>
+      <span class="brand-mark" set:html={inlineSvg("logo-mark.svg", "menu")} />
+      <span class="brand-name">Our Enemies Monitor</span>
+    </a>
+    <form method="dialog">
+      <button class="btn btn-ghost btn-icon" aria-label={t.navClose}><Icon name="ui-close" /></button>
+    </form>
+  </div>
+  <nav aria-label={t.mainNav}>
+    <ul class="sheet-nav">
+      <li>
+        <a href={home} aria-current={current === home ? "page" : undefined}><Icon name="nav-observatory" />{t.navHome}</a>
+      </li>
+      {
+        items.map((item) => (
+          <li>
+            <a href={item.target} aria-current={item.active ? "page" : undefined}>
+              <Icon name={item.icon} />
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="sheet-secondary">
+      <li><a href={href("hypotheses/", lang)}>{t.navHypotheses}</a></li>
+      <li><a href={href("sources/", lang)}>{t.navSources}</a></li>
+      <li><a href={href("data/", lang)}>{t.navData}</a></li>
+      <li><a href={href("changes/", lang)}>{t.navChanges}</a></li>
+    </ul>
+  </nav>
+  <div class="sheet-tools">
+    <span class="kicker">{t.languageLabel}</span>
+    <LanguagePicker lang={lang} translated={translated} />
+    <span class="kicker">{t.themeLabel}</span>
+    <ThemeSwitch lang={lang} labels />
+  </div>
+</dialog>
+
+<script>
+  const menu = document.getElementById("site-menu") as HTMLDialogElement | null;
+  for (const button of document.querySelectorAll("[data-menu-open]")) {
+    button.addEventListener("click", () => menu?.showModal());
+  }
+  menu?.addEventListener("click", (event) => {
+    if (event.target === menu) menu.close();
+  });
+  window.matchMedia("(min-width: 1180px)").addEventListener("change", (event) => {
+    if (event.matches) menu?.close();
+  });
+</script>

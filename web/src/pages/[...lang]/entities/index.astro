@@ -8,6 +8,9 @@ import {
   textOf,
   ui,
 } from "../../../../../src/site/i18n.ts";
+import { KIND_ICON } from "../../../../../src/site/visual.ts";
+import ArchiveTabs from "../../../components/ArchiveTabs.astro";
+import Icon from "../../../components/Icon.astro";
 import T from "../../../components/T.astro";
 import Base from "../../../layouts/Base.astro";
 import { href } from "../../../lib/links.ts";
@@ -16,35 +19,49 @@ import { getModel } from "../../../lib/model.ts";
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const model = getModel();
+const { entities, hypotheses, sources } = model.dataset;
 const groups = ENTITY_KINDS.map((kind) => ({
   kind,
-  entities: model.dataset.entities
+  entities: entities
     .filter((e) => e.kind === kind)
     .sort((a, b) => textOf(a.name, lang).localeCompare(textOf(b.name, lang), lang)),
 }));
 ---
 
 <Base title={ui(lang).navEntities} lang={lang}>
+  <ArchiveTabs lang={lang} current="entities" counts={{ entities: entities.length, hypotheses: hypotheses.length, sources: sources.length }} />
   <h1>{ui(lang).navEntities}</h1>
-  <p class="max-w-3xl">
+  <p class="lede">
     {choose(
       lang,
       "Il grafo documenta anche alleati, partner commerciali, regolatori e soggetti colpiti: la presenza in questo elenco non implica illecito né intento ostile.",
       "The graph also documents allies, trading partners, regulators and targeted parties: appearing in this list implies neither wrongdoing nor hostile intent.",
     )}
   </p>
-  <nav aria-label={choose(lang, "Tipi di entità", "Entity types")} class="meta flex flex-wrap gap-x-3">
-    {groups.map((g) => <a href={`#${g.kind}`}>{ENTITY_KIND_PLURALS[g.kind][lang]} ({g.entities.length})</a>)}
+  <nav aria-label={choose(lang, "Tipi di entità", "Entity types")} class="flex flex-wrap gap-2 my-6">
+    {
+      groups.map((g) => (
+        <a class="chip" href={`#${g.kind}`}>
+          <Icon name={KIND_ICON[g.kind]} />
+          {ENTITY_KIND_PLURALS[g.kind][lang]} <span class="mono text-muted">{g.entities.length}</span>
+        </a>
+      ))
+    }
   </nav>
   {
     groups.map((g) => (
       <section id={g.kind}>
-        <h2>{ENTITY_KIND_PLURALS[g.kind][lang]}</h2>
-        <ul class="columns-1 sm:columns-2 lg:columns-3">
+        <h2 class="section-title flex items-center gap-2">
+          <Icon name={KIND_ICON[g.kind]} />
+          {ENTITY_KIND_PLURALS[g.kind][lang]}
+        </h2>
+        <ul class="entity-list">
           {g.entities.map((e) => (
             <li>
-              <a href={href(`entities/${e.id}/`, lang)}><T text={e.name} lang={lang} /></a>{" "}
-              <span class="meta">({model.relationshipsOf(e.id).length})</span>
+              <a href={href(`entities/${e.id}/`, lang)}>
+                <span><T text={e.name} lang={lang} /></span>
+                <span class="mono text-xs text-muted">{e.id} · {model.relationshipsOf(e.id).length}</span>
+              </a>
             </li>
           ))}
         </ul>
@@ -52,3 +69,34 @@ const groups = ENTITY_KINDS.map((kind) => ({
     ))
   }
 </Base>
+
+<style>
+  .entity-list {
+    display: grid;
+    gap: 0 var(--space-5);
+  }
+  @media (min-width: 640px) {
+    .entity-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .entity-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .entity-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.6rem 0.25rem;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .entity-list a:hover {
+    color: var(--accent);
+    background: var(--paper-sunken);
+  }
+</style>

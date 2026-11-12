@@ -3,6 +3,7 @@ import type { Feature, FeatureCollection, Geometry } from "geojson";
 import { feature } from "topojson-client";
 import type { GeometryCollection, Topology } from "topojson-specification";
 import countries50m from "world-atlas/countries-50m.json" with { type: "json" };
+import countries110m from "world-atlas/countries-110m.json" with { type: "json" };
 
 /**
  * Static choropleth maps rendered at build time (no client JavaScript, no
@@ -53,20 +54,29 @@ const ISO_NUMERIC: Record<string, string> = {
   US: "840",
 };
 
-const topology = countries50m as unknown as Topology<{ countries: GeometryCollection }>;
-const world = feature(topology, topology.objects.countries) as FeatureCollection<Geometry>;
+type Countries = Topology<{ countries: GeometryCollection }>;
+const fine = countries50m as unknown as Countries;
+const coarse = countries110m as unknown as Countries;
+const world = feature(fine, fine.objects.countries) as FeatureCollection<Geometry>;
+const worldCoarse = feature(coarse, coarse.objects.countries) as FeatureCollection<Geometry>;
 
-export type MapShape = { d: string; code: string | null; value: number };
+export type MapShape = {
+  d: string;
+  code: string | null;
+  value: number;
+  /** Label anchor (projected centroid), for countries with a value. */
+  label: [number, number] | null;
+};
 export type RenderedMap = { width: number; height: number; shapes: MapShape[] };
 
-/** Sequential buckets; 0 = no recorded value. */
+/** Sequential buckets (Dossier tokens --seq-1…--seq-5); 0 = no recorded value. */
 export const BUCKETS = [
-  { min: 1, max: 1, color: "#c6dbef" },
-  { min: 2, max: 3, color: "#9ecae1" },
-  { min: 4, max: 7, color: "#4292c6" },
-  { min: 8, max: Number.POSITIVE_INFINITY, color: "#08519c" },
+  { min: 1, max: 1, color: "var(--seq-1)" },
+  { min: 2, max: 3, color: "var(--seq-2)" },
+  { min: 4, max: 7, color: "var(--seq-4)" },
+  { min: 8, max: Number.POSITIVE_INFINITY, color: "var(--seq-5)" },
 ];
-export const EMPTY_COLOR = "#eceef1";
+export const EMPTY_COLOR = "var(--seq-0)";
 
 export function colorFor(value: number): string {
   return BUCKETS.find((b) => value >= b.min && value <= b.max)?.color ?? EMPTY_COLOR;
@@ -100,6 +110,7 @@ export function renderMap(values: Map<string, number>, area: "europe" | "world")
   }
   const width = 960;
   const height = area === "europe" ? 720 : 500;
+  const features = area === "europe" ? world.features : worldCoarse.features;
   const projection: GeoProjection =
     area === "europe"
       ? geoConicConformal()
@@ -112,11 +123,21 @@ export function renderMap(values: Map<string, number>, area: "europe" | "world")
     [width, height],
   ]);
   const path = geoPath(projection).digits(1);
-  const shapes = world.features.flatMap((f) => {
+  const shapes = features.flatMap((f) => {
     const d = path(f);
     if (!d) return [];
     const code = numericToAlpha.get(String(f.id)) ?? null;
-    return [{ d, code, value: code ? (values.get(code) ?? 0) : 0 }];
+    const value = code ? (values.get(code) ?? 0) : 0;
+    const [cx, cy] = path.centroid(f);
+    const inside = cx > 0 && cx < width && cy > 0 && cy < height;
+    return [
+      {
+        d,
+        code,
+        value,
+        label: value > 0 && inside ? ([Math.round(cx), Math.round(cy)] as [number, number]) : null,
+      },
+    ];
   });
   return { width, height, shapes };
 }

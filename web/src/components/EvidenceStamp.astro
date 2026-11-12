@@ -1,0 +1,26 @@
+---
+import {
+  EVIDENCE_LEVEL_LABELS,
+  type EvidenceLevel,
+  type Language,
+} from "../../../src/model/index.ts";
+import { EVIDENCE_ICON, evidenceShort } from "../../../src/site/visual.ts";
+import Icon from "./Icon.astro";
+
+// Evidence stamp: glyph (shape) + code + short label. Never colour alone.
+interface Props {
+  level: EvidenceLevel;
+  lang: Language;
+  /** compact: glyph + code (tables); default adds the short label. */
+  variant?: "compact" | "default";
+}
+const { level, lang, variant = "default" } = Astro.props;
+const definition = EVIDENCE_LEVEL_LABELS[level][lang];
+---
+
+<span class="stamp" data-level={level} title={`${level}: ${definition}`}>
+  <Icon name={EVIDENCE_ICON[level]} />
+  {level}
+  {variant === "default" ? <small>{evidenceShort(level, lang)}</small> : <span class="sr-only">{evidenceShort(level, lang)}</span>}
+  <span class="sr-only">: {definition}</span>
+</span>

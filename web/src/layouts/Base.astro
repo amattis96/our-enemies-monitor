@@ -1,8 +1,18 @@
 ---
+import "@fontsource-variable/newsreader/opsz.css";
+import "@fontsource-variable/newsreader/opsz-italic.css";
+import "@fontsource-variable/ibm-plex-sans/wght.css";
+import "@fontsource-variable/ibm-plex-sans/wght-italic.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/600.css";
 import "../styles/global.css";
+import "../styles/shell.css";
 import type { Language } from "../../../src/model/index.ts";
 import { ui } from "../../../src/site/i18n.ts";
-import { alternatePath, assetHref, href } from "../lib/links.ts";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { alternatePath, assetHref } from "../lib/links.ts";
 
 interface Props {
   title: string;
@@ -12,28 +22,23 @@ interface Props {
   searchable?: boolean;
   /** Whether the page exists in the other language (false for the 404 page). */
   translated?: boolean;
+  /** Console views (timeline, board, atlas) use the wide page. */
+  wide?: boolean;
 }
 
-const { title, lang, description, searchable = false, translated = true } = Astro.props;
+const {
+  title,
+  lang,
+  description,
+  searchable = false,
+  translated = true,
+  wide = false,
+} = Astro.props;
 const t = ui(lang);
-const other: Language = lang === "it" ? "en" : "it";
 const fullTitle = title === "Our Enemies Monitor" ? title : `${title} · Our Enemies Monitor`;
-const nav = [
-  ["timeline/", t.navTimeline],
-  ["articles/", t.navArticles],
-  ["network/", t.navNetwork],
-  ["atlas/", t.navAtlas],
-  ["dependencies/", t.navDependencies],
-  ["entities/", t.navEntities],
-  ["hypotheses/", t.navHypotheses],
-  ["sources/", t.navSources],
-  ["methodology/", t.navMethodology],
-  ["data/", t.navData],
-  ["changes/", t.navChanges],
-  ["search/", t.navSearch],
-] as const;
 const current = Astro.url.pathname;
 const site = Astro.site?.origin ?? "";
+const pageDescription = description ?? t.siteTagline;
 ---
 
 <!doctype html>
@@ -42,7 +47,15 @@ const site = Astro.site?.origin ?? "";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={pageDescription} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1217" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Our Enemies Monitor" />
+    <meta property="og:locale" content={lang === "it" ? "it_IT" : "en_GB"} />
     <link rel="icon" href={assetHref("favicon.svg")} type="image/svg+xml" />
     <link rel="sitemap" href={assetHref("sitemap-index.xml")} />
     {
@@ -53,66 +66,25 @@ const site = Astro.site?.origin ?? "";
         </>
       )
     }
+    <script is:inline>
+      // Theme before first paint: stored choice, else the system preference.
+      try {
+        const theme = localStorage.getItem("oem-theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
   </head>
-  <body class="min-h-screen flex flex-col">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-2 focus:bg-white">
-      {t.skipToContent}
-    </a>
-    <header class="border-b border-line bg-wash">
-      <div class="mx-auto max-w-6xl px-4 py-3 flex flex-wrap items-baseline gap-x-6 gap-y-2">
-        <a href={href("", lang)} class="font-bold no-underline text-ink">Our Enemies Monitor</a>
-        <nav aria-label={t.mainNav} class="flex-1">
-          <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-            {
-              nav.map(([path, label]) => {
-                const target = href(path, lang);
-                const active = current.startsWith(target);
-                return (
-                  <li>
-                    <a
-                      href={target}
-                      aria-current={active ? "page" : undefined}
-                      class:list={[active && "font-semibold"]}
-                    >
-                      {label}
-                    </a>
-                  </li>
-                );
-              })
-            }
-          </ul>
-        </nav>
-        {translated && <a
-          href={alternatePath(current, other)}
-          hreflang={other}
-          lang={other}
-          aria-label={t.switchLanguageLabel}
-          class="text-sm"
-        >
-          {t.switchLanguage}
-        </a>}
-      </div>
-    </header>
+  <body>
+    <a href="#main" class="skip-link">{t.skipToContent}</a>
+    <SiteHeader lang={lang} translated={translated} />
+    <slot name="masthead" />
     <main
       id="main"
-      class="mx-auto w-full min-w-0 max-w-6xl px-4 py-6 flex-1"
+      class:list={["page", wide && "page-wide"]}
       data-pagefind-body={searchable ? "" : undefined}
     >
       <slot />
     </main>
-    <footer class="border-t border-line bg-wash" data-pagefind-ignore>
-      <div class="mx-auto max-w-6xl px-4 py-4 meta space-y-1">
-        <p>{t.footerDisclaimer}</p>
-        <p>
-          {t.footerCode}{" "}
-          <a href="https://github.com/amattis96/our-enemies-monitor/blob/main/LICENSE">MIT</a>{" "}
-          · {t.footerData}{" "}
-          <a href="https://github.com/amattis96/our-enemies-monitor/blob/main/LICENSE-DATA.md"
-            >CC0 1.0</a
-          >{" "}
-          · <a href="https://github.com/amattis96/our-enemies-monitor">{t.footerSource}</a>
-        </p>
-      </div>
-    </footer>
+    <SiteFooter lang={lang} />
   </body>
 </html>

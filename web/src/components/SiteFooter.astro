@@ -1,0 +1,67 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { ui } from "../../../src/site/i18n.ts";
+import { inlineSvg } from "../lib/design.ts";
+import { href } from "../lib/links.ts";
+
+interface Props {
+  lang: Language;
+}
+const { lang } = Astro.props;
+const t = ui(lang);
+const repo = "https://github.com/amattis96/our-enemies-monitor";
+const columns = [
+  {
+    title: t.footerExplore,
+    links: [
+      ["timeline/", t.navTimeline],
+      ["network/", t.navNetwork],
+      ["atlas/", t.navAtlas],
+      ["dependencies/", t.navDependencies],
+      ["entities/", t.navEntities],
+      ["hypotheses/", t.navHypotheses],
+      ["sources/", t.navSources],
+    ],
+  },
+  {
+    title: t.footerMethod,
+    links: [
+      ["articles/", t.navArticles],
+      ["methodology/", t.navMethodology],
+      ["data/", t.navData],
+      ["changes/", t.navChanges],
+      ["search/", t.navSearch],
+    ],
+  },
+] as const;
+---
+
+<footer class="site-footer" data-pagefind-ignore>
+  <div class="site-footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href={href("", lang)}>
+        <span class="brand-mark" set:html={inlineSvg("logo-mark.svg", "ftr")} />
+        <span class="brand-name">Our Enemies Monitor</span>
+      </a>
+      <p>{t.footerDisclaimer}</p>
+      <p class="meta">
+        {t.footerCode} <a href={`${repo}/blob/main/LICENSE`}>MIT</a> · {t.footerData}{" "}
+        <a href={`${repo}/blob/main/LICENSE-DATA.md`}>CC0 1.0</a> · <a href={repo}>{t.footerSource}</a>
+      </p>
+    </div>
+    {
+      columns.map((column) => (
+        <nav aria-label={column.title}>
+          <p class="kicker">{column.title}</p>
+          <ul>
+            {column.links.map(([path, label]) => (
+              <li>
+                <a href={href(path, lang)}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+</footer>

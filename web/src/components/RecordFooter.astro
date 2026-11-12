@@ -1,7 +1,10 @@
 ---
 import type { Language, ProvenanceEntry, Review } from "../../../src/model/index.ts";
 import { REVIEW_STATUS_LABELS, TRANSLATION_STATUS_LABELS } from "../../../src/site/format.ts";
-import { ui } from "../../../src/site/i18n.ts";
+import { choose, ui } from "../../../src/site/i18n.ts";
+import { REVIEW_ICON, REVIEW_TONE } from "../../../src/site/visual.ts";
+import Icon from "./Icon.astro";
+import StatusLabel from "./StatusLabel.astro";
 
 interface Props {
   id: string;
@@ -12,18 +15,28 @@ interface Props {
 }
 const { id, collection, review, provenance, lang } = Astro.props;
 const t = ui(lang);
+const c = (it: string, en: string) => choose(lang, it, en);
 const repo = "https://github.com/amattis96/our-enemies-monitor";
 const translation = review.translations?.en;
+const correction = `${repo}/issues/new?template=correction.yml&title=${encodeURIComponent(`[${id}] `)}`;
 ---
 
-<section class="mt-10 border-t border-line pt-4 meta" data-pagefind-ignore>
-  <h2 class="text-base">{t.reviewTitle}</h2>
-  <p>
-    {t.reviewStatus}: {REVIEW_STATUS_LABELS[review.status][lang]}
-    {translation && <> · English: {TRANSLATION_STATUS_LABELS[translation.status][lang]}</>}.
-    {review.notes.map((note) => <span class="block">{note}</span>)}
-  </p>
-  <ul class="list-disc pl-5 wrap-anywhere">
+<section class="record-footer" data-pagefind-ignore aria-labelledby={`review-${id}`}>
+  <h2 id={`review-${id}`}>{t.reviewTitle}</h2>
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="record-id">
+      {id}
+      <button type="button" class="copy-btn" data-copy={id} aria-label={c(`Copia l'ID ${id}`, `Copy the ID ${id}`)}>
+        <Icon name="ui-copy" />
+      </button>
+    </span>
+    <StatusLabel icon={REVIEW_ICON[review.status]} tone={REVIEW_TONE[review.status]}>
+      {REVIEW_STATUS_LABELS[review.status][lang]}
+    </StatusLabel>
+    {translation && <StatusLabel icon="st-machine">English: {TRANSLATION_STATUS_LABELS[translation.status][lang]}</StatusLabel>}
+  </div>
+  {review.notes.length > 0 && <div class="mb-3">{review.notes.map((note) => <p class="mb-1">{note}</p>)}</div>}
+  <ul class="grid gap-1.5 wrap-anywhere">
     <li>
       <a href={`${repo}/blob/main/data/${collection}/${id}.json`}>{t.canonicalRecord} {id}.json</a>
       (<a href={`${repo}/commits/main/data/${collection}/${id}.json`}>{t.recordHistory}</a>)
@@ -36,5 +49,22 @@ const translation = review.translations?.en;
         </li>
       ))
     }
+    <li>
+      <a href={correction} rel="noopener">{c("Segnala una correzione", "Report a correction")}</a>
+    </li>
   </ul>
 </section>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? "");
+        button.dataset.copied = "";
+        setTimeout(() => delete button.dataset.copied, 1600);
+      } catch {
+        // Clipboard unavailable: the ID stays visible as text.
+      }
+    });
+  }
+</script>

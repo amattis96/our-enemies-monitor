@@ -1,6 +1,8 @@
 ---
 import { type Language, THEME_LABELS, type Theme } from "../../../src/model/index.ts";
+import { THEME_ICON } from "../../../src/site/visual.ts";
 import { href } from "../lib/links.ts";
+import Icon from "./Icon.astro";
 
 interface Props {
   themes: Theme[];
@@ -9,10 +11,11 @@ interface Props {
 const { themes, lang } = Astro.props;
 ---
 
-<span class="inline-flex flex-wrap gap-1">
+<span class="inline-flex flex-wrap gap-1.5">
   {
     themes.map((theme) => (
-      <a class="badge" href={href(`timeline/?tema=${theme}`, lang)}>
+      <a class="chip" href={href(`timeline/?tema=${theme}`, lang)}>
+        <Icon name={THEME_ICON(theme)} />
         {THEME_LABELS[theme][lang]}
       </a>
     ))

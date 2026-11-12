@@ -1,5 +1,26 @@
 # M7 — Dossier implementation plan
 
+## Status after M7
+
+Implemented on 2026-11-12 in one branch (the phases below were the plan;
+they landed together):
+
+| Area | Built | Changed from the spec | Deferred |
+| --- | --- | --- | --- |
+| Foundations | Tokens imported from `docs/design/tokens.css`; Tailwind `@theme inline` aliases; Fontsource fonts; `Icon`, `Illustration`, `LimitsNote`; `/icons.svg` and `/favicon.svg` endpoints; light/dark/system with no-flash bootstrap; `theme-color`, Open Graph text tags; `pnpm check:contrast` in `pnpm check` | Assets stay in `docs/design/` as the single source instead of being copied into `web/` | PNG touch icons, web manifest, OG images |
+| Shell | Sticky bar, seven-item primary nav, mobile sheet (`<dialog>`), `IT \| EN` picker, theme switch, ⌘K palette on the Pagefind API, three-column footer, styled skip link, CSS cross-document view transitions, home masthead | No Explore dropdown; no client router | Masthead collapse, console tab bar, recent searches |
+| Evidence grammar and components | `EvidenceStamp`, `StatusLabel`, relation chips, stacked tables, KPI tiles, callouts, tabs, record footer with copy-ID and correction link | — | `ClaimLink`, citation popovers, sparklines, pagination |
+| Pages | Home front page, investigations, article, entity, event, hypothesis, source, archive tabs, dependencies meters, methodology with illustrations, data, changes, search, 404 | Event page explains separate claims with a `LimitsNote` (the model has no five-claim fields) | Article rail, archive search/sort, download cards, change log styling |
+| Timeline | Newest first + toggle, density bar as year filter, URL-synced filters, precision cue, dashed EXT items, CSS reveal | **No evidence-level filter**: only the 34 EXT records carry a level, so the filter would hide every integrated event | Mobile filter sheet |
+| Evidence board | SVG island, build-time two-pass `d3-force` layout, paper card per kind, sagging threads (colour = family, pattern = level, casing), semantic zoom, drag, case file, isolate, `?focus=`, List view, hypotheses board | ⌘/Ctrl + wheel to zoom (plain wheel scrolls the page); drawn shadows instead of CSS filters (performance on phones); Cytoscape removed | Arrow-key travel, sticky-note hypothesis cards |
+| Atlas | One map, Europe/World switch, viewBox zoom and pan, ISO labels, country panel, outside-the-map tray, sortable table, limits note | Script-enhanced static SVG rather than a React island | Projection interpolation, label collision avoidance |
+
+Verification at the end of M7: `pnpm check` (lint, typecheck, 109 tests,
+validation, schemas, M5 audit, contrast), `pnpm build`, `pnpm check:links`
+(0 problems) and a browser pass in IT/EN, light/dark, 375 px and 1440 px
+(no horizontal scroll on 21 sampled pages; mobile header 61 px instead of
+312 px; header targets ≥ 24 px).
+
 Step 5 of the design brief: implement the design in the existing stack
 (Astro 7, React 19 islands, Tailwind 4, Pagefind) **without regressions**.
 No stack change; small, pinned additions only.

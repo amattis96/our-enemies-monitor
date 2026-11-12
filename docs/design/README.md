@@ -1,8 +1,9 @@
 # Dossier — design system v1
 
-**Status:** design approved for implementation planning, 2026-11-12. Not yet
-wired into the site: the portal still uses the functional MVP styling until
-milestone **M7** (see [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)).
+**Status:** designed and implemented in the portal (milestone **M7**,
+2026-11-12). This folder is the single source of the tokens, icon sprite,
+logo, favicon and illustrations the site imports. What was built, changed
+or deferred is listed in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md#status-after-m7).
 
 *Dossier* is the visual and interaction language of Our Enemies Monitor: the
 authority of a serious political newspaper and the precision of a ministry

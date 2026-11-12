@@ -25,9 +25,9 @@ globe without drawing any real geography.
 
 [assets/favicon.svg](assets/favicon.svg) keeps bezel, four cardinal ticks,
 three pins and the red string; it switches ink with
-`prefers-color-scheme`. For the implementation also export
-`apple-touch-icon.png` (180 px, mark on `--paper`), `icon-192.png`,
-`icon-512.png` and a maskable variant for the web manifest.
+`prefers-color-scheme`. The site serves it at `/favicon.svg` straight from
+this folder. *Deferred:* `apple-touch-icon.png`, `icon-192/512.png` and a
+web manifest.
 
 ### Wordmark and masthead
 
@@ -37,13 +37,13 @@ three pins and the red string; it switches ink with
 - **Masthead (Press pages):** dateline row in Plex Mono (date in the reader's
   language, edition, data cut-off with a pulsing signal dot, record counts
   from `pnpm validate`) → centred lockup (mark + wordmark) → italic serif
-  tagline → double rule. On scroll the masthead collapses into the sticky
-  nav bar showing the small mark + wordmark at `--text-lg`.
-- **Console pages** use only the compact bar (mark + wordmark small) to give
-  the canvas the height.
+  tagline → double rule. Implemented on the home page; the dateline shows
+  edition, data cut-off and counts (no date, which would go stale).
+- **Every other page** uses only the compact sticky bar (mark + wordmark),
+  which leaves the height to the content and to the console canvases.
 - **Social image:** 1200 × 630, paper background, mark left, wordmark +
-  tagline right, heavy rule; generated at build time per page with the page
-  title (implementation phase).
+  tagline right, heavy rule. *Deferred:* image generation; pages already
+  carry Open Graph title, description and locale.
 
 ## Icon set
 
@@ -75,12 +75,14 @@ symbol, so a new theme or kind cannot ship without an icon.
 
 ### Delivery
 
-- Astro: an `<Icon name="nav-atlas" />` component that inlines
-  `<svg><use href="/icons.svg#nav-atlas"/></svg>` with the sprite served
-  from `web/public/` (one cached request), `aria-hidden="true"` by default
-  and an optional `label` prop that switches to `role="img"` + `aria-label`.
-- React islands: the same `<use>` reference; the board can also inline the
-  symbol content into card SVGs.
+- Astro: `web/src/components/Icon.astro` renders
+  `<svg><use href="…/icons.svg#nav-atlas"/></svg>`; `/icons.svg` is an
+  endpoint (`web/src/pages/icons.svg.ts`) serving this folder's sprite (one
+  cached request). `aria-hidden="true"` by default; a `label` prop switches
+  to `role="img"` + `aria-label`.
+- React islands receive the sprite URL as a prop and use the same `<use>`.
+- `test/design.test.ts` fails if a theme, entity kind, relation group,
+  evidence level or review status has no symbol.
 
 ## Explanatory illustrations
 

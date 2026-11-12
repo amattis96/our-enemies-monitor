@@ -84,12 +84,12 @@ Our Enemies Monitor
      + global: search (⌘K), language, theme
 ```
 
-- **Primary nav** (desktop): Observatory · Investigations · Timeline · Board
-  · Atlas · Archive, with Dependencies inside *Explore* menu and in the home
-  dashboard. Method lives in a right-aligned secondary link and the footer.
-- **Mobile**: compact masthead + menu button opening a full-height sheet;
-  a bottom "Explore" tab bar appears only inside console pages (Timeline,
-  Board, Atlas, Archive) where switching views is frequent.
+- **Primary nav** (desktop, as built): Investigations · Timeline · Board ·
+  Atlas · Dependencies · Archive · Method; the brand link is the
+  Observatory (home). Data and changes sit under Method and in the footer.
+- **Mobile**: compact bar + menu button opening a full-height sheet with
+  the same areas, secondary links, language and theme. (A bottom console
+  tab bar is deferred.)
 - **URLs stay unchanged** (`/timeline/`, `/network/`, `/entities/`…): the IA
   is a grouping, not a re-routing. *Archive* is a landing page that links the
   existing entity, hypothesis and source indexes as tabs.

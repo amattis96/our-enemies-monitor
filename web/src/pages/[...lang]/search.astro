@@ -28,7 +28,7 @@ const config = {
     )}
   </p>
   <link href={assetHref("pagefind/pagefind-ui.css")} rel="stylesheet" />
-  <div id="search" class="mt-4"></div>
+  <div id="search" class="mt-4 pagefind-dossier"></div>
   <noscript>{c("La ricerca richiede JavaScript.", "Search requires JavaScript.")}</noscript>
   <script is:inline define:vars={{ config }}>
     const script = document.createElement("script");
@@ -47,3 +47,20 @@ const config = {
     document.head.append(script);
   </script>
 </Base>
+
+<style is:global>
+  .pagefind-dossier {
+    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: var(--ink);
+    --pagefind-ui-background: var(--paper-raised);
+    --pagefind-ui-border: var(--rule);
+    --pagefind-ui-tag: var(--paper-sunken);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 4px;
+    --pagefind-ui-font: var(--font-sans);
+  }
+  .pagefind-dossier .pagefind-ui__result-link {
+    font-family: var(--font-serif);
+  }
+</style>

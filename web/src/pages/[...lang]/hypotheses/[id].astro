@@ -7,6 +7,7 @@ import {
 } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf } from "../../../../../src/site/i18n.ts";
 import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
+import EvidenceStamp from "../../../components/EvidenceStamp.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import RecordFooter from "../../../components/RecordFooter.astro";
 import SourceRefs from "../../../components/SourceRefs.astro";
@@ -30,8 +31,13 @@ const c = (it: string, en: string) => choose(lang, it, en);
 ---
 
 <Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} searchable>
-  <p class="meta"><a href={href("hypotheses/", lang)}>{c("Ipotesi", "Hypotheses")}</a> · <span class="font-mono">{h.id}</span></p>
-  <h1><T text={h.question} lang={lang} /></h1>
+  <header class="page-head">
+    <p class="kicker flex flex-wrap items-center gap-2">
+      <a href={href("hypotheses/", lang)}>{c("Ipotesi", "Hypotheses")}</a> / {h.id}
+      <EvidenceStamp level="E5" lang={lang} />
+    </p>
+    <h1><T text={h.question} lang={lang} /></h1>
+  </header>
   <TranslationNotice review={h.review} lang={lang} />
   <div class="notice max-w-3xl">
     {c("Ipotesi aperta (E5): non è un fatto accertato né una relazione documentata.", "Open hypothesis (E5): not an established fact nor a documented relationship.")}
