@@ -128,6 +128,12 @@ export const TRANSLATION_STATUS_LABELS = {
   reviewed: { it: "traduzione rivista", en: "reviewed translation" },
 } satisfies Record<string, Labels>;
 
+export const ARTICLE_GENERATOR_LABELS = {
+  human: { it: "Redazione", en: "Editorial staff" },
+  ai: { it: "Bozza prodotta con IA", en: "AI-produced draft" },
+  fixture: { it: "Contenuto di prova", en: "Test content" },
+} satisfies Record<string, Labels>;
+
 export const SOURCE_TYPE_LABELS = {
   corpus_document: { it: "Documento del corpus", en: "Corpus document" },
   external_reference: { it: "Riferimento esterno", en: "External reference" },

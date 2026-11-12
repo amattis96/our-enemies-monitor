@@ -8,6 +8,7 @@ import {
 } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf, ui } from "../../../../../src/site/i18n.ts";
 import { isParticipation } from "../../../../../src/site/read-model.ts";
+import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
 import EvidenceBadge from "../../../components/EvidenceBadge.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import RecordFooter from "../../../components/RecordFooter.astro";
@@ -115,6 +116,8 @@ const hypotheses = model.hypothesesOf(entity.id);
       </>
     )
   }
+
+  <ArticleBacklinks id={entity.id} lang={lang} />
 
   <RecordFooter id={entity.id} collection="entities" review={entity.review} provenance={entity.provenance} lang={lang} />
 </Base>

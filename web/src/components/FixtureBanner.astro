@@ -1,0 +1,26 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { choose } from "../../../src/site/i18n.ts";
+
+// Unmistakable marker of demo/test content (fixture articles).
+interface Props {
+  lang: Language;
+  compact?: boolean;
+}
+const { lang, compact = false } = Astro.props;
+const c = (it: string, en: string) => choose(lang, it, en);
+---
+
+{
+  compact ? (
+    <span class="badge badge-test">{c("DEMO / TEST", "DEMO / TEST")}</span>
+  ) : (
+    <div class="test-banner" role="note">
+      <strong>DEMO / TEST</strong>{" "}
+      {c(
+        "Contenuto di prova per verificare la sezione articoli. Non è un'analisi reale e non aggiunge fatti alla base di conoscenza.",
+        "Test content to exercise the articles section. It is not a real analysis and adds no facts to the knowledge base.",
+      )}
+    </div>
+  )
+}
