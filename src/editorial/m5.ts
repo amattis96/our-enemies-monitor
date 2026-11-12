@@ -12,7 +12,10 @@ const AuditSource = z.strictObject({
   source_type: z.string().min(1),
   retrieved_at: z.iso.date(),
   archived_url: Url.nullable(),
-  content_sha256: z.string().regex(/^[a-f0-9]{64}$/).nullable(),
+  content_sha256: z
+    .string()
+    .regex(/^[a-f0-9]{64}$/)
+    .nullable(),
   verification: z.enum(["opened_or_matched_in_source_search"]),
 });
 const RelationshipReview = z.strictObject({
@@ -74,9 +77,8 @@ export function readM5Audit(): M5Audit {
 
 /** Original 36 person links requiring primary-source review at M5 intake. */
 const ORIGINAL_PERSON_EDGES = [
-  24, 25, 26, 27, 40, 41, 42, 43, 71, 73, 74, 77, 88, 89, 90, 117,
-  132, 137, 138, 139, 159, 170, 176, 179, 193, 213, 219, 230, 254,
-  259, 262, 266, 274, 287, 327, 336,
+  24, 25, 26, 27, 40, 41, 42, 43, 71, 73, 74, 77, 88, 89, 90, 117, 132, 137, 138, 139, 159, 170,
+  176, 179, 193, 213, 219, 230, 254, 259, 262, 266, 274, 287, 327, 336,
 ].map((n) => "G-" + String(n).padStart(4, "0"));
 
 function checkDuplicates<T extends { id: string }>(name: string, records: T[], errors: string[]) {
@@ -110,7 +112,7 @@ export function validateM5Audit(report: M5Audit, dataset: Dataset): string[] {
       errors.push("relationship not found: " + item.id);
       continue;
     }
-    if (!([r.subject, r.object].some((id) => entities.get(id)?.kind === "person"))) {
+    if (![r.subject, r.object].some((id) => entities.get(id)?.kind === "person")) {
       errors.push("not a person link: " + item.id);
     }
     if (item.human_approved && r.review.status !== "reviewed") {
@@ -140,8 +142,10 @@ export function validateM5Audit(report: M5Audit, dataset: Dataset): string[] {
     if (!required.includes(decision.id)) errors.push("unexpected Fonte_09 ID: " + decision.id);
     if (!record) {
       errors.push("missing candidate: " + decision.id);
-    } else if (!decision.human_approved &&
-      (record.review.status !== "needs_review" || record.timeline_status !== "pending_integration")) {
+    } else if (
+      !decision.human_approved &&
+      (record.review.status !== "needs_review" || record.timeline_status !== "pending_integration")
+    ) {
       errors.push("unapproved candidate published: " + decision.id);
     }
     if (decision.human_approved && record?.review.status !== "reviewed") {
@@ -155,8 +159,10 @@ export function validateM5Audit(report: M5Audit, dataset: Dataset): string[] {
     }
   }
   for (const claim of report.atomic_claims) {
-    const record = events.get(claim.record_id) ??
-      relationships.get(claim.record_id) ?? entities.get(claim.record_id);
+    const record =
+      events.get(claim.record_id) ??
+      relationships.get(claim.record_id) ??
+      entities.get(claim.record_id);
     if (!record) errors.push("claim missing record: " + claim.id);
     for (const id of claim.source_ids) {
       if (!sources.has(id)) errors.push("claim missing source: " + claim.id + " / " + id);

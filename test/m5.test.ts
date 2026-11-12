@@ -17,7 +17,9 @@ describe("M5 source audit and Fonte_09 reconciliation", () => {
     expect(audit.fonte09_decisions).toHaveLength(30);
     expect(validateM5Audit(audit, dataset)).toEqual([]);
     expect(
-      audit.relationship_reviews.filter((r) => r.assessment === "primary_not_found").map((r) => r.id),
+      audit.relationship_reviews
+        .filter((r) => r.assessment === "primary_not_found")
+        .map((r) => r.id),
     ).toEqual(["G-0230"]);
   });
 
