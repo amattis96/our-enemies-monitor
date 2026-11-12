@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://home.treasury.gov/news/press-releases/jy1102",
   "caveat": {
     "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori.",
     "en": "Presence/role relationship with respect to the chronological record. It does not by itself infer coordination with other actors."
@@ -22,7 +22,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: US Treasury formally records Kerimov's 6 Apr 2018 OFAC designation; administrative act, not criminal sentence."
+    ],
     "translations": {
       "en": {
         "status": "machine",

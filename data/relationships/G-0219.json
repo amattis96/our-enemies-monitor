@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.bis.cz/aktuality/bis-odhalila-ruskou-vlivovou-sit-akteri-skoncili-na-sankcnim-seznamu-ff8aacba.html",
   "caveat": {
     "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori.",
     "en": "Presence/role relationship with respect to the chronological record. It does not by itself infer coordination with other actors."
@@ -24,7 +24,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: Czech security service states Medvedchuk-linked Voice of Europe operation and Mar 2024 listings; institutional attribution."
+    ],
     "translations": {
       "en": {
         "status": "machine",

@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://procuratura.md/anticoruptie/en/comunicate/comunicate-de-presa/decizie-irevocabila-dosarul-de-condamnare-lui-ilan-sor",
   "caveat": {
     "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori.",
     "en": "Presence/role relationship with respect to the chronological record. It does not by itself infer coordination with other actors."
@@ -22,7 +22,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: Moldova prosecutor records Supreme Court's Dec 2024 rejection of appeal, making 15-year fraud/money-laundering sentence final; not a verdict on later election offences."
+    ],
     "translations": {
       "en": {
         "status": "machine",
