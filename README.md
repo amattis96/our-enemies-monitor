@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: canonical data layer, bilingual portal (Italian/English), atlas, dependency metrics, open-data exports, editorial workflow and weekly research agent in place (M1–M4). Records are imported from the baseline and await editorial review.**
+**Phase: M1–M4 implemented; M5 publication quarantine added, with primary-source and claim-level audits still open. Legacy records remain provisionally visible, while incremental candidates are held for review.**
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -190,7 +190,11 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Import the 15 original source files into GitHub without losing identifiers or provenance.
 - [x] Publish permissive licenses for code and original project data.
 - [x] Define and validate normalized schemas and import the baseline into canonical data (M1).
-- [ ] Audit sensitive claims against stable primary-source references.
+- [x] Add an M5 publication gate for candidates and unsourced named-person relationships (site and exports).
+- [x] Add a reproducible publication audit command (`pnpm audit:publication`) and [M5 evidence work queue](docs/M5_EVIDENCE_AUDIT.md).
+- [x] First-pass source matching on 36 sensitive relationships (35 referenced, 1 restricted) and 30 Fonte_09 case/reconciliation decisions.
+- [x] Stage 20 atomic claims and 26 durable source metadata entries, guarded by `pnpm audit:m5`.
+- [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).
 - [x] Introduce multilingual navigation (Italian/English) with tracked translation status (M3).
@@ -199,7 +203,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Enable scheduled research (needs the `ANTHROPIC_API_KEY` secret), editorial review and automatic deployment (M4).
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Import the first incremental source, Fonte_09 (cut-off 11 November 2026), as pending records.
-- [ ] Editorial review of imported records, starting with the 36 restricted named-person relationships.
+- [ ] Final editorial approval of the 36 person-link assessments (35 now referenced, one still restricted) and of all contested Fonte_09 claims. No record is automatically promoted to reviewed.
 
 ## Contributing and corrections
 

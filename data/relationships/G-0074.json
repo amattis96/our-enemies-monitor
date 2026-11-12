@@ -9,7 +9,7 @@
   "events": [],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
   "caveat": null,
   "sources": [
     "S01",
@@ -17,7 +17,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "M5 2026-11-12 primary-source check: 2026 SpaceX SEC prospectus describes Musk's majority voting control. Do not infer control of unrelated investors or individual operations."
+    ]
   },
   "provenance": [
     {

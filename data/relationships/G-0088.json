@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://ofac.treasury.gov/recent-actions/20250612",
   "caveat": {
     "it": "Accertamento OFAC 2025",
     "en": "OFAC finding 2025"
@@ -21,7 +21,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: OFAC June 2025 administrative civil penalty on GVA for Kerimov investment; not a criminal verdict or link to SpaceX."
+    ],
     "translations": {
       "en": {
         "status": "machine",

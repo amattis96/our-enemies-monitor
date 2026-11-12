@@ -146,6 +146,22 @@ records must be `needs_review` with empty provenance, and new relationships
 need a `primary_url`. Changing these rules requires a human-authored pull
 request.
 
+## Publication gate (M5)
+
+`src/site/publication.ts` applies the same policy to pages, graphs and exports:
+`needs_review` candidates, pending timeline records and named-person links
+without `primary_url` are excluded. Historical `imported_unreviewed` records
+remain provisionally visible, **not** as verified facts. Never change a review
+status just to force publication: validate the specific claim first. Run
+`pnpm audit:publication` to list missing primary links and review counts.
+Canonical data remains available in Git even when withheld from the portal.
+The structured M5 audit in `docs/audit/M5_2026-11-12.json` records source
+matching, the disposition proposed for every Fonte_09 candidate, and atomic
+claim-level support/limitations. Run `pnpm audit:m5` as part of `pnpm check`.
+`human_approved: false` is a real publication gate; it must not be set to true
+by agents, scripts or purely automatic checks. M5 source matching is not the
+same as an editor signing off on legal or factual responsibility.
+
 ## Adding or correcting data
 
 1. Find or create the record in `data/<collection>/<ID>.json`.

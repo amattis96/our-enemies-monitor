@@ -9,6 +9,7 @@ import {
 } from "../src/site/format.ts";
 import { dataHistory } from "../src/site/history.ts";
 import { languagePaths, pick } from "../src/site/i18n.ts";
+import { publishedDataset } from "../src/site/publication.ts";
 import {
   atlasRows,
   evidenceGraph,
@@ -145,7 +146,7 @@ describe("exports", () => {
     expect(manifest.files).toHaveLength(files.length);
     expect(manifest.counts.exposures).toBe(14);
     expect(JSON.parse(files.find((f) => f.path === "all.json")?.text ?? "{}").events).toHaveLength(
-      model.dataset.events.length,
+      publishedDataset(model.dataset).events.length,
     );
   });
 });

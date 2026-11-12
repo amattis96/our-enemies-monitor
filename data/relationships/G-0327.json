@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://citizenlab.ca/research/member-of-committee-investigating-spyware-hacked-with-pegasus/",
   "caveat": {
     "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori.",
     "en": "Presence/role relationship with respect to the chronological record. It does not by itself infer coordination with other actors."
@@ -24,7 +24,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 assessment: Citizen Lab's forensic analysis identifies Kouloglou as spyware target, not the operator/mandate of the intrusion."
+    ],
     "translations": {
       "en": {
         "status": "machine",

@@ -7,11 +7,11 @@
   "evidence_level": "E1",
   "evidence_status": "documented",
   "events": [
-    "TL-0081"
+    "TL-0031"
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
   "caveat": null,
   "sources": [
     "S01",
@@ -19,7 +19,10 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "M5 2026-11-12 primary-source check: 2026 SEC issuer financial disclosure traces X Holdings via xAI to SpaceX group. Interpret control as corporate/voting structure, not unchanged direct ownership since 2022; exact indirect chain needs its own graph nodes.",
+      "M5 correction: historical corporate acquisition TL-0031 is the relevant event, not Musk's 2025 AfD endorsement TL-0081."
+    ]
   },
   "provenance": [
     {

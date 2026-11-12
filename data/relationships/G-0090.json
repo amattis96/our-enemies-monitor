@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://ofac.treasury.gov/recent-actions/20251202",
   "caveat": {
     "it": "Settlement OFAC; nessuna continuità con HAL9001",
     "en": "OFAC settlement; no continuity with HAL9001"
@@ -21,7 +21,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: OFAC Dec 2025 civil settlement concerning IPI's 2017-18 investments from Kerimov, not proof of connections to HAL9001/SpaceX."
+    ],
     "translations": {
       "en": {
         "status": "machine",

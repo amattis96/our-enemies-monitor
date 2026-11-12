@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.counterterrorism.police.uk/news/former-mep-jailed-after-accepting-bribes-to-make-pro-russian-statements/",
   "caveat": {
     "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori.",
     "en": "Presence/role relationship with respect to the chronological record. It does not by itself infer coordination with other actors."
@@ -22,7 +22,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: Counter Terrorism Policing attributes messages and bribe requests to Voloshyn. Voloshyn was charged, remains wanted, and is NOT convicted in this case."
+    ],
     "translations": {
       "en": {
         "status": "machine",

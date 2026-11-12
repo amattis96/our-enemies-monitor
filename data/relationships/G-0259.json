@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.consilium.europa.eu/en/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
   "caveat": {
     "it": "Relazione di presenza/ruolo rispetto al record cronologico. Non inferisce di per sé coordinamento con altri attori.",
     "en": "Presence/role relationship with respect to the chronological record. It does not by itself infer coordination with other actors."
@@ -24,7 +24,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: Council June 2026 sanction listing describes networks affiliated with Shor/Evrazia and Sep 2025 election; does not generalise culpability to all participants."
+    ],
     "translations": {
       "en": {
         "status": "machine",

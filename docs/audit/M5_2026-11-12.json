@@ -1,0 +1,1112 @@
+{
+  "version": "1.0.0",
+  "compiled_at": "2026-11-12",
+  "baseline_commit": "3fbad89df28d115a65dea22cc2310b53b5d1ade0",
+  "policy": "research-assessed; human editorial sign-off required before public status promotion",
+  "sources": [
+    {
+      "id": "DOJ-MANA",
+      "publisher": "US Department of Justice",
+      "url": "https://www.justice.gov/archives/sco/file/1094156",
+      "issued_at": "2018-09-14",
+      "source_type": "court_statement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "UK-MI5",
+      "publisher": "UK Government, Rycroft Review",
+      "url": "https://www.gov.uk/government/publications/the-rycroft-review-report-of-the-independent-review-into-countering-foreign-financial-influence-and-interference-in-uk-politics/the-rycroft-review-report-of-the-independent-review-into-countering-foreign-financial-influence-and-interference-in-uk-politics",
+      "issued_at": null,
+      "source_type": "institutional_review",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "DE-JIAN",
+      "publisher": "Oberlandesgericht Dresden",
+      "url": "https://www.medienservice.sachsen.de/medien/news/1090967",
+      "issued_at": "2025-09-30",
+      "source_type": "court_statement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-WH",
+      "publisher": "White House",
+      "url": "https://www.whitehouse.gov/administration/",
+      "issued_at": null,
+      "source_type": "official_statement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-SEC-X26",
+      "publisher": "US SEC (SpaceX 2026 filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+      "issued_at": null,
+      "source_type": "corporate_filing",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-SEC-SPX",
+      "publisher": "US SEC (SpaceX 2026 prospectus)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+      "issued_at": null,
+      "source_type": "corporate_filing",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-SEC-TW",
+      "publisher": "US SEC (Twitter 2022 8-K)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+      "issued_at": null,
+      "source_type": "corporate_filing",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "DE-AFD",
+      "publisher": "AfD (beneficiary party statement)",
+      "url": "https://www.afd.de/afd-kanzlerkandidatin-alice-weidel-und-bundessprecher-tino-chrupalla-eroeffneten-in-halle-an-der-saale-vor-rund-4-500-gaesten-den-bundestagswahlkampf/",
+      "issued_at": "2025-01-25",
+      "source_type": "party_statement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-OFAC-GVA",
+      "publisher": "US OFAC",
+      "url": "https://ofac.treasury.gov/recent-actions/20250612",
+      "issued_at": "2025-06-12",
+      "source_type": "administrative_action",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-OFAC-HER",
+      "publisher": "US Treasury",
+      "url": "https://home.treasury.gov/news/press-releases/jy0841",
+      "issued_at": "2022-06-30",
+      "source_type": "administrative_action",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-OFAC-IPI",
+      "publisher": "US OFAC",
+      "url": "https://ofac.treasury.gov/recent-actions/20251202",
+      "issued_at": "2025-12-02",
+      "source_type": "administrative_action",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-OFAC-SHOR",
+      "publisher": "US Treasury",
+      "url": "https://home.treasury.gov/news/press-releases/jy1049",
+      "issued_at": "2022-10-26",
+      "source_type": "administrative_action",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "GB-CTP-GILL",
+      "publisher": "Counter Terrorism Policing",
+      "url": "https://www.counterterrorism.police.uk/news/former-mep-jailed-after-accepting-bribes-to-make-pro-russian-statements/",
+      "issued_at": "2025-11-21",
+      "source_type": "law_enforcement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "GB-CPS-GILL",
+      "publisher": "Crown Prosecution Service",
+      "url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+      "issued_at": "2025-11-21",
+      "source_type": "court_statement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "MD-SHOR-COURT",
+      "publisher": "Moldova Anticorruption Prosecution",
+      "url": "https://procuratura.md/anticoruptie/en/comunicate/comunicate-de-presa/decizie-irevocabila-dosarul-de-condamnare-lui-ilan-sor",
+      "issued_at": "2024-12-13",
+      "source_type": "court_statement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "MD-2024",
+      "publisher": "Moldova Prosecutor General",
+      "url": "https://procuratura.md/web/stiri-si-mass-media/comunicate-de-presa/noi-perchezitii-riscani-si-chisinau",
+      "issued_at": "2024-11-02",
+      "source_type": "law_enforcement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "CZ-BIS",
+      "publisher": "Czech BIS",
+      "url": "https://www.bis.cz/aktuality/bis-odhalila-ruskou-vlivovou-sit-akteri-skoncili-na-sankcnim-seznamu-ff8aacba.html",
+      "issued_at": "2024-03-28",
+      "source_type": "intelligence_attribution",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "EU-SHOR",
+      "publisher": "Council of the EU",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
+      "issued_at": "2026-06-15",
+      "source_type": "administrative_action",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "CA-CIT",
+      "publisher": "Citizen Lab",
+      "url": "https://citizenlab.ca/research/member-of-committee-investigating-spyware-hacked-with-pegasus/",
+      "issued_at": "2026-07-03",
+      "source_type": "independent_forensic",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "FR-REFRIG",
+      "publisher": "French foreign ministry",
+      "url": "https://www.diplomatie.gouv.fr/en/presse-et-ressources/decouvrir-et-informer/actualites/declaration-d-attribution-a-l-iran-de-cyberattaques-visant-la-france",
+      "issued_at": "2026-11-10",
+      "source_type": "intelligence_attribution",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "EU-ENISA",
+      "publisher": "ENISA and EU institutions",
+      "url": "https://www.enisa.europa.eu/news/joint-statement-on-cyber-incidents-in-refrigeration-systems-across-the-eu",
+      "issued_at": "2026-11-04",
+      "source_type": "official_statement",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-AP26",
+      "publisher": "Associated Press",
+      "url": "https://www.ap.org/the-definitive-source/behind-the-news/calling-control-of-congress-in-the-2026-midterm-elections/",
+      "issued_at": null,
+      "source_type": "independent_reporting",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-RAF",
+      "publisher": "US Department of Justice",
+      "url": "https://www.justice.gov/opa/pr/three-iranian-backed-operatives-indicted-their-roles-nearly-20-terrorist-attacks-and",
+      "issued_at": "2026-11-10",
+      "source_type": "indictment",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "OSCE-MD24",
+      "publisher": "OSCE ODIHR",
+      "url": "https://odihr.osce.org/odihr/elections/moldova/588014",
+      "issued_at": "2025-03-24",
+      "source_type": "independent_observation",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "UK-GUARD-ROS",
+      "publisher": "The Guardian",
+      "url": "https://www.theguardian.com/world/2026/nov/09/russians-killed-ukraine-war-leaked-data",
+      "issued_at": "2026-11-09",
+      "source_type": "independent_reporting",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    },
+    {
+      "id": "US-OFAC-2018",
+      "publisher": "US Treasury",
+      "url": "https://home.treasury.gov/news/press-releases/sm0338",
+      "issued_at": "2018-04-06",
+      "source_type": "administrative_action",
+      "retrieved_at": "2026-11-12",
+      "archived_url": null,
+      "content_sha256": null,
+      "verification": "opened_or_matched_in_source_search"
+    }
+  ],
+  "relationship_reviews": [
+    {
+      "id": "G-0024",
+      "source_id": "DOJ-MANA",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0025",
+      "source_id": "DOJ-MANA",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0026",
+      "source_id": "DOJ-MANA",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0027",
+      "source_id": "DOJ-MANA",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0040",
+      "source_id": "UK-MI5",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Formal MI5 attribution only; not a criminal finding",
+      "human_approved": false
+    },
+    {
+      "id": "G-0041",
+      "source_id": "UK-MI5",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "MI5's assessment about donor source; not a conviction",
+      "human_approved": false
+    },
+    {
+      "id": "G-0042",
+      "source_id": "DE-JIAN",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "First-instance judgment, appeal status not independently checked",
+      "human_approved": false
+    },
+    {
+      "id": "G-0043",
+      "source_id": "DE-JIAN",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0071",
+      "source_id": "US-WH",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0073",
+      "source_id": "US-SEC-X26",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "X corporate structure changed via 2025 and 2026 mergers; historical direct ownership is not current ownership",
+      "human_approved": false
+    },
+    {
+      "id": "G-0074",
+      "source_id": "US-SEC-SPX",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0077",
+      "source_id": "DE-AFD",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Beneficiary-party original report, not independent analysis of electoral impact",
+      "human_approved": false
+    },
+    {
+      "id": "G-0088",
+      "source_id": "US-OFAC-GVA",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0089",
+      "source_id": "US-OFAC-HER",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0090",
+      "source_id": "US-OFAC-IPI",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0117",
+      "source_id": "DOJ-MANA",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0132",
+      "source_id": "US-OFAC-HER",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0137",
+      "source_id": "US-OFAC-2018",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0138",
+      "source_id": "GB-CPS-GILL",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0139",
+      "source_id": "GB-CTP-GILL",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Voloshyn charged/wanted, not convicted in the Gill case",
+      "human_approved": false
+    },
+    {
+      "id": "G-0159",
+      "source_id": "UK-MI5",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0170",
+      "source_id": "US-SEC-TW",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0176",
+      "source_id": "UK-MI5",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0179",
+      "source_id": "US-OFAC-SHOR",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0193",
+      "source_id": "MD-SHOR-COURT",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Criminal conviction concerns bank fraud, not election manipulation",
+      "human_approved": false
+    },
+    {
+      "id": "G-0213",
+      "source_id": "MD-2024",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "2024 Prosecutor allegations and seized material do not establish guilt of all persons",
+      "human_approved": false
+    },
+    {
+      "id": "G-0219",
+      "source_id": "CZ-BIS",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0230",
+      "source_id": null,
+      "assessment": "primary_not_found",
+      "limitation": "No adequately matching public primary source for alleged Papperger assassination plan",
+      "human_approved": false
+    },
+    {
+      "id": "G-0254",
+      "source_id": "DE-JIAN",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0259",
+      "source_id": "EU-SHOR",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Administrative EU attribution is not a criminal judgment",
+      "human_approved": false
+    },
+    {
+      "id": "G-0262",
+      "source_id": "US-WH",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0266",
+      "source_id": "DE-AFD",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0274",
+      "source_id": "US-OFAC-GVA",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Kerimov linked to OFAC-investigated investment, not owner of GVA/SpaceX",
+      "human_approved": false
+    },
+    {
+      "id": "G-0287",
+      "source_id": "GB-CPS-GILL",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    },
+    {
+      "id": "G-0327",
+      "source_id": "CA-CIT",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Citizen Lab confirms victim, not spyware operator",
+      "human_approved": false
+    },
+    {
+      "id": "G-0336",
+      "source_id": "EU-SHOR",
+      "assessment": "matched_with_scope_limits",
+      "limitation": "Source establishes the specific recorded role only, not inferred command, motive, finance or guilt.",
+      "human_approved": false
+    }
+  ],
+  "fonte09_decisions": [
+    {
+      "id": "EXT-005",
+      "oem_id": "OEM26-001",
+      "case_id": "FR-COLD-OCT",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Formal November French attribution: separate dated attribution from October conduct; requires separate original incident record.",
+      "source_checked": true,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-006",
+      "oem_id": "OEM26-002",
+      "case_id": "EU-COLD-NOV",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "November wave documented by ENISA; separate from October France case.",
+      "source_checked": true,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-007",
+      "oem_id": "OEM26-003",
+      "case_id": "EU-COLD-NOV",
+      "action": "merge_case",
+      "target_id": "EXT-006",
+      "rationale": "Italian incidents are a geographical subset of November wave, not a new independent campaign.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-008",
+      "oem_id": "OEM26-004",
+      "case_id": "EU-COLD-NOV",
+      "action": "source_only",
+      "target_id": "EXT-006",
+      "rationale": "Self-claims by pro-Russian groups are E4, not independent proof of perpetrators.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-009",
+      "oem_id": "OEM26-005",
+      "case_id": "IT-DOXX-NOV",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Keep as a separate case; verify protected personal data are excluded from public archive.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-010",
+      "oem_id": "OEM26-006",
+      "case_id": "IT-BRENNER",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Incident on 17 October; disclosure in November. Preserve distinct incident/discovery dates.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-011",
+      "oem_id": "OEM26-007",
+      "case_id": "EU-SMARTBOX",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Separate service compromise; verify company notice rather than incidental newspaper reference.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-012",
+      "oem_id": "OEM26-008",
+      "case_id": "EU-BOMB-AVIATION",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Coordinated-seeming threat wave; do not infer common foreign command.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-013",
+      "oem_id": "OEM26-009",
+      "case_id": "IT-BOMB-SCHOOLS",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Mass threats to schools; keep separated from aviation without evidence of link.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-014",
+      "oem_id": "OEM26-010",
+      "case_id": "IT-DIA-CYBER",
+      "action": "correction_only",
+      "target_id": null,
+      "rationale": "Ministerial denial/correction should suppress earlier unconfirmed attack assertion, not add an attack.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-015",
+      "oem_id": "OEM26-011",
+      "case_id": "IT-OT-CLAIMS",
+      "action": "source_only",
+      "target_id": null,
+      "rationale": "Claimed attacks with limited effects, insufficient evidence for a verified incident.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-016",
+      "oem_id": "OEM26-012",
+      "case_id": "RU-ROSSTAT-LEAK",
+      "action": "source_only",
+      "target_id": null,
+      "rationale": "Unverified source data: preserve separate denominators and exclude from official fatality count.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-017",
+      "oem_id": "OEM26-013",
+      "case_id": "UK-RAF-FAIRFORD",
+      "action": "procedural_event",
+      "target_id": "EXT-018",
+      "rationale": "US DOJ superseding indictment is a separate dated procedural act in same RAF Fairford case.",
+      "source_checked": true,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-018",
+      "oem_id": "OEM26-014",
+      "case_id": "UK-RAF-FAIRFORD",
+      "action": "procedural_event",
+      "target_id": "EXT-017",
+      "rationale": "UK CPS charges distinct from US charges; do not count them as separate attacks.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-019",
+      "oem_id": "OEM26-015",
+      "case_id": "BALTIC-FITBURG",
+      "action": "procedural_event",
+      "target_id": null,
+      "rationale": "First-instance court decision about 2025 cable damage. Check exact court document, status, and appeal.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-020",
+      "oem_id": "OEM26-016",
+      "case_id": "US-MIDTERMS-2026",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "AP projection of Democratic Congressional control, not official certified final tally.",
+      "source_checked": true,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-021",
+      "oem_id": "OEM26-017",
+      "case_id": "RU-STORM-ELECTIONS",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Election-related information campaign attribution by researchers, not demonstrated electoral impact.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-022",
+      "oem_id": "OEM26-018",
+      "case_id": "UA-PEACE-NEGOTIATIONS",
+      "action": "ongoing_update",
+      "target_id": null,
+      "rationale": "Ongoing peace talks; date of announcement differs from date of sessions.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-023",
+      "oem_id": "OEM26-019",
+      "case_id": "US-RU-DIPLOMACY",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Reported White House meeting is distinct diplomacy, not evidence of coordination with Russian operations.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-024",
+      "oem_id": "OEM26-020",
+      "case_id": "EU-RU-SANCTIONS",
+      "action": "procedural_event",
+      "target_id": null,
+      "rationale": "Political agreement among envoys is not legal entry into force of designations.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-025",
+      "oem_id": "OEM26-021",
+      "case_id": "G7-DECLARATION",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Official joint declaration, not proof of measures already implemented.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-026",
+      "oem_id": "OEM26-022",
+      "case_id": "CN-RARE-EARTHS",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Control suspension extension, differentiate policy announcement from actual export volumes.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-027",
+      "oem_id": "OEM26-023",
+      "case_id": "HORMUZ-CRISIS",
+      "action": "ongoing_update",
+      "target_id": "TL-0103",
+      "rationale": "Existing Hormuz disruption episode: do not create duplicate core event.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-028",
+      "oem_id": "OEM26-024",
+      "case_id": "CHORNOBYL-NSC",
+      "action": "standalone_event",
+      "target_id": null,
+      "rationale": "Donor commitments are pledges, not disbursed funds or completed repairs.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-029",
+      "oem_id": "OEM26-025",
+      "case_id": "MOLDOVA-GAGAUZIA",
+      "action": "source_only",
+      "target_id": null,
+      "rationale": "SIS intelligence statement, not court-proven operation.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-030",
+      "oem_id": "OEM26-026",
+      "case_id": "BALTIC-AIR-SECURITY",
+      "action": "ongoing_update",
+      "target_id": "TL-0072",
+      "rationale": "NATO interception logs and unverified drone sightings must remain separate types of observations.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-031",
+      "oem_id": "OEM26-027",
+      "case_id": "UST-LUGA-RAID",
+      "action": "split_required",
+      "target_id": null,
+      "rationale": "Ukrainian raid on Russia and separate drone alerts in Baltic states cannot be one conflated event.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-032",
+      "oem_id": "OEM26-028",
+      "case_id": "EU-UA-FINANCING",
+      "action": "ongoing_update",
+      "target_id": null,
+      "rationale": "Proposals/negotiations and approved budget appropriations must remain separate.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-033",
+      "oem_id": "OEM26-029",
+      "case_id": "EBU-DATASET",
+      "action": "source_only",
+      "target_id": null,
+      "rationale": "Investigative compilation is a source, not 17 confirmed new incidents or new event itself.",
+      "source_checked": false,
+      "human_approved": false
+    },
+    {
+      "id": "EXT-034",
+      "oem_id": "OEM26-030",
+      "case_id": "FR-COLD-OCT",
+      "action": "merge_case",
+      "target_id": "EXT-005",
+      "rationale": "Iranian denial and French diplomatic protest belong with attribution case; avoid second attack.",
+      "source_checked": true,
+      "human_approved": false
+    }
+  ],
+  "atomic_claims": [
+    {
+      "id": "C-001",
+      "record_id": "EXT-005",
+      "aspect": "occurrence",
+      "evidence_level": "E1",
+      "proposition_it": "Tra l'11 e il 12 ottobre 2026 autorità francesi hanno descritto una campagna contro controllori frigoriferi in oltre 700 punti vendita.",
+      "source_ids": ["FR-REFRIG"],
+      "limitation_it": "Il conteggio e i danni sono attribuiti al ministero francese, non a una perizia indipendente.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-002",
+      "record_id": "EXT-005",
+      "aspect": "attribution",
+      "evidence_level": "E2",
+      "proposition_it": "Il 10 novembre 2026 la Francia ha attribuito l'attacco dell'11–12 ottobre all'unità SHAHID KAVEH affiliata all'IRGC.",
+      "source_ids": ["FR-REFRIG"],
+      "limitation_it": "Attribuzione istituzionale contestata dall'Iran, non una sentenza giudiziaria.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "institutional_claim",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-003",
+      "record_id": "EXT-006",
+      "aspect": "occurrence",
+      "evidence_level": "E1",
+      "proposition_it": "ENISA e Commissione europea hanno confermato una nuova ondata di incidenti il 1–2 novembre 2026.",
+      "source_ids": ["EU-ENISA"],
+      "limitation_it": "Il comunicato UE non stabilisce chi abbia ordinato la seconda ondata.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-004",
+      "record_id": "G-0042",
+      "aspect": "judicial_outcome",
+      "evidence_level": "E1",
+      "proposition_it": "Il 30 settembre 2025 il tribunale di Dresda ha condannato Jian G. a quattro anni e nove mesi per spionaggio a favore della Cina.",
+      "source_ids": ["DE-JIAN"],
+      "limitation_it": "La nota giudiziaria indicava una finestra per l'impugnazione; non assume irrevocabilità.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-005",
+      "record_id": "G-0043",
+      "aspect": "material_actor",
+      "evidence_level": "E1",
+      "proposition_it": "Secondo il tribunale di Dresda Jian G. ha raccolto informazioni sul Parlamento europeo durante l'impiego presso un eurodeputato.",
+      "source_ids": ["DE-JIAN"],
+      "limitation_it": "La fonte attesta il giudizio del tribunale sui fatti esaminati; non prova ogni altro collegamento politico.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-006",
+      "record_id": "G-0040",
+      "aspect": "attribution",
+      "evidence_level": "E2",
+      "proposition_it": "MI5 ha attribuito a Christine Lee attività di influenza collegate all'United Front Work Department.",
+      "source_ids": ["UK-MI5"],
+      "limitation_it": "Riscontro di un alert MI5 nella revisione governativa, non condanna penale.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "institutional_claim",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-007",
+      "record_id": "G-0074",
+      "aspect": "corporate_control",
+      "evidence_level": "E1",
+      "proposition_it": "Un prospetto SEC 2026 attribuisce a Elon Musk una quota maggioritaria dei diritti di voto di SpaceX.",
+      "source_ids": ["US-SEC-SPX"],
+      "limitation_it": "Quota societaria riferita al contesto del prospetto, non a ogni fase storica.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-008",
+      "record_id": "G-0073",
+      "aspect": "corporate_control",
+      "evidence_level": "E1",
+      "proposition_it": "Il filing SEC 2026 documenta l'integrazione di X Holdings nel gruppo xAI e poi SpaceX.",
+      "source_ids": ["US-SEC-X26"],
+      "limitation_it": "La relazione storica diretta Musk→X va qualificata con i cambi di controllo societario 2025–2026.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-009",
+      "record_id": "G-0077",
+      "aspect": "public_statement",
+      "evidence_level": "E1",
+      "proposition_it": "Il partito AfD ha confermato la partecipazione pubblica di Elon Musk al proprio evento elettorale di Halle del gennaio 2025.",
+      "source_ids": ["DE-AFD"],
+      "limitation_it": "Fonte primaria interessata: verifica la presenza, non la legittimità politica, un mandato federale o l'effetto sui voti.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-010",
+      "record_id": "G-0088",
+      "aspect": "administrative_act",
+      "evidence_level": "E1",
+      "proposition_it": "Nel giugno 2025 OFAC ha inflitto a GVA Capital una sanzione civile relativa alla gestione di un investimento riconducibile a Kerimov.",
+      "source_ids": ["US-OFAC-GVA"],
+      "limitation_it": "Nessuna conclusione su investimenti SpaceX di HAL9001.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-011",
+      "record_id": "G-0089",
+      "aspect": "administrative_act",
+      "evidence_level": "E1",
+      "proposition_it": "Il 30 giugno 2022 OFAC ha comunicato una determinazione su un interesse patrimoniale di Kerimov nel Heritage Trust.",
+      "source_ids": ["US-OFAC-HER"],
+      "limitation_it": "Blocco amministrativo, non condanna penale.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-012",
+      "record_id": "G-0090",
+      "aspect": "administrative_act",
+      "evidence_level": "E1",
+      "proposition_it": "Il 2 dicembre 2025 OFAC ha annunciato un accordo transattivo con IPI Partners su investimenti di Kerimov.",
+      "source_ids": ["US-OFAC-IPI"],
+      "limitation_it": "L'accordo non dimostra collegamento con HAL9001 o SpaceX.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-013",
+      "record_id": "G-0138",
+      "aspect": "judicial_outcome",
+      "evidence_level": "E1",
+      "proposition_it": "Nel novembre 2025 Nathan Gill è stato condannato a dieci anni e sei mesi dopo aver ammesso otto reati di corruzione.",
+      "source_ids": ["GB-CPS-GILL"],
+      "limitation_it": "La sentenza non dimostra la responsabilità di ogni altro interlocutore.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-014",
+      "record_id": "G-0139",
+      "aspect": "legal_proceeding",
+      "evidence_level": "E1",
+      "proposition_it": "La Counter Terrorism Policing britannica riferisce che Oleg Voloshyn è accusato di associazione finalizzata alla corruzione nel caso Gill.",
+      "source_ids": ["GB-CTP-GILL"],
+      "limitation_it": "Voloshyn non è stato condannato nel caso e risulta ricercato: responsabilità personale non provata penalmente.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-015",
+      "record_id": "G-0193",
+      "aspect": "judicial_outcome",
+      "evidence_level": "E1",
+      "proposition_it": "La procura moldava registra il rigetto definitivo del ricorso di Ilan Șor nel dicembre 2024 per frode e riciclaggio.",
+      "source_ids": ["MD-SHOR-COURT"],
+      "limitation_it": "Non è una condanna per le attività di influenza elettorale successive.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-016",
+      "record_id": "G-0219",
+      "aspect": "institutional_attribution",
+      "evidence_level": "E2",
+      "proposition_it": "La BIS ceca ha pubblicamente descritto nel marzo 2024 una rete di influenza che coinvolge Medvedchuk e Voice of Europe.",
+      "source_ids": ["CZ-BIS"],
+      "limitation_it": "Riconoscere la natura di attribuzione istituzionale.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "institutional_claim",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-017",
+      "record_id": "G-0327",
+      "aspect": "forensic_finding",
+      "evidence_level": "E3",
+      "proposition_it": "Citizen Lab ha documentato una compromissione Pegasus ai danni di Stelios Kouloglou durante il periodo nella commissione PEGA.",
+      "source_ids": ["CA-CIT"],
+      "limitation_it": "Il rapporto non identifica conclusivamente il committente.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-018",
+      "record_id": "EXT-017",
+      "aspect": "legal_proceeding",
+      "evidence_level": "E1",
+      "proposition_it": "Il 10 novembre 2026 il DOJ ha reso pubblica un'incriminazione contro tre persone per presunti atti legati alla rete HAYI.",
+      "source_ids": ["US-RAF"],
+      "limitation_it": "L'atto di accusa non è una condanna; l'attribuzione dei fatti contestati rimane E4.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-019",
+      "record_id": "EXT-020",
+      "aspect": "reported_outcome",
+      "evidence_level": "E3",
+      "proposition_it": "Associated Press ha proiettato la conquista democratica del controllo di Camera e Senato USA nel voto del 3 novembre 2026.",
+      "source_ids": ["US-AP26"],
+      "limitation_it": "Chiamata giornalistica non è certificazione elettorale finale.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    },
+    {
+      "id": "C-020",
+      "record_id": "EXT-016",
+      "aspect": "reported_dataset",
+      "evidence_level": "E3",
+      "proposition_it": "The Guardian ha riportato nuove stime di decessi russi a partire da un presunto archivio Rosstat sottratto.",
+      "source_ids": ["UK-GUARD-ROS"],
+      "limitation_it": "Autenticità integrale, criteri di conteggio e confronto con altre stime non verificati indipendentemente.",
+      "contrary_evidence_it": null,
+      "attribution_confidence": "not_quantified",
+      "impact_confidence": "not_quantified",
+      "human_approved": false
+    }
+  ]
+}

@@ -11,7 +11,7 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://www.justice.gov/archives/sco/file/1094156",
   "caveat": {
     "it": "Mandante Yanukovych; nessuna catena Cremlino documentata",
     "en": "Yanukovych as principal; no Kremlin chain documented"
@@ -21,7 +21,9 @@
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "M5 2026-11-12 primary-source check: Signed factual statement in Manafort plea addresses the Hapsburg arrangement; excludes any claimed Kremlin command."
+    ],
     "translations": {
       "en": {
         "status": "machine",

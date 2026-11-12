@@ -52,9 +52,12 @@ const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
     </table>
   </div>
 
+  <h2>{c("Perimetro di pubblicazione", "Publication scope")}</h2>
+  <p class="max-w-3xl">{c("Questi export e il portale omettono le proposte needs_review, gli eventi pending_integration e le relazioni su persone senza primary_url. I record storici imported_unreviewed rimangono consultabili come materiale provvisorio, non come fatti indipendentemente verificati. Il repository Git mantiene tutte le proposte e la loro cronologia.", "These exports and the portal omit needs_review proposals, pending_integration events and named-person relationships without primary_url. Legacy imported_unreviewed records remain visible as provisional research, not independently verified facts. The Git repository retains all proposals and their history.")}</p>
+
   <h2>{c("Formato", "Format")}</h2>
   <ul class="list-disc pl-5 max-w-3xl space-y-1">
-    <li>{c("Ogni file di collezione è un array JSON dei record canonici, identici a quelli in data/ nel repository.", "Each collection file is a JSON array of the canonical records, identical to those in data/ in the repository.")}</li>
+    <li>{c("Ogni file contiene una proiezione pubblicabile dei dati canonici. I record in revisione e le relazioni riguardanti persone prive di una fonte primaria collegata restano soltanto nell’archivio Git; la baseline non revisionata è segnalata come provvisoria.", "Each collection file contains a publication-filtered projection of the canonical records. Pending candidates and named-person links lacking a primary source remain in the Git archive; the unreviewed baseline remains explicitly provisional.")}</li>
     <li>{c("all.json contiene tutte le collezioni in un unico oggetto.", "all.json contains every collection in a single object.")}</li>
     <li>{c("Gli schemi JSON (draft 2020-12) descrivono ogni record e sono generati dal modello del progetto.", "The JSON Schemas (draft 2020-12) describe every record and are generated from the project model.")}</li>
     <li>{c("Il testo canonico è in italiano (campo it); en è una traduzione, con stato in review.translations.", "Canonical text is Italian (field it); en is a translation, with its status in review.translations.")}</li>

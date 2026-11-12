@@ -12,14 +12,16 @@
   ],
   "valid_from": null,
   "valid_to": null,
-  "primary_url": null,
+  "primary_url": "https://home.treasury.gov/news/press-releases/jy0841",
   "caveat": null,
   "sources": [
     "S01"
   ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": []
+    "notes": [
+      "M5 2026-11-12 primary-source check: OFAC June 2022 determination of Kerimov's property interest in Heritage Trust, not an ownership claim over unrelated structures."
+    ]
   },
   "provenance": [
     {
