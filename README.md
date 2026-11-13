@@ -33,7 +33,7 @@ The graph includes contextual and event-participation edges. **Not every edge re
 
 Merged research sources, including Fonte_09–Fonte_11 and thematic AI/industrial dossiers, are automatically listed in the Observatory homepage and the source archive at build time. This makes source acquisition visible without implying that every proposed event, allegation or hypothesis has been approved. The canonical timeline and graph are built exclusively from validated records in `data/`, under the M5 publication gate. Use the M6 sidecar ingestion workflow to propose structured updates, then review records before publication. The source archive date and the last timeline event date are displayed separately.
 
-Real editorial articles were introduced on 13 November 2026; the demo fixture files were removed. Unreviewed future articles remain withheld by the existing publication gate.
+Real editorial articles were introduced on 13 November 2026; the demo fixture files were removed. The Observatory homepage leads with the latest approved investigation when available and falls back to the latest published timeline event; the timeline section remains separate. Unreviewed future articles remain withheld by the existing publication gate.
 
 ## Research scope
 
