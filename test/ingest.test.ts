@@ -235,14 +235,9 @@ describe("Fonte_10 fixture dry run", () => {
     expect(plan.attention).toContain('EXT-022: correction of "description" awaits an editor');
   });
 
-  it("validates, apart from the not yet merged Markdown file", () => {
+  it("validates after the Fonte_10 Markdown source has been merged", () => {
     const errors = checkPlan(plan, files).filter((i) => i.severity === "error");
-    expect(errors.map((e) => [e.file, e.message])).toEqual([
-      [
-        "sources/S10.json",
-        'file "sources/incremental/Fonte_10_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-12.md" does not exist',
-      ],
-    ]);
+    expect(errors).toEqual([]);
   });
 
   it("leaves the public projection unchanged (M5 gate withholds every candidate)", () => {
