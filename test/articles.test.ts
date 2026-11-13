@@ -321,10 +321,7 @@ describe("article rendering and Markdown export", () => {
     expect(en).toContain("## References");
     expect(en).toContain("https://example.org/oem/en/events/TL-0015/");
 
-    const { articles: synthetic } = validateArticleFiles(
-      [italianFile({ id: "ART-9998" })],
-      raw,
-    );
+    const { articles: synthetic } = validateArticleFiles([italianFile({ id: "ART-9998" })], raw);
     const italianOnly = synthetic[0];
     if (!italianOnly) throw new Error("synthetic Italian-only article missing");
     expect(articleLanguages(italianOnly)).toEqual(["it"]);
@@ -337,9 +334,10 @@ describe("article rendering and Markdown export", () => {
     if (!article) throw new Error("approved ART-0002 missing");
     const output = articleMarkdown(article, "en", model, url);
     expect(output).toContain("Joint investigation team disrupts group using self-igniting parcels");
-    expect(output).toContain("https://www.eurojust.europa.eu/news/joint-investigation-team-disrupts-group-using-self-igniting-parcels-terrorist-attacks");
+    expect(output).toContain(
+      "https://www.eurojust.europa.eu/news/joint-investigation-team-disrupts-group-using-self-igniting-parcels-terrorist-attacks",
+    );
     expect(output).toContain("accessed 2026-11-13");
     expect(output).toContain("https://example.org/oem/en/entities/GRU/");
   });
-
 });
