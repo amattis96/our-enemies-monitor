@@ -28,10 +28,11 @@ const recent = model.events
   .filter((e) => e.record_type === "event" && e.timeline_status === "integrated")
   .toReversed()
   .slice(0, 6);
-const [lead, ...wire] = recent;
-const stories = getArticles()
-  .filter((a) => !a.fixture)
-  .slice(0, 3);
+const lead = recent[0];
+const editorials = getArticles().filter((a) => !a.fixture);
+const leadArticle = editorials[0];
+const stories = editorials.slice(1, 4);
+const wire = leadArticle ? recent : recent.slice(1);
 
 const kpis = [
   ["timeline/", counts.timeline_events, c("eventi in cronologia", "timeline events")],
@@ -157,9 +158,24 @@ const mark = inlineSvg("logo-mark.svg", "mast");
 
   <div class="front">
     <section class="front-lead" aria-labelledby="lead-title">
-      <p class="kicker kicker-signal">{c("Dalla cronologia · ultimo evento integrato", "From the timeline · latest integrated event")}</p>
+      <p class="kicker kicker-signal">
+        {leadArticle
+          ? c("In primo piano · indagine", "Featured · investigation")
+          : c("Dalla cronologia · ultimo evento integrato", "From the timeline · latest integrated event")}
+      </p>
       {
-        lead && (
+        leadArticle ? (
+          <article>
+            <h2 id="lead-title" class="front-lead-title">
+              <a href={href(`articles/${leadArticle.id}/`, lang)}><T text={leadArticle.title} lang={lang} /></a>
+            </h2>
+            <p class="lede"><T text={leadArticle.summary} lang={lang} /></p>
+            <p class="front-meta">
+              <span class="mono">{formatPartialDate(leadArticle.date, lang)}</span>
+              <span class="mono">{leadArticle.id}</span>
+            </p>
+          </article>
+        ) : lead && (
           <article>
             <h2 id="lead-title" class="front-lead-title">
               <a href={href(`events/${lead.id}/`, lang)}><T text={lead.title} lang={lang} /></a>
@@ -178,7 +194,7 @@ const mark = inlineSvg("logo-mark.svg", "mast");
     </section>
 
     <section class="front-wire" aria-labelledby="wire-title">
-      <h2 id="wire-title" class="kicker">{c("Ultime voci", "Latest entries")}</h2>
+      <h2 id="wire-title" class="kicker">{c("Ultimi eventi integrati", "Latest integrated events")}</h2>
       <ol>
         {
           wire.map((event) => (
