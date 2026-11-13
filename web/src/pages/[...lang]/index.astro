@@ -3,6 +3,7 @@ import { EVIDENCE_LEVELS, THEME_LABELS, type Theme } from "../../../../src/model
 import { summarize } from "../../../../src/pipeline/validate.ts";
 import { formatDateRange, formatPartialDate } from "../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths, textOf, ui } from "../../../../src/site/i18n.ts";
+import { archivedResearch } from "../../../../src/site/research.ts";
 import { THEME_ICON } from "../../../../src/site/visual.ts";
 import EvidenceStamp from "../../components/EvidenceStamp.astro";
 import Icon from "../../components/Icon.astro";
@@ -20,6 +21,7 @@ const t = ui(lang);
 const c = (it: string, en: string) => choose(lang, it, en);
 const model = getModel();
 const counts = summarize(model.dataset);
+const latestResearch = archivedResearch().slice(0, 5);
 
 // Most recent integrated events, newest first (the "wire").
 const recent = model.events
@@ -99,7 +101,11 @@ const mark = inlineSvg("logo-mark.svg", "mast");
     <div class="dateline" data-pagefind-ignore>
       <div class="dateline-inner">
         <span>{t.editionLabel}</span>
-        <span class="live">{t.dataCutoff} · {counts.timeline_events} {c("eventi", "events")} · {counts.relationships} {c("relazioni", "relationships")}</span>
+        <span class="live">
+          {c("Archivio OSINT", "OSINT archive")} {latestResearch[0] && formatPartialDate(latestResearch[0].createdAt, lang)}
+          · {c("Ultimo evento in cronologia", "Latest timeline event")} {lead && formatPartialDate(lead.date.start, lang)}
+          · {counts.timeline_events} {c("eventi", "events")} · {counts.relationships} {c("relazioni", "relationships")}
+        </span>
       </div>
     </div>
     <header class="masthead">
@@ -111,6 +117,43 @@ const mark = inlineSvg("logo-mark.svg", "mast");
     </header>
     <div class="masthead-rule"></div>
   </Fragment>
+
+  {
+    latestResearch.length > 0 && (
+      <section aria-labelledby="research-title" class="mt-10">
+        <p class="kicker kicker-signal">{c("Ricerca OSINT · archivio aggiornato", "OSINT research · updated archive")}</p>
+        <h2 id="research-title" class="section-title">
+          {c("Nuove fonti e dossier acquisiti", "New research sources and dossiers")}
+        </h2>
+        <p class="meta max-w-3xl">
+          {c(
+            "Documenti acquisiti e versionati su GitHub. Le nuove informazioni non diventano automaticamente eventi della cronologia: per quelli serve l'integrazione e la revisione dei record canonici.",
+            "Research documents committed and versioned on GitHub. Newly archived findings do not automatically become timeline events: those require canonical data ingestion and record review.",
+          )}
+        </p>
+        <ul class="grid gap-6 md:grid-cols-2 mt-6">
+          {latestResearch.map((source) => (
+            <li class="card">
+              <p class="meta font-mono">
+                {formatPartialDate(source.createdAt, lang)} · {source.id} · {
+                  source.kind === "incremental"
+                    ? c("Aggiornamento OSINT", "OSINT update")
+                    : c("Dossier tematico", "Thematic dossier")
+                }
+              </p>
+              <h3 class="mt-2 text-xl">
+                <a href={source.url}>{source.title}</a>
+              </h3>
+              <p class="meta mb-0">
+                {c("Documento originale nel repository, non ancora equivalente a un evento approvato.", "Original source document in the repository, not an approved timeline record.")}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4"><a href={href("sources/", lang)}>{c("Archivio completo delle fonti", "Full source archive")}</a></p>
+      </section>
+    )
+  }
 
   <div class="front">
     <section class="front-lead" aria-labelledby="lead-title">
