@@ -37,7 +37,8 @@ function archiveEntry(path: string, kind: ArchivedResearch["kind"]): ArchivedRes
   if (!rawTitle) return null;
   const code = typeof meta.source_id === "string" ? meta.source_id : path.match(/Fonte_(\d+)/)?.[1];
   const id = code?.match(/^\d+$/) ? "S" + code : (code ?? "ARCHIVE");
-  const url = "https://github.com/amattis96/our-enemies-monitor/blob/main/" +
+  const url =
+    "https://github.com/amattis96/our-enemies-monitor/blob/main/" +
     path.split("/").map(encodeURIComponent).join("/");
 
   return { id, title: rawTitle.trim(), createdAt, kind, path, url };
