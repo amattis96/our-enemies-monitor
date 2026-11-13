@@ -294,48 +294,52 @@ describe("article rendering and Markdown export", () => {
     expect(html).not.toContain("javascript:");
   });
 
-  it("exports a standalone Markdown file per available language", () => {
+  it("exports a standalone Markdown file for each approved article language", () => {
     const model = buildReadModel(published);
     const articles = loadPublishedArticles(raw);
-    const demo = articles.find((article) => article.id === "ART-DEMO-001");
-    if (!demo) throw new Error("ART-DEMO-001 missing");
-    expect(articleLanguages(demo)).toEqual(["it", "en"]);
+    const article = articles.find((item) => item.id === "ART-0001");
+    if (!article) throw new Error("approved ART-0001 missing");
+    expect(articleLanguages(article)).toEqual(["it", "en"]);
 
-    const it = articleMarkdown(demo, "it", model, url);
-    expect(it.startsWith("---\nid: ART-DEMO-001\nlang: it\n")).toBe(true);
-    expect(it).toContain("fixture: true");
-    expect(it).toContain("canonical_url: https://example.org/oem/articles/ART-DEMO-001/");
-    expect(it).toContain("> **DEMO / TEST");
-    expect(it).toContain(`# ${demo.title.it}`);
-    expect(it).toContain(demo.body.it);
-    expect(it).toContain("## Riferimenti\n\n1. [S06] ");
-    expect(it).toContain("https://example.org/oem/sources/S06/");
-    expect(it).toContain("- Evento TL-0001: ");
-    expect(it).toContain("https://example.org/oem/events/TL-0001/");
+    const it = articleMarkdown(article, "it", model, url);
+    expect(it.startsWith("---\nid: ART-0001\nlang: it\n")).toBe(true);
+    expect(it).toContain("fixture: false");
+    expect(it).toContain("review_status: reviewed");
+    expect(it).toContain("canonical_url: https://example.org/oem/articles/ART-0001/");
+    expect(it).toContain(`# ${article.title.it}`);
+    expect(it).toContain(article.body.it);
+    expect(it).toContain("## Riferimenti\n\n");
+    expect(it).toContain("https://example.org/oem/sources/S01/");
+    expect(it).toContain("- Evento TL-0015: ");
+    expect(it).toContain("https://example.org/oem/events/TL-0015/");
     expect(it.endsWith("\n")).toBe(true);
 
-    const en = articleMarkdown(demo, "en", model, url);
+    const en = articleMarkdown(article, "en", model, url);
     expect(en).toContain("lang: en");
     expect(en).toContain("translation_status: machine");
     expect(en).toContain("Machine translation from Italian, not yet reviewed.");
     expect(en).toContain("## References");
-    expect(en).toContain("https://example.org/oem/en/events/TL-0001/");
+    expect(en).toContain("https://example.org/oem/en/events/TL-0015/");
 
-    const italianOnly = articles.find((article) => article.id === "ART-DEMO-003");
-    if (!italianOnly) throw new Error("ART-DEMO-003 missing");
+    const { articles: synthetic } = validateArticleFiles(
+      [italianFile({ id: "ART-9998" })],
+      raw,
+    );
+    const italianOnly = synthetic[0];
+    if (!italianOnly) throw new Error("synthetic Italian-only article missing");
     expect(articleLanguages(italianOnly)).toEqual(["it"]);
     expect(() => articleMarkdown(italianOnly, "en", model, url)).toThrow(/no en text/);
   });
 
-  it("formats URL references with access date", () => {
+  it("formats external URL references with access dates", () => {
     const model = buildReadModel(published);
-    const demo = loadPublishedArticles(raw).find((article) => article.id === "ART-DEMO-002");
-    if (!demo) throw new Error("ART-DEMO-002 missing");
-    const text = articleMarkdown(demo, "en", model, url);
-    expect(text).toContain(
-      "Our Enemies Monitor — repository del progetto. GitHub. https://github.com/amattis96/our-enemies-monitor. accessed 2026-11-12",
-    );
-    expect(text).toContain("- Relationship G-0002: ");
-    expect(text).toContain("- Hypothesis (not established) H03: ");
+    const article = loadPublishedArticles(raw).find((item) => item.id === "ART-0002");
+    if (!article) throw new Error("approved ART-0002 missing");
+    const output = articleMarkdown(article, "en", model, url);
+    expect(output).toContain("Joint investigation team disrupts group using self-igniting parcels");
+    expect(output).toContain("https://www.eurojust.europa.eu/news/joint-investigation-team-disrupts-group-using-self-igniting-parcels-terrorist-attacks");
+    expect(output).toContain("accessed 2026-11-13");
+    expect(output).toContain("https://example.org/oem/en/entities/GRU/");
   });
+
 });
