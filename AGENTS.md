@@ -166,9 +166,13 @@ The paid Anthropic API weekly research workflow is retired; do not reactivate
 The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt.
 
 - **Task A (active, outside this repository):** daily 01:00 `Europe/Rome`
-  ChatGPT scheduled OSINT research. On material news, create **only** a new
-  immutable `sources/incremental/Fonte_XX*.md` in a dedicated branch and PR;
-  never change `data/`, approve its contents or merge. The first unattended run on 13 November 2026 created Fonte_11 (PR #11); Task C merged its source PR after review.
+  ChatGPT scheduled OSINT research. On material news, create **exactly two files**
+  in a dedicated PR: immutable `sources/incremental/Fonte_XX_*.md` and
+  `sources/incremental/Fonte_XX.proposals.json` conforming to
+  `schemas/proposals.schema.json` and the M6 §4.6 contract. Never change
+  `data/`, approve its contents or merge. Task A first ran unattended on
+  13 November 2026 (Fonte_11, PR #11); the sidecar prompt was updated
+  on 13 November and its first scheduled execution remains to be verified.
 - **Task B (active, weekly):** independent topical investigation,
   source-backed Italian and English article drafts, plus separate proposed
   evidence updates. The article contract, validation and pages are built:

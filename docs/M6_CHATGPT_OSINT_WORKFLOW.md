@@ -1,13 +1,13 @@
 # M6: ChatGPT-scheduled OSINT collection and editorial research
 
 **Decision date:** 2026-11-12  
-**Status:** Architecture adopted; deterministic sidecar ingest (`pnpm ingest`) implemented; article contract and pages implemented (demo fixtures only, 2026-11-12); Task A prompt not yet updated to emit the sidecar; Task B not yet configured.  
+**Status (2026-11-13):** Deterministic M6 sidecar ingestion and bilingual editorial pages implemented; Task A ran unattended and its saved prompt now requires the sidecar on subsequent sources (first sidecar run not yet verified). Task B and C ran unattended; two fact-checked editorial articles are published and the DEMO fixtures removed. The web archive lists new source Markdown separately from the canonical timeline. CI and Pages deploy confirmed.  
 **Owner/source of truth:** [Our Enemies Monitor](https://github.com/amattis96/our-enemies-monitor), branch `main`.  
 **Related:** [AGENTS.md](../AGENTS.md), [ARCHITECTURE.md](ARCHITECTURE.md), [M5 evidence audit](M5_EVIDENCE_AUDIT.md).
 
 ## 1. Decision and rationale
 
-Replace the planned paid Anthropic/Claude API-driven research workflow with **two separate, complementary scheduled tasks in the ChatGPT product**. These are regular ChatGPT scheduled conversations, **not** Work, Codex, GitHub Actions invoking LLM APIs, or an in-repository model runtime.
+Replace the planned paid Anthropic/Claude API-driven research workflow with **three separate, complementary scheduled tasks in the ChatGPT product** (OSINT acquisition, editorial investigations and PR review/merge). These are regular ChatGPT scheduled conversations, **not** Work, Codex, GitHub Actions invoking LLM APIs, or an in-repository model runtime.
 
 The model researches, verifies and authors artifacts; GitHub stores and versions them; **deterministic, reproducible TypeScript/GitHub Actions code** validates, imports, indexes, builds and deploys. No Anthropic API key or other paid model API is required for this design. ChatGPT subscription/task quotas and app permissions remain separate operational constraints; this is not a claim of unlimited or zero-cost AI research.
 
@@ -297,9 +297,9 @@ gh pr create --base main --title "feat(data): ingest Fonte_10 candidates" --body
 
 Note that `pnpm data:diff --agent` treats a new relationship without `primary_url` as an error. The ingest report flags such relationships as attention points.
 
-### 4.6 Required change to the ChatGPT Task A prompt
+### 4.6 Active sidecar contract in the ChatGPT Task A prompt
 
-Coordinated outside this repository. Add the following to the Task A prompt, after the step that writes the Markdown:
+The scheduled Task A prompt was updated on 13 November 2026 to require a structured sidecar with every new Markdown source. The first unattended run under the revised prompt must still be verified. The following rules are the normative sidecar contract:
 
 > **Structured sidecar (mandatory when you create a source).** In the same branch and PR, also add `sources/incremental/Fonte_XX.proposals.json` (same `XX`). It must validate against `schemas/proposals.schema.json` on `main` (`schema_version: "1.0"`). Rules:
 > 1. `source.code` is `S` + the Fonte number; `source.file` is the exact path of the Markdown you add. Copy `created_at`, the coverage window, `baseline_source` and `repository_commit` from the YAML header.
@@ -418,14 +418,14 @@ A shortened sidecar (the complete hand-authored Fonte_10 fixture is `test/fixtur
 | --- | --- | --- |
 | ChatGPT Task A manual write POC | **Observed success**: PR #3 and Fonte_10 | New MD committed on a dedicated GitHub branch; PR opened |
 | Daily Task A scheduling | **Configured**: 01:00 Europe/Rome | Scheduled task exists, next run is recorded |
-| First unattended run | **Not yet verified** | Job independently reads GitHub, searches, writes PR if warranted or reports no news without permission blockage |
-| Fonte_10 integration | **PR open at adoption** | Appropriate review and merge to `main`; no automatic merge |
+| First unattended run | **Succeeded**: 2026-11-13, Fonte_11 PR #11 | Job independently reads GitHub, searches, writes PR if warranted or reports no news without permission blockage |
+| Fonte_10 integration | **Merged** in PR #3 on 2026-11-13 (archival source only) | Appropriate review and merge to `main`; no automatic merge |
 | Markdown + sidecar ingest | **Implemented** (`pnpm ingest`, tested on a hand-authored Fonte_10 fixture) | Schema-validated, deterministic, idempotent source-to-`data/` PR |
-| Task A emits the sidecar | **Not yet**: prompt change in §4.6 to apply in ChatGPT | Each source PR adds `Fonte_XX.md` and `Fonte_XX.proposals.json`; `pnpm ingest` dry run has no rejections |
-| Task B | **Planned** | Independent scheduled thematic research creates source-backed IT/EN article PR |
-| Editorial website | **Implemented** with demo fixtures (2026-11-12) | Navigable multilingual articles, evidence cross-links and Markdown downloads; PDF later |
+| Task A emits the sidecar | **Prompt updated** on 2026-11-13; next unattended run must prove it | Each source PR adds `Fonte_XX.md` and `Fonte_XX.proposals.json`; `pnpm ingest` dry run has no rejections |
+| Task B | **Active**: 2026-11-13 created ART-0002 PR #12 | Independent scheduled thematic research creates source-backed IT/EN article PR |
+| Editorial website | **Real articles ART-0001/0002 approved and published; demo removed 2026-11-13** | Navigable multilingual articles, evidence cross-links and Markdown downloads; PDF later |
 
-**Next verification:** inspect the ChatGPT Task A run scheduled for **2026-11-13 01:00 Europe/Rome** and check GitHub actions/PRs; distinguish a successful run from an absence of substantive news. Only then decide whether task prompts, permissions or cadence require adjustment.
+**Next verification:** inspect the first sidecar-producing Task A run after **2026-11-13** and check GitHub actions/PRs; distinguish a successful run from an absence of substantive news. Only then decide whether task prompts, permissions or cadence require adjustment.
 
 ## 8. Instructions for local coding agents
 
