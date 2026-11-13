@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M5 technical milestones implemented; M6 ChatGPT research design adopted, with Task A manually proven and scheduled. The deterministic sidecar ingest (`pnpm ingest`) and the bilingual article section (demo fixtures only) are implemented; the Task A sidecar output and the scheduled Task B are pending. M5 evidence-review items remain tracked, and incremental data candidates remain quarantined.**
+**Phase: M1–M7 implemented.** ChatGPT Task A (daily OSINT), Task B (weekly IT/EN investigations) and Task C (weekly PR review/merge) are active. Approved articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -28,6 +28,12 @@ The initial research corpus has a cutoff of **21 October 2026** and covers **200
 **Update of 11 November 2026 (Fonte_09):** a first incremental source adds 30 candidate events and 50 web references (22 October–11 November 2026), 10 new hypotheses (H23–H32), 18 entities and 14 sourced relationships. They are pending timeline integration and editorial review, are not part of the baseline counts above, and the 30 items are not 30 independent attacks. Current totals in `data/`: 181 events, 458 relationships, 32 hypotheses, 106 sources.
 
 The graph includes contextual and event-participation edges. **Not every edge represents financing, operational control or attribution.** These counts describe the structure of the current research corpus and must not be used as a quantitative measure of hostility.
+
+## Documentary archive versus canonical timeline
+
+Merged research sources, including Fonte_09–Fonte_11 and thematic AI/industrial dossiers, are automatically listed in the Observatory homepage and the source archive at build time. This makes source acquisition visible without implying that every proposed event, allegation or hypothesis has been approved. The canonical timeline and graph are built exclusively from validated records in `data/`, under the M5 publication gate. Use the M6 sidecar ingestion workflow to propose structured updates, then review records before publication. The source archive date and the last timeline event date are displayed separately.
+
+Real editorial articles were introduced on 13 November 2026; the demo fixture files were removed. Unreviewed future articles remain withheld by the existing publication gate.
 
 ## Research scope
 

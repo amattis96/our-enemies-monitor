@@ -1,6 +1,7 @@
 ---
 import { SOURCE_TYPES } from "../../../../../src/model/index.ts";
-import { SOURCE_TYPE_LABELS } from "../../../../../src/site/format.ts";
+import { SOURCE_TYPE_LABELS, formatPartialDate } from "../../../../../src/site/format.ts";
+import { archivedResearch } from "../../../../../src/site/research.ts";
 import { choose, languageFromParam, languagePaths, ui } from "../../../../../src/site/i18n.ts";
 import ArchiveTabs from "../../../components/ArchiveTabs.astro";
 import T from "../../../components/T.astro";
@@ -11,6 +12,7 @@ import { getModel } from "../../../lib/model.ts";
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const model = getModel();
+const research = archivedResearch();
 const groups = SOURCE_TYPES.map((type) => ({
   type,
   sources: model.dataset.sources.filter((s) => s.type === type),
@@ -42,4 +44,22 @@ const groups = SOURCE_TYPES.map((type) => ({
       </section>
     ))
   }
+  <section class="mt-12" aria-labelledby="recent-source-title">
+    <h2 id="recent-source-title">{choose(lang, "Fonti incrementali e dossier tematici", "Incremental sources and thematic dossiers")} ({research.length})</h2>
+    <p class="max-w-3xl">
+      {choose(
+        lang,
+        "Questi documenti sono archiviati integralmente in GitHub, ma non equivalgono automaticamente a record canonici convalidati. La cronologia e i grafi pubblicano solo dati che superano i controlli di integrazione.",
+        "These documents are archived in full on GitHub, but are not automatically validated canonical records. The timeline and graphs expose only data that passes ingestion and publication controls.",
+      )}
+    </p>
+    <ul class="space-y-3">
+      {research.map((source) => (
+        <li>
+          <span class="meta font-mono">{formatPartialDate(source.createdAt, lang)} · {source.id} · {source.kind === "incremental" ? "OSINT" : choose(lang, "Tematico", "Thematic")}</span>
+          <a class="block" href={source.url}>{source.title}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
 </Base>

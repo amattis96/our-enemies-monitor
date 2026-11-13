@@ -1,15 +1,7 @@
 # Technical architecture
 
-**Status:** adopted 2026-10-26. Milestones M1–M4 implemented: data foundation,
-bilingual portal, atlas, dependencies, open data, editorial workflow and
-research agent. M5 publication quarantine, initial source matching, structured
-Fonte_09 reconciliation, claim-level staging and automated audit are implemented.
-Human editorial approval and individual publication decisions remain open.
-The M6 ChatGPT-scheduled, API-free research architecture is adopted; its
-deterministic sidecar ingest (`pnpm ingest`) and the editorial article
-section (demo fixtures only) are implemented.
-This document describes the architecture as it is built. Keep it in sync
-with the code (see [AGENTS.md](../AGENTS.md)).
+**Status (13 November 2026):** M1–M7 built. M5 retains claim-level verification and publication quarantine. M6 provides deterministic sidecar ingestion and bilingual editorial articles. M7 implements the Dossier design system. Three ChatGPT tasks handle incremental OSINT, weekly investigations and PR review, while deterministic GitHub Actions performs CI and Pages deploy. Research Markdown merged under `sources/incremental/` and `sources/thematic/` appears automatically in the website's documentary archive, **without** advancing canonical timeline/graph counts or claim approval. Approved real articles replace the former demonstration fixtures.
+This document describes the implemented code; see [AGENTS.md](../AGENTS.md) for agent rules.
 
 ## Principles
 

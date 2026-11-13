@@ -168,14 +168,15 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
 - **Task A (active, outside this repository):** daily 01:00 `Europe/Rome`
   ChatGPT scheduled OSINT research. On material news, create **only** a new
   immutable `sources/incremental/Fonte_XX*.md` in a dedicated branch and PR;
-  never change `data/`, approve its contents or merge. The manual PR #3
-  worked; the first unattended scheduled run is still unverified.
-- **Task B (planned, not configured):** independent topical investigation,
+  never change `data/`, approve its contents or merge. The first unattended run on 13 November 2026 created Fonte_11 (PR #11); Task C merged its source PR after review.
+- **Task B (active, weekly):** independent topical investigation,
   source-backed Italian and English article drafts, plus separate proposed
   evidence updates. The article contract, validation and pages are built:
   articles are `content/articles/<ID>.it.md` + `<ID>.en.md` (see the M6 doc,
   "Article contract"). Agents never set an article or its translation to
   `reviewed` and never create `ART-DEMO-*` fixtures as real content.
+- **Task C (active, weekly):** reviews and merges eligible PRs only after factual/technical review, verifies the resulting main CI and Pages deploy, and reports failures. Successful source-only merges are NOT canonical ingestion. Its own review does not automatically set article publication status.
+- **Website archive:** `src/site/research.ts` lists committed incremental/thematic Markdown on the homepage and source archive. Never mislabel these documents as reviewed canonical events or advance the timeline without reviewed `data/` records.
 - **Local coding agents — ingest:** turn a merged sidecar into candidates only
   with `pnpm ingest` (dry run first, then `--write`) on an `agent/*` branch,
   then `pnpm format:data && pnpm check` and `pnpm data:diff --agent`, and
