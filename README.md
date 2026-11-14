@@ -147,7 +147,7 @@ Three **ChatGPT product scheduled tasks** operate independently of the repositor
 | --- | --- | --- |
 | **A: Our Enemies Monitor OSINT** | **Daily 01:00** | Research incremental developments, check the last merged cutoff with at least 72 hours' overlap, deduplicate against `main` and open PRs, and propose a new immutable `Fonte_XX` Markdown **plus validated-where-possible M6 JSON sidecar** in a PR. No `data/` edits and no merge. |
 | **B: Our Enemies Monitor Editorial** | **Friday 03:00**, weekly | Independently research one substantial case and propose a sourced Italian article and its complete English translation in a PR. Content remains `needs_review`; no automatic editorial approval. |
-| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | Review all open PRs, evidence, conflicts and CI; conditionally squash-merge eligible changes and verify `main` CI/deploy after each merge. Never bypass human publication approval. |
+| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | Review all open PRs, evidence, conflicts and CI; review-only under the adopted governance (the maintainer approves and merges); the configured prompt still has to be updated. Never bypass human publication approval. |
 
 **Authoritative current-state snapshot and end-to-end lifecycle:** [docs/CHATGPT_SCHEDULED_TASKS.md](docs/CHATGPT_SCHEDULED_TASKS.md). **Detailed M6 source/sidecar and article contracts:** [docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
 
@@ -159,7 +159,7 @@ A merged `sources/incremental/Fonte_XX*.md` becomes visible in the **documentary
 flowchart TD
     A[ChatGPT A: daily OSINT] --> P1[Source Markdown + M6 sidecar PR]
     B[ChatGPT B: weekly investigation] --> P2[IT/EN article PR]
-    P1 --> C[ChatGPT C or human: review + conditional merge]
+    P1 --> C[ChatGPT C: review; maintainer: approve + merge]
     P2 --> C
     C --> Archive[Versioned source archive]
     C --> Drafts[Unreviewed article files remain withheld]
@@ -211,7 +211,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [ ] Run and review canonical ingestion of merged incremental sidecars in separate controlled PRs.
 - [x] Implement the article contract, validation, publication gate and IT/EN article pages with Markdown downloads (M6; real approved articles published, demo fixtures removed).
 - [x] Schedule weekly ChatGPT Task B (Friday 03:00 Europe/Rome), and observe creation of bilingual research PRs.
-- [x] Configure weekly ChatGPT Task C (Friday 05:00 Europe/Rome) for conditional review/merge with CI checks.
+- [x] Configure weekly ChatGPT Task C (Friday 05:00 Europe/Rome) for review with CI checks (merge role being withdrawn, see B01).
+- [ ] Separate agent identity and `main` ruleset (B01, maintainer settings pending).
 - [x] Publish first real bilingual reviewed investigations (ART-0001 and ART-0002); retain human editorial approval for future articles.
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Design the *Dossier* design system and audit the portal UI/UX ([docs/design/](docs/design/README.md), M7 design).

@@ -532,7 +532,7 @@ contributor / research agent          maintainer
                    evidence-diff job (job summary)
                    agent/* branches: agent rules are errors
         |                                  |
-        └──────────────► CODEOWNERS review ─► merge to main ─► deploy
+        └──────────────► maintainer approval ─► squash merge to main ─► deploy
 ```
 
 - **Contributions:** `CONTRIBUTING.md` (EN/IT), issue forms for corrections
@@ -566,11 +566,25 @@ contributor / research agent          maintainer
   Read [M6 ChatGPT OSINT workflow](M6_CHATGPT_OSINT_WORKFLOW.md) for exact
   contracts, state and instructions. GitHub Actions remains responsible for
   CI, evidence checks, build and deployment, **not LLM inference**.
-- **Protection:** `.github/CODEOWNERS` assigns every path to the maintainer.
-  Branch protection on `main` requires the `check` status and a code-owner
-  review for pull requests, forbids force pushes and deletion; the
-  maintainer (admin) can still push directly. Agent pull requests are
-  authored by a bot and therefore need the maintainer's approval.
+- **Protection (current state):** `.github/CODEOWNERS` assigns every path to
+  the maintainer. Classic branch protection on `main` requires the `check`
+  status and a code-owner review, forbids force pushes and deletion, but has
+  `enforce_admins` off, so the maintainer (admin) can push directly and merge
+  without the required review; merges so far have done so. ChatGPT tasks act
+  through the maintainer's own account via the ChatGPT Codex Connector app and
+  the local Claude Code uses the maintainer's `gh` token: the separation
+  between agents and maintainer is a convention, not a control.
+- **Protection (adopted target, to be applied by the maintainer):** agents use
+  a separate machine account with the Write role (conditional on verifying
+  that the ChatGPT connector accepts it). A ruleset on `main` requires a
+  pull request, one code-owner approval, the `check` status on an up-to-date
+  branch (`evidence-diff` only after B02), linear history and squash merges,
+  and forbids force pushes and deletion; only the maintainer may bypass, and
+  only through a pull request. A second ruleset limits the machine account to
+  `research/**` and `agent/**`. Workflows cannot approve PRs and merged
+  branches are deleted. Task C reviews but does not merge, and no agent
+  pushes to `main`. Settings procedure and decisions D1-D7:
+  [B01 analysis](audit/fable-2026-11/blocks/B01_ANALYSIS.md).
 - **Changes page:** `/changes/` lists the known baseline anomalies, every
   record's review notes and the history of data commits read from Git at
   build time (`src/site/history.ts`); each record page links to its own Git

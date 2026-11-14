@@ -374,10 +374,10 @@ Legenda modelli: `m` = sforzo medio, `a` = sforzo alto (vedi §2.1). Aggiornare 
 
 | Blocco | Stato | Modelli (analisi / impl.) | Analisi | Commit | Verifica | Note |
 | --- | --- | --- | --- | --- | --- | --- |
-| B01 | proposto | Opus·m / Sonnet·m | — | — | — | |
+| B01 | committato | Opus·m / Sonnet·m | [B01_ANALYSIS.md](blocks/B01_ANALYSIS.md) | sul ramo (solo docs) | `pnpm check` verde | impostazioni GitHub/ChatGPT da applicare dal manutentore (8 passi); D1 da verificare |
 | B02 | proposto | Sonnet·a / Sonnet·a | — | — | — | |
 | B03 | proposto | Opus·m / Sonnet·a | — | — | — | |
-| B04 | committato | Opus·m / Opus·m | [B04_ANALYSIS.md](blocks/B04_ANALYSIS.md) | sul ramo | `pnpm check` verde, 143 test; review Sonnet: 10 rilievi, chiusi tranne #7 (verificato non necessario) e #8 (documentato) | priorità alta: secondo sidecar imminente |
+| B04 | committato | Opus·m / Opus·m | [B04_ANALYSIS.md](blocks/B04_ANALYSIS.md) | `0bcdfe4` | `pnpm check` verde, 143 test; review Sonnet: 10 rilievi, chiusi tranne #7 (verificato non necessario) e #8 (documentato) | priorità alta: secondo sidecar imminente |
 | B05 | proposto | Opus·m / Sonnet·a | — | — | — | |
 | B06 | proposto | Sonnet·a / Sonnet·m | — | — | — | |
 | B07 | proposto | Sonnet·m / Sonnet·m | — | — | — | |

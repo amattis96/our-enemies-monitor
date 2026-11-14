@@ -145,7 +145,12 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - Commits: Conventional Commits (`feat(model): ...`, `fix(data): ...`,
   `docs: ...`). One logical change per commit.
 - Work on a branch and open a PR for data changes produced by research agents;
-  never push directly to `main` unless the maintainer asks.
+  never push directly to `main`.
+- Agents never push to `main`, never merge, never approve PRs (their own or
+  others'), and never use or request an administrator or ruleset bypass; only
+  the maintainer's account may bypass, through a pull request. Agents never
+  change repository settings, rulesets, secrets or app installations. Current
+  state versus adopted target: see "Governance" below.
 
 ## Translations
 
@@ -180,7 +185,7 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
   articles are `content/articles/<ID>.it.md` + `<ID>.en.md` (see the M6 doc,
   "Article contract"). Agents never set an article or its translation to
   `reviewed` and never create `ART-DEMO-*` fixtures as real content.
-- **Task C (active, weekly):** reviews and merges eligible PRs only after factual/technical review, verifies the resulting main CI and Pages deploy, and reports failures. Successful source-only merges are NOT canonical ingestion. Its own review does not automatically set article publication status.
+- **Task C (active, weekly):** reviews open PRs (factual/technical review, CI) and reports failures; it does **not** merge or approve: the maintainer does (adopted rule D2; the Task C prompt in ChatGPT still describes merging until the maintainer updates it). Successful source-only merges are NOT canonical ingestion. Its own review does not automatically set article publication status.
 - **Website archive:** `src/site/research.ts` lists committed incremental/thematic Markdown on the homepage and source archive. Never mislabel these documents as reviewed canonical events or advance the timeline without reviewed `data/` records.
 - **Local coding agents — ingest:** turn a merged sidecar into candidates only
   with `pnpm ingest` (dry run first, then `--write`) on an `agent/*` branch,
@@ -204,6 +209,19 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
   M5 publication controls to make an import visible.
 - Source snapshots in open PRs must be considered to avoid duplication;
   the committed coverage baseline advances only after merging to `main`.
+
+## Governance
+
+Today ChatGPT tasks (via the Codex Connector app) and local Claude Code act
+through the maintainer's own account, classic protection has `enforce_admins`
+off, and past merges bypassed the required review: separation is not
+technically enforced. The adopted target (machine account with Write role for
+agents, ruleset on `main`, branch-namespace ruleset, Task C review-only) is
+applied by the maintainer; see
+[B01 analysis](docs/audit/fable-2026-11/blocks/B01_ANALYSIS.md). If an agent
+finds itself acting as the owner account once the machine account exists, it
+must stop and report it. The ChatGPT task prompts (outside this repository)
+must be aligned with these rules when the settings change.
 
 ## Publication gate (M5)
 

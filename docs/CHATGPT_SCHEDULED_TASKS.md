@@ -13,7 +13,7 @@
 | --- | --- | --- | --- | --- | --- |
 | **A: Acquisition** | **Our Enemies Monitor OSINT** | **Daily, 01:00**, including weekends | Monitor new OSINT developments, verify and deduplicate them | A new `Fonte_XX` research Markdown **plus** `Fonte_XX.proposals.json`, submitted as one PR | **No** |
 | **B: Investigation** | **Our Enemies Monitor Editorial** | **Friday, 03:00**, weekly | Independently investigate an original topic and write a complete bilingual article | `ART-NNNN.it.md` and `ART-NNNN.en.md`, submitted as one PR | **No** |
-| **C: Review and integration** | **Our Enemies Monitor Review** | **Friday, 05:00**, weekly | Review the entire open-PR queue, validate evidence and CI, merge only eligible changes | Reviews, comments, squash merges where eligible; narrowly scoped fix PRs if needed | **Yes, conditionally** |
+| **C: Review and integration** | **Our Enemies Monitor Review** | **Friday, 05:00**, weekly | Review the entire open-PR queue, validate evidence and CI, merge only eligible changes | Reviews, comments; narrowly scoped fix PRs if needed | **No** (adopted rule; the maintainer merges). The task prompt still has to be updated, see §4 |
 
 All three tasks are enabled and configured with the `Europe/Rome` timezone and exact-time scheduling. Times describe *configured triggers*, not guaranteed execution or publication deadlines; platform latency, failures, authorization, and the required reviews may delay or prevent changes. Daylight saving is handled by the named timezone.
 
@@ -66,18 +66,20 @@ The Friday sequence is nominally **A at 01:00 → B at 03:00 → C at 05:00**, l
 
 **Trigger:** weekly on Friday at 05:00 local time.
 
-**Mission:** review the **entire open-PR queue**, including A/B research PRs, sidecars, canonical ingest PRs, code changes and documentation. C may merge PRs *only when the configured evidence, CI, review and branch requirements are actually satisfied*.
+**Mission:** review the **entire open-PR queue**, including A/B research PRs, sidecars, canonical ingest PRs, code changes and documentation. Under the adopted governance (decision D2, [B01 analysis](audit/fable-2026-11/blocks/B01_ANALYSIS.md)) C is **review-only and does not merge**; the maintainer approves and merges. The execution contract below is the *configured* prompt, which still describes conditional merging until the maintainer updates it in ChatGPT.
+
+**Identity and permissions (as of 14 Nov 2026):** the tasks act through the ChatGPT Codex Connector GitHub App **as the maintainer's own account with admin role** (`performed_via_github_app` is set on 14 of 18 PRs). Classic branch protection has `enforce_admins` off and the 16 merges so far happened without the required review. Merges cannot be attributed to a task from the API. The target (machine account with Write role, rulesets on `main` and on agent branches) is adopted but **not yet applied**; until it is, none of the "no administrator bypass" or "insufficient permission" statements below is technically enforced.
 
 **Execution contract, as configured:**
 
 1. Read current `main` and the complete open-PR list. Inspect each PR's changed files, head SHA, comments and unresolved reviews, overlaps/conflicts, checks, and applicable M5/M6 publication rules.
 2. Perform a **substantive review**, not only a lint or green-CI check: verify key research claims and URLs with appropriate primary/independent sources, dates, legal status, counterevidence and IT/EN correspondence; review software for security, regressions and guardrail preservation.
-3. Merge only PRs that are non-draft, nonconflicting, with required current-SHA checks green, no blocking reviews, suitable verified evidence, and sufficient permission. A formal `APPROVE` review may be attempted when allowed; self-approval is not permitted.
-4. Use an eligible **squash merge** to `main`, without force or administrator bypass. **Before merging**, check the latest CI on `main`. **After each merge**, refresh the HEAD and verify its CI, build, link checks and GitHub Pages deployment before proceeding to another merge. Stop further merges on failure or unresolved/pending verification.
+3. Merge only PRs that are non-draft, nonconflicting, with required current-SHA checks green, no blocking reviews, suitable verified evidence, and sufficient permission. A formal `APPROVE` review may be attempted when allowed; self-approval is not permitted. *Adopted rule: C does not merge or approve; it leaves a review comment with the checks it performed.*
+4. Use an eligible **squash merge** to `main`, without force or administrator bypass (*adopted rule: this step is performed by the maintainer, not by C*). **Before merging**, check the latest CI on `main`. **After each merge**, refresh the HEAD and verify its CI, build, link checks and GitHub Pages deployment before proceeding to another merge. Stop further merges on failure or unresolved/pending verification.
 5. When an integration reveals a narrowly scoped obsolete test or similar deterministic issue, C may prepare a **minimal fix PR**, without weakening validation or publication gates. Other uncertain/problematic PRs remain open with specific review notes.
 6. Do not change `review.status` or `translation.status` to `reviewed`, do not set `human_approved: true`, do not promote E5 hypotheses to factual edges, and do not alter canonical evidence on the basis of an AI-only review.
 
-**A source-only or `needs_review` article PR can be merged as a versioned archive/draft** once factually and technically sound *if no explicit human pre-merge approval is required*. That merge does **not** itself confer editorial approval or publish the article. If a PR explicitly requires human sign-off, C leaves it open.
+**A source-only or `needs_review` article PR can be merged as a versioned archive/draft** once factually and technically sound *if no explicit human pre-merge approval is required* (configured prompt; under the adopted rule every merge requires the maintainer's approval). That merge does **not** itself confer editorial approval or publish the article. If a PR explicitly requires human sign-off, C leaves it open.
 
 **Failure mode:** if CI, evidence, permissions, review status or current HEAD cannot be verified, C must report the blocker and leave the PR open, not assume success.
 
@@ -143,7 +145,7 @@ The **task settings were inspected directly**. The following is an observation o
 | B | **13 Nov 2026**, scheduled 03:00 | Produced [PR #12](https://github.com/amattis96/our-enemies-monitor/pull/12), bilingual investigation `ART-0002`, initially `needs_review`; no local `pnpm check` was run in that execution. Subsequent repository history may differ from the run report. |
 | C | **13 Nov 2026**, scheduled 05:00 | Reported three merges, with two article PRs initially withheld for human editorial review. Its final GitHub Pages CI/deploy was **pending at the moment it reported**, not independently claimed successful here. Later commits on `main` show the articles were subsequently integrated. |
 
-These examples establish that unattended ChatGPT-to-GitHub research PR creation and conditional PR merges have occurred; **they do not establish** that every task reliably completes all checks, that C always clears the queue, or that any record was human-approved.
+These examples establish that unattended ChatGPT-to-GitHub research PR creation and conditional PR merges have occurred, performed through the Codex Connector acting as the maintainer's account; **they do not establish** that every task reliably completes all checks, that C always clears the queue, or that any record was human-approved.
 
 ## 8. Evaluation questions for a future architecture / cadence review
 
@@ -174,4 +176,4 @@ Any recommendation must preserve the existing **M5 human editorial gate, M6 dete
 - [`.github/workflows/ci.yml`](../.github/workflows/ci.yml), actual CI and GitHub Pages deploy jobs.
 - [`src/site/publication.ts`](../src/site/publication.ts) and [`src/site/articles.ts`](../src/site/articles.ts), public projection gates.
 
-**Maintenance rule:** When a ChatGPT task's schedule, prompt, permissions, responsibilities or merge policy changes, update **this snapshot and the README link** in the same documentation change. GitHub alone cannot verify external ChatGPT task settings. Do not interpret a stale document as live task state.
+**Maintenance rule:** When a ChatGPT task's schedule, prompt, permissions, identity, responsibilities or merge policy changes, update **this snapshot and the README link** in the same documentation change. GitHub alone cannot verify external ChatGPT task settings. Do not interpret a stale document as live task state.
