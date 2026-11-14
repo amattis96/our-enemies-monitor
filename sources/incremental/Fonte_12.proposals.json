@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "code": "S12",
+    "file": "sources/incremental/Fonte_12_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-14.md",
+    "title": {
+      "it": "Fonte_12 | Aggiornamento OSINT incrementale per l'Europa | 14 novembre 2026"
+    },
+    "created_at": "2026-11-14",
+    "coverage": {
+      "start": "2026-11-10",
+      "end": "2026-11-14"
+    },
+    "baseline_source": "S11",
+    "repository_commit": "2ccb7a4139f0e64c7bec703f47319eaa294b5bce"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "German watchdog warns some cooling systems remain vulnerable to hacking"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/german-watchdog-warns-some-cooling-systems-remain-vulnerable-hacking-2026-11-13/",
+      "published": "2026-11-13"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "BSI warnt vor weiteren Lücken in Danfoss-Kühlsteuerungen"
+      },
+      "publisher": "IT-Daily",
+      "url": "https://www.it-daily.net/shortnews/bsi-danfoss-kuehlsteuerungen",
+      "published": "2026-11-13"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Informal meeting of heads of state or government: Main results"
+      },
+      "publisher": "European Council",
+      "url": "https://www.consilium.europa.eu/en/meetings/european-council/2026/11/13/",
+      "published": "2026-11-13"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "EU settles on five-nation group to speak for Europe at Ukraine peace talks"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europes-security-cannot-be-part-ukraine-peace-talks-eu-leaders-say-2026-11-13/",
+      "published": "2026-11-13"
+    },
+    {
+      "key": "R05",
+      "title": {
+        "it": "Europe to send a diplomat team to Ukraine talks as leaders push for a voice"
+      },
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/2a96d57210055edd2e76f71693e0a37c",
+      "published": "2026-11-13"
+    },
+    {
+      "key": "R06",
+      "title": {
+        "it": "Russia says Europeans can join Ukraine peace talks if they show readiness to contribute"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/russia-says-europeans-can-join-ukraine-peace-talks-if-they-show-readiness-2026-11-13/",
+      "published": "2026-11-13"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261114-001",
+      "item": "OEM-20261114-001",
+      "sources": [
+        "R01",
+        "R02"
+      ],
+      "notes": [
+        "Avviso tecnico, non nuovo incidente di sabotaggio; verificare bollettino BSI primario prima di affermare versioni firmware."
+      ],
+      "update_type": "NEW_EVIDENCE",
+      "evidence_level": "E3",
+      "title": {
+        "it": "BSI tedesco: avviso sui controllori Danfoss della refrigerazione industriale"
+      },
+      "description": {
+        "it": "Il 13 novembre 2026 Reuters ha riportato una nuova allerta del BSI sulle vulnerabilità persistenti nei sistemi di controllo Danfoss AK-SM 800A, con raccomandazioni per isolamento dall'Internet pubblico, VPN e aggiornamenti. L'avviso segue incidenti cyber europei già documentati; non costituisce prova di un nuovo attacco né di un autore comune."
+      },
+      "date": {
+        "start": "2026-11-13",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-13",
+      "themes": [
+        "cyber",
+        "industry_dependencies"
+      ],
+      "geography": {
+        "it": "Germania e sistemi di refrigerazione commerciale europei"
+      },
+      "places": [
+        "DE"
+      ],
+      "evidence_note": {
+        "it": "E3 resoconto Reuters di un'allerta BSI; il testo originale del bollettino BSI non è stato acquisito con URL puntuale."
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/german-watchdog-warns-some-cooling-systems-remain-vulnerable-hacking-2026-11-13/",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Non è dimostrato che la stessa vulnerabilità sia stata sfruttata in tutti gli incidenti; versioni e copertura delle patch richiedono verifica primaria."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261114-002",
+      "item": "OEM-20261114-002",
+      "sources": [
+        "R03",
+        "R04",
+        "R05",
+        "R06"
+      ],
+      "notes": [
+        "Decisione sul formato della rappresentanza europea, non un accordo negoziale con la Russia."
+      ],
+      "update_type": "STRATEGIC_UPDATE",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Consiglio europeo informale di Dublino: squadra UE ed E5 per i negoziati sull'Ucraina"
+      },
+      "description": {
+        "it": "Il 13 novembre 2026 il presidente del Consiglio europeo ha annunciato il formato di coordinamento della squadra europea per i colloqui sull'Ucraina: istituzioni UE con Francia, Germania, Italia, Polonia e Regno Unito. La partecipazione effettiva al prossimo round e l'accettazione russa non risultano ancora formalizzate."
+      },
+      "date": {
+        "start": "2026-11-13",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-13",
+      "themes": [
+        "geopolitics_diplomacy",
+        "eu_nato_response"
+      ],
+      "geography": {
+        "it": "Dublino, Irlanda; Unione europea e Regno Unito"
+      },
+      "places": [
+        "IE",
+        "FR",
+        "DE",
+        "IT",
+        "PL",
+        "GB",
+        "UA"
+      ],
+      "evidence_note": {
+        "it": "E1 dichiarazione ufficiale del Consiglio europeo sulla composizione; E3 riscontri giornalistici sulla controversia diplomatica."
+      },
+      "publisher": "European Council",
+      "url": "https://www.consilium.europa.eu/en/meetings/european-council/2026/11/13/",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Il Cremlino non aveva confermato la propria accettazione della partecipazione europea; nessun accordo territoriale o cessate il fuoco."
+      },
+      "related": [
+        "EXT-022",
+        "EXT-032"
+      ]
+    },
+    {
+      "op": "add_citation",
+      "ref": "OEM-20261114-002-ext022",
+      "item": "OEM-20261114-002",
+      "sources": [
+        "R03",
+        "R06"
+      ],
+      "notes": [],
+      "evidence_level": "E1",
+      "target": "EXT-022",
+      "note": {
+        "it": "Il 13 novembre il Consiglio europeo ha definito il formato della squadra europea; questo aggiorna il contesto dei colloqui di Abu Dhabi, senza provare la partecipazione russa a un tavolo allargato."
+      }
+    }
+  ]
+}
