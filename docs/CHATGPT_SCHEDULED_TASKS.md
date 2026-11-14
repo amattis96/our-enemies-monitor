@@ -107,7 +107,7 @@ git switch -c agent/ingest-fonte-XX
 pnpm ingest sources/incremental/Fonte_XX.proposals.json
 pnpm ingest sources/incremental/Fonte_XX.proposals.json --write
 pnpm format:data && pnpm check
-pnpm data:diff --base origin/main --agent
+pnpm data:diff --base origin/main --branch agent/ingest-fonte-XX
 # Open a separate PR with the candidate changes under data/
 ~~~
 
@@ -128,10 +128,10 @@ The repository workflow is [`.github/workflows/ci.yml`](../.github/workflows/ci.
 
 | Trigger | Jobs / checks | Consequence |
 | --- | --- | --- |
-| Pull request | `check` executes `pnpm check`, `pnpm build` and `pnpm check:links`; `evidence-diff` checks record changes, including stricter checks for `agent/*` branches | Technical validation and review evidence; **not** an editorial verdict |
+| Pull request | `check` executes `pnpm check`, `pnpm build` and `pnpm check:links`; `evidence-diff` applies the strict evidence diff on every branch and a path policy by branch prefix: `research/*` may only add under `sources/incremental/` and `sources/thematic/` and add or edit under `content/articles/`; `agent/ingest-*` only `data/` | Technical validation and review evidence; **not** an editorial verdict |
 | Push to `main` | `check` validates and builds; `deploy` publishes a prepared artifact to GitHub Pages after the check job succeeds | Updates the static portal, subject to successful jobs and publication gates |
 
-The workflow uses a concurrency group and cancellation for overlapping runs; sequential merges should verify each relevant run to avoid treating a cancelled or pending build as successful.
+Pull request runs are cancelled by newer pushes to the same PR; runs on `main` are grouped per commit and never cancelled, and `deploy` publishes only the tip of `main`. Task branches must be named `research/...` (this will be enforced by the path policy: a source PR on another prefix is not restricted but is not recognised as research either).
 
 The site is **static-first** (Astro/TypeScript, `data/` JSON, versioned source documents); there is no hosted database behind these tasks, and the build does not call a paid LLM API.
 

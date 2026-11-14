@@ -375,3 +375,5 @@ Approvate le raccomandazioni ADR-01:
 - **D7** — ruleset 2 (scrittura dell'account macchina limitata a `research/**`, `agent/**`) solo se si adotta l'account macchina.
 
 Le impostazioni GitHub e ChatGPT sono applicate dal manutentore seguendo l'ordine in 8 passi di questa analisi. Il commit di B01 sul ramo contiene solo analisi e documentazione.
+
+**Nota dopo B02 (14 novembre 2026).** La concorrenza su `main` (§3.6) è risolta da B02 con un gruppo per SHA, non con il solo `cancel-in-progress: false`. I check da richiedere nel ruleset sono `check` ed `evidence-diff`; `evidence-diff` va aggiunto solo dopo il merge della PR finale e almeno un'esecuzione con il nome definitivo. Il prefisso `agent/**` (ruleset 2) è usato anche da Claude Code locale con identità macchina; solo `agent/ingest-*` è limitato a `data/`. Creare l'etichetta `evidence-waiver` e, se serve, la variabile `MAINTAINER_LOGIN`.

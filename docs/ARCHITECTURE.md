@@ -35,7 +35,7 @@ This document describes the implemented code; see [AGENTS.md](../AGENTS.md) for 
 | Schemas | Zod 4 | Source of truth for types, validation and exported JSON Schema |
 | Tests | Vitest 5 | Importer, validator and read-model suites |
 | Lint / format | Biome 2 | Code and Astro formatting/lint; data formatting is done by the pipeline |
-| CI / CD | GitHub Actions | `pnpm check` and `pnpm build` on every push and PR; deploy to Pages from `main` |
+| CI / CD | GitHub Actions | `check` (`pnpm check`, build, links) and `evidence-diff` on every PR; `check` on every push to `main`; deploy of the tip of `main` to Pages. Actions pinned to commit SHAs, kept current by Dependabot |
 | Website | Astro 7 + React 19 islands | Static HTML pages; React only for the timeline and the evidence boards |
 | Styling | Tailwind CSS 4 + *Dossier* design system | Tokens, icon sprite, logo, favicon and illustrations live in `docs/design/` (single source) and are imported by the site: `web/src/styles/global.css` imports `docs/design/tokens.css`; `/icons.svg` and `/favicon.svg` are endpoints serving `docs/design/assets/`. Light/dark/system themes; fonts self-hosted via Fontsource (Newsreader, IBM Plex Sans, IBM Plex Mono) |
 | Evidence board | Custom SVG React island + d3-force (build-time layout) + d3-zoom | Paper cards per entity kind, thread colour = relation group, thread pattern = evidence level; hypotheses on a separate board |
@@ -83,7 +83,10 @@ src/
     baseline/places.ts    Editorial geography token → ISO country classification
     baseline/exposures.ts Transcription of the Fonte_08 §12.2 exposure matrix
     translations.ts    Localized-text traversal, source hash, translation checks
-    diff.ts            Evidence diff between two versions of data/
+    diff.ts            Evidence diff between two versions of data/ (strict by default, waivable errors)
+    article-diff.ts    Evidence diff of content/articles/ (review gates, reviewed articles frozen)
+    policy.ts          Path policy by branch prefix, immutable sources, waiver label rule
+    changes.ts         Changed paths from Git (raw -z, no renames, merge-base anchored)
     articles.ts        Article file loading, front matter parsing, schema and reference checks
     ingest/            M6 sidecar reconciliation (plan.ts), matching (match.ts),
                        archive order and checks (archive.ts), validation/writing
@@ -106,7 +109,8 @@ web/                   Astro portal
 docs/                  Architecture and project documentation
   design/              Dossier design system v1: concept, foundations, components, page blueprints,
                        UI/UX audit, M7 plan, tokens.css, SVG assets, specimen.html (not yet used by web/)
-.github/workflows/     CI (evidence diff, Pages deployment); no LLM API job
+.github/workflows/     ci.yml (check, deploy) and evidence-diff.yml; no LLM API job
+.github/dependabot.yml Weekly updates of the SHA-pinned GitHub Actions
 .github/agent/         Legacy agent prompt pointer; M6 rules live in docs/
 .github/ISSUE_TEMPLATE/ Correction and new-evidence forms
 CONTRIBUTING.md        Contribution and evidence rules (EN/IT)
@@ -409,8 +413,9 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
   `pnpm dev` / `pnpm preview` serve it locally (search works only on a build).
 - `pnpm check:links` verifies every internal link and `#anchor` of the built
   site (CI runs it after the build).
-- `pnpm data:diff` writes the evidence diff of `data/` against a Git ref
-  (see Editorial workflow).
+- `pnpm data:diff` writes the strict evidence and path-policy diff of a branch
+  against its merge base with a Git ref (see Editorial workflow); `pnpm check:pr`
+  is its CI companion that decides the maintainer waiver.
 - `pnpm ingest <Fonte_XX.proposals.json> [--write] [--json] [--report f]
   [--compare f] [--skip-pending S<NN>]` plans (dry run) or writes the candidates of an M6 sidecar
   (see Incremental ingest).
@@ -521,6 +526,34 @@ be redesigned in a dedicated study.
 must have Pages enabled with source "GitHub Actions"). Mirrors set
 `SITE_URL` and `BASE_PATH` and serve `web/dist` from any static host.
 
+**Concurrency (`ci.yml`):** the group is per pull request (a new push cancels
+the older run) and per commit SHA on `main`, without cancellation, so no run
+on `main` ever cancels another and every merged commit ends with a conclusive
+run. Because several runs for `main` may then run side by side, the `deploy`
+job first checks that its SHA is still the tip of `main` and otherwise skips
+the publication (noted in the job summary); deploys are also serialized in a
+`pages-deploy` group. A green commit that is superseded by a tip whose `check`
+fails is therefore not deployed: the site catches up at the next green tip. (`cancel-in-progress: false` alone is not enough: GitHub
+keeps one pending run per group and replaces it with a newer one.)
+
+**Required checks and workflow contract:** the job names `check` (`ci.yml`)
+and `evidence-diff` (`evidence-diff.yml`) are the status check contexts the
+`main` ruleset requires; they are set explicitly and guarded by
+`test/workflows.test.ts` (which also asserts no path filters, the concurrency
+rule and SHA pinning). `evidence-diff` runs on every PR (`opened`,
+`synchronize`, `reopened`, `labeled`, `unlabeled`) and checks out the PR head
+commit, not the merge ref. It is added to the ruleset only after one run
+under its final name has succeeded. A `pull_request` workflow runs the
+version of the workflow and scripts in the PR, so the gate executes
+PR-controlled code and a PR that edits them can make its own check pass. It is
+a **review aid**, not a barrier. The real barrier is the required CODEOWNERS
+review in the B01 ruleset, which the machine account cannot bypass. Running
+the gate from the base commit or under `pull_request_target` is deferred
+(D-B02-6). For the same reason the `evidence-diff` job, which runs that code,
+holds read scopes only (`contents`, `issues`, `pull-requests`, `actions`); the
+only write scope (`issues: write`) belongs to the separate `expire-waiver` job,
+which checks out and runs no repository code.
+
 ## Editorial workflow and AI agents
 
 ```text
@@ -529,8 +562,8 @@ contributor / research agent          maintainer
   branch + edits in data/                  |
         |                                  |
   pull request ──► CI: check, build, check:links
-                   evidence-diff job (job summary)
-                   agent/* branches: agent rules are errors
+                   evidence-diff job (job summary): strict rules on every
+                   branch, path policy by branch prefix, maintainer waiver
         |                                  |
         └──────────────► maintainer approval ─► squash merge to main ─► deploy
 ```
@@ -538,19 +571,53 @@ contributor / research agent          maintainer
 - **Contributions:** `CONTRIBUTING.md` (EN/IT), issue forms for corrections
   and new evidence (`.github/ISSUE_TEMPLATE/`), and a pull request template
   with the evidentiary checklist.
-- **Evidence diff:** `pnpm data:diff --base <ref> [--agent] [--out file]`
-  (`src/pipeline/diff.ts`) compares `data/` with a Git ref and writes a
-  Markdown report: added/modified/removed records with field-level before and
-  after, and flags. *Attention* flags (any author): relationships concerning a
-  named person, raised evidence levels, new control/financing relationships,
-  new hypotheses, hypothesis status changes, deletions. In `--agent` mode
-  these are **errors**: any change outside `data/`, record deletion,
+- **Evidence diff:** `pnpm data:diff [--base <ref>] [--branch <head_ref>]
+  [--relaxed [--waived-by <login>]] [--out file]` compares the working tree with
+  the **merge base** of the ref (not its moving tip) and writes a Markdown
+  report. Changed paths come from `git diff --raw -z --no-renames`, so a rename
+  out of `data/` shows as a deletion; it exits 2 when Git fails (fail closed).
+  The rules are **strict on every branch** (`src/pipeline/diff.ts`,
+  `article-diff.ts`, `policy.ts`) and are errors (exit 1): record deletion,
   provenance changes, edits to `reviewed` records, setting `reviewed` or a
-  reviewed translation, hypothesis promotion, new records not
-  `needs_review`, new records claiming corpus provenance, new relationships
-  without `primary_url`. The CI `evidence-diff` job runs it on every pull
-  request (agent rules on `agent/*` branches) and publishes the report in the
-  job summary.
+  reviewed translation, hypothesis promotion, new records not `needs_review`,
+  new records claiming corpus provenance, new relationships without
+  `primary_url`; on records already visible (not `needs_review`) a rewritten
+  predicate, a removed or halved caveat or a changed evidence status at the
+  same level; for articles, new articles not `needs_review`, `reviewed` set on
+  an article or its translation, any change or deletion of a reviewed article,
+  fixture mismatches. *Attention* flags (listed, not failing): named persons,
+  raised evidence levels, new control/financing relationships, hypotheses,
+  replaced sources, changed dates/URLs, English-only edits, links removed or
+  added to unreviewed records, fewer references. The report prints flags even
+  when `data/` is unchanged.
+  - **Path policy by branch prefix** (`--branch`, from `head_ref`; errors, never
+    waivable): `research/**` may only add under `sources/incremental/` and
+    `sources/thematic/` and add or edit (not delete) under `content/articles/`;
+    `agent/ingest-*` only `data/`; `dependabot/github_actions/**` only the
+    workflows and `dependabot.yml`; every other branch (other `agent/**`,
+    maintainer branches, forks) is unrestricted but gets the strict diff. On
+    every branch, any change to `sources/original/`, any change but an
+    addition under `sources/incremental/`, symbolic links, submodules and
+    escaping paths are errors.
+  - **Maintainer waiver:** the label `evidence-waiver` lowers the *waivable*
+    errors to attention flags that stay listed under "Waived by the
+    maintainer". `pnpm check:pr` (`src/cli/pr-policy.ts`) decides in CI, from
+    live GitHub data and never from the event payload: the label must be
+    present, its last event must be a `labeled` by the repository owner and
+    later than the latest `ci.yml` run of this PR for the head commit and than
+    the head commit's committer date (so a force push back to an older SHA, or
+    the same SHA in another PR, cannot revive a label); `synchronize` runs
+    ignore it, and the `expire-waiver` job removes it (404 = already absent).
+    The accepted actor is the repository variable `MAINTAINER_LOGIN` when set,
+    otherwise the repository owner. Provenance changes, immutable sources, symbolic
+    links and path-policy violations cannot be waived. If GitHub cannot be read
+    the job fails; it never assumes a waiver. Until agents use a separate
+    account (see Protection), the owner check cannot tell the maintainer from
+    agents acting with the maintainer's token.
+  - `--agent` is a deprecated no-op (strict is the default).
+
+  The CI `evidence-diff` job runs it on every pull request and publishes the
+  report in the job summary.
 - **M6 research design:** the paid Anthropic API weekly research workflow has
   been retired. Regular ChatGPT scheduled task **Our Enemies Monitor OSINT**
   runs daily at 01:00 Europe/Rome, performs independent OSINT research and

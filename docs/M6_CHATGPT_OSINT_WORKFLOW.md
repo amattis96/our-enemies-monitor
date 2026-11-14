@@ -166,7 +166,7 @@ Fonte_XX.md (report) + Fonte_XX.proposals.json (operations)
    → archive order: every earlier archived sidecar must already be ingested
    → reconciliation with data/ only (src/pipeline/ingest/)
    → dry-run report (text + JSON) → --write: needs_review candidates in data/
-   → agent/* branch + PR → CI evidence diff → human review
+   → agent/ingest-* branch + PR → CI evidence diff → human review
 ```
 
 ### 4.1 Files and versioning
@@ -306,12 +306,12 @@ git switch -c agent/ingest-fonte-10
 pnpm ingest sources/incremental/Fonte_10.proposals.json            # read the report
 pnpm ingest sources/incremental/Fonte_10.proposals.json --write --report /tmp/ingest-fonte-10.json
 pnpm format:data && pnpm check
-pnpm data:diff --base origin/main --agent                          # agent rules must pass
+pnpm data:diff --base origin/main --branch agent/ingest-fonte-10   # strict rules and data/-only path policy must pass
 git add data && git commit -m "feat(data): ingest Fonte_10 candidates (needs review)"
 gh pr create --base main --title "feat(data): ingest Fonte_10 candidates" --body-file <report summary>
 ```
 
-Note that `pnpm data:diff --agent` treats a new relationship without `primary_url` as an error. The ingest report flags such relationships as attention points.
+Note that `pnpm data:diff` (strict on every branch) treats a new relationship without `primary_url` as an error. The ingest report flags such relationships as attention points.
 
 ### 4.6 Active sidecar contract in the ChatGPT Task A prompt
 

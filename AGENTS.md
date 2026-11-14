@@ -74,7 +74,8 @@ pnpm preview            # serve the last build
 pnpm check:links        # internal links of the built site (after pnpm build)
 pnpm i18n:export <f>    # untranslated/stale Italian texts → { it: "" }
 pnpm i18n:import <f> --status machine|reviewed   # apply { it: en } translations
-pnpm data:diff [--base origin/main] [--agent]     # evidence diff of data/ vs a Git ref
+pnpm data:diff [--base origin/main] [--relaxed]   # strict evidence + path-policy diff vs the merge base
+pnpm check:pr                                     # CI only: does the evidence-waiver label count?
 pnpm ingest <Fonte_XX.proposals.json> [--write]   # M6 sidecar → needs_review candidates (dry run by default)
 ```
 
@@ -188,8 +189,8 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
 - **Task C (active, weekly):** reviews open PRs (factual/technical review, CI) and reports failures; it does **not** merge or approve: the maintainer does (adopted rule D2; the Task C prompt in ChatGPT still describes merging until the maintainer updates it). Successful source-only merges are NOT canonical ingestion. Its own review does not automatically set article publication status.
 - **Website archive:** `src/site/research.ts` lists committed incremental/thematic Markdown on the homepage and source archive. Never mislabel these documents as reviewed canonical events or advance the timeline without reviewed `data/` records.
 - **Local coding agents — ingest:** turn a merged sidecar into candidates only
-  with `pnpm ingest` (dry run first, then `--write`) on an `agent/*` branch,
-  then `pnpm format:data && pnpm check` and `pnpm data:diff --agent`, and
+  with `pnpm ingest` (dry run first, then `--write`) on an `agent/ingest-*` branch,
+  then `pnpm format:data && pnpm check` and `pnpm data:diff`, and
   open a PR. Never hand-extract records from the Markdown, never edit the
   sidecar or Markdown, never apply a `propose_correction` yourself, and
   resolve `conflict`/`rejected` operations by asking the maintainer rather
@@ -202,9 +203,19 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
   update the tests, `docs/M6_CHATGPT_OSINT_WORKFLOW.md` §4 and the Task A
   prompt text (§4.6) in the same change. Do not relax the person,
   E5-only-in-hypotheses or needs_review rules to make a sidecar pass.
-- **Existing safeguards still apply:** `pnpm data:diff --agent` remains
-  available for `agent/*` branches that change `data/`, but is **not**
-  the rule set for ChatGPT's source-only `research/*` branches.
+- **Path rule by branch prefix (CI `evidence-diff`):** a `research/*` branch
+  may only add files under `sources/incremental/` and `sources/thematic/` and
+  add or edit (never delete) files under `content/articles/`; evidence updates
+  proposed by Task B go in the sidecar, never in `data/`. An `agent/ingest-*`
+  branch may only change `data/`. Other branches have no path limit. On every
+  branch the strict evidence diff applies and `sources/original/`, existing
+  `sources/incremental/` files, symbolic links and `provenance` can never be
+  changed (not waivable). The label `evidence-waiver` waives the other
+  errors for the current head commit and is applied only by the repository
+  owner, never by an agent; a new push expires it. Do not rename the jobs
+  `check` and `evidence-diff` (required status checks).
+- **Existing safeguards still apply:** the strict `pnpm data:diff` runs on
+  every branch (the old `--agent` flag is a deprecated no-op).
   Never mark candidate records reviewed, alter original provenance or weaken
   M5 publication controls to make an import visible.
 - Source snapshots in open PRs must be considered to avoid duplication;
