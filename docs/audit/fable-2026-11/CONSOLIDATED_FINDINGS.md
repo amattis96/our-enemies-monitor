@@ -7,6 +7,7 @@
 **Commit che archivia i quattro rapporti:** `fddecce4584811d3a262007ca119b3c7798a1499`  
 **Branch analizzato:** `main`  
 **Stato:** **proposte da verificare e approvare**; nessun intervento applicativo o cambiamento alle automazioni autorizzato da questo documento.
+**Piano operativo:** i lotti del §6 sono declinati in blocchi eseguibili, con la verifica del 14 novembre, in [IMPLEMENTATION_BLOCKS.md](IMPLEMENTATION_BLOCKS.md).
 
 > **Scopo.** Ricondurre quattro analisi indipendenti a una mappa di problemi, dipendenze, decisioni ed esperimenti. Non sommare indiscriminatamente le raccomandazioni e non trasformare automaticamente una correlazione in una prova, un caveat in una smentita fattuale o una PR fusa in un'approvazione editoriale.
 
@@ -38,12 +39,12 @@ La parola «dimostrato» nei rapporti originali è preservata **come loro classi
 | --- | --- | --- |
 | Il filtro di pubblicazione dei record usa `review.status !== "needs_review"` | **V**: [`src/site/publication.ts`](https://github.com/amattis96/our-enemies-monitor/blob/d1f6a97601409f00f2bdefc47533b7b2f75d47ff/src/site/publication.ts#L9-L16) | Il comportamento su dataset avversariali è riprodotto da B, non rieseguito qui |
 | Il grafo esportato non include `caveat` nel tipo di arco | **V**: [`src/site/read-model.ts`](https://github.com/amattis96/our-enemies-monitor/blob/d1f6a97601409f00f2bdefc47533b7b2f75d47ff/src/site/read-model.ts#L130-L160) | La quantità di caveat rischiosi proviene da A/D |
-| Le regole severe di evidence-diff dipendono da `agent/*` | **V**: [`.github/workflows/ci.yml`](https://github.com/amattis96/our-enemies-monitor/blob/d1f6a97601409f00f2bdefc47533b7b2f75d47ff/.github/workflows/ci.yml#L38-L61) | La presenza di regole di protezione aggiuntive va verificata con privilegi adeguati |
+| Le regole severe di evidence-diff dipendono da `agent/*` | **V**: [`.github/workflows/ci.yml`](https://github.com/amattis96/our-enemies-monitor/blob/d1f6a97601409f00f2bdefc47533b7b2f75d47ff/.github/workflows/ci.yml#L38-L61) | Verificato il 14/11 (vedi riga seguente): nessun ruleset; unico check richiesto `check`, quindi `evidence-diff` non blocca |
 | La CI usa `cancel-in-progress: true` | **V**: stesso workflow, `concurrency` | La cronologia precisa dei tempi è documentata da B |
-| L'ingest legge tutti gli altri sidecar archiviati | **V**: [`src/cli/ingest.ts`](https://github.com/amattis96/our-enemies-monitor/blob/d1f6a97601409f00f2bdefc47533b7b2f75d47ff/src/cli/ingest.ts#L56-L71) | La riproduzione dell'esclusione reciproca è in B `V8 |
+| L'ingest legge tutti gli altri sidecar archiviati | **V**: [`src/cli/ingest.ts`](https://github.com/amattis96/our-enemies-monitor/blob/d1f6a97601409f00f2bdefc47533b7b2f75d47ff/src/cli/ingest.ts#L56-L71) | La riproduzione dell'esclusione reciproca è in B §V8 |
 | L'hash della traduzione dipende dai testi italiani | **V**: [`src/pipeline/translations.ts`](https://github.com/amattis96/our-enemies-monitor/blob/d1f6a97601409f00f2bdefc47533b7b2f75d47ff/src/pipeline/translations.ts#L26-L45) | Un hash sull'inglese non prova da solo la fedeltà semantica |
 | Le PR #11, #3 e #10 sono state fuse il 13 novembre alle 04:01:07, 04:01:21 e 04:01:25 UTC | **V**: cronologia merge GitHub; [PR #11](https://github.com/amattis96/our-enemies-monitor/pull/11), [#3](https://github.com/amattis96/our-enemies-monitor/pull/3), [#10](https://github.com/amattis96/our-enemies-monitor/pull/10) | Non attribuire con certezza ogni azione a Task C senza il suo log |
-| Identità amministrativa condivisa, approvazione del code owner aggirata | **R / da verificare**: B `V1; le PR risultano attribuite allo stesso account | L'endpoint di branch protection restituisce `403` all'integrazione consultata: `enforce_admins` e required reviews non sono stati ricontrollati direttamente |
+| Identità amministrativa condivisa, approvazione del code owner aggirata | **V** (ricontrollo del 14/11 via `gh api`, account proprietario): `enforce_admins: false`, `strict: false`, 1 review del code owner richiesta, unico check richiesto `check`, nessun ruleset, `can_approve_pull_request_reviews: true`, `delete_branch_on_merge: false`; 16/16 PR unite da `amattis96` con `REVIEW_REQUIRED`; i commit `d1f6a97`, `fddecce`, `19b2533` sono stati spinti direttamente su `main` senza PR | Il connettore usato per il consolidamento riceveva `403`; la verifica è stata ripetuta con le credenziali locali del proprietario. Resta non verificabile da qui quale identità usino i task ChatGPT |
 
 **Regola di aggiornamento:** un nuovo commit dopo la baseline non invalida automaticamente gli audit, ma ogni intervento deve ricontrollare i file e i dati sul `main` corrente. I numeri del presente documento **non** sono KPI aggiornati automaticamente.
 
@@ -53,11 +54,11 @@ La parola «dimostrato» nei rapporti originali è preservata **come loro classi
 
 ### 1.1 Le cinque conclusioni trasversali
 
-1. **L'affidabilità del processo precede l'espansione funzionale.** B ha rilevato che controlli formalmente esistenti possono essere aggirati per combinazioni di identità, permessi, nome del ramo e stati editoriali. La pubblicazione è corretta solo se l'intera catena di autorizzazione, non il singolo schema, mantiene le proprie invarianti. [B ``1, 4, 6–8]
-2. **Il limite principale del patrimonio probatorio è la granularità delle affermazioni e il collegamento alle fonti primarie.** A rileva 429/458 relazioni che citano soltanto sintesi interne; 40/41 riferimenti `F*`/`P*` non sono citati direttamente dai record. Il problema è la **tracciabilità record → affermazione → documento originario**, non l'assenza totale di bibliografia. [A ``4.1, 7–10; D ``3–4]
-3. **Il grafo e le esportazioni possono essere più assertivi dei documenti da cui derivano.** In un percorso Kerimov → SpaceX i singoli archi esistono, ma la composizione non prova il finanziamento tra gli estremi. Il caveat cruciale è assente da `graph.json`. La prossimità topologica non è causalità. [A `4.4; C ``3, 5; D ``3, 6]
-4. **Il sistema conosce molti eventi, ma conosce poco la loro evoluzione come “casi”.** Pagamenti e sentenze, intrusioni e attribuzioni, notizie e rettifiche sono record separati privi di un contenitore investigativo condiviso. Questo altera sia le statistiche di rete sia la comprensione umana. [A `4.5; C ``5–6; D `3]
-5. **Per migliorare AI e UX non serve introdurre subito un server o un modello predittivo.** Un vocabolario esplicito, pacchetti di evidenze, caveat completi, casi e claim granulari abilitano contemporaneamente nuove visualizzazioni, interrogazioni e controlli di falsificabilità, conservando Git come fonte di verità. [A `7; C ``9–11; D ``10–14]
+1. **L'affidabilità del processo precede l'espansione funzionale.** B ha rilevato che controlli formalmente esistenti possono essere aggirati per combinazioni di identità, permessi, nome del ramo e stati editoriali. La pubblicazione è corretta solo se l'intera catena di autorizzazione, non il singolo schema, mantiene le proprie invarianti. [B §§1, 4, 6–8]
+2. **Il limite principale del patrimonio probatorio è la granularità delle affermazioni e il collegamento alle fonti primarie.** A rileva 429/458 relazioni che citano soltanto sintesi interne; 40/41 riferimenti `F*`/`P*` non sono citati direttamente dai record. Il problema è la **tracciabilità record → affermazione → documento originario**, non l'assenza totale di bibliografia. [A §§4.1, 7–10; D §§3–4]
+3. **Il grafo e le esportazioni possono essere più assertivi dei documenti da cui derivano.** In un percorso Kerimov → SpaceX i singoli archi esistono, ma la composizione non prova il finanziamento tra gli estremi. Il caveat cruciale è assente da `graph.json`. La prossimità topologica non è causalità. [A §4.4; C §§3, 5; D §§3, 6]
+4. **Il sistema conosce molti eventi, ma conosce poco la loro evoluzione come “casi”.** Pagamenti e sentenze, intrusioni e attribuzioni, notizie e rettifiche sono record separati privi di un contenitore investigativo condiviso. Questo altera sia le statistiche di rete sia la comprensione umana. [A §4.5; C §§5–6; D §3]
+5. **Per migliorare AI e UX non serve introdurre subito un server o un modello predittivo.** Un vocabolario esplicito, pacchetti di evidenze, caveat completi, casi e claim granulari abilitano contemporaneamente nuove visualizzazioni, interrogazioni e controlli di falsificabilità, conservando Git come fonte di verità. [A §7; C §§9–11; D §§10–14]
 
 ### 1.2 Decisione architetturale suggerita, ma non ancora adottata
 
@@ -89,28 +90,28 @@ Gli ID `CF-###` sono **stabili per il consolidamento** e indipendenti dagli ID `
 
 | ID | Intervento / problema da risolvere | Convergenze | Stato | Priorità | Dipendenze |
 | --- | --- | --- | --- | --- | --- |
-| **CF-001** | Separare identità degli agenti, reviewer e approvatore; verificare branch protection | B V1/P1, B `8 | R+D | **P0** | Accesso amministrativo GitHub |
+| **CF-001** | Separare identità degli agenti, reviewer e approvatore; verificare branch protection | B V1/P1, B §8 | V+D | **P0** | Accesso amministrativo GitHub |
 | **CF-002** | Applicare controlli CI e vincoli ai **percorsi modificati**, non al prefisso del ramo | B V3/P2–P3 | V+P | **P0** | CF-001 per garanzia non scavalcabile |
-| **CF-003** | Rafforzare la transizione `needs_review → pubblicabile` e la semantica `imported_unreviewed` | B V4/V7/P3–P4; A `4.3 | V+R+D | **P0** | Policy sulla baseline esistente |
-| **CF-004** | Merge seriali con CI effettivamente conclusa; eliminare annullamenti e verifiche su basi obsolete | B V2/P7, `8 | V+R | **P0** | CF-001–002 |
-| **CF-005** | Correggere deduplicazione, idempotenza, perdita citazioni e validazione dei sidecar M6 | B V8/P6; A `4.7 | V+R | **P0** | Prima di aumentare l'ingestione |
-| **CF-006** | Proteggere meglio attribuzioni su persone e coerenza fonte primaria / `primary_url` | B V5/S4/P4; A `4.2 | R+D | **P0** | CF-002–003, decisione probatoria |
-| **CF-007** | Controllare transizioni degli articoli, link reali al corpus e deriva IT/EN | A `4.1/P12; B V6–V7; D `8 | V+R | **P0–P1** | CF-002–003 |
-| **CF-008** | Allineare istruzioni degli agenti, osservabilità e responsabilità delle automazioni A/B/C | B V11/`7–8/P9–P11 | R+P | **P1** | CF-001–005 |
-| **CF-009** | Collegare claim e record alle fonti primarie realmente pertinenti | A `4.1/P4; D `4 | R | **P1** | Workflow di revisione umana |
-| **CF-010** | Genealogia delle fonti e conteggio delle radici indipendenti | A `4.7/P5; B S2–S3; C N3; D `6 | R+P | **P1** | CF-009, nuovo schema additivo |
-| **CF-011** | Esportare caveat e dichiarare i **limiti di inferenza**, senza confondere negazione e relazione | A `4.4/P2–P3; C ``3, 5; D ``3, 6, 12 | V+R+D | **P1** | Correzione esportazione prima della classificazione |
-| **CF-012** | Rendere osservabile e decidere il trattamento delle ipotesi trattenute | A `4.3/P1; C `9; D `3/T5 | V+R+D | **P1** | CF-003; nessuna fuga di contenuti non revisionati |
-| **CF-013** | Introdurre l'identità di **caso** distinta dalle sue fasi/eventi | A `4.5/P6; C `5.2; D `3 | R+P | **P2** | Regole editoriali di raggruppamento |
-| **CF-014** | Introduzione incrementale di **claim atomici**, basi non ordinali, confutazioni e date di conoscenza | A ``3, 7/P8–P9; B V9; C `6; D ``4, 6 | R+D | **P2** | CF-009–011, ADR di modello |
-| **CF-015** | Riconciliare menzioni testo–grafo come **coda di verifica**, non come generatore di archi | A `4.6/P7; C `3 | R+P | **P1** | Revisore umano, falsi positivi misurati |
-| **CF-016** | Correggere UI mobile e costruire il **Tracciato** con caveat completi | C ``2, 5.1, 10–11; A `4.4; D `6 | R+P | **P1** | CF-011 |
-| **CF-017** | Fascicolo del caso, Filiera, Matrice dei ruoli e confronto delle campagne | C ``5–6, 9–11; A `4.5 | R+P | **P2** | CF-013 per i casi; classificazioni approvate |
-| **CF-018** | Domande investigative strutturate, copertura e tavolo delle ipotesi | C ``4–5, 11; A ``4.8–4.9, 5 | R+P | **P2** | CF-011–015 |
-| **CF-019** | Vocabolario leggibile dalle macchine e catalogo con freschezza distinta per livelli | D ``1, 4, 9, 11–12; A `4 | R+P | **P1** | CF-011–012 |
-| **CF-020** | Pacchetti per record, collegamenti JSON/HTML, feed e citazioni per commit | D ``6–7, 10–14; C `5.5 | R+P | **P2** | CF-009–011, CF-019 |
-| **CF-021** | Benchmark di correttezza, controlli negativi e monitoraggio delle regressioni semantiche | A ``4.5, 11; B `11; C `12; D ``9, 13–14 | R+P | **P1** | Prima e dopo ogni evoluzione |
-| **CF-022** | Allargare gli ID `S##`/`H##`; gestire errori silenziosi e sopravvivenza delle fonti esterne | B V10/V12/P8/P12; D `14 | V+R | **P1** | Migrazione retrocompatibile, test |
+| **CF-003** | Rafforzare la transizione `needs_review → pubblicabile` e la semantica `imported_unreviewed` | B V4/V7/P3–P4; A §4.3 | V+R+D | **P0** | Policy sulla baseline esistente |
+| **CF-004** | Merge seriali con CI effettivamente conclusa; eliminare annullamenti e verifiche su basi obsolete | B V2/P7, §8 | V+R | **P0** | CF-001–002 |
+| **CF-005** | Correggere deduplicazione, idempotenza, perdita citazioni e validazione dei sidecar M6 | B V8/P6; A §4.7 | V+R | **P0** | Prima di aumentare l'ingestione |
+| **CF-006** | Proteggere meglio attribuzioni su persone e coerenza fonte primaria / `primary_url` | B V5/S4/P4; A §4.2 | R+D | **P0** | CF-002–003, decisione probatoria |
+| **CF-007** | Controllare transizioni degli articoli, link reali al corpus e deriva IT/EN | A §4.1/P12; B V6–V7; D §8 | V+R | **P0–P1** | CF-002–003 |
+| **CF-008** | Allineare istruzioni degli agenti, osservabilità e responsabilità delle automazioni A/B/C | B V11/§§7–8/P9–P11 | R+P | **P1** | CF-001–005 |
+| **CF-009** | Collegare claim e record alle fonti primarie realmente pertinenti | A §4.1/P4; D §4 | R | **P1** | Workflow di revisione umana |
+| **CF-010** | Genealogia delle fonti e conteggio delle radici indipendenti | A §4.7/P5; B S2–S3; C N3; D §6 | R+P | **P1** | CF-009, nuovo schema additivo |
+| **CF-011** | Esportare caveat e dichiarare i **limiti di inferenza**, senza confondere negazione e relazione | A §4.4/P2–P3; C §§3, 5; D §§3, 6, 12 | V+R+D | **P1** | Correzione esportazione prima della classificazione |
+| **CF-012** | Rendere osservabile e decidere il trattamento delle ipotesi trattenute | A §4.3/P1; C §9; D §3/T5 | V+R+D | **P1** | CF-003; nessuna fuga di contenuti non revisionati |
+| **CF-013** | Introdurre l'identità di **caso** distinta dalle sue fasi/eventi | A §4.5/P6; C §5.2; D §3 | R+P | **P2** | Regole editoriali di raggruppamento |
+| **CF-014** | Introduzione incrementale di **claim atomici**, basi non ordinali, confutazioni e date di conoscenza | A §§3, 7/P8–P9; B V9; C §6; D §§4, 6 | R+D | **P2** | CF-009–011, ADR di modello |
+| **CF-015** | Riconciliare menzioni testo–grafo come **coda di verifica**, non come generatore di archi | A §4.6/P7; C §3 | R+P | **P1** | Revisore umano, falsi positivi misurati |
+| **CF-016** | Correggere UI mobile e costruire il **Tracciato** con caveat completi | C §§2, 5.1, 10–11; A §4.4; D §6 | R+P | **P1** | CF-011 |
+| **CF-017** | Fascicolo del caso, Filiera, Matrice dei ruoli e confronto delle campagne | C §§5–6, 9–11; A §4.5 | R+P | **P2** | CF-013 per i casi; classificazioni approvate |
+| **CF-018** | Domande investigative strutturate, copertura e tavolo delle ipotesi | C §§4–5, 11; A §§4.8–4.9, 5 | R+P | **P2** | CF-011–015 |
+| **CF-019** | Vocabolario leggibile dalle macchine e catalogo con freschezza distinta per livelli | D §§1, 4, 9, 11–12; A §4 | R+P | **P1** | CF-011–012 |
+| **CF-020** | Pacchetti per record, collegamenti JSON/HTML, feed e citazioni per commit | D §§6–7, 10–14; C §5.5 | R+P | **P2** | CF-009–011, CF-019 |
+| **CF-021** | Benchmark di correttezza, controlli negativi e monitoraggio delle regressioni semantiche | A §§4.5, 11; B §11; C §12; D §§9, 13–14 | R+P | **P1** | Prima e dopo ogni evoluzione |
+| **CF-022** | Allargare gli ID `S##`/`H##`; gestire errori silenziosi e sopravvivenza delle fonti esterne | B V10/V12/P8/P12; D §14 | V+R | **P1** | Migrazione retrocompatibile, test |
 
 **Interpretazione della priorità:** P0 = rischio operativo o probatorio prima di scalare l'automazione; P1 = correzione/abilitatore ad alto valore, realizzabile in parallelo dopo i gate; P2 = estensione del modello o dell'esperienza con dipendenze editoriali. Non assegnare punteggi numerici di certezza a persone, mandanti o ipotesi.
 
@@ -144,7 +145,7 @@ Gli ID `CF-###` sono **stabili per il consolidamento** e indipendenti dagli ID `
 **Osservato nei rapporti:**
 - A produce fino a sette PR di ricerca alla settimana; C esegue review/merge soltanto il venerdì; B scrive il venerdì alle 03:00, due ore prima del controllo C delle 05:00.
 - La baseline di A avanza dalla **fonte fusa**, non dalla PR aperta. L'overlap minimo di 72 ore è necessario per aggiornamenti tardivi, ma con merge settimanale le finestre quotidiane si sovrappongono sempre più.
-- L'ingestione `pnpm ingest --write` dopo il merge non è coperta da un task schedulato. Fonte_10 e Fonte_11 non dispongono dei sidecar previsti dalle nuove istruzioni. [B `7]
+- L'ingestione `pnpm ingest --write` dopo il merge non è coperta da un task schedulato. Fonte_10 e Fonte_11 non dispongono dei sidecar previsti dalle nuove istruzioni. [B §7]
 - L'importer attuale considera tutti gli altri sidecar: B mostra che due proposte dello stesso evento possono escludersi reciprocamente. Sono inoltre riportati il marcatore di idempotenza imitabile nelle note, la perdita di nuove citazioni su duplicati e la possibilità che un sidecar malformato blocchi altri processi. [B V8]
 
 **Consolidamento delle correzioni:**
@@ -157,7 +158,7 @@ Gli ID `CF-###` sono **stabili per il consolidamento** e indipendenti dagli ID `
 7. Uniformare le istruzioni: `.github/agent/research-prompt.md` e i documenti operativi devono descrivere il flusso M6 attuale e non lo stato M6 precedente.
 8. Registrare almeno esito, cutoff di partenza, fonte proposta e PR di ogni esecuzione, distinguendo una **scansione negativa** da un fallimento. Evitare rumore da commit senza valore.
 
-**Cadenze: non modificarle adesso.** I modelli B `8 (riordino del venerdì, revisione tecnica quotidiana, ingestione deterministica che **apre** una PR senza unirla, revisione editoriale separata) sono opzioni da confrontare **dopo CF-001–005**. Aumentare subito la frequenza del revisore attuale potrebbe moltiplicare merge non sufficientemente controllati.
+**Cadenze: non modificarle adesso.** I modelli B §8 (riordino del venerdì, revisione tecnica quotidiana, ingestione deterministica che **apre** una PR senza unirla, revisione editoriale separata) sono opzioni da confrontare **dopo CF-001–005**. Aumentare subito la frequenza del revisore attuale potrebbe moltiplicare merge non sufficientemente controllati.
 
 **Alternative da valutare con misure:**
 - Riordinare C e B per far lavorare B su `main` appena integrato.
@@ -169,17 +170,17 @@ Gli ID `CF-###` sono **stabili per il consolidamento** e indipendenti dagli ID `
 
 ### 3.3 CF-009–014 | Affidabilità semantica prima degli algoritmi
 
-**Fonti primarie.** Il rapporto A trova **429/458** relazioni con sole citazioni a sintesi interne; 40 dei 41 riferimenti `F*`/`P*` senza aggancio diretto. La prima iniziativa non è aggiungere documenti indiscriminatamente, ma collegare quelli già disponibili **alle precise proposizioni che effettivamente sostengono**. Il fatto che un riferimento compaia in bibliografia non prova la singola frase. [A `4.1]
+**Fonti primarie.** Il rapporto A trova **429/458** relazioni con sole citazioni a sintesi interne; 40 dei 41 riferimenti `F*`/`P*` senza aggancio diretto. La prima iniziativa non è aggiungere documenti indiscriminatamente, ma collegare quelli già disponibili **alle precise proposizioni che effettivamente sostengono**. Il fatto che un riferimento compaia in bibliografia non prova la singola frase. [A §4.1]
 
-**Origini indipendenti.** Per `EXT-005` tre riferimenti (dichiarazione del ministero francese, Reuters, ripubblicazione Reuters) non rappresentano tre conferme indipendenti. La genealogia deve conservare `publisher`, `derived_from`, `relies_on` e il rapporto con l'atto primario, preferibilmente senza assegnare una confidenza numerica arbitraria. [A `4.7; D `6]
+**Origini indipendenti.** Per `EXT-005` tre riferimenti (dichiarazione del ministero francese, Reuters, ripubblicazione Reuters) non rappresentano tre conferme indipendenti. La genealogia deve conservare `publisher`, `derived_from`, `relies_on` e il rapporto con l'atto primario, preferibilmente senza assegnare una confidenza numerica arbitraria. [A §4.7; D §6]
 
-**Evidenza non ordinale.** E1–E4 descrivono **tipi** differenti di supporto, non una scala continua di verità: E2 attribuzione istituzionale ed E3 analisi indipendente non implicano un ordinamento universale di affidabilità. `evidence_status`, che nel corpus studiato coincide perfettamente con il livello, non va eliminato impulsivamente: prima definire se dovrà rappresentare una **dimensione separata** (contestato, confutato, consolidato), con migrazione compatibile dei JSON pubblici. [A `4.2; B V9]
+**Evidenza non ordinale.** E1–E4 descrivono **tipi** differenti di supporto, non una scala continua di verità: E2 attribuzione istituzionale ed E3 analisi indipendente non implicano un ordinamento universale di affidabilità. `evidence_status`, che nel corpus studiato coincide perfettamente con il livello, non va eliminato impulsivamente: prima definire se dovrà rappresentare una **dimensione separata** (contestato, confutato, consolidato), con migrazione compatibile dei JSON pubblici. [A §4.2; B V9]
 
-**Caveat e percorsi.** Il caso `G-0087` consente di documentare un collegamento societario **senza** autorizzare l'inferenza di un flusso di finanziamento Kerimov → SpaceX. La correzione minima è inserire `caveat` e il suo significato contestuale in ogni proiezione del grafo. Una regola successiva deve classificare la **componibilità dei predicati**, non trasformare automaticamente l'intero arco in `polarity: negative`. [A `4.4; C `5.1; D `6.3]
+**Caveat e percorsi.** Il caso `G-0087` consente di documentare un collegamento societario **senza** autorizzare l'inferenza di un flusso di finanziamento Kerimov → SpaceX. La correzione minima è inserire `caveat` e il suo significato contestuale in ogni proiezione del grafo. Una regola successiva deve classificare la **componibilità dei predicati**, non trasformare automaticamente l'intero arco in `polarity: negative`. [A §4.4; C §5.1; D §6.3]
 
-**Le ipotesi scomparse.** A e D riportano 11 delle 22 ipotesi della baseline trattenute dopo il collegamento a eventi `EXT-*` non pubblici. Il codice applica condizioni anche alle referenze degli eventi. Prima di cambiare il filtro decidere se pubblicare il **sottografo precedente** senza i nuovi riferimenti in attesa, preservando la semantica revisionata del testo, oppure mantenere la quarantena rendendone motivi e conteggi espliciti. Il test «un candidato non riduce ciò che è già pubblico» è desiderabile ma deve consentire rimozioni deliberate e rettifiche approvate. [A `4.3; D `3]
+**Le ipotesi scomparse.** A e D riportano 11 delle 22 ipotesi della baseline trattenute dopo il collegamento a eventi `EXT-*` non pubblici. Il codice applica condizioni anche alle referenze degli eventi. Prima di cambiare il filtro decidere se pubblicare il **sottografo precedente** senza i nuovi riferimenti in attesa, preservando la semantica revisionata del testo, oppure mantenere la quarantena rendendone motivi e conteggi espliciti. Il test «un candidato non riduce ciò che è già pubblico» è desiderabile ma deve consentire rimozioni deliberate e rettifiche approvate. [A §4.3; D §3]
 
-**Unità investigativa.** Il «caso» deve legare fasi dello stesso episodio senza fonderle: pagamento → indagine → attribuzione → sentenza; oppure intrusione → identificazione dell'attore. La mancanza di tale unità fa sì che il modello statistico di co-partecipazione rilevi soprattutto lo stesso caso registrato più volte. [A `4.5; C `5.2]
+**Unità investigativa.** Il «caso» deve legare fasi dello stesso episodio senza fonderle: pagamento → indagine → attribuzione → sentenza; oppure intrusione → identificazione dell'attore. La mancanza di tale unità fa sì che il modello statistico di co-partecipazione rilevi soprattutto lo stesso caso registrato più volte. [A §4.5; C §5.2]
 
 **Claim atomici.** Un candidato minimo, da definire con un'ADR e su un piccolo campione verificato:
 - soggetto/caso/evento; `aspect` (fatto, autore, sponsor, movente, impatto, status);
@@ -192,19 +193,19 @@ Gli ID `CF-###` sono **stabili per il consolidamento** e indipendenti dagli ID `
 
 La stessa struttura deve poter rispondere a «secondo chi?», «quando lo si è saputo?», «che cosa è cambiato?» e «quale fonte primaria sostiene proprio questa proposizione?».
 
-**Antipattern da evitare:** migrazione completamente automatica di eventi in claim; moltiplicazione di archi a partire dalle sole menzioni; link prediction e community detection su un corpus nel quale 147 predicati diretti sono quasi tutti unici. [A `7.2]
+**Antipattern da evitare:** migrazione completamente automatica di eventi in claim; moltiplicazione di archi a partire dalle sole menzioni; link prediction e community detection su un corpus nel quale 147 predicati diretti sono quasi tutti unici. [A §7.2]
 
 ### 3.4 CF-015–018 | Nuova conoscenza resa leggibile
 
-**Riconciliazione testo–grafo.** A trova 134 menzioni candidate senza arco in 74 eventi e 33 entità isolate; `VIGINUM` compare in più descrizioni senza un collegamento modellato. Questa è una **coda di valutazione**, non 134 archi mancanti certi: il matcher dell'appendice A restituisce persino un totale differente (111), e nomi generici producono falsi positivi. Ogni proposta deve ricevere l'esito `documented-role`, `context-only`, `false-positive` o `needs-evidence`. [A ``4.6, 9, 11]
+**Riconciliazione testo–grafo.** A trova 134 menzioni candidate senza arco in 74 eventi e 33 entità isolate; `VIGINUM` compare in più descrizioni senza un collegamento modellato. Questa è una **coda di valutazione**, non 134 archi mancanti certi: il matcher dell'appendice A restituisce persino un totale differente (111), e nomi generici producono falsi positivi. Ogni proposta deve ricevere l'esito `documented-role`, `context-only`, `false-positive` o `needs-evidence`. [A §§4.6, 9, 11]
 
-**Tracciato.** Presentare il percorso fra due attori come elenco ordinato che mostra singoli predicati, fonte, caveat, **punti in cui non è lecito comporre i nessi**. Nessun titolo «X è collegato a Y» senza precisare «percorso di relazioni documentate, non responsabilità/finanziamento degli estremi». È adatto anche a mobile e lettori di schermo. La UI attuale presenta un fascicolo fuori viewport a 375 px, secondo l'osservazione di C. [C ``2, 5.1, 10]
+**Tracciato.** Presentare il percorso fra due attori come elenco ordinato che mostra singoli predicati, fonte, caveat, **punti in cui non è lecito comporre i nessi**. Nessun titolo «X è collegato a Y» senza precisare «percorso di relazioni documentate, non responsabilità/finanziamento degli estremi». È adatto anche a mobile e lettori di schermo. La UI attuale presenta un fascicolo fuori viewport a 375 px, secondo l'osservazione di C. [C §§2, 5.1, 10]
 
-**Fascicolo del caso.** Corsie per `fatto`, `scoperta`, `attribuzione`, `decisione giudiziaria`, `risposta`, con precisione della data visibile e assenze esplicite. C usa `TL-0015` e `TL-0092` sul caso Gill, e `TL-0025`/`TL-0054` sulla Electoral Commission. Prima del rendering occorre approvare quali eventi appartengono allo stesso caso. [C `5.2]
+**Fascicolo del caso.** Corsie per `fatto`, `scoperta`, `attribuzione`, `decisione giudiziaria`, `risposta`, con precisione della data visibile e assenze esplicite. C usa `TL-0015` e `TL-0092` sul caso Gill, e `TL-0025`/`TL-0054` sulla Electoral Commission. Prima del rendering occorre approvare quali eventi appartengono allo stesso caso. [C §5.2]
 
-**Filiera.** Gli stadi delle terre rare `X-004`, `X-002`, `X-003` e `X-001` sono visualizzabili in sequenza. Una freccia di processo non autorizza però a comparare direttamente quote mondiali e percentuali della domanda UE: ogni blocco deve mostrare **denominatore, periodo, fonte e comparabilità**. [C `5.3]
+**Filiera.** Gli stadi delle terre rare `X-004`, `X-002`, `X-003` e `X-001` sono visualizzabili in sequenza. Una freccia di processo non autorizza però a comparare direttamente quote mondiali e percentuali della domanda UE: ogni blocco deve mostrare **denominatore, periodo, fonte e comparabilità**. [C §5.3]
 
-**Matrice dei ruoli / Domande.** Preferire viste che rendano leggibili «RU compare come attribuito, controparte, contesto, ecc.» e interrogazioni parametrizzate con risultati, link e limiti; evitare un chatbot come soluzione iniziale. Le classi di ruolo devono essere **approvate editorialmente** e non inferite dal solo colore della bacheca. [C ``5.4–5.5]
+**Matrice dei ruoli / Domande.** Preferire viste che rendano leggibili «RU compare come attribuito, controparte, contesto, ecc.» e interrogazioni parametrizzate con risultati, link e limiti; evitare un chatbot come soluzione iniziale. Le classi di ruolo devono essere **approvate editorialmente** e non inferite dal solo colore della bacheca. [C §§5.4–5.5]
 
 **Indicatore di successo UX:** non gradimento astratto, ma quota di utenti che distinguono correttamente fatto/attribuzione, riconoscono il limite di una catena, individuano una fonte primaria e non deducono causalità dalla prossimità visiva.
 
@@ -233,7 +234,7 @@ D trova JSON, schema, manifest e CORS già disponibili. La mancanza centrale non
 - fatto non ancora stabilito;
 - fonte che riferisce una posizione altrui.
 
-**Benchmark prima dell'intervento.** D propone 20 domande, con esempi su Kerimov/SpaceX, Christine Lee, Nathan Gill, incendio di Marywilska, `H06`/`H08` e cronologia dei dati. Va prima misurata la baseline su uno o più sistemi di retrieval con condizioni ripetibili, senza spacciarla per già misurata: D ha eseguito simulazioni e verifiche di endpoint, **non** un test comparativo su ChatGPT/Claude/Gemini. [D ``9, 13–14]
+**Benchmark prima dell'intervento.** D propone 20 domande, con esempi su Kerimov/SpaceX, Christine Lee, Nathan Gill, incendio di Marywilska, `H06`/`H08` e cronologia dei dati. Va prima misurata la baseline su uno o più sistemi di retrieval con condizioni ripetibili, senza spacciarla per già misurata: D ha eseguito simulazioni e verifiche di endpoint, **non** un test comparativo su ChatGPT/Claude/Gemini. [D §§9, 13–14]
 
 ---
 
@@ -328,7 +329,7 @@ Le milestone rappresentano **sequenze di dipendenza**, non settimane stimate né
 
 **Lavoro:** fix mobile; Tracciato; Filiera con denominatori; Fascicolo del caso; Matrice dei ruoli; domande strutturate; `vocabulary.json`, catalogo e indicatori di freschezza; link HTML↔record; pacchetti probatori; feed di cambiamenti.
 
-**Criterio di uscita:** i compiti utente C `12 si completano con meno passaggi e **senza incremento delle inferenze errate**; l'AI può recuperare l'intero pacchetto probatorio di un record senza perdere caveat né scambiare una data di commit per l'ultimo evento integrato; tutte le nuove viste usano la stessa proiezione di pubblicazione.
+**Criterio di uscita:** i compiti utente C §12 si completano con meno passaggi e **senza incremento delle inferenze errate**; l'AI può recuperare l'intero pacchetto probatorio di un record senza perdere caveat né scambiare una data di commit per l'ultimo evento integrato; tutte le nuove viste usano la stessa proiezione di pubblicazione.
 
 **Complessità:** M–L. Fix mobile e vocabolario base possono essere anticipati rispetto alle viste dipendenti da nuovi claim.
 
@@ -379,7 +380,7 @@ Le righe sono **unità di lavoro candidate**, non issue già create. Si suggeris
 | **K10** | 015 | Coda testo–grafo senza scritture | Precisione campionata e classificazione esplicita di ogni menzione proposta |
 | **K11** | 016 | Tracciato, UI mobile e cautele non transitive | Test C: percorso fra due attori comprensibile senza attribuzioni improprie |
 | **K12** | 013–014 | ADR e pilot su Case/Claim | Due casi complessi ricostruiti; nessuna trasformazione inferenziale automatica |
-| **K13** | 017–018 | Fascicolo, Filiera, ruoli e domande | Test C `12; denominatori e periodi visibili su ogni misura |
+| **K13** | 017–018 | Fascicolo, Filiera, ruoli e domande | Test C §12; denominatori e periodi visibili su ogni misura |
 | **K14** | 019 | Vocabolario e catalogo/freschezza | Test D A1–A5; distinzione fra fonte archiviata, evento canonico e deploy |
 | **K15** | 020 | Pacchetti per record, JSON-LD minimo, feed | Test D A6/A9/A11/A14/A15; nessun record trattenuto esposto |
 | **K16** | 021 | Benchmark trasversale OSINT/AI/UX | Baseline prima dell'intervento; confronto dopo; errori di attribuzione e relazioni inventate in calo |
@@ -396,11 +397,11 @@ Le righe sono **unità di lavoro candidate**, non issue già create. Si suggeris
 | Ipotesi trattenute | A E3 / D T5 | 11 ipotesi baseline non pubbliche | Prova un effetto del filtro al commit audit; resta da decidere se è voluto |
 | Co-partecipazione vs modello nullo | A E5 | 15 coppie con ≥2 eventi, media casualizzata 4,5 | Il segnale individua prevalentemente più fasi dello stesso caso, **non** nuove operazioni coordinate |
 | Testo–grafo | A E6 | 134 menzioni candidate; appendice semplificata 111 | Un elenco per revisori, non 134 nuovi fatti |
-| Traduzione marcatori di cautela | A `4.10 | 10 segnalazioni su 1.346 testi, nessuna perdita reale alla lettura | È un controllo lessicale limitato; non sostituisce la revisione IT/EN |
+| Traduzione marcatori di cautela | A §4.10 | 10 segnalazioni su 1.346 testi, nessuna perdita reale alla lettura | È un controllo lessicale limitato; non sostituisce la revisione IT/EN |
 | Dedup due sidecar e marker | B T6–T8 | Duplicazione reciproca; falso `already_applied` | Test unitari da fissare prima di eseguire ingest reali |
-| Ricerca che tronca la negazione | D `6.2/T9 | Query Kerimov/SpaceX restituisce per primo un record che nega l'inferenza | Rileva un rischio di sintesi; non dimostra che un particolare LLM abbia già sbagliato |
-| Query da AI esterne | D `9.3 | **Nessuna baseline di modelli reali** | Misurare prima di annunciare benefici di MCP, embeddings o pacchetti |
-| Compiti di comprensione UX | C `12 | Compiti qualitativi sul sito; nessun test su utenti reali | Necessario per non confondere preferenza estetica con correttezza inferenziale |
+| Ricerca che tronca la negazione | D §6.2/T9 | Query Kerimov/SpaceX restituisce per primo un record che nega l'inferenza | Rileva un rischio di sintesi; non dimostra che un particolare LLM abbia già sbagliato |
+| Query da AI esterne | D §9.3 | **Nessuna baseline di modelli reali** | Misurare prima di annunciare benefici di MCP, embeddings o pacchetti |
+| Compiti di comprensione UX | C §12 | Compiti qualitativi sul sito; nessun test su utenti reali | Necessario per non confondere preferenza estetica con correttezza inferenziale |
 
 **Condizione per esperimenti futuri:** registrare commit, selezione di record, criteri del matcher, seed quando casualizzato, numero di casi, risultati e falsi positivi. Evitare `p = 0`: con 500 randomizzazioni e nessun superamento osservato si riporta un limite empirico, non probabilità matematica nulla.
 
