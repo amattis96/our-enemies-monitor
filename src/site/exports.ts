@@ -6,6 +6,7 @@ import { COLLECTION_NAMES, type Dataset } from "../model/index.ts";
 import { REPO_ROOT, SCHEMAS_DIR } from "../pipeline/paths.ts";
 import { summarize } from "../pipeline/validate.ts";
 import { publishedDataset } from "./publication.ts";
+import { buildReadModel, evidenceGraph, hypothesisGraph } from "./read-model.ts";
 
 /**
  * Downloadable data exports published under `data/v1/`. Content is
@@ -23,6 +24,11 @@ export function exportFiles(input: Dataset): ExportFile[] {
     text: `${JSON.stringify(dataset[name], null, 2)}\n`,
   }));
   const all = { path: "all.json", text: `${JSON.stringify(dataset, null, 2)}\n` };
+  const model = buildReadModel(dataset);
+  const graphs = [
+    { path: "graph.json", text: JSON.stringify(evidenceGraph(model)) },
+    { path: "hypotheses-graph.json", text: JSON.stringify(hypothesisGraph(model)) },
+  ];
   const schemas = readdirSync(SCHEMAS_DIR)
     .filter((name) => name.endsWith(".schema.json"))
     .sort()
@@ -30,7 +36,7 @@ export function exportFiles(input: Dataset): ExportFile[] {
       path: `schemas/${name}`,
       text: readFileSync(path.join(SCHEMAS_DIR, name), "utf8"),
     }));
-  return [...collections, all, ...schemas];
+  return [...collections, all, ...graphs, ...schemas];
 }
 
 export type Manifest = {

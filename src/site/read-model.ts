@@ -16,6 +16,7 @@ import { type M5References, personReference } from "../pipeline/evidence-policy.
 import { readDataFiles } from "../pipeline/load.ts";
 import { validateDataFiles } from "../pipeline/validate.ts";
 import { textOf } from "./i18n.ts";
+import { RELATION_GROUP_OVERRIDES } from "./visual.ts";
 
 /**
  * Indexed, read-only view of the canonical data used to render the site.
@@ -125,7 +126,9 @@ export function isParticipation(relationship: Relationship): boolean {
 }
 
 export function relationGroup(relationship: Relationship): RelationGroup {
-  return RELATION_CLASS_GROUP[relationship.relation_class];
+  return (
+    RELATION_GROUP_OVERRIDES[relationship.id] ?? RELATION_CLASS_GROUP[relationship.relation_class]
+  );
 }
 
 function compareEvents(a: Event, b: Event): number {
@@ -143,6 +146,7 @@ export type GraphEdge = {
   predicate: string;
   group: RelationGroup;
   evidence_level: Relationship["evidence_level"];
+  caveat: LocalizedText | null;
 };
 export type Graph = { nodes: GraphNode[]; edges: GraphEdge[] };
 
@@ -160,6 +164,7 @@ export function evidenceGraph(model: ReadModel): Graph {
       predicate: r.predicate,
       group: relationGroup(r),
       evidence_level: r.evidence_level,
+      caveat: r.caveat,
     }));
   return { nodes: nodesOf(model, edges), edges };
 }

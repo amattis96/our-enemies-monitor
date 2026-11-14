@@ -286,6 +286,14 @@
   background: #fffdf6;
   font-size: var(--text-sm);
 }
+.case-file-list li > div {
+  min-width: 0;
+}
+.board-caveat {
+  margin: var(--space-1) 0 0;
+  overflow-wrap: anywhere;
+  font-size: var(--text-sm);
+}
 .case-file-line {
   border-radius: 2px;
 }

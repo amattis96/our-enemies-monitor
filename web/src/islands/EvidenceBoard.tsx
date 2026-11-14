@@ -6,6 +6,7 @@ import type { Language, LocalizedText } from "../../../src/model/index.ts";
 import type { BoardLayout } from "../../../src/site/board-layout.ts";
 import { cardTilt } from "../../../src/site/board-layout.ts";
 import { formatPredicate } from "../../../src/site/format.ts";
+import { pick } from "../../../src/site/i18n.ts";
 import type { GraphEdge, GraphNode, HypothesisEdge } from "../../../src/site/read-model.ts";
 import {
   EVIDENCE_ICON,
@@ -16,6 +17,7 @@ import {
   RELATION_GROUP_ICON,
   RELATION_GROUP_ORDER,
 } from "../../../src/site/visual.ts";
+import { BoardCaveat } from "./BoardCaveat.tsx";
 
 const LABELS = {
   it: {
@@ -109,6 +111,7 @@ type Edge = {
   group: string;
   level: "E1" | "E2" | "E3" | "E4" | "E5";
   priority?: string;
+  caveat?: LocalizedText | null;
 };
 type Detail = "pin" | "compact" | "full";
 
@@ -361,6 +364,7 @@ export default function EvidenceBoard(props: Props) {
               ? { ...e, label: formatPredicate(e.predicate), level: e.evidence_level }
               : {
                   ...e,
+                  caveat: null,
                   group: "hypothesis",
                   level: "E5",
                   label: formatPredicate(e.hypothesis_type),
@@ -706,7 +710,7 @@ export default function EvidenceBoard(props: Props) {
                   const width = detail === "pin" ? style.width * 0.8 : style.width;
                   return (
                     <g key={edge.id} className={`thread${dim ? " is-dim" : ""}`}>
-                      <title>{`${nameOf(edge.source)} → ${edge.label} → ${nameOf(edge.target)} (${edge.id}, ${edge.level})`}</title>
+                      <title>{`${nameOf(edge.source)} → ${edge.label} → ${nameOf(edge.target)} (${edge.id}, ${edge.level})${edge.caveat ? ` · ${lang === "it" ? "Avvertenza" : "Caveat"}: ${pick(edge.caveat, lang).value}` : ""}`}</title>
                       <path
                         d={d}
                         stroke="var(--thread-casing)"
@@ -947,6 +951,7 @@ export default function EvidenceBoard(props: Props) {
                           <span className="mono">{e.id}</span>
                           {!hypotheses && groupLabels[e.group]}
                         </p>
+                        <BoardCaveat caveat={e.caveat} lang={lang} />
                       </div>
                     </li>
                   );
@@ -977,8 +982,9 @@ export default function EvidenceBoard(props: Props) {
                   <td data-label={t.subject}>
                     <a href={pageOf(e.source)}>{nameOf(e.source)}</a>
                   </td>
-                  <td data-label={t.predicate} lang="it">
-                    {e.label}
+                  <td data-label={t.predicate}>
+                    <span lang="it">{e.label}</span>
+                    <BoardCaveat caveat={e.caveat} lang={lang} />
                   </td>
                   <td data-label={t.object}>
                     <a href={pageOf(e.target)}>{nameOf(e.target)}</a>

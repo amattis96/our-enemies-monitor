@@ -390,11 +390,11 @@ Legenda modelli: `m` = sforzo medio, `a` = sforzo alto (vedi §2.1). Aggiornare 
 | --- | --- | --- | --- | --- | --- | --- |
 | B01 | committato | Opus·m / Sonnet·m | [B01_ANALYSIS.md](blocks/B01_ANALYSIS.md) | `01eb463` (solo docs) | `pnpm check` verde | impostazioni GitHub/ChatGPT da applicare dal manutentore (8 passi); D1 da verificare |
 | B02 | committato | Sonnet·a / Sonnet·a | [B02_ANALYSIS.md](blocks/B02_ANALYSIS.md) | sul ramo | `pnpm check` verde, 188 test, actionlint ok; review Sonnet: 8 rilievi, 1–5 e 7 chiusi | da verificare con un'esecuzione reale: permessi token, DELETE etichetta, guardia deploy |
-| B03 | committato | Sol / Terra·a | [B03_ANALYSIS.md](blocks/B03_ANALYSIS.md) | questo commit: `fix(publication): enforce baseline and person-source gates` | `pnpm check` verde, 199 test, 0 errori/23 warning; build e 161.903 link verdi; browser IT/EN; export identici | GPT: D-B03-1…6 applicate; review Sol, 4 rilievi risolti; nessun push |
+| B03 | committato | Sol / Terra·a | [B03_ANALYSIS.md](blocks/B03_ANALYSIS.md) | `c2164cb` | `pnpm check` verde, 199 test, 0 errori/23 warning; build e 161.903 link verdi; browser IT/EN; export identici | GPT: D-B03-1…6 applicate; review Sol, 4 rilievi risolti; nessun push |
 | B04 | committato | Opus·m / Opus·m | [B04_ANALYSIS.md](blocks/B04_ANALYSIS.md) | `0bcdfe4` | `pnpm check` verde, 143 test; review Sonnet: 10 rilievi, chiusi tranne #7 (verificato non necessario) e #8 (documentato) | priorità alta: secondo sidecar imminente |
 | B05 | proposto | Opus·m / Sonnet·a | — | — | — | |
 | B06 | proposto | Sonnet·a / Sonnet·m | — | — | — | |
-| B07 | proposto | Sonnet·m / Sonnet·m | — | — | — | |
+| B07 | committato | Sol / Terra·m | [B07_ANALYSIS.md](blocks/B07_ANALYSIS.md) | questo commit: `fix(graph): preserve caveats in exports and evidence board` | `pnpm check` verde, 202 test; build e 161.907 link verdi; browser IT/EN chiaro/scuro desktop/mobile; hash HTTP verificati | GPT: D-B07-1…3 applicate; dati/export precedenti invariati; 3 override visuali approvati; nessun push |
 | B08 | proposto | Sonnet·m / Sonnet·m | — | — | — | |
 | B09 | proposto | Opus·m / Sonnet·a | — | — | — | |
 | B10 | proposto | Sonnet·a / Sonnet·m | — | — | — | |

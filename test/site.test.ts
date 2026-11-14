@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { beforeAll, describe, expect, it } from "vitest";
 import { CATEGORY_THEMES, EVENT_THEME_OVERRIDES } from "../src/pipeline/baseline/themes.ts";
 import { buildManifest, exportFiles } from "../src/site/exports.ts";
@@ -12,10 +13,12 @@ import { languagePaths, pick } from "../src/site/i18n.ts";
 import { publishedDataset } from "../src/site/publication.ts";
 import {
   atlasRows,
+  buildReadModel,
   evidenceGraph,
   hypothesisGraph,
   loadReadModel,
   type ReadModel,
+  relationGroup,
   timelineItems,
 } from "../src/site/read-model.ts";
 
@@ -46,6 +49,32 @@ describe("read model", () => {
     expect(graph.edges.every((e) => e.id.startsWith("G-"))).toBe(true);
     const nodes = new Set(graph.nodes.map((n) => n.id));
     expect(graph.edges.every((e) => nodes.has(e.source) && nodes.has(e.target))).toBe(true);
+  });
+
+  it("preserves every public relationship caveat and applies only the approved visual overrides", () => {
+    const data = publishedDataset(model.dataset);
+    const graph = evidenceGraph(buildReadModel(data));
+    const records = new Map(data.relationships.map((r) => [r.id, r]));
+    expect(graph.edges).toHaveLength(data.relationships.length);
+    for (const edge of graph.edges) {
+      expect(edge).toHaveProperty("caveat");
+      expect(edge.caveat).toEqual(records.get(edge.id)?.caveat);
+    }
+    expect(graph.edges.find((edge) => edge.id === "G-0087")?.caveat).toEqual({
+      it: "Non dimostra denaro Kerimov verso SpaceX",
+      en: "Does not demonstrate Kerimov money going to SpaceX",
+    });
+    expect(graph.edges.some((edge) => edge.caveat === null)).toBe(true);
+    for (const id of ["G-0419", "G-0420", "G-0421", "G-0079", "G-0080", "G-0110", "G-0406"]) {
+      const record = records.get(id);
+      expect(record?.relation_class).toBe("infrastructure");
+      if (!record) throw new Error(`Missing ${id}`);
+      expect(relationGroup(record)).toBe(
+        ["G-0419", "G-0420", "G-0421"].includes(id) ? "context" : "economic_dependency",
+      );
+      expect(graph.edges.find((edge) => edge.id === id)?.group).toBe(relationGroup(record));
+    }
+    expect(graph.edges.some((edge) => edge.id === "G-0230")).toBe(false);
   });
 
   it("publishes hypotheses only in their own graph", () => {
@@ -144,6 +173,19 @@ describe("exports", () => {
     expect(files.map((f) => f.path)).toContain("schemas/exposures.schema.json");
     const manifest = buildManifest(model.dataset, files);
     expect(manifest.files).toHaveLength(files.length);
+    for (const name of ["graph.json", "hypotheses-graph.json"]) {
+      const file = files.find((item) => item.path === name);
+      const entry = manifest.files.find((item) => item.path === name);
+      if (!file) throw new Error(`Missing ${name}`);
+      expect(entry).toEqual({
+        path: name,
+        bytes: Buffer.byteLength(file.text),
+        sha256: createHash("sha256").update(file.text).digest("hex"),
+      });
+    }
+    expect(JSON.parse(files.find((f) => f.path === "hypotheses-graph.json")?.text ?? "{}")).toEqual(
+      hypothesisGraph(buildReadModel(publishedDataset(model.dataset))),
+    );
     expect(manifest.counts.exposures).toBe(14);
     expect(JSON.parse(files.find((f) => f.path === "all.json")?.text ?? "{}").events).toHaveLength(
       publishedDataset(model.dataset).events.length,

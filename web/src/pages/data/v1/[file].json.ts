@@ -1,7 +1,7 @@
 import { exportFiles } from "../../../../../src/site/exports.ts";
 import { getModel } from "../../../lib/model.ts";
 
-/** One file per collection plus `all.json` (canonical records, CC0). */
+/** Collection and graph exports share this route and the manifest byte source. */
 export function getStaticPaths() {
   return exportFiles(getModel().dataset)
     .filter((file) => !file.path.includes("/"))

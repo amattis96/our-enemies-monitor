@@ -102,11 +102,17 @@ describe("B03 fail-closed projection", () => {
     const files = exportFiles(copy);
     const relationshipsFile = files.find((file) => file.path === "relationships.json");
     const allFile = files.find((file) => file.path === "all.json");
+    const graphFile = files.find((file) => file.path === "graph.json");
     if (!relationshipsFile || !allFile) throw new Error("missing export fixture");
     const relationships = JSON.parse(relationshipsFile.text) as Dataset["relationships"];
     const all = JSON.parse(allFile.text) as Dataset;
     expect(relationships.some((r) => r.id === relation.id)).toBe(false);
     expect(all.relationships.some((r) => r.id === relation.id)).toBe(false);
+    expect(
+      JSON.parse(graphFile?.text ?? "{}").edges.some(
+        (edge: { id: string }) => edge.id === relation.id,
+      ),
+    ).toBe(false);
   });
   it("does not leak an invalid baseline source or claims citing it", () => {
     const copy = structuredClone(raw);
