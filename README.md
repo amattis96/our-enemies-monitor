@@ -129,6 +129,7 @@ No database, graph database, map tile server or paid service is needed to build 
 pnpm install
 pnpm check        # lint, typecheck, tests, data validation, schema freshness, contrast
 pnpm validate     # validate data/ only
+pnpm validate:sidecars  # check the archived M6 proposals sidecars and the ingest queue
 pnpm validate:articles  # validate content/articles/ and show the publication gate
 pnpm build        # build the static site into web/dist (with search index)
 pnpm preview      # serve the built site locally

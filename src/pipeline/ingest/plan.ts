@@ -35,7 +35,12 @@ import {
  * Every written record is a `needs_review` candidate with an empty
  * `provenance`, and carries an `[ingest <code> <ref>]` marker in its review
  * notes. The marker makes a rerun recognise its own output, so ingesting the
- * same sidecar twice plans no change.
+ * same sidecar twice plans no change. Notes copied from the sidecar are
+ * prefixed with `Sidecar note:`, so only the importer writes notes that start
+ * with the marker, and a marker counts only on a record that cites the code.
+ *
+ * Deduplication is against `data/` only: earlier sidecars must be ingested
+ * first (`pending` blocks the run), later ones are attention points.
  */
 
 export type Classification =
@@ -63,6 +68,20 @@ export type OperationOutcome = {
   /** Canonical ID created, matched or updated; null when nothing resolves. */
   id: string | null;
   reasons: string[];
+  /** Evidence of the operation that was not written (conflict on an event). */
+  unapplied?: Unapplied;
+};
+
+/**
+ * What a create_event proposed and the plan did not write: citations not
+ * already on the target, claims, and other material (differing description,
+ * themes or places, contrary evidence, sidecar notes).
+ */
+export type Unapplied = {
+  target: string | null;
+  citations: string[];
+  claims: string[];
+  other: string[];
 };
 
 export type PlannedWrite = {
@@ -87,17 +106,28 @@ export type IngestPlan = {
 
 export type IngestContext = {
   dataset: Dataset;
-  /** Other sidecars (incremental archive, open PRs) to deduplicate against. */
-  others?: ProposalFile[];
-  /** Text of the other incremental Markdown sources, by repository path. */
-  archive?: Map<string, string>;
+  /** Codes of earlier archived sidecars not yet ingested: each blocks the run. */
+  pending?: string[];
+  /** Pending codes a maintainer explicitly skipped (`--skip-pending`): recorded, not blocking. */
+  skipped?: string[];
+  /** Other archived sidecars that declare the input's code: each blocks the run. */
+  sameCode?: string[];
+  /** Later archived sidecars and `--compare` files (open PRs): attention only. */
+  later?: ProposalFile[];
+  /** Markdown sources without sidecar and not registered as corpus documents, by path. */
+  legacyMarkdown?: Map<string, string>;
   /** Whether a repository file exists (the Markdown source must be merged). */
   fileExists: (path: string) => boolean;
 };
 
 export const marker = (code: string, ref?: string) =>
   ref ? `[ingest ${code} ${ref}]` : `[ingest ${code}]`;
+/** Anchored at the very start: only notes written by the importer match. */
 const MARKER = /^\[ingest (S\d{2})(?: ([^\]]+))?\]/;
+/** Prefix of every note copied from a sidecar, so it can never read as a marker. */
+export const SIDECAR_NOTE_PREFIX = "Sidecar note:";
+const sidecarNotes = (operation: Operation) =>
+  operation.notes.map((note) => `${SIDECAR_NOTE_PREFIX} ${note.trim()}`);
 
 type AnyRecord = { id: string; review: Review } & Record<string, unknown>;
 type Citable = Event | Relationship | Hypothesis;
@@ -105,7 +135,7 @@ type Citable = Event | Relationship | Hypothesis;
 const it = (text: string): LocalizedText => ({ it: text });
 const unique = <T>(values: T[]) => [...new Set(values)];
 
-function nextId(ids: Iterable<string>, prefix: string, width: number): string {
+export function nextId(ids: Iterable<string>, prefix: string, width: number): string {
   let max = 0;
   const pattern = new RegExp(`^${prefix}(\\d+)$`);
   for (const id of ids) {
@@ -150,14 +180,45 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
   };
   const review = (notes: string[]): Review => ({ status: "needs_review", notes });
 
-  // Records already produced by an earlier run of this sidecar.
+  // Records already produced by an earlier run of this sidecar. A marker
+  // counts only on a record coherent with the code: events, relationships and
+  // hypotheses cite it, sources are it or are cited in it (entities have no
+  // sources); anything else is reported, never treated as already applied.
   const applied = new Map<string, string>();
-  for (const record of COLLECTION_NAMES.flatMap((c) => records<AnyRecord>(c))) {
-    for (const note of record.review.notes) {
-      const match = note.match(MARKER);
-      if (match?.[2] && match[1] === code) applied.set(match[2], record.id);
+  const citesCode = (collection: CollectionName, record: AnyRecord) => {
+    if (collection === "entities") return true;
+    if (collection === "sources") {
+      const source = record as unknown as Source;
+      return source.id === code || source.cited_in.includes(code);
+    }
+    return ((record as unknown as Citable).sources ?? []).includes(code);
+  };
+  for (const collection of COLLECTION_NAMES) {
+    for (const record of records<AnyRecord>(collection)) {
+      for (const note of record.review.notes) {
+        const match = note.match(MARKER);
+        if (!match?.[2] || match[1] !== code) continue;
+        if (citesCode(collection, record)) applied.set(match[2], record.id);
+        else
+          attention.push(
+            `${record.id} carries ${marker(code, match[2])} but does not cite ${code}: marker ignored`,
+          );
+      }
     }
   }
+
+  // 0. Earlier archived sidecars must be ingested first (dedupe is against data/ only).
+  for (const earlier of context.pending ?? []) {
+    fatal.push(
+      `${earlier} precedes ${code} in the archive and is not ingested: ingest ${earlier} first`,
+    );
+  }
+  for (const other of context.sameCode ?? []) {
+    fatal.push(
+      `${other} also declares ${code}: fix the archive numbering (pnpm validate:sidecars)`,
+    );
+  }
+  const skipped = context.skipped ?? [];
 
   // 1. The Markdown source itself, registered as corpus document `code`.
   if (!context.fileExists(file.source.file)) {
@@ -184,6 +245,10 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
           `${file.source.baseline_source ? `, baseline ${file.source.baseline_source}` : ""}` +
           `${file.source.repository_commit ? `, commit ${file.source.repository_commit}` : ""}), ` +
           "registered by pnpm ingest from its proposals sidecar.",
+        ...skipped.map(
+          (earlier) =>
+            `Ingested while ${earlier} was pending, skipped by maintainer (--skip-pending).`,
+        ),
       ]),
       provenance: [],
     } satisfies Source as AnyRecord);
@@ -282,10 +347,18 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
     return { id: value };
   };
 
-  const others = (context.others ?? []).filter((other) => other.source.code !== code);
-  const archive = [...(context.archive ?? new Map<string, string>())].filter(
+  const later = (context.later ?? []).filter((other) => other.source.code !== code);
+  const legacy = [...(context.legacyMarkdown ?? new Map<string, string>())].filter(
     ([path]) => path !== file.source.file,
   );
+  const sourceLabel = (id: string) => {
+    const publisher = (get(id) as Source | undefined)?.publisher;
+    return publisher ? `${id} (${publisher})` : id;
+  };
+  const describeCitation = (citation: string) => {
+    const reference = REFERENCE_KEY.test(citation) ? references.get(citation) : undefined;
+    return reference ? `${citation} ${reference.url}` : citation;
+  };
 
   for (const operation of file.operations) {
     const outcome: OperationOutcome = {
@@ -329,13 +402,7 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
 
     switch (operation.op) {
       case "create_event": {
-        const match = matchEvent(operation, records<Event>("events"));
-        if (match) {
-          done(match.kind, match.id, match.reason);
-          if (match.kind === "duplicate") local.set(operation.ref, match.id);
-          break;
-        }
-        const elsewhere = others.flatMap((other) =>
+        const elsewhere = later.flatMap((other) =>
           other.operations.flatMap((candidate) =>
             candidate.op === "create_event" && sameEvent(operation, candidate)
               ? [`${other.source.code} ${candidate.ref}`]
@@ -343,24 +410,167 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
           ),
         );
         if (elsewhere.length > 0) {
-          done("duplicate", null, `already proposed in ${elsewhere.join(", ")}`);
-          break;
+          attention.push(`${operation.ref}: also proposed by ${elsewhere.join(", ")}`);
         }
-        const archived = operation.url
-          ? archive.filter(([, text]) => text.includes(operation.url as string)).map(([p]) => p)
-          : [];
-        if (archived.length > 0) {
-          done("conflict", null, `URL already cited in ${archived.join(", ")}: check its records`);
-          break;
-        }
-        const id = nextId(collectionOf.keys(), "EXT-", 3);
-        const sources = unique([code, ...commitAll(allCitations)]);
         const claimNote = (label: string, claim: Claim | null) =>
           claim
             ? [
                 `${label} claim (${claim.evidence_level}; ${commitAll(claim.sources).join(", ")}): ${claim.text.it}`,
               ]
             : [];
+        const claimNotes = () => [
+          ...claimNote("Perpetrator", operation.claims.perpetrator),
+          ...claimNote("Sponsor", operation.claims.sponsor),
+          ...claimNote("Motive", operation.claims.motive),
+          ...claimNote("Impact", operation.claims.impact),
+        ];
+        const claims = (
+          [
+            ["Perpetrator", operation.claims.perpetrator],
+            ["Sponsor", operation.claims.sponsor],
+            ["Motive", operation.claims.motive],
+            ["Impact", operation.claims.impact],
+          ] as const
+        ).flatMap(([label, claim]) =>
+          claim
+            ? [`${label} (${claim.evidence_level}; ${claim.sources.join(", ")}): ${claim.text.it}`]
+            : [],
+        );
+        /** Material of the proposal that differs from `target` (everything when there is none). */
+        const otherMaterial = (target: Event | null) => [
+          ...(!target || target.description.it !== operation.description.it
+            ? [`description: ${operation.description.it}`]
+            : []),
+          ...(!target || [...target.themes].sort().join() !== [...operation.themes].sort().join()
+            ? [`themes: ${operation.themes.join(", ")}`]
+            : []),
+          ...((!target && operation.places.length > 0) ||
+          (target && [...target.places].sort().join() !== [...operation.places].sort().join())
+            ? [`places: ${operation.places.join(", ") || "none"}`]
+            : []),
+          ...(operation.contrary_evidence
+            ? [`contrary evidence: ${operation.contrary_evidence.it}`]
+            : []),
+          ...operation.notes.map((note) => `note: ${note.trim()}`),
+        ];
+        // Everything the operation proposed, when nothing of it is written.
+        const unappliedAll = (target: string | null): Unapplied => ({
+          target,
+          citations: unique(allCitations).map(describeCitation),
+          claims,
+          other: otherMaterial(null),
+        });
+        const dependents = () =>
+          file.operations
+            .filter((other) => {
+              const nodes =
+                other.op === "create_relationship" || other.op === "create_hypothesis"
+                  ? [other.subject, other.object, ...other.events]
+                  : [];
+              return nodes.includes(`@${operation.ref}`);
+            })
+            .map((other) => other.ref);
+
+        const match = matchEvent(operation, records<Event>("events"));
+        if (match?.kind === "conflict") {
+          done("conflict", match.id, match.reason);
+          outcome.unapplied = unappliedAll(match.id);
+          break;
+        }
+        if (match) {
+          // A duplicate keeps resolving @ref to the existing event, and never
+          // drops new material silently: it enriches a needs_review record or
+          // is a conflict listing what was not applied.
+          local.set(operation.ref, match.id);
+          const target = get(match.id) as Event & AnyRecord;
+          const differences = [
+            ...(JSON.stringify(target.date) !== JSON.stringify(operation.date)
+              ? [`date differs from ${target.id} (${target.date.start}): not applied`]
+              : []),
+            ...(target.title.it !== operation.title.it
+              ? [`title differs from ${target.id}: not applied`]
+              : []),
+          ];
+          const newCitations = unique(allCitations).filter((citation) => {
+            const resolved = preview(citation);
+            return !(
+              "id" in resolved &&
+              resolved.id !== null &&
+              target.sources.includes(resolved.id)
+            );
+          });
+          const other = otherMaterial(target);
+          if (newCitations.length === 0 && claims.length === 0 && other.length === 0) {
+            done("duplicate", target.id, match.reason);
+            outcome.reasons.push(...differences);
+            break;
+          }
+          if (target.review.status !== "needs_review") {
+            done(
+              "conflict",
+              target.id,
+              `${match.reason}, with new material; ${target.id} is ${target.review.status}: ingest only enriches unpublished needs_review candidates; an editor applies this`,
+            );
+            outcome.reasons.push(...differences);
+            outcome.unapplied = {
+              target: target.id,
+              citations: newCitations.map(describeCitation),
+              claims,
+              other,
+            };
+            const attached = dependents();
+            if (attached.length > 0) {
+              attention.push(
+                `${operation.ref}: ${attached.join(", ")} attach to ${target.id}, whose new evidence from ${operation.ref} was not applied`,
+              );
+            }
+            break;
+          }
+          const added = commitAll(allCitations).filter((id) => !target.sources.includes(id));
+          const differing = other.filter(
+            (line) =>
+              line.startsWith("description: ") ||
+              line.startsWith("themes: ") ||
+              line.startsWith("places: "),
+          );
+          put("events", {
+            ...target,
+            sources: unique([...target.sources, ...added, code]),
+            review: {
+              ...target.review,
+              notes: [
+                ...target.review.notes,
+                `${header} Duplicate of ${target.id} (${match.reason}): adds sources ${added.map(sourceLabel).join(", ") || "none"}.`,
+                ...claimNotes(),
+                ...differing.map((line) => `Proposed by ${code}, not applied: ${line}`),
+                ...(operation.contrary_evidence
+                  ? [`Contrary evidence and uncertainty: ${operation.contrary_evidence.it}`]
+                  : []),
+                ...sidecarNotes(operation),
+              ],
+            },
+          });
+          attention.push(
+            `${target.id}: enriched by duplicate create_event ${operation.ref}; check that the added sources are independent`,
+          );
+          done("enrichment", target.id, match.reason);
+          outcome.reasons.push(...differences);
+          break;
+        }
+        const archived = operation.url
+          ? legacy.filter(([, text]) => text.includes(operation.url as string)).map(([p]) => p)
+          : [];
+        if (archived.length > 0) {
+          done(
+            "conflict",
+            null,
+            `URL quoted in ${archived.join(", ")} (Markdown without sidecar, not ingested): check whether the item is already described there`,
+          );
+          outcome.unapplied = unappliedAll(null);
+          break;
+        }
+        const id = nextId(collectionOf.keys(), "EXT-", 3);
+        const sources = unique([code, ...commitAll(allCitations)]);
         put("events", {
           id,
           record_type: "event",
@@ -383,17 +593,14 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
             ...(operation.published
               ? [`New evidence published ${operation.published}; the date is that of the conduct.`]
               : []),
-            ...claimNote("Perpetrator", operation.claims.perpetrator),
-            ...claimNote("Sponsor", operation.claims.sponsor),
-            ...claimNote("Motive", operation.claims.motive),
-            ...claimNote("Impact", operation.claims.impact),
+            ...claimNotes(),
             ...(operation.contrary_evidence
               ? [`Contrary evidence and uncertainty: ${operation.contrary_evidence.it}`]
               : []),
             ...(operation.related.length > 0
               ? [`Context only, not a duplicate or causal link: ${operation.related.join(", ")}.`]
               : []),
-            ...operation.notes,
+            ...sidecarNotes(operation),
           ]),
           provenance: [],
         } satisfies Event as AnyRecord);
@@ -441,7 +648,7 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
             ...(operation.public_relevance
               ? [`Public relevance: ${operation.public_relevance.it}`]
               : []),
-            ...operation.notes,
+            ...sidecarNotes(operation),
           ]),
           provenance: [],
         } satisfies Entity as AnyRecord);
@@ -504,7 +711,7 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
                   `Legal/procedural status at ${operation.person_status.status_date}: ${operation.person_status.legal_status.it}`,
                 ]
               : []),
-            ...operation.notes,
+            ...sidecarNotes(operation),
           ]),
           provenance: [],
         } satisfies Relationship as AnyRecord);
@@ -560,7 +767,7 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
               ? [`${code} gives no priority; 'medium' is a provisional editorial placeholder.`]
               : []),
             "The subject/object are anchors for the graph of hypotheses and do not assert a link between them.",
-            ...operation.notes,
+            ...sidecarNotes(operation),
           ]),
           provenance: [],
         } satisfies Hypothesis as AnyRecord);
@@ -624,13 +831,41 @@ export function planIngest(file: ProposalFile, context: IngestContext): IngestPl
           sources,
           review: {
             ...target.review,
-            notes: [...target.review.notes, `${note} [${added.join(", ")}]`, ...operation.notes],
+            notes: [
+              ...target.review.notes,
+              `${note} [${added.join(", ")}]`,
+              ...sidecarNotes(operation),
+            ],
           },
         });
         done("enrichment", target.id);
         break;
       }
     }
+  }
+
+  // The corpus document records the outcome, so evidence that was not
+  // applied stays traceable in data/ and not only in the run's report.
+  if (touched.get(code) === "create") {
+    const corpusRecord = get(code) as AnyRecord;
+    const counts = CLASSIFICATIONS.map(
+      (c) => `${outcomes.filter((o) => o.classification === c).length} ${c}`,
+    ).join(", ");
+    const listed = (classification: Classification) =>
+      outcomes
+        .filter((o) => o.classification === classification)
+        .map((o) => (o.id ? `${o.ref} → ${o.id}` : o.ref));
+    const unappliedRefs = outcomes
+      .filter((o) => o.unapplied)
+      .map((o) => (o.unapplied?.target ? `${o.ref} → ${o.unapplied.target}` : o.ref));
+    corpusRecord.review.notes.push(
+      [
+        `Ingest outcome: ${counts}.`,
+        ...(unappliedRefs.length > 0 ? [`Evidence not applied: ${unappliedRefs.join("; ")}.`] : []),
+        ...(listed("conflict").length > 0 ? [`Conflicts: ${listed("conflict").join("; ")}.`] : []),
+        ...(listed("rejected").length > 0 ? [`Rejected: ${listed("rejected").join("; ")}.`] : []),
+      ].join(" "),
+    );
   }
 
   // Guard: an update never changes provenance or review status.

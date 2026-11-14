@@ -57,9 +57,10 @@ A change whose docs describe something the code does not do is incomplete.
 
 ```bash
 pnpm install            # exact pinned versions
-pnpm check              # everything CI runs: lint, typecheck, test, validate, schema freshness, contrast
+pnpm check              # everything CI runs: lint, typecheck, test, validate, sidecars, articles, schema freshness, M5 audit, contrast
 pnpm check:contrast     # WCAG contrast of the Dossier colour tokens (docs/design/tokens.css)
 pnpm validate           # data validation only (errors fail, warnings print)
+pnpm validate:sidecars  # archived sources/incremental/*.proposals.json + ingest queue
 pnpm validate:articles  # content/articles/ validation + publication gate report
 pnpm articles:hash [--write]  # English source_hash of each article
 pnpm test               # Vitest
@@ -187,7 +188,11 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
   open a PR. Never hand-extract records from the Markdown, never edit the
   sidecar or Markdown, never apply a `propose_correction` yourself, and
   resolve `conflict`/`rejected` operations by asking the maintainer rather
-  than forcing them in. Ingest is never wired into CI or run on merge.
+  than forcing them in. Ingest sidecars in archive order (by `Fonte_NN`),
+  one per PR, never skipping an earlier one: `pnpm ingest` refuses while an
+  earlier archived sidecar is not ingested. Never pass `--skip-pending`
+  yourself: it is a maintainer-only escape; ask instead. Ingest is never
+  wired into CI or run on merge.
 - **Sidecar contract changes:** bump `schema_version`, run `pnpm schemas`,
   update the tests, `docs/M6_CHATGPT_OSINT_WORKFLOW.md` §4 and the Task A
   prompt text (§4.6) in the same change. Do not relax the person,

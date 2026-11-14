@@ -377,7 +377,7 @@ Legenda modelli: `m` = sforzo medio, `a` = sforzo alto (vedi §2.1). Aggiornare 
 | B01 | proposto | Opus·m / Sonnet·m | — | — | — | |
 | B02 | proposto | Sonnet·a / Sonnet·a | — | — | — | |
 | B03 | proposto | Opus·m / Sonnet·a | — | — | — | |
-| B04 | in analisi | Opus·m / Opus·m | — | — | — | priorità alta: secondo sidecar imminente |
+| B04 | committato | Opus·m / Opus·m | [B04_ANALYSIS.md](blocks/B04_ANALYSIS.md) | sul ramo | `pnpm check` verde, 143 test; review Sonnet: 10 rilievi, chiusi tranne #7 (verificato non necessario) e #8 (documentato) | priorità alta: secondo sidecar imminente |
 | B05 | proposto | Opus·m / Sonnet·a | — | — | — | |
 | B06 | proposto | Sonnet·a / Sonnet·m | — | — | — | |
 | B07 | proposto | Sonnet·m / Sonnet·m | — | — | — | |

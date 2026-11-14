@@ -10,6 +10,8 @@ export type IngestReport = {
   operations: IngestPlan["operations"];
   writes: { action: "create" | "update"; path: string; record: unknown }[];
   attention: string[];
+  /** Problems that do not block this ingest (e.g. other sidecars that are not valid). */
+  warnings: string[];
   validation: Issue[];
   /** Paths actually written (write mode only). */
   written: string[];
@@ -20,6 +22,7 @@ export function buildReport(
   validation: Issue[],
   mode: IngestReport["mode"],
   written: string[] = [],
+  warnings: string[] = [],
 ): IngestReport {
   const summary = Object.fromEntries(CLASSIFICATIONS.map((c) => [c, 0]));
   for (const operation of plan.operations)
@@ -33,6 +36,7 @@ export function buildReport(
     operations: plan.operations,
     writes: plan.writes.map(({ action, path, record }) => ({ action, path, record })),
     attention: plan.attention,
+    warnings,
     validation,
     written,
   };
@@ -70,8 +74,24 @@ export function renderReport(report: IngestReport): string {
     ...creates.map((p) => `  + ${p}`),
     ...updates.map((p) => `  ~ ${p}`),
   );
+  const unapplied = report.operations.flatMap((o) =>
+    o.unapplied ? [{ ...o.unapplied, ref: o.ref }] : [],
+  );
+  if (unapplied.length > 0) {
+    lines.push("", "Evidence not applied (an editor decides):");
+    for (const u of unapplied) {
+      lines.push(
+        `  - ${u.ref} → ${u.target}`,
+        ...u.citations.map((c) => `      citation: ${c}`),
+        ...u.claims.map((c) => `      claim: ${c}`),
+      );
+    }
+  }
   if (report.attention.length > 0) {
     lines.push("", "Attention:", ...report.attention.map((a) => `  - ${a}`));
+  }
+  if (report.warnings.length > 0) {
+    lines.push("", "Warnings:", ...report.warnings.map((w) => `  - ${w}`));
   }
   const errors = report.validation.filter((i) => i.severity === "error");
   const warnings = report.validation.filter((i) => i.severity === "warning");

@@ -86,7 +86,8 @@ src/
     diff.ts            Evidence diff between two versions of data/
     articles.ts        Article file loading, front matter parsing, schema and reference checks
     ingest/            M6 sidecar reconciliation (plan.ts), matching (match.ts),
-                       validation/writing of the plan (apply.ts), reports (report.ts)
+                       archive order and checks (archive.ts), validation/writing
+                       of the plan (apply.ts), reports (report.ts)
   site/                Read model (indexes, restriction rule, graph, timeline and
                        atlas projections), i18n strings, formatting, data exports,
                        articles.ts (article publication gate, back-links, HTML and
@@ -331,9 +332,19 @@ touching disk:
 
 - matches by ID, normalized entity names/aliases, event URL and date overlap
   plus title similarity, relationship triple, hypothesis type, and source URL
-  (an existing source is reused, not duplicated). It also matches against the
-  other archived sidecars, `--compare` files (open PRs) and URLs already quoted in
-  other incremental Markdown;
+  (an existing source is reused, not duplicated). It deduplicates **only
+  against `data/`**; an event `url` quoted in an archived Markdown that has no
+  sidecar and is not registered as a corpus document (today Fonte_10 and
+  Fonte_11) is a `conflict`;
+- a duplicate `create_event` that brings new material (citations, claims,
+  contrary evidence, notes, a different description, themes or places) never
+  drops it silently: it is an `enrichment` of a `needs_review` record (sources
+  with the publisher of each added one, claim notes, the differing fields as
+  "not applied" notes), otherwise a `conflict` whose `unapplied` field lists
+  the material not written. A near-duplicate or legacy-URL `conflict` lists
+  the whole proposal. Its `@ref` resolves to the existing event, so dependent
+  relationships are not rejected; when the event is published, an attention
+  point names those dependents;
 - classifies each operation as `new`, `enrichment`, `duplicate`,
   `already_applied`, `conflict` or `rejected` (e.g. a relationship touching a
   person without `primary_url` and legal/procedural status with date);
@@ -341,7 +352,26 @@ touching disk:
   with empty `provenance`. It enriches only records that are already
   `needs_review`, so the public M5 projection does not change (tested);
 - marks each written record with an `[ingest <code> <ref>]` review note, so a
-  rerun is `already_applied` and writes nothing (idempotent).
+  rerun is `already_applied` and writes nothing (idempotent). Notes copied
+  from the sidecar are prefixed `Sidecar note:`, so only the importer writes
+  notes that start with a marker; a marker counts only on a record that cites
+  the code (entities excepted), otherwise it is an attention point.
+
+Sidecars are ingested in one total order (`src/pipeline/ingest/archive.ts`:
+source number, then `created_at`, then file name). A sidecar is *ingested*
+when `data/sources` holds its corpus document with the sidecar's Markdown in
+`files`. While an earlier archived sidecar is not ingested, the run is blocked
+("ingest S12 first"); so is another archived sidecar declaring the same
+code. Later archived sidecars and `--compare` files (open PRs) only add "also
+proposed by" attention points. `--skip-pending S<NN>` is a **human-only**
+escape for an earlier sidecar whose plan can never be ingested: it is a
+report warning and a note on the new corpus document; agents must ask the
+maintainer instead of using it. The corpus document also records the outcome
+(counts per classification, operations with evidence not applied, conflicts,
+rejections), and `--write` writes it last, so a crash cannot mark a partial
+import as ingested. An invalid archived or
+`--compare` sidecar is a warning in the report; an invalid input sidecar
+stops the run with a readable message.
 
 `apply.ts` validates `data/` as it would be after the plan with the full
 validator. `src/cli/ingest.ts` prints the text or JSON report and, with
@@ -370,7 +400,11 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 - `pnpm schemas` regenerates `schemas/*.schema.json` (collections and the
   proposals sidecar); `pnpm check` fails if they are stale.
 - `pnpm format:data` rewrites data files in canonical form.
-- `pnpm check` = lint + typecheck + tests + validate + schema freshness.
+- `pnpm check` = lint + typecheck + tests + validate + sidecar check +
+  article validation + schema freshness + M5 audit + contrast.
+- `pnpm validate:sidecars` checks every archived
+  `sources/incremental/*.proposals.json` (see Validation rules, 12) and lists
+  the sidecars not yet ingested, in ingest order (part of `pnpm check`).
 - `pnpm build` builds the site into `web/dist/` and indexes it with Pagefind;
   `pnpm dev` / `pnpm preview` serve it locally (search works only on a build).
 - `pnpm check:links` verifies every internal link and `#anchor` of the built
@@ -378,7 +412,7 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 - `pnpm data:diff` writes the evidence diff of `data/` against a Git ref
   (see Editorial workflow).
 - `pnpm ingest <Fonte_XX.proposals.json> [--write] [--json] [--report f]
-  [--compare f]` plans (dry run) or writes the candidates of an M6 sidecar
+  [--compare f] [--skip-pending S<NN>]` plans (dry run) or writes the candidates of an M6 sidecar
   (see Incremental ingest).
 - `pnpm validate:articles` validates `content/articles/` and lists which
   articles the publication gate shows or withholds, and why (part of
@@ -408,6 +442,15 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    and source code exists in `data/`, no duplicate links, `updated >= date`,
    fixture rules, English source hash, and a Markdown body without raw HTML
    or level-1 headings. A fixture that links a withheld record is an error.
+12. Archived sidecars (`pnpm validate:sidecars`): each passes the
+   `ProposalFile` contract; it is named `Fonte_NN.proposals.json` with
+   `source.code` `SNN`; its `source.file` is in `sources/incremental/` with the
+   same number; at most one Markdown and one sidecar per `Fonte_NN`; code and
+   file unique among sidecars; no three-digit `Fonte_NNN` (IDs are `S\d{2}`);
+   the code is not registered in `data/sources` for another file. Warnings:
+   Markdown from Fonte_12 on without a sidecar, sidecars not yet ingested.
+   Files that are neither `*.proposals.json` nor `Fonte_*` Markdown (e.g. a
+   README) are ignored.
 
 ## Website
 
