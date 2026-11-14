@@ -108,10 +108,57 @@ describe("validator", () => {
     expect(messages).toContain("entities/RU.json: not in canonical form (run pnpm format:data)");
   });
 
-  it("warns about named persons without a primary source", () => {
-    const warnings = validateDataFiles(baseline).issues.filter((i) => i.severity === "warning");
-    expect(warnings.length).toBeGreaterThan(0);
-    expect(warnings.every((w) => w.message.includes("without primary_url"))).toBe(true);
+  it("reports every missing person URL and classifies heuristic warnings separately", () => {
+    const data = importBaseline();
+    const persons = new Set(
+      data.entities.filter((entity) => entity.kind === "person").map((entity) => entity.id),
+    );
+    const missingPaths = data.relationships
+      .filter(
+        (relation) =>
+          relation.primary_url === null &&
+          (persons.has(relation.subject) || persons.has(relation.object)),
+      )
+      .map((relation) => `relationships/${relation.id}.json`)
+      .sort();
+    expect(missingPaths.length).toBeGreaterThan(0);
+
+    const personName =
+      /^\p{Lu}[\p{Ll}\p{M}]+(?:['’-]\p{Lu}?[\p{Ll}\p{M}]+)*(?:\s+\p{Lu}[\p{Ll}\p{M}]+(?:['’-]\p{Lu}?[\p{Ll}\p{M}]+)*){1,3}$/u;
+    const heuristicPaths = data.entities
+      .filter(
+        (entity) =>
+          entity.kind !== "person" &&
+          (entity.domain === "persons" || personName.test(entity.name.it.trim())),
+      )
+      .filter((entity) =>
+        data.relationships.some(
+          (relation) => relation.subject === entity.id || relation.object === entity.id,
+        ),
+      )
+      .map((entity) => `entities/${entity.id}.json`)
+      .sort();
+    expect(heuristicPaths.length).toBeGreaterThan(0);
+
+    const warnings = validateDataFiles(baseline).issues.filter(
+      (issue) => issue.severity === "warning",
+    );
+    const missing = warnings.filter((issue) => issue.message.includes("without primary_url"));
+    const heuristic = warnings.filter((issue) =>
+      issue.message.startsWith("possible person classification; relationships: "),
+    );
+    expect(missing.map((issue) => issue.file).sort()).toEqual(missingPaths);
+    expect(heuristic.map((issue) => issue.file).sort()).toEqual(heuristicPaths);
+    expect(warnings).toHaveLength(missing.length + heuristic.length);
+    for (const issue of heuristic) {
+      const id = issue.file.slice("entities/".length, -".json".length);
+      const related = data.relationships
+        .filter((relation) => relation.subject === id || relation.object === id)
+        .map((relation) => relation.id);
+      expect(issue.message).toBe(
+        `possible person classification; relationships: ${related.join(", ")}`,
+      );
+    }
   });
 });
 
@@ -161,5 +208,45 @@ describe("validator (M3 rules)", () => {
         r.country = "RU";
       }),
     ).toContainEqual(expect.stringContaining("country must be set for states and only for states"));
+  });
+});
+
+describe("B03 validation", () => {
+  it("rejects missing original provenance for each collection", () => {
+    const data = validateDataFiles(readDataFiles()).dataset;
+    for (const collection of Object.keys(data) as (keyof typeof data)[]) {
+      const copy = structuredClone(data);
+      const record = copy[collection].find((r) => r.review.status === "imported_unreviewed");
+      if (!record) throw new Error(`missing ${collection} fixture`);
+      record.provenance = [];
+      const issues = validateDataFiles(datasetToFiles(copy)).issues;
+      expect(
+        issues.some(
+          (i) =>
+            i.severity === "error" &&
+            i.file === `${collection}/${record.id}.json` &&
+            i.message.includes("requires original provenance"),
+        ),
+      ).toBe(true);
+    }
+  });
+  it("reports inconsistent pairs and unregistered person links", () => {
+    const copy = validateDataFiles(readDataFiles()).dataset;
+    const personLink = copy.relationships.find((r) => r.id === "G-0230");
+    if (!personLink) throw new Error("missing person link fixture");
+    personLink.primary_url = "https://example.com/";
+    personLink.evidence_status =
+      personLink.evidence_status === "documented" ? "allegation" : "documented";
+    const issues = validateDataFiles(datasetToFiles(copy)).issues.filter(
+      (i) => i.file === "relationships/G-0230.json",
+    );
+    expect(
+      issues.some((i) => i.severity === "error" && i.message.includes("inconsistent evidence")),
+    ).toBe(true);
+    expect(
+      issues.some(
+        (i) => i.severity === "warning" && i.message.includes("unregistered primary_url"),
+      ),
+    ).toBe(true);
   });
 });

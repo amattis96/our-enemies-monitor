@@ -87,3 +87,66 @@ describe("M5 publication quarantine", () => {
     expect(JSON.stringify(raw)).toBe(snapshot);
   });
 });
+
+describe("B03 fail-closed projection", () => {
+  it("quarantines arbitrary URLs in public data, graph and raw read model", () => {
+    const copy = structuredClone(raw);
+    const relation = copy.relationships.find((r) => r.id === "G-0230");
+    if (!relation) throw new Error("missing relation fixture");
+    relation.primary_url = "https://example.com/";
+    expect(buildReadModel(copy).isRestricted(relation)).toBe(true);
+    expect(publishedDataset(copy).relationships.some((r) => r.id === relation.id)).toBe(false);
+    expect(evidenceGraph(buildReadModel(copy)).edges.some((edge) => edge.id === relation.id)).toBe(
+      false,
+    );
+    const files = exportFiles(copy);
+    const relationshipsFile = files.find((file) => file.path === "relationships.json");
+    const allFile = files.find((file) => file.path === "all.json");
+    if (!relationshipsFile || !allFile) throw new Error("missing export fixture");
+    const relationships = JSON.parse(relationshipsFile.text) as Dataset["relationships"];
+    const all = JSON.parse(allFile.text) as Dataset;
+    expect(relationships.some((r) => r.id === relation.id)).toBe(false);
+    expect(all.relationships.some((r) => r.id === relation.id)).toBe(false);
+  });
+  it("does not leak an invalid baseline source or claims citing it", () => {
+    const copy = structuredClone(raw);
+    const event = copy.events.find(
+      (e) => visible.events.some((v) => v.id === e.id) && e.sources.length > 0,
+    );
+    if (!event) throw new Error("missing event fixture");
+    const source = copy.sources.find((s) => s.id === event.sources[0]);
+    if (!source) throw new Error("missing source fixture");
+    source.review.status = "imported_unreviewed";
+    source.provenance = [];
+    const projected = publishedDataset(copy);
+    expect(projected.sources.some((s) => s.id === source.id)).toBe(false);
+    expect(
+      [
+        ...projected.events,
+        ...projected.relationships,
+        ...projected.hypotheses,
+        ...projected.exposures,
+      ].every((r) => !r.sources.includes(source.id)),
+    ).toBe(true);
+    source.review.status = "needs_review";
+    const withMetadata = publishedDataset(copy);
+    expect(withMetadata.events.some((e) => e.id === event.id)).toBe(true);
+    expect(
+      withMetadata.sources.some((s) => s.id === source.id && s.review.status === "needs_review"),
+    ).toBe(true);
+  });
+  it("excludes invalid imported baselines in all collections", () => {
+    for (const collection of Object.keys(raw) as (keyof Dataset)[]) {
+      const copy = structuredClone(raw);
+      const record = copy[collection].find(
+        (r) =>
+          r.review.status === "imported_unreviewed" &&
+          visible[collection].some((v) => v.id === r.id),
+      );
+      if (!record) throw new Error(`missing ${collection} fixture`);
+      expect(publishedDataset(copy)[collection].some((r) => r.id === record.id)).toBe(true);
+      record.provenance = [];
+      expect(publishedDataset(copy)[collection].some((r) => r.id === record.id)).toBe(false);
+    }
+  });
+});

@@ -1,5 +1,6 @@
 import { existsSync } from "node:fs";
 import { isDeepStrictEqual } from "node:util";
+import { readM5References } from "../editorial/m5.ts";
 import {
   COLLECTION_NAMES,
   COLLECTIONS,
@@ -9,6 +10,13 @@ import {
   RELATION_CLASS_GROUP,
   type Review,
 } from "../model/index.ts";
+import {
+  consistentEvidence,
+  hasOriginalProvenance,
+  type M5References,
+  personReference,
+  suspectPerson,
+} from "./evidence-policy.ts";
 import type { DataFile } from "./load.ts";
 import { repoPath } from "./paths.ts";
 import { serializeRecord } from "./serialize.ts";
@@ -30,6 +38,7 @@ export type ValidationResult = {
 export function validateDataFiles(
   files: DataFile[],
   reader = new SourceReader(),
+  references: M5References = readM5References(),
 ): ValidationResult {
   const issues: Issue[] = [];
   const dataset: Dataset = {
@@ -145,9 +154,12 @@ export function validateDataFiles(
 
   // 7. Provenance still matches the original files
   const all = COLLECTION_NAMES.flatMap(
-    (c): { id: string; provenance: ProvenanceEntry[] }[] => dataset[c],
+    (c): { id: string; provenance: ProvenanceEntry[]; review: Review }[] => dataset[c],
   );
   for (const record of all) {
+    if (record.review.status === "imported_unreviewed" && !hasOriginalProvenance(record)) {
+      error(pathOf(record.id), "imported_unreviewed requires original provenance");
+    }
     for (const entry of record.provenance) {
       const problem = checkProvenance(entry, reader);
       if (problem) error(pathOf(record.id), `provenance ${entry.file}: ${problem}`);
@@ -158,9 +170,29 @@ export function validateDataFiles(
   const persons = new Set(dataset.entities.filter((e) => e.kind === "person").map((e) => e.id));
   for (const relationship of dataset.relationships) {
     const person = [relationship.subject, relationship.object].find((id) => persons.has(id));
-    if (person && relationship.primary_url === null) {
-      warning(pathOf(relationship.id), `involves person "${person}" without primary_url`);
+    if (!consistentEvidence(relationship))
+      error(pathOf(relationship.id), "inconsistent evidence_level and evidence_status");
+    if (person) {
+      const match = personReference(relationship, dataset.sources, references);
+      if (match === "missing")
+        warning(pathOf(relationship.id), `involves person "${person}" without primary_url`);
+      if (match === "unregistered")
+        warning(
+          pathOf(relationship.id),
+          `involves person "${person}" with unregistered primary_url`,
+        );
     }
+  }
+
+  for (const entity of dataset.entities.filter(suspectPerson)) {
+    const related = dataset.relationships
+      .filter((r) => r.subject === entity.id || r.object === entity.id)
+      .map((r) => r.id);
+    if (related.length)
+      warning(
+        pathOf(entity.id),
+        `possible person classification; relationships: ${related.join(", ")}`,
+      );
   }
 
   return { issues, dataset };

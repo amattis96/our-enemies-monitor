@@ -1,14 +1,32 @@
-import type { Dataset, Review } from "../model/index.ts";
+import { readM5References } from "../editorial/m5.ts";
+import type { Dataset } from "../model/index.ts";
+import {
+  type M5References,
+  personReference,
+  publicationEligible,
+} from "../pipeline/evidence-policy.ts";
 
 /**
  * Build a public projection without changing the canonical Git archive.
  * The legacy imported baseline remains visible but is explicitly provisional.
  * Unreviewed proposals, pending events and unsourced person links do not publish.
  */
-export function publishedDataset(dataset: Dataset): Dataset {
-  const eligible = (record: { review: Review }) => record.review.status !== "needs_review";
+export function publishedDataset(
+  dataset: Dataset,
+  references: M5References = readM5References(),
+): Dataset {
+  const invalidSources = new Set(
+    dataset.sources
+      .filter(
+        (source) => source.review.status === "imported_unreviewed" && !publicationEligible(source),
+      )
+      .map((source) => source.id),
+  );
+  const eligible = publicationEligible;
+  const sourcesValid = (record: { sources: string[] }) =>
+    record.sources.every((id) => !invalidSources.has(id));
   const events = dataset.events.filter(
-    (event) => eligible(event) && event.timeline_status === "integrated",
+    (event) => eligible(event) && sourcesValid(event) && event.timeline_status === "integrated",
   );
   const entities = dataset.entities.filter(eligible);
   const eventIds = new Set(events.map((event) => event.id));
@@ -23,21 +41,27 @@ export function publishedDataset(dataset: Dataset): Dataset {
   const relationships = dataset.relationships.filter(
     (relation) =>
       eligible(relation) &&
+      sourcesValid(relation) &&
       linked(relation) &&
-      (relation.primary_url !== null ||
-        (!persons.has(relation.subject) && !persons.has(relation.object))),
+      ((!persons.has(relation.subject) && !persons.has(relation.object)) ||
+        !["missing", "unregistered"].includes(
+          personReference(relation, dataset.sources, references),
+        )),
   );
   const hypotheses = dataset.hypotheses.filter(
-    (hypothesis) => eligible(hypothesis) && linked(hypothesis),
+    (hypothesis) => eligible(hypothesis) && sourcesValid(hypothesis) && linked(hypothesis),
   );
-  const exposures = dataset.exposures.filter(eligible);
+  const exposures = dataset.exposures.filter((record) => eligible(record) && sourcesValid(record));
 
   // A published claim may cite a source whose metadata is still under review.
   // Keep that reference with its real review status instead of breaking links.
   const cited = new Set(
     [...events, ...relationships, ...hypotheses, ...exposures].flatMap((record) => record.sources),
   );
-  const selected = dataset.sources.filter((source) => eligible(source) || cited.has(source.id));
+  const selected = dataset.sources.filter(
+    (source) =>
+      eligible(source) || (source.review.status === "needs_review" && cited.has(source.id)),
+  );
   const sourceIds = new Set(selected.map((source) => source.id));
   const sources = selected.map((source) => ({
     ...source,

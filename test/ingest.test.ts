@@ -440,6 +440,11 @@ describe("pnpm ingest CLI", () => {
     const root = mkdtempSync(path.join(tmpdir(), "oem-ingest-"));
     try {
       mkdirSync(path.join(root, "sources", "incremental"), { recursive: true });
+      mkdirSync(path.join(root, "docs", "audit"), { recursive: true });
+      cpSync(
+        repoPath("docs/audit/M5_2026-11-12.json"),
+        path.join(root, "docs/audit/M5_2026-11-12.json"),
+      );
       symlinkSync(repoPath("sources/original"), path.join(root, "sources", "original"));
       cpSync(repoPath("sources/incremental"), path.join(root, "sources", "incremental"), {
         recursive: true,

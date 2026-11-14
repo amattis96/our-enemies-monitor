@@ -593,6 +593,11 @@ describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R
   beforeAll(() => {
     root = mkdtempSync(path.join(tmpdir(), "oem-ingest-archive-"));
     mkdirSync(path.join(root, "sources"), { recursive: true });
+    mkdirSync(path.join(root, "docs", "audit"), { recursive: true });
+    cpSync(
+      repoPath("docs/audit/M5_2026-11-12.json"),
+      path.join(root, "docs/audit/M5_2026-11-12.json"),
+    );
     symlinkSync(repoPath("sources/original"), path.join(root, "sources", "original"));
     cpSync(repoPath("data"), path.join(root, "data"), { recursive: true });
   });

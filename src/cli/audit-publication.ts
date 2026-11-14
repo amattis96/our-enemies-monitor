@@ -1,3 +1,5 @@
+import { readM5References } from "../editorial/m5.ts";
+import { personReference } from "../pipeline/evidence-policy.ts";
 import { readDataFiles } from "../pipeline/load.ts";
 import { summarize, validateDataFiles } from "../pipeline/validate.ts";
 import { publishedDataset } from "../site/publication.ts";
@@ -30,6 +32,20 @@ if (errors.length > 0) {
       review_status: relation.review.status,
       reason: "missing primary_url for a named-person relationship",
     }));
+  const references = readM5References();
+  const unregisteredPrimary = dataset.relationships
+    .filter(
+      (relation) =>
+        (persons.has(relation.subject) || persons.has(relation.object)) &&
+        personReference(relation, dataset.sources, references) === "unregistered",
+    )
+    .sort((a, b) => a.id.localeCompare(b.id))
+    .map((relation) => ({
+      id: relation.id,
+      primary_url: relation.primary_url,
+      source_ids: relation.sources,
+      reason: "primary_url is not registered for this relationship",
+    }));
   const countsByReview = (collection: keyof typeof dataset) =>
     Object.fromEntries(
       ["imported_unreviewed", "needs_review", "reviewed"].map((status) => [
@@ -50,6 +66,7 @@ if (errors.length > 0) {
           ]),
         ),
         named_person_relationships_missing_primary: missingPrimary,
+        named_person_relationships_unregistered_primary: unregisteredPrimary,
       },
       null,
       2,

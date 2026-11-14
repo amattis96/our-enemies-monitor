@@ -121,12 +121,17 @@ CONTRIBUTING.md        Contribution and evidence rules (EN/IT)
 `src/site/publication.ts` builds a **public projection** without changing canonical
 records or immutable sources. Both the HTML read model and `data/v1/` exports
 apply this projection. `needs_review` records, `pending_integration` events and
-named-person relationships without `primary_url` are excluded. Related edges
+named-person relationships with a missing or unregistered `primary_url` are excluded. An `imported_unreviewed` record must have provenance under `sources/original/`, checked against the original by validation. Related edges
 and hypotheses whose endpoints would become dangling are also omitted.
 Supporting source metadata is retained when a visible record cites it, with
-its real review state. Historical `imported_unreviewed` baseline records remain
+its real review state, including `needs_review`; an invalid imported baseline source and claims citing it are withheld. Historical `imported_unreviewed` baseline records remain
 visible as **provisional** research, not editorially verified findings.
-`reviewed` does not waive the person-primary-source requirement.
+`reviewed` does not waive the person-primary-source requirement. The shared pure
+`src/pipeline/evidence-policy.ts` uses exact URL equality against a source cited
+by that relationship, the M5 matched reference for the same relationship ID,
+or the same relationship's original row and URL. The last is a provisional
+legacy compatibility rule, not source authentication or human approval. The
+M5 loader fails on a missing or invalid registry; it is server-side only.
 
 The [M5 evidence audit register](M5_EVIDENCE_AUDIT.md) and the structured
 [26-source / 36-relationship / 30-decision / 20-claim file](audit/M5_2026-11-12.json)
@@ -136,7 +141,7 @@ editorial approvals against canonical JSON. `pnpm audit:m5` runs in CI, without
 marking unapproved claims as reviewed or modifying original provenance.
 
 `pnpm audit:publication` lists canonical/public counts, states per collection and
-named-person links missing a primary reference. This is an audit work queue,
+named-person links missing a primary reference or carrying an unregistered URL in separate lists. This is an audit work queue,
 not a declaration that source URLs or all baseline claims are verified.
 Canonical Git history remains public: this is an editorial publication policy,
 not a confidentiality boundary.
@@ -434,14 +439,18 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    An `event_participation` relationship must have an event endpoint;
    subject and object differ.
 6. Dates are real calendar dates, match their precision, and `end >= start`.
-7. Every `provenance` entry still equals its row/line in `sources/original/`.
+7. Every `provenance` entry still equals its referenced row/line; `imported_unreviewed` requires at least one entry under `sources/original/`.
 8. Event places and state countries are real ISO 3166-1 codes; only states
    have a country.
 9. Translations: English texts require a `review.translations.en` state, must
    be complete for the record, and the `source_hash` must match the current
    Italian (a changed Italian text makes the translation stale → error).
-10. Warning: relationships touching a `person` entity without a `primary_url`
-   (they will be restricted on the public site until reviewed).
+10. Warning: person relationships with missing or unregistered `primary_url` are
+   withheld. A separate Unicode name/domain heuristic warns once per non-person
+   entity with relationships; it has false positives and negatives and does not
+   classify or block entities. Relationship evidence pairs E1/documented,
+   E2/institutional_attribution, E3/corroborated and E4/allegation are enforced
+   as errors provisionally, pending ADR-04/B18, not as a ranking of truth.
 11. Articles (`pnpm validate:articles`): front matter schema, file name = ID,
    Italian file present, every linked event/entity/relationship/hypothesis
    and source code exists in `data/`, no duplicate links, `updated >= date`,
@@ -497,10 +506,10 @@ timestamp, so a mirror built from the same commit publishes identical files).
 
 Public-facing rules implemented in the read model and tested:
 
-- **Restriction:** a relationship touching a `person` without `primary_url`
-  is shown only as "restricted, pending primary source" (no predicate or
-  caveat) and is excluded from the graph JSON and atlas roles (36 in the
-  baseline).
+- **Restriction:** a relationship touching a `person` with a missing or
+  unregistered `primary_url` is withheld from public pages, graphs, atlas roles
+  and exports. The historical M5 intake identified 36 such links; after the
+  first source-matching pass, `G-0230` remains withheld in the current dataset.
 - **Separation:** the evidence graph contains only `G-*` relationships; the
   hypothesis graph only `H*`. Nothing infers paths or transitive edges. The
   atlas never derives responsibility from location.

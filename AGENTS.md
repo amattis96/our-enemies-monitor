@@ -238,10 +238,10 @@ must be aligned with these rules when the settings change.
 
 `src/site/publication.ts` applies the same policy to pages, graphs and exports:
 `needs_review` candidates, pending timeline records and named-person links
-without `primary_url` are excluded. Historical `imported_unreviewed` records
+with a missing or unregistered `primary_url` are excluded. `imported_unreviewed` requires provenance under `sources/original/`, verified by validation. A person URL must exactly match a directly cited source, the M5 reference for that relationship, or the same relationship's original row and URL. These structural matches, including the legacy exception, do not certify the claim or constitute human approval. Historical `imported_unreviewed` records
 remain provisionally visible, **not** as verified facts. Never change a review
 status just to force publication: validate the specific claim first. Run
-`pnpm audit:publication` to list missing primary links and review counts.
+`pnpm audit:publication` to list missing and unregistered primary links separately and review counts. The name/domain heuristic warns about possible person misclassification without blocking or reclassifying entities; the current four evidence level/status pairs are provisional validation rules pending B18.
 Canonical data remains available in Git even when withheld from the portal.
 The structured M5 audit in `docs/audit/M5_2026-11-12.json` records source
 matching, the disposition proposed for every Fonte_09 candidate, and atomic

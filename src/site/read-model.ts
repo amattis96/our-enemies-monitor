@@ -1,3 +1,4 @@
+import { readM5References } from "../editorial/m5.ts";
 import {
   type Dataset,
   type Entity,
@@ -11,6 +12,7 @@ import {
   type Relationship,
   type Source,
 } from "../model/index.ts";
+import { type M5References, personReference } from "../pipeline/evidence-policy.ts";
 import { readDataFiles } from "../pipeline/load.ts";
 import { validateDataFiles } from "../pipeline/validate.ts";
 import { textOf } from "./i18n.ts";
@@ -56,7 +58,10 @@ export function loadReadModel(): ReadModel {
   return buildReadModel(dataset);
 }
 
-export function buildReadModel(dataset: Dataset): ReadModel {
+export function buildReadModel(
+  dataset: Dataset,
+  references: M5References = readM5References(),
+): ReadModel {
   const index = <T extends { id: string }>(records: T[]) => new Map(records.map((r) => [r.id, r]));
   const events = index(dataset.events);
   const entities = index(dataset.entities);
@@ -104,7 +109,8 @@ export function buildReadModel(dataset: Dataset): ReadModel {
     }),
     // Named-person relationships stay restricted until a primary source is linked.
     isRestricted: (r) =>
-      r.primary_url === null && (persons.has(r.subject) || persons.has(r.object)),
+      (persons.has(r.subject) || persons.has(r.object)) &&
+      ["missing", "unregistered"].includes(personReference(r, dataset.sources, references)),
     nodeName: (id) => entities.get(id)?.name ?? events.get(id)?.title ?? { it: id },
     nodeLabel: (id, lang = "it") => {
       const name = entities.get(id)?.name ?? events.get(id)?.title;
