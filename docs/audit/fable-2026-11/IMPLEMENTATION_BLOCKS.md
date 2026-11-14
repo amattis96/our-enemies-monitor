@@ -152,6 +152,20 @@ Il livello si alza solo se la fase precedente lo giustifica (es. l'analisi scopr
 
 Regole comuni: l'orchestratore controlla ogni esito prima di riferirlo (il riepilogo di un subagente non è una prova); un blocco non passa allo step successivo senza conferma; se un subagente si ferma per un dubbio, la domanda arriva al manutentore, non viene risolta d'ufficio.
 
+### 2.2 Alternanza fra Claude e GPT (passaggio di consegne)
+
+Il lavoro può passare da un orchestratore all'altro quando uno esaurisce la propria finestra d'uso: **Claude** (Opus 5.5 orchestratore; subagenti Opus/Sonnet) e **GPT** (GPT-6.1 Sol orchestratore e analisi; GPT-6.1 Terra implementazione). Corrispondenza dei modelli di §2.1: «Opus · medio» → Sol; «Sonnet · alto/medio» → Terra.
+
+Regole per entrambi:
+
+1. **Stato unico nel repository.** Fa fede solo ciò che è committato sul ramo `audit/fable-2026-11-implementation`: registro §5, file `blocks/Bxx_ANALYSIS.md` (decisioni approvate incluse) e `git log`. Nessuno si basa sulla memoria della conversazione dell'altro.
+2. **Consegne a fine step.** Si passa la mano dopo uno step concluso (analisi scritta, decisioni registrate, blocco committato). Se la finestra finisce a metà, chi esce committa `wip(Bxx): <stato>` e aggiunge in fondo all'analisi una sezione «Avanzamento» con fatto / da fare / verifiche mancanti. Chi entra riprende da lì e, a blocco chiuso, riunisce i `wip` nel commit del blocco (`git reset --soft` sul commit precedente al primo `wip`) prima di chiudere; mai riscrivere commit di altri blocchi.
+3. **Albero pulito.** All'ingresso: `git status` deve essere pulito; altrimenti fermarsi e chiedere al manutentore.
+4. **Stesso protocollo.** Analisi → decisioni del manutentore → implementazione → review (se prevista in §2.1) → verifica indipendente e commit del blocco. Le decisioni aperte vanno al manutentore, mai prese d'ufficio. Prima di ogni commit `pnpm check` (più `pnpm build` e `pnpm check:links` per il sito) con esito reale.
+5. **Limiti di sempre** (`AGENTS.md`, Governance): niente push su `main`, merge, approvazioni, bypass o modifiche alle impostazioni; niente stati `reviewed` né `human_approved`; `sources/` immutabile; nessun `pnpm ingest --write` finché B04 non è su `main`.
+6. **Dove si lavora.** Preferibile la stessa cartella locale (un agente alla volta, mai in contemporanea). Se GPT lavora via connettore GitHub, il ramo va spinto a ogni passaggio di consegne e ripreso con `git pull --ff-only` da chi entra; il push lo autorizza il manutentore.
+7. **Registro.** Chi chiude uno step aggiorna la riga del blocco in §5 (stato, file di analisi, hash del commit, verifica) e indica nella colonna Note chi ha lavorato (Claude/GPT).
+
 ---
 
 ## 3. Schede dei blocchi
