@@ -1,9 +1,9 @@
 import { exportFiles } from "../../../../../src/site/exports.ts";
-import { getModel } from "../../../lib/model.ts";
+import { getPublication } from "../../../lib/model.ts";
 
 /** Collection and graph exports share this route and the manifest byte source. */
 export function getStaticPaths() {
-  return exportFiles(getModel().dataset)
+  return exportFiles(getPublication())
     .filter((file) => !file.path.includes("/"))
     .map((file) => ({
       params: { file: file.path.replace(/\.json$/, "") },

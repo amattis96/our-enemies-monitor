@@ -3,12 +3,12 @@ import { buildManifest, exportFiles } from "../../../../src/site/exports.ts";
 import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
 import Base from "../../layouts/Base.astro";
 import { assetHref } from "../../lib/links.ts";
-import { getModel } from "../../lib/model.ts";
+import { getPublication } from "../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
-const dataset = getModel().dataset;
+const dataset = getPublication();
 const manifest = buildManifest(dataset, exportFiles(dataset));
 const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
 ---
@@ -56,6 +56,7 @@ const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
   <h2>{c("Perimetro di pubblicazione", "Publication scope")}</h2>
   <p class="max-w-3xl">{c("Questi export e il portale omettono le proposte needs_review, gli eventi pending_integration e le relazioni su persone con primary_url mancante o non registrato per la relazione. I record storici imported_unreviewed con provenienza dalla baseline originale rimangono consultabili come materiale provvisorio, non come fatti indipendentemente verificati. Il repository Git mantiene tutte le proposte e la loro cronologia.", "These exports and the portal omit needs_review proposals, pending_integration events and named-person relationships whose primary_url is missing or unregistered for the relationship. Legacy imported_unreviewed records with original baseline provenance remain visible as provisional research, not independently verified facts. The Git repository retains all proposals and their history.")}</p>
 
+  <p class="max-w-3xl">{c("Il registro withheld.json elenca soltanto ID, collezione e motivi generici dei record trattenuti: un ID assente dal portale può essere trattenuto oppure inesistente. Le ipotesi storiche mostrano solo i collegamenti a eventi pubblici e le citazioni originali ancora presenti; note e aggiornamenti non revisionati sono omessi.", "The withheld.json registry lists only IDs, collections and generic reasons for withheld records: an ID absent from the portal may be withheld or nonexistent. Legacy hypotheses show only public event links and original citations still present; unreviewed notes and updates are omitted.")}</p>
   <h2>{c("Formato", "Format")}</h2>
   <ul class="list-disc pl-5 max-w-3xl space-y-1">
     <li>{c("Ogni file contiene una proiezione pubblicabile dei dati canonici. I record in revisione e le relazioni riguardanti persone con URL primario mancante o non registrato per la relazione restano soltanto nell’archivio Git; la baseline non revisionata è segnalata come provvisoria.", "Each collection file contains a publication-filtered projection of the canonical records. Pending candidates and named-person links with a missing or unregistered primary URL remain in the Git archive; the unreviewed baseline remains explicitly provisional.")}</li>

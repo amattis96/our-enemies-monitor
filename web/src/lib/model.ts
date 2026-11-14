@@ -1,15 +1,22 @@
 import type { Article } from "../../../src/model/index.ts";
 import { articleBacklinks, loadPublishedArticles } from "../../../src/site/articles.ts";
-import { publishedDataset } from "../../../src/site/publication.ts";
+import { type PublicationReport, publicationReport } from "../../../src/site/publication.ts";
 import { buildReadModel, loadReadModel, type ReadModel } from "../../../src/site/read-model.ts";
 
+let publication: PublicationReport | undefined;
 let model: ReadModel | undefined;
 let articles: Article[] | undefined;
 let backlinks: Map<string, Article[]> | undefined;
 
+/** The authoritative report retains accounting from the validated canonical dataset. */
+export function getPublication(): PublicationReport {
+  publication ??= publicationReport(loadReadModel().dataset);
+  return publication;
+}
+
 /** The read model, loaded and validated once per build. */
 export function getModel(): ReadModel {
-  model ??= buildReadModel(publishedDataset(loadReadModel().dataset));
+  model ??= buildReadModel(getPublication().dataset);
   return model;
 }
 

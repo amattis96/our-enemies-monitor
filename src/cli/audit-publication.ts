@@ -2,7 +2,7 @@ import { readM5References } from "../editorial/m5.ts";
 import { personReference } from "../pipeline/evidence-policy.ts";
 import { readDataFiles } from "../pipeline/load.ts";
 import { summarize, validateDataFiles } from "../pipeline/validate.ts";
-import { publishedDataset } from "../site/publication.ts";
+import { publicationReport } from "../site/publication.ts";
 
 const { issues, dataset } = validateDataFiles(readDataFiles());
 const errors = issues.filter((issue) => issue.severity === "error");
@@ -10,7 +10,8 @@ if (errors.length > 0) {
   for (const issue of errors) console.error(issue);
   process.exitCode = 1;
 } else {
-  const visible = publishedDataset(dataset);
+  const report = publicationReport(dataset);
+  const visible = report.dataset;
   const persons = new Set(
     dataset.entities.filter((entity) => entity.kind === "person").map((entity) => entity.id),
   );
@@ -59,6 +60,9 @@ if (errors.length > 0) {
         policy: "M5 quarantine; historical imported baseline remains provisional",
         canonical: summarize(dataset),
         published: summarize(visible),
+        withheld_counts: report.counts,
+        withheld: report.withheld,
+        hypothesis_projections: report.projections,
         review_states: Object.fromEntries(
           (Object.keys(dataset) as (keyof typeof dataset)[]).map((name) => [
             name,

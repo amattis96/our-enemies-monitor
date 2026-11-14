@@ -122,7 +122,7 @@ CONTRIBUTING.md        Contribution and evidence rules (EN/IT)
 records or immutable sources. Both the HTML read model and `data/v1/` exports
 apply this projection. `needs_review` records, `pending_integration` events and
 named-person relationships with a missing or unregistered `primary_url` are excluded. An `imported_unreviewed` record must have provenance under `sources/original/`, checked against the original by validation. Related edges
-and hypotheses whose endpoints would become dangling are also omitted.
+whose endpoints would become dangling are also omitted. Hypotheses with withheld endpoints are omitted; links to existing withheld events are filtered. For imported unreviewed hypotheses, publication additionally requires the matching Fonte_07 original row and unchanged Italian text and semantic fields. Only original citations still present are retained, and all review notes are omitted. Changed legacy hypotheses remain withheld. Reviewed hypotheses retain their approved content, subject to the same endpoint and event gates.
 Supporting source metadata is retained when a visible record cites it, with
 its real review state, including `needs_review`; an invalid imported baseline source and claims citing it are withheld. Historical `imported_unreviewed` baseline records remain
 visible as **provisional** research, not editorially verified findings.
@@ -139,6 +139,8 @@ document the first review pass. `src/editorial/m5.ts` validates its schema and
 cross-checks source URLs, claim references, source completeness and pending
 editorial approvals against canonical JSON. `pnpm audit:m5` runs in CI, without
 marking unapproved claims as reviewed or modifying original provenance.
+
+`publicationReport` derives the public dataset and a complete minimal withheld registry from validated canonical data; server exports reuse that report rather than calculating omissions from an already filtered dataset. `data/v1/withheld.json` exposes only ID, collection and generic reason codes, including withheld person IDs; the manifest includes per-collection withheld counts and the registry path. Withheld detail pages remain 404. The local audit also reports omitted hypothesis event/source IDs and note counts, without note text.
 
 `pnpm audit:publication` lists canonical/public counts, states per collection and
 named-person links missing a primary reference or carrying an unregistered URL in separate lists. This is an audit work queue,
@@ -498,7 +500,7 @@ fixture flag, review and translation status and canonical URL; notices; body;
 references and linked records with absolute URLs).
 
 Language-neutral endpoints under `/data/v1/`: `graph.json`,
-`hypotheses-graph.json`, one file per collection, `all.json`,
+`hypotheses-graph.json`, `withheld.json`, one file per collection, `all.json`,
 `schemas/<collection>.schema.json` (plus `schemas/proposals.schema.json`, the
 M6 sidecar contract) and `manifest.json` (export version,
 commit, commit date, counts, size and SHA-256 of every file; no build

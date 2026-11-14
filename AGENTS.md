@@ -242,7 +242,7 @@ with a missing or unregistered `primary_url` are excluded. `imported_unreviewed`
 remain provisionally visible, **not** as verified facts. Never change a review
 status just to force publication: validate the specific claim first. Run
 `pnpm audit:publication` to list missing and unregistered primary links separately and review counts. The name/domain heuristic warns about possible person misclassification without blocking or reclassifying entities; the current four evidence level/status pairs are provisional validation rules pending B18.
-Canonical data remains available in Git even when withheld from the portal.
+Unchanged imported hypotheses are projected from their own Fonte_07 row: only public event links and still-cited original sources remain, and all notes are omitted. Changed unreviewed legacy hypotheses are withheld. The authoritative publication report supplies counts and the public `withheld.json` registry (ID, collection, generic reasons only); withheld detail pages remain 404. Canonical data remains available in Git even when withheld from the portal.
 The structured M5 audit in `docs/audit/M5_2026-11-12.json` records source
 matching, the disposition proposed for every Fonte_09 candidate, and atomic
 claim-level support/limitations. Run `pnpm audit:m5` as part of `pnpm check`.

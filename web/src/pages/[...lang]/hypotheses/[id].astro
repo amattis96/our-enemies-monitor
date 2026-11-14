@@ -42,6 +42,7 @@ const c = (it: string, en: string) => choose(lang, it, en);
   <div class="notice max-w-3xl">
     {c("Ipotesi aperta (E5): non è un fatto accertato né una relazione documentata.", "Open hypothesis (E5): not an established fact nor a documented relationship.")}
   </div>
+  {h.review.status === "imported_unreviewed" && <p class="notice max-w-3xl">{c("Baseline provvisoria: gli aggiornamenti non revisionati non sono mostrati; i collegamenti riguardano solo eventi pubblici.", "Provisional baseline: unreviewed updates are not shown; links include only public events.")}</p>}
   <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
     <dt class="font-semibold">{c("Soggetti", "Subjects")}</dt>
     <dd><NodeLink id={h.subject} lang={lang} /> · <NodeLink id={h.object} lang={lang} /></dd>

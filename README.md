@@ -137,7 +137,7 @@ pnpm check:links  # verify every internal link of the built site
 pnpm ingest <Fonte_XX.proposals.json>  # dry run of an M6 sidecar ingest (--write to create candidates)
 ```
 
-Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph.
+The manifest lists public and withheld counts and hashes the minimal `withheld.json` registry (ID, collection and generic reasons); withheld detail pages remain 404. Unchanged provisional legacy hypotheses omit unreviewed notes and non-original citations, and link only public events. Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph.
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 
