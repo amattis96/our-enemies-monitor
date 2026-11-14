@@ -138,54 +138,36 @@ pnpm ingest <Fonte_XX.proposals.json>  # dry run of an M6 sidecar ingest (--writ
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 
-## M6: ChatGPT-scheduled research without paid model APIs
+## M6: active ChatGPT scheduled research and integration
 
-**Adopted workflow:** two complementary **ChatGPT product scheduled tasks**,
-not Claude/Anthropic API automation. Research and writing occur in ChatGPT;
-GitHub provides versioning, review and CI; TypeScript/Astro performs
-deterministic ingestion, indexing, website generation and publication.
+Three **ChatGPT product scheduled tasks** operate independently of the repository's CI, with **Europe/Rome** schedules and GitHub as the versioned source of truth:
 
-- **Task A: incremental OSINT (active).** Daily at **01:00 Europe/Rome**.
-  Inspect the last *merged* source plus open PRs, re-scan with at least
-  72 hours of overlap, verify evidence, deduplicate, and open a PR adding
-  a new immutable Markdown `sources/incremental/Fonte_XX*.md` only when
-  relevant findings exist. No changes to canonical `data/` and no auto-merge.
-  The manual POC created [PR #3](https://github.com/amattis96/our-enemies-monitor/pull/3)
-  with Fonte_10; **unattended scheduled GitHub permissions are not yet proven**.
-- **Task B: in-depth investigations (planned).** Independent research from
-  hypotheses, network evidence and strategic questions, producing
-  citation-linked articles in Italian and English. A suggested two-week
-  cadence is **not** yet configured. The article contract (`content/articles/`
-  Markdown with YAML front matter), validation and the `/articles/` pages are
-  implemented; the section currently shows only clearly labelled **DEMO / TEST**
-  fixtures.
-- **GitHub Actions (existing):** CI, evidence diff, build and GitHub Pages
-  deployment and article publishing. No live model APIs are involved.
-- **Ingest (implemented, run manually):** each source PR will carry a
-  structured `Fonte_XX.proposals.json` sidecar next to the Markdown;
-  `pnpm ingest` validates it, deduplicates against existing records and other
-  sources, and writes only `needs_review` candidates (withheld from the site)
-  for a reviewed `agent/*` PR. Task A does not emit the sidecar yet.
-- **Safeguards:** original/incremental sources stay immutable once merged;
-  no invented links or certainty, no automated promotion to `reviewed`,
-  source-specific approvals and M5 publication gates remain in place.
+| Task | Active schedule | Responsibility |
+| --- | --- | --- |
+| **A: Our Enemies Monitor OSINT** | **Daily 01:00** | Research incremental developments, check the last merged cutoff with at least 72 hours' overlap, deduplicate against `main` and open PRs, and propose a new immutable `Fonte_XX` Markdown **plus validated-where-possible M6 JSON sidecar** in a PR. No `data/` edits and no merge. |
+| **B: Our Enemies Monitor Editorial** | **Friday 03:00**, weekly | Independently research one substantial case and propose a sourced Italian article and its complete English translation in a PR. Content remains `needs_review`; no automatic editorial approval. |
+| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | Review all open PRs, evidence, conflicts and CI; conditionally squash-merge eligible changes and verify `main` CI/deploy after each merge. Never bypass human publication approval. |
 
-The previous weekly Anthropic/Claude API workflow has been retired.
-**Detailed contracts, task states and instructions for local coding agents:**
-[docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
+**Authoritative current-state snapshot and end-to-end lifecycle:** [docs/CHATGPT_SCHEDULED_TASKS.md](docs/CHATGPT_SCHEDULED_TASKS.md). **Detailed M6 source/sidecar and article contracts:** [docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
 
-```mermaid
+The ChatGPT tasks run **outside GitHub Actions** and use no in-repository paid LLM API job. The schedules and prompts live in ChatGPT, so the linked document is a dated configuration snapshot, not a runtime scheduler.
+
+A merged `sources/incremental/Fonte_XX*.md` becomes visible in the **documentary archive** through the normal build, but its `.proposals.json` is **not ingested automatically**. A separate, currently **manual** `pnpm ingest` workflow can prepare `needs_review` candidate records under `data/` for another reviewed PR. Similarly, merged bilingual article files are **not publicly published** while editorially unreviewed. The M5 gate continues to separate archived sources, canonical candidates and publication-eligible data. GitHub Actions performs deterministic checking, building and Pages deployment.
+
+~~~mermaid
 flowchart TD
-    A[ChatGPT Task A: OSINT] --> C[GitHub source MD PR]
-    B[ChatGPT Task B: articles - planned] --> D[GitHub article IT/EN PR]
-    C --> E{CI and evidence review}
-    D --> E
-    E -->|Approved| F[Merge to main]
-    F --> G[pnpm ingest of the sidecar - manual]
-    F --> H[Astro editorial section]
-    G --> I[Canonical data and existing site]
-    H --> I
-```
+    A[ChatGPT A: daily OSINT] --> P1[Source Markdown + M6 sidecar PR]
+    B[ChatGPT B: weekly investigation] --> P2[IT/EN article PR]
+    P1 --> C[ChatGPT C or human: review + conditional merge]
+    P2 --> C
+    C --> Archive[Versioned source archive]
+    C --> Drafts[Unreviewed article files remain withheld]
+    Archive --> Ingest[Separate manual pnpm ingest + data PR]
+    Ingest --> Human[Human editorial review and approval]
+    Human --> Canonical[Publication-eligible canonical data]
+    C --> CI[GitHub Actions CI + Pages build]
+    Canonical --> CI
+~~~
 
 ## Data model and temporal integrity
 
@@ -222,11 +204,14 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Set up agent-specific research branches, CI checks, evidence diffs and pull requests (M4).
 - [x] Implement the M4 contribution/review/CI mechanism and GitHub Pages deployment; retire its legacy paid Anthropic research job in favor of the M6 design.
 - [x] Configure daily 01:00 Europe/Rome ChatGPT OSINT Task A and prove manual GitHub source PR write (Fonte_10, PR #3).
-- [ ] Verify the first unattended daily ChatGPT OSINT execution and GitHub PR permissions.
+- [x] Verify unattended daily ChatGPT-to-GitHub source PR creation (Fonte_12 + sidecar, PR #18; complete CI/ingest validation remains a separate check).
 - [x] Implement deterministic, validated and idempotent source-to-canonical ingestion without model API calls (M6: `pnpm ingest` + proposals sidecar contract).
-- [ ] Update ChatGPT Task A to emit the `Fonte_XX.proposals.json` sidecar and ingest Fonte_10 once merged (M6).
-- [x] Implement the article contract, validation, publication gate and IT/EN article pages with Markdown downloads (M6, demo fixtures only).
-- [ ] Schedule independent ChatGPT Task B and publish its first reviewed article (M6).
+- [x] Require and produce a `Fonte_XX.proposals.json` sidecar in unattended Task A (observed with Fonte_12, PR #18).
+- [ ] Run and review canonical ingestion of merged incremental sidecars in separate controlled PRs.
+- [x] Implement the article contract, validation, publication gate and IT/EN article pages with Markdown downloads (M6; real approved articles published, demo fixtures removed).
+- [x] Schedule weekly ChatGPT Task B (Friday 03:00 Europe/Rome), and observe creation of bilingual research PRs.
+- [x] Configure weekly ChatGPT Task C (Friday 05:00 Europe/Rome) for conditional review/merge with CI checks.
+- [x] Publish first real bilingual reviewed investigations (ART-0001 and ART-0002); retain human editorial approval for future articles.
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Design the *Dossier* design system and audit the portal UI/UX ([docs/design/](docs/design/README.md), M7 design).
 - [x] Implement the Dossier design in the portal: themes, navigation, evidence stamps, newest-first timeline, investigation board, interactive atlas (M7).
