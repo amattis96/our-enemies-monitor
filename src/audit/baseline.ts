@@ -1,12 +1,13 @@
 import { isNegativeCaveat, NEGATION, PARTICIPATION_BOILERPLATE } from "../editorial/inferences.ts";
 import type { Dataset } from "../model/index.ts";
+import { corpusOnlyE1, independentRoots } from "../pipeline/genealogy.ts";
 import type { ExportFile } from "../site/exports.ts";
 import type { PublicationReport } from "../site/publication.ts";
 import { participationEdges, scanMentions } from "./mentions.ts";
 
 /**
  * B12 measurement baseline. Pure, read-only reproductions of the measurable
- * parts of FABLE_A §11 (E1–E6) and FABLE_D §9.1 (T1–T11). Every function
+ * parts of FABLE_A §11 (E1–E7) and FABLE_D §9.1 (T1–T11). Every function
  * takes already-loaded data and returns plain JSON, so the same commit always
  * yields the same output. Heuristics are named and documented in the output:
  * they are measuring sticks, not editorial judgements.
@@ -261,6 +262,46 @@ export function e6MentionsWithoutEdge(dataset: Dataset) {
 
 const bytesOf = (files: ExportFile[], ...paths: string[]) =>
   paths.reduce((sum, p) => sum + Buffer.byteLength(files.find((f) => f.path === p)?.text ?? ""), 0);
+
+/**
+ * E7 — independent roots behind the `EXT` events (A §4.7), computed only from
+ * the `derived_from`/`relies_on` fields of the source records (B17), never
+ * from the `publisher` text. A reference without a determined genealogy
+ * counts as its own root, so until the fields are filled this equals the
+ * single-reference count; `genealogy_coverage` says how far that holds.
+ */
+export function e7IndependentRoots(dataset: Dataset) {
+  const external = (refs: string[]) => refs.filter((s) => !CORPUS_SOURCE.test(s));
+  const events = dataset.events
+    .filter((e) => e.id.startsWith("EXT-") && external(e.sources).length > 0)
+    .sort(byId)
+    .map((e) => ({ id: e.id, ...independentRoots(external(e.sources), dataset.sources) }));
+  const externalSources = dataset.sources.filter((s) => !CORPUS_SOURCE.test(s.id));
+  const withGenealogy = externalSources.filter(
+    (s) => s.origin_type || s.derived_from?.length || s.relies_on?.length,
+  );
+  return {
+    method: "derived_from/relies_on closure; no publisher-text heuristics",
+    ext_events_with_external_refs: events.length,
+    single_reference: events.filter((e) => e.references.length === 1).length,
+    single_root: events.filter((e) => e.roots.length === 1).length,
+    single_root_ids: events.filter((e) => e.roots.length === 1).map((e) => e.id),
+    apparent_multiplicity: events
+      .filter((e) => e.references.length > e.roots.length)
+      .map((e) => ({ id: e.id, references: e.references.length, roots: e.roots.length })),
+    genealogy_coverage: {
+      external_sources: externalSources.length,
+      with_genealogy: withGenealogy.length,
+      corpus_sources_with_origin_type: dataset.sources.filter(
+        (s) => CORPUS_SOURCE.test(s.id) && s.origin_type,
+      ).length,
+    },
+    e1_corpus_only: {
+      events: corpusOnlyE1(dataset.events, dataset.sources),
+      relationships: corpusOnlyE1(dataset.relationships, dataset.sources),
+    },
+  };
+}
 
 function parse<T>(files: ExportFile[], path: string): T {
   const file = files.find((f) => f.path === path);

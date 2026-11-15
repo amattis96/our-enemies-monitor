@@ -288,6 +288,11 @@ interrupting composition just because it contains «non».
    `data/sources/` with its URL. Prefer primary documents.
 3. Set `review.status` honestly (`imported_unreviewed`, `needs_review`,
    `reviewed`) and explain substantive corrections in `review.notes`.
+   Source genealogy (`origin_type`, `derived_from`, `relies_on`, ADR-05)
+   is set only when the repository itself establishes it (record type, a
+   document's declared inputs); a republication or a wire relying on a
+   statement is proposed in `docs/audit/sources/pilot.v1.json` until a human
+   has read the documents. Never link `F*`/`P*` to claims without that reading.
 4. Run `pnpm format:data && pnpm check`.
 5. In the PR, state what is known versus inferred and any contrary evidence
    (see CONTRIBUTING.md and the pull request template); check the evidence

@@ -162,6 +162,21 @@ export const HYPOTHESIS_STATUSES = [
 
 export const SOURCE_TYPES = ["corpus_document", "external_reference", "unspecified_web"] as const;
 
+/**
+ * ADR-05 (B17): what a source is in the chain of evidence, independent of
+ * its `type`. Optional on a source record: absent means "not determined",
+ * never "primary". Set only from what the record itself establishes.
+ */
+export const ORIGIN_TYPES = [
+  "primary_document",
+  "official_statement",
+  "wire",
+  "original_reporting",
+  "republication",
+  "synthesis",
+  "corpus_synthesis",
+] as const;
+
 export const REVIEW_STATUSES = ["imported_unreviewed", "needs_review", "reviewed"] as const;
 
 export const KNOWN_ISSUE_CODES = ["misclassified_category", "date_reflects_publication"] as const;

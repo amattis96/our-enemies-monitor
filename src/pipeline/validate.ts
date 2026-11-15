@@ -17,6 +17,7 @@ import {
   personReference,
   suspectPerson,
 } from "./evidence-policy.ts";
+import { corpusOnlyE1, genealogyIssues } from "./genealogy.ts";
 import type { DataFile } from "./load.ts";
 import { repoPath } from "./paths.ts";
 import { serializeRecord } from "./serialize.ts";
@@ -118,6 +119,21 @@ export function validateDataFiles(
     for (const file of source.files) {
       if (!existsSync(repoPath(file))) error(pathOf(source.id), `file "${file}" does not exist`);
     }
+  }
+
+  // 4b. Source genealogy (ADR-05): references, coherence, no circular citations
+  for (const issue of genealogyIssues(dataset.sources)) {
+    (issue.severity === "error" ? error : warning)(pathOf(issue.id), issue.message);
+  }
+  // A corpus synthesis alone is not enough for E1 (ADR-05: warning, not error)
+  for (const collection of ["events", "relationships"] as const) {
+    const ids = corpusOnlyE1(dataset[collection], dataset.sources);
+    if (ids.length === 0) continue;
+    const shown = ids.slice(0, 10).join(", ");
+    warning(
+      `${collection}/`,
+      `${ids.length} E1 record(s) cite only corpus syntheses, which alone are not enough for E1 (ADR-05): ${shown}${ids.length > 10 ? ", …" : ""}; full list: pnpm benchmark:measure (A.E7)`,
+    );
   }
 
   // Countries: real ISO codes; only states carry one

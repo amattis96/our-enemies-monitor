@@ -11,11 +11,13 @@
   ],
   "urls": [],
   "cited_in": [],
+  "origin_type": "corpus_synthesis",
   "review": {
     "status": "needs_review",
     "notes": [
       "Incremental source v1.0 (cut-off 2026-11-11T23:00+01:00), stored in sources/incremental/ because sources/original/ is the immutable Fonte_00–Fonte_08 baseline.",
-      "The OEM26-* and SRC-* identifiers are proposals of the document; this archive assigns EXT-005..EXT-034 and WEB-EXT-005..WEB-EXT-054 (OEM26-n -> EXT-(n+4), SRC-n -> WEB-EXT-(n+4))."
+      "The OEM26-* and SRC-* identifiers are proposals of the document; this archive assigns EXT-005..EXT-034 and WEB-EXT-005..WEB-EXT-054 (OEM26-n -> EXT-(n+4), SRC-n -> WEB-EXT-(n+4)).",
+      "B17 (ADR-05, 2026-11-15): origin_type corpus_synthesis set because the record is a project corpus document (type corpus_document); structural criterion, no content verification."
     ],
     "translations": {
       "en": {

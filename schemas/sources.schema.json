@@ -75,6 +75,35 @@
       },
       "description": "Corpus documents that cite this reference."
     },
+    "origin_type": {
+      "description": "Role of the source in the chain of evidence; absent when not determined (never read absence as primary). Definitions: vocabulary.json#/origin_types.",
+      "type": "string",
+      "enum": [
+        "primary_document",
+        "official_statement",
+        "wire",
+        "original_reporting",
+        "republication",
+        "synthesis",
+        "corpus_synthesis"
+      ]
+    },
+    "derived_from": {
+      "description": "Sources this one copies, republishes, rewrites or consolidates; it adds no independent root. Absent when not determined.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+      }
+    },
+    "relies_on": {
+      "description": "Sources this one reports on (for example the official statement a wire quotes); their roots replace its own. Absent when not determined.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+      }
+    },
     "review": {
       "type": "object",
       "properties": {

@@ -95,7 +95,7 @@ src/
                        atlas projections), i18n strings, formatting, data exports,
                        articles.ts (article publication gate, back-links, HTML and
                        Markdown rendering)
-  audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E6,
+  audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E7,
                        D T1–T11), question-benchmark scorer (benchmark.ts) and the
                        text–graph mention queue (mentions.ts, shared matcher with E6)
   cli/                 Entry points used by package scripts
@@ -156,10 +156,12 @@ not a confidentiality boundary.
 ## Measurement baseline and benchmark (B12)
 
 `pnpm benchmark:measure [--out <file>] [--pages web/dist]` is read-only and
-reproduces the measurable parts of FABLE A §11 (E1–E6: source-chain depth,
+reproduces the measurable parts of FABLE A §11 (E1–E7: source-chain depth,
 level/status pairs, withheld baseline records, counter-inference paths,
 co-participation against a seeded degree-preserving null model, mentions
-without an edge) and FABLE D §9.1 (T1–T11, computed from the in-memory public
+without an edge, independent roots behind `EXT` events computed only from
+`derived_from`/`relies_on`, never from `publisher` text; E7 was added by B17
+and is absent from the archived 85c92c5 baseline) and FABLE D §9.1 (T1–T11, computed from the in-memory public
 exports, plus context sizes). Output is JSON keyed by commit and commit date;
 the same commit yields byte-identical output (no wall-clock time, mulberry32
 seed 7). T9 (live search) is not measured offline; T11 counts structured-data
@@ -340,7 +342,16 @@ namespaces are disjoint, so a relationship endpoint is resolved by its ID.
 - **Hypothesis:** subject, object, type, verification question, current
   limit, priority, evidence needed, sources, linked events, status.
 - **Source:** corpus document (with its file path) or external reference
-  (title, URLs, citing documents).
+  (title, URLs, citing documents). Optional genealogy (ADR-05, B17):
+  `origin_type` (`primary_document`, `official_statement`, `wire`,
+  `original_reporting`, `republication`, `synthesis`, `corpus_synthesis`;
+  definitions in `vocabulary.json#/origin_types`), `derived_from` (sources
+  it copies, relays or consolidates) and `relies_on` (the act or statement it
+  reports). Absent means "not determined", never "primary"; values are set
+  only when the repository itself establishes them. Today S00–S09 are
+  `corpus_synthesis` and S06/S07/S08 declare `derived_from` from their own
+  headers; external references carry no genealogy yet (see
+  `docs/audit/sources/pilot.v1.json`, state `proposta`).
 - **Exposure:** sector, original indicator, `measures[]` (label, value, unit
   `percent`/`eur_billion`/`count`/`year`, qualifier `exact`/`approx`/
   `more_than`/`less_than`/`nearly`, optional `out_of` and `period` only when
@@ -611,6 +622,17 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
 13. Forbidden-inference registry (`pnpm validate`, B15): schema, known IDs,
    review states, and no relationship directly joining a forbidden pair still
    in force (error); a negative caveat without a classification is a warning.
+14. Source genealogy (B17, `src/pipeline/genealogy.ts`): `derived_from` and
+   `relies_on` resolve, never cite the source itself and form no cycle
+   (circular citation → error); `corpus_synthesis` only on corpus documents
+   and corpus documents only `corpus_synthesis` (error); a `republication`
+   without `derived_from` is a warning (counted as its own root). ADR-05: one
+   warning per collection lists the E1 events/relationships whose sources are
+   all corpus syntheses (a synthesis alone is not enough for E1); a warning,
+   not an error, pending the source pilot. `independentRoots()` gives, at
+   build time, the references and the independent roots behind a claim
+   (republications and corpus syntheses add none); it is not yet shown on
+   pages.
 
 ## Website
 

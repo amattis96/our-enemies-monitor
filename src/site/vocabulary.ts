@@ -13,6 +13,7 @@ import {
   type Label,
   type MEASURE_QUALIFIERS,
   type MEASURE_UNITS,
+  ORIGIN_TYPES,
   RELATION_CLASS_GROUP,
   RELATION_CLASSES,
   RELATION_GROUPS,
@@ -29,6 +30,7 @@ import {
   ENTITY_KIND_LABELS,
   EVIDENCE_STATUS_LABELS,
   HYPOTHESIS_STATUS_LABELS,
+  ORIGIN_TYPE_LABELS,
   PRECISION_LABELS,
   PRIORITY_LABELS,
   RELATION_GROUP_LABELS,
@@ -113,6 +115,47 @@ const ENTITY_DOMAIN_LABELS = {
   persons: { it: "Persone", en: "Persons" },
   targets: { it: "Obiettivi", en: "Targets" },
 } satisfies Record<(typeof ENTITY_DOMAINS)[number], Label>;
+
+/**
+ * ADR-05 criteria (B17), conservative: a value is set only when the record
+ * itself establishes it; otherwise the field stays absent ("not determined").
+ */
+const ORIGIN_DEFINITIONS = {
+  primary_document: {
+    it: "L'atto stesso (sentenza, decisione, atto di imputazione, testo normativo, deposito societario) pubblicato da chi lo ha emesso.",
+    en: "The act itself (judgment, decision, indictment, legal text, corporate filing) published by its issuer.",
+  },
+  official_statement: {
+    it: "Comunicato o dichiarazione di un'istituzione sulla propria azione o posizione: prova che l'istituzione ha detto o deciso qualcosa, non che il fatto riferito sia accertato.",
+    en: "A release or statement by an institution about its own action or position: evidence that the institution said or decided something, not that the reported fact is established.",
+  },
+  wire: {
+    it: "Lancio d'agenzia (Reuters, AP, ANSA…). Quando riferisce un atto o una dichiarazione, la radice è quell'atto (relies_on).",
+    en: "News agency wire (Reuters, AP, ANSA…). When it reports an act or statement, the root is that act (relies_on).",
+  },
+  original_reporting: {
+    it: "Inchiesta o cronaca con raccolta propria di informazioni, non riconducibile a un'altra fonte del repository.",
+    en: "Investigation or reporting with its own information gathering, not traceable to another source in the repository.",
+  },
+  republication: {
+    it: "Copia, rilancio o riscrittura di un'altra fonte (derived_from): non aggiunge una radice indipendente.",
+    en: "Copy, relay or rewrite of another source (derived_from): it adds no independent root.",
+  },
+  synthesis: {
+    it: "Rapporto o sintesi di terzi che rielabora fonti altrui.",
+    en: "Third-party report or synthesis that reworks other sources.",
+  },
+  corpus_synthesis: {
+    it: "Documento di sintesi del corpus del progetto (Fonte_NN): non è mai una radice indipendente e da solo non basta per E1.",
+    en: "Synthesis document of the project corpus (Fonte_NN): never an independent root and not sufficient on its own for E1.",
+  },
+} satisfies Record<(typeof ORIGIN_TYPES)[number], Label>;
+
+const ORIGIN_LIMITS: Partial<Record<(typeof ORIGIN_TYPES)[number], string[]>> = {
+  official_statement: ["proven_fact", "conviction"],
+  republication: ["independent_confirmation"],
+  corpus_synthesis: ["independent_confirmation", "primary_source"],
+};
 
 const REVIEW_DEFINITIONS = {
   imported_unreviewed: {
@@ -315,6 +358,11 @@ export function buildVocabulary() {
       must_not_read_as: ["probability", "likelihood"],
     })),
     source_types: pick(SOURCE_TYPES, (type) => ({ label: SOURCE_TYPE_LABELS[type] })),
+    origin_types: pick(ORIGIN_TYPES, (type) => ({
+      label: ORIGIN_TYPE_LABELS[type],
+      definition: ORIGIN_DEFINITIONS[type],
+      ...(ORIGIN_LIMITS[type] ? { must_not_read_as: ORIGIN_LIMITS[type] } : {}),
+    })),
     exposure_statuses: {
       observed: { label: { it: "Valore osservato", en: "Observed value" } },
       target: {

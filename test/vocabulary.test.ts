@@ -85,6 +85,7 @@ describe("vocabulary (FABLE D A2)", () => {
       ["hypothesis_statuses", pub.hypotheses.map((h) => h.status)],
       ["hypothesis_priorities", pub.hypotheses.map((h) => h.priority)],
       ["source_types", pub.sources.map((s) => s.type)],
+      ["origin_types", pub.sources.flatMap((s) => s.origin_type ?? [])],
       ["exposure_statuses", pub.exposures.map((x) => x.status)],
       ["measure_units", pub.exposures.flatMap((x) => x.measures.map((m) => m.unit))],
       ["measure_qualifiers", pub.exposures.flatMap((x) => x.measures.map((m) => m.qualifier))],

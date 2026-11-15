@@ -11,6 +11,7 @@ import {
   KNOWN_ISSUE_CODES,
   MEASURE_QUALIFIERS,
   MEASURE_UNITS,
+  ORIGIN_TYPES,
   RELATION_CLASSES,
   RELATIONSHIP_EVIDENCE_LEVELS,
   RELATIONSHIP_EVIDENCE_STATUSES,
@@ -347,6 +348,25 @@ export const Source = z.strictObject({
   urls: z.array(Url).describe("Public URLs of the source; empty when none is known."),
   /** Corpus documents that cite this reference. */
   cited_in: sourceRefs.describe("Corpus documents that cite this reference."),
+  /** ADR-05 genealogy (B17). Absent means not determined, never primary. */
+  origin_type: z
+    .enum(ORIGIN_TYPES)
+    .optional()
+    .describe(
+      "Role of the source in the chain of evidence; absent when not determined (never read absence as primary). Definitions: vocabulary.json#/origin_types.",
+    ),
+  derived_from: z
+    .array(SourceId)
+    .optional()
+    .describe(
+      "Sources this one copies, republishes, rewrites or consolidates; it adds no independent root. Absent when not determined.",
+    ),
+  relies_on: z
+    .array(SourceId)
+    .optional()
+    .describe(
+      "Sources this one reports on (for example the official statement a wire quotes); their roots replace its own. Absent when not determined.",
+    ),
   review,
   provenance,
 });

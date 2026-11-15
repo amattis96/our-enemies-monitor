@@ -10,6 +10,7 @@ import {
   e4CounterInference,
   e5CoParticipation,
   e6MentionsWithoutEdge,
+  e7IndependentRoots,
   scanPages,
 } from "../audit/baseline.ts";
 import { scoreAnswers } from "../audit/benchmark.ts";
@@ -86,6 +87,7 @@ function measure(args: string[]) {
         E4: e4CounterInference(dataset, report.dataset),
         E5: e5CoParticipation(dataset),
         E6: e6MentionsWithoutEdge(dataset),
+        E7: e7IndependentRoots(dataset),
       },
       D: dTasks(files, { commitDate, pages }),
     },
