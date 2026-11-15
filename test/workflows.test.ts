@@ -122,7 +122,9 @@ describe("workflow contract", () => {
     expect(JSON.stringify(expire?.steps)).not.toMatch(/checkout|pnpm|setup-node/);
     expect(String(expire?.if)).toContain("synchronize");
     expect(String(expire?.if)).toContain("github.event_name == 'pull_request'");
-    expect(String(expire?.if)).toContain("contains(github.event.pull_request.labels.*.name, 'evidence-waiver')");
+    expect(String(expire?.if)).toContain(
+      "contains(github.event.pull_request.labels.*.name, 'evidence-waiver')",
+    );
     expect(JSON.stringify(expire?.steps)).toContain("HTTP 404");
   });
 
