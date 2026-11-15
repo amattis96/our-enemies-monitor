@@ -95,6 +95,8 @@ src/
                        atlas projections), i18n strings, formatting, data exports,
                        articles.ts (article publication gate, back-links, HTML and
                        Markdown rendering)
+  audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E6,
+                       D T1–T11) and question-benchmark scorer (benchmark.ts)
   cli/                 Entry points used by package scripts
 test/                  Vitest suites; fixtures/ holds hand-authored test inputs
                        (Fonte_10.proposals.json, a faithful subset of PR #3)
@@ -107,6 +109,7 @@ web/                   Astro portal
   src/styles/          global.css (Tailwind + Dossier tokens/components), shell.css, board.css
   src/lib/             Base-path/language links, cached read model, SVG map rendering
 docs/                  Architecture and project documentation
+  audit/baseline/      Dated measurement baselines, benchmark case file and answers template
   design/              Dossier design system v1: concept, foundations, components, page blueprints,
                        UI/UX audit, M7 plan, tokens.css, SVG assets, specimen.html (not yet used by web/)
 .github/workflows/     ci.yml (check, deploy) and evidence-diff.yml; no LLM API job
@@ -147,6 +150,32 @@ named-person links missing a primary reference or carrying an unregistered URL i
 not a declaration that source URLs or all baseline claims are verified.
 Canonical Git history remains public: this is an editorial publication policy,
 not a confidentiality boundary.
+
+## Measurement baseline and benchmark (B12)
+
+`pnpm benchmark:measure [--out <file>] [--pages web/dist]` is read-only and
+reproduces the measurable parts of FABLE A §11 (E1–E6: source-chain depth,
+level/status pairs, withheld baseline records, counter-inference paths,
+co-participation against a seeded degree-preserving null model, mentions
+without an edge) and FABLE D §9.1 (T1–T11, computed from the in-memory public
+exports, plus context sizes). Output is JSON keyed by commit and commit date;
+the same commit yields byte-identical output (no wall-clock time, mulberry32
+seed 7). T9 (live search) is not measured offline; T11 counts structured-data
+markers only when `--pages` points at a build of the same commit. Heuristics
+(negative-caveat regex, simplified name matcher) are stated in the output.
+
+`docs/audit/baseline/benchmark-cases.v1.json` holds the FABLE D §9.3 battery
+B1–B20 (question in IT/EN, expected answer, supporting IDs, required and
+forbidden phrases). `pnpm benchmark:score <answers.json>` grades an answers
+file shaped like `answers.template.json`: supporting-ID completeness, missing
+required phrases, forbidden phrases (negation-guarded), and structured IDs that
+do not exist in the repository. It is a first filter for a human grader, not a
+factual verdict. Running an external model is a maintainer action; no model API
+is called by the repository. Dated outputs live in `docs/audit/baseline/` and
+are the reference for blocks B13, B16 and B19; `baseline-*.json` files are
+excluded from Biome so they stay byte-identical to the command output. Case expected answers describe
+the data at `as_of_commit`; a data change that alters them requires a new case
+file version.
 
 ## Data model
 

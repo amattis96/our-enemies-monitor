@@ -78,6 +78,8 @@ pnpm i18n:migrate-hashes [--write]  # one-time legacy target hash migration; dry
 pnpm data:diff [--base origin/main] [--relaxed]   # strict evidence + path-policy diff vs the merge base
 pnpm check:pr                                     # CI only: does the evidence-waiver label count?
 pnpm ingest <Fonte_XX.proposals.json> [--write]   # M6 sidecar → needs_review candidates (dry run by default)
+pnpm benchmark:measure [--out <f>] [--pages web/dist]  # read-only audit baseline JSON (FABLE A E1–E6, D T1–T11)
+pnpm benchmark:score <answers.json>               # grade answers to docs/audit/baseline/benchmark-cases.v1.json
 ```
 
 Before declaring work done, run `pnpm check` (and `pnpm build` plus
@@ -117,6 +119,10 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
   `assetHref()` for language-neutral files. Astro drops whitespace between a
   line break and a tag: write `{" "}` where a space is needed around inline
   links.
+- `src/audit/` — read-only measurement baseline and benchmark scorer;
+  dated outputs and the B1–B20 case file live in `docs/audit/baseline/`.
+  Agents never run external models for the benchmark and never edit an
+  archived baseline: produce a new dated file instead.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
 - `docs/design/` — Dossier design system v1: the single source of the

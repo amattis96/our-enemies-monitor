@@ -135,6 +135,8 @@ pnpm build        # build the static site into web/dist (with search index)
 pnpm preview      # serve the built site locally
 pnpm check:links  # verify every internal link of the built site
 pnpm ingest <Fonte_XX.proposals.json>  # dry run of an M6 sidecar ingest (--write to create candidates)
+pnpm benchmark:measure  # read-only measurement baseline (audit metrics) as JSON
+pnpm benchmark:score <answers.json>  # grade model answers to the B1–B20 benchmark
 ```
 
 The manifest lists public and withheld counts and hashes the minimal `withheld.json` registry (ID, collection and generic reasons); withheld detail pages remain 404. Unchanged provisional legacy hypotheses omit unreviewed notes and non-original citations, and link only public events. Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph.
@@ -199,6 +201,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Add a reproducible publication audit command (`pnpm audit:publication`) and [M5 evidence work queue](docs/M5_EVIDENCE_AUDIT.md).
 - [x] First-pass source matching on 36 sensitive relationships (35 referenced, 1 restricted) and 30 Fonte_09 case/reconciliation decisions.
 - [x] Stage 20 atomic claims and 26 durable source metadata entries, guarded by `pnpm audit:m5`.
+- [x] Record a dated, reproducible measurement baseline and a B1–B20 question benchmark with scorer (`docs/audit/baseline/`).
+- [ ] Run the B1–B20 benchmark on at least one pinned external model and archive the scored result.
 - [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).

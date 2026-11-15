@@ -34,6 +34,8 @@
     "check:pr": "node src/cli/pr-policy.ts",
     "audit:publication": "node src/cli/audit-publication.ts",
     "audit:m5": "node src/cli/audit-m5.ts",
+    "benchmark:measure": "node src/cli/benchmark.ts measure",
+    "benchmark:score": "node src/cli/benchmark.ts score",
     "ingest": "node src/cli/ingest.ts",
     "i18n:migrate-hashes": "node src/cli/migrate-translation-hashes.ts"
   },
