@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S14",
+    "file": "sources/incremental/Fonte_14_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-15.md",
+    "title": {
+      "it": "Fonte_14 | Aggiornamento OSINT incrementale per l'Europa | 15 novembre 2026"
+    },
+    "created_at": "2026-11-15",
+    "coverage": {
+      "start": "2026-11-10",
+      "end": "2026-11-15"
+    },
+    "baseline_source": "S11",
+    "repository_commit": "60740765d162362c2892f712aa20d2598124866c"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Two men who spied on journalists and lawyer guilty of spying on behalf of Iran"
+      },
+      "publisher": "Crown Prosecution Service",
+      "url": "https://www.cps.gov.uk/national-news/news/two-men-who-spied-journalists-and-lawyer-guilty-spying-behalf-iran",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "UPDATED: Two Iranian men convicted of spying for the Islamic Revolutionary Guard Corps"
+      },
+      "publisher": "Metropolitan Police / Counter Terrorism Policing",
+      "url": "https://news.met.police.uk/news/two-iranian-men-convicted-of-spying-for-the-islamic-republic-guards-corp-514944?site=uk",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Iranian men found guilty in UK of assisting Iranian intelligence"
+      },
+      "publisher": "Reuters (riprodotto da Internazionale)",
+      "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/11/12/iranian-men-found-guilty-in-uk-of-assisting-iranian-intelligence",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "Akt oskarżenia przeciwko Volodymyrowi B. za pomoc w aktach dywersji na kolei"
+      },
+      "publisher": "Prokuratura Krajowa (Polonia)",
+      "url": "https://www.gov.pl/web/prokuratura-krajowa/akt-oskarzenia-przeciwko-volodymyrowi-b-za-pomoc-w-aktach-dywersji-na-kolei",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R05",
+      "title": {
+        "it": "Poland indicts Ukrainian man for assisting in rail sabotage on behalf of Russia"
+      },
+      "publisher": "Notes from Poland",
+      "url": "https://notesfrompoland.com/2026/11/12/poland-indicts-ukrainian-man-for-assisting-in-rail-sabotage-on-behalf-of-russia/",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R06",
+      "title": {
+        "it": "CPJ welcomes conviction of 2 Iranians who spied on journalists in the UK"
+      },
+      "publisher": "Committee to Protect Journalists",
+      "url": "https://cpj.org/2026/11/cpj-welcomes-conviction-of-2-iranians-who-spied-on-journalists-in-the-uk/",
+      "published": "2026-11-13"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261115-003",
+      "item": "OEM-20261115-003",
+      "sources": [
+        "R01",
+        "R02",
+        "R03",
+        "R06"
+      ],
+      "notes": [
+        "Verdetto britannico relativo al 12 novembre 2026; non trattare come un episodio di aggressione riuscita, né come prova di ogni operazione attribuita all'Iran.",
+        "Il verdetto di colpevolezza precede la determinazione della pena del 17 dicembre 2026; Shapoor Qalehali Khani Noori è stato assolto da tutte le contestazioni.",
+        "Conservare distinti E1 (verdetto) ed E2 (attribuzione istituzionale a intelligence/IRGC)."
+      ],
+      "update_type": "NEW_JUDICIAL",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Regno Unito: due verdetti di colpevolezza per assistenza a intelligence iraniana contro giornalisti dissidenti"
+      },
+      "description": {
+        "it": "Il 12 novembre 2026 la Crown Prosecution Service ha annunciato che una giuria della Woolwich Crown Court ha riconosciuto colpevoli Mostafa Sepahvand e Farhad Javadi Manesh di condotte di assistenza a un servizio d'intelligence straniero. Sepahvand è stato inoltre riconosciuto colpevole di condotta preparatoria a grave violenza; Manesh è stato assolto da tale ulteriore capo e Shapoor Qalehali Khani Noori da tutte le accuse. La determinazione della pena è prevista per il 17 dicembre 2026."
+      },
+      "date": {
+        "start": "2026-11-12",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-12",
+      "themes": [
+        "intelligence",
+        "justice",
+        "surveillance_spyware"
+      ],
+      "geography": {
+        "it": "Londra, Regno Unito"
+      },
+      "places": [
+        "GB"
+      ],
+      "evidence_note": {
+        "it": "E1: comunicato primario della CPS sul verdetto di Woolwich; E2: la CPS e la polizia qualificano l'operazione come svolta per conto dell'Iran/IRGC. Non è verificata una partecipazione a campagne diverse."
+      },
+      "publisher": "Crown Prosecution Service",
+      "url": "https://www.cps.gov.uk/national-news/news/two-men-who-spied-journalists-and-lawyer-guilty-spying-behalf-iran",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": {
+          "text": {
+            "it": "Secondo la CPS e la Metropolitan Police l'attività giudicata si svolgeva per conto dei servizi iraniani/IRGC; questa qualificazione istituzionale resta circoscritta al procedimento descritto."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R01",
+            "R02"
+          ]
+        },
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Il terzo imputato è stato assolto da ogni contestazione; Manesh è stato assolto dal capo di condotta preparatoria. L'Iran ha negato in precedenza responsabilità nelle attività di spionaggio estero, secondo Reuters. Nessun attacco violento contro gli obiettivi di questo fascicolo è descritto come compiuto."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261115-004",
+      "item": "OEM-20261115-004",
+      "sources": [
+        "R04",
+        "R05"
+      ],
+      "notes": [
+        "Pubblicazione del 12 novembre 2026 di un atto d'accusa depositato il 28 ottobre 2026: la data del provvedimento non è la data della comunicazione.",
+        "Il fascicolo riguarda sabotaggi ferroviari del 2025, distinto dagli incendi di veicoli polacchi riferiti in Fonte_10.",
+        "L'imputato Volodymyr B. non è stato condannato; il legame con intelligence russa è la contestazione della Procura."
+      ],
+      "update_type": "NEW_JUDICIAL",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Polonia: depositata un'imputazione per presunta assistenza ai sabotaggi ferroviari del 2025"
+      },
+      "description": {
+        "it": "Il 28 ottobre 2026 un procuratore polacco ha depositato un atto d'accusa nei confronti di Volodymyr B. nel procedimento sui sabotaggi ferroviari avvenuti nell'autunno 2025 nei pressi di Mika e Gołąb. Il 12 novembre 2026 la Prokuratura Krajowa ha reso pubblico il deposito e il contenuto contestato, comprese presunte facilitazioni logistiche. Il deposito di un atto d'accusa non è una condanna e non costituisce un nuovo attentato del novembre 2026."
+      },
+      "date": {
+        "start": "2026-10-28",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-12",
+      "themes": [
+        "justice",
+        "hybrid_sabotage",
+        "intelligence",
+        "infrastructure_space"
+      ],
+      "geography": {
+        "it": "Mika (Garwolin), Gołąb (Puławy), Polonia"
+      },
+      "places": [
+        "PL"
+      ],
+      "evidence_note": {
+        "it": "E1: comunicazione della Procura nazionale polacca sull'atto d'accusa depositato il 28 ottobre; E2: tesi accusatoria di presunta attività per intelligence russa; nessun verdetto nel fascicolo."
+      },
+      "publisher": "Prokuratura Krajowa",
+      "url": "https://www.gov.pl/web/prokuratura-krajowa/akt-oskarzenia-przeciwko-volodymyrowi-b-za-pomoc-w-aktach-dywersji-na-kolei",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": {
+          "text": {
+            "it": "Secondo l'atto d'accusa comunicato dalla Prokuratura Krajowa, le attività contestate all'imputato sarebbero state svolte per intelligence russa. È un'accusa istituzionale, non una responsabilità individuale giudizialmente accertata."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R04"
+          ]
+        },
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Non esiste un verdetto di colpevolezza riportato nella comunicazione del 12 novembre. Il fascicolo è distinto da quello sugli incendi di veicoli denunciati il 10 novembre; l'identità dell'operatore tecnico e un eventuale coordinamento trasversale non sono accertati."
+      },
+      "related": []
+    }
+  ]
+}

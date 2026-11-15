@@ -53,6 +53,27 @@ in a checkout after a sidecar is archived, but it is never triggered by
 CI or a merge hook. A merged article is public only after separate
 human editorial approval and M5 publication eligibility.
 
+### Task D: serial backlog drain without weakening strict protection
+
+See [AGENTS.md](../AGENTS.md), **Content-invariant synchronization of
+stale PRs**. Only when a C-reviewed `research/*` PR introduces **new
+regular files exclusively**, D can rebase its factual assessment onto
+new `main` without changing a single reviewed Git blob: native
+`update-branch` or a narrowly scoped two-parent Git merge commit,
+followed by a full inventory equality check and new required statuses.
+D must NOT reuse an earlier check, refresh `agent/ingest-*` data edits
+with this fallback, resolve conflicts by force, or silently change
+content. If the invariant fails, request C's new review.
+
+### Waiver cleanup
+
+The `expire-waiver` job skips synchronization events when the
+`evidence-waiver` label is absent, avoiding pointless DELETE calls.
+The validator still rejects stale waivers based on push time and GitHub
+events. A genuine API 403 for removal of a **present** waiver remains
+an actionable permission problem; an agent never bypasses or relies
+on the waiver.
+
 ## 2. Task A: incremental OSINT source acquisition (active)
 
 - **ChatGPT task:** `Our Enemies Monitor OSINT & Ingest`.

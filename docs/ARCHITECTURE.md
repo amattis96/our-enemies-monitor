@@ -859,6 +859,26 @@ ChatGPT B (IT/EN investigation) --> article draft PR
                                 main CI + GitHub Pages deploy
 ```
 
+**Stale branch handling:** on a strict-protected `main`, each merge can
+make other PRs stale. Task D may synchronize only **additions-only
+research PRs** by preserving exactly the blob SHA of each C-reviewed
+new regular file and using a content-preserving Git merge commit
+against the current main tree (or native GitHub update-branch).
+It must verify no path/ID/cross-PR collisions, recheck changed files
+and CI for the new HEAD, then use expected_head_sha for the ordinary
+squash merge. C's factual review of the original blobs is not
+misrepresented as review of the technical merge commit. Mutating
+existing data, editing articles, changing control-plane code,
+deletions and unverifiable dependencies return to C. `strict: true`
+is retained. See AGENTS.md.
+
+**Waiver cleanup:** the optional nonrequired `expire-waiver` job runs
+on synchronize only when an actual evidence-waiver label is present,
+avoiding 403 DELETE failures on unlabeled PRs. The separately
+implemented `waiverStatus` invalidates waivers predating a push, even
+if a GitHub token cannot remove the label. A genuine denied cleanup
+remains visible and is not treated as approval.
+
 **Publication boundary:** merging a source archives it; a separate
 ingest PR creates needs_review candidates; a merged article remains
 unpublished while needs_review. Only authorized human review can
