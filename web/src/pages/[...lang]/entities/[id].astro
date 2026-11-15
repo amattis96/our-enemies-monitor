@@ -1,5 +1,6 @@
 ---
 import type { Entity } from "../../../../../src/model/index.ts";
+import { pageRelationshipsCsv } from "../../../../../src/site/csv.ts";
 import {
   countryName,
   ENTITY_KIND_LABELS,
@@ -14,6 +15,7 @@ import { roleMatrix } from "../../../../../src/site/roles.ts";
 import { KIND_ICON, RELATION_GROUP_ICON } from "../../../../../src/site/visual.ts";
 import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
 import EvidenceStamp from "../../../components/EvidenceStamp.astro";
+import ExportMenu from "../../../components/ExportMenu.astro";
 import Icon from "../../../components/Icon.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import RecordFooter from "../../../components/RecordFooter.astro";
@@ -21,6 +23,7 @@ import RelationshipTable from "../../../components/RelationshipTable.astro";
 import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
 import Base from "../../../layouts/Base.astro";
+import { packageExport } from "../../../lib/exports.ts";
 import { assetHref, href, packageAlternate } from "../../../lib/links.ts";
 import { getModel } from "../../../lib/model.ts";
 
@@ -46,6 +49,12 @@ const participations = relationships
 const hypotheses = model.hypothesesOf(entity.id);
 const roles = roleMatrix(model, entity.id);
 const levels = ["E1", "E2", "E3", "E4"] as const;
+const absolute = (path: string) => new URL(href(path, lang), Astro.site ?? "http://localhost").href;
+const relationsCsv = pageRelationshipsCsv([...direct, ...participations.map((p) => p.r)], lang, {
+  name: (id) => model.nodeLabel(id, lang),
+  url: (id) => absolute(`${model.nodeKind(id) === "event" ? "events" : "entities"}/${id}/`),
+  restricted: (r) => model.isRestricted(r),
+});
 ---
 
 <Base title={textOf(entity.name, lang)} lang={lang} alternates={packageAlternate(entity.id)} searchable>
@@ -56,7 +65,26 @@ const levels = ["E1", "E2", "E3", "E4"] as const;
       · <span>{entity.id}</span> · {c("dominio", "domain")} {entity.domain}
       {entity.country && <> · <a href={`${href("atlas/", lang)}#${entity.country}`}>{countryName(entity.country, lang)}</a></>}
     </p>
-    <h1><T text={entity.name} lang={lang} /></h1>
+    <div class="title-row">
+      <h1><T text={entity.name} lang={lang} /></h1>
+      <ExportMenu
+        label={ui(lang).exportLabel}
+        groups={[{
+          title: ui(lang).exportPage,
+          items: [
+            {
+              format: "CSV",
+              label: c("Relazioni ed eventi della scheda", "Relationships and events of this profile"),
+              detail: c(`${direct.length + participations.length} righe, predicati letterali`, `${direct.length + participations.length} rows, literal predicates`),
+              text: relationsCsv,
+              name: `oem-${entity.id}-relationships-${lang}.csv`,
+              type: "text/csv;charset=utf-8",
+            },
+            packageExport(entity.id, lang),
+          ],
+        }]}
+      />
+    </div>
     <div class="kpis mt-4 entity-kpis">
       <a class="kpi" href="#direct"><b>{direct.length}</b><span class="kicker">{c("relazioni dirette", "direct relationships")}</span></a>
       <a class="kpi" href="#events"><b>{participations.length}</b><span class="kicker">{c("eventi", "events")}</span></a>

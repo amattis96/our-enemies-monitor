@@ -132,10 +132,24 @@ a tooltip. When a third language arrives, the same component becomes a
 popover listbox (globe `ui-language` + current code + chevron) with native
 names and a check on the current one.
 
+### `ExportMenu`
+
+Ghost button «Esporta / Export» (`ui-download` + chevron) opening a
+disclosure panel (`radius-3`, `shadow-2`, `z-popover`), right-aligned by
+default (`export-start` aligns it left). Items are grouped under a kicker
+(«Vista corrente», «Questa pagina», «Dataset completo»); each item shows a
+mono format tag (CSV, JSON, MD, PDF), a label and a one-line detail (row
+count, languages). Closes on Escape (focus back to the button), outside
+click and after a choice; hidden in print and ignored by Pagefind. Static
+pages use `ExportMenu.astro`, islands `ExportMenu.tsx` with the same
+classes.
+
 ### `SearchTrigger` and `CommandPalette`
 
-Button styled as a search field ("Cerca nel monitor", `⌘K` / `Ctrl K`
-hint). Opens a modal command palette using the Pagefind JS API (not the
+Button styled as a search field ("Cerca nel monitor", `⌘K` on Apple
+platforms, `Ctrl K` elsewhere; the modifier comes from `data-platform` on
+`<html>`, set before paint, and the hint sits in a fixed-height box so the
+platform glyph fallback cannot shift it). Opens a modal command palette using the Pagefind JS API (not the
 default UI) with `kind-*` / `nav-*` icons per result type,
 keyboard navigation (↑ ↓ Enter Esc, `/` also opens it), "Go to" section
 shortcuts when the query is empty, top 8 results with a type icon and a

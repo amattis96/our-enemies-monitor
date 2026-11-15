@@ -26,8 +26,11 @@
   --color-test-bg: var(--fixture-wash);
 }
 
-@view-transition {
-  navigation: auto;
+/* Cross-page fade only for readers who have not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }
 
 @layer base {
@@ -137,6 +140,9 @@
   input[type="checkbox"],
   input[type="radio"] {
     accent-color: var(--accent);
+    width: 1.05rem;
+    height: 1.05rem;
+    vertical-align: -0.15em;
   }
   details > summary {
     cursor: pointer;
@@ -813,5 +819,140 @@
   .copy-btn[data-copied] {
     color: var(--ok);
     border-color: var(--ok);
+  }
+}
+
+/* Export menu: a disclosure listing downloadable files of the page or view. */
+@layer components {
+  .export-menu {
+    position: relative;
+    display: inline-block;
+  }
+  .export-trigger {
+    list-style: none;
+    user-select: none;
+  }
+  .export-trigger::-webkit-details-marker {
+    display: none;
+  }
+  .export-chevron {
+    width: 0.85em;
+    height: 0.85em;
+    color: var(--ink-3);
+    transition: transform var(--dur-fast) var(--ease-standard);
+  }
+  .export-menu[open] .export-chevron {
+    transform: rotate(180deg);
+  }
+  .export-menu[open] .export-trigger {
+    border-color: var(--ink);
+  }
+  .export-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.4rem);
+    z-index: var(--z-popover);
+    width: min(22rem, calc(100vw - 2 * var(--gutter)));
+    max-height: min(70vh, 32rem);
+    overflow-y: auto;
+    padding: var(--space-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-3);
+    background: var(--paper-raised);
+    box-shadow: var(--shadow-2);
+  }
+  .export-menu.export-start .export-panel {
+    right: auto;
+    left: 0;
+  }
+  /* Phones: the panel becomes a bottom sheet, never wider than the screen. */
+  @media (max-width: 639px) {
+    .export-menu .export-panel,
+    .export-menu.export-start .export-panel {
+      position: fixed;
+      left: var(--gutter);
+      right: var(--gutter);
+      top: auto;
+      bottom: max(var(--gutter), env(safe-area-inset-bottom));
+      width: auto;
+      max-height: 70vh;
+      box-shadow: var(--shadow-lifted);
+    }
+    .export-item {
+      padding: 0.7rem 0.5rem;
+    }
+  }
+  .export-panel section + section {
+    margin-top: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--rule);
+  }
+  .export-panel .kicker {
+    margin: 0.25rem 0.5rem 0.35rem;
+  }
+  .export-panel ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .export-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: var(--radius-2);
+    background: transparent;
+    color: var(--ink);
+    font: 400 var(--text-sm) / 1.35 var(--font-sans);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .export-item:hover,
+  .export-item:focus-visible {
+    background: var(--paper-sunken);
+  }
+  .export-format {
+    flex: none;
+    min-width: 2.9rem;
+    margin-top: 0.05rem;
+    padding: 0.2rem 0.3rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius-1);
+    font: 600 var(--text-micro) / 1 var(--font-mono);
+    letter-spacing: var(--tracking-caps);
+    text-align: center;
+    color: var(--ink-2);
+  }
+  .export-text {
+    display: grid;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+  .export-label {
+    font-weight: 500;
+  }
+  .export-detail {
+    font-size: var(--text-xs);
+    color: var(--ink-3);
+  }
+}
+
+@layer components {
+  /* Page title with its tools (export menu) on the same line when it fits. */
+  .title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+  }
+  .title-row > h1 {
+    margin-bottom: 0;
+  }
+  .title-row + * {
+    margin-top: var(--space-4);
   }
 }

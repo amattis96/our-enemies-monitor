@@ -117,8 +117,8 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - `src/site/` — read model, i18n strings, formatting and data exports for the website. Public
   rules (restricted person relationships, graph separation, ordering) live
   here, with tests, not in templates. Every machine-readable output (record
-  packages, articles index, feeds, JSON-LD, sitemap dates) derives from the
-  public projection only and must stay covered by the withheld-ID leak test
+  packages, articles index, feeds, CSV copies and in-page exports, JSON-LD,
+  sitemap dates) derives from the public projection only and must stay covered by the withheld-ID leak test
   (`test/packages.test.ts`, `src/site/surface.ts`); a new output goes through
   `exportFiles` so the manifest hashes it.
 - `web/` — Astro site. Keep `.astro` templates thin: they are not type-checked

@@ -21,6 +21,7 @@ import {
 } from "../../../../../src/site/i18n.ts";
 import { articleJsonLd } from "../../../../../src/site/jsonld.ts";
 import DateRange from "../../../components/DateRange.astro";
+import ExportMenu from "../../../components/ExportMenu.astro";
 import FixtureBanner from "../../../components/FixtureBanner.astro";
 import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
@@ -82,6 +83,26 @@ const generation = [
     </p>
     <h1 class="article-title"><T text={article.title} lang={lang} /></h1>
     <p class="article-dek"><T text={article.summary} lang={lang} /></p>
+    <ExportMenu
+      class="export-start article-export"
+      label={ui(lang).exportLabel}
+      groups={[
+        {
+          title: c("Testo e fonti", "Text and sources"),
+          items: downloads.map((code) => ({
+            format: "MD",
+            label: `Markdown, ${code === "it" ? c("italiano", "Italian") : c("inglese", "English")}`,
+            detail: c("Testo, riferimenti e record collegati; si apre in qualsiasi editor", "Text, references and linked records; opens in any editor"),
+            href: assetHref(`articles/${article.id}.${code}.md`),
+            name: `${article.id}.${code}.md`,
+          })),
+        },
+        {
+          title: c("Documento", "Document"),
+          items: [{ format: "PDF", label: c("Stampa o salva in PDF", "Print or save as PDF"), detail: c("Impaginazione di stampa, URL delle fonti in chiaro", "Print layout, source URLs spelled out"), print: true }],
+        },
+      ]}
+    />
     <p class="article-byline mono">
       <span><DateRange start={article.date} lang={lang} /></span>
       {article.updated && <span>{c("aggiornato il", "updated")} <DateRange start={article.updated} lang={lang} /></span>}

@@ -7,6 +7,7 @@ import { type Article, COLLECTION_NAMES, type Dataset } from "../model/index.ts"
 import { REPO_ROOT, SCHEMAS_DIR } from "../pipeline/paths.ts";
 import { summarize } from "../pipeline/validate.ts";
 import { loadPublishedArticles } from "./articles.ts";
+import { collectionCsvs } from "./csv.ts";
 import { type DataCommit, dataHistory } from "./history.ts";
 import { counterInferenceAudit } from "./inferences.ts";
 import { buildArticlesIndex, buildChangesFeed, buildRecordPackages } from "./packages.ts";
@@ -129,9 +130,15 @@ export function buildCatalog(
       { path: "inferences.json", schema: null },
       { path: "articles.json", schema: null },
       { path: "changes.feed.json", schema: null },
+      ...CSV_COLLECTIONS.map((name) => ({ path: `${name}.csv`, schema: null })),
     ],
+    csv: {
+      note: "Spreadsheet copies (RFC 4180, UTF-8 with BOM, lists joined with ';') of the same public projection; Italian columns are canonical. Relationships the site shows as restricted keep their row but not their predicate or caveat.",
+    },
   };
 }
+
+const CSV_COLLECTIONS = ["events", "entities", "relationships", "hypotheses", "sources"] as const;
 
 const json = (value: unknown) => `${JSON.stringify(value, null, 2)}\n`;
 
@@ -151,6 +158,9 @@ export function exportFiles(
   }));
   const all = { path: "all.json", text: `${JSON.stringify(dataset, null, 2)}\n` };
   const model = buildReadModel(dataset);
+  const restricted = new Set(
+    dataset.relationships.filter((r) => model.isRestricted(r)).map((r) => r.id),
+  );
   const graphs = [
     { path: "graph.json", text: JSON.stringify(evidenceGraph(model)) },
     { path: "hypotheses-graph.json", text: JSON.stringify(hypothesisGraph(model)) },
@@ -172,6 +182,7 @@ export function exportFiles(
     { path: "inferences.json", text: json(counterInferenceAudit(registry, model)) },
     { path: "articles.json", text: json(buildArticlesIndex(articles, dataset, EXPORT_VERSION)) },
     { path: "changes.feed.json", text: json(buildChangesFeed(history, dataset)) },
+    ...collectionCsvs(dataset, (id) => restricted.has(id)),
     ...buildRecordPackages(dataset, commit, EXPORT_VERSION, new Set(report.transformed)),
     ...schemas,
   ];

@@ -5,6 +5,7 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Language, LocalizedText } from "../../../src/model/index.ts";
 import type { BoardLayout } from "../../../src/site/board-layout.ts";
 import { cardTilt } from "../../../src/site/board-layout.ts";
+import { type CsvColumn, exportFileName, toCsv } from "../../../src/site/csv.ts";
 import { formatPredicate } from "../../../src/site/format.ts";
 import { pick } from "../../../src/site/i18n.ts";
 import type { GraphEdge, GraphNode, HypothesisEdge } from "../../../src/site/read-model.ts";
@@ -17,7 +18,9 @@ import {
   RELATION_GROUP_ICON,
   RELATION_GROUP_ORDER,
 } from "../../../src/site/visual.ts";
+import { CSV_TYPE, downloadText, JSON_TYPE } from "../lib/download.ts";
 import { BoardCaveat } from "./BoardCaveat.tsx";
+import { ExportMenu } from "./ExportMenu.tsx";
 
 const LABELS = {
   it: {
@@ -26,7 +29,8 @@ const LABELS = {
     levels: "Livello di evidenza",
     kinds: "Tipi di scheda",
     visible: (n: number, e: number) => `${n} schede, ${e} fili visibili`,
-    wheelHint: "⌘/Ctrl + rotella o pizzico per lo zoom; trascina lo sfondo per spostarti",
+    wheelHint: (mod: string) =>
+      `${mod} + rotella o pizzico per lo zoom; trascina lo sfondo per spostarti`,
     board: "Bacheca",
     list: "Elenco",
     view: "Vista",
@@ -52,6 +56,18 @@ const LABELS = {
     priority: "Priorità",
     tape: "Ipotesi E5 — non sono fatti documentati",
     links: (n: number) => (n === 1 ? "1 collegamento visibile" : `${n} collegamenti visibili`),
+    export: "Esporta",
+    exportView: "Vista corrente",
+    exportAll: "Dataset completo",
+    viewCsv: "Fili visibili (foglio di calcolo)",
+    viewJson: "Schede e fili visibili (grafo)",
+    viewDetail: (n: number, e: number) => `${e} fili e ${n} schede con i filtri attuali`,
+    hypViewCsv: "Ipotesi visibili (foglio di calcolo)",
+    hypViewDetail: (n: number, e: number) => `${e} ipotesi E5 e ${n} schede: domande, non fatti`,
+    allCsv: "Tutte le relazioni pubblicate",
+    allHypCsv: "Tutte le ipotesi pubblicate",
+    allJson: "Grafo completo",
+    allDetail: "Comprese le famiglie escluse dai filtri",
   },
   en: {
     loadError: "Unable to load the board data.",
@@ -59,7 +75,7 @@ const LABELS = {
     levels: "Evidence level",
     kinds: "Card types",
     visible: (n: number, e: number) => `${n} cards, ${e} visible threads`,
-    wheelHint: "⌘/Ctrl + wheel or pinch to zoom; drag the background to move",
+    wheelHint: (mod: string) => `${mod} + wheel or pinch to zoom; drag the background to move`,
     board: "Board",
     list: "List",
     view: "View",
@@ -85,6 +101,19 @@ const LABELS = {
     priority: "Priority",
     tape: "Hypotheses E5 — not documented facts",
     links: (n: number) => (n === 1 ? "1 visible link" : `${n} visible links`),
+    export: "Export",
+    exportView: "Current view",
+    exportAll: "Full dataset",
+    viewCsv: "Visible threads (spreadsheet)",
+    viewJson: "Visible cards and threads (graph)",
+    viewDetail: (n: number, e: number) => `${e} threads and ${n} cards with the current filters`,
+    hypViewCsv: "Visible hypotheses (spreadsheet)",
+    hypViewDetail: (n: number, e: number) =>
+      `${e} E5 hypotheses and ${n} cards: questions, not facts`,
+    allCsv: "All published relationships",
+    allHypCsv: "All published hypotheses",
+    allJson: "Full graph",
+    allDetail: "Including the families excluded by the filters",
   },
 };
 
@@ -93,6 +122,8 @@ type Props = {
   mode: "evidence" | "hypotheses";
   dataUrl: string;
   layout: BoardLayout;
+  /** Full collection export (`relationships.csv` or `hypotheses.csv`). */
+  collectionCsv: string;
   /** Base URLs of entity and event pages, ending with a slash. */
   entityBase: string;
   eventBase: string;
@@ -108,6 +139,8 @@ type Edge = {
   source: string;
   target: string;
   label: string;
+  /** Literal predicate or hypothesis type, as in the data (exports). */
+  literal: string;
   group: string;
   level: "E1" | "E2" | "E3" | "E4" | "E5";
   priority?: string;
@@ -351,6 +384,11 @@ export default function EvidenceBoard(props: Props) {
     travel: number;
   } | null>(null);
   const reduced = useRef(false);
+  // Set on <html> before paint by the layout: ⌘ on Apple platforms, Ctrl elsewhere.
+  const modifier =
+    typeof document !== "undefined" && document.documentElement.dataset.platform === "apple"
+      ? "⌘"
+      : "Ctrl";
 
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -361,13 +399,19 @@ export default function EvidenceBoard(props: Props) {
           nodes: json.nodes,
           edges: json.edges.map((e) =>
             "predicate" in e
-              ? { ...e, label: formatPredicate(e.predicate), level: e.evidence_level }
+              ? {
+                  ...e,
+                  label: formatPredicate(e.predicate),
+                  literal: e.predicate,
+                  level: e.evidence_level,
+                }
               : {
                   ...e,
                   caveat: null,
                   group: "hypothesis",
                   level: "E5",
                   label: formatPredicate(e.hypothesis_type),
+                  literal: e.hypothesis_type,
                   priority: e.priority,
                 },
           ),
@@ -547,6 +591,102 @@ export default function EvidenceBoard(props: Props) {
     ? visible.edges.filter((e) => e.source === selected || e.target === selected)
     : [];
   const animate = !reduced.current && visible.nodes.length <= 150;
+  const absolute = (path: string) => new URL(path, window.location.href).href;
+  const exportColumns: CsvColumn<Edge>[] = [
+    { name: "id", value: (e) => e.id },
+    { name: "subject", value: (e) => e.source },
+    { name: "subject_name", value: (e) => nameOf(e.source) },
+    { name: hypotheses ? "hypothesis_type" : "predicate", value: (e) => e.literal },
+    { name: "object", value: (e) => e.target },
+    { name: "object_name", value: (e) => nameOf(e.target) },
+    hypotheses
+      ? { name: "priority", value: (e) => props.priorityLabels?.[e.priority ?? ""] ?? e.priority }
+      : { name: "family", value: (e) => groupLabels[e.group] ?? e.group },
+    { name: "evidence_level", value: (e) => e.level },
+    { name: "caveat", value: (e) => (e.caveat ? localized(e.caveat, lang) : null) },
+    { name: "subject_url", value: (e) => absolute(pageOf(e.source)) },
+    { name: "object_url", value: (e) => absolute(pageOf(e.target)) },
+  ];
+  const exportView = hypotheses ? "hypotheses-board" : "board";
+  const exportGroups = [
+    {
+      title: t.exportView,
+      items: [
+        {
+          format: "CSV",
+          label: hypotheses ? t.hypViewCsv : t.viewCsv,
+          detail: (hypotheses ? t.hypViewDetail : t.viewDetail)(
+            visible.nodes.length,
+            visible.edges.length,
+          ),
+          onSelect: () =>
+            downloadText(
+              exportFileName(exportView, lang, "csv"),
+              toCsv(exportColumns, visible.edges),
+              CSV_TYPE,
+            ),
+        },
+        {
+          format: "JSON",
+          label: t.viewJson,
+          detail: (hypotheses ? t.hypViewDetail : t.viewDetail)(
+            visible.nodes.length,
+            visible.edges.length,
+          ),
+          onSelect: () =>
+            downloadText(
+              exportFileName(exportView, lang, "json"),
+              `${JSON.stringify(
+                {
+                  view: window.location.href,
+                  language: lang,
+                  ...(hypotheses
+                    ? { notice: t.tape }
+                    : {
+                        filters: {
+                          groups: [...groups].sort(),
+                          levels: [...levels].sort(),
+                          isolated: isolated ? selected : null,
+                        },
+                      }),
+                  nodes: visible.nodes.map((n) => ({
+                    id: n.id,
+                    kind: n.kind,
+                    label: localized(n.label, lang),
+                    url: absolute(pageOf(n.id)),
+                  })),
+                  edges: visible.edges.map((e) => ({
+                    id: e.id,
+                    source: e.source,
+                    target: e.target,
+                    [hypotheses ? "hypothesis_type" : "predicate"]: e.literal,
+                    ...(hypotheses ? { priority: e.priority } : { group: e.group }),
+                    evidence_level: e.level,
+                    caveat: e.caveat ? localized(e.caveat, lang) : null,
+                  })),
+                },
+                null,
+                2,
+              )}\n`,
+              JSON_TYPE,
+            ),
+        },
+      ],
+    },
+    {
+      title: t.exportAll,
+      items: [
+        {
+          format: "CSV",
+          label: hypotheses ? t.allHypCsv : t.allCsv,
+          detail: hypotheses ? undefined : t.allDetail,
+          href: props.collectionCsv,
+        },
+        { format: "JSON", label: t.allJson, href: dataUrl },
+      ],
+    },
+  ];
+
   const pinOf = (id: string): [number, number] => {
     const [x, y] = position(id);
     const kind = nodeById.get(id)?.kind ?? "event";
@@ -616,23 +756,30 @@ export default function EvidenceBoard(props: Props) {
         <div className="board-actions">
           <p className="meta" aria-live="polite">
             {t.visible(visible.nodes.length, visible.edges.length)}
-            {view === "board" && <span className="board-hint"> · {t.wheelHint}</span>}
+            {view === "board" && <span className="board-hint"> · {t.wheelHint(modifier)}</span>}
           </p>
-          <fieldset className="seg">
-            <legend className="sr-only">{t.view}</legend>
-            <button type="button" aria-pressed={view === "board"} onClick={() => setView("board")}>
-              <svg className="icon" aria-hidden="true">
-                <use href={`${sprite}#ui-board`} />
-              </svg>
-              <span className="ml-1">{t.board}</span>
-            </button>
-            <button type="button" aria-pressed={view === "list"} onClick={() => setView("list")}>
-              <svg className="icon" aria-hidden="true">
-                <use href={`${sprite}#ui-list`} />
-              </svg>
-              <span className="ml-1">{t.list}</span>
-            </button>
-          </fieldset>
+          <div className="board-actions-tools">
+            <fieldset className="seg">
+              <legend className="sr-only">{t.view}</legend>
+              <button
+                type="button"
+                aria-pressed={view === "board"}
+                onClick={() => setView("board")}
+              >
+                <svg className="icon" aria-hidden="true">
+                  <use href={`${sprite}#ui-board`} />
+                </svg>
+                <span className="ml-1">{t.board}</span>
+              </button>
+              <button type="button" aria-pressed={view === "list"} onClick={() => setView("list")}>
+                <svg className="icon" aria-hidden="true">
+                  <use href={`${sprite}#ui-list`} />
+                </svg>
+                <span className="ml-1">{t.list}</span>
+              </button>
+            </fieldset>
+            <ExportMenu label={t.export} groups={exportGroups} sprite={sprite} />
+          </div>
         </div>
       </div>
 

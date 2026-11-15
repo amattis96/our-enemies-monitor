@@ -33,13 +33,14 @@ const it = lang === "it";
     themes={themes}
     eventBase={href("events/", lang)}
     sprite={assetHref("icons.svg")}
+    dataBase={assetHref("data/v1/")}
   />
 </Base>
 
 <style is:global>
   .tl-filters {
     position: sticky;
-    top: 3.75rem;
+    top: var(--tl-top, 3.75rem);
     z-index: 5;
     display: grid;
     gap: var(--space-3) var(--space-5);
@@ -143,6 +144,12 @@ const it = lang === "it";
   .tl-status p {
     margin: 0;
   }
+  .tl-status-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+  }
   .tl-empty {
     padding: var(--space-6) 0;
     color: var(--ink-2);
@@ -166,7 +173,8 @@ const it = lang === "it";
   }
   .tl-year-label {
     position: sticky;
-    top: 9.5rem;
+    /* Below the header and the sticky filter bar, whatever their height. */
+    top: calc(var(--tl-top, 3.75rem) + var(--tl-filters, 7.5rem) + var(--space-3));
     align-self: start;
     margin: var(--space-4) 0 var(--space-2);
     font-size: var(--text-2xl);
@@ -174,7 +182,7 @@ const it = lang === "it";
   }
   @media (max-width: 759px) {
     .tl-year-label {
-      top: 3.75rem;
+      top: var(--tl-top, 3.75rem);
       z-index: 2;
       padding: 0.4rem 0;
       background: var(--paper);
@@ -192,6 +200,7 @@ const it = lang === "it";
   }
   .tl-item {
     position: relative;
+    scroll-margin-top: calc(var(--tl-top, 3.75rem) + var(--tl-filters, 7.5rem) + var(--space-4));
     margin: var(--space-4) 0;
     padding: var(--space-3) var(--space-4);
     background: var(--paper-raised);

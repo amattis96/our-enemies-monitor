@@ -3,7 +3,7 @@ import path from "node:path";
 import type { Dataset } from "../model/index.ts";
 import { REPO_ROOT } from "../pipeline/paths.ts";
 import type { Withheld } from "../site/publication.ts";
-import { leakedIds, leakedInSitemap, withheldIdSet } from "../site/surface.ts";
+import { leakedIds, leakedInCsv, leakedInSitemap, withheldIdSet } from "../site/surface.ts";
 
 // Verify every internal link and asset reference in the built site resolves
 // to a file in web/dist (and every #fragment to an id on the target page).
@@ -72,7 +72,7 @@ for (const file of files) {
 }
 
 // Machine-readable surface (D A15): no withheld ID in the per-record packages,
-// articles index, changes feed, catalog, sitemap or the JSON-LD of any page.
+// articles index, changes feed, catalog, CSV copies, sitemap or the JSON-LD of any page.
 const dataDir = path.join(DIST, "data", "v1");
 if (existsSync(path.join(dataDir, "withheld.json"))) {
   const readJson = (file: string): unknown => JSON.parse(readFileSync(file, "utf8"));
@@ -105,7 +105,15 @@ if (existsSync(path.join(dataDir, "withheld.json"))) {
       }
     }
   }
-  console.log(`${surface.length} machine-readable files and the sitemap checked for withheld IDs`);
+  const csv = readdirSync(dataDir).filter((name) => name.endsWith(".csv"));
+  for (const name of csv) {
+    for (const id of leakedInCsv(readFileSync(path.join(dataDir, name), "utf8"), withheld)) {
+      problems.push(`data/v1/${name}: withheld ID ${id}`);
+    }
+  }
+  console.log(
+    `${surface.length + csv.length} machine-readable files and the sitemap checked for withheld IDs`,
+  );
 }
 
 for (const problem of problems.slice(0, 50)) console.error(problem);

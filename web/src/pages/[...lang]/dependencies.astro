@@ -6,10 +6,12 @@ import {
 } from "../../../../src/site/dependencies.ts";
 import { formatMeasure } from "../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import ExportMenu from "../../components/ExportMenu.astro";
 import SourceRefs from "../../components/SourceRefs.astro";
 import T from "../../components/T.astro";
 import TranslationNotice from "../../components/TranslationNotice.astro";
 import Base from "../../layouts/Base.astro";
+import { assetHref } from "../../lib/links.ts";
 import { getModel } from "../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
@@ -23,7 +25,10 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/ex
 
 <Base title={ui(lang).navDependencies} lang={lang} description={c("Esposizioni strategiche quantificate dell'Europa, con denominatori e periodi.", "Europe's quantified strategic exposures, with denominators and periods.")} searchable>
   <p class="kicker">{ui(lang).navExplore}</p>
-  <h1>{c("Dipendenze strategiche", "Strategic dependencies")}</h1>
+  <div class="title-row">
+    <h1>{c("Dipendenze strategiche", "Strategic dependencies")}</h1>
+    <ExportMenu label={ui(lang).exportLabel} groups={[{ title: ui(lang).exportDataset, items: [{ format: "JSON", label: c("Tutte le esposizioni", "All exposures"), detail: c("Valori, denominatori, periodi e fonti come pubblicati", "Values, denominators, periods and sources as published"), href: assetHref("data/v1/exposures.json") }] }]} />
+  </div>
   <div class="max-w-3xl">
     <p>
       {c(

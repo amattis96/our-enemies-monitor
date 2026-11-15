@@ -37,6 +37,12 @@
 .board-actions p {
   margin: 0;
 }
+.board-actions-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
 
 .board {
   position: relative;

@@ -4,8 +4,10 @@ import { formatPartialDate, SOURCE_TYPE_LABELS } from "../../../../../src/site/f
 import { choose, languageFromParam, languagePaths, ui } from "../../../../../src/site/i18n.ts";
 import { archivedResearch } from "../../../../../src/site/research.ts";
 import ArchiveTabs from "../../../components/ArchiveTabs.astro";
+import ExportMenu from "../../../components/ExportMenu.astro";
 import T from "../../../components/T.astro";
 import Base from "../../../layouts/Base.astro";
+import { collectionExports } from "../../../lib/exports.ts";
 import { href } from "../../../lib/links.ts";
 import { getModel } from "../../../lib/model.ts";
 
@@ -21,7 +23,10 @@ const groups = SOURCE_TYPES.map((type) => ({
 
 <Base title={ui(lang).navSources} lang={lang}>
   <ArchiveTabs lang={lang} current="sources" counts={{ entities: getModel().dataset.entities.length, hypotheses: getModel().dataset.hypotheses.length, sources: getModel().dataset.sources.length }} />
-  <h1>{ui(lang).navSources}</h1>
+  <div class="title-row">
+    <h1>{ui(lang).navSources}</h1>
+    <ExportMenu label={ui(lang).exportLabel} groups={[{ title: ui(lang).exportDataset, items: collectionExports("sources", ui(lang).navSources, lang) }]} />
+  </div>
   <p class="max-w-3xl">
     {choose(
       lang,
