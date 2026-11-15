@@ -266,6 +266,15 @@ finds itself acting as the owner account once the machine account exists, it
 must stop and report it. The ChatGPT task prompts (outside this repository)
 must be aligned with these rules when the settings change.
 
+**Single-account mode (maintainer decision, 15 November 2026):** no second
+GitHub account (human reviewer or machine account) is introduced for now; it
+is a possible future implementation (B01). Until then `evidence-diff` stays red
+on any PR that modifies a reviewed article (the owner opens the PR and cannot
+approve it), `main` blocks on code owner review, and the maintainer merges
+with an admin merge after reading the diff. Agents never weaken the gates to
+compensate, never apply the waiver label, approve or merge, and say plainly
+when a PR is red only for this reason. PR #20 was merged this way.
+
 ## Publication gate (M5)
 
 `src/site/publication.ts` applies the same policy to pages, graphs and exports:
@@ -329,7 +338,8 @@ reviewers are the logins in the repository variable `ARTICLE_REVIEWERS`
 (comma-separated; when unset it falls back to `MAINTAINER_LOGIN`, then the
 repository owner), kept separate from the `evidence-waiver` identity. The PR
 author cannot self-approve, and agents often open PRs from the owner account,
-so a second human reviewer account must be listed in `ARTICLE_REVIEWERS`. The
+so a second human reviewer account must be listed in `ARTICLE_REVIEWERS`
+(deferred: see "Single-account mode" under Governance). The
 gate runs the PR head's own code (inherited B02 limit): review of
 `.github/**`, `src/cli/check-*.ts`, `src/pipeline/article-*.ts` and
 `package.json` by a code owner (`.github/CODEOWNERS` lists them under the

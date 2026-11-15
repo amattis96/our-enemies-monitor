@@ -143,3 +143,7 @@ Non bloccanti:
 - Il codice è verificato: check, build, link, publication audit e benchmark sono verdi, senza regressioni. Le tre correzioni richieste sono in commit distinti con test.
 - Il merge resta un **NO-GO tecnico fino all'approvazione**: `evidence-diff` è rosso solo per le modifiche, legittime, a due articoli già approvati, che richiedono l'etichetta del manutentore e la `Publication-Approval` di un secondo revisore umano.
 - Il GO pieno richiede anche i prerequisiti di governance del §3: oggi nessun controllo impedisce a un agente con credenziali da owner di aggirare le regole.
+
+## 9. Esito (aggiornamento)
+
+PR #20 unita in `main` (`01aef78`) dal manutentore con merge amministrativo: etichetta `evidence-waiver` applicata dall'owner, nessuna `Publication-Approval` (non esiste un secondo account), `evidence-diff` rosso solo per questo motivo. Il secondo account è rinviato per decisione del manutentore: vedi B01_ANALYSIS, «Decisione del manutentore (15 novembre 2026)».
