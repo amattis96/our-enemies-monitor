@@ -115,7 +115,7 @@ The repository is the durable source of truth. A **static-first portal** is buil
 | Data model and validation | Zod 4 schemas, exported as JSON Schema |
 | Canonical data | One JSON file per record in `data/`, versioned in Git |
 | Public web app | Astro 7 static site with React 19 islands, Tailwind CSS 4, [Dossier design system](docs/design/README.md) |
-| Evidence board | Custom SVG island, d3-force build-time layout, d3-zoom; full relationship caveats in the case file and List |
+| Evidence board | Custom SVG island, d3-force build-time layout, d3-zoom; full relationship caveats in the case file and List; case file enters from below on screens narrower than 760 px and scrolls internally |
 | Search | Pagefind static index |
 | Atlas | Static country-level SVG maps (d3-geo, Natural Earth) |
 | Languages | Italian (canonical) and English, translation status tracked per record |

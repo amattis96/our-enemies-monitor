@@ -218,6 +218,11 @@
     transform: translateX(110%);
   }
 }
+@keyframes case-in-bottom {
+  from {
+    transform: translateY(110%);
+  }
+}
 @media (max-width: 759px) {
   .case-file {
     top: auto;
@@ -225,6 +230,11 @@
     right: 0.5rem;
     width: auto;
     max-height: 62%;
+  }
+}
+@media (max-width: 759px) and (prefers-reduced-motion: no-preference) {
+  .case-file {
+    animation-name: case-in-bottom;
   }
 }
 .case-file-tab {

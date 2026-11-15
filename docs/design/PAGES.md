@@ -163,7 +163,9 @@ The visual group for cable incidents `G-0419`, `G-0420` and `G-0421` is neutral 
   the **case file drawer** (manila folder styling): title, kind, ID, every
   visible relationship with predicate, family, level stamp and full localized caveat when present, a link to the
   full profile and a button that isolates the neighbourhood. Neighbours in
-  the drawer are buttons that move the selection.
+  the drawer are buttons that move the selection. Below 760 px the case file
+  enters from the bottom; at 760 px and above it enters from the right. Its
+  final position is contained within the board and long content scrolls internally.
 - `?focus=<ID>` (used by entity pages) opens the board on that card.
 - Keyboard: every card is a focusable button (Tab), `Enter`/`Space` opens
   the drawer, `Esc` clears. *Deferred:* arrow-key travel along threads.

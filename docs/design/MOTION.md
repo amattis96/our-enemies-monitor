@@ -29,7 +29,7 @@ or glows. Motion always explains a change of state or place.
 | **Reveal on scroll** | Timeline items | 10 px rise + fade driven by a CSS view timeline (`animation-timeline: view()`, the `.reveal` class), no JavaScript; browsers without support show items at once |
 | **Year scrub** | Timeline density bar | Selected bar fills with signal and filters the list to that year (click again to clear); bar heights ease when other filters change |
 | **Stamp tooltip** | Evidence stamps | Native tooltip with the level definition (also in visually hidden text). *Deferred:* styled popover |
-| **Drawer / sheet** | Board case file, mobile menu, search palette | Case file and menu slide in from the right (case file from the bottom on phones) with `--dur-slow` / `--ease-enter`; the palette fades and settles 8 px; dialogs dim the page behind |
+| **Drawer / sheet** | Board case file, mobile menu, search palette | The case file enters from the bottom below 760 px and from the right at 760 px and above; the menu enters from the right, all with `--dur-slow` / `--ease-enter`; the palette fades and settles 8 px; dialogs dim the page behind |
 | **Pin drop** | Board initial render | Cards (with their pin) fall 14 px with `--ease-paper`, staggered 18 ms; skipped above 150 visible cards |
 | **Thread draw** | Board | Solid threads draw with `stroke-dashoffset` over 600 ms; patterned threads (E3/E4/E5) fade in instead, so the pattern never animates into a false solid |
 | **Card lift** | Board hover/focus | Paper rises 3 px with `--ease-paper` and its drawn shadow moves out (no CSS filters, cheap on phones) |
