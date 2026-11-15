@@ -1,4 +1,9 @@
 ---
+import {
+  CHAIN_GAPS,
+  EXPOSURE_GROUP_LABELS,
+  exposureGroupViews,
+} from "../../../../src/site/dependencies.ts";
 import { formatMeasure } from "../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
 import SourceRefs from "../../components/SourceRefs.astro";
@@ -11,6 +16,8 @@ export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
 const exposures = getModel().dataset.exposures;
+const groups = exposureGroupViews(exposures);
+const noPeriod = c("periodo non indicato dalla fonte", "period not stated by the source");
 const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/exposures";
 ---
 
@@ -32,6 +39,75 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/ex
     </div>
   </div>
 
+  {
+    groups.length > 0 && (
+      <section aria-labelledby="groups-title" class="mt-6">
+        <h2 id="groups-title" class="section-title">{c("Filiere e confronti prima/dopo", "Supply chains and before/after comparisons")}</h2>
+        <p class="meta max-w-3xl">
+          {c(
+            "Raggruppamento editoriale delle schede qui sotto: ordina gli stadi, non aggiunge valori né nessi causali. Ogni stadio riporta valore, periodo, cosa misura e fonte.",
+            "Editorial grouping of the cards below: it orders stages and adds no value or causal link. Each stage shows its value, period, what it measures and source.",
+          )}
+        </p>
+        {groups.map((g) =>
+          g.kind === "supply_chain" ? (
+            <figure class="chain" aria-labelledby={`${g.id}-title`}>
+              <figcaption id={`${g.id}-title`} class="kicker">{c("Filiera", "Supply chain")} · {EXPOSURE_GROUP_LABELS[g.id][lang]}</figcaption>
+              <ol class="chain-stages">
+                {g.stages.map((s, i) => (
+                  <li class:list={["chain-stage", g.mostConcentrated.includes(s.exposure.id) && "chain-top"]}>
+                    {s.sameQuantityAsPrevious === false && (
+                      <p class="chain-change meta">{c("Cambio di grandezza: non confrontabile con lo stadio precedente", "Change of quantity: not comparable with the previous stage")}</p>
+                    )}
+                    <p class="meta mb-1"><span class="font-mono">{i + 1}</span> · <a href={`#${s.exposure.id}`} class="font-mono">{s.exposure.id}</a></p>
+                    <h3 class="text-base mt-0"><T text={s.exposure.sector} lang={lang} /></h3>
+                    <strong>{formatMeasure(s.measure, lang)}</strong>
+                    <p class="text-sm mb-1"><T text={s.measure.label} lang={lang} /> · <span class="meta">{s.measure.period ?? noPeriod}</span></p>
+                    <p class="meta text-sm mb-1">{c("Cosa misura", "What it measures")}: <T text={s.exposure.scope} lang={lang} /></p>
+                    <p class="meta text-sm mb-0">{c("Fonti", "Sources")}: <SourceRefs ids={s.exposure.sources} lang={lang} /></p>
+                    {g.mostConcentrated.includes(s.exposure.id) && (
+                      <p class="chain-flag text-sm mb-0">
+                        {c(
+                          `Stadio più concentrato fra i ${g.comparedStages} che misurano la stessa grandezza`,
+                          `Most concentrated of the ${g.comparedStages} stages measuring the same quantity`,
+                        )}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ol>
+              <p class="meta text-sm">
+                {c("Non documentato nel corpus", "Not documented in the corpus")}: {CHAIN_GAPS[lang]}.
+              </p>
+            </figure>
+          ) : (
+            <figure class="chain" aria-labelledby={`${g.id}-title`}>
+              <figcaption id={`${g.id}-title`} class="kicker">{c("Prima / dopo", "Before / after")} · {EXPOSURE_GROUP_LABELS[g.id][lang]}</figcaption>
+              <ul class="pairs">
+                {g.pairs.map((p) => (
+                  <li>
+                    <p class="meta mb-1"><a href={`#${p.exposure.id}`} class="font-mono">{p.exposure.id}</a> · <T text={p.exposure.sector} lang={lang} /></p>
+                    <div class="pair-row">
+                      <span><strong>{formatMeasure(p.before, lang)}</strong> <span class="meta">({p.before.period ?? noPeriod})</span></span>
+                      <span aria-hidden="true" class="pair-arrow">→</span>
+                      <span class="sr-only">{c("poi", "then")}</span>
+                      <span><strong>{formatMeasure(p.after, lang)}</strong> <span class="meta">({p.after.period ?? noPeriod})</span></span>
+                    </div>
+                    <p class="meta text-sm mb-0">
+                      {c("Cosa misura", "What it measures")}: <T text={p.exposure.scope} lang={lang} /> · {c("Fonti", "Sources")}: <SourceRefs ids={p.exposure.sources} lang={lang} />
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <p class="meta text-sm">{c("Nessuna differenza è calcolata: i valori hanno qualificatori diversi («quasi», «circa», «meno del»).", "No difference is computed: the values carry different qualifiers (“nearly”, “about”, “less than”).")}</p>
+            </figure>
+          ),
+        )}
+      </section>
+    )
+  }
+
+  <h2 class="section-title">{c("Schede", "Cards")} ({exposures.length})</h2>
   <ul class="grid gap-4 md:grid-cols-2 mt-4">
     {
       exposures.map((x) => (
@@ -82,6 +158,56 @@ const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main/data/ex
   .exposure strong {
     font: 600 var(--text-xl) / 1 var(--font-serif);
     font-variant-numeric: tabular-nums;
+  }
+  .chain {
+    margin: 1.5rem 0;
+  }
+  .chain-stages {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 760px) {
+    .chain-stages {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .chain-stage {
+    padding: 0.75rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--paper-raised);
+  }
+  .chain-stage strong,
+  .pairs strong {
+    font: 600 var(--text-xl) / 1.2 var(--font-serif);
+    font-variant-numeric: tabular-nums;
+  }
+  .chain-top {
+    border-width: 2px;
+    border-color: var(--ink);
+  }
+  .chain-flag {
+    font-weight: 600;
+  }
+  .chain-change {
+    border-left: 3px dashed var(--rule-strong);
+    padding-left: 0.5rem;
+  }
+  .pairs {
+    padding: 0;
+    list-style: none;
+  }
+  .pairs li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pair-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
   }
   .meter {
     height: 0.5rem;

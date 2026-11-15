@@ -6,16 +6,19 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^X-\\d{3}$"
+      "pattern": "^X-\\d{3}$",
+      "description": "Stable record ID (X-###); not an entity ID."
     },
     "sector": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -23,16 +26,19 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Sector concerned."
     },
     "indicator": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -40,7 +46,8 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Original indicator text."
     },
     "measures": {
       "minItems": 1,
@@ -53,9 +60,11 @@
             "properties": {
               "it": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "description": "Canonical Italian text. On divergence the Italian text prevails."
               },
               "en": {
+                "description": "English translation; its status is in review.translations.en.",
                 "type": "string",
                 "minLength": 1
               }
@@ -63,10 +72,12 @@
             "required": [
               "it"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "description": "What the value is."
           },
           "value": {
-            "type": "number"
+            "type": "number",
+            "description": "Numeric value as given by the source."
           },
           "unit": {
             "type": "string",
@@ -75,7 +86,8 @@
               "eur_billion",
               "count",
               "year"
-            ]
+            ],
+            "description": "Unit. Definitions: vocabulary.json#/measure_units."
           },
           "qualifier": {
             "type": "string",
@@ -85,7 +97,8 @@
               "more_than",
               "less_than",
               "nearly"
-            ]
+            ],
+            "description": "How the source qualifies the value. Definitions: vocabulary.json#/measure_qualifiers."
           },
           "out_of": {
             "anyOf": [
@@ -96,7 +109,8 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "description": "Denominator for counts (\"19 of 20\") when the source gives one, else null."
           },
           "period": {
             "anyOf": [
@@ -107,7 +121,8 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "description": "Reference period as stated by the source (2024, 2024-2026), else null."
           }
         },
         "required": [
@@ -119,16 +134,19 @@
           "period"
         ],
         "additionalProperties": false
-      }
+      },
+      "description": "Quantified values; values from different universes are not comparable."
     },
     "scope": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -136,16 +154,19 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "What the value measures: denominator, universe, data series."
     },
     "consequence": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -153,21 +174,49 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Consequence stated by the source."
     },
     "status": {
       "type": "string",
       "enum": [
         "observed",
         "target"
-      ]
+      ],
+      "description": "observed value or planned target. Definitions: vocabulary.json#/exposure_statuses."
+    },
+    "group": {
+      "description": "Editorial grouping of exposures: a supply chain or a before/after comparison. Adds no value, period or causal link. Absent when the exposure belongs to no group.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "rare_earth_magnets",
+            "eu_gas"
+          ],
+          "description": "Editorial group. Definitions and kind: vocabulary.json#/exposure_groups."
+        },
+        "position": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "description": "Order within the group: stage in a supply chain (1 = upstream) or display order in a before/after group. An editorial sequence, not a measure."
+        }
+      },
+      "required": [
+        "id",
+        "position"
+      ],
+      "additionalProperties": false
     },
     "sources": {
       "type": "array",
       "items": {
         "type": "string",
-        "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
-      }
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+      },
+      "description": "Codes of cited sources (see sources.json). Corpus synthesis documents are not independent confirmations."
     },
     "review": {
       "type": "object",
@@ -178,19 +227,23 @@
             "imported_unreviewed",
             "needs_review",
             "reviewed"
-          ]
+          ],
+          "description": "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses."
         },
         "notes": {
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
-          }
+          },
+          "description": "Free-text editorial and technical notes, in English; not typed claims."
         },
         "translations": {
+          "description": "Translation state per language.",
           "type": "object",
           "properties": {
             "en": {
+              "description": "State of the English translation.",
               "type": "object",
               "properties": {
                 "status": {
@@ -198,16 +251,24 @@
                   "enum": [
                     "machine",
                     "reviewed"
-                  ]
+                  ],
+                  "description": "Translation status. Definitions: vocabulary.json#/translation_statuses."
                 },
                 "source_hash": {
                   "type": "string",
-                  "pattern": "^[0-9a-f]{16}$"
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the Italian texts the translation was made from."
+                },
+                "target_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the translated texts as imported."
                 }
               },
               "required": [
                 "status",
-                "source_hash"
+                "source_hash",
+                "target_hash"
               ],
               "additionalProperties": false
             }
@@ -219,7 +280,8 @@
         "status",
         "notes"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Editorial review state of the record."
     },
     "provenance": {
       "type": "array",
@@ -231,12 +293,14 @@
               "file": {
                 "type": "string",
                 "format": "starts_with",
-                "pattern": "^sources\\/.*"
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
               },
               "row": {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "description": "1-based data row of the original CSV file."
               },
               "original": {
                 "type": "object",
@@ -245,7 +309,8 @@
                 },
                 "additionalProperties": {
                   "type": "string"
-                }
+                },
+                "description": "Verbatim original values of that row, keyed by column."
               }
             },
             "required": [
@@ -261,24 +326,28 @@
               "file": {
                 "type": "string",
                 "format": "starts_with",
-                "pattern": "^sources\\/.*"
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
               },
               "line": {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "description": "1-based line of the original text file."
               },
               "original": {
                 "type": "object",
                 "properties": {
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Verbatim original line."
                   }
                 },
                 "required": [
                   "text"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "description": "Verbatim original text."
               }
             },
             "required": [
@@ -289,7 +358,8 @@
             "additionalProperties": false
           }
         ]
-      }
+      },
+      "description": "Original corpus file and row or line each imported record derives from; empty for records created later."
     }
   },
   "required": [

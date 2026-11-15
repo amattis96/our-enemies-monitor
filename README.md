@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M7 implemented.** ChatGPT Task A (daily OSINT), Task B (weekly IT/EN investigations) and Task C (weekly PR review/merge) are active. Approved articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
+**Phase: M1–M7 implemented.** ChatGPT Task A (daily OSINT), Task B (weekly IT/EN investigations) and Task C (weekly PR review) are active. Approved articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -31,7 +31,7 @@ The graph includes contextual and event-participation edges. **Not every edge re
 
 ## Documentary archive versus canonical timeline
 
-Merged research sources, including Fonte_09–Fonte_11 and thematic AI/industrial dossiers, are automatically listed in the Observatory homepage and the source archive at build time. This makes source acquisition visible without implying that every proposed event, allegation or hypothesis has been approved. The canonical timeline and graph are built exclusively from validated records in `data/`, under the M5 publication gate. Use the M6 sidecar ingestion workflow to propose structured updates, then review records before publication. The source archive date and the last timeline event date are displayed separately.
+Merged research sources, including Fonte_09–Fonte_11 and thematic AI/industrial dossiers, are automatically listed in the Observatory homepage and the source archive at build time. This makes source acquisition visible without implying that every proposed event, allegation or hypothesis has been approved. The canonical timeline and graph are built exclusively from validated records in `data/`, under the M5 publication gate. Historical imported records require original provenance and remain provisional. Person relationships require an exact URL match to a directly cited source, their M5 reference, or their own historical original; a match does not certify the claim. Use the M6 sidecar ingestion workflow to propose structured updates, then review records before publication. The source archive date and the last timeline event date are displayed separately.
 
 Real editorial articles were introduced on 13 November 2026; the demo fixture files were removed. The Observatory homepage leads with the latest approved investigation when available and falls back to the latest published timeline event; the timeline section remains separate. Unreviewed future articles remain withheld by the existing publication gate.
 
@@ -59,7 +59,7 @@ The geographic scope includes EU member states, other European countries, Ukrain
 | **Strategic dependencies** | Trace relevant supply chains, chokepoints and infrastructure exposure. |
 | **Updates and corrections** | See newly added material and changes to existing assessments. |
 
-**Internationalization:** English and Italian are intended as initial interface languages, followed by major European languages and progressively broader EU-language coverage. Translations will not alter canonical entity IDs or the meaning and provenance of an attribution.
+**Internationalization:** English and Italian are intended as initial interface languages, followed by major European languages and progressively broader EU-language coverage. Translations will not alter canonical entity IDs or the meaning and provenance of an attribution. Italian and English texts carry separate change-detection hashes; these do not establish semantic fidelity or reviewer identity. Imports apply only to records fully covered by the supplied dictionary. See the [translation glossary](docs/TRANSLATION_GLOSSARY.md).
 
 ## Research corpus
 
@@ -115,7 +115,7 @@ The repository is the durable source of truth. A **static-first portal** is buil
 | Data model and validation | Zod 4 schemas, exported as JSON Schema |
 | Canonical data | One JSON file per record in `data/`, versioned in Git |
 | Public web app | Astro 7 static site with React 19 islands, Tailwind CSS 4, [Dossier design system](docs/design/README.md) |
-| Evidence board | Custom SVG island, d3-force build-time layout, d3-zoom |
+| Evidence board | Custom SVG island, d3-force build-time layout, d3-zoom; full relationship caveats in the case file and List; case file enters from below on screens narrower than 760 px and scrolls internally |
 | Search | Pagefind static index |
 | Atlas | Static country-level SVG maps (d3-geo, Natural Earth) |
 | Languages | Italian (canonical) and English, translation status tracked per record |
@@ -129,26 +129,33 @@ No database, graph database, map tile server or paid service is needed to build 
 pnpm install
 pnpm check        # lint, typecheck, tests, data validation, schema freshness, contrast
 pnpm validate     # validate data/ only
+pnpm validate:sidecars  # check the archived M6 proposals sidecars and the ingest queue
 pnpm validate:articles  # validate content/articles/ and show the publication gate
 pnpm build        # build the static site into web/dist (with search index)
 pnpm preview      # serve the built site locally
 pnpm check:links  # verify every internal link of the built site
 pnpm ingest <Fonte_XX.proposals.json>  # dry run of an M6 sidecar ingest (--write to create candidates)
+pnpm benchmark:measure  # read-only measurement baseline (audit metrics) as JSON
+pnpm benchmark:score <answers.json>  # grade model answers to the B1–B20 benchmark
+pnpm cadence:measure --prs <prs.json> --runs <runs.json>  # read-only A/B/C cadence measures (B21) from gh exports and git
+pnpm audit:mentions     # read-only queue of entity mentions without an edge (Markdown, or --format json)
 ```
+
+Read `data/v1/vocabulary.json` first: it defines evidence levels (kinds of basis, not a ranking), classes, statuses and reading rules R1–R5. `data/v1/index.json` is the catalog, with canonical language, published and withheld counts and three distinct freshness dates (commit, latest public event, latest archived source). The manifest lists public and withheld counts and hashes the minimal `withheld.json` registry (ID, collection and generic reasons); withheld detail pages remain 404. Unchanged provisional legacy hypotheses omit unreviewed notes and non-original citations, and link only public events. Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph. `data/v1/records/<ID>.json` is the package of one published record (record, citation bound to the commit, IDs of the published records it is linked to; a withheld ID has no package), `data/v1/articles.json` lists the publishable articles and `data/v1/changes.feed.json` is a JSON Feed of the data changes. `data/v1/inferences.json` lists the public forbidden inferences, how each negative caveat is classified and the shortest graph paths between sensitive pairs that cross a composition limit; hypothesis pages show the same annotation (classifications proposed, pending maintainer review), and `/trace/<ID>/` lays each path out step by step with its caveats, interruptions and a «what this trace does not say» summary.
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 
 ## M6: active ChatGPT scheduled research and integration
 
-Three **ChatGPT product scheduled tasks** operate independently of the repository's CI, with **Europe/Rome** schedules and GitHub as the versioned source of truth:
+The 14 November snapshot records three **ChatGPT product scheduled tasks** independent of repository CI, with **Europe/Rome** schedules:
 
-| Task | Active schedule | Responsibility |
+| Task | Schedule in dated snapshot | Adopted responsibility |
 | --- | --- | --- |
 | **A: Our Enemies Monitor OSINT** | **Daily 01:00** | Research incremental developments, check the last merged cutoff with at least 72 hours' overlap, deduplicate against `main` and open PRs, and propose a new immutable `Fonte_XX` Markdown **plus validated-where-possible M6 JSON sidecar** in a PR. No `data/` edits and no merge. |
 | **B: Our Enemies Monitor Editorial** | **Friday 03:00**, weekly | Independently research one substantial case and propose a sourced Italian article and its complete English translation in a PR. Content remains `needs_review`; no automatic editorial approval. |
-| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | Review all open PRs, evidence, conflicts and CI; conditionally squash-merge eligible changes and verify `main` CI/deploy after each merge. Never bypass human publication approval. |
+| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | List all open PRs and review eligible same-repository research/agent PRs, evidence, conflicts and CI; review-only under the adopted governance (the maintainer approves and merges); the configured prompt still has to be updated. Never bypass human publication approval. |
 
-**Authoritative current-state snapshot and end-to-end lifecycle:** [docs/CHATGPT_SCHEDULED_TASKS.md](docs/CHATGPT_SCHEDULED_TASKS.md). **Detailed M6 source/sidecar and article contracts:** [docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
+**Authoritative dated snapshot and end-to-end lifecycle:** [docs/CHATGPT_SCHEDULED_TASKS.md](docs/CHATGPT_SCHEDULED_TASKS.md). **Detailed M6 source/sidecar and article contracts:** [docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
 
 The ChatGPT tasks run **outside GitHub Actions** and use no in-repository paid LLM API job. The schedules and prompts live in ChatGPT, so the linked document is a dated configuration snapshot, not a runtime scheduler.
 
@@ -158,7 +165,7 @@ A merged `sources/incremental/Fonte_XX*.md` becomes visible in the **documentary
 flowchart TD
     A[ChatGPT A: daily OSINT] --> P1[Source Markdown + M6 sidecar PR]
     B[ChatGPT B: weekly investigation] --> P2[IT/EN article PR]
-    P1 --> C[ChatGPT C or human: review + conditional merge]
+    P1 --> C[ChatGPT C: review; maintainer: approve + merge]
     P2 --> C
     C --> Archive[Versioned source archive]
     C --> Drafts[Unreviewed article files remain withheld]
@@ -196,6 +203,18 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Add a reproducible publication audit command (`pnpm audit:publication`) and [M5 evidence work queue](docs/M5_EVIDENCE_AUDIT.md).
 - [x] First-pass source matching on 36 sensitive relationships (35 referenced, 1 restricted) and 30 Fonte_09 case/reconciliation decisions.
 - [x] Stage 20 atomic claims and 26 durable source metadata entries, guarded by `pnpm audit:m5`.
+- [x] Record a dated, reproducible measurement baseline and a B1–B20 question benchmark with scorer (`docs/audit/baseline/`).
+- [ ] Run the B1–B20 benchmark on at least one pinned external model and archive the scored result.
+- [x] Produce a read-only, reviewable queue of text–graph mentions without an edge (`pnpm audit:mentions`, `docs/audit/mentions/`).
+- [ ] Human review of the mention queue (outcomes `documented-role` / `context-only` / `false-positive` / `needs-evidence`).
+- [x] Register forbidden inferences and annotate graph paths that cross a negative caveat (`docs/audit/inferences/registry.v1.json`, `data/v1/inferences.json`).
+- [ ] Human review of the forbidden-inference registry and of the 62 caveat classifications.
+- [x] Add the Tracciato page (`/trace/<ID>/`): shortest public path between hypothesis ends with caveats, interruptions and what it does not say.
+- [x] Add the rare-earth Filiera and gas before/after on `/dependencies/` and a role matrix on entity pages (B19).
+- [x] Publish per-record JSON packages (`data/v1/records/<ID>.json`), an articles index, a changes feed (JSON Feed), minimal JSON-LD, `canonical`/`<time>` markup and a sitemap with `lastmod` — withheld records excluded and tested (B20).
+- [x] Add read-only cadence measures for the A/B/C automations (`pnpm cadence:measure`) and propose ADR-08 (B21).
+- [ ] Measure 2–4 A/B/C cycles and decide on the cadence change (ADR-08); schedules unchanged until then.
+- [ ] Case file (Fascicolo del caso) and structured questions, after ADR-06 and reviewed case data.
 - [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).
@@ -210,7 +229,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [ ] Run and review canonical ingestion of merged incremental sidecars in separate controlled PRs.
 - [x] Implement the article contract, validation, publication gate and IT/EN article pages with Markdown downloads (M6; real approved articles published, demo fixtures removed).
 - [x] Schedule weekly ChatGPT Task B (Friday 03:00 Europe/Rome), and observe creation of bilingual research PRs.
-- [x] Configure weekly ChatGPT Task C (Friday 05:00 Europe/Rome) for conditional review/merge with CI checks.
+- [x] Configure weekly ChatGPT Task C (Friday 05:00 Europe/Rome) for review with CI checks (merge role being withdrawn, see B01).
+- [ ] Separate agent identity and `main` ruleset (B01, maintainer settings pending).
 - [x] Publish first real bilingual reviewed investigations (ART-0001 and ART-0002); retain human editorial approval for future articles.
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Design the *Dossier* design system and audit the portal UI/UX ([docs/design/](docs/design/README.md), M7 design).
@@ -246,3 +266,15 @@ This project does not guarantee that an external mirror is accurate, current or 
 ---
 
 *Our Enemies Monitor: investigate the links, preserve the evidence, distinguish what is known from what is inferred.*
+
+Article publication requires human editorial authorization. CI checks an
+independent maintainer review on the exact PR HEAD with explicit article IDs;
+reviewed English translations require a separate marker. This does not replace
+the evidence diff or its waiver rules, and the PR author cannot approve their
+own work. Article validation also reports possible missing case links as
+editorial warnings, without inferring relationships. See the
+[article instructions](content/articles/README.md).
+
+Scheduled-task configuration is described in the [14 November snapshot](docs/CHATGPT_SCHEDULED_TASKS.md). The [replacement prompts](docs/automation/CHATGPT_TASK_PROMPTS.md) and [run log contract](docs/automation/TASK_RUN_LOG.md) await maintainer application and issue configuration; they do not establish live external settings.
+
+New M6 proposals use schema version 1.1; existing 1.0 sidecars remain readable. Corpus source (S) and hypothesis (H) IDs support two digits or 100–999 without leading-zero aliases. See the [M6 contract](docs/M6_CHATGPT_OSINT_WORKFLOW.md) for compatibility and ingest rules. A source archive without a Git checkout builds with a history warning; Git failures in a checkout fail the build.

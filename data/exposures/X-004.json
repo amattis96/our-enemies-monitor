@@ -30,6 +30,10 @@
     "en": "Share different from that of magnets"
   },
   "status": "observed",
+  "group": {
+    "id": "rare_earth_magnets",
+    "position": 1
+  },
   "sources": [
     "S08",
     "P06"
@@ -40,7 +44,8 @@
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "aeaa1559137c5036"
+        "source_hash": "aeaa1559137c5036",
+        "target_hash": "99851f6964a89659"
       }
     }
   },

@@ -1,0 +1,85 @@
+---
+import { choose, langParam, languageFromParam, textOf } from "../../../../../src/site/i18n.ts";
+import type { Trace } from "../../../../../src/site/trace.ts";
+import EvidenceStamp from "../../../components/EvidenceStamp.astro";
+import NodeLink from "../../../components/NodeLink.astro";
+import T from "../../../components/T.astro";
+import TracePath from "../../../components/TracePath.astro";
+import Base from "../../../layouts/Base.astro";
+import { assetHref, href } from "../../../lib/links.ts";
+import { getModel, getTraces } from "../../../lib/model.ts";
+
+export function getStaticPaths() {
+  return (["it", "en"] as const).flatMap((lang) =>
+    getTraces().map((trace) => ({
+      params: { lang: langParam(lang), id: trace.id },
+      props: { trace },
+    })),
+  );
+}
+const { trace } = Astro.props as { trace: Trace };
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const [from, to] = trace.pair;
+const title = `${textOf(model.nodeName(from), lang)} → ${textOf(model.nodeName(to), lang)}`;
+const n = trace.steps.length;
+---
+
+<Base title={`${c("Tracciato", "Trace")} ${trace.id}`} lang={lang} description={title}>
+  <header class="page-head">
+    <p class="kicker">
+      <a href={href("trace/", lang)}>{c("Tracciato", "Trace")}</a> / {trace.id}
+    </p>
+    <h1><NodeLink id={from} lang={lang} icon={false} /> → <NodeLink id={to} lang={lang} icon={false} /></h1>
+    <p class="meta">
+      {
+        n > 0
+          ? c(
+              `${n} ${n === 1 ? "passaggio" : "passaggi"} · cammino più breve nel grafo pubblico`,
+              `${n} ${n === 1 ? "step" : "steps"} · shortest path in the public graph`,
+            )
+          : c("nessun cammino nel grafo pubblico", "no path in the public graph")
+      }
+    </p>
+  </header>
+  <p class="notice max-w-3xl">
+    {c(
+      "Un elenco di relazioni documentate in fila non è una relazione documentata fra i due estremi. Ogni passaggio vale solo quanto il suo livello di evidenza e il suo caveat.",
+      "A list of documented relationships in a row is not a documented relationship between the two ends. Each step holds only as far as its evidence level and caveat.",
+    )}
+  </p>
+  <TracePath trace={trace} lang={lang} />
+  {
+    trace.hypotheses.length > 0 && (
+      <section class="max-w-3xl" aria-labelledby="trace-hypotheses">
+        <h2 id="trace-hypotheses">{c("Ipotesi aperte sulla stessa coppia", "Open hypotheses on the same pair")}</h2>
+        {trace.hypotheses.map((h) => (
+          <div class="card">
+            <p class="trace-meta">
+              <EvidenceStamp level="E5" lang={lang} variant="compact" />{" "}
+              <a class="badge" href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a>
+            </p>
+            <p><T text={h.question} lang={lang} /></p>
+            <p><strong>{c("Limite attuale", "Current limit")}:</strong> <T text={h.current_limit} lang={lang} /></p>
+          </div>
+        ))}
+      </section>
+    )
+  }
+  {
+    trace.forbidden.map((f) => (
+      <p class="notice max-w-3xl">
+        <strong>{c("Inferenza vietata", "Forbidden inference")} {f.id}:</strong>{" "}
+        <T text={f.statement} lang={lang} />
+      </p>
+    ))
+  }
+  <p class="meta max-w-3xl">
+    {c(
+      "Cammino, interruzioni e classificazioni dei caveat vengono dal controllo delle inferenze (le classificazioni «proposta non rivista» non sono ancora state riviste dal manutentore).",
+      "Path, interruptions and caveat classifications come from the inference audit (classifications marked “unreviewed proposal” have not yet been reviewed by the maintainer).",
+    )}{" "}
+    <a href={assetHref("data/v1/inferences.json")}>inferences.json</a>.
+  </p>
+</Base>

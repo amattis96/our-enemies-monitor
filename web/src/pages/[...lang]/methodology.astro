@@ -6,7 +6,7 @@ import {
   RELATION_GROUPS,
 } from "../../../../src/model/index.ts";
 import { RELATION_GROUP_LABELS } from "../../../../src/site/format.ts";
-import { languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
 import {
   EVIDENCE_THREAD,
   RELATION_GROUP_COLOR,
@@ -16,10 +16,11 @@ import EvidenceStamp from "../../components/EvidenceStamp.astro";
 import Icon from "../../components/Icon.astro";
 import Illustration from "../../components/Illustration.astro";
 import Base from "../../layouts/Base.astro";
-import { href } from "../../lib/links.ts";
+import { assetHref, href } from "../../lib/links.ts";
 
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
 
 const classesByGroup = RELATION_GROUPS.map((group) => ({
   group,
@@ -187,6 +188,7 @@ const t = CONTENT[lang];
   <p class="lede">{t.intro}</p>
 
   <h2 class="section-title">{t.levelsTitle}</h2>
+  <p class="notice max-w-3xl">{c("Le ipotesi storiche provvisorie conservano soltanto eventi pubblici e citazioni originali ancora presenti; note e aggiornamenti non revisionati sono omessi. Il registro dei dati trattenuti distingue gli ID trattenuti da quelli inesistenti.", "Provisional legacy hypotheses retain only public events and original citations still present; unreviewed notes and updates are omitted. The withheld data registry distinguishes withheld IDs from nonexistent ones.")} {" "}<a href={assetHref("data/v1/withheld.json")}>withheld.json</a></p>
   <div class="method-hero">
     <Illustration name="evidence-ladder" />
     <p>{t.levelsText}</p>

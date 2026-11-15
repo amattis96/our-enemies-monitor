@@ -1,0 +1,13 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { formatPartialDate } from "../../../src/site/format.ts";
+
+interface Props {
+  start: string;
+  end?: string | null;
+  lang: Language;
+}
+const { start, end = null, lang } = Astro.props;
+---
+
+<time datetime={start}>{formatPartialDate(start, lang)}</time>{end && <> – <time datetime={end}>{formatPartialDate(end, lang)}</time></>}

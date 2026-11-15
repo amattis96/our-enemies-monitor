@@ -8,7 +8,7 @@ import SourceRefs from "../../../components/SourceRefs.astro";
 import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
 import Base from "../../../layouts/Base.astro";
-import { href } from "../../../lib/links.ts";
+import { href, packageAlternate } from "../../../lib/links.ts";
 import { getModel } from "../../../lib/model.ts";
 
 export function getStaticPaths() {
@@ -28,7 +28,7 @@ const exposures = model.dataset.exposures.filter((x) => x.sources.includes(s.id)
 const repo = "https://github.com/amattis96/our-enemies-monitor/blob/main";
 ---
 
-<Base title={`${s.id} · ${textOf(s.title, lang)}`} lang={lang} searchable>
+<Base title={`${s.id} · ${textOf(s.title, lang)}`} lang={lang} alternates={packageAlternate(s.id)} searchable>
   <header class="page-head">
     <p class="kicker"><a href={href("sources/", lang)}>{ui(lang).navSources}</a> / {SOURCE_TYPE_LABELS[s.type][lang]} · {s.id}</p>
     <h1><T text={s.title} lang={lang} /></h1>

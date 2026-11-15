@@ -1,4 +1,6 @@
 import { execFileSync } from "node:child_process";
+import { lstatSync } from "node:fs";
+import path from "node:path";
 import type { CollectionName } from "../model/index.ts";
 import { REPO_ROOT } from "../pipeline/paths.ts";
 
@@ -16,6 +18,51 @@ export type DataCommit = { sha: string; date: string; subject: string; records: 
 const STATUS: Record<string, RecordTouch["status"]> = { A: "added", M: "modified", D: "removed" };
 
 export function dataHistory(): DataCommit[] {
+  const env = { ...process.env, LC_ALL: "C", LANG: "C" };
+  const gitContext = Object.keys(process.env).some((key) =>
+    /^(GIT_DIR|GIT_WORK_TREE|GIT_COMMON_DIR|GIT_CEILING_DIRECTORIES|GIT_DISCOVERY_ACROSS_FILESYSTEM|GIT_OBJECT_DIRECTORY|GIT_ALTERNATE_OBJECT_DIRECTORIES|GIT_INDEX_FILE|GIT_CONFIG.*)$/.test(
+      key,
+    ),
+  );
+  let dir = REPO_ROOT;
+  let metadata = false;
+  while (true) {
+    try {
+      lstatSync(path.join(dir, ".git"));
+      metadata = true;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+        throw new Error("Git history metadata inspection failed");
+      }
+    }
+    const parent = path.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  try {
+    const inside = execFileSync("git", ["rev-parse", "--is-inside-work-tree"], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      env,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    if (inside.trim() !== "true") throw new Error("not a worktree");
+  } catch (error) {
+    const failure = error as { status?: number; stderr?: string | Buffer; code?: string };
+    const stderr = String(failure.stderr ?? "").trim();
+    if (
+      !metadata &&
+      !gitContext &&
+      failure.status === 128 &&
+      /^fatal: not a git repository \(or any of the parent directories\): \.git$/.test(stderr)
+    ) {
+      console.warn("Git history unavailable: source directory is not a Git checkout");
+      return [];
+    }
+    throw new Error(
+      `Git history context probe failed (${failure.code ?? failure.status ?? "unknown error"})`,
+    );
+  }
   let log: string;
   try {
     log = execFileSync(
@@ -25,11 +72,15 @@ export function dataHistory(): DataCommit[] {
         cwd: REPO_ROOT,
         encoding: "utf8",
         maxBuffer: 64 * 1024 * 1024,
-        stdio: ["ignore", "pipe", "ignore"],
+        env,
+        stdio: ["ignore", "pipe", "pipe"],
       },
     );
-  } catch {
-    return []; // not a Git checkout (e.g. a source archive): no history to show
+  } catch (error) {
+    const failure = error as { code?: string; status?: number; signal?: string };
+    throw new Error(
+      `Git history log failed (${failure.code ?? failure.status ?? failure.signal ?? "unknown error"})`,
+    );
   }
   return log
     .split("\x1e")

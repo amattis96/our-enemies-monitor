@@ -30,7 +30,8 @@
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "870073c09773bfa4"
+        "source_hash": "870073c09773bfa4",
+        "target_hash": "f2603854e2726e3f"
       }
     }
   },

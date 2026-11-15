@@ -41,6 +41,10 @@
     "en": "Significant de-risking, but new exposure to global LNG"
   },
   "status": "observed",
+  "group": {
+    "id": "eu_gas",
+    "position": 1
+  },
   "sources": [
     "S08",
     "S04"
@@ -51,7 +55,8 @@
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "6322e61ba1b9a458"
+        "source_hash": "6322e61ba1b9a458",
+        "target_hash": "d301851d1a82444a"
       }
     }
   },

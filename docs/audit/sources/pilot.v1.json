@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "state": "proposta",
+  "block": "B17",
+  "adr": "ADR-05",
+  "created": "2026-11-15",
+  "base_commit": "4a6912b",
+  "notice_it": "Proposta preparata da Claude in esecuzione non sorvegliata. Nessun documento è stato letto e nessun collegamento è verificato: ogni voce richiede che un revisore umano apra il documento e trovi il passaggio indicato. Nessun record di data/ è stato modificato da questo file.",
+  "how_to_use_it": "Per ogni voce: aprire candidate_url, cercare passage_to_find_it, compilare verified_by/verified_on e cambiare state in verificata o respinta; solo dopo applicare if_verified con una PR che cita questa voce. Le voci GN si applicano compilando origin_type/derived_from/relies_on sul record di fonte; poi pnpm benchmark:measure ricalcola A.E7.",
+  "claims": [
+    {
+      "id": "PS-01",
+      "record": "G-0010",
+      "collection": "relationships",
+      "claim_it": "Viktor Medvedchuk finanzia e dirige indirettamente Voice of Europe (attribuzione Consiglio UE)",
+      "evidence_level": "E2",
+      "current_sources": ["S01", "S00"],
+      "candidate_sources": ["F02", "P02"],
+      "candidate_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
+      "passage_to_find_it": "Il passaggio del comunicato o dell'atto collegato che attribuisce a Medvedchuk il finanziamento e la direzione, anche indiretta, di Voice of Europe, con la data dell'atto.",
+      "if_verified": "Aggiungere F02 (o P02, vedi duplicates) a sources; livello invariato E2 (attribuzione, non condanna).",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null
+    },
+    {
+      "id": "PS-02",
+      "record": "G-0009",
+      "collection": "relationships",
+      "claim_it": "Artem Marchevskyi gestisce occultamente Voice of Europe",
+      "evidence_level": "E2",
+      "current_sources": ["S01", "S00"],
+      "candidate_sources": ["F02", "P02"],
+      "candidate_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
+      "passage_to_find_it": "Il passaggio che descrive il ruolo di Marchevskyi nella gestione di Voice of Europe; verificare se l'atto usa una formula equivalente a «occultamente».",
+      "if_verified": "Aggiungere F02/P02 a sources; se la formula non compare, correggere il predicato con nota editoriale.",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null
+    },
+    {
+      "id": "PS-03",
+      "record": "G-0008",
+      "collection": "relationships",
+      "claim_it": "Medvedchuk controlla Voice of Europe tramite un associato (Marchevskyi)",
+      "evidence_level": "E2",
+      "current_sources": ["S01", "S00"],
+      "candidate_sources": ["F02", "P02"],
+      "candidate_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
+      "passage_to_find_it": "Il passaggio che lega Marchevskyi a Medvedchuk come associato o persona di fiducia.",
+      "if_verified": "Aggiungere F02/P02 a sources.",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null
+    },
+    {
+      "id": "PS-04",
+      "record": "G-0014",
+      "collection": "relationships",
+      "claim_it": "Oleg Voloshyn paga e impartisce istruzioni a Nathan Gill (~£40.000, 2018-19, condanna 2025)",
+      "evidence_level": "E1",
+      "current_sources": ["S01"],
+      "candidate_sources": ["P03"],
+      "candidate_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+      "passage_to_find_it": "Il passaggio del comunicato CPS su pagamenti e istruzioni di Voloshyn a Gill, importo e periodo; distinguere ciò che è oggetto della condanna (ammissione di colpevolezza) da ciò che è contesto narrato.",
+      "if_verified": "Aggiungere P03 a sources; E1 solo per quanto coperto dalla condanna, il resto va separato (regola 6 di AGENTS.md).",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null,
+      "note": "Relazione su persona: serve stato procedurale esatto e data (AGENTS.md regola 7). Attualmente E1 con sole sintesi del corpus: è nell'avviso ADR-05."
+    },
+    {
+      "id": "PS-05",
+      "record": "G-0019",
+      "collection": "relationships",
+      "claim_it": "Ilan Șor ha un collegamento organizzativo con Evrazia (rete russa di influenza in Moldavia)",
+      "evidence_level": "E2",
+      "current_sources": ["S01", "S05"],
+      "candidate_sources": ["F03", "P04"],
+      "candidate_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
+      "passage_to_find_it": "Il passaggio delle designazioni del 15 giugno 2026 che collega Șor a Evrazia.",
+      "if_verified": "Aggiungere F03/P04 a sources.",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null
+    },
+    {
+      "id": "PS-06",
+      "record": "G-0018",
+      "collection": "relationships",
+      "claim_it": "La Federazione Russa sostiene operazioni favorite da Ilan Șor (attribuzione OFAC/Consiglio UE)",
+      "evidence_level": "E2",
+      "current_sources": ["S01", "S00"],
+      "candidate_sources": ["F03", "P04"],
+      "candidate_url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/",
+      "passage_to_find_it": "Il passaggio che attribuisce alla Russia il finanziamento o il sostegno delle operazioni della rete Șor; il primary_url attuale è la decisione EUR-Lex 2023/891 consolidata, da confrontare.",
+      "if_verified": "Aggiungere F03/P04 a sources se il comunicato sostiene l'attribuzione; altrimenti registrare una fonte per la decisione EUR-Lex.",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null
+    },
+    {
+      "id": "PS-07",
+      "record": "G-0087",
+      "collection": "relationships",
+      "claim_it": "Roman Sobachevskiy ha un collegamento societario separato con GVA Capital (non dimostra denaro Kerimov verso SpaceX)",
+      "evidence_level": "E3",
+      "current_sources": ["S01"],
+      "candidate_sources": ["F27"],
+      "candidate_url": "https://www.propublica.org/article/spacex-elon-musk-ipo-foreign-investors-china",
+      "passage_to_find_it": "Il passaggio dell'inchiesta ProPublica sul ruolo di Sobachevskiy e sul legame con GVA Capital, e la frase che delimita ciò che l'inchiesta non stabilisce sui fondi.",
+      "if_verified": "Aggiungere F27 a sources; mantenere il caveat negativo.",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null,
+      "note": "Relazione su persona (regola 7). Catena Kerimov–SpaceX: vedi registro delle inferenze vietate (B15)."
+    },
+    {
+      "id": "PS-08",
+      "record": "EXT-005",
+      "collection": "events",
+      "claim_it": "La Francia attribuisce all'Iran il sabotaggio cyber della refrigerazione commerciale",
+      "evidence_level": "E2",
+      "current_sources": ["S09", "WEB-EXT-005", "WEB-EXT-006", "WEB-EXT-051"],
+      "candidate_sources": ["WEB-EXT-005"],
+      "candidate_url": "https://www.diplomatie.gouv.fr/en/presse-et-ressources/decouvrir-et-informer/actualites/declaration-d-attribution-a-l-iran-de-cyberattaques-visant-la-france",
+      "passage_to_find_it": "Nella dichiarazione del ministero, la frase di attribuzione all'Iran; nei due lanci Reuters, che la notizia riferisca quella dichiarazione (relies_on) e non una fonte propria.",
+      "if_verified": "Applicare la genealogia proposta (GN-01, GN-02): tre riferimenti, una radice.",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null
+    },
+    {
+      "id": "PS-09",
+      "record": "EXT-034",
+      "collection": "events",
+      "claim_it": "Parigi convoca l'ambasciatore iraniano e ipotizza sanzioni UE; l'Iran contesta l'attribuzione",
+      "evidence_level": "E1",
+      "current_sources": ["S09", "WEB-EXT-006", "WEB-EXT-051"],
+      "candidate_sources": ["WEB-EXT-005"],
+      "candidate_url": "https://www.reuters.com/world/europe/france-summons-iran-envoy-over-supermarket-fridge-hack-warns-response-2026-11-10/",
+      "passage_to_find_it": "Che WEB-EXT-051 sia lo stesso lancio di WEB-EXT-006 e quale atto primario documenti la convocazione (E1 richiede l'atto, non il lancio).",
+      "if_verified": "Applicare GN-01; se manca un atto primario della convocazione, rivalutare il livello E1 con nota editoriale.",
+      "if_not_verified": "Nessuna modifica al record; annotare l'esito in review.notes e, se il documento non sostiene la frase, aprire una correzione editoriale.",
+      "state": "proposta",
+      "verified_by": null,
+      "verified_on": null
+    }
+  ],
+  "genealogy": [
+    {
+      "id": "GN-01",
+      "source": "WEB-EXT-051",
+      "origin_type": "republication",
+      "derived_from": ["WEB-EXT-006"],
+      "relies_on": null,
+      "repository_evidence": "publisher «Reuters (via Internazionale)»; titolo identico a WEB-EXT-006; URL internazionale.it/ultime-notizie-reuters/",
+      "state": "proposta"
+    },
+    {
+      "id": "GN-02",
+      "source": "WEB-EXT-006",
+      "origin_type": "wire",
+      "derived_from": null,
+      "relies_on": ["WEB-EXT-005"],
+      "repository_evidence": "publisher «Reuters»; stesso giorno (10/11/2026) della dichiarazione WEB-EXT-005; da verificare che il lancio la riferisca",
+      "state": "proposta"
+    },
+    {
+      "id": "GN-03",
+      "source": "WEB-EXT-005",
+      "origin_type": "official_statement",
+      "derived_from": null,
+      "relies_on": null,
+      "repository_evidence": "publisher «Ministero degli Esteri francese», dominio diplomatie.gouv.fr",
+      "state": "proposta"
+    },
+    {
+      "id": "GN-04",
+      "source": "WEB-EXT-036",
+      "origin_type": "republication",
+      "derived_from": ["WEB-EXT-035"],
+      "relies_on": null,
+      "repository_evidence": "publisher «Reuters (via Investing.com)»; citato dallo stesso evento EXT-022 di WEB-EXT-035 (Reuters); stessa notizia da verificare",
+      "state": "proposta"
+    },
+    {
+      "id": "GN-05",
+      "source": "WEB-EXT-043",
+      "origin_type": "republication",
+      "derived_from": ["WEB-EXT-042"],
+      "relies_on": null,
+      "repository_evidence": "publisher «Quartz (da Reuters)»; citato dallo stesso evento EXT-027 di WEB-EXT-042 (Reuters); stessa notizia da verificare",
+      "state": "proposta"
+    },
+    {
+      "id": "GN-06",
+      "source": "WEB-EXT-041",
+      "origin_type": "republication",
+      "derived_from": null,
+      "relies_on": null,
+      "repository_evidence": "publisher «Reuters (via Internazionale)»; l'originale Reuters non è un record: aggiungerlo come fonte prima di popolare derived_from",
+      "state": "proposta"
+    },
+    {
+      "id": "GN-07",
+      "source": "WEB-EXT-034",
+      "origin_type": "republication",
+      "derived_from": null,
+      "relies_on": null,
+      "repository_evidence": "publisher «Associated Press (ripubblicato da The Washington Post)»; l'originale AP non è un record",
+      "state": "proposta"
+    }
+  ],
+  "duplicates_note_it": "Coppie di record di fonte con URL identico (osservazione strutturale, non genealogia): un documento citato due volte conta una sola radice. Decidere se unificarle è editoriale.",
+  "duplicates": [
+    {
+      "ids": ["F02", "P02"],
+      "url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/"
+    },
+    {
+      "ids": ["F03", "P04"],
+      "url": "https://www.consilium.europa.eu/it/press/press-releases/2026/06/15/republic-of-moldova-council-lists-six-individuals-for-actions-destabilising-the-country/"
+    },
+    {
+      "ids": ["F06", "P09"],
+      "url": "https://www.whitehouse.gov/wp-content/uploads/2025/12/2025-National-Security-Strategy.pdf"
+    },
+    {
+      "ids": ["F07", "P06"],
+      "url": "https://www.iea.org/reports/rare-earth-elements/executive-summary"
+    },
+    {
+      "ids": ["F19", "P10"],
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/10/implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act-of-2026/"
+    },
+    {
+      "ids": ["WEB-EXT-001", "WEB-EXT-002"],
+      "url": "https://home.treasury.gov/news/press-releases/sb0047"
+    }
+  ]
+}

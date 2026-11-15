@@ -1,28 +1,32 @@
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { z } from "zod";
-import { ARTICLE_SCHEMAS, COLLECTIONS } from "../model/index.ts";
+import { ARTICLE_SCHEMAS, CASE_SCHEMAS, COLLECTIONS } from "../model/index.ts";
 import { ProposalFile } from "../model/proposals.ts";
 import { SCHEMAS_DIR } from "../pipeline/paths.ts";
 
-// Generate JSON Schema for each collection, the article files and the M6
+// Generate JSON Schema for each collection, the article files, the B18 case and
+// claim records (ADR-06, additive) and the M6
 // proposals sidecar (`proposals.schema.json`) from the Zod model.
 // With --check, fail instead of writing when the files are stale.
 const check = process.argv.includes("--check");
 
 const expected = new Map(
-  Object.entries({ ...COLLECTIONS, ...ARTICLE_SCHEMAS, proposals: ProposalFile }).map(
-    ([collection, schema]) => {
-      const json = z.toJSONSchema(schema, { target: "draft-2020-12", io: "input" });
-      const document = {
-        $schema: json.$schema,
-        $id: `${collection}.schema.json`,
-        title: collection,
-        ...json,
-      };
-      return [`${collection}.schema.json`, `${JSON.stringify(document, null, 2)}\n`];
-    },
-  ),
+  Object.entries({
+    ...COLLECTIONS,
+    ...ARTICLE_SCHEMAS,
+    ...CASE_SCHEMAS,
+    proposals: ProposalFile,
+  }).map(([collection, schema]) => {
+    const json = z.toJSONSchema(schema, { target: "draft-2020-12", io: "input" });
+    const document = {
+      $schema: json.$schema,
+      $id: `${collection}.schema.json`,
+      title: collection,
+      ...json,
+    };
+    return [`${collection}.schema.json`, `${JSON.stringify(document, null, 2)}\n`];
+  }),
 );
 
 if (check) {

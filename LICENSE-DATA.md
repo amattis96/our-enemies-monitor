@@ -18,8 +18,8 @@ contributors, to project-original material in these locations:
   project-created structured records, but **not** embedded third-party works.
 - `data/`: original normalized records, assertions, relationships,
   evidence metadata, hypotheses and derivative project datasets.
-- `research/`: original project-produced research reports and notes.
-- `locales/`: original project-owned translations and explanatory content.
+- `content/articles/`: project-original articles, translations and metadata.
+- `sources/incremental/` and `sources/thematic/`: project-original research, translations, metadata and sidecars, excluding third-party material.
 - `docs/` and Markdown documentation, including `README.md`, except for
   third-party material and software documentation governed by a separate license.
 

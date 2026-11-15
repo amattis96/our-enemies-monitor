@@ -19,6 +19,8 @@ import {
   textOf,
   ui,
 } from "../../../../../src/site/i18n.ts";
+import { articleJsonLd } from "../../../../../src/site/jsonld.ts";
+import DateRange from "../../../components/DateRange.astro";
 import FixtureBanner from "../../../components/FixtureBanner.astro";
 import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
@@ -51,6 +53,18 @@ const downloads = articleLanguages(article);
 const repo = "https://github.com/amattis96/our-enemies-monitor";
 const translation = article.review.translations?.en;
 const { kind, tool, run_date } = article.generated_by;
+const siteUrl = new URL(assetHref(""), Astro.site ?? "http://localhost").href.replace(/\/$/, "");
+const jsonLd = articleJsonLd({
+  siteUrl,
+  lang,
+  pageUrl: new URL(href(`articles/${article.id}/`, lang), Astro.site ?? "http://localhost").href,
+  article,
+});
+const markdownAlternates = downloads.map((code) => ({
+  href: assetHref(`articles/${article.id}.${code}.md`),
+  type: "text/markdown",
+  title: `${article.id} (Markdown, ${code})`,
+}));
 const generation = [
   ARTICLE_GENERATOR_LABELS[kind][lang],
   tool && `: ${tool}`,
@@ -60,7 +74,7 @@ const generation = [
   .join("");
 ---
 
-<Base title={textOf(article.title, lang)} lang={lang} description={textOf(article.summary, lang)} searchable>
+<Base title={textOf(article.title, lang)} lang={lang} description={textOf(article.summary, lang)} alternates={markdownAlternates} jsonLd={jsonLd} searchable>
   {article.fixture && <FixtureBanner lang={lang} />}
   <article class="article">
     <p class="kicker kicker-signal">
@@ -69,14 +83,10 @@ const generation = [
     <h1 class="article-title"><T text={article.title} lang={lang} /></h1>
     <p class="article-dek"><T text={article.summary} lang={lang} /></p>
     <p class="article-byline mono">
-      {[
-        formatPartialDate(article.date, lang),
-        article.updated && `${c("aggiornato il", "updated")} ${formatPartialDate(article.updated, lang)}`,
-        ARTICLE_GENERATOR_LABELS[article.generated_by.kind][lang],
-        REVIEW_STATUS_LABELS[article.review.status][lang],
-      ]
-        .filter(Boolean)
-        .join(" · ")}
+      <span><DateRange start={article.date} lang={lang} /></span>
+      {article.updated && <span>{c("aggiornato il", "updated")} <DateRange start={article.updated} lang={lang} /></span>}
+      <span>{ARTICLE_GENERATOR_LABELS[article.generated_by.kind][lang]}</span>
+      <span>{REVIEW_STATUS_LABELS[article.review.status][lang]}</span>
     </p>
     {
       article.review.status !== "reviewed" && !article.fixture && (

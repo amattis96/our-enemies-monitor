@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { z } from "zod";
 import type { Dataset } from "../model/index.ts";
+import type { M5References } from "../pipeline/evidence-policy.ts";
 import { repoPath } from "../pipeline/paths.ts";
 
 const Url = z.url({ protocol: /^https?$/ });
@@ -73,6 +74,23 @@ export const M5_AUDIT_PATH = "docs/audit/M5_2026-11-12.json";
 
 export function readM5Audit(): M5Audit {
   return M5Audit.parse(JSON.parse(readFileSync(repoPath(M5_AUDIT_PATH), "utf8")));
+}
+
+/** Project only references explicitly matched to the same relationship. */
+export function m5References(report: M5Audit): M5References {
+  const sources = new Map(report.sources.map((source) => [source.id, source.url]));
+  const references = new Map<string, string[]>();
+  for (const review of report.relationship_reviews) {
+    const url = review.source_id === null ? undefined : sources.get(review.source_id);
+    if (review.assessment === "matched_with_scope_limits" && url) {
+      references.set(review.id, [...(references.get(review.id) ?? []), url]);
+    }
+  }
+  return references;
+}
+
+export function readM5References(): M5References {
+  return m5References(readM5Audit());
 }
 
 /** Original 36 person links requiring primary-source review at M5 intake. */

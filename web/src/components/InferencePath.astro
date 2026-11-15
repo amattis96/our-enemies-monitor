@@ -1,0 +1,90 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { formatPredicate } from "../../../src/site/format.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import {
+  CATEGORY_DEFINITIONS,
+  type PathAnnotation,
+  type PublicForbiddenInference,
+} from "../../../src/site/inferences.ts";
+import { assetHref } from "../lib/links.ts";
+import NodeLink from "./NodeLink.astro";
+import T from "./T.astro";
+
+// B15: shortest public path between sensitive endpoints, with the steps whose
+// caveat interrupts composition and the forbidden inferences on the pair.
+interface Props {
+  annotations: PathAnnotation[];
+  forbidden: PublicForbiddenInference[];
+  lang: Language;
+}
+const { annotations, forbidden, lang } = Astro.props;
+const c = (it: string, en: string) => choose(lang, it, en);
+const badge = c("proposta non rivista", "unreviewed proposal");
+const pending =
+  forbidden.some((e) => e.state === "proposta") ||
+  annotations.some((a) => a.path.some((s) => s.classification_state === "proposta"));
+---
+
+{
+  (annotations.length > 0 || forbidden.length > 0) && (
+    <section class="max-w-3xl" aria-labelledby="inference-limits">
+      <h2 id="inference-limits">{c("Limiti di inferenza", "Inference limits")}</h2>
+      <p>
+        {c(
+          "Un cammino di relazioni documentate fra due soggetti non dimostra responsabilità, finanziamento o coordinamento fra gli estremi. I tratti segnati qui sotto hanno un caveat che ne interrompe la composizione.",
+          "A path of documented relationships between two parties does not demonstrate responsibility, financing or coordination between its ends. The steps marked below carry a caveat that interrupts composition.",
+        )}
+      </p>
+      {forbidden.map((entry) => (
+        <p class="notice">
+          <strong>{c("Inferenza vietata", "Forbidden inference")} {entry.id}:</strong>{" "}
+          {entry.state === "proposta" && <span class="meta">[{badge}]</span>}{" "}
+          <T text={entry.statement} lang={lang} />
+          {entry.lifted && <> ({c("ritirata", "lifted")} {entry.lifted.on})</>}
+        </p>
+      ))}
+      {annotations.map((a) => (
+        <div>
+          <p class="kicker">
+            {c("Cammino più breve nel grafo pubblico", "Shortest path in the public graph")}:{" "}
+            <NodeLink id={a.pair[0]} lang={lang} /> → <NodeLink id={a.pair[1]} lang={lang} />{" "}
+            ({a.path.length} {c("relazioni", "relationships")})
+          </p>
+          <ol>
+            {a.path.map((step) => (
+              <li>
+                <NodeLink id={step.subject} lang={lang} />{" "}
+                <span class="mono text-xs text-muted">{step.relationship}</span>{" "}
+                <span lang="it">{formatPredicate(step.predicate)}</span>{" "}
+                <NodeLink id={step.object} lang={lang} />
+                {step.interrupts_composition && (
+                  <>
+                    {" "}
+                    <strong>✕ {c("interrompe la composizione", "interrupts composition")}</strong>
+                    {" ("}
+                    {step.categories.map((cat) => CATEGORY_DEFINITIONS[cat].label[lang]).join(", ")}
+                    {")"}
+                    {step.classification_state === "proposta" && <> <span class="meta">[{badge}]</span></>}
+                  </>
+                )}
+                {step.caveat && (
+                  <span class="meta italic block"><T text={step.caveat} lang={lang} /></span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+      <p class="meta">
+        {pending &&
+          c(
+            "Classificazioni proposte da un agente e non ancora riviste dal manutentore; segnalano cautele già presenti nei record.",
+            "Classifications proposed by an agent and not yet reviewed by the maintainer; they point to cautions already present in the records.",
+          )}{" "}
+        {c("Registro e criterio:", "Registry and criterion:")}{" "}
+        <a href={assetHref("data/v1/inferences.json")}>inferences.json</a>.
+      </p>
+    </section>
+  )
+}

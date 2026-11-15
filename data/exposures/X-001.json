@@ -30,6 +30,10 @@
     "en": "High concentration of the finished product, not necessarily of European extraction"
   },
   "status": "observed",
+  "group": {
+    "id": "rare_earth_magnets",
+    "position": 4
+  },
   "sources": [
     "S08",
     "S04"
@@ -40,7 +44,8 @@
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "10a4ce71ee3f1aef"
+        "source_hash": "10a4ce71ee3f1aef",
+        "target_hash": "0d75eb196b916217"
       }
     }
   },

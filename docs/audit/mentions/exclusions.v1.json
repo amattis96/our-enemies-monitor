@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "notes": [
+    "Lexicon exclusions for the B14 text-graph matcher: each entry removes one folded name segment from one entity's lexicon because the segment is a generic word or duplicates another entity. Excluded mentions stay listed in the report with the reason; nothing is hidden.",
+    "Never exclude a segment to make a specific mention disappear: record the judgement as an outcome in review.v1.json instead.",
+    "Changing this list means a new file version (exclusions.v2.json); keep earlier versions."
+  ],
+  "segments": [
+    {
+      "entity": "WAGNER",
+      "segment": "collegati",
+      "reason": "Segmento generico («collegati»): nome «Rete Wagner / collegati»; la parola ricorre in testi che non nominano la rete."
+    },
+    {
+      "entity": "TUR_BRA_MOR",
+      "segment": "diesel russo",
+      "reason": "Segmento generico (merce, non l'insieme di mercati)."
+    },
+    {
+      "entity": "TUR_BRA_MOR",
+      "segment": "brasile",
+      "reason": "Duplica l'entità statale BR (nome composito «Mercati Turchia, Brasile, Marocco»)."
+    },
+    {
+      "entity": "TUR_BRA_MOR",
+      "segment": "marocco",
+      "reason": "Duplica l'entità statale MA (nome composito «Mercati Turchia, Brasile, Marocco»)."
+    },
+    {
+      "entity": "FOXTROT",
+      "segment": "organizzazione criminale",
+      "reason": "Segmento generico (descrizione della natura, non nome proprio)."
+    }
+  ]
+}

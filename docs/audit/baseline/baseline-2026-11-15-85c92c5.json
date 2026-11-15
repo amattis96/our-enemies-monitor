@@ -1,0 +1,1123 @@
+{
+  "baseline_version": 1,
+  "commit": "85c92c54adfb45cc0c2ec3d2c38b00228d6b85da",
+  "commit_date": "2026-11-15T02:49:52+01:00",
+  "data_worktree_clean": true,
+  "references": {
+    "A": "docs/audit/fable-2026-11/FABLE_A_Deep_Intelligence_Knowledge_Discovery.md §11",
+    "D": "docs/audit/fable-2026-11/FABLE_D_AI_Interoperability_Semantic_Knowledge.md §9.1"
+  },
+  "A": {
+    "E1": {
+      "relationships_total": 458,
+      "relationships_corpus_only": 429,
+      "external_sources_total": 41,
+      "external_sources_never_cited": 40,
+      "external_sources_never_cited_ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F25",
+        "F26",
+        "F27",
+        "F28",
+        "F29",
+        "F30",
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11"
+      ]
+    },
+    "E2": {
+      "distinct_pairs": 4,
+      "pairs": [
+        {
+          "evidence_level": "E1",
+          "evidence_status": "documented",
+          "count": 181
+        },
+        {
+          "evidence_level": "E2",
+          "evidence_status": "institutional_attribution",
+          "count": 68
+        },
+        {
+          "evidence_level": "E3",
+          "evidence_status": "corroborated",
+          "count": 208
+        },
+        {
+          "evidence_level": "E4",
+          "evidence_status": "allegation",
+          "count": 1
+        }
+      ]
+    },
+    "E3": {
+      "imported_unreviewed_withheld": 15,
+      "by_collection": {
+        "events": 4,
+        "relationships": 11
+      },
+      "withheld_total": 138,
+      "records": [
+        {
+          "id": "EXT-001",
+          "collection": "events",
+          "reasons": [
+            "pending_integration"
+          ]
+        },
+        {
+          "id": "EXT-002",
+          "collection": "events",
+          "reasons": [
+            "pending_integration"
+          ]
+        },
+        {
+          "id": "EXT-003",
+          "collection": "events",
+          "reasons": [
+            "pending_integration"
+          ]
+        },
+        {
+          "id": "EXT-004",
+          "collection": "events",
+          "reasons": [
+            "pending_integration"
+          ]
+        },
+        {
+          "id": "G-0230",
+          "collection": "relationships",
+          "reasons": [
+            "person_primary_missing"
+          ]
+        },
+        {
+          "id": "G-0394",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0395",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0396",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0397",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0398",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0401",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0402",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0403",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0404",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        },
+        {
+          "id": "G-0405",
+          "collection": "relationships",
+          "reasons": [
+            "withheld_endpoint"
+          ]
+        }
+      ]
+    },
+    "E4": {
+      "graph": "published relationships (undirected, participation included)",
+      "negative_caveat_rule": "caveat.it matches /(?<![\\p{L}])(non|nessun[ao]?|né)(?![\\p{L}])/iu and does not start with \"Relazione di presenza/ruolo\"",
+      "negative_caveats_canonical": 62,
+      "negative_caveats_published": 44,
+      "hypotheses": 32,
+      "hypotheses_with_path": 19,
+      "paths_through_negative_caveat": 12,
+      "rows": [
+        {
+          "id": "H01",
+          "subject": "MED",
+          "object": "VOL",
+          "path": [
+            "G-0016"
+          ],
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H02",
+          "subject": "GRU",
+          "object": "UKRLOG",
+          "path": [
+            "G-0001",
+            "G-0410"
+          ],
+          "negative_caveat_edges": [
+            "G-0410"
+          ]
+        },
+        {
+          "id": "H03",
+          "subject": "RU_PRESS",
+          "object": "PAPER",
+          "path": [
+            "G-0045"
+          ],
+          "negative_caveat_edges": [
+            "G-0045"
+          ]
+        },
+        {
+          "id": "H04",
+          "subject": "BLACK",
+          "object": "ROKH",
+          "path": [
+            "G-0047"
+          ],
+          "negative_caveat_edges": [
+            "G-0047"
+          ]
+        },
+        {
+          "id": "H05",
+          "subject": "DISCOVER",
+          "object": "CANDIRU",
+          "path": [
+            "G-0054"
+          ],
+          "negative_caveat_edges": [
+            "G-0054"
+          ]
+        },
+        {
+          "id": "H06",
+          "subject": "KERIMOV",
+          "object": "HAL9001",
+          "path": [
+            "G-0088",
+            "G-0087",
+            "G-0086"
+          ],
+          "negative_caveat_edges": [
+            "G-0087"
+          ]
+        },
+        {
+          "id": "H07",
+          "subject": "X",
+          "object": "US",
+          "path": [
+            "G-0078",
+            "G-0072"
+          ],
+          "negative_caveat_edges": [
+            "G-0078",
+            "G-0072"
+          ]
+        },
+        {
+          "id": "H08",
+          "subject": "STARSHIELD",
+          "object": "US",
+          "path": [
+            "G-0081",
+            "G-0389",
+            "G-0388"
+          ],
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H09",
+          "subject": "MA",
+          "object": "CEUTA",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H10",
+          "subject": "CN",
+          "object": "NEWNEW",
+          "path": [
+            "G-0065",
+            "G-0005",
+            "G-0417",
+            "G-0419"
+          ],
+          "negative_caveat_edges": [
+            "G-0065",
+            "G-0417",
+            "G-0419"
+          ]
+        },
+        {
+          "id": "H11",
+          "subject": "CN",
+          "object": "YIPENG",
+          "path": [
+            "G-0065",
+            "G-0005",
+            "G-0417",
+            "G-0420"
+          ],
+          "negative_caveat_edges": [
+            "G-0065",
+            "G-0417",
+            "G-0420"
+          ]
+        },
+        {
+          "id": "H12",
+          "subject": "RU",
+          "object": "EAGLES",
+          "path": [
+            "G-0005",
+            "G-0417",
+            "G-0421"
+          ],
+          "negative_caveat_edges": [
+            "G-0417",
+            "G-0421"
+          ]
+        },
+        {
+          "id": "H13",
+          "subject": "RU",
+          "object": "BREXIT",
+          "path": [
+            "G-0001",
+            "G-0141",
+            "G-0142",
+            "G-0130",
+            "G-0129"
+          ],
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H14",
+          "subject": "RU",
+          "object": "ROMELEC",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H15",
+          "subject": "PROTEST26",
+          "object": "RU",
+          "path": [
+            "G-0429",
+            "G-0427",
+            "G-0425"
+          ],
+          "negative_caveat_edges": [
+            "G-0429",
+            "G-0427"
+          ]
+        },
+        {
+          "id": "H16",
+          "subject": "EU",
+          "object": "LNG",
+          "path": [
+            "G-0349",
+            "G-0348",
+            "G-0431"
+          ],
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H17",
+          "subject": "EU",
+          "object": "SEMICON",
+          "path": [
+            "G-0437"
+          ],
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H18",
+          "subject": "AZBIG",
+          "object": "RU_PRESS",
+          "path": [
+            "G-0062",
+            "G-0056",
+            "G-0058",
+            "G-0066",
+            "G-0065",
+            "G-0151",
+            "G-0150"
+          ],
+          "negative_caveat_edges": [
+            "G-0066",
+            "G-0065"
+          ]
+        },
+        {
+          "id": "H19",
+          "subject": "FOXTROT",
+          "object": "MOIS",
+          "path": [
+            "G-0399",
+            "G-0400"
+          ],
+          "negative_caveat_edges": [
+            "G-0400"
+          ]
+        },
+        {
+          "id": "H20",
+          "subject": "IR",
+          "object": "RAFFAIR",
+          "path": [
+            "G-0306",
+            "G-0304",
+            "G-0406"
+          ],
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H21",
+          "subject": "RUSANCTIONS",
+          "object": "AE",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H22",
+          "subject": "AL",
+          "object": "IR",
+          "path": [
+            "G-0189",
+            "G-0187"
+          ],
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H23",
+          "subject": "SHAHIDKAVEH",
+          "object": "NONAME057",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H24",
+          "subject": "EXT-006",
+          "object": "COLDCHAIN",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H25",
+          "subject": "NONAME057",
+          "object": "EXT-009",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H26",
+          "subject": "EXT-012",
+          "object": "EXT-013",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H27",
+          "subject": "STORM",
+          "object": "EXT-021",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H28",
+          "subject": "ROSSTAT",
+          "object": "EXT-016",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H29",
+          "subject": "US",
+          "object": "EXT-020",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H30",
+          "subject": "HAYI",
+          "object": "FOXTROT",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H31",
+          "subject": "EUENVOYS",
+          "object": "SHADOW",
+          "path": null,
+          "negative_caveat_edges": []
+        },
+        {
+          "id": "H32",
+          "subject": "EXT-030",
+          "object": "NATO",
+          "path": null,
+          "negative_caveat_edges": []
+        }
+      ]
+    },
+    "E5": {
+      "participation_edges": 291,
+      "observed_pairs_with_2_events": 15,
+      "null_model": {
+        "runs": 500,
+        "seed": 7,
+        "prng": "mulberry32",
+        "swaps_per_run": 2910,
+        "mean": 4.42,
+        "p95": 8,
+        "max": 11
+      }
+    },
+    "E6": {
+      "matcher": "A appendix simplified matcher (name segments >= 5 chars, no stop list)",
+      "mentions": 111,
+      "events_with_mentions": 69,
+      "entities_mentioned": 56,
+      "entities_mentioned_without_any_participation": 28,
+      "rows": [
+        {
+          "event": "EXT-002",
+          "entity": "MAJID"
+        },
+        {
+          "event": "EXT-003",
+          "entity": "GB"
+        },
+        {
+          "event": "EXT-005",
+          "entity": "FR"
+        },
+        {
+          "event": "EXT-005",
+          "entity": "FR_MFA"
+        },
+        {
+          "event": "EXT-005",
+          "entity": "SHAHIDKAVEH"
+        },
+        {
+          "event": "EXT-006",
+          "entity": "EC"
+        },
+        {
+          "event": "EXT-006",
+          "entity": "ENISA"
+        },
+        {
+          "event": "EXT-008",
+          "entity": "NONAME057"
+        },
+        {
+          "event": "EXT-009",
+          "entity": "NONAME057"
+        },
+        {
+          "event": "EXT-010",
+          "entity": "BBT"
+        },
+        {
+          "event": "EXT-011",
+          "entity": "BBT"
+        },
+        {
+          "event": "EXT-013",
+          "entity": "GB"
+        },
+        {
+          "event": "EXT-015",
+          "entity": "NONAME057"
+        },
+        {
+          "event": "EXT-016",
+          "entity": "ROSSTAT"
+        },
+        {
+          "event": "EXT-016",
+          "entity": "WAGNER"
+        },
+        {
+          "event": "EXT-017",
+          "entity": "ALHASSANI"
+        },
+        {
+          "event": "EXT-017",
+          "entity": "ALSAADI"
+        },
+        {
+          "event": "EXT-017",
+          "entity": "HAYI"
+        },
+        {
+          "event": "EXT-017",
+          "entity": "MOHAJERI"
+        },
+        {
+          "event": "EXT-017",
+          "entity": "SHAHIDKAVEH"
+        },
+        {
+          "event": "EXT-018",
+          "entity": "RAFFAIR"
+        },
+        {
+          "event": "EXT-019",
+          "entity": "FI"
+        },
+        {
+          "event": "EXT-019",
+          "entity": "HELSINKICOURT"
+        },
+        {
+          "event": "EXT-019",
+          "entity": "MAJIDOV"
+        },
+        {
+          "event": "EXT-019",
+          "entity": "MAKSIMENKO"
+        },
+        {
+          "event": "EXT-020",
+          "entity": "AP"
+        },
+        {
+          "event": "EXT-021",
+          "entity": "AP"
+        },
+        {
+          "event": "EXT-021",
+          "entity": "STORM"
+        },
+        {
+          "event": "EXT-022",
+          "entity": "DE"
+        },
+        {
+          "event": "EXT-022",
+          "entity": "FR"
+        },
+        {
+          "event": "EXT-022",
+          "entity": "GB"
+        },
+        {
+          "event": "EXT-022",
+          "entity": "UA"
+        },
+        {
+          "event": "EXT-023",
+          "entity": "AP"
+        },
+        {
+          "event": "EXT-023",
+          "entity": "TRUMP"
+        },
+        {
+          "event": "EXT-024",
+          "entity": "DE"
+        },
+        {
+          "event": "EXT-024",
+          "entity": "EUENVOYS"
+        },
+        {
+          "event": "EXT-024",
+          "entity": "UA"
+        },
+        {
+          "event": "EXT-024",
+          "entity": "WAGNER"
+        },
+        {
+          "event": "EXT-027",
+          "entity": "HORMUZ"
+        },
+        {
+          "event": "EXT-028",
+          "entity": "FR"
+        },
+        {
+          "event": "EXT-028",
+          "entity": "UA"
+        },
+        {
+          "event": "EXT-029",
+          "entity": "EVRAZIA"
+        },
+        {
+          "event": "EXT-029",
+          "entity": "PSB"
+        },
+        {
+          "event": "EXT-030",
+          "entity": "LT"
+        },
+        {
+          "event": "EXT-030",
+          "entity": "RO"
+        },
+        {
+          "event": "EXT-031",
+          "entity": "UA"
+        },
+        {
+          "event": "EXT-032",
+          "entity": "UA"
+        },
+        {
+          "event": "EXT-033",
+          "entity": "WAGNER"
+        },
+        {
+          "event": "EXT-034",
+          "entity": "FR"
+        },
+        {
+          "event": "TL-0003",
+          "entity": "PARTYREG"
+        },
+        {
+          "event": "TL-0004",
+          "entity": "UA"
+        },
+        {
+          "event": "TL-0010",
+          "entity": "RU_PRESS"
+        },
+        {
+          "event": "TL-0022",
+          "entity": "WAGNER"
+        },
+        {
+          "event": "TL-0025",
+          "entity": "GB"
+        },
+        {
+          "event": "TL-0028",
+          "entity": "LT"
+        },
+        {
+          "event": "TL-0028",
+          "entity": "PL"
+        },
+        {
+          "event": "TL-0032",
+          "entity": "DE"
+        },
+        {
+          "event": "TL-0032",
+          "entity": "FR"
+        },
+        {
+          "event": "TL-0032",
+          "entity": "UA"
+        },
+        {
+          "event": "TL-0033",
+          "entity": "TIGERWEB"
+        },
+        {
+          "event": "TL-0036",
+          "entity": "RU"
+        },
+        {
+          "event": "TL-0040",
+          "entity": "WAGNER"
+        },
+        {
+          "event": "TL-0045",
+          "entity": "TELEGRAM"
+        },
+        {
+          "event": "TL-0047",
+          "entity": "STRUCTURA"
+        },
+        {
+          "event": "TL-0049",
+          "entity": "VIGINUM"
+        },
+        {
+          "event": "TL-0053",
+          "entity": "EVRAZIA"
+        },
+        {
+          "event": "TL-0054",
+          "entity": "GB"
+        },
+        {
+          "event": "TL-0055",
+          "entity": "TIGERWEB"
+        },
+        {
+          "event": "TL-0055",
+          "entity": "VIGINUM"
+        },
+        {
+          "event": "TL-0058",
+          "entity": "STARLINK"
+        },
+        {
+          "event": "TL-0058",
+          "entity": "UA"
+        },
+        {
+          "event": "TL-0060",
+          "entity": "MAR"
+        },
+        {
+          "event": "TL-0060",
+          "entity": "MED"
+        },
+        {
+          "event": "TL-0063",
+          "entity": "RHEIN"
+        },
+        {
+          "event": "TL-0064",
+          "entity": "DE"
+        },
+        {
+          "event": "TL-0064",
+          "entity": "PL"
+        },
+        {
+          "event": "TL-0067",
+          "entity": "RO"
+        },
+        {
+          "event": "TL-0067",
+          "entity": "VIGINUM"
+        },
+        {
+          "event": "TL-0069",
+          "entity": "SHADOW"
+        },
+        {
+          "event": "TL-0070",
+          "entity": "CZ"
+        },
+        {
+          "event": "TL-0075",
+          "entity": "DE"
+        },
+        {
+          "event": "TL-0077",
+          "entity": "EVRAZIA"
+        },
+        {
+          "event": "TL-0080",
+          "entity": "CZ"
+        },
+        {
+          "event": "TL-0080",
+          "entity": "DE"
+        },
+        {
+          "event": "TL-0080",
+          "entity": "PL"
+        },
+        {
+          "event": "TL-0080",
+          "entity": "RO"
+        },
+        {
+          "event": "TL-0084",
+          "entity": "SPACEX"
+        },
+        {
+          "event": "TL-0097",
+          "entity": "STARLINK"
+        },
+        {
+          "event": "TL-0099",
+          "entity": "STARSHIELD"
+        },
+        {
+          "event": "TL-0106",
+          "entity": "FR"
+        },
+        {
+          "event": "TL-0113",
+          "entity": "VIGINUM"
+        },
+        {
+          "event": "TL-0114",
+          "entity": "AZ"
+        },
+        {
+          "event": "TL-0114",
+          "entity": "TR"
+        },
+        {
+          "event": "TL-0115",
+          "entity": "EVRAZIA"
+        },
+        {
+          "event": "TL-0116",
+          "entity": "STARSHIELD"
+        },
+        {
+          "event": "TL-0117",
+          "entity": "MA"
+        },
+        {
+          "event": "TL-0117",
+          "entity": "TUR_BRA_MOR"
+        },
+        {
+          "event": "TL-0120",
+          "entity": "UA"
+        },
+        {
+          "event": "TL-0124",
+          "entity": "AL"
+        },
+        {
+          "event": "TL-0124",
+          "entity": "BE"
+        },
+        {
+          "event": "TL-0124",
+          "entity": "ES"
+        },
+        {
+          "event": "TL-0124",
+          "entity": "FR"
+        },
+        {
+          "event": "TL-0124",
+          "entity": "PT"
+        },
+        {
+          "event": "TL-0127",
+          "entity": "FR"
+        },
+        {
+          "event": "TL-0132",
+          "entity": "TUR_BRA_MOR"
+        },
+        {
+          "event": "TL-0137",
+          "entity": "SPACEX"
+        },
+        {
+          "event": "TL-0137",
+          "entity": "STARLINK"
+        },
+        {
+          "event": "TL-0143",
+          "entity": "VIGINUM"
+        },
+        {
+          "event": "TL-0145",
+          "entity": "BR"
+        },
+        {
+          "event": "TL-0145",
+          "entity": "MA"
+        },
+        {
+          "event": "TL-0145",
+          "entity": "TR"
+        }
+      ]
+    }
+  },
+  "D": {
+    "scope": "computed from the in-memory public exports of this commit (no network); T9 needs a live search index",
+    "T1": {
+      "question": "documented chain KERIMOV -> SPACEX via relationships.json",
+      "bytes": 917203,
+      "path": [
+        "G-0088",
+        "G-0087",
+        "G-0086",
+        "G-0085",
+        "G-0084"
+      ],
+      "edges_with_caveat": 4,
+      "edges_with_negative_caveat": 2,
+      "h06_published": true
+    },
+    "T1b": {
+      "question": "same chain via graph.json",
+      "bytes": 179683,
+      "path": [
+        "G-0088",
+        "G-0087",
+        "G-0086",
+        "G-0085",
+        "G-0084"
+      ],
+      "edges_with_caveat": 4
+    },
+    "T2": {
+      "question": "role of Russia in TL-0059",
+      "bytes": 1153822,
+      "relationships": [
+        {
+          "id": "G-0223",
+          "subject": "PL",
+          "predicate": "LOCATION",
+          "evidence_level": "E1",
+          "evidence_status": "documented"
+        },
+        {
+          "id": "G-0224",
+          "subject": "RU",
+          "predicate": "OFFICIAL_ATTRIBUTION",
+          "evidence_level": "E2",
+          "evidence_status": "institutional_attribution"
+        }
+      ]
+    },
+    "T3": {
+      "question": "Gill case chronology",
+      "bytes": 1153822,
+      "events": [
+        "TL-0015",
+        "TL-0092"
+      ]
+    },
+    "T4": {
+      "question": "independent sources of G-0010",
+      "bytes": 783749,
+      "published": true,
+      "sources": [
+        {
+          "id": "S01",
+          "urls": 0
+        },
+        {
+          "id": "S00",
+          "urls": 0
+        }
+      ],
+      "primary_url": "https://www.consilium.europa.eu/it/press/press-releases/2024/05/27/information-manipulation-in-russia-s-war-of-aggression-against-ukraine-eu-lists-two-individuals-and-one-entity/",
+      "f02_cited": false
+    },
+    "T5": {
+      "question": "compare H06 and H08",
+      "bytes": 63552,
+      "h06_published": true,
+      "h08_published": true,
+      "h08_in_withheld_registry": false
+    },
+    "T6": {
+      "question": "corrections (text search in review notes)",
+      "bytes": 1586090,
+      "records_with_correction_note": 0
+    },
+    "T7": {
+      "question": "data freshness",
+      "commit_date": "2026-11-15T02:49:52+01:00",
+      "latest_public_event_start": "2026-10-21",
+      "gap_days": 25,
+      "freshness_field_in_exports": false
+    },
+    "T8": {
+      "question": "meaning of E2",
+      "bytes": 6732,
+      "schema_descriptions": 0,
+      "vocabulary_export": false
+    },
+    "T9": {
+      "question": "search 'Kerimov finanzia SpaceX'",
+      "status": "not_measured_offline"
+    },
+    "T10": {
+      "question": "per-record endpoint",
+      "per_record_exports": 0
+    },
+    "T11": {
+      "question": "structured data in built pages",
+      "pages": 885,
+      "json_ld": 0,
+      "canonical": 0,
+      "time": 2
+    },
+    "context_sizes": {
+      "all_json_published_bytes": 1586090,
+      "minified_chars": 1076980,
+      "without_provenance_chars": 564121,
+      "italian_only_without_provenance_review_chars": 310900
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "case_set": "fable-d-b1-b20",
+  "case_set_version": 1,
+  "model": "<provider/model-id, exact version>",
+  "run_date": "<YYYY-MM-DD>",
+  "data_commit": "<commit of the public exports the model read>",
+  "access": "<public endpoints only: list the URLs/files given to the model>",
+  "answers": [
+    {
+      "id": "B1",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B2",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B3",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B4",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B5",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B6",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B7",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B8",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B9",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B10",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B11",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B12",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B13",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B14",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B15",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B16",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B17",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B18",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B19",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    },
+    {
+      "id": "B20",
+      "text": "",
+      "requests": null,
+      "context_chars": null
+    }
+  ]
+}
