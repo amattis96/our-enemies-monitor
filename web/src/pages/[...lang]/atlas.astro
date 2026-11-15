@@ -110,9 +110,9 @@ const labels = {
           {maps.map((m, i) => <button type="button" data-extent={m.id} aria-pressed={i === 0 ? "true" : "false"}>{m.title}</button>)}
         </fieldset>
         <div class="atlas-zoom">
-          <button type="button" data-zoom="in" aria-label={c("Avvicina", "Zoom in")}><Icon name="ui-zoom-in" /></button>
-          <button type="button" data-zoom="out" aria-label={c("Allontana", "Zoom out")}><Icon name="ui-zoom-out" /></button>
-          <button type="button" data-zoom="fit" aria-label={c("Vista intera", "Whole view")}><Icon name="ui-fit" /></button>
+          <button type="button" data-zoom="in" aria-label={c("Avvicina (+)", "Zoom in (+)")} title={c("Avvicina (+)", "Zoom in (+)")}><Icon name="ui-zoom-in" /></button>
+          <button type="button" data-zoom="out" aria-label={c("Allontana (−)", "Zoom out (−)")} title={c("Allontana (−)", "Zoom out (−)")}><Icon name="ui-zoom-out" /></button>
+          <button type="button" data-zoom="fit" aria-label={c("Vista intera (0)", "Whole view (0)")} title={c("Vista intera (0)", "Whole view (0)")}><Icon name="ui-fit" /></button>
         </div>
       </div>
       {
@@ -141,6 +141,9 @@ const labels = {
           </figure>
         ))
       }
+      <p class="atlas-hint" data-atlas-hint hidden aria-hidden="true">
+        {c("Usa", "Use")} <kbd class="kbd-mod kbd-mod-apple">⌘</kbd><kbd class="kbd-mod kbd-mod-other">Ctrl</kbd> + {c("rotella per lo zoom, oppure i pulsanti", "wheel to zoom, or the buttons")}
+      </p>
       <ul class="atlas-legend" aria-label={c("Legenda: numero di eventi", "Legend: number of events")}>
         {legend.map((item) => (
           <li><span aria-hidden="true" style={`background:${item.color}`} />{item.label}</li>
@@ -334,67 +337,225 @@ const labels = {
         for (const b of root.querySelectorAll("[data-extent]")) b.setAttribute("aria-pressed", String(b === button));
         for (const f of figures) f.hidden = f.dataset.map !== button.dataset.extent;
         current = figures.find((f) => !f.hidden) ?? figures[0];
+        const svg = current?.querySelector("svg");
+        if (svg) apply(svg, stateOf(svg).view);
       });
     }
 
-    // Zoom by viewBox: buttons, ⌘/Ctrl + wheel, drag to pan.
-    const box = (svg: SVGSVGElement) => svg.getAttribute("viewBox")?.split(" ").map(Number) ?? [0, 0, 960, 720];
-    const base = (svg: SVGSVGElement) => svg.dataset.baseViewbox?.split(" ").map(Number) ?? [0, 0, 960, 720];
-    const setBox = (svg: SVGSVGElement, [x, y, w, h]: number[]) => {
-      const [, , bw, bh] = base(svg);
-      const width = Math.min(bw, Math.max(bw / 8, w));
-      const height = (width / bw) * bh;
-      const nx = Math.min(bw - width, Math.max(0, x + (w - width) / 2));
-      const ny = Math.min(bh - height, Math.max(0, y + (h - height) / 2));
-      svg.setAttribute("viewBox", `${nx} ${ny} ${width} ${height}`);
+    // Zoom and pan by viewBox. Zoom is anchored on the pointer (wheel, pinch)
+    // or on the centre (buttons, keys), clamped to the map, and animated for
+    // discrete steps. One finger scrolls the page until the map is zoomed in;
+    // two fingers pinch. ⌘/Ctrl + wheel (and trackpad pinch) zooms.
+    const MAX_ZOOM = 8;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    type View = { x: number; y: number; w: number };
+    const states = new Map<SVGSVGElement, { base: number[]; view: View; frame: number }>();
+    const stateOf = (svg: SVGSVGElement) => {
+      let state = states.get(svg);
+      if (!state) {
+        const base = svg.dataset.baseViewbox?.split(" ").map(Number) ?? [0, 0, 960, 720];
+        state = { base, view: { x: 0, y: 0, w: base[2] ?? 960 }, frame: 0 };
+        states.set(svg, state);
+      }
+      return state;
     };
-    const zoom = (factor: number) => {
+    const clamp = (svg: SVGSVGElement, view: View): View => {
+      const [, , bw = 960, bh = 720] = stateOf(svg).base;
+      const w = Math.min(bw, Math.max(bw / MAX_ZOOM, view.w));
+      const h = (w / bw) * bh;
+      return {
+        w,
+        x: Math.min(bw - w, Math.max(0, view.x)),
+        y: Math.min(bh - h, Math.max(0, view.y)),
+      };
+    };
+    const zoomButtons = [...root.querySelectorAll<HTMLButtonElement>("[data-zoom]")];
+    const apply = (svg: SVGSVGElement, view: View) => {
+      const state = stateOf(svg);
+      const [, , bw = 960, bh = 720] = state.base;
+      state.view = clamp(svg, view);
+      const { x, y, w } = state.view;
+      svg.setAttribute("viewBox", `${x} ${y} ${w} ${(w / bw) * bh}`);
+      // Labels keep their on-screen size whatever the zoom and the screen; on a
+      // map drawn too small to read them they are hidden until one zooms in.
+      const drawn = svg.clientWidth || bw;
+      svg.style.setProperty("--atlas-scale", String(w / drawn));
+      svg.classList.toggle("labels-off", (drawn * bw) / w < 560);
+      const zoomed = w < bw - 0.5;
+      svg.classList.toggle("is-zoomed", zoomed);
+      if (svg === current.querySelector("svg")) {
+        for (const b of zoomButtons) {
+          const off = (b.dataset.zoom === "in" && w <= bw / MAX_ZOOM + 0.5) || (b.dataset.zoom !== "in" && !zoomed);
+          b.setAttribute("aria-disabled", String(off));
+        }
+      }
+    };
+    const animate = (svg: SVGSVGElement, target: View) => {
+      const state = stateOf(svg);
+      cancelAnimationFrame(state.frame);
+      const to = clamp(svg, target);
+      if (reduced || document.hidden) return apply(svg, to);
+      const from = { ...state.view };
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const t = Math.min(1, (now - t0) / 220);
+        const k = 1 - (1 - t) ** 3;
+        apply(svg, { x: from.x + (to.x - from.x) * k, y: from.y + (to.y - from.y) * k, w: from.w + (to.w - from.w) * k });
+        if (t < 1) state.frame = requestAnimationFrame(step);
+      };
+      state.frame = requestAnimationFrame(step);
+    };
+    /** View after zooming by `factor` around the map point (px, py). */
+    const zoomedAround = (svg: SVGSVGElement, factor: number, px: number, py: number): View => {
+      const { view } = stateOf(svg);
+      const w = clamp(svg, { ...view, w: view.w / factor }).w;
+      const r = w / view.w;
+      return { x: px - (px - view.x) * r, y: py - (py - view.y) * r, w };
+    };
+    const toMap = (svg: SVGSVGElement, clientX: number, clientY: number) => {
+      const rect = svg.getBoundingClientRect();
+      const { view, base } = stateOf(svg);
+      const h = (view.w / (base[2] ?? 960)) * (base[3] ?? 720);
+      return [view.x + ((clientX - rect.left) / rect.width) * view.w, view.y + ((clientY - rect.top) / rect.height) * h] as const;
+    };
+    const centre = (svg: SVGSVGElement) => {
+      const { view, base } = stateOf(svg);
+      return [view.x + view.w / 2, view.y + ((view.w / (base[2] ?? 960)) * (base[3] ?? 720)) / 2] as const;
+    };
+    const zoomStep = (factor: number) => {
       const svg = current.querySelector("svg");
       if (!svg) return;
-      const [x, y, w, h] = box(svg);
-      setBox(svg, [x, y, w / factor, h / factor]);
+      animate(svg, zoomedAround(svg, factor, ...centre(svg)));
     };
-    for (const button of root.querySelectorAll<HTMLButtonElement>("[data-zoom]")) {
+    const fit = () => {
+      const svg = current.querySelector("svg");
+      if (svg) animate(svg, { x: 0, y: 0, w: stateOf(svg).base[2] ?? 960 });
+    };
+    for (const button of zoomButtons) {
       button.addEventListener("click", () => {
-        const svg = current.querySelector("svg");
-        if (button.dataset.zoom === "fit" && svg) svg.setAttribute("viewBox", base(svg).join(" "));
-        else zoom(button.dataset.zoom === "in" ? 1.5 : 1 / 1.5);
+        if (button.getAttribute("aria-disabled") === "true") return;
+        if (button.dataset.zoom === "fit") fit();
+        else zoomStep(button.dataset.zoom === "in" ? 1.6 : 1 / 1.6);
       });
     }
+    const mapArea = root.querySelector<HTMLElement>(".atlas-map");
+    mapArea?.addEventListener("keydown", (event) => {
+      if (event.target instanceof HTMLButtonElement && !event.target.dataset.zoom) return;
+      if (event.key === "+" || event.key === "=") zoomStep(1.6);
+      else if (event.key === "-" || event.key === "_") zoomStep(1 / 1.6);
+      else if (event.key === "0") fit();
+      else return;
+      event.preventDefault();
+    });
+
+    const hint = root.querySelector<HTMLElement>("[data-atlas-hint]");
+    let hintTimer = 0;
+    const showHint = () => {
+      if (!hint) return;
+      hint.hidden = false;
+      window.clearTimeout(hintTimer);
+      hintTimer = window.setTimeout(() => {
+        hint.hidden = true;
+      }, 1400);
+    };
+
     for (const figure of figures) {
       const svg = figure.querySelector("svg");
       if (!svg) continue;
+      apply(svg, stateOf(svg).view);
+      new ResizeObserver(() => apply(svg, stateOf(svg).view)).observe(svg);
       svg.addEventListener(
         "wheel",
         (event) => {
-          if (!event.ctrlKey && !event.metaKey) return;
+          if (!event.ctrlKey && !event.metaKey) {
+            showHint();
+            return;
+          }
           event.preventDefault();
-          zoom(event.deltaY < 0 ? 1.2 : 1 / 1.2);
+          const state = stateOf(svg);
+          cancelAnimationFrame(state.frame);
+          // Proportional to the wheel delta: smooth on trackpads, one notch ≈ ×1.25.
+          const pixels = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? 400 : 1);
+          const factor = Math.exp(-Math.max(-100, Math.min(100, pixels)) * 0.0022);
+          apply(svg, zoomedAround(svg, factor, ...toMap(svg, event.clientX, event.clientY)));
         },
         { passive: false },
       );
-      let start: { x: number; y: number; box: number[]; moved: boolean } | null = null;
+
+      // Country links must not start a native link drag while panning.
+      svg.addEventListener("dragstart", (event) => event.preventDefault());
+      // Pointer pan (one pointer) and pinch (two pointers).
+      const pointers = new Map<number, { x: number; y: number }>();
+      let gesture: { view: View; x: number; y: number; dist: number; map: readonly [number, number] } | null = null;
+      let moved = false;
+      const begin = () => {
+        const pts = [...pointers.values()];
+        const x = pts.reduce((s, p) => s + p.x, 0) / pts.length;
+        const y = pts.reduce((s, p) => s + p.y, 0) / pts.length;
+        const [a, b] = pts;
+        const dist = a && b ? Math.hypot(a.x - b.x, a.y - b.y) : 0;
+        gesture = { view: { ...stateOf(svg).view }, x, y, dist, map: toMap(svg, x, y) };
+      };
       svg.addEventListener("pointerdown", (event) => {
-        start = { x: event.clientX, y: event.clientY, box: box(svg), moved: false };
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        cancelAnimationFrame(stateOf(svg).frame);
+        pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+        if (pointers.size === 1) moved = false;
+        begin();
       });
       svg.addEventListener("pointermove", (event) => {
-        if (!start) return;
-        const rect = svg.getBoundingClientRect();
-        const dx = ((event.clientX - start.x) / rect.width) * start.box[2];
-        const dy = ((event.clientY - start.y) / rect.height) * start.box[3];
-        if (Math.abs(dx) + Math.abs(dy) > 2) {
-          start.moved = true;
-          setBox(svg, [start.box[0] - dx, start.box[1] - dy, start.box[2], start.box[3]]);
+        if (!pointers.has(event.pointerId) || !gesture) return;
+        pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+        const pts = [...pointers.values()];
+        const x = pts.reduce((s, p) => s + p.x, 0) / pts.length;
+        const y = pts.reduce((s, p) => s + p.y, 0) / pts.length;
+        if (!moved && Math.hypot(x - gesture.x, y - gesture.y) < 4 && pts.length < 2) return;
+        if (!moved) {
+          moved = true;
+          try {
+            svg.setPointerCapture(event.pointerId);
+          } catch {
+            // The pointer is already gone (released or synthetic): pan without capture.
+          }
+          svg.classList.add("is-dragging");
         }
-      });
-      svg.addEventListener("pointerup", () => {
-        window.setTimeout(() => {
-          start = null;
+        const rect = svg.getBoundingClientRect();
+        const { base } = stateOf(svg);
+        let w = gesture.view.w;
+        const [a, b] = pts;
+        if (a && b && gesture.dist > 0) {
+          w = clamp(svg, { ...gesture.view, w: gesture.view.w * (gesture.dist / Math.hypot(a.x - b.x, a.y - b.y)) }).w;
+        }
+        const h = (w / (base[2] ?? 960)) * (base[3] ?? 720);
+        // Keep the map point that was under the gesture centre under it.
+        apply(svg, {
+          x: gesture.map[0] - ((x - rect.left) / rect.width) * w,
+          y: gesture.map[1] - ((y - rect.top) / rect.height) * h,
+          w,
         });
       });
-      svg.addEventListener("click", (event) => {
-        if (start?.moved) event.preventDefault();
-      });
+      const end = (event: PointerEvent) => {
+        if (!pointers.delete(event.pointerId)) return;
+        if (pointers.size > 0) begin();
+        else {
+          gesture = null;
+          svg.classList.remove("is-dragging");
+        }
+      };
+      svg.addEventListener("pointerup", end);
+      svg.addEventListener("pointercancel", end);
+      // A drag is not a click on the country under the pointer.
+      svg.addEventListener(
+        "click",
+        (event) => {
+          if (moved) {
+            event.preventDefault();
+            event.stopPropagation();
+            moved = false;
+          }
+        },
+        true,
+      );
     }
 
     // Selection from the map (links keep #CODE deep links), the table and the hash.
@@ -473,6 +634,13 @@ const labels = {
     display: flex;
     gap: 0.35rem;
   }
+  .atlas-zoom button[aria-disabled="true"] {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .atlas-zoom button:not([aria-disabled="true"]):hover {
+    border-color: var(--ink);
+  }
   .atlas-zoom button {
     display: grid;
     place-items: center;
@@ -492,7 +660,37 @@ const labels = {
     width: 100%;
     height: auto;
     cursor: grab;
-    touch-action: pan-y;
+    /* One finger scrolls the page until the map is zoomed; pinch is ours. */
+    touch-action: pan-x pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .atlas-figure svg.is-zoomed {
+    touch-action: none;
+  }
+  .atlas-figure svg.is-dragging {
+    cursor: grabbing;
+  }
+  .atlas-figure svg path {
+    vector-effect: non-scaling-stroke;
+  }
+  .atlas-hint {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+    margin: 0;
+    padding: 0.55rem 0.85rem;
+    transform: translate(-50%, -50%);
+    border-radius: var(--radius-2);
+    background: color-mix(in srgb, var(--ink) 88%, transparent);
+    color: var(--paper);
+    font: 500 var(--text-sm) / 1.3 var(--font-sans);
+    pointer-events: none;
+    text-align: center;
+  }
+  .atlas-hint kbd {
+    font: 600 var(--text-xs) / 1 var(--font-mono);
   }
   .atlas-sea {
     fill: var(--paper-sunken);
@@ -518,14 +716,17 @@ const labels = {
     stroke: var(--ink);
     stroke-width: 2.4;
   }
+  .labels-off .atlas-labels {
+    display: none;
+  }
   .atlas-labels text {
-    font: 600 11px var(--font-mono);
+    font: 600 calc(11px * var(--atlas-scale, 1)) var(--font-mono);
     fill: var(--ink);
     text-anchor: middle;
     dominant-baseline: middle;
     paint-order: stroke;
     stroke: var(--paper-raised);
-    stroke-width: 3px;
+    stroke-width: calc(3px * var(--atlas-scale, 1));
     stroke-linejoin: round;
     pointer-events: none;
   }
@@ -540,6 +741,14 @@ const labels = {
     background: color-mix(in srgb, var(--paper-raised) 90%, transparent);
     font: 500 var(--text-micro) / 1 var(--font-mono);
     color: var(--ink-2);
+  }
+  @media (max-width: 639px) {
+    .atlas-legend {
+      position: static;
+      justify-content: center;
+      border-radius: 0;
+      border-top: 1px solid var(--rule);
+    }
   }
   .atlas-legend li {
     display: inline-flex;
@@ -599,6 +808,17 @@ const labels = {
     color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 0.18em;
+  }
+  .sort-btn {
+    min-height: 1.75rem;
+    padding: 0.25rem 0;
+  }
+  .sort-btn:hover {
+    color: var(--ink);
+  }
+  th:not([aria-sort]) .sort-btn::after {
+    content: " ↕";
+    color: var(--ink-3);
   }
   th[aria-sort="ascending"] .sort-btn::after {
     content: " ↑";

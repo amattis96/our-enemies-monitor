@@ -121,7 +121,7 @@ const summary = (records: RecordTouch[]) => {
           <p class="font-semibold mb-0" lang="en">{commit.subject}</p>
           <p class="meta mb-0">{summary(commit.records)}</p>
           <details>
-            <summary class="cursor-pointer text-sm">{c("Record interessati", "Records affected")} ({commit.records.length})</summary>
+            <summary class="cursor-pointer text-sm py-1.5">{c("Record interessati", "Records affected")} ({commit.records.length})</summary>
             <ul class="mt-1 text-sm columns-2 sm:columns-4">
               {commit.records.map((touch) => {
                 const link = recordHref(touch);
