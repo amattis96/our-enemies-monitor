@@ -102,7 +102,8 @@ src/
                        sitemap lastmod, withheld-ID leak guard)
   audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E7,
                        D T1–T11), question-benchmark scorer (benchmark.ts) and the
-                       text–graph mention queue (mentions.ts, shared matcher with E6)
+                       text–graph mention queue (mentions.ts, shared matcher with E6),
+                       cadence measures K1–K5 (cadence.ts, B21/ADR-08)
   cli/                 Entry points used by package scripts
 test/                  Vitest suites; fixtures/ holds hand-authored test inputs
                        (Fonte_10.proposals.json, a faithful subset of PR #3)
@@ -187,6 +188,26 @@ are the reference for blocks B13, B16 and B19; `baseline-*.json` files are
 excluded from Biome so they stay byte-identical to the command output. Case expected answers describe
 the data at `as_of_commit`; a data change that alters them requires a new case
 file version.
+
+## Cadence measures (B21, ADR-08 proposed)
+
+`pnpm cadence:measure --prs <prs.json> --runs <runs.json> [--since <ISO>]
+[--until <ISO>] [--now <ISO>] [--ref main] [--out <file>]` computes the
+ADR-08 entry measures from two `gh` JSON exports the maintainer makes
+(`gh pr list --state all --json number,state,headRefName,createdAt,mergedAt,files`,
+`gh run list --json workflowName,event,headBranch,conclusion,createdAt`) and
+the first-parent Git history of `--ref`. It never calls the network and never
+changes a schedule. K1 cutoff lag (hours since the last merged incremental
+source PR, at each new one), K2 PR → merge per category (`sources`,
+`articles`, `ingest`, `other`), K3 merge → ingest (sidecar added on the ref →
+first addition of its `data/sources/<code>.json` corpus document), K4 CI
+success share (completed runs, push on `main` vs pull requests), K5 backlog
+at `--now` (open PRs per category, sidecars not ingested). One window is one
+cycle; `now` defaults to `--until` or the latest input timestamp, so the same
+inputs give the same output. The cadence options and the decision rule are in
+[ADR-08](audit/fable-2026-11/adr/ADR-08_cadenze_abc.md) (proposed, not
+applied): schedules and external prompts are unchanged, and no workflow runs
+ingest on merge.
 
 ## Text–graph mention queue (B14)
 

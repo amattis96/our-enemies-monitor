@@ -80,6 +80,7 @@ pnpm check:pr                                     # CI only: does the evidence-w
 pnpm ingest <Fonte_XX.proposals.json> [--write]   # M6 sidecar → needs_review candidates (dry run by default)
 pnpm benchmark:measure [--out <f>] [--pages web/dist]  # read-only audit baseline JSON (FABLE A E1–E6, D T1–T11)
 pnpm benchmark:score <answers.json>               # grade answers to docs/audit/baseline/benchmark-cases.v1.json
+pnpm cadence:measure --prs <f> --runs <f> [--since/--until <ISO>]  # read-only K1–K5 cadence measures (B21) from gh JSON + git
 pnpm audit:mentions [--format md|json] [--out <f>]  # read-only text–graph mention queue (B14); never writes data/
 ```
 

@@ -137,6 +137,7 @@ pnpm check:links  # verify every internal link of the built site
 pnpm ingest <Fonte_XX.proposals.json>  # dry run of an M6 sidecar ingest (--write to create candidates)
 pnpm benchmark:measure  # read-only measurement baseline (audit metrics) as JSON
 pnpm benchmark:score <answers.json>  # grade model answers to the B1–B20 benchmark
+pnpm cadence:measure --prs <prs.json> --runs <runs.json>  # read-only A/B/C cadence measures (B21) from gh exports and git
 pnpm audit:mentions     # read-only queue of entity mentions without an edge (Markdown, or --format json)
 ```
 
@@ -211,6 +212,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Add the Tracciato page (`/trace/<ID>/`): shortest public path between hypothesis ends with caveats, interruptions and what it does not say.
 - [x] Add the rare-earth Filiera and gas before/after on `/dependencies/` and a role matrix on entity pages (B19).
 - [x] Publish per-record JSON packages (`data/v1/records/<ID>.json`), an articles index, a changes feed (JSON Feed), minimal JSON-LD, `canonical`/`<time>` markup and a sitemap with `lastmod` — withheld records excluded and tested (B20).
+- [x] Add read-only cadence measures for the A/B/C automations (`pnpm cadence:measure`) and propose ADR-08 (B21).
+- [ ] Measure 2–4 A/B/C cycles and decide on the cadence change (ADR-08); schedules unchanged until then.
 - [ ] Case file (Fascicolo del caso) and structured questions, after ADR-06 and reviewed case data.
 - [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
