@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cases.schema.json",
+  "title": "cases",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^CASE-\\d{4}$",
+      "description": "Stable case ID (CASE-####); never renumbered or reused."
+    },
+    "title": {
+      "type": "object",
+      "properties": {
+        "it": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
+        },
+        "en": {
+          "description": "English translation; its status is in review.translations.en.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "it"
+      ],
+      "additionalProperties": false,
+      "description": "Short title of the case."
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "it": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
+        },
+        "en": {
+          "description": "English translation; its status is in review.translations.en.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "it"
+      ],
+      "additionalProperties": false,
+      "description": "What the case groups; it adds no claim of its own."
+    },
+    "events": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
+      },
+      "description": "Events that are phases of the case. Two phases of one case are not two independent confirmations."
+    },
+    "grouping_basis": {
+      "type": "object",
+      "properties": {
+        "it": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
+        },
+        "en": {
+          "description": "English translation; its status is in review.translations.en.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "it"
+      ],
+      "additionalProperties": false,
+      "description": "Why these events are one case, stated from the records (editorial grouping rule)."
+    },
+    "sources": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+      },
+      "description": "Codes of cited sources (see sources.json). Corpus synthesis documents are not independent confirmations."
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "imported_unreviewed",
+            "needs_review",
+            "reviewed"
+          ],
+          "description": "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses."
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Free-text editorial and technical notes, in English; not typed claims."
+        },
+        "translations": {
+          "description": "Translation state per language.",
+          "type": "object",
+          "properties": {
+            "en": {
+              "description": "State of the English translation.",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "machine",
+                    "reviewed"
+                  ],
+                  "description": "Translation status. Definitions: vocabulary.json#/translation_statuses."
+                },
+                "source_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the Italian texts the translation was made from."
+                },
+                "target_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the translated texts as imported."
+                }
+              },
+              "required": [
+                "status",
+                "source_hash",
+                "target_hash"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "status",
+        "notes"
+      ],
+      "additionalProperties": false,
+      "description": "Editorial review state of the case."
+    },
+    "provenance": {
+      "maxItems": 0,
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "format": "starts_with",
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
+              },
+              "row": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991,
+                "description": "1-based data row of the original CSV file."
+              },
+              "original": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Verbatim original values of that row, keyed by column."
+              }
+            },
+            "required": [
+              "file",
+              "row",
+              "original"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "format": "starts_with",
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
+              },
+              "line": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991,
+                "description": "1-based line of the original text file."
+              },
+              "original": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Verbatim original line."
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "additionalProperties": false,
+                "description": "Verbatim original text."
+              }
+            },
+            "required": [
+              "file",
+              "line",
+              "original"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "description": "Always empty: cases and claims are editorial records, never imported."
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "summary",
+    "events",
+    "grouping_basis",
+    "sources",
+    "review",
+    "provenance"
+  ],
+  "additionalProperties": false
+}

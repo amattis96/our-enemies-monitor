@@ -293,6 +293,11 @@ interrupting composition just because it contains «non».
    document's declared inputs); a republication or a wire relying on a
    statement is proposed in `docs/audit/sources/pilot.v1.json` until a human
    has read the documents. Never link `F*`/`P*` to claims without that reading.
+   Cases and claims (ADR-06, proposed) are written by hand in
+   `docs/audit/cases/pilot.v1.json`, only from existing records and source
+   codes, as `needs_review`; never generate them from the baseline, never set
+   `reviewed`, and omit a person claim that lacks an exact procedural status,
+   date and registered primary source.
 4. Run `pnpm format:data && pnpm check`.
 5. In the PR, state what is known versus inferred and any contrary evidence
    (see CONTRIBUTING.md and the pull request template); check the evidence

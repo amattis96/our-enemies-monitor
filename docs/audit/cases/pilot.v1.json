@@ -1,0 +1,273 @@
+{
+  "pilot": "case-claim",
+  "version": 1,
+  "as_of_commit": "faafdf8",
+  "notes": [
+    "B18 pilot (ADR-06, proposed, unattended, to be confirmed). Every claim restates fields of existing records (transcribed_from) and cites existing source codes; no external document was read for this pilot.",
+    "Not canonical data: not loaded by the site, not exported (ADR-10). All records are needs_review; only the maintainer may set reviewed.",
+    "Omitted for AGENTS.md rule 7: claims about Oleg Voloshyn (VOL; G-0014, G-0139) and Viktor Medvedchuk (MED; G-0016, G-0017). The corpus (S01) and the M5 limitation of G-0139 call Voloshyn charged or wanted in the United Kingdom, but no record gives the date of that status or a registered primary source for it.",
+    "Empty lanes are information, not absence of events: CASE-0001 has no attribution or denial recorded; CASE-0002 has no judgment recorded. The date of the Polish attribution and of the Russian denial is not in the records, so asserted_on stays null.",
+    "CL-0002: the court that passed the sentence is not a record, so asserted_by stays null; whether the sentence is final is not recorded."
+  ],
+  "cases": [
+    {
+      "id": "CASE-0001",
+      "title": {
+        "it": "Pagamenti a Nathan Gill"
+      },
+      "summary": {
+        "it": "Le condotte del 2018-2019 e la condanna del 2025 registrate come due eventi distinti."
+      },
+      "events": ["TL-0015", "TL-0092"],
+      "grouping_basis": {
+        "it": "TL-0092 è la condanna per le condotte di TL-0015: le relazioni G-0014 e G-0015 sono registrate in entrambi gli eventi."
+      },
+      "sources": ["S01", "P03"],
+      "review": {
+        "status": "needs_review",
+        "notes": ["B18 pilot, unattended; grouping to be confirmed by the maintainer."]
+      },
+      "provenance": []
+    },
+    {
+      "id": "CASE-0002",
+      "title": {
+        "it": "Incendio di Marywilska 44"
+      },
+      "summary": {
+        "it": "Il fatto, l'attribuzione polacca e la smentita russa che TL-0059 registra in una sola frase."
+      },
+      "events": ["TL-0059"],
+      "grouping_basis": {
+        "it": "Un solo evento: il caso separa le affermazioni che la descrizione di TL-0059 unisce."
+      },
+      "sources": ["S03"],
+      "review": {
+        "status": "needs_review",
+        "notes": ["B18 pilot, unattended; to be confirmed by the maintainer."]
+      },
+      "provenance": []
+    }
+  ],
+  "claims": [
+    {
+      "id": "CL-0001",
+      "case": "CASE-0001",
+      "kind": "fact",
+      "aspect": "occurrence",
+      "proposition": {
+        "it": "Fra il 2018 e il 2019 Nathan Gill riceve denaro per interventi e dichiarazioni favorevoli a narrative filorusse."
+      },
+      "limit": {
+        "it": "Secondo TL-0015 (evidence_note) la condotta è «accertata penalmente nel 2025»; i record non nominano chi l'ha accertata oltre la condanna registrata in TL-0092."
+      },
+      "about": ["TL-0015", "G-0138", "G-0015"],
+      "subjects": ["GILL"],
+      "asserted_by": null,
+      "asserted_on": null,
+      "responds_to": null,
+      "supersedes": null,
+      "evidence_level": null,
+      "relationships": ["G-0138", "G-0015"],
+      "transcribed_from": [
+        {
+          "record": "TL-0015",
+          "field": "description"
+        },
+        {
+          "record": "TL-0015",
+          "field": "evidence_note"
+        }
+      ],
+      "person_status": [
+        {
+          "entity": "GILL",
+          "status": "sentenced",
+          "status_date": "2025-11",
+          "primary_source": "P03",
+          "primary_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+          "note": {
+            "it": "Condannato dopo l'ammissione di otto reati (TL-0092); la definitività della sentenza non è registrata."
+          }
+        }
+      ],
+      "sources": ["S01", "P03"],
+      "review": {
+        "status": "needs_review",
+        "notes": [
+          "Level left null: the listed relationships carry different levels (G-0015 E1, G-0138 E3) for different statements."
+        ]
+      },
+      "provenance": []
+    },
+    {
+      "id": "CL-0002",
+      "case": "CASE-0001",
+      "kind": "judgment",
+      "aspect": "perpetrator",
+      "proposition": {
+        "it": "Nathan Gill, dopo aver ammesso otto reati, viene condannato."
+      },
+      "limit": {
+        "it": "La durata della pena (10 anni e 6 mesi) è registrata solo in TL-0092 sulla base di S01, non nel titolo di P03. Il tribunale e la definitività della sentenza non sono registrati."
+      },
+      "about": ["TL-0092", "G-0287"],
+      "subjects": ["GILL"],
+      "asserted_by": null,
+      "asserted_on": "2025-11",
+      "responds_to": null,
+      "supersedes": null,
+      "evidence_level": "E1",
+      "relationships": ["G-0287"],
+      "transcribed_from": [
+        {
+          "record": "TL-0092",
+          "field": "description"
+        },
+        {
+          "record": "TL-0092",
+          "field": "date"
+        },
+        {
+          "record": "P03",
+          "field": "title"
+        }
+      ],
+      "person_status": [
+        {
+          "entity": "GILL",
+          "status": "sentenced",
+          "status_date": "2025-11",
+          "primary_source": "P03",
+          "primary_url": "https://www.cps.gov.uk/cps/news/former-ukip-mep-jailed-taking-bribes",
+          "note": {
+            "it": "La definitività della sentenza non è registrata."
+          }
+        }
+      ],
+      "sources": ["S01", "P03"],
+      "review": {
+        "status": "needs_review",
+        "notes": [
+          "Level copied from G-0287 (CONVICTED_PERSON, E1); the M5 limitation applies: the source establishes the recorded role, not others' guilt."
+        ]
+      },
+      "provenance": []
+    },
+    {
+      "id": "CL-0003",
+      "case": "CASE-0002",
+      "kind": "fact",
+      "aspect": "occurrence",
+      "proposition": {
+        "it": "Nel maggio 2024 un incendio distrugge il centro commerciale Marywilska 44 a Varsavia."
+      },
+      "limit": null,
+      "about": ["TL-0059"],
+      "subjects": [],
+      "asserted_by": null,
+      "asserted_on": null,
+      "responds_to": null,
+      "supersedes": null,
+      "evidence_level": null,
+      "relationships": [],
+      "transcribed_from": [
+        {
+          "record": "TL-0059",
+          "field": "title"
+        },
+        {
+          "record": "TL-0059",
+          "field": "description"
+        },
+        {
+          "record": "TL-0059",
+          "field": "date"
+        }
+      ],
+      "person_status": [],
+      "sources": ["S03"],
+      "review": {
+        "status": "needs_review",
+        "notes": ["No relationship carries the occurrence; level left null."]
+      },
+      "provenance": []
+    },
+    {
+      "id": "CL-0004",
+      "case": "CASE-0002",
+      "kind": "attribution",
+      "aspect": "sponsor",
+      "proposition": {
+        "it": "Il governo polacco attribuisce l'ordine dell'incendio ai servizi russi."
+      },
+      "limit": {
+        "it": "TL-0059 parla di «servizi russi»: RU è l'entità usata dal record, non indica una posizione dello Stato russo né un servizio specifico. Attribuzione istituzionale, non condanna."
+      },
+      "about": ["TL-0059", "G-0224"],
+      "subjects": ["RU"],
+      "asserted_by": "PL",
+      "asserted_on": null,
+      "responds_to": null,
+      "supersedes": null,
+      "evidence_level": "E2",
+      "relationships": ["G-0224"],
+      "transcribed_from": [
+        {
+          "record": "TL-0059",
+          "field": "description"
+        },
+        {
+          "record": "TL-0059",
+          "field": "evidence_note"
+        }
+      ],
+      "person_status": [],
+      "sources": ["S03"],
+      "review": {
+        "status": "needs_review",
+        "notes": [
+          "Level copied from G-0224 (OFFICIAL_ATTRIBUTION, E2): an institutional attribution, not a conviction. The records say the Polish government; PL is the state entity."
+        ]
+      },
+      "provenance": []
+    },
+    {
+      "id": "CL-0005",
+      "case": "CASE-0002",
+      "kind": "denial",
+      "aspect": "sponsor",
+      "proposition": {
+        "it": "I servizi russi negano l'attribuzione."
+      },
+      "limit": {
+        "it": "Il record attribuisce la smentita ai «servizi russi»: non è registrata una dichiarazione con autore istituzionale e data, né una posizione dello Stato russo."
+      },
+      "about": ["TL-0059"],
+      "subjects": ["RU"],
+      "asserted_by": "RU",
+      "asserted_on": null,
+      "responds_to": "CL-0004",
+      "supersedes": null,
+      "evidence_level": null,
+      "relationships": [],
+      "transcribed_from": [
+        {
+          "record": "TL-0059",
+          "field": "description"
+        },
+        {
+          "record": "TL-0059",
+          "field": "evidence_note"
+        }
+      ],
+      "person_status": [],
+      "sources": ["S03"],
+      "review": {
+        "status": "needs_review",
+        "notes": ["No relationship carries the denial; level left null."]
+      },
+      "provenance": []
+    }
+  ]
+}

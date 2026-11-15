@@ -1,4 +1,6 @@
 import {
+  CLAIM_ASPECTS,
+  type CLAIM_KINDS,
   DATE_PRECISIONS,
   ENTITY_DOMAINS,
   ENTITY_KINDS,
@@ -14,6 +16,7 @@ import {
   type MEASURE_QUALIFIERS,
   type MEASURE_UNITS,
   ORIGIN_TYPES,
+  PROCEDURAL_STATUSES,
   RELATION_CLASS_GROUP,
   RELATION_CLASSES,
   RELATION_GROUPS,
@@ -156,6 +159,60 @@ const ORIGIN_LIMITS: Partial<Record<(typeof ORIGIN_TYPES)[number], string[]>> = 
   republication: ["independent_confirmation"],
   corpus_synthesis: ["independent_confirmation", "primary_source"],
 };
+
+/**
+ * ADR-06 (B18, proposed): Case/Claim vocabularies. Defined ahead of any public
+ * claim data (the pilot is not exported), so the contract exists before use.
+ */
+const CLAIM_KIND_ENTRIES = {
+  fact: {
+    label: { it: "Fatto", en: "Fact" },
+    definition: {
+      it: "Ciò che il corpus registra come accaduto, senza autore dell'affermazione.",
+      en: "What the corpus records as having happened, with no asserting party.",
+    },
+  },
+  attribution: {
+    label: { it: "Attribuzione", en: "Attribution" },
+    definition: {
+      it: "Un soggetto nominato (asserted_by) attribuisce una responsabilità: registra chi lo afferma, non che sia accertato.",
+      en: "A named party (asserted_by) attributes responsibility: it records who says so, not that it is established.",
+    },
+    must_not_read_as: ["conviction", "proven_fact"],
+  },
+  denial: {
+    label: { it: "Smentita", en: "Denial" },
+    definition: {
+      it: "Un soggetto nominato respinge un'altra affermazione (responds_to): non la confuta di per sé.",
+      en: "A named party rejects another claim (responds_to): it does not refute it by itself.",
+    },
+    must_not_read_as: ["refutation"],
+  },
+  judgment: {
+    label: { it: "Giudizio", en: "Judgment" },
+    definition: {
+      it: "Decisione di un'autorità giudiziaria su una persona o un fatto specifico; non si estende ad altri soggetti o accuse.",
+      en: "Decision of a judicial authority on a specific person or fact; it does not extend to other parties or allegations.",
+    },
+  },
+} satisfies Record<(typeof CLAIM_KINDS)[number], Entry>;
+
+const CLAIM_ASPECT_LABELS = {
+  occurrence: { it: "Accadimento", en: "Occurrence" },
+  perpetrator: { it: "Autore", en: "Perpetrator" },
+  sponsor: { it: "Mandante", en: "Sponsor" },
+  motive: { it: "Movente", en: "Motive" },
+  impact: { it: "Impatto", en: "Impact" },
+} satisfies Record<(typeof CLAIM_ASPECTS)[number], Label>;
+
+const PROCEDURAL_STATUS_LABELS = {
+  under_investigation: { it: "Indagato", en: "Under investigation" },
+  charged: { it: "Imputato", en: "Charged" },
+  convicted: { it: "Condannato", en: "Convicted" },
+  sentenced: { it: "Condannato con pena inflitta", en: "Sentenced" },
+  acquitted: { it: "Assolto", en: "Acquitted" },
+  proceedings_closed: { it: "Procedimento chiuso", en: "Proceedings closed" },
+} satisfies Record<(typeof PROCEDURAL_STATUSES)[number], Label>;
 
 const REVIEW_DEFINITIONS = {
   imported_unreviewed: {
@@ -362,6 +419,24 @@ export function buildVocabulary() {
       label: ORIGIN_TYPE_LABELS[type],
       definition: ORIGIN_DEFINITIONS[type],
       ...(ORIGIN_LIMITS[type] ? { must_not_read_as: ORIGIN_LIMITS[type] } : {}),
+    })),
+    claim_kinds: CLAIM_KIND_ENTRIES,
+    claim_aspects: pick(CLAIM_ASPECTS, (aspect) => ({
+      label: CLAIM_ASPECT_LABELS[aspect],
+      definition: {
+        it: "Accadimento, autore, mandante, movente e impatto sono affermazioni separate.",
+        en: "Occurrence, perpetrator, sponsor, motive and impact are separate claims.",
+      },
+    })),
+    procedural_statuses: pick(PROCEDURAL_STATUSES, (status) => ({
+      label: PROCEDURAL_STATUS_LABELS[status],
+      definition: {
+        it: "Stato giuridico o procedurale esatto di una persona alla data indicata, con fonte primaria; non è una graduatoria e non dice se la decisione è definitiva.",
+        en: "Exact legal or procedural status of a person at the stated date, with a primary source; not a ranking and silent on whether the decision is final.",
+      },
+      ...(status === "charged" || status === "under_investigation"
+        ? { must_not_read_as: ["conviction"] }
+        : {}),
     })),
     exposure_statuses: {
       observed: { label: { it: "Valore osservato", en: "Observed value" } },

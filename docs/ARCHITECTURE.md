@@ -112,6 +112,8 @@ web/                   Astro portal
 docs/                  Architecture and project documentation
   audit/baseline/      Dated measurement baselines, benchmark case file and answers template
   audit/mentions/      Text–graph queue inputs (exclusions.v1.json, review.v1.json) and dated reports
+  audit/cases/         B18 Case/Claim pilot (pilot.v1.json, needs_review, not exported)
+  audit/fable-2026-11/ FABLE audit reports, block analyses and ADRs (adr/ADR-04, ADR-06, ADR-10)
   design/              Dossier design system v1: concept, foundations, components, page blueprints,
                        UI/UX audit, M7 plan, tokens.css, SVG assets, specimen.html (not yet used by web/)
 .github/workflows/     ci.yml (check, deploy) and evidence-diff.yml; no LLM API job
@@ -256,6 +258,33 @@ each remaining proposal and step classification «proposta non rivista».
 `forbidden_inferences_not_public` and the reviewed count in `review_note` are
 computed over the full registry and exposed as counts only, as in
 `withheld.json`.
+
+## Case/Claim pilot (B18, ADR-06 proposed)
+
+`src/model/cases.ts` adds two record shapes, additive and not yet canonical
+collections: `Case` (`CASE-####`: events grouped as phases of one case, with a
+`grouping_basis` written from the records; two phases count once) and `Claim`
+(`CL-####`: one atomic proposition with `kind` fact/attribution/denial/judgment,
+`aspect` occurrence/perpetrator/sponsor/motive/impact, `asserted_by`,
+`asserted_on`, `responds_to`, `supersedes`, `evidence_level`, `relationships`,
+`transcribed_from`, `person_status`, `sources`, `review`, empty `provenance`).
+`pnpm schemas` emits `schemas/cases.schema.json` and `schemas/claims.schema.json`;
+`vocabulary.json` gains `claim_kinds`, `claim_aspects` and `procedural_statuses`.
+
+The pilot `docs/audit/cases/pilot.v1.json` reconstructs two cases by hand from
+existing records: Gill (`TL-0015`, `TL-0092`: fact and judgment) and Marywilska
+(`TL-0059`: fact, Polish attribution, Russian denial). `pnpm validate`
+(`validateCasePilot` in `src/editorial/cases.ts`) checks it against `data/`:
+known IDs, claims only about records of their case, an asserter for
+attributions and denials, a reply target for denials (same case), a level only
+when a listed relationship carries it (ADR-04), non-empty transcribed fields,
+and for every person subject or asserter an exact procedural status, date and
+registered primary `external_reference` cited by the claim (AGENTS.md rule 7).
+`queryClaims`, `caseLanes` (empty lanes mean "not recorded"), `denialsOf` and
+`casesOf` are the structured queries. All pilot records are `needs_review`;
+the file is not loaded by the site or the exports (ADR-10, tested). Moving cases
+and claims into `data/cases/` and `data/claims/` with the M5 gate and additive
+exports waits for the maintainer to confirm ADR-06.
 
 ## Trace (B16)
 
@@ -407,7 +436,7 @@ Markdown natively. `data/` keeps its one-JSON-record-per-file contract, and
 
 Claims, evidence documents with snapshots/hashes, assessments and
 corrections as separate collections are introduced when real data exists
-for them. The baseline has no claim-level data, and inventing
+for them (claims and cases: hand-written pilot only, see "Case/Claim pilot"). The baseline has no claim-level data, and inventing
 that structure would be false precision. Until then each relationship is the
 claim, its sources are the evidence, and Git history plus `review.notes`
 record corrections. Canonical predicates (from 290 original predicates) and
@@ -604,7 +633,8 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    entity with relationships; it has false positives and negatives and does not
    classify or block entities. Relationship evidence pairs E1/documented,
    E2/institutional_attribution, E3/corroborated and E4/allegation are enforced
-   as errors provisionally, pending ADR-04/B18, not as a ranking of truth.
+   as errors, not as a ranking of truth: ADR-04 (proposed, B18) keeps
+   `evidence_status` as a Fonte_07 compatibility code with no meaning of its own.
 11. Articles (`pnpm validate:articles`): front matter schema, file name = ID,
    Italian file present, every linked event/entity/relationship/hypothesis
    and source code exists in `data/`, no duplicate links, `updated >= date`,
@@ -633,6 +663,10 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    build time, the references and the independent roots behind a claim
    (republications and corpus syntheses add none); it is not yet shown on
    pages.
+15. Case/Claim pilot (`pnpm validate`, B18): see "Case/Claim pilot"; errors for
+   unknown IDs, claims outside their case, missing asserter or reply, invented
+   levels, empty transcribed fields and person claims without status, date and
+   registered primary source; a case without claims is a warning.
 
 ## Website
 
@@ -674,7 +708,7 @@ M6 sidecar contract) and `manifest.json` (export version,
 commit, commit date, counts, size and SHA-256 of every file; no build
 timestamp, so a mirror built from the same commit publishes identical files). Both graphs are generated by the same export catalog and generic JSON route as the collection files; their manifest hashes cover the exact served bytes. Each evidence edge carries the relationship’s complete bilingual `caveat` or `null`; hypothesis edges remain separate and do not gain this field. The additive graph field retains export version `v1`. Visual group overrides place only `G-0419`, `G-0420` and `G-0421` in neutral `context`, without changing their canonical `infrastructure` class.
 
-Reading contract (B13, additive, export version `v1`): `vocabulary.json` (`src/site/vocabulary.ts`) defines every controlled value used in the public data — evidence levels with basis and `must_not_read_as`, the `scale_note` that E1–E4 are kinds of basis and not a ranking, level-paired evidence statuses, relation groups and classes (participation and context are not control or financing), entity kinds and domains, review/translation/timeline statuses, record types, hypothesis statuses and priorities (not probabilities), source types, exposure statuses, measure units and qualifiers, date precisions, themes, known-issue codes and withheld reasons — plus reading rules R1–R5 and a structured subset of the translation glossary. Rules are declarations about the data, not instructions. `index.json` (`buildCatalog` in `src/site/exports.ts`) is the catalog: license, canonical language, translation rule, published and withheld counts from the same publication report, the dataset/schema list, and freshness at three distinct dates — `commit_date` (Git commit date, as in the manifest), `latest_public_event_date` (latest `date.start` of a published `event` record; `dataset_metadata` excluded) and `latest_archived_source` (newest committed incremental source, with `in_public_sources`). No wall-clock time is used, so builds stay reproducible. Every property of the six collection schemas carries a `description` (Zod `.describe()`), and enumerated fields point to their `vocabulary.json` section; tests enforce both and that every controlled value in the public data has a vocabulary entry. Per-record packages and JSON-LD are out of scope (B20).
+Reading contract (B13, additive, export version `v1`): `vocabulary.json` (`src/site/vocabulary.ts`) defines every controlled value used in the public data — evidence levels with basis and `must_not_read_as`, the `scale_note` that E1–E4 are kinds of basis and not a ranking, level-paired evidence statuses, relation groups and classes (participation and context are not control or financing), entity kinds and domains, review/translation/timeline statuses, record types, hypothesis statuses and priorities (not probabilities), source types, exposure statuses, measure units and qualifiers, date precisions, themes, known-issue codes and withheld reasons, and (B18, ahead of any public claim data) claim kinds, claim aspects and procedural statuses — plus reading rules R1–R5 and a structured subset of the translation glossary. Rules are declarations about the data, not instructions. `index.json` (`buildCatalog` in `src/site/exports.ts`) is the catalog: license, canonical language, translation rule, published and withheld counts from the same publication report, the dataset/schema list, and freshness at three distinct dates — `commit_date` (Git commit date, as in the manifest), `latest_public_event_date` (latest `date.start` of a published `event` record; `dataset_metadata` excluded) and `latest_archived_source` (newest committed incremental source, with `in_public_sources`). No wall-clock time is used, so builds stay reproducible. Every property of the six collection schemas carries a `description` (Zod `.describe()`), and enumerated fields point to their `vocabulary.json` section; tests enforce both and that every controlled value in the public data has a vocabulary entry. Per-record packages and JSON-LD are out of scope (B20).
 
 Public-facing rules implemented in the read model and tested:
 

@@ -655,6 +655,10 @@ describe("pnpm ingest CLI", () => {
       cpSync(repoPath("docs/audit/inferences"), path.join(root, "docs/audit/inferences"), {
         recursive: true,
       });
+      // ...and the B18 Case/Claim pilot.
+      cpSync(repoPath("docs/audit/cases"), path.join(root, "docs/audit/cases"), {
+        recursive: true,
+      });
       symlinkSync(repoPath("sources/original"), path.join(root, "sources", "original"));
       cpSync(repoPath("sources/incremental"), path.join(root, "sources", "incremental"), {
         recursive: true,

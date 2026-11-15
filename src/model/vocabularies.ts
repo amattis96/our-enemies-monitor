@@ -179,6 +179,29 @@ export const ORIGIN_TYPES = [
 
 export const REVIEW_STATUSES = ["imported_unreviewed", "needs_review", "reviewed"] as const;
 
+/**
+ * ADR-06 (B18, proposed): kinds of claim. A fact, an attribution, a denial
+ * and a judgment are distinct claims, never merged into one sentence.
+ */
+export const CLAIM_KINDS = ["fact", "attribution", "denial", "judgment"] as const;
+export type ClaimKind = (typeof CLAIM_KINDS)[number];
+
+/** AGENTS.md rule 6: event, perpetrator, sponsor, motive and impact are separate claims. */
+export const CLAIM_ASPECTS = ["occurrence", "perpetrator", "sponsor", "motive", "impact"] as const;
+
+/**
+ * AGENTS.md rule 7: exact legal or procedural status of a named person at a
+ * date. Not ordered; `sentenced` does not state whether the judgment is final.
+ */
+export const PROCEDURAL_STATUSES = [
+  "under_investigation",
+  "charged",
+  "convicted",
+  "sentenced",
+  "acquitted",
+  "proceedings_closed",
+] as const;
+
 export const KNOWN_ISSUE_CODES = ["misclassified_category", "date_reflects_publication"] as const;
 
 /**
