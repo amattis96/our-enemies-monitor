@@ -250,7 +250,8 @@
                     "properties": {
                       "start": {
                         "type": "string",
-                        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$",
+                        "description": "Start date: YYYY, YYYY-MM or YYYY-MM-DD (no invented precision)."
                       },
                       "end": {
                         "anyOf": [
@@ -261,7 +262,8 @@
                           {
                             "type": "null"
                           }
-                        ]
+                        ],
+                        "description": "End date with the same format, or null when unknown or none."
                       },
                       "precision": {
                         "type": "string",
@@ -269,7 +271,8 @@
                           "year",
                           "month",
                           "day"
-                        ]
+                        ],
+                        "description": "Precision of the start date (year, month or day). Definitions: vocabulary.json#/date_precisions."
                       }
                     },
                     "required": [
@@ -1775,7 +1778,8 @@
                     "properties": {
                       "start": {
                         "type": "string",
-                        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+                        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$",
+                        "description": "Start date: YYYY, YYYY-MM or YYYY-MM-DD (no invented precision)."
                       },
                       "end": {
                         "anyOf": [
@@ -1786,7 +1790,8 @@
                           {
                             "type": "null"
                           }
-                        ]
+                        ],
+                        "description": "End date with the same format, or null when unknown or none."
                       },
                       "precision": {
                         "type": "string",
@@ -1794,7 +1799,8 @@
                           "year",
                           "month",
                           "day"
-                        ]
+                        ],
+                        "description": "Precision of the start date (year, month or day). Definitions: vocabulary.json#/date_precisions."
                       }
                     },
                     "required": [

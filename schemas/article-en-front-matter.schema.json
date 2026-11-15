@@ -28,15 +28,18 @@
           "enum": [
             "machine",
             "reviewed"
-          ]
+          ],
+          "description": "Translation status. Definitions: vocabulary.json#/translation_statuses."
         },
         "source_hash": {
           "type": "string",
-          "pattern": "^[0-9a-f]{16}$"
+          "pattern": "^[0-9a-f]{16}$",
+          "description": "Fingerprint of the Italian texts the translation was made from."
         },
         "target_hash": {
           "type": "string",
-          "pattern": "^[0-9a-f]{16}$"
+          "pattern": "^[0-9a-f]{16}$",
+          "description": "Fingerprint of the translated texts as imported."
         }
       },
       "required": [

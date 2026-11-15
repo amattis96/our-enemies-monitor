@@ -140,7 +140,7 @@ pnpm benchmark:score <answers.json>  # grade model answers to the B1–B20 bench
 pnpm audit:mentions     # read-only queue of entity mentions without an edge (Markdown, or --format json)
 ```
 
-The manifest lists public and withheld counts and hashes the minimal `withheld.json` registry (ID, collection and generic reasons); withheld detail pages remain 404. Unchanged provisional legacy hypotheses omit unreviewed notes and non-original citations, and link only public events. Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph.
+Read `data/v1/vocabulary.json` first: it defines evidence levels (kinds of basis, not a ranking), classes, statuses and reading rules R1–R5. `data/v1/index.json` is the catalog, with canonical language, published and withheld counts and three distinct freshness dates (commit, latest public event, latest archived source). The manifest lists public and withheld counts and hashes the minimal `withheld.json` registry (ID, collection and generic reasons); withheld detail pages remain 404. Unchanged provisional legacy hypotheses omit unreviewed notes and non-original citations, and link only public events. Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph.
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 

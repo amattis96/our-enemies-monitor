@@ -91,7 +91,10 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - `src/model/` — Zod schemas (`schemas.ts`), vocabularies (`vocabularies.ts`),
   M6 proposals sidecar contract (`proposals.ts`).
   The single source of truth for record shapes. After changes run
-  `pnpm schemas` and update `docs/ARCHITECTURE.md` (Data model).
+  `pnpm schemas` and update `docs/ARCHITECTURE.md` (Data model). Every new
+  field needs a `.describe()` text and every new controlled value an entry in
+  `src/site/vocabulary.ts` (the public `data/v1/vocabulary.json`); both are
+  tested.
 - `sources/incremental/` — immutable, versioned incremental sources (Fonte_09
   and subsequent merged proposals). New sources require a
   `Fonte_XX.proposals.json` sidecar; Fonte_10 and Fonte_11 are historical exceptions without one. A new Markdown file **does not**

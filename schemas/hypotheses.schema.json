@@ -6,7 +6,8 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^H(?:\\d{2}|[1-9]\\d{2})$"
+      "pattern": "^H(?:\\d{2}|[1-9]\\d{2})$",
+      "description": "Stable record ID (H##); never renumbered or reused."
     },
     "subject": {
       "anyOf": [
@@ -18,7 +19,8 @@
           "type": "string",
           "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
         }
-      ]
+      ],
+      "description": "Anchor entity or event of the question; not a claimed link."
     },
     "object": {
       "anyOf": [
@@ -30,20 +32,24 @@
           "type": "string",
           "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
         }
-      ]
+      ],
+      "description": "Second anchor of the question; not a claimed link."
     },
     "hypothesis_type": {
       "type": "string",
-      "pattern": "^[A-Z][A-Z0-9_]*$"
+      "pattern": "^[A-Z][A-Z0-9_]*$",
+      "description": "Original hypothesis type code, to be read literally."
     },
     "question": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -51,16 +57,19 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Open verification question (evidence level E5)."
     },
     "current_limit": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -68,7 +77,8 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "What is currently not established."
     },
     "priority": {
       "type": "string",
@@ -77,16 +87,19 @@
         "high",
         "medium",
         "low"
-      ]
+      ],
+      "description": "Editorial priority of verification, not a probability. Definitions: vocabulary.json#/hypothesis_priorities."
     },
     "evidence_needed": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -94,14 +107,16 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Evidence that would be needed to answer the question."
     },
     "events": {
       "type": "array",
       "items": {
         "type": "string",
         "pattern": "^(TL-\\d{4}|EXT-\\d{3})$"
-      }
+      },
+      "description": "Related events."
     },
     "external_url": {
       "anyOf": [
@@ -112,7 +127,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "External reference URL; null when absent."
     },
     "status": {
       "type": "string",
@@ -122,14 +138,16 @@
         "promoted",
         "refuted",
         "closed_insufficient"
-      ]
+      ],
+      "description": "Status of the question. Definitions: vocabulary.json#/hypothesis_statuses."
     },
     "sources": {
       "type": "array",
       "items": {
         "type": "string",
         "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
-      }
+      },
+      "description": "Codes of cited sources (see sources.json). Corpus synthesis documents are not independent confirmations."
     },
     "review": {
       "type": "object",
@@ -140,19 +158,23 @@
             "imported_unreviewed",
             "needs_review",
             "reviewed"
-          ]
+          ],
+          "description": "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses."
         },
         "notes": {
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
-          }
+          },
+          "description": "Free-text editorial and technical notes, in English; not typed claims."
         },
         "translations": {
+          "description": "Translation state per language.",
           "type": "object",
           "properties": {
             "en": {
+              "description": "State of the English translation.",
               "type": "object",
               "properties": {
                 "status": {
@@ -160,15 +182,18 @@
                   "enum": [
                     "machine",
                     "reviewed"
-                  ]
+                  ],
+                  "description": "Translation status. Definitions: vocabulary.json#/translation_statuses."
                 },
                 "source_hash": {
                   "type": "string",
-                  "pattern": "^[0-9a-f]{16}$"
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the Italian texts the translation was made from."
                 },
                 "target_hash": {
                   "type": "string",
-                  "pattern": "^[0-9a-f]{16}$"
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the translated texts as imported."
                 }
               },
               "required": [
@@ -186,7 +211,8 @@
         "status",
         "notes"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Editorial review state of the record."
     },
     "provenance": {
       "type": "array",
@@ -198,12 +224,14 @@
               "file": {
                 "type": "string",
                 "format": "starts_with",
-                "pattern": "^sources\\/.*"
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
               },
               "row": {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "description": "1-based data row of the original CSV file."
               },
               "original": {
                 "type": "object",
@@ -212,7 +240,8 @@
                 },
                 "additionalProperties": {
                   "type": "string"
-                }
+                },
+                "description": "Verbatim original values of that row, keyed by column."
               }
             },
             "required": [
@@ -228,24 +257,28 @@
               "file": {
                 "type": "string",
                 "format": "starts_with",
-                "pattern": "^sources\\/.*"
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
               },
               "line": {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "description": "1-based line of the original text file."
               },
               "original": {
                 "type": "object",
                 "properties": {
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Verbatim original line."
                   }
                 },
                 "required": [
                   "text"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "description": "Verbatim original text."
               }
             },
             "required": [
@@ -256,7 +289,8 @@
             "additionalProperties": false
           }
         ]
-      }
+      },
+      "description": "Original corpus file and row or line each imported record derives from; empty for records created later."
     }
   },
   "required": [
