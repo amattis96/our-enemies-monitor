@@ -1,0 +1,270 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S15",
+    "file": "sources/incremental/Fonte_15_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-16.md",
+    "title": {
+      "it": "Fonte_15 | Aggiornamento OSINT incrementale per l'Europa | 16 novembre 2026"
+    },
+    "created_at": "2026-11-16",
+    "coverage": {
+      "start": "2026-11-12",
+      "end": "2026-11-16"
+    },
+    "baseline_source": "S14",
+    "repository_commit": "fda020054601691c8c8b32fa8c6438e8ef653f9d"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Foreign Minister Tsahkna: Estonia’s rapid and decisive action makes it increasingly difficult for Russia to carry out acts of sabotage"
+      },
+      "publisher": "Estonian Ministry of Foreign Affairs",
+      "url": "https://www.vm.ee/en/news/foreign-minister-tsahkna-estonias-rapid-and-decisive-action-makes-it-increasingly-difficult",
+      "published": "2026-11-15"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "Foreign Minister Tsahkna: Estonia to close road border crossings with Russia"
+      },
+      "publisher": "Estonian Ministry of Foreign Affairs",
+      "url": "https://www.vm.ee/en/news/foreign-minister-tsahkna-estonia-close-road-border-crossings-russia",
+      "published": "2026-11-15"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Prime Minister Michal: Preparedness and cooperation stopped another sabotage attempt by Russian intelligence services"
+      },
+      "publisher": "Government of Estonia",
+      "url": "https://www.valitsus.ee/en/news/prime-minister-michal-preparedness-and-cooperation-stopped-another-sabotage-attempt-russian",
+      "published": "2026-11-15"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "Estonia to close Russian border crossings after attempted arson attack"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/estonia-close-russian-border-crossings-after-attempted-arson-attack-2026-11-15/",
+      "published": "2026-11-15"
+    },
+    {
+      "key": "R05",
+      "title": {
+        "it": "Three ships struck by drones in Black Sea near Romanian shipping canal, PM says"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/aerospace-defense/three-ships-struck-by-drones-black-sea-near-romanian-shipping-canal-pm-says-2026-11-15/",
+      "published": "2026-11-15"
+    },
+    {
+      "key": "R06",
+      "title": {
+        "it": "UPDATE: Premierul Luca Niculescu, după ce trei nave au fost lovite de drone între Sulina și Sfântu Gheorghe"
+      },
+      "publisher": "Euronews Romania",
+      "url": "https://www.euronews.ro/articole/zona-dintre-sulina-si-sfantu-gheorghe-declarata-periculoasa-pentru-navigatie-dupa",
+      "published": "2026-11-15"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261116-001",
+      "item": "OEM-20261116-001",
+      "sources": [
+        "R01",
+        "R03",
+        "R04"
+      ],
+      "notes": [
+        "Il 14 novembre è la data dell'episodio; il 15 novembre è la data dell'attribuzione istituzionale e della comunicazione pubblica.",
+        "L'attribuzione GRU è istituzionale E2, non una condanna giudiziaria. Otto fermati non equivalgono a otto condannati."
+      ],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E2",
+      "title": {
+        "it": "Estonia: sventato tentativo di incendio contro il produttore di droni Threod Systems"
+      },
+      "description": {
+        "it": "Nella notte del 14 novembre 2026 le autorità estoni hanno sventato un tentativo di incendio e possibile esplosione contro l'azienda di difesa Threod Systems. Secondo i comunicati del 15 novembre, otto sospetti sono stati fermati. L'intervento della sicurezza aziendale e delle autorità ha impedito danni estesi; non è riportato un attacco riuscito con vittime."
+      },
+      "date": {
+        "start": "2026-11-14",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-15",
+      "themes": [
+        "hybrid_sabotage",
+        "intelligence",
+        "industry_dependencies"
+      ],
+      "geography": {
+        "it": "Estonia, stabilimento Threod Systems"
+      },
+      "places": [
+        "EE"
+      ],
+      "evidence_note": {
+        "it": "E2: KAPO e governo estone hanno attribuito il tentativo al GRU; Reuters ne riporta la comunicazione. Le prove investigative complete non sono pubbliche."
+      },
+      "publisher": "Estonian Ministry of Foreign Affairs",
+      "url": "https://www.vm.ee/en/news/foreign-minister-tsahkna-estonias-rapid-and-decisive-action-makes-it-increasingly-difficult",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": {
+          "text": {
+            "it": "Il governo estone e KAPO attribuiscono l'ordine dell'operazione al servizio d'intelligence militare russo GRU; attribuzione istituzionale non equivalente a verdetto."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R01",
+            "R03"
+          ]
+        },
+        "motive": null,
+        "impact": {
+          "text": {
+            "it": "Secondo il governo estone il tentativo è stato neutralizzato senza danni estesi; la minaccia ha contribuito alla decisione annunciata di chiudere i valichi stradali con la Russia."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R02",
+            "R03"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "La Russia nega generalmente il coinvolgimento in operazioni di sabotaggio; non risulta una sentenza sui fermati. Le fonti disponibili non pubblicano gli elementi forensi che collegherebbero i singoli fermati al GRU."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261116-002",
+      "item": "OEM-20261116-002",
+      "sources": [
+        "R02",
+        "R03",
+        "R04"
+      ],
+      "notes": [
+        "Decisione annunciata il 15 novembre, decorrenza prospettata dal 1 dicembre: non descrivere i valichi come già chiusi."
+      ],
+      "update_type": "NEW_POLICY",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Estonia: annunciata chiusura dal 1 dicembre dei tre valichi stradali con la Russia"
+      },
+      "description": {
+        "it": "Il 15 novembre 2026 il Ministero degli Esteri estone ha annunciato il piano governativo di chiudere dal 1 dicembre i valichi stradali Narva, Luhamaa e Koidula in risposta al tentato sabotaggio contro Threod Systems. La durata della chiusura non è specificata; alla data del comunicato la misura non è ancora in vigore."
+      },
+      "date": {
+        "start": "2026-11-15",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-15",
+      "themes": [
+        "eu_nato_response",
+        "geopolitics_diplomacy",
+        "hybrid_sabotage"
+      ],
+      "geography": {
+        "it": "Valichi Narva, Luhamaa e Koidula, Estonia"
+      },
+      "places": [
+        "EE"
+      ],
+      "evidence_note": {
+        "it": "E1: annuncio ufficiale del Ministero degli Esteri estone; attuazione futura non verificata."
+      },
+      "publisher": "Estonian Ministry of Foreign Affairs",
+      "url": "https://www.vm.ee/en/news/foreign-minister-tsahkna-estonia-close-road-border-crossings-russia",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": {
+          "text": {
+            "it": "Secondo il ministro estone, la chiusura mira a ridurre i rischi di attività ostili e di elusione delle sanzioni."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R02"
+          ]
+        },
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Il governo presenta una misura futura; non è documentato che i valichi siano già chiusi, né è comunicata una data di riapertura."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261116-003",
+      "item": "OEM-20261116-003",
+      "sources": [
+        "R05",
+        "R06"
+      ],
+      "notes": [
+        "Tre navi distinte colpite nell'episodio notturno del 14 novembre; non moltiplicare l'evento in tre attacchi attribuiti a un unico autore.",
+        "Nessuna attribuzione forense certa dei droni da parte delle autorità rumene nelle fonti consultate."
+      ],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E2",
+      "title": {
+        "it": "Mar Nero: tre navi commerciali colpite da droni presso il canale di Sulina"
+      },
+      "description": {
+        "it": "Nella serata del 14 novembre 2026 tre navi commerciali sono state colpite da droni presso il delta del Danubio e il canale di Sulina. Il governo rumeno ha comunicato che non risultavano vittime e che la difesa aerea ha fatto decollare caccia in due occasioni. Due delle navi sarebbero state colpite nelle acque territoriali rumene secondo Reuters."
+      },
+      "date": {
+        "start": "2026-11-14",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-15",
+      "themes": [
+        "armed_conflict",
+        "infrastructure_space",
+        "eu_nato_response"
+      ],
+      "geography": {
+        "it": "Mar Nero, acque prossime al canale di Sulina, Romania"
+      },
+      "places": [
+        "RO"
+      ],
+      "evidence_note": {
+        "it": "E2: dichiarazioni delle autorità rumene riportate da Reuters ed Euronews; attribuzione materiale dei droni non stabilita."
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/aerospace-defense/three-ships-struck-by-drones-black-sea-near-romanian-shipping-canal-pm-says-2026-11-15/",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": {
+          "text": {
+            "it": "Il primo ministro rumeno ha qualificato l'episodio come pericolo per la sicurezza della navigazione nel Mar Nero; i danni materiali e l'origine dei droni richiedono accertamenti ulteriori."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R05",
+            "R06"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "Nessuna identificazione pubblica conclusiva di chi abbia lanciato i droni; non inferire responsabilità russe dalla sola prossimità al conflitto ucraino."
+      },
+      "related": []
+    }
+  ]
+}
