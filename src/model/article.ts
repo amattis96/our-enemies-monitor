@@ -80,7 +80,8 @@ export function hasAiVerificationNote(notes: readonly string[]): boolean {
   return notes.some((note) => AI_VERIFICATION_NOTE.test(note));
 }
 
-export const ArticleReview = Review.safeExtend({
+export const ArticleReview = z.strictObject({
+  ...Review.shape,
   status: z
     .enum(ARTICLE_REVIEW_STATUSES)
     .describe(
