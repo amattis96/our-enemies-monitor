@@ -1,6 +1,12 @@
 import { readInferenceRegistry } from "../../../src/editorial/inferences.ts";
 import type { Article } from "../../../src/model/index.ts";
 import { articleBacklinks, loadPublishedArticles } from "../../../src/site/articles.ts";
+import {
+  buildManifest,
+  type ExportFile,
+  exportFiles,
+  type Manifest,
+} from "../../../src/site/exports.ts";
 import { type CounterInferenceAudit, counterInferenceAudit } from "../../../src/site/inferences.ts";
 import { type PublicationReport, publicationReport } from "../../../src/site/publication.ts";
 import { buildReadModel, loadReadModel, type ReadModel } from "../../../src/site/read-model.ts";
@@ -47,4 +53,22 @@ export function getInferenceAudit(): CounterInferenceAudit {
 export function getTraces(): Trace[] {
   traces ??= buildTraces(readInferenceRegistry(), getModel(), getInferenceAudit());
   return traces;
+}
+
+let exported: { files: ExportFile[]; manifest: Manifest } | undefined;
+
+/** The `data/v1` files and their manifest, built once per build from the public projection. */
+export function getExports(): { files: ExportFile[]; manifest: Manifest } {
+  if (!exported) {
+    const files = exportFiles(
+      getPublication(),
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      getArticles(),
+    );
+    exported = { files, manifest: buildManifest(getPublication(), files) };
+  }
+  return exported;
 }

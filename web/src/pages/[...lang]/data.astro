@@ -1,19 +1,30 @@
 ---
-import { buildManifest, exportFiles } from "../../../../src/site/exports.ts";
 import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import { datasetJsonLd } from "../../../../src/site/jsonld.ts";
 import Base from "../../layouts/Base.astro";
-import { assetHref } from "../../lib/links.ts";
-import { getPublication } from "../../lib/model.ts";
+import { assetHref, href } from "../../lib/links.ts";
+import { getExports } from "../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
-const dataset = getPublication();
-const manifest = buildManifest(dataset, exportFiles(dataset));
+const { manifest } = getExports();
 const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
+// The per-record packages are summarised in one row: the catalog lists them all.
+const packages = manifest.files.filter((file) => file.path.startsWith("records/"));
+const listed = manifest.files.filter((file) => !file.path.startsWith("records/"));
+const siteUrl = new URL(assetHref(""), Astro.site ?? "http://localhost").href.replace(/\/$/, "");
+const jsonLd = datasetJsonLd({
+  siteUrl,
+  lang,
+  pageUrl: new URL(href("data/", lang), Astro.site ?? "http://localhost").href,
+  commit: manifest.commit,
+  commitDate: manifest.commit_date,
+  files: listed.filter((file) => !file.path.startsWith("schemas/")).map((file) => file.path),
+});
 ---
 
-<Base title={ui(lang).navData} lang={lang} description={c("Dati canonici scaricabili e schemi JSON.", "Downloadable canonical data and JSON Schemas.")}>
+<Base title={ui(lang).navData} lang={lang} description={c("Dati canonici scaricabili e schemi JSON.", "Downloadable canonical data and JSON Schemas.")} jsonLd={jsonLd}>
   <p class="kicker">{ui(lang).navMethod}</p>
   <h1>{c("Dati aperti", "Open data")}</h1>
   <div class="max-w-3xl">
@@ -26,7 +37,7 @@ const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
     <p class="meta">
       {c("Versione di export", "Export version")} {manifest.export_version}
       {manifest.commit && <> · commit <span class="font-mono">{manifest.commit.slice(0, 7)}</span></>}
-      {manifest.commit_date && <> · {manifest.commit_date.slice(0, 10)}</>} ·{" "}
+      {manifest.commit_date && <> · <time datetime={manifest.commit_date}>{manifest.commit_date.slice(0, 10)}</time></>} ·{" "}
       <a href={assetHref("data/v1/manifest.json")}>manifest.json</a>
       {c(" (conteggi e SHA-256 di ogni file)", " (counts and SHA-256 of every file)")}
     </p>
@@ -60,13 +71,18 @@ const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
         </tr>
       </thead>
       <tbody>
-        {manifest.files.map((file) => (
+        {listed.map((file) => (
           <tr>
             <td><a href={assetHref(`data/v1/${file.path}`)}>{file.path}</a></td>
             <td class="whitespace-nowrap">{kb(file.bytes)}</td>
             <td class="font-mono text-xs break-all">{file.sha256}</td>
           </tr>
         ))}
+        <tr>
+          <td class="font-mono">records/&lt;ID&gt;.json</td>
+          <td class="whitespace-nowrap">{packages.length} {c("file", "files")} · {kb(packages.reduce((n, file) => n + file.bytes, 0))}</td>
+          <td>{c("SHA-256 di ciascun pacchetto in", "SHA-256 of each package in")} <a href={assetHref("data/v1/manifest.json")}>manifest.json</a></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -78,6 +94,8 @@ const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
   <h2>{c("Formato", "Format")}</h2>
   <ul class="list-disc pl-5 max-w-3xl space-y-1">
     <li>{c("Ogni file contiene una proiezione pubblicabile dei dati canonici. I record in revisione e le relazioni riguardanti persone con URL primario mancante o non registrato per la relazione restano soltanto nell’archivio Git; la baseline non revisionata è segnalata come provvisoria.", "Each collection file contains a publication-filtered projection of the canonical records. Pending candidates and named-person links with a missing or unregistered primary URL remain in the Git archive; the unreviewed baseline remains explicitly provisional.")}</li>
+    <li>{c("records/<ID>.json è il pacchetto di un singolo record pubblicato: il record, la citazione con il commit (cite_as), gli ID dei record pubblicati collegati. Un ID trattenuto non ha pacchetto. Ogni pagina di evento, entità, ipotesi e fonte rimanda al proprio pacchetto con un link rel=alternate.", "records/<ID>.json is the package of one published record: the record, the citation with the commit (cite_as), and the IDs of the published records it is linked to. A withheld ID has no package. Each event, entity, hypothesis and source page points to its own package with a rel=alternate link.")}</li>
+    <li>{c("articles.json elenca solo gli articoli editoriali che superano il gate di pubblicazione (esclusi i fixture di prova); changes.feed.json è un JSON Feed 1.1 dei commit che aggiungono o modificano record pubblicati, con le stesse regole della pagina Modifiche.", "articles.json lists only the editorial articles that pass the publication gate (demo fixtures excluded); changes.feed.json is a JSON Feed 1.1 of the commits that add or modify published records, under the same rules as the Changes page.")}</li>
     <li>{c("all.json contiene tutte le collezioni in un unico oggetto.", "all.json contains every collection in a single object.")}</li>
     <li>{c("graph.json conserva per ogni relazione il caveat bilingue completo o null; hypotheses-graph.json contiene separatamente le ipotesi. Entrambi sono inclusi nel manifest.", "graph.json preserves each relationship’s full bilingual caveat or null; hypotheses-graph.json contains hypotheses separately. Both are included in the manifest.")}</li>
     <li>{c("Gli schemi JSON (draft 2020-12) descrivono ogni record, con una descrizione per ogni campo, e sono generati dal modello del progetto.", "The JSON Schemas (draft 2020-12) describe every record, with a description for every field, and are generated from the project model.")}</li>

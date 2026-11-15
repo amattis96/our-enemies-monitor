@@ -24,3 +24,14 @@ export function alternatePath(pathname: string, lang: Language): string {
   const withoutLang = rest.startsWith("en/") ? rest.slice(3) : rest === "en" ? "" : rest;
   return href(withoutLang, lang);
 }
+
+/** `<link rel="alternate">` entry for the machine-readable package of a record. */
+export function packageAlternate(id: string) {
+  return [
+    {
+      href: assetHref(`data/v1/records/${id}.json`),
+      type: "application/json",
+      title: `${id} (JSON)`,
+    },
+  ];
+}

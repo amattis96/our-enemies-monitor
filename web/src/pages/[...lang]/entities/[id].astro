@@ -21,7 +21,7 @@ import RelationshipTable from "../../../components/RelationshipTable.astro";
 import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
 import Base from "../../../layouts/Base.astro";
-import { assetHref, href } from "../../../lib/links.ts";
+import { assetHref, href, packageAlternate } from "../../../lib/links.ts";
 import { getModel } from "../../../lib/model.ts";
 
 export function getStaticPaths() {
@@ -48,7 +48,7 @@ const roles = roleMatrix(model, entity.id);
 const levels = ["E1", "E2", "E3", "E4"] as const;
 ---
 
-<Base title={textOf(entity.name, lang)} lang={lang} searchable>
+<Base title={textOf(entity.name, lang)} lang={lang} alternates={packageAlternate(entity.id)} searchable>
   <header class="page-head">
     <p class="kicker flex flex-wrap items-center gap-x-2">
       <a href={href("entities/", lang)}>{ui(lang).navArchive}</a> /

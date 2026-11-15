@@ -16,7 +16,7 @@ import SourceRefs from "../../../components/SourceRefs.astro";
 import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
 import Base from "../../../layouts/Base.astro";
-import { href } from "../../../lib/links.ts";
+import { href, packageAlternate } from "../../../lib/links.ts";
 import { getInferenceAudit, getModel } from "../../../lib/model.ts";
 
 export function getStaticPaths() {
@@ -33,7 +33,7 @@ const c = (it: string, en: string) => choose(lang, it, en);
 const audit = getInferenceAudit();
 ---
 
-<Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} searchable>
+<Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} alternates={packageAlternate(h.id)} searchable>
   <header class="page-head">
     <p class="kicker flex flex-wrap items-center gap-2">
       <a href={href("hypotheses/", lang)}>{c("Ipotesi", "Hypotheses")}</a> / {h.id}

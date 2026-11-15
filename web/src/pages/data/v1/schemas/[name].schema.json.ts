@@ -1,10 +1,9 @@
-import { exportFiles } from "../../../../../../src/site/exports.ts";
-import { getModel } from "../../../../lib/model.ts";
+import { getExports } from "../../../../lib/model.ts";
 
 /** JSON Schema of each collection, generated from the Zod model. */
 export function getStaticPaths() {
-  return exportFiles(getModel().dataset)
-    .filter((file) => file.path.startsWith("schemas/"))
+  return getExports()
+    .files.filter((file) => file.path.startsWith("schemas/"))
     .map((file) => ({
       params: { name: file.path.slice("schemas/".length).replace(/\.schema\.json$/, "") },
       props: { text: file.text },

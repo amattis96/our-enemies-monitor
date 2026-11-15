@@ -1,10 +1,9 @@
-import { exportFiles } from "../../../../../src/site/exports.ts";
-import { getPublication } from "../../../lib/model.ts";
+import { getExports } from "../../../lib/model.ts";
 
-/** Collection and graph exports share this route and the manifest byte source. */
+/** Collection, graph and catalog exports share this route and the manifest byte source. */
 export function getStaticPaths() {
-  return exportFiles(getPublication())
-    .filter((file) => !file.path.includes("/"))
+  return getExports()
+    .files.filter((file) => !file.path.includes("/"))
     .map((file) => ({
       params: { file: file.path.replace(/\.json$/, "") },
       props: { text: file.text },

@@ -3,12 +3,15 @@ import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { type InferenceRegistry, readInferenceRegistry } from "../editorial/inferences.ts";
-import { COLLECTION_NAMES, type Dataset } from "../model/index.ts";
+import { type Article, COLLECTION_NAMES, type Dataset } from "../model/index.ts";
 import { REPO_ROOT, SCHEMAS_DIR } from "../pipeline/paths.ts";
 import { summarize } from "../pipeline/validate.ts";
+import { loadPublishedArticles } from "./articles.ts";
+import { type DataCommit, dataHistory } from "./history.ts";
 import { counterInferenceAudit } from "./inferences.ts";
+import { buildArticlesIndex, buildChangesFeed, buildRecordPackages } from "./packages.ts";
 import { type PublicationReport, publicationReport } from "./publication.ts";
-import { buildReadModel, evidenceGraph, hypothesisGraph } from "./read-model.ts";
+import { buildReadModel, evidenceGraph, hypothesisGraph, loadReadModel } from "./read-model.ts";
 import { type ArchivedResearch, archivedResearch } from "./research.ts";
 import { buildVocabulary } from "./vocabulary.ts";
 
@@ -35,6 +38,20 @@ export function exportCommit(): ExportCommit {
     commit_date: gitValue(["log", "-1", "--format=%cI"]),
   };
   return cachedCommit;
+}
+
+let cachedHistory: DataCommit[] | undefined;
+/** Change history read from Git once per process (same source as the /changes/ page). */
+export function exportHistory(): DataCommit[] {
+  cachedHistory ??= dataHistory();
+  return cachedHistory;
+}
+
+let cachedArticles: Article[] | undefined;
+/** Public editorial articles, validated against the canonical dataset once per process. */
+export function exportArticles(): Article[] {
+  cachedArticles ??= loadPublishedArticles(loadReadModel().dataset);
+  return cachedArticles;
 }
 
 const LICENSE = "CC0-1.0 (project-original data); see LICENSE-DATA.md";
@@ -94,6 +111,11 @@ export function buildCatalog(
       withheld_registry: "withheld.json",
     },
     read_first: ["vocabulary.json"],
+    record_packages: {
+      path_template: "records/<ID>.json",
+      count: COLLECTION_NAMES.reduce((n, name) => n + dataset[name].length, 0),
+      note: "One package per published record, from the same public projection: the record, a citation with the commit, and the IDs of the published records it points to or is pointed at by. A withheld ID has no package.",
+    },
     manifest: "manifest.json",
     datasets: [
       ...COLLECTION_NAMES.map((name) => ({
@@ -105,6 +127,8 @@ export function buildCatalog(
       { path: "hypotheses-graph.json", schema: null },
       { path: "withheld.json", schema: null },
       { path: "inferences.json", schema: null },
+      { path: "articles.json", schema: null },
+      { path: "changes.feed.json", schema: null },
     ],
   };
 }
@@ -116,6 +140,8 @@ export function exportFiles(
   commit: ExportCommit = exportCommit(),
   archive: readonly ArchivedResearch[] = archivedResearch(),
   registry: InferenceRegistry = readInferenceRegistry(),
+  history: readonly DataCommit[] = exportHistory(),
+  articles: readonly Article[] = exportArticles(),
 ): ExportFile[] {
   const report = reportOf(input);
   const dataset = report.dataset;
@@ -144,6 +170,9 @@ export function exportFiles(
     ...graphs,
     { path: "withheld.json", text: `${JSON.stringify(report.withheld, null, 2)}\n` },
     { path: "inferences.json", text: json(counterInferenceAudit(registry, model)) },
+    { path: "articles.json", text: json(buildArticlesIndex(articles, dataset, EXPORT_VERSION)) },
+    { path: "changes.feed.json", text: json(buildChangesFeed(history, dataset)) },
+    ...buildRecordPackages(dataset, commit, EXPORT_VERSION),
     ...schemas,
   ];
 }
