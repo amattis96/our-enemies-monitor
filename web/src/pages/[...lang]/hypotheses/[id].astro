@@ -84,6 +84,9 @@ const audit = getInferenceAudit();
     <dt class="font-semibold">{c("Fonti del corpus", "Corpus sources")}</dt>
     <dd><SourceRefs ids={h.sources} lang={lang} /></dd>
   </dl>
+  <p class="max-w-3xl">
+    <a href={href(`trace/${h.id}/`, lang)}>{c("Apri il tracciato fra i due soggetti", "Open the trace between the two subjects")}</a>
+  </p>
   <InferencePath annotations={annotationsFor(audit, h.id)} forbidden={forbiddenFor(audit, h.id)} lang={lang} />
   <ArticleBacklinks id={h.id} lang={lang} />
 

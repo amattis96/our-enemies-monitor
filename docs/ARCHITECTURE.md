@@ -255,6 +255,37 @@ each remaining proposal and step classification «proposta non rivista».
 computed over the full registry and exposed as counts only, as in
 `withheld.json`.
 
+## Trace (B16)
+
+`/trace/` and `/trace/<ID>/` (both languages) show the shortest path between
+the two ends of a sensitive pair as an ordered list, following FABLE C §5.1.
+Pairs and paths are not recomputed: `buildTraces` (`src/site/trace.ts`) takes
+`auditedPairs` of the B15 audit (`src/site/inferences.ts`), i.e. the
+deterministic shortest path in the public evidence graph (`graph.json` edges,
+restricted person relationships excluded) for every public hypothesis pair and
+every public forbidden pair, together with the B15 caveat classifications. One
+static page per pair, keyed by the hypothesis (or forbidden inference) ID; a
+pair with no public path still gets a page that says so. No island: the page is
+a plain `<ol>` readable by a screen reader and printable.
+
+Each step shows subject, literal Italian predicate, object, evidence stamp,
+relationship ID and the full caveat. A step whose caveat interrupts composition
+(B15 `interrupts_composition`) is preceded by «Qui la catena si interrompe» with
+its categories and, while the classification is a `proposta`, the label
+«proposta non rivista». The closing block «Che cosa questo tracciato non dice»
+is generated from the structure of the trace (`notSaid`): n documented
+relationships in a row are not a documented relationship between the ends; each
+interruption; the weakest link (highest evidence code and how many steps carry
+it); the participation-is-not-control rule when the path crosses an event; every
+open hypothesis (E5) and public forbidden inference on the pair; and the
+reminder that it is the shortest public path, not the only or strongest one.
+The wording lives in `src/site/trace.ts` with tests (`test/trace.test.ts`), not
+in the template. Hypothesis pages and the hypotheses index link to the trace.
+
+Limits: only pairs of the audit have a page (there is no arbitrary
+actor-to-actor search); a pair appears when a hypothesis or a public forbidden
+inference names it. Traces are not exported as JSON.
+
 ## Data model
 
 All records are validated by the Zod schemas in `src/model/`. Every file is
@@ -600,6 +631,7 @@ index per language from `<html lang>`.
 | `/atlas/` | One map with Europe/World switch, zoom and pan, country panel (`#CODE` deep link), "outside the map" tray of supranational geographies; sortable country table separating events located in the country from the literal roles of the state in events |
 | `/dependencies/` | Exposure cards: measures with qualifier and period, what each value measures, consequence; no cross-comparison chart and no index |
 | `/hypotheses/`, `/hypotheses/<id>/` | Register by priority, detail with limits and evidence needed; «Inference limits» section with the flagged shortest public path(s) and linked forbidden inferences (B15) |
+| `/trace/`, `/trace/<ID>/` | Ordered shortest public path between the ends of each hypothesis pair, with caveats, interruptions, open hypotheses and «what this trace does not say» (B16) |
 | `/sources/`, `/sources/<id>/` | Corpus documents and references, URLs, repository files, citing records |
 | `/methodology/` | Evidence levels, principles, relation groups, person rule, dates, classifications, languages, limits |
 | `/data/` | Open-data downloads with size and SHA-256, format notes, rebuild instructions |

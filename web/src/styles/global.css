@@ -238,6 +238,53 @@
     background: var(--paper-raised);
   }
 
+  /* Trace (B16): ordered path, interruption notes, caveats */
+  .trace-list {
+    list-style: none;
+    margin: var(--space-5) 0;
+    padding: 0;
+    max-width: 48rem;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .trace-step {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule-strong);
+    border-radius: 0 var(--radius-2) var(--radius-2) 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--paper-raised);
+  }
+  .trace-step[data-interrupts="true"] {
+    border-left-color: var(--caution);
+  }
+  .trace-break {
+    margin: 0 0 var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px dashed var(--caution);
+    color: var(--ink-2);
+    font-size: var(--text-sm);
+  }
+  .trace-claim {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25em 0.4em;
+  }
+  .trace-n {
+    font: 600 var(--text-xs) / 1 var(--font-mono);
+    color: var(--ink-3);
+    min-width: 1.5em;
+  }
+  .trace-meta {
+    margin: var(--space-2) 0 0;
+  }
+  .trace-caveat {
+    margin: var(--space-2) 0 0;
+    color: var(--ink-2);
+    font-size: var(--text-sm);
+  }
+
   /* Limits note: illustration + short explanation */
   .limits {
     display: grid;

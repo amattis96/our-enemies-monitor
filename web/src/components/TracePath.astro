@@ -1,0 +1,83 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { formatPredicate } from "../../../src/site/format.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import { CATEGORY_DEFINITIONS } from "../../../src/site/inferences.ts";
+import type { Trace } from "../../../src/site/trace.ts";
+import { RELATION_GROUP_ICON } from "../../../src/site/visual.ts";
+import EvidenceStamp from "./EvidenceStamp.astro";
+import Icon from "./Icon.astro";
+import NodeLink from "./NodeLink.astro";
+import StatusLabel from "./StatusLabel.astro";
+import T from "./T.astro";
+
+// B16: the ordered path of a trace, then "what this trace does not say".
+// All wording and ordering come from src/site/trace.ts.
+interface Props {
+  trace: Trace;
+  lang: Language;
+}
+const { trace, lang } = Astro.props;
+const c = (it: string, en: string) => choose(lang, it, en);
+const unreviewed = c("proposta non rivista", "unreviewed proposal");
+---
+
+{
+  trace.steps.length === 0 ? (
+    <p class="notice max-w-3xl">{trace.not_said[0]?.text[lang]}</p>
+  ) : (
+    <ol class="trace-list" aria-label={c("Passaggi del tracciato", "Steps of the trace")}>
+      {trace.steps.map((step, i) => (
+        <li class="trace-step" data-interrupts={step.interrupts_composition ? "true" : undefined}>
+          {step.interrupts_composition && (
+            <p class="trace-break" role="note">
+              <StatusLabel icon="ui-close" tone="caution">
+                {c("Qui la catena si interrompe", "The chain is interrupted here")}
+              </StatusLabel>{" "}
+              {c(
+                "Il caveat di questo passaggio dice che non autorizza l'affermazione che il cammino produrrebbe",
+                "This step's caveat says it does not license the statement the path would produce",
+              )}
+              {step.categories.length > 0 && (
+                <> ({step.categories.map((cat) => CATEGORY_DEFINITIONS[cat].label[lang]).join(", ")})</>
+              )}
+              {step.classification_state !== "revisionata" && (
+                <> <span class="meta">[{unreviewed}]</span></>
+              )}.
+            </p>
+          )}
+          <p class="trace-claim">
+            <span class="trace-n" aria-hidden="true">{i + 1}</span>
+            <NodeLink id={step.subject} lang={lang} />{" "}
+            <Icon name={RELATION_GROUP_ICON[step.group]} />{" "}
+            <span lang="it">{formatPredicate(step.predicate)}</span>{" "}
+            <NodeLink id={step.object} lang={lang} />
+          </p>
+          <p class="trace-meta">
+            <EvidenceStamp level={step.evidence_level} lang={lang} variant="compact" />{" "}
+            <span class="badge">{step.relationship}</span>
+          </p>
+          {step.caveat && (
+            <p class="trace-caveat">
+              <strong>{c("Cautela", "Caveat")}:</strong> <T text={step.caveat} lang={lang} />
+            </p>
+          )}
+        </li>
+      ))}
+    </ol>
+  )
+}
+
+<section class="max-w-3xl trace-not-said" aria-labelledby="trace-not-said">
+  <h2 id="trace-not-said">{c("Che cosa questo tracciato non dice", "What this trace does not say")}</h2>
+  <ul>
+    {
+      trace.not_said.map((item) => (
+        <li>
+          {item.text[lang]}
+          {item.unreviewed && <> <span class="meta">[{unreviewed}]</span></>}
+        </li>
+      ))
+    }
+  </ul>
+</section>

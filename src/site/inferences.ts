@@ -130,20 +130,14 @@ function publicIds(dataset: Dataset): Set<string> {
   );
 }
 
-export function counterInferenceAudit(
-  registry: InferenceRegistry,
-  model: ReadModel,
-): CounterInferenceAudit {
-  const dataset = model.dataset;
-  const visible = publicIds(dataset);
-  const graph = evidenceGraph(model);
-  const edges = new Map(graph.edges.map((e) => [e.id, e]));
-  const classes = new Map(registry.caveat_classifications.map((c) => [c.relationship, c]));
-  const active = activePairKeys(registry);
+type PublicEntry = InferenceRegistry["forbidden_inferences"][number];
 
+/** Registry entries whose every ID is public (unreviewed proposals also name no person). */
+function publicEntriesOf(registry: InferenceRegistry, dataset: Dataset): PublicEntry[] {
+  const visible = publicIds(dataset);
   const persons = new Set(dataset.entities.filter((e) => e.kind === "person").map((e) => e.id));
   const hypothesisNodes = new Map(dataset.hypotheses.map((h) => [h.id, [h.subject, h.object]]));
-  const isPublic = (entry: InferenceRegistry["forbidden_inferences"][number]) => {
+  const isPublic = (entry: PublicEntry) => {
     const ids = [
       ...entry.pairs.flat(),
       ...entry.hypotheses,
@@ -161,7 +155,22 @@ export function counterInferenceAudit(
     ];
     return !touched.some((id) => persons.has(id));
   };
-  const publicEntries = registry.forbidden_inferences.filter(isPublic);
+  return registry.forbidden_inferences.filter(isPublic);
+}
+
+/**
+ * Every sensitive pair of the audit with its shortest path in the public
+ * graph (`path` is empty when the endpoints are not connected). Shared by the
+ * counter-inference audit (flagged pairs only) and the B16 traces (all pairs),
+ * so path finding and caveat classification exist once.
+ */
+export function auditedPairs(registry: InferenceRegistry, model: ReadModel): PathAnnotation[] {
+  const dataset = model.dataset;
+  const graph = evidenceGraph(model);
+  const edges = new Map(graph.edges.map((e) => [e.id, e]));
+  const classes = new Map(registry.caveat_classifications.map((c) => [c.relationship, c]));
+  const active = activePairKeys(registry);
+  const publicEntries = publicEntriesOf(registry, dataset);
   const publicActive = new Map(
     [...active].map(([key, ids]) => [
       key,
@@ -201,16 +210,13 @@ export function counterInferenceAudit(
     }
   }
 
-  let withPath = 0;
-  const flagged: PathAnnotation[] = [];
-  for (const { origin, pair, hypotheses } of pairs) {
-    const ids = shortestPath(
-      graph.edges.map((e) => ({ id: e.id, source: e.source, target: e.target })),
-      pair[0],
-      pair[1],
-    );
-    if (!ids || ids.length === 0) continue;
-    withPath++;
+  return pairs.map(({ origin, pair, hypotheses }) => {
+    const ids =
+      shortestPath(
+        graph.edges.map((e) => ({ id: e.id, source: e.source, target: e.target })),
+        pair[0],
+        pair[1],
+      ) ?? [];
     const path = ids.map((id): PathStep => {
       const edge = edges.get(id);
       const c = classes.get(id);
@@ -226,19 +232,26 @@ export function counterInferenceAudit(
         classification_state: c?.state ?? null,
       };
     });
-    const interruptedAt = path.filter((s) => s.interrupts_composition).map((s) => s.relationship);
-    const forbiddenBy = publicActive.get(pairKey(pair[0], pair[1])) ?? [];
-    if (interruptedAt.length > 0 || forbiddenBy.length > 0) {
-      flagged.push({
-        origin,
-        pair,
-        hypotheses,
-        path,
-        interrupted_at: interruptedAt,
-        forbidden_by: forbiddenBy,
-      });
-    }
-  }
+    return {
+      origin,
+      pair,
+      hypotheses,
+      path,
+      interrupted_at: path.filter((s) => s.interrupts_composition).map((s) => s.relationship),
+      forbidden_by: publicActive.get(pairKey(pair[0], pair[1])) ?? [],
+    };
+  });
+}
+
+export function counterInferenceAudit(
+  registry: InferenceRegistry,
+  model: ReadModel,
+): CounterInferenceAudit {
+  const dataset = model.dataset;
+  const publicEntries = publicEntriesOf(registry, dataset);
+  const pairs = auditedPairs(registry, model);
+  const withPath = pairs.filter((p) => p.path.length > 0);
+  const flagged = withPath.filter((p) => p.interrupted_at.length > 0 || p.forbidden_by.length > 0);
 
   const relationships = new Set(dataset.relationships.map((r) => r.id));
   const reviewed = [...registry.forbidden_inferences, ...registry.caveat_classifications].filter(
@@ -267,7 +280,7 @@ export function counterInferenceAudit(
       graph:
         "public evidence graph (graph.json edges, undirected, participation included); deterministic shortest path",
       pairs_audited: pairs.length,
-      pairs_with_path: withPath,
+      pairs_with_path: withPath.length,
       paths_flagged: flagged.length,
     },
     flagged_paths: flagged,

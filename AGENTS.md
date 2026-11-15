@@ -130,6 +130,7 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
   (`pnpm audit:mentions`, inputs in `docs/audit/mentions/`) is a review list,
   not a source of edges: agents may add outcomes only as `state: proposta`,
   never `revisionata`, and never create relationships from it.
+- `src/site/trace.ts` — B16 Tracciato: ordering, interruption markers and the «what it does not say» wording of `/trace/<ID>/`, built on the B15 audit (`auditedPairs`); never duplicate path finding or caveat classification in templates, and keep the «proposta non rivista» label on unreviewed classifications.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
 - `docs/design/` — Dossier design system v1: the single source of the

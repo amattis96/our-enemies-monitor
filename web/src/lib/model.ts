@@ -4,12 +4,14 @@ import { articleBacklinks, loadPublishedArticles } from "../../../src/site/artic
 import { type CounterInferenceAudit, counterInferenceAudit } from "../../../src/site/inferences.ts";
 import { type PublicationReport, publicationReport } from "../../../src/site/publication.ts";
 import { buildReadModel, loadReadModel, type ReadModel } from "../../../src/site/read-model.ts";
+import { buildTraces, type Trace } from "../../../src/site/trace.ts";
 
 let publication: PublicationReport | undefined;
 let model: ReadModel | undefined;
 let articles: Article[] | undefined;
 let backlinks: Map<string, Article[]> | undefined;
 let inferences: CounterInferenceAudit | undefined;
+let traces: Trace[] | undefined;
 
 /** The authoritative report retains accounting from the validated canonical dataset. */
 export function getPublication(): PublicationReport {
@@ -39,4 +41,10 @@ export function articlesLinking(id: string): Article[] {
 export function getInferenceAudit(): CounterInferenceAudit {
   inferences ??= counterInferenceAudit(readInferenceRegistry(), getModel());
   return inferences;
+}
+
+/** B16 traces of the sensitive pairs (hypothesis endpoints), computed once per build. */
+export function getTraces(): Trace[] {
+  traces ??= buildTraces(readInferenceRegistry(), getModel(), getInferenceAudit());
+  return traces;
 }
