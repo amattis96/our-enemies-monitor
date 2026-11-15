@@ -880,6 +880,14 @@ contributor / research agent          maintainer
     every branch, any change to `sources/original/`, any change but an
     addition under `sources/incremental/`, symbolic links, submodules and
     escaping paths are errors.
+  - **Control-plane tripwire** (`controlPlaneFlags`, every branch, attention
+    only): one flag per changed file under `CONTROL_PLANE` (workflows,
+    CODEOWNERS, check/diff/validate CLIs, policy, diff, article gate,
+    validation, publication gate, leak guard, `package.json`, lockfile,
+    `AGENTS.md`). It takes no branch name, so renaming a branch cannot avoid
+    it, but the job runs the PR head's own code: it makes the change visible,
+    it is not a barrier. The barrier is a ruleset requiring code owner review
+    (maintainer setting; see `docs/audit/fable-2026-11/FINAL_HARDENING_2026-11-15.md`).
   - **Maintainer waiver:** the label `evidence-waiver` lowers the *waivable*
     errors to attention flags that stay listed under "Waived by the
     maintainer". `pnpm check:pr` (`src/cli/pr-policy.ts`) decides in CI, from

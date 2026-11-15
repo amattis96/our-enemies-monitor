@@ -240,7 +240,12 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
   changed (not waivable). The label `evidence-waiver` waives the other
   errors for the current head commit and is applied only by the repository
   owner, never by an agent; a new push expires it. Do not rename the jobs
-  `check` and `evidence-diff` (required status checks).
+  `check` and `evidence-diff` (required status checks). The branch prefix is
+  a convention, not an identity: changes to control-plane files (`CONTROL_PLANE`
+  in `src/pipeline/policy.ts`: workflows, check CLIs, policy, diff, validation,
+  publication gate, `package.json`, this file) raise attention flags on every
+  branch, but the checks run the PR's own code, so only a code owner review
+  enforced by a GitHub ruleset protects them. Agents never weaken that list.
 - **Existing safeguards still apply:** the strict `pnpm data:diff` runs on
   every branch (the old `--agent` flag is a deprecated no-op).
   Never mark candidate records reviewed, alter original provenance or weaken

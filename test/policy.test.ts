@@ -8,6 +8,8 @@ import {
   branchClass,
   checkGlobal,
   checkPolicy,
+  controlPlaneFlags,
+  isControlPlane,
   type LabelEvent,
   pushLowerBound,
   type RunInfo,
@@ -113,6 +115,46 @@ describe("branch path policy (R4)", () => {
     expect(checkGlobal([change("A", "vendor/x", "160000")])).toHaveLength(1);
     expect(checkGlobal([change("D", "content/articles/x.md", "000000")])).toEqual([]);
     expect(checkGlobal([change("A", "../x")])).toHaveLength(1);
+  });
+});
+
+describe("control-plane tripwire (final hardening)", () => {
+  // controlPlaneFlags takes no branch name: renaming the branch cannot avoid it.
+  it("flags a change to the checks, whatever the branch", () => {
+    const changes = [
+      change("M", ".github/workflows/evidence-diff.yml"),
+      change("M", "src/pipeline/policy.ts"),
+      change("M", "src/cli/check-article-review.ts"),
+      change("M", "src/pipeline/article-review.ts"),
+      change("M", "src/site/publication.ts"),
+      change("M", "package.json"),
+      change("A", ".github/CODEOWNERS"),
+    ];
+    expect(controlPlaneFlags(changes).map((f) => [f.severity, f.id])).toEqual(
+      changes.map((c) => ["attention", c.path]),
+    );
+  });
+
+  it("a research agent renaming its branch escapes the path policy but not the tripwire", () => {
+    const attack = [change("M", "src/pipeline/policy.ts"), change("A", "sources/thematic/T_99.md")];
+    expect(errorPaths("research/x", attack)).toContain("src/pipeline/policy.ts");
+    expect(errorPaths("docs/x", attack)).toEqual([]); // the prefix is not an identity
+    expect(controlPlaneFlags(attack).map((f) => f.id)).toEqual(["src/pipeline/policy.ts"]);
+  });
+
+  it("never blocks: data, docs and articles changes raise nothing, and flags are attention only", () => {
+    expect(
+      controlPlaneFlags([
+        change("M", "data/events/TL-0001.json"),
+        change("M", "docs/ARCHITECTURE.md"),
+        change("A", "content/articles/ART-0099.it.md"),
+        change("M", "src/site/trace.ts"),
+      ]),
+    ).toEqual([]);
+    expect(isControlPlane("src/cli/validate-articles.ts")).toBe(true);
+    expect(controlPlaneFlags([change("D", ".github/workflows/ci.yml")])[0]?.severity).toBe(
+      "attention",
+    );
   });
 });
 

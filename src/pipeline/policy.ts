@@ -101,6 +101,50 @@ export function checkPolicy(headRef: string, changes: PathChange[]): Flag[] {
   return flags;
 }
 
+/**
+ * Control plane: files that decide what the PR checks enforce or what gets
+ * published. The checks run the PR head's own code, so a PR can rewrite them;
+ * this list only makes such a change visible (attention, never a barrier).
+ * The barrier is a GitHub ruleset requiring code owner review on these paths
+ * (`.github/CODEOWNERS`) — a maintainer setting, not enforced here.
+ */
+export const CONTROL_PLANE: readonly string[] = [
+  ".github/",
+  "src/cli/check-",
+  "src/cli/pr-policy.ts",
+  "src/cli/data-diff.ts",
+  "src/cli/validate",
+  "src/cli/audit-m5.ts",
+  "src/pipeline/policy.ts",
+  "src/pipeline/diff.ts",
+  "src/pipeline/changes.ts",
+  "src/pipeline/evidence-policy.ts",
+  "src/pipeline/article-",
+  "src/pipeline/validate.ts",
+  "src/site/publication.ts",
+  "src/site/surface.ts",
+  "package.json",
+  "pnpm-lock.yaml",
+  "pnpm-workspace.yaml",
+  "AGENTS.md",
+  "CLAUDE.md",
+];
+
+export function isControlPlane(file: string): boolean {
+  return CONTROL_PLANE.some((prefix) => file.startsWith(prefix));
+}
+
+/** One attention flag per changed control-plane file, on every branch. */
+export function controlPlaneFlags(changes: PathChange[]): Flag[] {
+  return changes
+    .filter((c) => isControlPlane(c.path))
+    .map((c) => ({
+      severity: "attention" as const,
+      id: c.path,
+      message: `changes the PR controls (status ${c.status}): this check runs the PR's own code, so only a code owner review required by a GitHub ruleset protects it`,
+    }));
+}
+
 export type LabelEvent = {
   event: string;
   label: string;

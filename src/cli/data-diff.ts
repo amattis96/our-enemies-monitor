@@ -7,7 +7,7 @@ import { collectChanges, git, mergeBase, showAt } from "../pipeline/changes.ts";
 import { diffData, diffMarkdown, type Flag, relaxFlags } from "../pipeline/diff.ts";
 import { type DataFile, readDataFiles } from "../pipeline/load.ts";
 import { REPO_ROOT } from "../pipeline/paths.ts";
-import { checkPolicy } from "../pipeline/policy.ts";
+import { checkPolicy, controlPlaneFlags } from "../pipeline/policy.ts";
 
 // Evidence diff of a branch against its merge base with a Git ref.
 //
@@ -81,6 +81,7 @@ function run(): { markdown: string; failed: boolean } {
   };
   const flags: Flag[] = [
     ...checkPolicy(branch, changes),
+    ...controlPlaneFlags(changes),
     ...report.flags,
     ...diffArticles(
       articleFiles((file) => showAt(REPO_ROOT, anchor, file)),
