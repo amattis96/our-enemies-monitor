@@ -61,8 +61,8 @@ const jsonLd = datasetJsonLd({
     </p>
   </div>
 
-  <div class="relative overflow-x-auto">
-    <table>
+  <div class="table-wrap">
+    <table class="stack">
       <thead>
         <tr>
           <th scope="col">{c("File", "File")}</th>
@@ -73,15 +73,15 @@ const jsonLd = datasetJsonLd({
       <tbody>
         {listed.map((file) => (
           <tr>
-            <td><a href={assetHref(`data/v1/${file.path}`)}>{file.path}</a></td>
-            <td class="whitespace-nowrap">{kb(file.bytes)}</td>
-            <td class="font-mono text-xs break-all">{file.sha256}</td>
+            <td data-label={c("File", "File")}><a href={assetHref(`data/v1/${file.path}`)}>{file.path}</a></td>
+            <td data-label={c("Dimensione", "Size")} class="whitespace-nowrap">{kb(file.bytes)}</td>
+            <td data-label="SHA-256" class="font-mono text-xs break-all">{file.sha256}</td>
           </tr>
         ))}
         <tr>
-          <td class="font-mono">records/&lt;ID&gt;.json</td>
-          <td class="whitespace-nowrap">{packages.length} {c("file", "files")} · {kb(packages.reduce((n, file) => n + file.bytes, 0))}</td>
-          <td>{c("SHA-256 di ciascun pacchetto in", "SHA-256 of each package in")} <a href={assetHref("data/v1/manifest.json")}>manifest.json</a></td>
+          <td data-label={c("File", "File")} class="font-mono">records/&lt;ID&gt;.json</td>
+          <td data-label={c("Dimensione", "Size")} class="whitespace-nowrap">{packages.length} {c("file", "files")} · {kb(packages.reduce((n, file) => n + file.bytes, 0))}</td>
+          <td data-label="SHA-256">{c("SHA-256 di ciascun pacchetto in", "SHA-256 of each package in")} <a href={assetHref("data/v1/manifest.json")}>manifest.json</a></td>
         </tr>
       </tbody>
     </table>

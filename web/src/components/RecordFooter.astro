@@ -3,6 +3,7 @@ import type { Language, ProvenanceEntry, Review } from "../../../src/model/index
 import { REVIEW_STATUS_LABELS, TRANSLATION_STATUS_LABELS } from "../../../src/site/format.ts";
 import { choose, ui } from "../../../src/site/i18n.ts";
 import { REVIEW_ICON, REVIEW_TONE } from "../../../src/site/visual.ts";
+import { assetHref } from "../lib/links.ts";
 import Icon from "./Icon.astro";
 import StatusLabel from "./StatusLabel.astro";
 
@@ -37,6 +38,11 @@ const correction = `${repo}/issues/new?template=correction.yml&title=${encodeURI
   </div>
   {review.notes.length > 0 && <div class="mb-3">{review.notes.map((note) => <p class="mb-1">{note}</p>)}</div>}
   <ul class="grid gap-1.5 wrap-anywhere">
+    <li>
+      <a href={assetHref(`data/v1/records/${id}.json`)} download class="inline-flex items-center gap-1">
+        <Icon name="ui-download" />{t.exportPackage}
+      </a>
+    </li>
     <li>
       <a href={`${repo}/blob/main/data/${collection}/${id}.json`}>{t.canonicalRecord} {id}.json</a>
       (<a href={`${repo}/commits/main/data/${collection}/${id}.json`}>{t.recordHistory}</a>)

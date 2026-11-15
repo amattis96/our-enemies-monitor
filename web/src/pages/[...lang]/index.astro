@@ -99,6 +99,16 @@ const themes = (Object.keys(THEME_LABELS) as Theme[]).filter(
   (th) => (themeCounts.get(th) ?? 0) > 0 && th !== "research_metadata",
 );
 const mark = inlineSvg("logo-mark.svg", "mast");
+const dateline = [
+  latestResearch[0] &&
+    `${c("Archivio OSINT", "OSINT archive")} ${formatPartialDate(latestResearch[0].createdAt, lang)}`,
+  lead &&
+    `${c("Ultimo evento in cronologia", "Latest timeline event")} ${formatPartialDate(lead.date.start, lang)}`,
+  `${counts.timeline_events} ${c("eventi", "events")}`,
+  `${counts.relationships} ${c("relazioni", "relationships")}`,
+]
+  .filter(Boolean)
+  .join(" · ");
 ---
 
 <Base title="Our Enemies Monitor" lang={lang} description={t.siteTagline} searchable>
@@ -107,9 +117,7 @@ const mark = inlineSvg("logo-mark.svg", "mast");
       <div class="dateline-inner">
         <span>{t.editionLabel}</span>
         <span class="live">
-          {c("Archivio OSINT", "OSINT archive")} {latestResearch[0] && formatPartialDate(latestResearch[0].createdAt, lang)}
-          · {c("Ultimo evento in cronologia", "Latest timeline event")} {lead && formatPartialDate(lead.date.start, lang)}
-          · {counts.timeline_events} {c("eventi", "events")} · {counts.relationships} {c("relazioni", "relationships")}
+          <span>{dateline}</span>
         </span>
       </div>
     </div>

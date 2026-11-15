@@ -1,5 +1,6 @@
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { Language } from "../../../src/model/index.ts";
+import { type CsvColumn, exportFileName, toCsv } from "../../../src/site/csv.ts";
 import { formatDateRange, PRECISION_LABELS } from "../../../src/site/format.ts";
 import type { TimelineItem } from "../../../src/site/read-model.ts";
 import {
@@ -13,6 +14,8 @@ import {
   yearOf,
 } from "../../../src/site/timeline.ts";
 import { EVIDENCE_ICON, EVIDENCE_SHORT, THEME_ICON } from "../../../src/site/visual.ts";
+import { CSV_TYPE, downloadText, JSON_TYPE } from "../lib/download.ts";
+import { ExportMenu } from "./ExportMenu.tsx";
 
 const LABELS = {
   it: {
@@ -36,6 +39,15 @@ const LABELS = {
     reset: "Azzera i filtri",
     empty: "Nessuna voce corrisponde ai filtri.",
     yearItems: (n: number) => (n === 1 ? "1 voce" : `${n} voci`),
+    export: "Esporta",
+    exportView: "Vista corrente",
+    exportAll: "Dataset completo",
+    viewCsv: "Voci visibili (foglio di calcolo)",
+    viewJson: "Voci visibili (dati strutturati)",
+    viewDetail: (n: number) => `${n} voci con i filtri e l'ordine attuali`,
+    allCsv: "Tutti gli eventi pubblicati",
+    allJson: "Tutti gli eventi, record completi",
+    allDetail: "Testi in italiano e inglese, fonti, revisione",
   },
   en: {
     filters: "Timeline filters",
@@ -58,6 +70,15 @@ const LABELS = {
     reset: "Reset filters",
     empty: "No entry matches the filters.",
     yearItems: (n: number) => (n === 1 ? "1 entry" : `${n} entries`),
+    export: "Export",
+    exportView: "Current view",
+    exportAll: "Full dataset",
+    viewCsv: "Visible entries (spreadsheet)",
+    viewJson: "Visible entries (structured data)",
+    viewDetail: (n: number) => `${n} entries with the current filters and order`,
+    allCsv: "All published events",
+    allJson: "All events, full records",
+    allDetail: "Italian and English text, sources, review",
   },
 };
 
@@ -69,6 +90,8 @@ type Props = {
   eventBase: string;
   /** URL of the icon sprite. */
   sprite: string;
+  /** Base URL of the published data exports (`data/v1/`), ending with a slash. */
+  dataBase: string;
 };
 
 function Icon({ sprite, name }: { sprite: string; name: string }) {
@@ -79,9 +102,18 @@ function Icon({ sprite, name }: { sprite: string; name: string }) {
   );
 }
 
-export default function TimelineExplorer({ lang, items, themes, eventBase, sprite }: Props) {
+export default function TimelineExplorer({
+  lang,
+  items,
+  themes,
+  eventBase,
+  sprite,
+  dataBase,
+}: Props) {
   const t = LABELS[lang];
   const id = useId();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLFormElement>(null);
   const [f, setF] = useState<TimelineFilters>(DEFAULT_FILTERS);
   const themeLabel = useMemo(() => new Map(themes.map((th) => [th.id, th.label])), [themes]);
 
@@ -95,6 +127,24 @@ export default function TimelineExplorer({ lang, items, themes, eventBase, sprit
       window.history.replaceState(null, "", next);
     }
   }, [f]);
+
+  // Sticky offsets follow the real heights of the site header and of the
+  // filter bar (they wrap differently by viewport, font and platform).
+  useEffect(() => {
+    const root = rootRef.current;
+    const filters = filtersRef.current;
+    const header = document.querySelector<HTMLElement>(".site-header");
+    if (!root || !filters) return;
+    const measure = () => {
+      root.style.setProperty("--tl-top", `${header?.offsetHeight ?? 60}px`);
+      root.style.setProperty("--tl-filters", `${filters.offsetHeight}px`);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(filters);
+    if (header) observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   const update = (patch: Partial<TimelineFilters>) => setF((prev) => ({ ...prev, ...patch }));
   // The density bar counts everything except the year filter itself.
@@ -131,9 +181,83 @@ export default function TimelineExplorer({ lang, items, themes, eventBase, sprit
       : update({ from: year, to: year });
   const filtered = serializeFilters({ ...f, order: "newest" }) !== "";
 
+  const exportRows = () =>
+    visible.map((item) => ({
+      ...item,
+      themes: item.themes.map((th) => themeLabel.get(th) ?? th),
+      url: new URL(`${eventBase}${item.id}/`, window.location.href).href,
+    }));
+  type Row = ReturnType<typeof exportRows>[number];
+  const columns: CsvColumn<Row>[] = [
+    { name: "id", value: (r) => r.id },
+    { name: "date_start", value: (r) => r.start },
+    { name: "date_end", value: (r) => r.end },
+    { name: "date_precision", value: (r) => r.precision },
+    { name: "title", value: (r) => r.title },
+    { name: "geography", value: (r) => r.geography },
+    { name: "places", value: (r) => r.places },
+    { name: "themes", value: (r) => r.themes },
+    { name: "evidence_level", value: (r) => r.evidence_level },
+    { name: "evidence_note", value: (r) => r.evidence_note },
+    { name: "pending_integration", value: (r) => r.pending },
+    { name: "dataset_metadata", value: (r) => r.metadata },
+    { name: "url", value: (r) => r.url },
+  ];
+  const exportGroups = [
+    {
+      title: t.exportView,
+      items: [
+        {
+          format: "CSV",
+          label: t.viewCsv,
+          detail: t.viewDetail(visible.length),
+          onSelect: () =>
+            downloadText(
+              exportFileName("timeline", lang, "csv"),
+              toCsv(columns, exportRows()),
+              CSV_TYPE,
+            ),
+        },
+        {
+          format: "JSON",
+          label: t.viewJson,
+          detail: t.viewDetail(visible.length),
+          onSelect: () =>
+            downloadText(
+              exportFileName("timeline", lang, "json"),
+              `${JSON.stringify(
+                {
+                  view: window.location.href,
+                  language: lang,
+                  filters: f,
+                  count: visible.length,
+                  items: exportRows(),
+                },
+                null,
+                2,
+              )}\n`,
+              JSON_TYPE,
+            ),
+        },
+      ],
+    },
+    {
+      title: t.exportAll,
+      items: [
+        { format: "CSV", label: t.allCsv, detail: t.allDetail, href: `${dataBase}events.csv` },
+        { format: "JSON", label: t.allJson, detail: t.allDetail, href: `${dataBase}events.json` },
+      ],
+    },
+  ];
+
   return (
-    <div className="tl">
-      <form className="tl-filters" onSubmit={(e) => e.preventDefault()} aria-label={t.filters}>
+    <div className="tl" ref={rootRef}>
+      <form
+        className="tl-filters"
+        ref={filtersRef}
+        onSubmit={(e) => e.preventDefault()}
+        aria-label={t.filters}
+      >
         <label className="tl-field tl-search">
           <span className="kicker">{t.text}</span>
           <input
@@ -224,15 +348,18 @@ export default function TimelineExplorer({ lang, items, themes, eventBase, sprit
           {t.count(visible.length, items.length)}
           {f.from !== null && f.to !== null && <> · {t.period(f.from, f.to)}</>}
         </p>
-        {filtered && (
-          <button
-            type="button"
-            className="btn btn-ghost"
-            onClick={() => setF({ ...DEFAULT_FILTERS, order: f.order })}
-          >
-            {t.reset}
-          </button>
-        )}
+        <div className="tl-status-actions">
+          {filtered && (
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={() => setF({ ...DEFAULT_FILTERS, order: f.order })}
+            >
+              {t.reset}
+            </button>
+          )}
+          <ExportMenu label={t.export} groups={exportGroups} sprite={sprite} />
+        </div>
       </div>
 
       {visible.length === 0 && <p className="tl-empty">{t.empty}</p>}

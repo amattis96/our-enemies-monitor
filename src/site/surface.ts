@@ -1,4 +1,5 @@
 import { COLLECTION_NAMES, type Dataset } from "../model/index.ts";
+import { CSV_ID_COLUMNS, parseCsv } from "./csv.ts";
 import type { Withheld } from "./publication.ts";
 
 /**
@@ -58,6 +59,20 @@ export function leakedIds(value: unknown, withheld: ReadonlySet<string>): string
     }
   };
   visit(value, null);
+  return [...found].sort();
+}
+
+/** Withheld IDs in the ID columns of a CSV export (lists are `;`-joined). */
+export function leakedInCsv(text: string, withheld: ReadonlySet<string>): string[] {
+  const found = new Set<string>();
+  for (const row of parseCsv(text)) {
+    const ids = Object.fromEntries(
+      Object.entries(row)
+        .filter(([key]) => CSV_ID_COLUMNS.has(key))
+        .map(([key, value]) => [key, value === "" ? [] : value.split(";")]),
+    );
+    for (const id of leakedIds(ids, withheld)) found.add(id);
+  }
   return [...found].sort();
 }
 

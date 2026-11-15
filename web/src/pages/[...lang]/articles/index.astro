@@ -1,10 +1,11 @@
 ---
 import { formatPartialDate, REVIEW_STATUS_LABELS } from "../../../../../src/site/format.ts";
-import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../../src/site/i18n.ts";
+import ExportMenu from "../../../components/ExportMenu.astro";
 import FixtureBanner from "../../../components/FixtureBanner.astro";
 import T from "../../../components/T.astro";
 import Base from "../../../layouts/Base.astro";
-import { href } from "../../../lib/links.ts";
+import { assetHref, href } from "../../../lib/links.ts";
 import { getArticles } from "../../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
@@ -20,7 +21,16 @@ const fixtures = articles.some((article) => article.fixture);
   description={c("Analisi tematiche basate sulle fonti, collegate ai record della base di conoscenza.", "Source-based thematic analyses linked to the records of the knowledge base.")}
 >
   <p class="kicker kicker-signal">{c("Indagini", "Investigations")}</p>
-  <h1>{c("Indagini e analisi", "Investigations and analyses")}</h1>
+  <div class="title-row">
+    <h1>{c("Indagini e analisi", "Investigations and analyses")}</h1>
+    <ExportMenu
+      label={ui(lang).exportLabel}
+      groups={[{
+        title: ui(lang).exportDataset,
+        items: [{ format: "JSON", label: c("Indice degli articoli", "Article index"), detail: c("Titoli, sintesi, record collegati e link ai file Markdown", "Titles, summaries, linked records and links to the Markdown files"), href: assetHref("data/v1/articles.json") }],
+      }]}
+    />
+  </div>
   <p class="lede">
     {c(
       "Analisi tematiche in italiano e inglese. Ogni articolo cita le proprie fonti e rimanda ai record canonici che discute: le evidenze restano nei record, con il loro livello e il loro stato di revisione. Un articolo non trasforma una vicinanza nel grafo o un'ipotesi in una prova.",

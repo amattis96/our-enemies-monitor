@@ -1,0 +1,98 @@
+---
+import type { ExportMenuItem } from "../lib/exports.ts";
+import Icon from "./Icon.astro";
+
+// «Esporta» disclosure for static pages; same markup as islands/ExportMenu.tsx.
+// An item links to a published file (`href`), saves text generated at build
+// time from the public projection (`text` + `name`), or prints the page.
+interface Props {
+  label: string;
+  groups: { title: string; items: ExportMenuItem[] }[];
+  class?: string;
+}
+const { label, groups, class: className } = Astro.props;
+---
+
+<details class:list={["export-menu no-print", className]} data-export-menu data-pagefind-ignore>
+  <summary class="btn btn-ghost export-trigger">
+    <Icon name="ui-download" />
+    {label}
+    <Icon name="ui-chevron-down" class="export-chevron" />
+  </summary>
+  <div class="export-panel">
+    {
+      groups.map((group) => (
+        <section aria-label={group.title}>
+          <p class="kicker">{group.title}</p>
+          <ul>
+            {group.items.map((item) => {
+              const body = (
+                <>
+                  <span class="export-format">{item.format}</span>
+                  <span class="export-text">
+                    <span class="export-label">{item.label}</span>
+                    {item.detail && <span class="export-detail">{item.detail}</span>}
+                  </span>
+                </>
+              );
+              return (
+                <li>
+                  {item.href ? (
+                    <a class="export-item" href={item.href} download={item.name ?? ""} data-export-close>
+                      {body}
+                    </a>
+                  ) : item.print ? (
+                    <button type="button" class="export-item" data-export-print>
+                      {body}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      class="export-item"
+                      data-export-text={item.text}
+                      data-export-name={item.name}
+                      data-export-type={item.type ?? "text/plain;charset=utf-8"}
+                    >
+                      {body}
+                    </button>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</details>
+
+<script>
+  import { downloadText } from "../lib/download.ts";
+
+  const menus = [...document.querySelectorAll<HTMLDetailsElement>("[data-export-menu]")];
+  document.addEventListener("pointerdown", (event) => {
+    for (const menu of menus) if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+  });
+  for (const menu of menus) {
+    menu.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menu.open) {
+        menu.open = false;
+        menu.querySelector("summary")?.focus();
+      }
+    });
+    menu.addEventListener("click", (event) => {
+      const item = (event.target as Element).closest<HTMLElement>(".export-item");
+      if (!item) return;
+      menu.open = false;
+      if (item.hasAttribute("data-export-print")) window.print();
+      else if (item.dataset.exportText !== undefined) {
+        const type = item.dataset.exportType ?? "text/plain";
+        // HTML attributes normalise CRLF to LF: restore RFC 4180 line ends for CSV.
+        const text = type.startsWith("text/csv")
+          ? item.dataset.exportText.replace(/\r?\n/g, "\r\n")
+          : item.dataset.exportText;
+        downloadText(item.dataset.exportName ?? "export.txt", text, type);
+      }
+    });
+  }
+</script>

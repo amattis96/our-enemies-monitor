@@ -83,6 +83,9 @@ const pageDescription = description ?? t.siteTagline;
         const theme = localStorage.getItem("oem-theme");
         if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
       } catch {}
+      // Keyboard hints name the platform's modifier key (⌘ on Apple, Ctrl elsewhere).
+      const platform = navigator.userAgentData?.platform || navigator.platform || "";
+      document.documentElement.dataset.platform = /mac|iphone|ipad|ipod/i.test(platform) ? "apple" : "other";
     </script>
   </head>
   <body>

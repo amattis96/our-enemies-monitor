@@ -21,11 +21,18 @@ const sections = [
 ] as const;
 ---
 
-<button type="button" class="search-trigger" data-search-open aria-haspopup="dialog" aria-controls="search-dialog">
+<button
+  type="button"
+  class="search-trigger"
+  data-search-open
+  aria-haspopup="dialog"
+  aria-controls="search-dialog"
+  aria-keyshortcuts="Meta+K Control+K /"
+>
   <Icon name="nav-search" />
   <span class="search-trigger-label">{t.searchPlaceholder}</span>
-  <kbd class="search-kbd">⌘K</kbd>
-  <span class="sr-only">(Ctrl K)</span>
+  <!-- The modifier follows the platform (set on <html> before paint): ⌘ on Apple, Ctrl elsewhere. -->
+  <kbd class="search-kbd" aria-hidden="true"><span class="kbd-mod kbd-mod-apple">⌘</span><span class="kbd-mod kbd-mod-other">Ctrl</span>K</kbd>
 </button>
 
 <dialog
