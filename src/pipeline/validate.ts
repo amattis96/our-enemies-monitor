@@ -17,6 +17,7 @@ import {
   personReference,
   suspectPerson,
 } from "./evidence-policy.ts";
+import { exposureGroupIssues } from "./exposure-groups.ts";
 import { corpusOnlyE1, genealogyIssues } from "./genealogy.ts";
 import type { DataFile } from "./load.ts";
 import { repoPath } from "./paths.ts";
@@ -125,6 +126,9 @@ export function validateDataFiles(
   for (const issue of genealogyIssues(dataset.sources)) {
     (issue.severity === "error" ? error : warning)(pathOf(issue.id), issue.message);
   }
+  // 4c. Exposure groups (B19): coherent supply chains and before/after pairs
+  for (const issue of exposureGroupIssues(dataset.exposures))
+    error(pathOf(issue.id), issue.message);
   // A corpus synthesis alone is not enough for E1 (ADR-05: warning, not error)
   for (const collection of ["events", "relationships"] as const) {
     const ids = corpusOnlyE1(dataset[collection], dataset.sources);

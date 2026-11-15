@@ -209,6 +209,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Register forbidden inferences and annotate graph paths that cross a negative caveat (`docs/audit/inferences/registry.v1.json`, `data/v1/inferences.json`).
 - [ ] Human review of the forbidden-inference registry and of the 62 caveat classifications.
 - [x] Add the Tracciato page (`/trace/<ID>/`): shortest public path between hypothesis ends with caveats, interruptions and what it does not say.
+- [x] Add the rare-earth Filiera and gas before/after on `/dependencies/` and a role matrix on entity pages (B19).
+- [ ] Case file (Fascicolo del caso) and structured questions, after ADR-06 and reviewed case data.
 - [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).

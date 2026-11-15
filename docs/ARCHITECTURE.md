@@ -82,6 +82,7 @@ src/
     baseline/themes.ts    Editorial category → theme classification
     baseline/places.ts    Editorial geography token → ISO country classification
     baseline/exposures.ts Transcription of the Fonte_08 §12.2 exposure matrix
+    exposure-groups.ts Structural checks on the exposure `group` field (B19)
     translations.ts    Localized-text traversal, source and target hashes, translation checks
     diff.ts            Evidence diff between two versions of data/ (strict by default, waivable errors)
     article-diff.ts    Evidence diff of content/articles/ (review gates, reviewed articles frozen)
@@ -94,7 +95,8 @@ src/
   site/                Read model (indexes, restriction rule, graph, timeline and
                        atlas projections), i18n strings, formatting, data exports,
                        articles.ts (article publication gate, back-links, HTML and
-                       Markdown rendering)
+                       Markdown rendering), dependencies.ts and roles.ts (B19
+                       Filiera, before/after and role matrix)
   audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E7,
                        D T1–T11), question-benchmark scorer (benchmark.ts) and the
                        text–graph mention queue (mentions.ts, shared matcher with E6)
@@ -317,6 +319,36 @@ Limits: only pairs of the audit have a page (there is no arbitrary
 actor-to-actor search); a pair appears when a hypothesis or a public forbidden
 inference names it. Traces are not exported as JSON.
 
+## Investigative views (B19)
+
+FABLE C §§5.3–5.4, 8.3, built only on data and vocabularies that already exist.
+
+- **Filiera and before/after** (`/dependencies/`, `src/site/dependencies.ts`).
+  Exposures carry an optional editorial `group` `{ id, position }` (see Data
+  model). `rare_earth_magnets` (`supply_chain`) orders X-004 extraction →
+  X-002 refining → X-003 magnets → X-001 EU magnet demand; `eu_gas`
+  (`before_after`) groups X-011 and X-012, whose two measures are the same
+  quantity before and after. Each stage or pair shows value with qualifier,
+  period (or «period not stated by the source»), what it measures and its
+  sources. Stages are compared only when they measure the same quantity (same
+  unit and same Italian label) with exact values: the «most concentrated
+  stage» flag names the highest of those and its denominator (3 stages); a
+  change of quantity between consecutive stages is stated instead of compared.
+  No difference, ratio, index or scenario is computed. The 14 single cards
+  stay below.
+- **Role matrix** (entity pages with ≥ 3 public relationships,
+  `src/site/roles.ts`). Public relationships of the entity counted by existing
+  relation group (rows) × evidence level (columns), with the denominator,
+  the period spanned by the start dates of linked events (and how many have no
+  linked event) and the source (`data/v1/relationships.json`). No role class
+  is invented: the participation row is expanded into its literal predicates.
+  Restricted person relationships would be counted by level only, never by
+  group or predicate.
+- **Deferred.** Fascicolo del caso (C §§5.2, 8.2) waits for the confirmation of
+  ADR-06 and for reviewed case data (the B18 pilot is `needs_review` and not in
+  `data/`). Domande strutturate (C §5.5) need a query island or many static
+  question pages and the date of attribution as data; not built.
+
 ## Data model
 
 All records are validated by the Zod schemas in `src/model/`. Every file is
@@ -385,7 +417,12 @@ namespaces are disjoint, so a relationship endpoint is resolved by its ID.
   `percent`/`eur_billion`/`count`/`year`, qualifier `exact`/`approx`/
   `more_than`/`less_than`/`nearly`, optional `out_of` and `period` only when
   the source states them), scope (what the value measures), consequence,
-  `status` (`observed` or `target` for planned values such as IRIS² 2030).
+  `status` (`observed` or `target` for planned values such as IRIS² 2030),
+  optional `group` `{ id, position }` (B19): an editorial grouping into a
+  supply chain (`supply_chain`, position 1 = upstream, one measure per stage)
+  or a before/after comparison (`before_after`, exactly two measures with the
+  same unit, before then after); definitions in
+  `vocabulary.json#/exposure_groups`. It adds no value, period or causal link.
 
 Every record also carries:
 
@@ -667,6 +704,9 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    unknown IDs, claims outside their case, missing asserter or reply, invented
    levels, empty transcribed fields and person claims without status, date and
    registered primary source; a case without claims is a warning.
+16. Exposure groups (B19, `src/pipeline/exposure-groups.ts`): a group has at
+   least two members with positions 1..n, a supply-chain stage has exactly one
+   measure, a before/after record exactly two with the same unit (errors).
 
 ## Website
 
@@ -681,11 +721,11 @@ index per language from `<html lang>`.
 | `/` | Front page: masthead, latest integrated event, latest entries, counts, explore tiles, how to read evidence (ladder illustration, stamps, disclaimer), themes |
 | `/timeline/` | React island, server-rendered: newest first (toggle), year density bar as period filter, theme and text filters synced to the URL (`?tema=`, `?theme=`, `da`, `a`, `q`, `ext`, `meta`, `ordine`); EXT records dashed; `dataset_metadata` hidden by default; date precision shown visually |
 | `/events/<id>/` | Date with precision, known issues, evidence note, themes, original category, countries, actors and roles, direct relationships citing the event, linked hypotheses, provenance |
-| `/entities/`, `/entities/<id>/` | Index by kind; profile with direct relationships, event participations, hypotheses, person notice |
+| `/entities/`, `/entities/<id>/` | Index by kind; profile with role matrix (relation group × evidence level with base, period and source; literal participation roles, B19), direct relationships, event participations, hypotheses, person notice |
 | `/network/` | Evidence board island over `/data/v1/graph.json` with a build-time layout (`src/site/board-layout.ts`): filter by relation group and evidence level (E1 double, E2 solid, E3 dashed, E4 dotted thread); participation off by default; semantic zoom; drag; case-file drawer enters from the bottom below 760 px and from the right at wider widths, with internal scrolling for long content; drawer and List view show full localized caveats under each relationship, also included in SVG thread titles; `?focus=<ID>` deep link |
 | `/network/hypotheses/` | Separate hypotheses board over `/data/v1/hypotheses-graph.json`, red dash-dot threads only, labeled as non-factual |
 | `/atlas/` | One map with Europe/World switch, zoom and pan, country panel (`#CODE` deep link), "outside the map" tray of supranational geographies; sortable country table separating events located in the country from the literal roles of the state in events |
-| `/dependencies/` | Exposure cards: measures with qualifier and period, what each value measures, consequence; no cross-comparison chart and no index |
+| `/dependencies/` | Filiera of rare-earth magnets and gas before/after (B19), then exposure cards: measures with qualifier and period, what each value measures, consequence; no cross-comparison chart and no index |
 | `/hypotheses/`, `/hypotheses/<id>/` | Register by priority, detail with limits and evidence needed; «Inference limits» section with the flagged shortest public path(s) and linked forbidden inferences (B15) |
 | `/trace/`, `/trace/<ID>/` | Ordered shortest public path between the ends of each hypothesis pair, with caveats, interruptions, open hypotheses and «what this trace does not say» (B16) |
 | `/sources/`, `/sources/<id>/` | Corpus documents and references, URLs, repository files, citing records |
@@ -708,7 +748,7 @@ M6 sidecar contract) and `manifest.json` (export version,
 commit, commit date, counts, size and SHA-256 of every file; no build
 timestamp, so a mirror built from the same commit publishes identical files). Both graphs are generated by the same export catalog and generic JSON route as the collection files; their manifest hashes cover the exact served bytes. Each evidence edge carries the relationship’s complete bilingual `caveat` or `null`; hypothesis edges remain separate and do not gain this field. The additive graph field retains export version `v1`. Visual group overrides place only `G-0419`, `G-0420` and `G-0421` in neutral `context`, without changing their canonical `infrastructure` class.
 
-Reading contract (B13, additive, export version `v1`): `vocabulary.json` (`src/site/vocabulary.ts`) defines every controlled value used in the public data — evidence levels with basis and `must_not_read_as`, the `scale_note` that E1–E4 are kinds of basis and not a ranking, level-paired evidence statuses, relation groups and classes (participation and context are not control or financing), entity kinds and domains, review/translation/timeline statuses, record types, hypothesis statuses and priorities (not probabilities), source types, exposure statuses, measure units and qualifiers, date precisions, themes, known-issue codes and withheld reasons, and (B18, ahead of any public claim data) claim kinds, claim aspects and procedural statuses — plus reading rules R1–R5 and a structured subset of the translation glossary. Rules are declarations about the data, not instructions. `index.json` (`buildCatalog` in `src/site/exports.ts`) is the catalog: license, canonical language, translation rule, published and withheld counts from the same publication report, the dataset/schema list, and freshness at three distinct dates — `commit_date` (Git commit date, as in the manifest), `latest_public_event_date` (latest `date.start` of a published `event` record; `dataset_metadata` excluded) and `latest_archived_source` (newest committed incremental source, with `in_public_sources`). No wall-clock time is used, so builds stay reproducible. Every property of the six collection schemas carries a `description` (Zod `.describe()`), and enumerated fields point to their `vocabulary.json` section; tests enforce both and that every controlled value in the public data has a vocabulary entry. Per-record packages and JSON-LD are out of scope (B20).
+Reading contract (B13, additive, export version `v1`): `vocabulary.json` (`src/site/vocabulary.ts`) defines every controlled value used in the public data — evidence levels with basis and `must_not_read_as`, the `scale_note` that E1–E4 are kinds of basis and not a ranking, level-paired evidence statuses, relation groups and classes (participation and context are not control or financing), entity kinds and domains, review/translation/timeline statuses, record types, hypothesis statuses and priorities (not probabilities), source types, exposure statuses and groups, measure units and qualifiers, date precisions, themes, known-issue codes and withheld reasons, and (B18, ahead of any public claim data) claim kinds, claim aspects and procedural statuses — plus reading rules R1–R5 and a structured subset of the translation glossary. Rules are declarations about the data, not instructions. `index.json` (`buildCatalog` in `src/site/exports.ts`) is the catalog: license, canonical language, translation rule, published and withheld counts from the same publication report, the dataset/schema list, and freshness at three distinct dates — `commit_date` (Git commit date, as in the manifest), `latest_public_event_date` (latest `date.start` of a published `event` record; `dataset_metadata` excluded) and `latest_archived_source` (newest committed incremental source, with `in_public_sources`). No wall-clock time is used, so builds stay reproducible. Every property of the six collection schemas carries a `description` (Zod `.describe()`), and enumerated fields point to their `vocabulary.json` section; tests enforce both and that every controlled value in the public data has a vocabulary entry. Per-record packages and JSON-LD are out of scope (B20).
 
 Public-facing rules implemented in the read model and tested:
 

@@ -185,6 +185,31 @@
       ],
       "description": "observed value or planned target. Definitions: vocabulary.json#/exposure_statuses."
     },
+    "group": {
+      "description": "Editorial grouping of exposures: a supply chain or a before/after comparison. Adds no value, period or causal link. Absent when the exposure belongs to no group.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "rare_earth_magnets",
+            "eu_gas"
+          ],
+          "description": "Editorial group. Definitions and kind: vocabulary.json#/exposure_groups."
+        },
+        "position": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "description": "Order within the group: stage in a supply chain (1 = upstream) or display order in a before/after group. An editorial sequence, not a measure."
+        }
+      },
+      "required": [
+        "id",
+        "position"
+      ],
+      "additionalProperties": false
+    },
     "sources": {
       "type": "array",
       "items": {

@@ -30,6 +30,10 @@
     "en": "Share different from that of magnets"
   },
   "status": "observed",
+  "group": {
+    "id": "rare_earth_magnets",
+    "position": 1
+  },
   "sources": [
     "S08",
     "P06"

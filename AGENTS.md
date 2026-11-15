@@ -109,7 +109,10 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - `src/pipeline/baseline/themes.ts` — editorial category → theme mapping. A new
   category in the data needs an explicit entry here.
 - `src/pipeline/baseline/places.ts` / `exposures.ts` — editorial geography →
-  country mapping and the Fonte_08 §12.2 exposure transcription.
+  country mapping and the Fonte_08 §12.2 exposure transcription. The
+  optional exposure `group` (B19 Filiera, before/after) is editorial: a new
+  group needs an `EXPOSURE_GROUP_KIND` entry and labels in
+  `src/site/dependencies.ts`, and never adds a value, period or causal link.
 - `src/site/` — read model, i18n strings, formatting and data exports for the website. Public
   rules (restricted person relationships, graph separation, ordering) live
   here, with tests, not in templates.

@@ -30,6 +30,10 @@
     "en": "Downstream bottleneck"
   },
   "status": "observed",
+  "group": {
+    "id": "rare_earth_magnets",
+    "position": 3
+  },
   "sources": [
     "S08",
     "P06"

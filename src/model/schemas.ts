@@ -5,6 +5,7 @@ import {
   ENTITY_KINDS,
   EVENT_RECORD_TYPES,
   EVIDENCE_LEVELS,
+  EXPOSURE_GROUPS,
   EXPOSURE_STATUSES,
   HYPOTHESIS_PRIORITIES,
   HYPOTHESIS_STATUSES,
@@ -410,6 +411,24 @@ export const Exposure = z.strictObject({
   status: z
     .enum(EXPOSURE_STATUSES)
     .describe("observed value or planned target. Definitions: vocabulary.json#/exposure_statuses."),
+  /** B19: editorial grouping (supply chain stage or before/after pair); absent when none. */
+  group: z
+    .strictObject({
+      id: z
+        .enum(EXPOSURE_GROUPS)
+        .describe("Editorial group. Definitions and kind: vocabulary.json#/exposure_groups."),
+      position: z
+        .number()
+        .int()
+        .positive()
+        .describe(
+          "Order within the group: stage in a supply chain (1 = upstream) or display order in a before/after group. An editorial sequence, not a measure.",
+        ),
+    })
+    .optional()
+    .describe(
+      "Editorial grouping of exposures: a supply chain or a before/after comparison. Adds no value, period or causal link. Absent when the exposure belongs to no group.",
+    ),
   sources: sourceRefs,
   review,
   provenance,

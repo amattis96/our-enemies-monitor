@@ -255,6 +255,27 @@ export const MEASURE_QUALIFIERS = ["exact", "approx", "more_than", "less_than", 
 /** `target`: planned or programmed values (e.g. IRIS² 2030), not observations. */
 export const EXPOSURE_STATUSES = ["observed", "target"] as const;
 
+/**
+ * B19 (FABLE C §§5.3, 8.3): editorial groupings of exposures. The kind fixes
+ * how a group is read: `supply_chain` orders consecutive stages of one chain
+ * (position 1 = upstream); `before_after` groups records whose two measures
+ * are the same quantity before and after, in measure order. A grouping is a
+ * reading aid, not a measure: it adds no value, period or causal link.
+ */
+export const EXPOSURE_GROUP_KINDS = ["supply_chain", "before_after"] as const;
+export type ExposureGroupKind = (typeof EXPOSURE_GROUP_KINDS)[number];
+
+export const EXPOSURE_GROUP_KIND = {
+  rare_earth_magnets: "supply_chain",
+  eu_gas: "before_after",
+} as const satisfies Record<string, ExposureGroupKind>;
+
+export type ExposureGroup = keyof typeof EXPOSURE_GROUP_KIND;
+export const EXPOSURE_GROUPS = Object.keys(EXPOSURE_GROUP_KIND) as [
+  ExposureGroup,
+  ...ExposureGroup[],
+];
+
 export const TRANSLATION_STATUSES = ["machine", "reviewed"] as const;
 
 export const LANGUAGES = ["it", "en"] as const;

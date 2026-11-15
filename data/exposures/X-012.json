@@ -41,6 +41,10 @@
     "en": "New dependence on global prices and transport"
   },
   "status": "observed",
+  "group": {
+    "id": "eu_gas",
+    "position": 2
+  },
   "sources": [
     "S08"
   ],

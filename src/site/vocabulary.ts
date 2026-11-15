@@ -8,6 +8,8 @@ import {
   EVIDENCE_LEVEL_LABELS,
   EVIDENCE_LEVELS,
   type EvidenceLevel,
+  EXPOSURE_GROUP_KIND,
+  EXPOSURE_GROUPS,
   type EXPOSURE_STATUSES,
   HYPOTHESIS_PRIORITIES,
   HYPOTHESIS_STATUSES,
@@ -29,6 +31,11 @@ import {
   type TIMELINE_STATUSES,
   TRANSLATION_STATUSES,
 } from "../model/index.ts";
+import {
+  EXPOSURE_GROUP_KIND_DEFINITIONS,
+  EXPOSURE_GROUP_KIND_LABELS,
+  EXPOSURE_GROUP_LABELS,
+} from "./dependencies.ts";
 import {
   ENTITY_KIND_LABELS,
   EVIDENCE_STATUS_LABELS,
@@ -448,6 +455,13 @@ export function buildVocabulary() {
         },
       },
     } satisfies Record<(typeof EXPOSURE_STATUSES)[number], Entry>,
+    exposure_groups: pick(EXPOSURE_GROUPS, (group) => ({
+      label: EXPOSURE_GROUP_LABELS[group],
+      kind: EXPOSURE_GROUP_KIND[group],
+      kind_label: EXPOSURE_GROUP_KIND_LABELS[EXPOSURE_GROUP_KIND[group]],
+      definition: EXPOSURE_GROUP_KIND_DEFINITIONS[EXPOSURE_GROUP_KIND[group]],
+      must_not_read_as: ["measure", "causal_link"],
+    })),
     measure_units: {
       percent: { label: { it: "percentuale", en: "percent" } },
       eur_billion: { label: { it: "miliardi di euro", en: "billion euro" } },
