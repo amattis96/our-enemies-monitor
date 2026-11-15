@@ -58,7 +58,9 @@ jobs:
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          OWNER: ${{ vars.MAINTAINER_LOGIN || github.repository_owner }}
+          # Optional comma-separated repository variable, distinct from the waiver
+          # identity. Unset: the maintainer/owner, which cannot approve its own PR.
+          REVIEWERS: ${{ vars.ARTICLE_REVIEWERS || vars.MAINTAINER_LOGIN || github.repository_owner }}
           BASE_REF: ${{ github.event.pull_request.base.ref }}
         run: pnpm check:article-review
       - name: Evidence diff

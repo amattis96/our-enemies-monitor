@@ -127,6 +127,21 @@ describe("workflow contract", () => {
     expect(read("evidence-diff.yml")).toContain("vars.MAINTAINER_LOGIN || github.repository_owner");
   });
 
+  it("keeps the article reviewer list separate from the waiver identity", () => {
+    const wf = workflow("evidence-diff.yml");
+    const steps = wf.jobs["evidence-diff"]?.steps as {
+      name?: string;
+      env?: Record<string, string>;
+    }[];
+    const step = (name: string) => steps.find((s) => s.name === name)?.env ?? {};
+    const review = step("Editorial approval");
+    expect(review.REVIEWERS).toContain("vars.ARTICLE_REVIEWERS");
+    expect(review.REVIEWERS).toContain("github.repository_owner");
+    expect(review.OWNER).toBeUndefined();
+    expect(JSON.stringify(step("Maintainer waiver"))).not.toContain("ARTICLE_REVIEWERS");
+    expect(JSON.stringify(step("Evidence diff"))).not.toContain("ARTICLE_REVIEWERS");
+  });
+
   it("pins every action to a full commit SHA with a version comment", () => {
     for (const file of names) {
       const uses = read(file)

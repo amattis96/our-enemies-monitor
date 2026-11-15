@@ -247,7 +247,7 @@ with a missing or unregistered `primary_url` are excluded. `imported_unreviewed`
 remain provisionally visible, **not** as verified facts. Never change a review
 status just to force publication: validate the specific claim first. Run
 `pnpm audit:publication` to list missing and unregistered primary links separately and review counts. The name/domain heuristic warns about possible person misclassification without blocking or reclassifying entities; the current four evidence level/status pairs are provisional validation rules pending B18.
-Unchanged imported hypotheses are projected from their own Fonte_07 row: only public event links and still-cited original sources remain, and all notes are omitted. Changed unreviewed legacy hypotheses are withheld. The authoritative publication report supplies counts and the public `withheld.json` registry (ID, collection, generic reasons only); withheld detail pages remain 404. Canonical data remains available in Git even when withheld from the portal.
+Unchanged imported hypotheses are projected from their own Fonte_07 row: only event links that are both public and present in the original row, and still-cited original sources, remain, and all notes are omitted. Changed unreviewed legacy hypotheses are withheld. The authoritative publication report supplies counts and the public `withheld.json` registry (ID, collection, generic reasons only); withheld detail pages remain 404. Canonical data remains available in Git even when withheld from the portal.
 The structured M5 audit in `docs/audit/M5_2026-11-12.json` records source
 matching, the disposition proposed for every Fonte_09 candidate, and atomic
 claim-level support/limitations. Run `pnpm audit:m5` as part of `pnpm check`.
@@ -275,8 +275,16 @@ required `check:article-review` CI step checks a distinct human maintainer's
 review on the exact PR HEAD. The review must contain `Publication-Approval:`
 followed by all affected article IDs, comma-separated; for promoted or modified
 reviewed English also include a separate `Translation-Approval:` line. A
-front-matter assertion or generic code approval is insufficient. The PR author
-cannot self-approve, so an owner-authored PR needs another authorized reviewer.
+front-matter assertion or generic code approval is insufficient. The accepted
+reviewers are the logins in the repository variable `ARTICLE_REVIEWERS`
+(comma-separated; when unset it falls back to `MAINTAINER_LOGIN`, then the
+repository owner), kept separate from the `evidence-waiver` identity. The PR
+author cannot self-approve, and agents often open PRs from the owner account,
+so a second human reviewer account must be listed in `ARTICLE_REVIEWERS`. The
+gate runs the PR head's own code (inherited B02 limit): review of
+`.github/**`, `src/cli/check-*.ts`, `src/pipeline/article-*.ts` and
+`package.json` by a code owner (`.github/CODEOWNERS` lists them under the
+maintainer) or a ruleset is a maintainer prerequisite, not enforced here.
 This check is independent of B02's evidence waiver and leaves the strict diff
 unchanged. Agents do not approve or set human review statuses. Mention warnings
 from `validate:articles` request editorial investigation; do not infer roles

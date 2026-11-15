@@ -670,14 +670,24 @@ contributor / research agent          maintainer
 `pnpm check:article-review` is a read-only CI check in the required
 `evidence-diff` job, independent of the B02 waiver and strict diff. It compares
 article changes against the same merge base and checks the live PR HEAD before
-and after paginated reviews. A distinct human maintainer's latest decisive
-review must approve the exact HEAD and contain `Publication-Approval: ART-0001`
-with every affected ID. Promotion or modification of reviewed English requires
+and after paginated reviews. The latest decisive review of a distinct human
+reviewer listed in the repository variable `ARTICLE_REVIEWERS` (comma-separated;
+unset falls back to `MAINTAINER_LOGIN`, then the repository owner; independent
+of the waiver identity) must approve the exact HEAD and contain
+`Publication-Approval: ART-0001` with every affected ID; a listed reviewer's
+latest `CHANGES_REQUESTED` blocks, and the PR author is never accepted even if
+listed. Promotion or modification of reviewed English requires
 `Translation-Approval: ART-0001` as well. API errors, malformed data and stale
-HEAD fail closed; generic approval and front-matter claims do not count. The
-owner cannot approve their own PR. This check runs PR code with read-only
-permissions; identity separation and repository protection remain operational
-dependencies, and the maintainer must run the live canary. Marker lines must be at the top level, outside Markdown code fences and quotations.
+HEAD fail closed; generic approval and front-matter claims do not count. Because the PR author
+cannot self-approve and agents often author PRs from the owner account, a
+second human reviewer account must be listed in `ARTICLE_REVIEWERS`. This check
+runs the PR head's own code with read-only permissions (inherited B02 limit):
+code-owner or ruleset review of `.github/**`, `src/cli/check-*.ts`,
+`src/pipeline/article-*.ts` and `package.json` is a maintainer prerequisite
+(`.github/CODEOWNERS` already assigns `.github/`, `src/` and `package.json` to
+the maintainer; no ruleset is created here). Identity separation and repository
+protection remain operational dependencies, and the maintainer must run the
+live canary. Marker lines must be at the top level, outside Markdown code fences and quotations.
 
 `validateArticleFiles` emits a warning when no event, relationship or
 hypothesis is linked and a complete IT/EN entity name or unambiguous ID occurs

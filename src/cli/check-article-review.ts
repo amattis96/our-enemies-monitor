@@ -8,18 +8,22 @@ import { collectChanges, git, mergeBase, showAt } from "../pipeline/changes.ts";
 import { REPO_ROOT } from "../pipeline/paths.ts";
 
 try {
-  const { REPO, PR_NUMBER, HEAD_SHA, OWNER, BASE_REF } = process.env;
+  const { REPO, PR_NUMBER, HEAD_SHA, REVIEWERS, BASE_REF } = process.env;
   if (
     !REPO ||
     !/^[\w.-]+\/[\w.-]+$/.test(REPO) ||
     !PR_NUMBER ||
     !/^\d+$/.test(PR_NUMBER) ||
     !HEAD_SHA ||
-    !OWNER ||
+    !REVIEWERS ||
     !BASE_REF ||
     !/^[a-f0-9]{40}$/i.test(HEAD_SHA)
   )
     throw new Error("Missing or invalid CI environment");
+  // Comma-separated GitHub logins; malformed or empty entries fail closed.
+  const reviewers = REVIEWERS.split(",").map((r) => r.trim());
+  if (!reviewers.every((r) => /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(r)))
+    throw new Error("Invalid reviewer list");
   const api = (endpoint: string): unknown =>
     JSON.parse(
       execFileSync("gh", ["api", endpoint], {
@@ -75,7 +79,7 @@ try {
     reviews.push(...batch);
     if (batch.length < 100) break;
   }
-  const result = checkArticleReview(requirements, reviews, OWNER, author, HEAD_SHA);
+  const result = checkArticleReview(requirements, reviews, reviewers, author, HEAD_SHA);
   if (pr() !== author) throw new Error("PR author changed during review check");
   console.log(result);
 } catch (cause) {

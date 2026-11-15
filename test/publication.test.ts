@@ -224,6 +224,18 @@ describe("B05 hypothesis projection and withheld registry", () => {
     expect(JSON.stringify(copy)).toBe(snapshot);
     expect(publishedDataset(report.dataset)).toEqual(report.dataset);
   });
+  it("projects a legacy hypothesis only onto events present in its original row", () => {
+    const copy = structuredClone(raw);
+    const h = copy.hypotheses.find((r) => r.id === "H15");
+    if (!h) throw new Error("missing H15");
+    const publicEvent = publicationReport(raw).dataset.events.find((e) => !h.events.includes(e.id));
+    if (!publicEvent) throw new Error("missing public event");
+    h.events.push(publicEvent.id);
+    const projected = publicationReport(copy).dataset.hypotheses.find((r) => r.id === h.id);
+    expect(projected).toBeDefined();
+    expect(projected?.events).not.toContain(publicEvent.id);
+    expect(projected?.events).toEqual(h.events.filter((id) => id !== publicEvent.id));
+  });
   it("withholds changed historical meaning and preserves removed or invalid references", () => {
     const copy = structuredClone(raw);
     const h = copy.hypotheses.find((r) => r.id === "H08");

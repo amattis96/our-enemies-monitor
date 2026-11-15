@@ -19,7 +19,7 @@ const run = (mode: string, sha = head) =>
       REPO: "test/repo",
       PR_NUMBER: "1",
       HEAD_SHA: sha,
-      OWNER: "owner",
+      REVIEWERS: "someone, owner",
       BASE_REF: "main",
       TEST_MODE: mode,
       COUNTER: `${dir}/counter`,

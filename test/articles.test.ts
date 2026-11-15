@@ -410,6 +410,6 @@ describe("editorial missing-link diagnostics", () => {
     expect(articles.map((a) => a.id)).toEqual(expect.arrayContaining(["ART-0001", "ART-0002"]));
     const backlinks = articleBacklinks(articles);
     expect(backlinks.get("TL-0064")?.map((a) => a.id)).toContain("ART-0002");
-    expect(backlinks.get("H02")?.map((a) => a.id)).toContain("ART-0002");
+    expect(backlinks.get("H02")?.map((a) => a.id) ?? []).not.toContain("ART-0002");
   });
 });

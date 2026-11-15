@@ -15,11 +15,17 @@ type Review = {
 export function checkArticleReview(
   requirements: ApprovalRequirements,
   raw: unknown,
-  owner: string,
+  reviewers: string[],
   author: string,
   head: string,
 ): string {
-  if (!owner || !author || !/^[a-f0-9]{40}$/i.test(head) || !Array.isArray(raw))
+  if (
+    !reviewers.length ||
+    reviewers.some((r) => !r) ||
+    !author ||
+    !/^[a-f0-9]{40}$/i.test(head) ||
+    !Array.isArray(raw)
+  )
     throw new Error("Invalid PR identity, HEAD or reviews payload");
   const reviews: Review[] = raw.map((v: unknown) => {
     if (!v || typeof v !== "object") throw new Error("Malformed review");
@@ -45,22 +51,42 @@ export function checkArticleReview(
   });
   if (!requirements.publication.length && !requirements.translation.length)
     return "No editorial approval required.";
-  if (owner.toLowerCase() === author.toLowerCase())
-    throw new Error("The PR author cannot be the required maintainer reviewer");
-  const decisive = reviews
+  // The PR author can never review their own PR, even when listed.
+  const allowed = new Set(
+    reviewers.map((r) => r.toLowerCase()).filter((r) => r !== author.toLowerCase()),
+  );
+  if (!allowed.size) throw new Error("No listed reviewer other than the PR author");
+  const latest = new Map<string, Review>();
+  for (const r of reviews
     .filter(
       (r) =>
-        r.user.login.toLowerCase() === owner.toLowerCase() &&
+        allowed.has(r.user.login.toLowerCase()) &&
         r.user.type === "User" &&
         ["APPROVED", "CHANGES_REQUESTED", "DISMISSED"].includes(r.state),
     )
     .sort(
       (a, b) =>
-        Date.parse(b.submitted_at as string) - Date.parse(a.submitted_at as string) || b.id - a.id,
-    );
-  const review = decisive[0];
-  if (review?.state !== "APPROVED" || review.commit_id !== head)
-    throw new Error("No current decisive maintainer approval on the exact HEAD");
+        Date.parse(a.submitted_at as string) - Date.parse(b.submitted_at as string) || a.id - b.id,
+    ))
+    latest.set(r.user.login.toLowerCase(), r);
+  if ([...latest.values()].some((r) => r.state === "CHANGES_REQUESTED"))
+    throw new Error("A listed reviewer has requested changes");
+  const approvals = [...latest.values()].filter(
+    (r) => r.state === "APPROVED" && r.commit_id === head,
+  );
+  if (!approvals.length) throw new Error("No current decisive reviewer approval on the exact HEAD");
+  const failures: string[] = [];
+  for (const review of approvals) {
+    try {
+      return approvedBy(requirements, review, head);
+    } catch (cause) {
+      failures.push((cause as Error).message);
+    }
+  }
+  throw new Error(failures.join("; "));
+}
+
+function approvedBy(requirements: ApprovalRequirements, review: Review, head: string): string {
   const body = review.body ?? "";
   const events = postprocess(
     parse()

@@ -57,6 +57,10 @@ function originalHypothesis(h: Hypothesis) {
     typeof o.source_docs === "string";
   return {
     same,
+    events: (o.timeline_ids ?? "")
+      .split(";")
+      .map((s) => s.trim())
+      .filter(Boolean),
     sources: (o.source_docs ?? "")
       .split(/[,;]/)
       .map((s) => s.trim())
@@ -136,7 +140,11 @@ export function publicationReport(
     if (h.review.status === "imported_unreviewed" && !original?.same)
       add(h.id, "legacy_hypothesis_changed");
     // Unknown references are not silently projected away; validation must reject them.
-    const events = h.events.filter((id) => eventIds.has(id) || !allEventIds.has(id));
+    // A projected legacy hypothesis keeps only events that are public and in its original row.
+    const events = h.events.filter(
+      (id) =>
+        !allEventIds.has(id) || (eventIds.has(id) && (!original || original.events.includes(id))),
+    );
     const validEvents = events.every((id) => eventIds.has(id));
     if (!validEvents) add(h.id, "withheld_event");
     if (
