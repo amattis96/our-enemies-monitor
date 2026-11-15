@@ -121,6 +121,9 @@ describe("workflow contract", () => {
     expect(expire?.permissions).toEqual({ issues: "write" });
     expect(JSON.stringify(expire?.steps)).not.toMatch(/checkout|pnpm|setup-node/);
     expect(String(expire?.if)).toContain("synchronize");
+    expect(String(expire?.if)).toContain("github.event_name == 'pull_request'");
+    expect(String(expire?.if)).toContain("contains(github.event.pull_request.labels.*.name, 'evidence-waiver')");
+    expect(JSON.stringify(expire?.steps)).toContain("HTTP 404");
   });
 
   it("lets the maintainer login be overridden by a repository variable", () => {

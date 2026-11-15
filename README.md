@@ -167,7 +167,10 @@ Markdown files automatically configure the ChatGPT scheduler.
 cannot use admin bypass, `evidence-waiver`, direct pushes, human APPROVE
 reviews or automatic promotion to `reviewed`. C and D use the same GitHub
 account today, so their separate reviews are **not independent GitHub
-identities**. Code-owner review is not required by the current classic
+identities**. D can update a stale additions-only research PR by
+carrying forward **identical reviewed Git blobs** to the current main
+and running fresh CI; content changes or ingest-data edits still
+require C to review again. Code-owner review is not required by the current classic
 protection; control-plane changes therefore remain maintainer-only.
 The mandatory GitHub Actions contexts are `check` and `evidence-diff`
 on an up-to-date PR. The next task never assumes its predecessor has finished.
