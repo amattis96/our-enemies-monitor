@@ -205,6 +205,56 @@ mention into a relationship is a separate, human-approved data change under the
 usual evidence rules. A mention is a candidate for review, not a missing edge.
 Dated Markdown reports are kept in `docs/audit/mentions/`.
 
+## Forbidden inferences and counter-inference audit (B15)
+
+`docs/audit/inferences/registry.v1.json` (schema and checks in
+`src/editorial/inferences.ts`) is a versioned editorial registry, not a data
+collection. It holds two lists:
+
+- `forbidden_inferences` (`FI-###`): an inference the corpus explicitly does not
+  support, with the canonical node pairs it concerns (empty when the source names
+  no canonical node), a bilingual statement, who declared it (`declared_by`:
+  a cited `source` record and/or the canonical `record` whose text carries the
+  declaration, or the `maintainer`), linked hypotheses and an optional `lifted`
+  block. It transcribes the ten lines of Fonte_09 §8.3 (nine node pairs) and the
+  chain forbidden by `H06`.
+- `caveat_classifications`: one entry per relationship whose Italian caveat
+  contains a negation (the lexical detector shared with the B12 E4 measure),
+  with one or more categories — `claim_negation`, `transitivity_limit`,
+  `denial`, `not_established`, `reported_position` (CONSOLIDATED_FINDINGS
+  §3.5) or `scope_precision` — and a separate per-relationship
+  `interrupts_composition` judgement. A negation does not by itself make an
+  edge non-traversable; the criterion is in
+  `docs/audit/fable-2026-11/blocks/B15_ANALYSIS.md` §3.
+
+Authority rule: an inference is forbidden only when a cited source or the
+maintainer declares it; nothing expires automatically; an entry lapses only
+through `lifted` (maintainer, with the new source). Agents add `state:
+proposta` entries only; `revisionata` requires `reviewer` and `reviewed_on`.
+`pnpm validate` checks the registry against the canonical data: unknown IDs,
+duplicates, review-state consistency, maintainer declarations and lifts that
+are not `revisionata`, and — as an error — any relationship that directly joins
+a pair forbidden by a `revisionata` entry still in force (lift the entry or drop
+the relationship); the same edge on a `proposta` entry, and a negative caveat
+without a classification, are warnings.
+
+At build time `counterInferenceAudit` (`src/site/inferences.ts`) takes the
+public evidence graph (`graph.json` edges, undirected, participation included),
+computes the deterministic shortest path for every public hypothesis pair and
+every public forbidden pair, and flags the path when it crosses an interrupting
+relationship or joins a forbidden pair. Flagged paths are annotated on the
+hypothesis pages (both languages, «Limiti di inferenza» / «Inference limits»)
+and published in `data/v1/inferences.json` with the categories, the rules and
+the public part of the registry. Entries that reference a withheld record
+(including every Fonte_09 entry, whose source `S09` is `needs_review`) are
+counted in `forbidden_inferences_not_public`, never listed. Unreviewed
+(`proposta`) entries are also kept private when they name no canonical node or
+when their pairs or linked hypotheses touch a `person` entity; the page marks
+each remaining proposal and step classification «proposta non rivista».
+`forbidden_inferences_not_public` and the reviewed count in `review_note` are
+computed over the full registry and exposed as counts only, as in
+`withheld.json`.
+
 ## Data model
 
 All records are validated by the Zod schemas in `src/model/`. Every file is
@@ -527,6 +577,9 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    Markdown from Fonte_12 on without a sidecar, sidecars not yet ingested.
    Files that are neither `*.proposals.json` nor `Fonte_*` Markdown (e.g. a
    README) are ignored.
+13. Forbidden-inference registry (`pnpm validate`, B15): schema, known IDs,
+   review states, and no relationship directly joining a forbidden pair still
+   in force (error); a negative caveat without a classification is a warning.
 
 ## Website
 
@@ -546,7 +599,7 @@ index per language from `<html lang>`.
 | `/network/hypotheses/` | Separate hypotheses board over `/data/v1/hypotheses-graph.json`, red dash-dot threads only, labeled as non-factual |
 | `/atlas/` | One map with Europe/World switch, zoom and pan, country panel (`#CODE` deep link), "outside the map" tray of supranational geographies; sortable country table separating events located in the country from the literal roles of the state in events |
 | `/dependencies/` | Exposure cards: measures with qualifier and period, what each value measures, consequence; no cross-comparison chart and no index |
-| `/hypotheses/`, `/hypotheses/<id>/` | Register by priority, detail with limits and evidence needed |
+| `/hypotheses/`, `/hypotheses/<id>/` | Register by priority, detail with limits and evidence needed; «Inference limits» section with the flagged shortest public path(s) and linked forbidden inferences (B15) |
 | `/sources/`, `/sources/<id>/` | Corpus documents and references, URLs, repository files, citing records |
 | `/methodology/` | Evidence levels, principles, relation groups, person rule, dates, classifications, languages, limits |
 | `/data/` | Open-data downloads with size and SHA-256, format notes, rebuild instructions |
@@ -561,7 +614,7 @@ references and linked records with absolute URLs).
 
 Language-neutral endpoints under `/data/v1/`: `graph.json`,
 `hypotheses-graph.json`, `withheld.json`, `index.json` (catalog), `vocabulary.json`
-(reading contract), one file per collection, `all.json`,
+(reading contract), `inferences.json` (B15 counter-inference audit), one file per collection, `all.json`,
 `schemas/<collection>.schema.json` (plus `schemas/proposals.schema.json`, the
 M6 sidecar contract) and `manifest.json` (export version,
 commit, commit date, counts, size and SHA-256 of every file; no build

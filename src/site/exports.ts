@@ -2,9 +2,11 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
+import { type InferenceRegistry, readInferenceRegistry } from "../editorial/inferences.ts";
 import { COLLECTION_NAMES, type Dataset } from "../model/index.ts";
 import { REPO_ROOT, SCHEMAS_DIR } from "../pipeline/paths.ts";
 import { summarize } from "../pipeline/validate.ts";
+import { counterInferenceAudit } from "./inferences.ts";
 import { type PublicationReport, publicationReport } from "./publication.ts";
 import { buildReadModel, evidenceGraph, hypothesisGraph } from "./read-model.ts";
 import { type ArchivedResearch, archivedResearch } from "./research.ts";
@@ -102,6 +104,7 @@ export function buildCatalog(
       { path: "graph.json", schema: null },
       { path: "hypotheses-graph.json", schema: null },
       { path: "withheld.json", schema: null },
+      { path: "inferences.json", schema: null },
     ],
   };
 }
@@ -112,6 +115,7 @@ export function exportFiles(
   input: Dataset | PublicationReport,
   commit: ExportCommit = exportCommit(),
   archive: readonly ArchivedResearch[] = archivedResearch(),
+  registry: InferenceRegistry = readInferenceRegistry(),
 ): ExportFile[] {
   const report = reportOf(input);
   const dataset = report.dataset;
@@ -139,6 +143,7 @@ export function exportFiles(
     all,
     ...graphs,
     { path: "withheld.json", text: `${JSON.stringify(report.withheld, null, 2)}\n` },
+    { path: "inferences.json", text: json(counterInferenceAudit(registry, model)) },
     ...schemas,
   ];
 }

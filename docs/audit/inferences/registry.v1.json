@@ -1,0 +1,866 @@
+{
+  "registry": "forbidden-inferences",
+  "version": 1,
+  "as_of_commit": "026c5ab",
+  "notes": [
+    "Regola di autorità (B15, adottata in esecuzione non sorvegliata, da confermare): un'inferenza è vietata solo se la dichiara una fonte citata (source o record canonico) o il manutentore; nessuna scadenza automatica; la voce decade solo con `lifted`, impostato dal manutentore con la fonte nuova. Gli agenti aggiungono solo voci `proposta`.",
+    "Tutte le voci sono `proposta`: trascrizioni e classificazioni di un agente, ricavate dal testo dei record e di Fonte_09 §8.3, senza fonti esterne. Il criterio è in docs/audit/fable-2026-11/blocks/B15_ANALYSIS.md §3.",
+    "`interrupts_composition` è un giudizio per relazione, non una conseguenza della categoria né della presenza della parola «non»: vale true quando il caveat dice che la relazione non autorizza l'affermazione che un cammino attraverso di essa produrrebbe (claim negato, estensione ad altri membri, episodi o a un legame più forte, oppure elemento mancante — autore, mandante, dolo, denaro, effetto — che il cammino fornirebbe).",
+    "Per confermare una voce: `state` → `revisionata`, con `reviewer` e `reviewed_on`. Non cancellare né riutilizzare ID `FI-`."
+  ],
+  "forbidden_inferences": [
+    {
+      "id": "FI-001",
+      "pairs": [["IRGC", "NONAME057"]],
+      "statement": {
+        "it": "Il corpus non sostiene che l'IRGC comandi NoName057(16).",
+        "en": "The corpus does not support that the IRGC commands NoName057(16)."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-002",
+      "pairs": [["GRU", "NONAME057"]],
+      "statement": {
+        "it": "Il corpus non sostiene che il GRU abbia comandato NoName057(16) negli attacchi descritti da Fonte_09.",
+        "en": "The corpus does not support that the GRU commanded NoName057(16) in the attacks described by Fonte_09."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-003",
+      "pairs": [],
+      "statement": {
+        "it": "Il corpus non sostiene che l'IRGC comandi Z-Pentest.",
+        "en": "The corpus does not support that the IRGC commands Z-Pentest."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": "Nessun nodo canonico per Z-Pentest: la voce resta senza coppia.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-004",
+      "pairs": [["RU", "EXT-010"]],
+      "statement": {
+        "it": "Il corpus non sostiene che lo Stato russo abbia ordinato l'intrusione informatica in BBT SE.",
+        "en": "The corpus does not support that the Russian state ordered the BBT SE intrusion."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-005",
+      "pairs": [["RU", "EXT-019"]],
+      "statement": {
+        "it": "Il corpus non sostiene che lo Stato russo abbia ordinato il danneggiamento dei cavi attribuito alla Fitburg.",
+        "en": "The corpus does not support that the Russian state ordered the cable damage attributed to the Fitburg."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-006",
+      "pairs": [["IR", "EXT-006"]],
+      "statement": {
+        "it": "Il corpus non sostiene che l'Iran abbia comandato tutti gli attacchi alla refrigerazione nell'UE.",
+        "en": "The corpus does not support that Iran commanded all the refrigeration attacks in the EU."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-007",
+      "pairs": [["RU", "EXT-012"], ["RU", "EXT-013"]],
+      "statement": {
+        "it": "Il corpus non sostiene che lo Stato russo abbia comandato tutti gli allarmi bomba di novembre.",
+        "en": "The corpus does not support that the Russian state commanded all the November bomb alarms."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": "Una riga di Fonte_09 mappata su due eventi (voli e scuole), come in test/fonte09.test.ts.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-008",
+      "pairs": [["STORM", "EXT-020"]],
+      "statement": {
+        "it": "Il corpus non sostiene che Storm-1516 abbia causato il risultato delle elezioni USA.",
+        "en": "The corpus does not support that Storm-1516 caused the US election result."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-009",
+      "pairs": [],
+      "statement": {
+        "it": "Il corpus non sostiene che i Democratici USA abbiano già abrogato le deroghe alle sanzioni di ottobre.",
+        "en": "The corpus does not support that the US Democrats have already repealed the October sanctions waivers."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": "Nessun nodo canonico per i Democratici USA: la voce resta senza coppia.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-010",
+      "pairs": [["HAYI", "SHAHIDKAVEH"]],
+      "statement": {
+        "it": "Il corpus non sostiene che HAYI coincida con SHAHID KAVEH.",
+        "en": "The corpus does not support that HAYI coincides with SHAHID KAVEH."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": "S09",
+        "record": null,
+        "locator": "Fonte_09 §8.3 (Archi vietati allo stato attuale)"
+      },
+      "hypotheses": [],
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    },
+    {
+      "id": "FI-011",
+      "pairs": [["KERIMOV", "HAL9001"], ["KERIMOV", "SPACEX"]],
+      "statement": {
+        "it": "Il corpus non contiene prove di fondi Kerimov entrati nell'investimento HAL9001 o in SpaceX; la catena per semplice vicinanza Sobachevskiy–GVA è vietata.",
+        "en": "The corpus contains no evidence of Kerimov funds entering the HAL9001 or SpaceX investment; the chain based on mere Sobachevskiy–GVA proximity is not allowed."
+      },
+      "declared_by": {
+        "kind": "source",
+        "source": null,
+        "record": "H06",
+        "locator": "H06, current_limit («vietata la catena per semplice vicinanza Sob-GVA»)"
+      },
+      "hypotheses": ["H06"],
+      "note": "Coerente con il caveat di G-0087 («Non dimostra denaro Kerimov verso SpaceX»).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null,
+      "lifted": null
+    }
+  ],
+  "caveat_classifications": [
+    {
+      "relationship": "G-0011",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0023",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Effetto sul voto individuale non quantificabile: un cammino non può fornirlo.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0024",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0032",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0033",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0034",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0035",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0040",
+      "categories": ["not_established"],
+      "interrupts_composition": false,
+      "note": "Stato giuridico della relazione stessa (nessuna condanna), non un limite di composizione.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0045",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0046",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0047",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Committente non identificato: è l'elemento che un cammino fornirebbe.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0051",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Mandante non identificato: è l'elemento che un cammino fornirebbe.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0053",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Clienti non identificati: è l'elemento che un cammino fornirebbe.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0054",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0055",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0065",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0066",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0072",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0077",
+      "categories": ["claim_negation", "not_established"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0078",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0084",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": "Quota nel fondo non equivale a controllo.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0087",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0090",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0091",
+      "categories": ["scope_precision"],
+      "interrupts_composition": false,
+      "note": "Precisione temporale (2022 contro 2026).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0098",
+      "categories": ["scope_precision"],
+      "interrupts_composition": false,
+      "note": "Precisione di portata (lavorazione contro origine mineraria).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0100",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0104",
+      "categories": ["scope_precision"],
+      "interrupts_composition": false,
+      "note": "Precisione temporale (programma non ancora operativo).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0109",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0112",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0395",
+      "categories": ["reported_position", "transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0400",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0401",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0404",
+      "categories": ["not_established"],
+      "interrupts_composition": false,
+      "note": "Stato procedurale di un bersaglio, non un limite di composizione.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0405",
+      "categories": ["reported_position", "not_established"],
+      "interrupts_composition": true,
+      "note": "Autore non accertato (ipotesi di polizia).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0409",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0410",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0415",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Effetto sul voto non dimostrato: un cammino non può fornirlo.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0417",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0419",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Dolo non provato: è l'elemento che un cammino fornirebbe.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0420",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Dolo non provato: è l'elemento che un cammino fornirebbe.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0421",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Mandato non provato: è l'elemento che un cammino fornirebbe.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0422",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0424",
+      "categories": ["scope_precision"],
+      "interrupts_composition": false,
+      "note": "Precisione di portata (le deroghe non abrogano le sanzioni precedenti).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0427",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0429",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0439",
+      "categories": ["scope_precision"],
+      "interrupts_composition": false,
+      "note": "La negazione fa parte della descrizione («canali anche non cinesi»).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0442",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0443",
+      "categories": ["claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0447",
+      "categories": ["reported_position", "denial", "transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0448",
+      "categories": ["reported_position", "claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0449",
+      "categories": ["reported_position", "claim_negation"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0450",
+      "categories": ["reported_position", "not_established"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0451",
+      "categories": ["not_established"],
+      "interrupts_composition": true,
+      "note": "Responsabilità non accertata (atto d'accusa).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0452",
+      "categories": ["not_established", "denial", "reported_position"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0453",
+      "categories": ["not_established", "denial", "reported_position"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0454",
+      "categories": ["not_established", "denial", "reported_position"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0455",
+      "categories": ["claim_negation", "denial"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0456",
+      "categories": ["claim_negation", "denial"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0457",
+      "categories": ["reported_position", "not_established"],
+      "interrupts_composition": false,
+      "note": "Stato di un risultato (proiezione non certificata), non un limite di composizione.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0458",
+      "categories": ["transitivity_limit"],
+      "interrupts_composition": true,
+      "note": null,
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0459",
+      "categories": ["not_established"],
+      "interrupts_composition": false,
+      "note": "Stato di un atto (accordo politico, sanzione non in vigore), non un limite di composizione.",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    },
+    {
+      "relationship": "G-0460",
+      "categories": ["scope_precision"],
+      "interrupts_composition": false,
+      "note": "Precisione di portata (impegni, non pagamenti).",
+      "state": "proposta",
+      "proposed_by": "Claude Opus 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "reviewer": null,
+      "reviewed_on": null
+    }
+  ]
+}

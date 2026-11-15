@@ -41,6 +41,11 @@ const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
       {c(
         " è il catalogo, con lingua canonica, conteggi pubblicati e trattenuti e tre date distinte: commit, ultimo evento pubblico, ultima fonte archiviata.",
         " is the catalog, with canonical language, published and withheld counts and three distinct dates: commit, latest public event, latest archived source.",
+      )}{" "}
+      <a href={assetHref("data/v1/inferences.json")}>inferences.json</a>
+      {c(
+        " elenca le inferenze vietate pubbliche, la classificazione dei caveat negativi e i cammini del grafo che attraversano un limite di composizione, con lo stato di revisione di ogni voce.",
+        " lists the public forbidden inferences, the classification of negative caveats and the graph paths that cross a composition limit, with the review state of each entry.",
       )}
     </p>
   </div>

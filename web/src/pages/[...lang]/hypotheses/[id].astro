@@ -6,8 +6,10 @@ import {
   PRIORITY_LABELS,
 } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf } from "../../../../../src/site/i18n.ts";
+import { annotationsFor, forbiddenFor } from "../../../../../src/site/inferences.ts";
 import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
 import EvidenceStamp from "../../../components/EvidenceStamp.astro";
+import InferencePath from "../../../components/InferencePath.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import RecordFooter from "../../../components/RecordFooter.astro";
 import SourceRefs from "../../../components/SourceRefs.astro";
@@ -15,7 +17,7 @@ import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
 import Base from "../../../layouts/Base.astro";
 import { href } from "../../../lib/links.ts";
-import { getModel } from "../../../lib/model.ts";
+import { getInferenceAudit, getModel } from "../../../lib/model.ts";
 
 export function getStaticPaths() {
   return (["it", "en"] as const).flatMap((lang) =>
@@ -28,6 +30,7 @@ export function getStaticPaths() {
 const { hypothesis: h } = Astro.props as { hypothesis: Hypothesis };
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
+const audit = getInferenceAudit();
 ---
 
 <Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} searchable>
@@ -81,6 +84,7 @@ const c = (it: string, en: string) => choose(lang, it, en);
     <dt class="font-semibold">{c("Fonti del corpus", "Corpus sources")}</dt>
     <dd><SourceRefs ids={h.sources} lang={lang} /></dd>
   </dl>
+  <InferencePath annotations={annotationsFor(audit, h.id)} forbidden={forbiddenFor(audit, h.id)} lang={lang} />
   <ArticleBacklinks id={h.id} lang={lang} />
 
   <RecordFooter id={h.id} collection="hypotheses" review={h.review} provenance={h.provenance} lang={lang} />

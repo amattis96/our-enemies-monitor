@@ -1,4 +1,5 @@
-import type { Dataset, Relationship } from "../model/index.ts";
+import { isNegativeCaveat, NEGATION, PARTICIPATION_BOILERPLATE } from "../editorial/inferences.ts";
+import type { Dataset } from "../model/index.ts";
 import type { ExportFile } from "../site/exports.ts";
 import type { PublicationReport } from "../site/publication.ts";
 import { participationEdges, scanMentions } from "./mentions.ts";
@@ -13,15 +14,10 @@ import { participationEdges, scanMentions } from "./mentions.ts";
 
 export const BASELINE_VERSION = 1;
 
-/** Generic participation caveat added by the baseline import (not a negation). */
-const PARTICIPATION_BOILERPLATE = "Relazione di presenza/ruolo";
-const NEGATION = /(?<![\p{L}])(non|nessun[ao]?|né)(?![\p{L}])/iu;
 const CORPUS_SOURCE = /^S\d{2,3}$/;
 
-export function isNegativeCaveat(relation: Pick<Relationship, "caveat">): boolean {
-  const text = relation.caveat?.it ?? "";
-  return !text.startsWith(PARTICIPATION_BOILERPLATE) && NEGATION.test(text);
-}
+/** Shared with the B15 registry so both use the same lexical detector. */
+export { isNegativeCaveat };
 
 const byId = <T extends { id: string }>(a: T, b: T) => a.id.localeCompare(b.id);
 

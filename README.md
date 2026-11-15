@@ -140,7 +140,7 @@ pnpm benchmark:score <answers.json>  # grade model answers to the B1–B20 bench
 pnpm audit:mentions     # read-only queue of entity mentions without an edge (Markdown, or --format json)
 ```
 
-Read `data/v1/vocabulary.json` first: it defines evidence levels (kinds of basis, not a ranking), classes, statuses and reading rules R1–R5. `data/v1/index.json` is the catalog, with canonical language, published and withheld counts and three distinct freshness dates (commit, latest public event, latest archived source). The manifest lists public and withheld counts and hashes the minimal `withheld.json` registry (ID, collection and generic reasons); withheld detail pages remain 404. Unchanged provisional legacy hypotheses omit unreviewed notes and non-original citations, and link only public events. Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph.
+Read `data/v1/vocabulary.json` first: it defines evidence levels (kinds of basis, not a ranking), classes, statuses and reading rules R1–R5. `data/v1/index.json` is the catalog, with canonical language, published and withheld counts and three distinct freshness dates (commit, latest public event, latest archived source). The manifest lists public and withheld counts and hashes the minimal `withheld.json` registry (ID, collection and generic reasons); withheld detail pages remain 404. Unchanged provisional legacy hypotheses omit unreviewed notes and non-original citations, and link only public events. Both graph downloads are listed with byte sizes and SHA-256 hashes in the data catalog. Evidence graph edges retain the complete bilingual caveat or `null`; hypotheses remain in a separate graph. `data/v1/inferences.json` lists the public forbidden inferences, how each negative caveat is classified and the shortest graph paths between sensitive pairs that cross a composition limit; hypothesis pages show the same annotation (classifications proposed, pending maintainer review).
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 
@@ -206,6 +206,8 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [ ] Run the B1–B20 benchmark on at least one pinned external model and archive the scored result.
 - [x] Produce a read-only, reviewable queue of text–graph mentions without an edge (`pnpm audit:mentions`, `docs/audit/mentions/`).
 - [ ] Human review of the mention queue (outcomes `documented-role` / `context-only` / `false-positive` / `needs-evidence`).
+- [x] Register forbidden inferences and annotate graph paths that cross a negative caveat (`docs/audit/inferences/registry.v1.json`, `data/v1/inferences.json`).
+- [ ] Human review of the forbidden-inference registry and of the 62 caveat classifications.
 - [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
 - [x] Build the geographic atlas and strategic-dependency views (M3).

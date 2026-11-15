@@ -268,6 +268,18 @@ claim-level support/limitations. Run `pnpm audit:m5` as part of `pnpm check`.
 by agents, scripts or purely automatic checks. M5 source matching is not the
 same as an editor signing off on legal or factual responsibility.
 
+## Forbidden inferences (B15)
+
+`docs/audit/inferences/registry.v1.json` records inferences the corpus does not
+support and how each negative caveat limits composition. An inference is
+forbidden only when a cited source or the maintainer declares it; it never
+expires automatically. Agents only add `state: "proposta"` entries; they never
+set `revisionata`, `reviewer` or `lifted`, and never declare as `maintainer`.
+A relationship joining a pair forbidden by a reviewed entry fails `pnpm validate`
+(a `proposta` entry only warns): ask the maintainer instead of editing the
+registry to pass. Do not classify a caveat as
+interrupting composition just because it contains «non».
+
 ## Adding or correcting data
 
 1. Find or create the record in `data/<collection>/<ID>.json`.

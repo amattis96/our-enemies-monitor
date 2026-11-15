@@ -651,6 +651,10 @@ describe("pnpm ingest CLI", () => {
         repoPath("docs/audit/M5_2026-11-12.json"),
         path.join(root, "docs/audit/M5_2026-11-12.json"),
       );
+      // validate.ts also checks the B15 forbidden-inference registry.
+      cpSync(repoPath("docs/audit/inferences"), path.join(root, "docs/audit/inferences"), {
+        recursive: true,
+      });
       symlinkSync(repoPath("sources/original"), path.join(root, "sources", "original"));
       cpSync(repoPath("sources/incremental"), path.join(root, "sources", "incremental"), {
         recursive: true,
