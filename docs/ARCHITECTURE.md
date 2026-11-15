@@ -880,10 +880,18 @@ if a GitHub token cannot remove the label. A genuine denied cleanup
 remains visible and is not treated as approval.
 
 **Publication boundary:** merging a source archives it; a separate
-ingest PR creates needs_review candidates; a merged article remains
-unpublished while needs_review. Only authorized human review can
-promote reviewed or human_approved states. C and D share a GitHub
-identity today and their two passes are not separate GitHub approvals.
+ingest PR creates needs_review candidates. An article remains hidden
+while needs_review. An investigation is published automatically **only**
+when C has completed a substantive AI verification, recorded the
+`AI-Verification` provenance and changed article status to
+`ai_verified`, D has independently checked the current HEAD and both
+required GitHub statuses, and the main Pages deployment has passed.
+This AI-only status is distinctly labelled on the site; it is **not**
+human editorial authorization. An older draft may be promoted using
+a one-file `agent/publish-ART-*` status-and-notes-only PR.
+Only authorized humans can promote `reviewed`, `human_approved` or
+translation `reviewed`. C and D share a GitHub identity today; their
+two passes are not separate GitHub approvals or cryptographic signatures.
 
 - **Contributions:** `CONTRIBUTING.md` (EN/IT), issue forms for corrections
   and new evidence (`.github/ISSUE_TEMPLATE/`), and a pull request template

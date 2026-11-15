@@ -32,7 +32,8 @@ candidates_discarded_and_reasons: []
 prs_created_or_reviewed: [] # URL, category, head/base SHA, changed files
 excluded_pr_metadata: [] # C/D: URL, number, SHA, reason; no payload inspection
 corrections_and_commits: [] # C: files and new SHA; D: merge commit SHA
-review_handoffs: [] # C verdict / C-reviewed SHA, path/status/mode/blob-SHA inventory; D re-verification
+review_handoffs: [] # C verdict / C-reviewed SHA, changed-file inventory; D re-verification
+automated_publications: [] # ARTICLE ID, original manuscript HEAD, C verification note, status-only promotion PR, D merge SHA and Pages result
 branch_synchronizations: [] # D: old C-reviewed HEAD, new HEAD, main SHA, unchanged file blobs and new CI URLs
 checks: [] # status, conclusion, URL and exact checked SHA; pending/not run explicit
 main_ci_and_deploy: [] # D: each merge's resulting main SHA and final CI/deploy

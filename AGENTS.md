@@ -173,8 +173,11 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - Agents never push directly to `main`. Tasks A and B create PRs; Task C
   reviews and may fix their branches; **only Task D may perform ordinary
   squash merges**, after the exact-HEAD handoff and both mandatory checks.
-  No agent submits a GitHub APPROVE review, grants editorial authorization,
-  applies `evidence-waiver`, or uses administrator/ruleset bypass. Agents
+  No agent submits a GitHub APPROVE review, grants **human** editorial
+  authorization, applies `evidence-waiver`, or uses administrator/ruleset
+  bypass. Task C alone may assign article status `ai_verified` after
+  substantive AI source verification; D alone may merge it after independently
+  checking the exact HEAD. Neither task may set human `reviewed`. Agents
   never change repository settings, rulesets, secrets or app installations.
   Task D must not merge changes to the control plane (including this file,
   CI/workflows, validators, publication policy or dependencies) without
@@ -241,7 +244,8 @@ investigative topic; produce exactly
 needs_review` and English `translation.status: machine`. Propose new
 evidence separately for M6; never modify `data/` or infer graph edges.
 
-**Task C review and repair:** first filter PRs using trusted GitHub metadata:
+**Task C review and repair plus automated editorial release:** first filter
+PRs using trusted GitHub metadata:
 base `main`, head repository exactly `amattis96/our-enemies-monitor`,
 nonempty `research/*` or `agent/*` branch. Read no payload of excluded
 PRs. Examine factual/procedural claims, duplicates, schemas, hashes, safety,
@@ -253,9 +257,25 @@ path/status/mode/blob-SHA inventory (or a reconstructible C-reviewed
 commit SHA), check links and verdict
 `READY_FOR_D`, `PENDING_CHECKS`, `BLOCKED_HUMAN`,
 `BLOCKED_EVIDENCE`, `BLOCKED_TECHNICAL` or `STALE`.
-C never APPROVEs or merges.
+C never APPROVEs or merges. When an IT/EN investigation has passed factual
+and legal/procedural review, C may set `review.status: ai_verified` in
+the canonical Italian front matter and add a structured note
+`AI-Verification: Task C; reviewed_head=<40-hex SHA>; date=YYYY-MM-DD; basis=<20+ chars>`.
+The SHA must identify the exact original manuscript version C read; the note
+must describe verified evidence, limitations and rebuttals. Before handoff,
+C must confirm unchanged source/target translation hashes and fresh CI on
+the new PR HEAD. C must *not* mark an article `ai_verified` if sources,
+attributions, allegations, contradictions, legal status, translated meaning
+or references are uncertain. For an already merged `needs_review` article
+with no open research PR, C may create ONE narrow
+`agent/publish-ART-NNNN-*` PR changing **only review.status and notes**,
+after independently re-verifying the original manuscript and citations,
+then review that new PR exactly like others. No canonical data or
+human-reviewed content may be touched. If a C-reviewed AI draft remains
+`needs_review`, D may archive it, but it stays unpublished.
 
-**Task D merge gate:** the PR must be eligible, nondraft, conflict-free,
+**Task D merge and AI publication gate:** the PR must be eligible,
+nondraft, conflict-free,
 up to date with `main`, and have C's complete `READY_FOR_D` handoff
 for its **current HEAD**. D rechecks the actual diff, evidence-sensitive
 changes, the two required GitHub Actions statuses `check` and
@@ -270,7 +290,16 @@ label-based waiver or a direct push. After **each** merge check the new
 failed, pending or unverifiable. For an additions-only PR that became
 stale after an unrelated merge, D may use the **content-invariant
 synchronization protocol below**. Material changes still require new
-C validation.
+C validation. For a `research/article-*` or `agent/publish-ART-*`
+PR containing `ai_verified`, D must verify the formal
+`AI-Verification` note, actual GitHub C handoff and its exact reviewed
+manuscript SHA, current-HEAD required checks, all public reference/record
+links, absence of unresolved factual challenges and no unauthorized
+promotions. A `needs_review -> ai_verified` PR may only change Italian
+frontmatter status and notes, never the article body, summary, sources,
+links, chronology or machine translation. D never claims that
+`ai_verified` is human approval. Publication occurs by the normal
+Pages build *after* the D merge, not by an out-of-band site edit.
 
 ### Content-invariant synchronization of stale PRs (Task D only)
 
@@ -333,9 +362,15 @@ refuses a real removal.
 
 **Approval versus publication:** a source merge archives documentation;
 a data-ingest merge archives `needs_review` candidates; an article merge
-archives a draft. None of these actions certifies the claims or publishes
-withheld records. Only authorized **human** editorial actions may set
-`reviewed`, `human_approved: true` or English translation `reviewed`.
+archives a draft **unless** its article has passed C verification,
+D independent checks and is explicitly `ai_verified`. This AI-only status
+publishes an investigation with an unmistakable public disclaimer,
+not a claim of human approval or proof of its every assertion. Human
+`reviewed` remains a separate and stronger editorial authorization.
+No article can expose a withheld canonical record or source, and a
+`needs_review` article stays hidden. Only authorized **human** editorial
+actions may set `reviewed`, `human_approved: true` or English
+translation `reviewed`.
 Claims about named persons require their cited primary source and accurate
 dated procedural status; E5 never becomes an established relationship
 automatically.
@@ -457,6 +492,19 @@ interrupting composition just because it contains «non».
    diff in the CI job summary.
 
 ## Article editorial authorization
+
+`ai_verified` is an AI-only publication state for articles with an
+explicit structured C provenance note and an independently validated
+D handoff/merge. It is distinct from `reviewed`; the site labels every
+AI-verified article in IT/EN and retains the machine-translation warning.
+For a backlogged `needs_review` article, C may create an
+`agent/publish-ART-*` status-only PR. CI rejects an invalid missing
+provenance, a promotion that alters substantive content or an attempt to
+silently edit a previously AI-verified article. Even a valid status-only
+PR must pass C/D on its current HEAD, not merely `pnpm check`.
+External sources, allegations and internal corpus status remain separately
+qualified. The publication of AI-verified articles does NOT promote
+timeline, nodes, graph edges, hypotheses or linked evidence.
 
 `reviewed` denotes human editorial authorization to publish the current
 article; Task C does not grant it, and translation review is separate. The

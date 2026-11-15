@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M7 implemented.** ChatGPT Task A (daily OSINT), Task B (weekly IT/EN investigations) and Task C (weekly PR review) are active. Approved articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
+**Phase: M1–M7 implemented.** Four ChatGPT tasks A/B/C/D handle daily OSINT, investigations, review and controlled merge. Both human-reviewed and separately labelled AI-verified articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -33,7 +33,7 @@ The graph includes contextual and event-participation edges. **Not every edge re
 
 Merged research sources, including Fonte_09–Fonte_11 and thematic AI/industrial dossiers, are automatically listed in the Observatory homepage and the source archive at build time. This makes source acquisition visible without implying that every proposed event, allegation or hypothesis has been approved. The canonical timeline and graph are built exclusively from validated records in `data/`, under the M5 publication gate. Historical imported records require original provenance and remain provisional. Person relationships require an exact URL match to a directly cited source, their M5 reference, or their own historical original; a match does not certify the claim. Use the M6 sidecar ingestion workflow to propose structured updates, then review records before publication. The source archive date and the last timeline event date are displayed separately.
 
-Real editorial articles were introduced on 13 November 2026; the demo fixture files were removed. The Observatory homepage leads with the latest approved investigation when available and falls back to the latest published timeline event; the timeline section remains separate. Unreviewed future articles remain withheld by the existing publication gate.
+Real editorial articles were introduced on 13 November 2026; the demo fixture files were removed. The Observatory homepage leads with the latest publishable investigation when available and falls back to the latest published timeline event. Editorials are either `reviewed` by a human or `ai_verified` after C/D automated checks, with visibly distinct labels. A merely `needs_review` article remains withheld. The timeline and graph retain their separate M5 publication gate.
 
 ## Research scope
 
@@ -154,7 +154,7 @@ independently of repository GitHub Actions, in the `Europe/Rome` timezone:
 | --- | --- | --- |
 | **A: OSINT & Ingest** | **Daily 00:30** | Research with 72-hour overlap, immutable `Fonte_XX` Markdown + schema 1.1 sidecar PR; separately prepare a data-only `agent/ingest-*` PR for an earlier **merged** pending sidecar when an executable environment is available |
 | **B: Editorial** | **Mon/Wed/Fri 02:00** | Independently research one substantial European case and propose a sourced IT/EN article pair with real translation hashes; editorial status remains `needs_review` |
-| **C: Review & Fix** | **Mon/Wed/Fri 03:30** | Independently review evidence and CI, correct supported problems in eligible existing PR branches, and leave an exact-HEAD `READY_FOR_D` handoff or a blocker |
+| **C: Review & Fix** | **Mon/Wed/Fri 03:30** | Independently review evidence and CI, correct supported problems, optionally mark a qualifying article `ai_verified` with provenance or create a status-only publication PR for an older draft, and leave an exact-HEAD handoff |
 | **D: Approval & Merge** | **Mon/Wed/Fri 05:00** | Recheck C handoff, diff, risk, freshness, `check` and `evidence-diff`; sequentially squash-merge eligible PRs and verify CI/Pages on the new main HEAD |
 
 See the [scheduled task register](docs/CHATGPT_SCHEDULED_TASKS.md),
@@ -177,10 +177,12 @@ on an up-to-date PR. The next task never assumes its predecessor has finished.
 
 Merging a source adds it to the documentary archive, not `data/`. The
 separate deterministic `pnpm ingest` step creates `needs_review`
-candidates on an ingest PR, not in CI and not on merge. Merging an unreviewed
-article creates a versioned **draft**, which remains withheld by the M5
-publication gate. Human editorial approval is still required to mark an
-article or translation `reviewed` or set `human_approved`.
+candidates on an ingest PR, not in CI and not on merge. Merging a `needs_review` article archives a withheld draft; merging an
+`ai_verified` article after C/D checks publishes an explicitly identified
+**AI-verified investigation**. The site retains evidence-source filtering
+and machine-translation notices. Human editorial approval remains required
+only to mark an article or translation `reviewed` or set
+`human_approved`.
 
 ~~~mermaid
 flowchart TD
@@ -196,7 +198,7 @@ flowchart TD
     D -->|Pass| M["Sequential squash merge → main"]
     D -->|Fail / pending| Hold
     M --> P["Main CI + Pages deploy"]
-    P --> Gate["M5 publication gate: reviewed content only"]
+    P --> Gate["Article gate: human reviewed or explicitly AI-verified; canonical M5 gate unchanged"]
 ~~~
 
 ## Data model and temporal integrity

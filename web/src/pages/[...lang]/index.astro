@@ -1,7 +1,7 @@
 ---
 import { EVIDENCE_LEVELS, THEME_LABELS, type Theme } from "../../../../src/model/index.ts";
 import { summarize } from "../../../../src/pipeline/validate.ts";
-import { formatDateRange, formatPartialDate } from "../../../../src/site/format.ts";
+import { formatDateRange, formatPartialDate, REVIEW_STATUS_LABELS } from "../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths, textOf, ui } from "../../../../src/site/i18n.ts";
 import { archivedResearch } from "../../../../src/site/research.ts";
 import { THEME_ICON } from "../../../../src/site/visual.ts";
@@ -173,6 +173,7 @@ const mark = inlineSvg("logo-mark.svg", "mast");
             <p class="front-meta">
               <span class="mono">{formatPartialDate(leadArticle.date, lang)}</span>
               <span class="mono">{leadArticle.id}</span>
+              <span>{REVIEW_STATUS_LABELS[leadArticle.review.status][lang]}</span>
             </p>
           </article>
         ) : lead && (
@@ -256,7 +257,7 @@ const mark = inlineSvg("logo-mark.svg", "mast");
         <ul class="grid gap-6 md:grid-cols-3">
           {stories.map((article) => (
             <li class="story">
-              <p class="kicker">{formatPartialDate(article.date, lang)}</p>
+              <p class="kicker">{formatPartialDate(article.date, lang)} · {REVIEW_STATUS_LABELS[article.review.status][lang]}</p>
               <h3><a href={href(`articles/${article.id}/`, lang)}><T text={article.title} lang={lang} /></a></h3>
               <p class="meta"><T text={article.summary} lang={lang} /></p>
             </li>

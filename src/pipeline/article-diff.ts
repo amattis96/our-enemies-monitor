@@ -1,13 +1,18 @@
 import { isDeepStrictEqual } from "node:util";
-import { ArticleFrontMatterEn, ArticleFrontMatterIt, FIXTURE_ARTICLE_ID } from "../model/index.ts";
+import {
+  ArticleFrontMatterEn,
+  ArticleFrontMatterIt,
+  FIXTURE_ARTICLE_ID,
+  hasAiVerificationNote,
+} from "../model/index.ts";
 import { type ArticleFile, splitFrontMatter } from "./articles.ts";
 import type { Flag } from "./diff.ts";
 
 /**
  * Evidence diff of `content/articles/`: an article is authored analysis, not a
- * canonical record, but the same rule holds: only a human reviewer marks it
- * (or its translation) `reviewed`, and a reviewed article never changes
- * silently. Pure: callers pass the files before and after.
+ * canonical record. Human `reviewed` remains a distinct authorization;
+ * `ai_verified` requires C provenance, only safe status transitions and
+ * a further exact-HEAD D review. Pure: callers pass before and after files.
  */
 
 type Side = {
@@ -98,8 +103,14 @@ export function diffArticles(
     if (is.it) {
       const front = is.it.front;
       const status = front.review.status;
-      if (!was.it && status !== "needs_review") {
-        err(id, `new article with review.status "${status}" (expected "needs_review")`);
+      if (!was.it && status === "reviewed") {
+        err(id, `new article with review.status "${status}" (expected "needs_review" or "ai_verified")`);
+      }
+      if (status === "ai_verified" && !hasAiVerificationNote(front.review.notes)) {
+        err(id, "ai_verified without structured Task C provenance", false);
+      }
+      if (front.fixture && status === "ai_verified") {
+        err(id, "fixtures cannot be ai_verified", false);
       }
       if (was.it && was.it.front.review.status !== "reviewed" && status === "reviewed") {
         err(id, 'sets review.status to "reviewed": only a human reviewer may do this');
@@ -119,6 +130,28 @@ export function diffArticles(
     if (!was.it || !is.it) continue;
     const a = was.it.front;
     const b = is.it.front;
+    // AI promotion of a merged draft may change only status and review notes.
+    // Every substantive edit must first revert to needs_review for new scrutiny.
+    if (a.review.status !== "ai_verified" && b.review.status === "ai_verified") {
+      const { review: _oldReview, ...oldContent } = a;
+      const { review: _newReview, ...newContent } = b;
+      if (
+        !isDeepStrictEqual(oldContent, newContent) ||
+        was.it.body !== is.it.body ||
+        was.en?.text !== is.en?.text
+      ) {
+        err(id, "ai_verified promotion must preserve all article content and translation", false);
+      }
+    }
+    if (a.review.status === "ai_verified" && b.review.status === "ai_verified") {
+      if (was.it.body !== is.it.body || was.en?.text !== is.en?.text ||
+          !isDeepStrictEqual(a.links, b.links) ||
+          !isDeepStrictEqual(a.references, b.references) ||
+          a.title !== b.title || a.summary !== b.summary ||
+          a.date !== b.date || a.updated !== b.updated) {
+        err(id, "editing ai_verified content requires resetting status to needs_review", false);
+      }
+    }
     for (const kind of LINK_KINDS) {
       const removed = a.links[kind].filter((x) => !b.links[kind].includes(x));
       if (removed.length > 0) note(id, `links.${kind} removed: ${removed.join(", ")}`);
