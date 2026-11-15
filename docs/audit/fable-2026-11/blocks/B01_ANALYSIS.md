@@ -384,3 +384,12 @@ Le impostazioni GitHub e ChatGPT sono applicate dal manutentore seguendo l'ordin
 ## Verifica finale (2026-11-15)
 
 Stato reale delle impostazioni GitHub letto via API il 2026-11-15 e conseguenze per il modello di fiducia: vedi [FINAL_HARDENING_2026-11-15.md](../FINAL_HARDENING_2026-11-15.md) §3. Nessuno degli 8 passi di questa analisi risulta ancora applicato (nessun ruleset, `evidence-diff` non richiesto, `enforce_admins` disattivato, nessun account macchina).
+
+## Decisione del manutentore (15 novembre 2026): secondo account rinviato
+
+Il manutentore ha deciso di non introdurre per ora un secondo account GitHub, né revisore umano né account macchina: resta una possibile implementazione futura (§2–§3). Conseguenze accettate:
+- `evidence-diff` resta rosso su ogni PR che modifica un articolo già `reviewed`, perché l'owner apre la PR e non può approvarla;
+- `main` blocca sulla code owner review e il merge avviene con `--admin` dal manutentore, dopo la lettura del diff;
+- `ARTICLE_REVIEWERS` non è impostata.
+
+La PR #20 è stata unita così (`01aef78`), con l'etichetta `evidence-waiver` applicata dall'owner. Nessun gate è stato allentato. La strada futura meno onerosa resta l'account macchina: apre le PR degli agenti e il manutentore le approva.
