@@ -218,3 +218,8 @@ Unico commit locale previsto: `feat(editorial): require human review for article
 ### 8.4 Correzione post-review (Claude, 2026-11-15)
 
 Rimosso il collegamento `hypotheses: [H02]` da `content/articles/ART-0002.it.md` (ripristinato `hypotheses: []`, come prima di f5ee0a5). Motivo: un'ipotesi E5 aperta risultava collegata da un articolo `reviewed` senza che l'articolo la affermi editorialmente. `events: [TL-0064]` è mantenuto: andrà affermato esplicitamente nella revisione `Publication-Approval` del manutentore. Corpo e altro front matter invariati.
+
+
+## Verifica finale (2026-11-15)
+
+Il collegamento `ART-0002` → `TL-0064` è sostenuto dal testo (paragrafi su «luglio 2024», i quattro pacchi DHL/DPD, Lipsia, Regno Unito, Polonia) e dall'evento (`Pacchi incendiari DHL/DPD`, 2024-07, DE/PL/GB). È un rimando di navigazione, non un'affermazione probatoria; `TL-0064` resta `imported_unreviewed` e il diff lo segnala. Modifica editoriale a un articolo reviewed: richiede `Publication-Approval`. Vedi [FINAL_HARDENING_2026-11-15.md](../FINAL_HARDENING_2026-11-15.md) §4.

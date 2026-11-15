@@ -240,3 +240,8 @@ Log Sol: `/private/tmp/b06-sol-check.log`, `b06-sol-build.log`, `b06-sol-links.l
 **Limiti confermati:** gli hash non certificano fedeltà semantica, revisione umana o identità; glossario non verificato automaticamente, parità marcatori rinviata. Nessuna dipendenza, schema sidecar, fonte immutabile o impostazione remota modificata; nessun ingest, stato umano impostato, push o PR. Review separata non prescritta per B06: verifica dell'orchestratore eseguita, incluse correzione del preflight globale e prova referenziale non vacua.
 
 **Commit di chiusura:** `fix(i18n): track source and target translation hashes`. La riga §5 identifica questo stesso commit tramite il soggetto; il suo hash viene fissato dal log al successivo handoff, perché incorporarlo nel commit ne cambierebbe l'hash. Prossimo blocco raccomandato: **B08**.
+
+
+## Verifica finale (2026-11-15)
+
+Le uniche modifiche di B06 agli articoli reviewed sono l'aggiunta di `translation.target_hash` a `ART-0001.en.md` e `ART-0002.en.md`, necessaria perché lo schema ora la richiede (rimuoverla fa fallire `validate:articles`). Gli hash ricalcolati coincidono (`articles:hash`), `source_hash`, testi e stati sono invariati. Serve comunque l'approvazione umana: [FINAL_HARDENING_2026-11-15.md](../FINAL_HARDENING_2026-11-15.md) §4.

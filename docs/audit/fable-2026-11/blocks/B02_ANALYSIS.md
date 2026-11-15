@@ -348,3 +348,8 @@ I test `test/workflows.test.ts` possono usare `yaml` (già dipendenza); nessuna 
 Approvate tutte le raccomandazioni del §6: D-B02-1 (a) etichetta `evidence-waiver` con controllo dell'attore e scadenza al push; D-B02-2 (a); D-B02-3 (a); D-B02-4 (a); D-B02-5 rimandata (solo punto di estensione); D-B02-6 (a) ora, `pull_request_target` in un blocco successivo; D-B02-7 (a); D-B02-8 (a) Dependabot; D-B02-9 no in B02; D-B02-10 confermati i tre percorsi, aggiornamenti di evidenze di Task B solo come sidecar.
 
 Nota: finché gli agenti agiscono con l'account del proprietario (B01 non applicato), il controllo dell'attore sull'etichetta non distingue manutentore e agenti.
+
+
+## Verifica finale (2026-11-15)
+
+Aggiunto `controlPlaneFlags` (`0d1afa9`): segnala come attention ogni modifica ai file che definiscono i controlli, su qualunque branch; non dipende dal prefisso e non è una barriera, perché il job esegue il codice della PR. L'etichetta `evidence-waiver` non esiste ancora nel repository e `evidence-diff` non è fra i check richiesti di `main`. Vedi [FINAL_HARDENING_2026-11-15.md](../FINAL_HARDENING_2026-11-15.md) §3.
