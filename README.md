@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M7 implemented.** ChatGPT Task A (daily OSINT), Task B (weekly IT/EN investigations) and Task C (weekly PR review/merge) are active. Approved articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
+**Phase: M1–M7 implemented.** ChatGPT Task A (daily OSINT), Task B (weekly IT/EN investigations) and Task C (weekly PR review) are active. Approved articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -143,15 +143,15 @@ The manifest lists public and withheld counts and hashes the minimal `withheld.j
 
 ## M6: active ChatGPT scheduled research and integration
 
-Three **ChatGPT product scheduled tasks** operate independently of the repository's CI, with **Europe/Rome** schedules and GitHub as the versioned source of truth:
+The 14 November snapshot records three **ChatGPT product scheduled tasks** independent of repository CI, with **Europe/Rome** schedules:
 
-| Task | Active schedule | Responsibility |
+| Task | Schedule in dated snapshot | Adopted responsibility |
 | --- | --- | --- |
 | **A: Our Enemies Monitor OSINT** | **Daily 01:00** | Research incremental developments, check the last merged cutoff with at least 72 hours' overlap, deduplicate against `main` and open PRs, and propose a new immutable `Fonte_XX` Markdown **plus validated-where-possible M6 JSON sidecar** in a PR. No `data/` edits and no merge. |
 | **B: Our Enemies Monitor Editorial** | **Friday 03:00**, weekly | Independently research one substantial case and propose a sourced Italian article and its complete English translation in a PR. Content remains `needs_review`; no automatic editorial approval. |
-| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | Review all open PRs, evidence, conflicts and CI; review-only under the adopted governance (the maintainer approves and merges); the configured prompt still has to be updated. Never bypass human publication approval. |
+| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | List all open PRs and review eligible same-repository research/agent PRs, evidence, conflicts and CI; review-only under the adopted governance (the maintainer approves and merges); the configured prompt still has to be updated. Never bypass human publication approval. |
 
-**Authoritative current-state snapshot and end-to-end lifecycle:** [docs/CHATGPT_SCHEDULED_TASKS.md](docs/CHATGPT_SCHEDULED_TASKS.md). **Detailed M6 source/sidecar and article contracts:** [docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
+**Authoritative dated snapshot and end-to-end lifecycle:** [docs/CHATGPT_SCHEDULED_TASKS.md](docs/CHATGPT_SCHEDULED_TASKS.md). **Detailed M6 source/sidecar and article contracts:** [docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
 
 The ChatGPT tasks run **outside GitHub Actions** and use no in-repository paid LLM API job. The schedules and prompts live in ChatGPT, so the linked document is a dated configuration snapshot, not a runtime scheduler.
 
@@ -258,3 +258,5 @@ the evidence diff or its waiver rules, and the PR author cannot approve their
 own work. Article validation also reports possible missing case links as
 editorial warnings, without inferring relationships. See the
 [article instructions](content/articles/README.md).
+
+Scheduled-task configuration is described in the [14 November snapshot](docs/CHATGPT_SCHEDULED_TASKS.md). The [replacement prompts](docs/automation/CHATGPT_TASK_PROMPTS.md) and [run log contract](docs/automation/TASK_RUN_LOG.md) await maintainer application and issue configuration; they do not establish live external settings.

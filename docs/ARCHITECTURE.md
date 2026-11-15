@@ -325,10 +325,10 @@ imported by hand as ordinary editorial records:
 
 ### Incremental ingest (M6, `pnpm ingest`)
 
-From Fonte_10 onwards an incremental source is a pair: the Markdown report
+New incremental sources are a pair: the Markdown report
 and a structured sidecar `sources/incremental/Fonte_XX.proposals.json`
 (contract: `src/model/proposals.ts`, `schemas/proposals.schema.json`; full
-field-by-field description, example and the Task A prompt change in
+field-by-field description and example in
 [M6 ChatGPT OSINT workflow §4](M6_CHATGPT_OSINT_WORKFLOW.md)). The sidecar
 lists typed operations: `create_event`, `create_entity`,
 `create_relationship`, `create_hypothesis` (E5 only), `add_citation` and
@@ -546,8 +546,7 @@ fails is therefore not deployed: the site catches up at the next green tip. (`ca
 keeps one pending run per group and replaces it with a newer one.)
 
 **Required checks and workflow contract:** the job names `check` (`ci.yml`)
-and `evidence-diff` (`evidence-diff.yml`) are the status check contexts the
-`main` ruleset requires; they are set explicitly and guarded by
+and `evidence-diff` (`evidence-diff.yml`) are the status check contexts the adopted `main` ruleset is intended to require; application and live configuration remain pending maintainer verification. The job names are set explicitly and guarded by
 `test/workflows.test.ts` (which also asserts no path filters, the concurrency
 rule and SHA pinning). `evidence-diff` runs on every PR (`opened`,
 `synchronize`, `reopened`, `labeled`, `unlabeled`) and checks out the PR head
@@ -555,8 +554,8 @@ commit, not the merge ref. It is added to the ruleset only after one run
 under its final name has succeeded. A `pull_request` workflow runs the
 version of the workflow and scripts in the PR, so the gate executes
 PR-controlled code and a PR that edits them can make its own check pass. It is
-a **review aid**, not a barrier. The real barrier is the required CODEOWNERS
-review in the B01 ruleset, which the machine account cannot bypass. Running
+a **review aid**, not a barrier. The intended barrier is required CODEOWNERS
+review under the B01 ruleset with a machine account unable to bypass it; this protection is not established by these workflow definitions. Running
 the gate from the base commit or under `pull_request_target` is deferred
 (D-B02-6). For the same reason the `evidence-diff` job, which runs that code,
 holds read scopes only (`contents`, `issues`, `pull-requests`, `actions`); the
@@ -627,22 +626,8 @@ contributor / research agent          maintainer
 
   The CI `evidence-diff` job runs it on every pull request and publishes the
   report in the job summary.
-- **M6 research design:** the paid Anthropic API weekly research workflow has
-  been retired. Regular ChatGPT scheduled task **Our Enemies Monitor OSINT**
-  runs daily at 01:00 Europe/Rome, performs independent OSINT research and
-  proposes a new immutable `sources/incremental/Fonte_XX*.md` on a dedicated
-  branch and PR. The first manual proof-of-concept produced PR #3; the first
-  unattended execution (2026-11-13) and its permissions are still unverified.
-  Deterministic source-to-data ingestion from a structured sidecar is
-  implemented (`pnpm ingest`, run manually on an `agent/*` branch; see
-  Incremental ingest); the Task A prompt still has to be updated to emit the
-  sidecar. The multilingual article section and its file contract are
-  implemented (demo fixtures only); the complementary ChatGPT thematic/article
-  task (Task B) is planned but not configured.
-  Read [M6 ChatGPT OSINT workflow](M6_CHATGPT_OSINT_WORKFLOW.md) for exact
-  contracts, state and instructions. GitHub Actions remains responsible for
-  CI, evidence checks, build and deployment, **not LLM inference**.
-- **Protection (current state):** `.github/CODEOWNERS` assigns every path to
+- **M6 research design:** the paid Anthropic workflow is retired. The 14 November task snapshot records unattended source and article runs, including Fonte_12 with a sidecar in PR #18. This checkout archives Fonte_09–11; Fonte_10 and Fonte_11 lack sidecars and their recovery is deferred. Manual deterministic ingestion and bilingual article pages are implemented. [Run logging](automation/TASK_RUN_LOG.md) and [replacement prompts](automation/CHATGPT_TASK_PROMPTS.md) are procedures pending external configuration, not an implemented logger. See the [M6 workflow](M6_CHATGPT_OSINT_WORKFLOW.md) for contracts. GitHub Actions performs CI and deployment, not LLM inference.
+- **Protection (14 November snapshot; not live verified):** `.github/CODEOWNERS` assigns every path to
   the maintainer. Classic branch protection on `main` requires the `check`
   status and a code-owner review, forbids force pushes and deletion, but has
   `enforce_admins` off, so the maintainer (admin) can push directly and merge
@@ -654,7 +639,7 @@ contributor / research agent          maintainer
   a separate machine account with the Write role (conditional on verifying
   that the ChatGPT connector accepts it). A ruleset on `main` requires a
   pull request, one code-owner approval, the `check` status on an up-to-date
-  branch (`evidence-diff` only after B02), linear history and squash merges,
+  branch (`evidence-diff` after maintainer verification and configuration), linear history and squash merges,
   and forbids force pushes and deletion; only the maintainer may bypass, and
   only through a pull request. A second ruleset limits the machine account to
   `research/**` and `agent/**`. Workflows cannot approve PRs and merged
@@ -677,7 +662,7 @@ contributor / research agent          maintainer
 | **Fonte_09** Incremental update | First incremental source (cut-off 2026-11-11): 30 candidate events, 50 references, 18 entities, 14 relationships, hypotheses H23–H32; English machine-translated, editorial review pending | Imported (needs review) |
 
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
-| **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; sidecar contract and `pnpm ingest` implemented; article model, validation, gate and pages done (demo fixtures only); Task A sidecar prompt, unattended run and Task B pending |
+| **M6** ChatGPT source and article workflow | Source and article research, deterministic ingest and bilingual pages | Repository contracts and pages implemented; runs recorded in the dated snapshot. External prompt, identity and logging application remains pending; ingestion and editorial approval remain manual |
 | **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); implementation in the portal | Done (2026-11-12): themes, shell, evidence stamps, newest-first timeline, evidence board, interactive atlas; deferred items listed in `docs/design/IMPLEMENTATION_PLAN.md` |
 
 ### Article editorial approval and link diagnostics
