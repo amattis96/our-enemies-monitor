@@ -1,0 +1,56 @@
+---
+import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import NodeLink from "../../../components/NodeLink.astro";
+import StatusLabel from "../../../components/StatusLabel.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getTraces } from "../../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const traces = getTraces();
+---
+
+<Base title={c("Tracciati", "Traces")} lang={lang}>
+  <header class="page-head">
+    <h1>{c("Tracciati fra gli estremi delle ipotesi", "Traces between the ends of the hypotheses")}</h1>
+  </header>
+  <p class="notice max-w-3xl">
+    {c(
+      "Per ogni coppia di soggetti di un'ipotesi aperta, il cammino più breve nel grafo pubblico come lista ordinata, con i caveat, le interruzioni e ciò che il cammino non dice. Un cammino non dimostra responsabilità, finanziamento o coordinamento fra gli estremi.",
+      "For each pair of subjects of an open hypothesis, the shortest path in the public graph as an ordered list, with the caveats, the interruptions and what the path does not say. A path does not demonstrate responsibility, financing or coordination between its ends.",
+    )}
+  </p>
+  <div class="table-wrap">
+    <table class="stack">
+      <caption class="sr-only">{c("Tracciati disponibili", "Available traces")}</caption>
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">{c("Estremi", "Ends")}</th>
+          <th scope="col">{c("Passaggi", "Steps")}</th>
+          <th scope="col">{c("Interruzioni", "Interruptions")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          traces.map((t) => (
+            <tr>
+              <td data-label="ID" class="font-mono"><a href={href(`trace/${t.id}/`, lang)}>{t.id}</a></td>
+              <td data-label={c("Estremi", "Ends")}><NodeLink id={t.pair[0]} lang={lang} /> → <NodeLink id={t.pair[1]} lang={lang} /></td>
+              <td data-label={c("Passaggi", "Steps")}>{t.steps.length > 0 ? t.steps.length : c("nessun cammino", "no path")}</td>
+              <td data-label={c("Interruzioni", "Interruptions")}>
+                {t.interrupted_at.length > 0 ? (
+                  <StatusLabel icon="ui-close" tone="caution">{t.interrupted_at.join(", ")}</StatusLabel>
+                ) : (
+                  "—"
+                )}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Base>

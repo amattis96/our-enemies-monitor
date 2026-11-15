@@ -7,7 +7,7 @@ baseline_source: "S11"
 repository_commit: "2ccb7a4139f0e64c7bec703f47319eaa294b5bce"
 language: it
 status: proposed
-schema_version: "1.0"
+schema_version: "1.1"
 ---
 
 # Fonte_12 | Aggiornamento OSINT incrementale per l'Europa | 14 novembre 2026

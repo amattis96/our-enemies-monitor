@@ -12,13 +12,25 @@
   ],
   "urls": [],
   "cited_in": [],
+  "origin_type": "corpus_synthesis",
+  "derived_from": [
+    "S00",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05"
+  ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "B17 (ADR-05, 2026-11-15): origin_type corpus_synthesis set because the record is a project corpus document (type corpus_document); structural criterion, no content verification. derived_from lists the inputs the document itself declares: \"Fonti di input: Fonte_00 (dossier base), Fonte_01–Fonte_05\" (header, line 6)."
+    ],
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "090f5c6549faf9d2"
+        "source_hash": "090f5c6549faf9d2",
+        "target_hash": "f75f55e35f7fcb6c"
       }
     }
   },

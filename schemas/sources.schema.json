@@ -6,7 +6,8 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+      "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$",
+      "description": "Source code (S##, F##, P##, WEB, WEB-EXT-###)."
     },
     "type": {
       "type": "string",
@@ -14,16 +15,19 @@
         "corpus_document",
         "external_reference",
         "unspecified_web"
-      ]
+      ],
+      "description": "Kind of source. Definitions: vocabulary.json#/source_types."
     },
     "title": {
       "type": "object",
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -31,7 +35,8 @@
       "required": [
         "it"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Title of the source."
     },
     "publisher": {
       "anyOf": [
@@ -42,7 +47,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "Publisher of the source; null when unknown."
     },
     "files": {
       "type": "array",
@@ -50,20 +56,52 @@
         "type": "string",
         "format": "starts_with",
         "pattern": "^sources\\/.*"
-      }
+      },
+      "description": "Repository files of a corpus document."
     },
     "urls": {
       "type": "array",
       "items": {
         "type": "string",
         "format": "uri"
-      }
+      },
+      "description": "Public URLs of the source; empty when none is known."
     },
     "cited_in": {
       "type": "array",
       "items": {
         "type": "string",
-        "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+      },
+      "description": "Corpus documents that cite this reference."
+    },
+    "origin_type": {
+      "description": "Role of the source in the chain of evidence; absent when not determined (never read absence as primary). Definitions: vocabulary.json#/origin_types.",
+      "type": "string",
+      "enum": [
+        "primary_document",
+        "official_statement",
+        "wire",
+        "original_reporting",
+        "republication",
+        "synthesis",
+        "corpus_synthesis"
+      ]
+    },
+    "derived_from": {
+      "description": "Sources this one copies, republishes, rewrites or consolidates; it adds no independent root. Absent when not determined.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+      }
+    },
+    "relies_on": {
+      "description": "Sources this one reports on (for example the official statement a wire quotes); their roots replace its own. Absent when not determined.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
       }
     },
     "review": {
@@ -75,19 +113,23 @@
             "imported_unreviewed",
             "needs_review",
             "reviewed"
-          ]
+          ],
+          "description": "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses."
         },
         "notes": {
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
-          }
+          },
+          "description": "Free-text editorial and technical notes, in English; not typed claims."
         },
         "translations": {
+          "description": "Translation state per language.",
           "type": "object",
           "properties": {
             "en": {
+              "description": "State of the English translation.",
               "type": "object",
               "properties": {
                 "status": {
@@ -95,16 +137,24 @@
                   "enum": [
                     "machine",
                     "reviewed"
-                  ]
+                  ],
+                  "description": "Translation status. Definitions: vocabulary.json#/translation_statuses."
                 },
                 "source_hash": {
                   "type": "string",
-                  "pattern": "^[0-9a-f]{16}$"
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the Italian texts the translation was made from."
+                },
+                "target_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the translated texts as imported."
                 }
               },
               "required": [
                 "status",
-                "source_hash"
+                "source_hash",
+                "target_hash"
               ],
               "additionalProperties": false
             }
@@ -116,7 +166,8 @@
         "status",
         "notes"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Editorial review state of the record."
     },
     "provenance": {
       "type": "array",
@@ -128,12 +179,14 @@
               "file": {
                 "type": "string",
                 "format": "starts_with",
-                "pattern": "^sources\\/.*"
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
               },
               "row": {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "description": "1-based data row of the original CSV file."
               },
               "original": {
                 "type": "object",
@@ -142,7 +195,8 @@
                 },
                 "additionalProperties": {
                   "type": "string"
-                }
+                },
+                "description": "Verbatim original values of that row, keyed by column."
               }
             },
             "required": [
@@ -158,24 +212,28 @@
               "file": {
                 "type": "string",
                 "format": "starts_with",
-                "pattern": "^sources\\/.*"
+                "pattern": "^sources\\/.*",
+                "description": "Original repository file under sources/."
               },
               "line": {
                 "type": "integer",
                 "exclusiveMinimum": 0,
-                "maximum": 9007199254740991
+                "maximum": 9007199254740991,
+                "description": "1-based line of the original text file."
               },
               "original": {
                 "type": "object",
                 "properties": {
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Verbatim original line."
                   }
                 },
                 "required": [
                   "text"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "description": "Verbatim original text."
               }
             },
             "required": [
@@ -186,7 +244,8 @@
             "additionalProperties": false
           }
         ]
-      }
+      },
+      "description": "Original corpus file and row or line each imported record derives from; empty for records created later."
     }
   },
   "required": [

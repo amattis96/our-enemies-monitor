@@ -7,7 +7,15 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!sources", "!data", "!schemas", "!**/*.md", "!pnpm-lock.yaml"]
+    "includes": [
+      "**",
+      "!sources",
+      "!data",
+      "!schemas",
+      "!docs/audit/baseline/baseline-*.json",
+      "!**/*.md",
+      "!pnpm-lock.yaml"
+    ]
   },
   "formatter": {
     "enabled": true,

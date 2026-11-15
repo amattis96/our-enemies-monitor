@@ -27,7 +27,8 @@ const groups = HYPOTHESIS_PRIORITIES.map((priority) => ({
       "Domande investigative falsificabili, non relazioni accertate. Un'ipotesi prioritaria non diventa vera per la sua priorità. Può essere promossa a relazione solo con una fonte primaria e una revisione umana.",
       "Falsifiable investigative questions, not established relationships. A priority hypothesis does not become true because of its priority. It can be promoted to a relationship only with a primary source and human review.",
     )}{" "}
-    <a href={href("network/hypotheses/", lang)}>{c("Grafo esplorativo", "Exploratory graph")}</a>.
+    <a href={href("network/hypotheses/", lang)}>{c("Grafo esplorativo", "Exploratory graph")}</a>
+    · <a href={href("trace/", lang)}>{c("Tracciati", "Traces")}</a>.
   </div>
   {
     groups.map((g) => (

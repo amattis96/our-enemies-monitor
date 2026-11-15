@@ -1,0 +1,221 @@
+{
+  "review_set": "text-graph-mentions",
+  "version": 1,
+  "as_of_commit": "ab870b8",
+  "notes": [
+    "Campione sistematico: una riga ogni quattro (posizioni 0, 4, 8, … ) della coda di 104 menzioni prodotta da `pnpm audit:mentions` al commit ab870b8, dopo le esclusioni di exclusions.v1.json. Non è un campione casuale.",
+    "Tutte le voci sono `proposta`: suggerimenti non rivisti di un agente, ricavati dalla sola lettura del titolo e della descrizione del record. Nessuna fonte esterna è stata consultata e nessun esito è verificato.",
+    "Un esito `documented-role` indica che il testo del record assegna un ruolo, non che l'arco vada creato: la creazione di relazioni segue le regole di AGENTS.md (fonti, E5 solo in ipotesi, persone con fonte primaria e stato giuridico) e una revisione umana.",
+    "Per confermare una voce: cambiare `state` in `revisionata` e aggiungere `reviewer` e `reviewed_on`. Per le coppie non ancora classificate aggiungere una voce nuova; non cancellare né riutilizzare voci."
+  ],
+  "entries": [
+    {
+      "event": "EXT-002",
+      "entity": "MAJID",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il titolo nomina Rawa Majid come leader designato da OFAC; persona: ogni eventuale relazione richiede fonte primaria e stato giuridico (AGENTS.md, regola 7)."
+    },
+    {
+      "event": "EXT-005",
+      "entity": "SHAHIDKAVEH",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il testo riporta l'attribuzione francese a SHAHID KAVEH (E2, non sentenza). G-0447 (FR_MFA ATTRIBUISCE_A SHAHIDKAVEH) già cita l'evento: possibile copertura non di partecipazione."
+    },
+    {
+      "event": "EXT-009",
+      "entity": "NONAME057",
+      "outcome": "needs-evidence",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "La stampa collega le pubblicazioni a NoName057(16); il testo stesso dice che il nesso non è accertato. Nessun ruolo documentato."
+    },
+    {
+      "event": "EXT-015",
+      "entity": "NONAME057",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il titolo registra la rivendicazione; il ruolo è quello di rivendicante, non di autore accertato."
+    },
+    {
+      "event": "EXT-017",
+      "entity": "HAYI",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il titolo nomina HAYI; secondo i procuratori la rete è collegata ad attacchi da essa rivendicati. Contestazione giudiziaria, non fatto accertato."
+    },
+    {
+      "event": "EXT-019",
+      "entity": "FI",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Finlandia come luogo/giurisdizione (Golfo di Finlandia, tribunale di Helsinki): nessun ruolo di attore. Se si vuole modellare la giurisdizione serve una scelta editoriale generale."
+    },
+    {
+      "event": "EXT-020",
+      "entity": "AP",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Associated Press proietta l'esito; G-0457 (AP PROIETTA_CONTROLLO EXT-020) esiste già e cita l'evento."
+    },
+    {
+      "event": "EXT-022",
+      "entity": "FR",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Contatti paralleli di Francia e altri Stati; il testo dice che la Russia non ne ha accettato la partecipazione al tavolo."
+    },
+    {
+      "event": "EXT-023",
+      "entity": "TRUMP",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il titolo nomina Trump come parte dell'incontro; persona: vale la regola 7 di AGENTS.md per qualsiasi relazione."
+    },
+    {
+      "event": "EXT-027",
+      "entity": "HORMUZ",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Lo Stretto di Hormuz è l'oggetto dell'evento (blocco, attacchi al naviglio); tipo di relazione da definire."
+    },
+    {
+      "event": "EXT-029",
+      "entity": "PSB",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Promsvyazbank è citata solo come rete già documentata che non va promossa ad autrice del nuovo episodio."
+    },
+    {
+      "event": "EXT-032",
+      "entity": "UA",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "L'Ucraina è la beneficiaria del finanziamento in discussione (titolo); tipo di relazione da definire."
+    },
+    {
+      "event": "TL-0010",
+      "entity": "RU_PRESS",
+      "outcome": "needs-evidence",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "RT e Sputnik compaiono come strumenti «discussi dagli studi»; il testo nega che l'effetto sia determinato. Ruolo non stabilito dal solo record."
+    },
+    {
+      "event": "TL-0032",
+      "entity": "DE",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Germania in un elenco di Paesi dove i siti erano attivi (ambito geografico); stesso criterio delle altre righe «elenco di Paesi»."
+    },
+    {
+      "event": "TL-0036",
+      "entity": "RU",
+      "outcome": "needs-evidence",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il testo riporta la descrizione di autorità USA («a beneficio della Federazione Russa»): attribuzione di beneficio, da verificare sull'atto OFAC."
+    },
+    {
+      "event": "TL-0053",
+      "entity": "EVRAZIA",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Le indagini riguardano le reti PSB/Șor/Evrazia; G-0022 cita già l'evento. Indagini, non accertamenti."
+    },
+    {
+      "event": "TL-0058",
+      "entity": "STARLINK",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Starlink compare come materiale colpito dall'incendio, non come attore; G-0409 cita l'evento ma per un'altra relazione (logistica ucraina)."
+    },
+    {
+      "event": "TL-0063",
+      "entity": "RHEIN",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Rheinmetall è l'azienda del dirigente bersaglio del piano; l'azienda non è parte dell'evento nel testo."
+    },
+    {
+      "event": "TL-0067",
+      "entity": "VIGINUM",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "VIGINUM valuta e non attribuisce l'insieme a un attore estero: ruolo di valutatore con esito negativo; il modello deve rendere il «non attribuisce» senza trasformarlo in un'attribuzione."
+    },
+    {
+      "event": "TL-0077",
+      "entity": "EVRAZIA",
+      "outcome": "needs-evidence",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "«Reti collegate a Șor/Evrazia»: collegamento generico, il testo non assegna a Evrazia un ruolo specifico nell'evento."
+    },
+    {
+      "event": "TL-0080",
+      "entity": "RO",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Romania in un elenco di Paesi in cui il SEAE documenta tattiche russe (ambito geografico)."
+    },
+    {
+      "event": "TL-0106",
+      "entity": "FR",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il testo dice che le campagne hanno interessato la Francia e G-0056 (EMENNET OPERAZIONI_CYBER_FIMI_IN FR) cita già l'evento."
+    },
+    {
+      "event": "TL-0115",
+      "entity": "EVRAZIA",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Il titolo nomina le reti Șor/Evrazia come oggetto delle sanzioni; G-0019 e G-0022 citano già l'evento."
+    },
+    {
+      "event": "TL-0124",
+      "entity": "AL",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Albania in un elenco di Paesi con proteste per motivi interni; il testo esclude una regia estera unica."
+    },
+    {
+      "event": "TL-0124",
+      "entity": "PT",
+      "outcome": "context-only",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "Portogallo in un elenco di Paesi con proteste per motivi interni; il testo esclude una regia estera unica."
+    },
+    {
+      "event": "TL-0143",
+      "entity": "VIGINUM",
+      "outcome": "documented-role",
+      "state": "proposta",
+      "proposed_by": "Claude Sonnet 5.5 (esecuzione non sorvegliata, 2026-11-15)",
+      "note": "VIGINUM non identifica una regia estera prima dell'evento: ruolo di valutatore con esito negativo, stesso trattamento di TL-0067."
+    }
+  ]
+}

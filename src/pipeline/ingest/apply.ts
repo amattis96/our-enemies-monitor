@@ -40,7 +40,13 @@ export function checkPlan(plan: IngestPlan, files: DataFile[]): Issue[] {
 export function applyPlan(plan: IngestPlan, dataDir = DATA_DIR): string[] {
   if (plan.fatal.length > 0) throw new Error(`blocked plan: ${plan.fatal.join("; ")}`);
   const changed: string[] = [];
-  for (const write of plan.writes) {
+  // The corpus document goes last: it marks the sidecar as ingested, so a
+  // crash halfway must not leave it behind a partial import.
+  const ordered = [
+    ...plan.writes.filter((w) => !(w.collection === "sources" && w.id === plan.source)),
+    ...plan.writes.filter((w) => w.collection === "sources" && w.id === plan.source),
+  ];
+  for (const write of ordered) {
     const target = path.join(dataDir, write.path);
     const text = serializeRecord(write.record);
     if (existsSync(target) && readFileSync(target, "utf8") === text) continue;

@@ -140,6 +140,16 @@ export const SOURCE_TYPE_LABELS = {
   unspecified_web: { it: "Fonte web non specificata", en: "Unspecified web source" },
 } satisfies Record<string, Labels>;
 
+export const ORIGIN_TYPE_LABELS = {
+  primary_document: { it: "Documento primario", en: "Primary document" },
+  official_statement: { it: "Dichiarazione ufficiale", en: "Official statement" },
+  wire: { it: "Agenzia di stampa", en: "News agency wire" },
+  original_reporting: { it: "Inchiesta o cronaca originale", en: "Original reporting" },
+  republication: { it: "Ripubblicazione", en: "Republication" },
+  synthesis: { it: "Sintesi di terzi", en: "Third-party synthesis" },
+  corpus_synthesis: { it: "Sintesi del corpus", en: "Corpus synthesis" },
+} satisfies Record<string, Labels>;
+
 const QUALIFIERS = {
   exact: { it: "", en: "" },
   approx: { it: "circa ", en: "about " },

@@ -22,5 +22,7 @@ for (const article of articles) {
     `${state} ${article.id}${kind}${reasons.length > 0 ? `: ${reasons.join("; ")}` : ""}`,
   );
 }
-console.log(`\n${articles.length} article(s), ${errors.length} error(s)`);
+console.log(
+  `\n${articles.length} article(s), ${errors.length} error(s), ${all.filter((i) => i.severity === "warning").length} warning(s)`,
+);
 process.exit(errors.length > 0 ? 1 : 0);

@@ -1,9 +1,10 @@
 ---
 import type { Event } from "../../../../../src/model/index.ts";
-import { countryName, formatDateRange, PRECISION_LABELS } from "../../../../../src/site/format.ts";
+import { countryName, PRECISION_LABELS } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf, ui } from "../../../../../src/site/i18n.ts";
 import { isParticipation } from "../../../../../src/site/read-model.ts";
 import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
+import DateRange from "../../../components/DateRange.astro";
 import EvidenceStamp from "../../../components/EvidenceStamp.astro";
 import Icon from "../../../components/Icon.astro";
 import LimitsNote from "../../../components/LimitsNote.astro";
@@ -16,7 +17,7 @@ import T from "../../../components/T.astro";
 import ThemeList from "../../../components/ThemeList.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
 import Base from "../../../layouts/Base.astro";
-import { href } from "../../../lib/links.ts";
+import { href, packageAlternate } from "../../../lib/links.ts";
 import { getModel } from "../../../lib/model.ts";
 
 export function getStaticPaths() {
@@ -37,7 +38,7 @@ const citing = model.relationshipsCiting(event.id);
 const hypotheses = model.dataset.hypotheses.filter((h) => h.events.includes(event.id));
 ---
 
-<Base title={textOf(event.title, lang)} lang={lang} description={textOf(event.description, lang)} searchable>
+<Base title={textOf(event.title, lang)} lang={lang} description={textOf(event.description, lang)} alternates={packageAlternate(event.id)} searchable>
   <header class="page-head">
     <p class="kicker flex flex-wrap items-center gap-x-2">
       <a href={href("timeline/", lang)}>{ui(lang).navTimeline}</a> /
@@ -45,7 +46,7 @@ const hypotheses = model.dataset.hypotheses.filter((h) => h.events.includes(even
     </p>
     <h1><T text={event.title} lang={lang} /></h1>
     <p class="flex flex-wrap items-center gap-x-4 gap-y-2 meta">
-      <span class="mono" title={PRECISION_LABELS[event.date.precision][lang]}>{formatDateRange(event.date.start, event.date.end, lang)}</span>
+      <span class="mono" title={PRECISION_LABELS[event.date.precision][lang]}><DateRange start={event.date.start} end={event.date.end} lang={lang} /></span>
       <span>({PRECISION_LABELS[event.date.precision][lang]})</span>
       {event.geography && <span class="inline-flex items-center gap-1"><Icon name={event.places.length ? "nav-atlas" : "ui-no-location"} /><T text={event.geography} lang={lang} /></span>}
       {event.evidence_level && <EvidenceStamp level={event.evidence_level} lang={lang} />}

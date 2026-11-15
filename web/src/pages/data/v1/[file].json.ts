@@ -1,10 +1,9 @@
-import { exportFiles } from "../../../../../src/site/exports.ts";
-import { getModel } from "../../../lib/model.ts";
+import { getExports } from "../../../lib/model.ts";
 
-/** One file per collection plus `all.json` (canonical records, CC0). */
+/** Collection, graph and catalog exports share this route and the manifest byte source. */
 export function getStaticPaths() {
-  return exportFiles(getModel().dataset)
-    .filter((file) => !file.path.includes("/"))
+  return getExports()
+    .files.filter((file) => !file.path.includes("/"))
     .map((file) => ({
       params: { file: file.path.replace(/\.json$/, "") },
       props: { text: file.text },

@@ -16,9 +16,11 @@
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -33,9 +35,11 @@
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -50,9 +54,11 @@
       "properties": {
         "it": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Canonical Italian text. On divergence the Italian text prevails."
         },
         "en": {
+          "description": "English translation; its status is in review.translations.en.",
           "type": "string",
           "minLength": 1
         }
@@ -149,7 +155,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^H\\d{2}$"
+            "pattern": "^H(?:\\d{2}|[1-9]\\d{2})$"
           }
         }
       },
@@ -171,7 +177,7 @@
             "properties": {
               "source": {
                 "type": "string",
-                "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+                "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
               },
               "note": {
                 "default": null,
@@ -251,19 +257,23 @@
             "imported_unreviewed",
             "needs_review",
             "reviewed"
-          ]
+          ],
+          "description": "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses."
         },
         "notes": {
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
-          }
+          },
+          "description": "Free-text editorial and technical notes, in English; not typed claims."
         },
         "translations": {
+          "description": "Translation state per language.",
           "type": "object",
           "properties": {
             "en": {
+              "description": "State of the English translation.",
               "type": "object",
               "properties": {
                 "status": {
@@ -271,16 +281,24 @@
                   "enum": [
                     "machine",
                     "reviewed"
-                  ]
+                  ],
+                  "description": "Translation status. Definitions: vocabulary.json#/translation_statuses."
                 },
                 "source_hash": {
                   "type": "string",
-                  "pattern": "^[0-9a-f]{16}$"
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the Italian texts the translation was made from."
+                },
+                "target_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$",
+                  "description": "Fingerprint of the translated texts as imported."
                 }
               },
               "required": [
                 "status",
-                "source_hash"
+                "source_hash",
+                "target_hash"
               ],
               "additionalProperties": false
             }

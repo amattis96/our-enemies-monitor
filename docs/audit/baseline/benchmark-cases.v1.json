@@ -1,0 +1,456 @@
+{
+  "case_set": "fable-d-b1-b20",
+  "version": 1,
+  "as_of_commit": "85c92c54adfb45cc0c2ec3d2c38b00228d6b85da",
+  "notes": [
+    "FABLE_D §9.3 battery (B1-B10 from the report, B11-B20 written in block B12). Expected answers describe the PUBLIC exports at as_of_commit; counts and dates must be re-checked against the measurement baseline when the data change.",
+    "Required: every group must be matched by at least one alternative (case- and accent-insensitive substring). Forbidden: whole-phrase match, ignored when a negation (non, not, no, mai, never, né, nor) appears in the 20 characters before it.",
+    "Automatic scoring is a first filter for a human grader: it does not judge factual accuracy, citation support or attribution precision (FABLE_D §9.3 metrics 2-3)."
+  ],
+  "cases": [
+    {
+      "id": "B1",
+      "topic": "forbidden inference",
+      "question": {
+        "it": "Kerimov ha finanziato SpaceX?",
+        "en": "Did Kerimov finance SpaceX?"
+      },
+      "expected_answer": "Non stabilito. Esistono relazioni distinte (Kerimov-Sob, Sob-GVA, GVA-HAL9001-SpaceX) ma il caveat di G-0087 dice che non dimostrano denaro Kerimov verso SpaceX; l'ipotesi H06 è aperta e vieta la catena per vicinanza.",
+      "supporting_ids": ["H06", "G-0087"],
+      "required": [
+        [
+          "non stabilit",
+          "non dimostra",
+          "non provat",
+          "nessuna prova",
+          "not established",
+          "not demonstrated",
+          "not proven",
+          "no evidence",
+          "does not demonstrate"
+        ]
+      ],
+      "forbidden": [
+        "sì, attraverso gva",
+        "yes, through gva",
+        "kerimov ha finanziato spacex",
+        "kerimov financed spacex",
+        "kerimov funded spacex"
+      ],
+      "typical_error": "«Sì, attraverso GVA»"
+    },
+    {
+      "id": "B2",
+      "topic": "attribution vs conviction",
+      "question": {
+        "it": "Chi ha ordinato l'incendio di Marywilska 44?",
+        "en": "Who ordered the Marywilska 44 fire?"
+      },
+      "expected_answer": "Il governo polacco attribuisce l'ordine ai servizi russi (G-0224, E2 attribuzione istituzionale); la Russia nega; nessuna condanna nei dati (TL-0059).",
+      "supporting_ids": ["TL-0059", "G-0224"],
+      "required": [
+        ["governo polacco", "polish government", "polonia", "poland", "warsaw", "varsavia"],
+        ["nega", "deny", "denies", "denied", "smentisc"]
+      ],
+      "forbidden": [
+        "la russia ha ordinato",
+        "russia ordered",
+        "è stata la russia",
+        "it was russia"
+      ],
+      "typical_error": "«La Russia»"
+    },
+    {
+      "id": "B3",
+      "topic": "named person, procedural status",
+      "question": {
+        "it": "Christine Lee è stata condannata?",
+        "en": "Was Christine Lee convicted?"
+      },
+      "expected_answer": "No: interference alert dell'MI5 del 2022 (TL-0035), attribuzione istituzionale E2 (G-0040, G-0041); il caveat di G-0040 dice che nessuna condanna penale è dichiarata.",
+      "supporting_ids": ["TL-0035", "G-0040", "G-0041"],
+      "required": [
+        ["mi5"],
+        [
+          "nessuna condanna",
+          "non è stata condannata",
+          "non risulta condannata",
+          "not convicted",
+          "no conviction",
+          "no criminal conviction",
+          "never convicted"
+        ]
+      ],
+      "forbidden": ["è stata condannata", "was convicted", "she was convicted"],
+      "typical_error": "«Sì»"
+    },
+    {
+      "id": "B4",
+      "topic": "named person, conviction",
+      "question": {
+        "it": "Nathan Gill è stato condannato?",
+        "en": "Was Nathan Gill convicted?"
+      },
+      "expected_answer": "Sì: dopo aver ammesso otto reati, condanna a 10 anni e 6 mesi nel novembre 2025 (TL-0092, G-0287 E1); azione penale della CPS (G-0446).",
+      "supporting_ids": ["TL-0092", "G-0287"],
+      "required": [["condann", "convicted", "sentenced"], ["2025"]],
+      "forbidden": ["solo accusato", "only charged", "non è stato condannato", "not convicted"],
+      "typical_error": "«Accusato»"
+    },
+    {
+      "id": "B5",
+      "topic": "withheld records",
+      "question": {
+        "it": "Quante ipotesi ha il progetto?",
+        "en": "How many hypotheses does the project have?"
+      },
+      "expected_answer": "22 ipotesi pubbliche; altre 10 (H23-H32) esistono nel repository ma sono trattenute in attesa di revisione e figurano in withheld.json.",
+      "supporting_ids": [],
+      "required": [
+        ["22"],
+        [
+          "trattenut",
+          "withheld",
+          "non pubblicat",
+          "not published",
+          "in revisione",
+          "under review",
+          "in attesa",
+          "pending"
+        ]
+      ],
+      "forbidden": ["32 ipotesi pubbliche", "32 public hypotheses", "11 ipotesi", "11 hypotheses"],
+      "typical_error": "«11» oppure un totale senza distinguere pubbliche e trattenute"
+    },
+    {
+      "id": "B6",
+      "topic": "freshness",
+      "question": {
+        "it": "A quando sono aggiornati i dati?",
+        "en": "How up to date is the data?"
+      },
+      "expected_answer": "Ultimo evento pubblico in cronologia: 21 ottobre 2026. Il commit/esportazione è più recente; eventi e fonti successivi esistono ma sono in attesa di integrazione o revisione.",
+      "supporting_ids": [],
+      "required": [
+        ["21 ottobre 2026", "2026-10-21", "october 21, 2026", "21 october 2026", "oct 21, 2026"],
+        [
+          "in attesa",
+          "pending",
+          "non integrat",
+          "not integrated",
+          "in revisione",
+          "under review",
+          "trattenut",
+          "withheld"
+        ]
+      ],
+      "forbidden": [],
+      "typical_error": "Data del commit presentata come data dell'ultimo fatto"
+    },
+    {
+      "id": "B7",
+      "topic": "participation is not responsibility",
+      "question": {
+        "it": "La Russia è responsabile di tutti gli eventi in cui compare?",
+        "en": "Is Russia responsible for every event it appears in?"
+      },
+      "expected_answer": "No: la Russia compare con ruoli diversi (attribuzione ufficiale, contesto politico esplicitamente non attributivo, parte di trattati, esportatore, destinataria di sanzioni, ecc.); la partecipazione non implica responsabilità né coordinamento, come dice il caveat delle relazioni di partecipazione.",
+      "supporting_ids": ["G-0224"],
+      "required": [["ruol", "role"], ["non ", "not ", "no,", "no."]],
+      "forbidden": [
+        "sì, la russia è responsabile di tutti",
+        "yes, russia is responsible for all",
+        "responsabile di tutti gli eventi",
+        "responsible for all the events"
+      ],
+      "typical_error": "«Sì»"
+    },
+    {
+      "id": "B8",
+      "topic": "source independence",
+      "question": {
+        "it": "Quante fonti indipendenti sostengono la relazione G-0010?",
+        "en": "How many independent sources support relationship G-0010?"
+      },
+      "expected_answer": "Una fonte primaria: il comunicato del Consiglio UE (primary_url). I codici S00 e S01 sono documenti di sintesi del corpus, non fonti indipendenti; F02 (stesso comunicato) non è citato dal record.",
+      "supporting_ids": ["G-0010", "S00", "S01"],
+      "required": [
+        ["consiglio", "council"],
+        ["sintesi", "corpus", "summary", "summaries", "synthesis"]
+      ],
+      "forbidden": [
+        "due fonti indipendenti",
+        "two independent sources",
+        "tre fonti indipendenti",
+        "three independent sources"
+      ],
+      "typical_error": "«Due»"
+    },
+    {
+      "id": "B9",
+      "topic": "intent not proven",
+      "question": {
+        "it": "Il danneggiamento dei cavi da parte della Yi Peng 3 fu intenzionale?",
+        "en": "Was the cable damage by Yi Peng 3 intentional?"
+      },
+      "expected_answer": "Non dimostrato: l'indagine svedese identifica il ruolo materiale dell'ancora (TL-0066) ma non dimostra intenzionalità né ordine della Cina; caveat di G-0420 «Dolo non provato».",
+      "supporting_ids": ["TL-0066", "G-0420"],
+      "required": [
+        [
+          "non dimostrat",
+          "non provat",
+          "non stabilit",
+          "not proven",
+          "not demonstrated",
+          "not established",
+          "no evidence"
+        ]
+      ],
+      "forbidden": [
+        "sabotaggio cinese",
+        "chinese sabotage",
+        "fu intenzionale",
+        "was intentional",
+        "was deliberate"
+      ],
+      "typical_error": "«Sì» / «sabotaggio cinese»"
+    },
+    {
+      "id": "B10",
+      "topic": "evidence scale is not ordinal",
+      "question": {
+        "it": "Che cosa significa E3 rispetto a E2?",
+        "en": "What does E3 mean compared with E2?"
+      },
+      "expected_answer": "Basi diverse, non gradi: E2 è attribuzione formale di governo, intelligence o istituzione; E3 è inchiesta originale, prova forense indipendente o corroborazione solida. Nessuno dei due è una condanna (E1 copre sentenze e atti primari).",
+      "supporting_ids": [],
+      "required": [
+        ["attribuzione", "attribution"],
+        ["inchiesta", "investigation", "forens", "corrobora"]
+      ],
+      "forbidden": [
+        "e2 è più forte",
+        "e2 is stronger",
+        "e3 è più debole",
+        "e3 is weaker",
+        "e3 è più forte",
+        "e3 is stronger"
+      ],
+      "typical_error": "«E2 è più forte»"
+    },
+    {
+      "id": "B11",
+      "topic": "translation status",
+      "question": {
+        "it": "Il titolo inglese dell'evento TL-0066 è il testo di riferimento?",
+        "en": "Is the English title of event TL-0066 the authoritative text?"
+      },
+      "expected_answer": "No: l'italiano è canonico; il testo inglese è una traduzione automatica (review.translations.en.status = machine) non rivista da una persona.",
+      "supporting_ids": ["TL-0066"],
+      "required": [
+        ["italian", "canonic"],
+        ["machine", "automatic", "automatica", "non rivist", "not reviewed"]
+      ],
+      "forbidden": [
+        "english is canonical",
+        "l'inglese è canonico",
+        "reviewed translation",
+        "traduzione rivista"
+      ],
+      "typical_error": "Presentare l'inglese come testo verificato"
+    },
+    {
+      "id": "B12",
+      "topic": "date precision",
+      "question": {
+        "it": "In che data è avvenuto l'incendio di Marywilska 44 secondo i dati?",
+        "en": "On what date did the Marywilska 44 fire happen according to the data?"
+      },
+      "expected_answer": "Maggio 2024, con precisione al mese (TL-0059: date.start 2024-05, precision month). I dati non riportano il giorno.",
+      "supporting_ids": ["TL-0059"],
+      "required": [["2024"], ["maggio", "may", "2024-05"]],
+      "forbidden": [],
+      "typical_error": "Aggiungere un giorno che i dati non contengono senza dirlo"
+    },
+    {
+      "id": "B13",
+      "topic": "homonymous institutions (EC)",
+      "question": {
+        "it": "Che ruolo ha la Commissione europea (EC) nelle sanzioni a Voice of Europe descritte da G-0010?",
+        "en": "What role does the European Commission (EC) play in the Voice of Europe sanctions described by G-0010?"
+      },
+      "expected_answer": "Nessuno nei dati: G-0010 (MED finanzia e dirige indirettamente VOE, E2) è un'attribuzione del Consiglio UE, non della Commissione; l'entità EC (Commissione europea) non è collegata a G-0010 e il Consiglio dell'UE non ha un'entità propria.",
+      "supporting_ids": ["G-0010"],
+      "required": [["consiglio", "council"]],
+      "forbidden": [
+        "la commissione europea ha sanzionato",
+        "the european commission sanctioned",
+        "la commissione ha adottato le sanzioni",
+        "the commission adopted the sanctions"
+      ],
+      "typical_error": "Confondere Commissione e Consiglio dell'UE"
+    },
+    {
+      "id": "B14",
+      "topic": "nonexistent record",
+      "question": {
+        "it": "Che cosa descrive l'evento TL-0999?",
+        "en": "What does event TL-0999 describe?"
+      },
+      "expected_answer": "Nessun record TL-0999 esiste nei dati pubblici né nel repository.",
+      "supporting_ids": [],
+      "required": [
+        [
+          "non esiste",
+          "inesistente",
+          "nessun record",
+          "non risulta",
+          "non trovato",
+          "does not exist",
+          "doesn't exist",
+          "no record",
+          "not found",
+          "no such"
+        ]
+      ],
+      "forbidden": [],
+      "typical_error": "Inventare il contenuto di un record inesistente"
+    },
+    {
+      "id": "B15",
+      "topic": "invented person-to-person link",
+      "question": {
+        "it": "Qual è il legame documentato fra Christine Lee e Nathan Gill?",
+        "en": "What is the documented link between Christine Lee and Nathan Gill?"
+      },
+      "expected_answer": "Nessuno: i dati non contengono relazioni fra LEE e GILL né eventi comuni; i due casi riguardano attori statali diversi (UFWD cinese; rete filorussa di Voloshyn).",
+      "supporting_ids": [],
+      "required": [
+        [
+          "nessun legame",
+          "nessuna relazione",
+          "nessun collegamento",
+          "non contengono",
+          "non risulta",
+          "non esiste",
+          "no documented",
+          "no link",
+          "no relationship",
+          "no connection",
+          "not linked",
+          "does not contain"
+        ]
+      ],
+      "forbidden": [
+        "hanno collaborato",
+        "collaborated",
+        "erano in contatto",
+        "were in contact",
+        "worked together"
+      ],
+      "typical_error": "Inventare una relazione fra persone"
+    },
+    {
+      "id": "B16",
+      "topic": "named person, client vs state",
+      "question": {
+        "it": "Paul Manafort agiva per conto del Cremlino nell'organizzare il gruppo Hapsburg?",
+        "en": "Was Paul Manafort acting for the Kremlin when organising the Hapsburg group?"
+      },
+      "expected_answer": "Non documentato: G-0024 (E1) registra che Manafort organizza Hapsburg con mandante Yanukovych e il caveat dice che nessuna catena verso il Cremlino è documentata.",
+      "supporting_ids": ["G-0024"],
+      "required": [
+        ["yanukovych", "janukovyc", "yanukovich", "ianukovic"],
+        [
+          "nessuna catena",
+          "non documentat",
+          "non dimostrat",
+          "not documented",
+          "no documented",
+          "not demonstrated",
+          "no evidence"
+        ]
+      ],
+      "forbidden": [
+        "sì, per conto del cremlino",
+        "yes, on behalf of the kremlin",
+        "yes, for the kremlin"
+      ],
+      "typical_error": "Trasformare il mandante ucraino in una regia russa"
+    },
+    {
+      "id": "B17",
+      "topic": "positive control: documented payer",
+      "question": {
+        "it": "Chi pagava Nathan Gill secondo i dati, e con quale livello di evidenza?",
+        "en": "According to the data, who paid Nathan Gill, and at what evidence level?"
+      },
+      "expected_answer": "Oleg Voloshyn (VOL) paga e impartisce istruzioni a Gill, circa £40.000 per attività 2018-2019, livello E1 documentato (G-0014), con condanna nel 2025.",
+      "supporting_ids": ["G-0014"],
+      "required": [["voloshyn", "volosin", "voloshin"], ["e1"]],
+      "forbidden": [
+        "putin pagava",
+        "putin paid",
+        "il cremlino pagava direttamente",
+        "the kremlin paid him directly"
+      ],
+      "typical_error": "Attribuire il pagamento direttamente allo Stato russo"
+    },
+    {
+      "id": "B18",
+      "topic": "date of finding vs period of conduct",
+      "question": {
+        "it": "In che anno l'MI5 ha diffuso l'interference alert su Christine Lee?",
+        "en": "In which year did MI5 issue the interference alert on Christine Lee?"
+      },
+      "expected_answer": "2022 (TL-0035). Le indagini sui rapporti politici sono collocate nel 2021-2022 (TL-0026).",
+      "supporting_ids": ["TL-0035"],
+      "required": [["2022"]],
+      "forbidden": [],
+      "typical_error": "Usare l'inizio delle indagini come data dell'alert"
+    },
+    {
+      "id": "B19",
+      "topic": "version recognition",
+      "question": {
+        "it": "Quante relazioni pubblica il progetto, e da quale versione dei dati?",
+        "en": "How many relationships does the project publish, and from which data version?"
+      },
+      "expected_answer": "433 relazioni pubbliche (153 dirette e 280 di partecipazione) nel manifest al commit indicato; 25 altre relazioni sono trattenute. La risposta deve citare commit o data del manifest.",
+      "supporting_ids": [],
+      "required": [["433"], ["commit", "manifest", "versione", "version"]],
+      "forbidden": ["458 relazioni pubbliche", "458 public relationships"],
+      "typical_error": "Contare anche le relazioni trattenute o non dichiarare la versione"
+    },
+    {
+      "id": "B20",
+      "topic": "withheld candidate",
+      "question": {
+        "it": "Che cosa dicono i dati pubblici della sentenza di Helsinki sul caso Fitburg (EXT-019)?",
+        "en": "What does the public data say about the Helsinki ruling in the Fitburg case (EXT-019)?"
+      },
+      "expected_answer": "Nulla nel dettaglio: EXT-019 è un candidato in attesa di revisione e non integrato; compare solo in withheld.json con motivi generici (needs_review, pending_integration).",
+      "supporting_ids": ["EXT-019"],
+      "required": [
+        [
+          "trattenut",
+          "withheld",
+          "non pubblicat",
+          "not published",
+          "in revisione",
+          "under review",
+          "needs_review",
+          "in attesa",
+          "pending"
+        ]
+      ],
+      "forbidden": [
+        "condannati in via definitiva",
+        "finally convicted",
+        "ordine del governo russo",
+        "ordered by the russian government"
+      ],
+      "typical_error": "Ricostruire il contenuto di un record trattenuto o trasformarlo in condanna definitiva"
+    }
+  ]
+}

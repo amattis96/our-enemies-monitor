@@ -38,7 +38,12 @@ when, and what remains unknown**.
    as `WEB-EXT-###` with their URL.
 3. Run `pnpm install`, then `pnpm format:data` and `pnpm check`.
 4. Fill in the pull request template. CI publishes an **evidence diff** of
-   your data changes in the job summary; maintainers review it before merging.
+   your changes in the job summary and applies strict rules on every branch
+   (for example no deletions, no `reviewed` status set by a contributor, no
+   change to `sources/original/`); research branches (`research/*`) may only
+   touch `sources/incremental/`, `sources/thematic/` and `content/articles/`.
+   Only the maintainer can waive a waivable error, with the `evidence-waiver`
+   label; maintainers review the diff before merging.
 
 Changing the Italian text of a translated record makes its English
 translation stale: re-translate it (see AGENTS.md › Translations).
@@ -67,5 +72,11 @@ afferma, quando, e cosa resta ignoto**.
   tieni le ipotesi fuori dal grafo e segnala le prove contrarie.
 - Nelle pull request modifica solo `data/`, imposta `review.status` a
   `needs_review` per i nuovi record ed esegui `pnpm format:data` e `pnpm check`.
+- La CI applica regole severe su qualsiasi ramo (nessuna cancellazione, nessun
+  `reviewed` impostato da un contributore, nessuna modifica a
+  `sources/original/`); i rami `research/*` possono toccare solo
+  `sources/incremental/`, `sources/thematic/` e `content/articles/`. Solo il
+  manutentore può derogare agli errori derogabili con l'etichetta
+  `evidence-waiver`.
 - Contribuendo accetti la licenza MIT per il codice e CC0 1.0 per dati e
   ricerca originali, nei limiti dei diritti che detieni.
