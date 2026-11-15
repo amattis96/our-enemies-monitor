@@ -1,15 +1,33 @@
+import { readInferenceRegistry } from "../../../src/editorial/inferences.ts";
 import type { Article } from "../../../src/model/index.ts";
 import { articleBacklinks, loadPublishedArticles } from "../../../src/site/articles.ts";
-import { publishedDataset } from "../../../src/site/publication.ts";
+import {
+  buildManifest,
+  type ExportFile,
+  exportFiles,
+  type Manifest,
+} from "../../../src/site/exports.ts";
+import { type CounterInferenceAudit, counterInferenceAudit } from "../../../src/site/inferences.ts";
+import { type PublicationReport, publicationReport } from "../../../src/site/publication.ts";
 import { buildReadModel, loadReadModel, type ReadModel } from "../../../src/site/read-model.ts";
+import { buildTraces, type Trace } from "../../../src/site/trace.ts";
 
+let publication: PublicationReport | undefined;
 let model: ReadModel | undefined;
 let articles: Article[] | undefined;
 let backlinks: Map<string, Article[]> | undefined;
+let inferences: CounterInferenceAudit | undefined;
+let traces: Trace[] | undefined;
+
+/** The authoritative report retains accounting from the validated canonical dataset. */
+export function getPublication(): PublicationReport {
+  publication ??= publicationReport(loadReadModel().dataset);
+  return publication;
+}
 
 /** The read model, loaded and validated once per build. */
 export function getModel(): ReadModel {
-  model ??= buildReadModel(publishedDataset(loadReadModel().dataset));
+  model ??= buildReadModel(getPublication().dataset);
   return model;
 }
 
@@ -23,4 +41,34 @@ export function getArticles(): Article[] {
 export function articlesLinking(id: string): Article[] {
   backlinks ??= articleBacklinks(getArticles());
   return backlinks.get(id) ?? [];
+}
+
+/** B15 counter-inference audit of the public graph, computed once per build. */
+export function getInferenceAudit(): CounterInferenceAudit {
+  inferences ??= counterInferenceAudit(readInferenceRegistry(), getModel());
+  return inferences;
+}
+
+/** B16 traces of the sensitive pairs (hypothesis endpoints), computed once per build. */
+export function getTraces(): Trace[] {
+  traces ??= buildTraces(readInferenceRegistry(), getModel(), getInferenceAudit());
+  return traces;
+}
+
+let exported: { files: ExportFile[]; manifest: Manifest } | undefined;
+
+/** The `data/v1` files and their manifest, built once per build from the public projection. */
+export function getExports(): { files: ExportFile[]; manifest: Manifest } {
+  if (!exported) {
+    const files = exportFiles(
+      getPublication(),
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      getArticles(),
+    );
+    exported = { files, manifest: buildManifest(getPublication(), files) };
+  }
+  return exported;
 }

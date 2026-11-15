@@ -1,6 +1,9 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
+import type { Dataset } from "../model/index.ts";
 import { REPO_ROOT } from "../pipeline/paths.ts";
+import type { Withheld } from "../site/publication.ts";
+import { leakedIds, leakedInSitemap, withheldIdSet } from "../site/surface.ts";
 
 // Verify every internal link and asset reference in the built site resolves
 // to a file in web/dist (and every #fragment to an id on the target page).
@@ -66,6 +69,43 @@ for (const file of files) {
       problems.push(`${page}: missing anchor ${raw}`);
     }
   }
+}
+
+// Machine-readable surface (D A15): no withheld ID in the per-record packages,
+// articles index, changes feed, catalog, sitemap or the JSON-LD of any page.
+const dataDir = path.join(DIST, "data", "v1");
+if (existsSync(path.join(dataDir, "withheld.json"))) {
+  const readJson = (file: string): unknown => JSON.parse(readFileSync(file, "utf8"));
+  const withheld = withheldIdSet(
+    readJson(path.join(dataDir, "withheld.json")) as Withheld[],
+    readJson(path.join(dataDir, "all.json")) as Dataset,
+  );
+  const surface = [
+    "articles.json",
+    "changes.feed.json",
+    "index.json",
+    ...readdirSync(path.join(dataDir, "records")).map((name) => `records/${name}`),
+  ];
+  for (const name of surface) {
+    for (const id of leakedIds(readJson(path.join(dataDir, name)), withheld)) {
+      problems.push(`data/v1/${name}: withheld ID ${id}`);
+    }
+  }
+  for (const id of leakedInSitemap(
+    readFileSync(path.join(DIST, "sitemap-0.xml"), "utf8"),
+    withheld,
+  )) {
+    problems.push(`sitemap-0.xml: withheld ID ${id}`);
+  }
+  for (const file of files) {
+    const html = readFileSync(file, "utf8");
+    for (const match of html.matchAll(/<script type="application\/ld\+json">([^<]*)<\/script>/g)) {
+      for (const id of leakedIds(JSON.parse(match[1] ?? "null"), withheld)) {
+        problems.push(`/${path.relative(DIST, file)}: withheld ID ${id} in JSON-LD`);
+      }
+    }
+  }
+  console.log(`${surface.length} machine-readable files and the sitemap checked for withheld IDs`);
 }
 
 for (const problem of problems.slice(0, 50)) console.error(problem);

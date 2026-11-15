@@ -11,13 +11,17 @@
   ],
   "urls": [],
   "cited_in": [],
+  "origin_type": "corpus_synthesis",
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "B17 (ADR-05, 2026-11-15): origin_type corpus_synthesis set because the record is a project corpus document (type corpus_document); structural criterion, no content verification."
+    ],
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "e981f6974ca9c2b4"
+        "source_hash": "e981f6974ca9c2b4",
+        "target_hash": "c9638a91b4347392"
       }
     }
   },

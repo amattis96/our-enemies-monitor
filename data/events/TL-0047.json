@@ -48,7 +48,8 @@
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "fd9c92ac41fd410e"
+        "source_hash": "fd9c92ac41fd410e",
+        "target_hash": "14f3c64c5542f9c5"
       }
     }
   },

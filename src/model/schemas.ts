@@ -5,12 +5,14 @@ import {
   ENTITY_KINDS,
   EVENT_RECORD_TYPES,
   EVIDENCE_LEVELS,
+  EXPOSURE_GROUPS,
   EXPOSURE_STATUSES,
   HYPOTHESIS_PRIORITIES,
   HYPOTHESIS_STATUSES,
   KNOWN_ISSUE_CODES,
   MEASURE_QUALIFIERS,
   MEASURE_UNITS,
+  ORIGIN_TYPES,
   RELATION_CLASSES,
   RELATIONSHIP_EVIDENCE_LEVELS,
   RELATIONSHIP_EVIDENCE_STATUSES,
@@ -27,8 +29,9 @@ import {
 export const EVENT_ID = /^(TL-\d{4}|EXT-\d{3})$/;
 export const ENTITY_ID = /^[A-Z][A-Z0-9_]*$/;
 export const RELATIONSHIP_ID = /^G-\d{4}$/;
-export const HYPOTHESIS_ID = /^H\d{2}$/;
-export const SOURCE_ID = /^(S\d{2}|F\d{2}|P\d{2}|WEB|WEB-EXT-\d{3})$/;
+export const HYPOTHESIS_ID = /^H(?:\d{2}|[1-9]\d{2})$/;
+export const CORPUS_SOURCE_ID = /^S(?:\d{2}|[1-9]\d{2})$/;
+export const SOURCE_ID = /^(S(?:\d{2}|[1-9]\d{2})|F\d{2}|P\d{2}|WEB|WEB-EXT-\d{3})$/;
 export const EXPOSURE_ID = /^X-\d{3}$/;
 /** ISO 3166-1 alpha-2 country code. */
 export const COUNTRY_CODE = /^[A-Z]{2}$/;
@@ -48,8 +51,15 @@ export const NodeId = z.union([EntityId, EventId]);
 
 /** Free text. Italian (`it`) is canonical; other keys are translations. */
 export const LocalizedText = z.strictObject({
-  it: z.string().min(1),
-  en: z.string().min(1).optional(),
+  it: z
+    .string()
+    .min(1)
+    .describe("Canonical Italian text. On divergence the Italian text prevails."),
+  en: z
+    .string()
+    .min(1)
+    .optional()
+    .describe("English translation; its status is in review.translations.en."),
 });
 
 const DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -80,9 +90,13 @@ export function comparePartialDates(a: string, b: string): number {
 
 export const DateRange = z
   .strictObject({
-    start: PartialDate,
-    end: PartialDate.nullable(),
-    precision: DatePrecision,
+    start: PartialDate.describe("Start date: YYYY, YYYY-MM or YYYY-MM-DD (no invented precision)."),
+    end: PartialDate.nullable().describe(
+      "End date with the same format, or null when unknown or none.",
+    ),
+    precision: DatePrecision.describe(
+      "Precision of the start date (year, month or day). Definitions: vocabulary.json#/date_precisions.",
+    ),
   })
   .refine((range) => precisionOf(range.start) === range.precision, {
     message: "start does not match precision",
@@ -98,14 +112,18 @@ export const Url = z.url({ protocol: /^https?$/ });
 /** Where an imported record came from, with the verbatim original values. */
 export const ProvenanceEntry = z.union([
   z.strictObject({
-    file: z.string().startsWith("sources/"),
-    row: z.int().positive(),
-    original: z.record(z.string(), z.string()),
+    file: z.string().startsWith("sources/").describe("Original repository file under sources/."),
+    row: z.int().positive().describe("1-based data row of the original CSV file."),
+    original: z
+      .record(z.string(), z.string())
+      .describe("Verbatim original values of that row, keyed by column."),
   }),
   z.strictObject({
-    file: z.string().startsWith("sources/"),
-    line: z.int().positive(),
-    original: z.strictObject({ text: z.string() }),
+    file: z.string().startsWith("sources/").describe("Original repository file under sources/."),
+    line: z.int().positive().describe("1-based line of the original text file."),
+    original: z
+      .strictObject({ text: z.string().describe("Verbatim original line.") })
+      .describe("Verbatim original text."),
   }),
 ]);
 
@@ -115,142 +133,305 @@ export const ProvenanceEntry = z.union([
  * text marks the translation as stale.
  */
 export const TranslationState = z.strictObject({
-  status: z.enum(TRANSLATION_STATUSES),
-  source_hash: z.string().regex(/^[0-9a-f]{16}$/),
+  status: z
+    .enum(TRANSLATION_STATUSES)
+    .describe("Translation status. Definitions: vocabulary.json#/translation_statuses."),
+  source_hash: z
+    .string()
+    .regex(/^[0-9a-f]{16}$/)
+    .describe("Fingerprint of the Italian texts the translation was made from."),
+  target_hash: z
+    .string()
+    .regex(/^[0-9a-f]{16}$/)
+    .describe("Fingerprint of the translated texts as imported."),
 });
 
 export const Review = z.strictObject({
-  status: z.enum(REVIEW_STATUSES),
-  notes: z.array(z.string().min(1)),
-  translations: z.strictObject({ en: TranslationState.optional() }).optional(),
+  status: z
+    .enum(REVIEW_STATUSES)
+    .describe(
+      "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses.",
+    ),
+  notes: z
+    .array(z.string().min(1))
+    .describe("Free-text editorial and technical notes, in English; not typed claims."),
+  translations: z
+    .strictObject({
+      en: TranslationState.optional().describe("State of the English translation."),
+    })
+    .optional()
+    .describe("Translation state per language."),
 });
 
 export const KnownIssue = z.strictObject({
-  code: z.enum(KNOWN_ISSUE_CODES),
-  note: LocalizedText,
-  reported_in: z.array(SourceId).min(1),
+  code: z
+    .enum(KNOWN_ISSUE_CODES)
+    .describe("Kind of issue. Definitions: vocabulary.json#/known_issue_codes."),
+  note: LocalizedText.describe("What the corpus reports about the issue."),
+  reported_in: z.array(SourceId).min(1).describe("Sources that report the issue."),
 });
 
-const sourceRefs = z.array(SourceId);
+const sourceRefs = z
+  .array(SourceId)
+  .describe(
+    "Codes of cited sources (see sources.json). Corpus synthesis documents are not independent confirmations.",
+  );
+const review = Review.describe("Editorial review state of the record.");
+const provenance = z
+  .array(ProvenanceEntry)
+  .describe(
+    "Original corpus file and row or line each imported record derives from; empty for records created later.",
+  );
 
 // ---------------------------------------------------------------------------
 // Records
 
 export const Event = z.strictObject({
-  id: EventId,
-  record_type: z.enum(EVENT_RECORD_TYPES),
-  timeline_status: z.enum(TIMELINE_STATUSES),
-  date: DateRange,
-  title: LocalizedText,
-  description: LocalizedText,
+  id: EventId.describe("Stable record ID (TL-#### or EXT-###); never renumbered or reused."),
+  record_type: z
+    .enum(EVENT_RECORD_TYPES)
+    .describe(
+      "event, or dataset_metadata (a research collection date, not a geopolitical event). Definitions: vocabulary.json#/event_record_types.",
+    ),
+  timeline_status: z
+    .enum(TIMELINE_STATUSES)
+    .describe(
+      "Whether the record is integrated in the timeline. Definitions: vocabulary.json#/timeline_statuses.",
+    ),
+  date: DateRange.describe(
+    "Date of the fact with explicit precision; distinct from the date of its discovery, attribution, judgment or publication.",
+  ),
+  title: LocalizedText.describe("Short title."),
+  description: LocalizedText.describe(
+    "Description of the record. Event, perpetrator, sponsor, motive and impact are distinct claims.",
+  ),
   /** Original free-text category: the reference for `themes`. */
-  category: LocalizedText.nullable(),
+  category: LocalizedText.nullable().describe(
+    "Original free-text category, the reference for themes; null when absent.",
+  ),
   /** Editorial themes for filtering (src/pipeline/baseline/themes.ts). */
-  themes: z.array(z.enum(THEMES)).min(1),
+  themes: z
+    .array(z.enum(THEMES))
+    .min(1)
+    .describe(
+      "Editorial themes for filtering, assigned from the original category. Definitions: vocabulary.json#/themes.",
+    ),
   /** Original free-text geography: the reference for `places`. */
-  geography: LocalizedText.nullable(),
+  geography: LocalizedText.nullable().describe(
+    "Original free-text geography, the reference for places; null when absent.",
+  ),
   /** Countries named by the geography (src/pipeline/baseline/places.ts); areas without a country stay out. */
-  places: z.array(CountryCode),
+  places: z
+    .array(CountryCode)
+    .describe(
+      "ISO 3166-1 alpha-2 codes of countries named by the geography; areas without a country stay out, no coordinates.",
+    ),
   /** Original free-text evidence assessment of the timeline record. */
-  evidence_note: LocalizedText.nullable(),
-  evidence_level: z.enum(EVIDENCE_LEVELS).nullable(),
-  publisher: z.string().min(1).nullable(),
-  url: Url.nullable(),
+  evidence_note: LocalizedText.nullable().describe(
+    "Original free-text evidence assessment of the record; null when absent.",
+  ),
+  evidence_level: z
+    .enum(EVIDENCE_LEVELS)
+    .nullable()
+    .describe(
+      "Evidence level when assigned, else null. Levels are kinds of basis, not a ranking. Definitions: vocabulary.json#/evidence_levels.",
+    ),
+  publisher: z
+    .string()
+    .min(1)
+    .nullable()
+    .describe("Publisher of the reference document, as given by the corpus; null when absent."),
+  url: Url.nullable().describe("URL of the reference document; null when absent."),
   sources: sourceRefs,
-  known_issues: z.array(KnownIssue),
-  review: Review,
-  provenance: z.array(ProvenanceEntry),
+  known_issues: z.array(KnownIssue).describe("Issues the corpus itself reports about this record."),
+  review,
+  provenance,
 });
 
 export const Entity = z.strictObject({
-  id: EntityId,
-  kind: z.enum(ENTITY_KINDS),
-  name: LocalizedText,
-  domain: z.enum(ENTITY_DOMAINS),
+  id: EntityId.describe(
+    "Stable local ID. A two-letter ID is not necessarily a country code: read kind and country.",
+  ),
+  kind: z.enum(ENTITY_KINDS).describe("Kind of node. Definitions: vocabulary.json#/entity_kinds."),
+  name: LocalizedText.describe("Display name."),
+  domain: z
+    .enum(ENTITY_DOMAINS)
+    .describe("Thematic domain from Fonte_07. Definitions: vocabulary.json#/entity_domains."),
   /** ISO country code of a `state` entity; null for every other kind. */
-  country: CountryCode.nullable(),
-  review: Review,
-  provenance: z.array(ProvenanceEntry),
+  country: CountryCode.nullable().describe(
+    "ISO 3166-1 alpha-2 code of a state entity; null for every other kind.",
+  ),
+  review,
+  provenance,
 });
 
 export const Relationship = z.strictObject({
-  id: RelationshipId,
-  subject: NodeId,
+  id: RelationshipId.describe("Stable record ID (G-####); never renumbered or reused."),
+  subject: NodeId.describe("Entity or event ID the statement is about."),
   /** Original predicate, to be read literally. */
-  predicate: z.string().regex(/^[A-Z][A-Z0-9_]*$/),
-  object: NodeId,
-  relation_class: z.enum(RELATION_CLASSES),
-  evidence_level: z.enum(RELATIONSHIP_EVIDENCE_LEVELS),
-  evidence_status: z.enum(RELATIONSHIP_EVIDENCE_STATUSES),
-  events: z.array(EventId),
-  valid_from: PartialDate.nullable(),
-  valid_to: PartialDate.nullable(),
-  primary_url: Url.nullable(),
-  caveat: LocalizedText.nullable(),
+  predicate: z
+    .string()
+    .regex(/^[A-Z][A-Z0-9_]*$/)
+    .describe(
+      "Original predicate, to be read literally (Italian or English as in the corpus); never translated.",
+    ),
+  object: NodeId.describe("Entity or event ID the subject is related to."),
+  relation_class: z
+    .enum(RELATION_CLASSES)
+    .describe(
+      "Original class from Fonte_07. Participation is presence or role, not control, financing or coordination. Definitions: vocabulary.json#/relation_classes.",
+    ),
+  evidence_level: z
+    .enum(RELATIONSHIP_EVIDENCE_LEVELS)
+    .describe(
+      "Evidence level (E1-E4) of this statement. Kinds of basis, not a ranking: E2 is not stronger or weaker than E3; E2 is an attribution, not a conviction. Definitions: vocabulary.json#/evidence_levels.",
+    ),
+  evidence_status: z
+    .enum(RELATIONSHIP_EVIDENCE_STATUSES)
+    .describe(
+      "Original Fonte_07 evidence code; it pairs one-to-one with evidence_level and is not an independent assessment. Definitions: vocabulary.json#/evidence_statuses.",
+    ),
+  events: z.array(EventId).describe("Events this relationship was recorded in."),
+  valid_from: PartialDate.nullable().describe(
+    "Start of validity when stated by a source; null when unknown.",
+  ),
+  valid_to: PartialDate.nullable().describe(
+    "End of validity when stated by a source; null when unknown or ongoing.",
+  ),
+  primary_url: Url.nullable().describe(
+    "URL of the primary document supporting the statement; null when not linked.",
+  ),
+  caveat: LocalizedText.nullable().describe(
+    "Limits of the statement; a caveat that negates an inference must be kept with the relationship.",
+  ),
   sources: sourceRefs,
-  review: Review,
-  provenance: z.array(ProvenanceEntry),
+  review,
+  provenance,
 });
 
 export const Hypothesis = z.strictObject({
-  id: HypothesisId,
-  subject: NodeId,
-  object: NodeId,
-  hypothesis_type: z.string().regex(/^[A-Z][A-Z0-9_]*$/),
-  question: LocalizedText,
-  current_limit: LocalizedText,
-  priority: z.enum(HYPOTHESIS_PRIORITIES),
-  evidence_needed: LocalizedText,
-  events: z.array(EventId),
-  external_url: Url.nullable(),
-  status: z.enum(HYPOTHESIS_STATUSES),
+  id: HypothesisId.describe("Stable record ID (H##); never renumbered or reused."),
+  subject: NodeId.describe("Anchor entity or event of the question; not a claimed link."),
+  object: NodeId.describe("Second anchor of the question; not a claimed link."),
+  hypothesis_type: z
+    .string()
+    .regex(/^[A-Z][A-Z0-9_]*$/)
+    .describe("Original hypothesis type code, to be read literally."),
+  question: LocalizedText.describe("Open verification question (evidence level E5)."),
+  current_limit: LocalizedText.describe("What is currently not established."),
+  priority: z
+    .enum(HYPOTHESIS_PRIORITIES)
+    .describe(
+      "Editorial priority of verification, not a probability. Definitions: vocabulary.json#/hypothesis_priorities.",
+    ),
+  evidence_needed: LocalizedText.describe("Evidence that would be needed to answer the question."),
+  events: z.array(EventId).describe("Related events."),
+  external_url: Url.nullable().describe("External reference URL; null when absent."),
+  status: z
+    .enum(HYPOTHESIS_STATUSES)
+    .describe("Status of the question. Definitions: vocabulary.json#/hypothesis_statuses."),
   sources: sourceRefs,
-  review: Review,
-  provenance: z.array(ProvenanceEntry),
+  review,
+  provenance,
 });
 
 export const Source = z.strictObject({
-  id: SourceId,
-  type: z.enum(SOURCE_TYPES),
-  title: LocalizedText,
-  publisher: z.string().min(1).nullable(),
+  id: SourceId.describe("Source code (S##, F##, P##, WEB, WEB-EXT-###)."),
+  type: z
+    .enum(SOURCE_TYPES)
+    .describe("Kind of source. Definitions: vocabulary.json#/source_types."),
+  title: LocalizedText.describe("Title of the source."),
+  publisher: z.string().min(1).nullable().describe("Publisher of the source; null when unknown."),
   /** Repository files of a corpus document. */
-  files: z.array(z.string().startsWith("sources/")),
-  urls: z.array(Url),
+  files: z
+    .array(z.string().startsWith("sources/"))
+    .describe("Repository files of a corpus document."),
+  urls: z.array(Url).describe("Public URLs of the source; empty when none is known."),
   /** Corpus documents that cite this reference. */
-  cited_in: sourceRefs,
-  review: Review,
-  provenance: z.array(ProvenanceEntry),
+  cited_in: sourceRefs.describe("Corpus documents that cite this reference."),
+  /** ADR-05 genealogy (B17). Absent means not determined, never primary. */
+  origin_type: z
+    .enum(ORIGIN_TYPES)
+    .optional()
+    .describe(
+      "Role of the source in the chain of evidence; absent when not determined (never read absence as primary). Definitions: vocabulary.json#/origin_types.",
+    ),
+  derived_from: z
+    .array(SourceId)
+    .optional()
+    .describe(
+      "Sources this one copies, republishes, rewrites or consolidates; it adds no independent root. Absent when not determined.",
+    ),
+  relies_on: z
+    .array(SourceId)
+    .optional()
+    .describe(
+      "Sources this one reports on (for example the official statement a wire quotes); their roots replace its own. Absent when not determined.",
+    ),
+  review,
+  provenance,
 });
 
 export const Measure = z.strictObject({
-  label: LocalizedText,
-  value: z.number(),
-  unit: z.enum(MEASURE_UNITS),
-  qualifier: z.enum(MEASURE_QUALIFIERS),
+  label: LocalizedText.describe("What the value is."),
+  value: z.number().describe("Numeric value as given by the source."),
+  unit: z.enum(MEASURE_UNITS).describe("Unit. Definitions: vocabulary.json#/measure_units."),
+  qualifier: z
+    .enum(MEASURE_QUALIFIERS)
+    .describe(
+      "How the source qualifies the value. Definitions: vocabulary.json#/measure_qualifiers.",
+    ),
   /** Denominator for counts ("19 of 20"), when the source gives one. */
-  out_of: z.number().positive().nullable(),
+  out_of: z
+    .number()
+    .positive()
+    .nullable()
+    .describe('Denominator for counts ("19 of 20") when the source gives one, else null.'),
   /** Reference period as stated by the source (`2024`, `2024-2026`), else null. */
   period: z
     .string()
     .regex(/^\d{4}(-\d{4})?$/)
-    .nullable(),
+    .nullable()
+    .describe("Reference period as stated by the source (2024, 2024-2026), else null."),
 });
 
 /** A quantified strategic dependency, with the scope of its denominator. */
 export const Exposure = z.strictObject({
-  id: ExposureId,
-  sector: LocalizedText,
+  id: ExposureId.describe("Stable record ID (X-###); not an entity ID."),
+  sector: LocalizedText.describe("Sector concerned."),
   /** Original indicator text. */
-  indicator: LocalizedText,
-  measures: z.array(Measure).min(1),
+  indicator: LocalizedText.describe("Original indicator text."),
+  measures: z
+    .array(Measure)
+    .min(1)
+    .describe("Quantified values; values from different universes are not comparable."),
   /** What the value measures: denominator, universe, data series. */
-  scope: LocalizedText,
-  consequence: LocalizedText,
-  status: z.enum(EXPOSURE_STATUSES),
+  scope: LocalizedText.describe("What the value measures: denominator, universe, data series."),
+  consequence: LocalizedText.describe("Consequence stated by the source."),
+  status: z
+    .enum(EXPOSURE_STATUSES)
+    .describe("observed value or planned target. Definitions: vocabulary.json#/exposure_statuses."),
+  /** B19: editorial grouping (supply chain stage or before/after pair); absent when none. */
+  group: z
+    .strictObject({
+      id: z
+        .enum(EXPOSURE_GROUPS)
+        .describe("Editorial group. Definitions and kind: vocabulary.json#/exposure_groups."),
+      position: z
+        .number()
+        .int()
+        .positive()
+        .describe(
+          "Order within the group: stage in a supply chain (1 = upstream) or display order in a before/after group. An editorial sequence, not a measure.",
+        ),
+    })
+    .optional()
+    .describe(
+      "Editorial grouping of exposures: a supply chain or a before/after comparison. Adds no value, period or causal link. Absent when the exposure belongs to no group.",
+    ),
   sources: sourceRefs,
-  review: Review,
-  provenance: z.array(ProvenanceEntry),
+  review,
+  provenance,
 });
 
 export type LocalizedText = z.infer<typeof LocalizedText>;

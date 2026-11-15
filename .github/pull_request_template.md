@@ -9,6 +9,7 @@
 - **Contrary evidence and limits:** <!-- or "none found" after searching -->
 
 The CI job summary shows the **evidence diff** of this pull request. Check it.
+Errors marked as waivable can be accepted only by the maintainer with the `evidence-waiver` label (it expires on every new push); provenance, `sources/original/`, `sources/incremental/` and path-policy errors cannot be waived.
 
 ## Checklist
 

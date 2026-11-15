@@ -30,6 +30,10 @@
     "en": "Chemical-industrial bottleneck"
   },
   "status": "observed",
+  "group": {
+    "id": "rare_earth_magnets",
+    "position": 2
+  },
   "sources": [
     "S08",
     "P06"
@@ -40,7 +44,8 @@
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "7da443ddba3f3004"
+        "source_hash": "7da443ddba3f3004",
+        "target_hash": "441966a39c3b06db"
       }
     }
   },

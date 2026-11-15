@@ -6,16 +6,18 @@ import {
   PRIORITY_LABELS,
 } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf } from "../../../../../src/site/i18n.ts";
+import { annotationsFor, forbiddenFor } from "../../../../../src/site/inferences.ts";
 import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
 import EvidenceStamp from "../../../components/EvidenceStamp.astro";
+import InferencePath from "../../../components/InferencePath.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import RecordFooter from "../../../components/RecordFooter.astro";
 import SourceRefs from "../../../components/SourceRefs.astro";
 import T from "../../../components/T.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
 import Base from "../../../layouts/Base.astro";
-import { href } from "../../../lib/links.ts";
-import { getModel } from "../../../lib/model.ts";
+import { href, packageAlternate } from "../../../lib/links.ts";
+import { getInferenceAudit, getModel } from "../../../lib/model.ts";
 
 export function getStaticPaths() {
   return (["it", "en"] as const).flatMap((lang) =>
@@ -28,9 +30,10 @@ export function getStaticPaths() {
 const { hypothesis: h } = Astro.props as { hypothesis: Hypothesis };
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
+const audit = getInferenceAudit();
 ---
 
-<Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} searchable>
+<Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} alternates={packageAlternate(h.id)} searchable>
   <header class="page-head">
     <p class="kicker flex flex-wrap items-center gap-2">
       <a href={href("hypotheses/", lang)}>{c("Ipotesi", "Hypotheses")}</a> / {h.id}
@@ -42,6 +45,7 @@ const c = (it: string, en: string) => choose(lang, it, en);
   <div class="notice max-w-3xl">
     {c("Ipotesi aperta (E5): non è un fatto accertato né una relazione documentata.", "Open hypothesis (E5): not an established fact nor a documented relationship.")}
   </div>
+  {h.review.status === "imported_unreviewed" && <p class="notice max-w-3xl">{c("Baseline provvisoria: gli aggiornamenti non revisionati non sono mostrati; i collegamenti riguardano solo eventi pubblici.", "Provisional baseline: unreviewed updates are not shown; links include only public events.")}</p>}
   <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-[max-content_1fr] max-w-3xl">
     <dt class="font-semibold">{c("Soggetti", "Subjects")}</dt>
     <dd><NodeLink id={h.subject} lang={lang} /> · <NodeLink id={h.object} lang={lang} /></dd>
@@ -80,6 +84,10 @@ const c = (it: string, en: string) => choose(lang, it, en);
     <dt class="font-semibold">{c("Fonti del corpus", "Corpus sources")}</dt>
     <dd><SourceRefs ids={h.sources} lang={lang} /></dd>
   </dl>
+  <p class="max-w-3xl">
+    <a href={href(`trace/${h.id}/`, lang)}>{c("Apri il tracciato fra i due soggetti", "Open the trace between the two subjects")}</a>
+  </p>
+  <InferencePath annotations={annotationsFor(audit, h.id)} forbidden={forbiddenFor(audit, h.id)} lang={lang} />
   <ArticleBacklinks id={h.id} lang={lang} />
 
   <RecordFooter id={h.id} collection="hypotheses" review={h.review} provenance={h.provenance} lang={lang} />

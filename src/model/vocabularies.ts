@@ -162,7 +162,45 @@ export const HYPOTHESIS_STATUSES = [
 
 export const SOURCE_TYPES = ["corpus_document", "external_reference", "unspecified_web"] as const;
 
+/**
+ * ADR-05 (B17): what a source is in the chain of evidence, independent of
+ * its `type`. Optional on a source record: absent means "not determined",
+ * never "primary". Set only from what the record itself establishes.
+ */
+export const ORIGIN_TYPES = [
+  "primary_document",
+  "official_statement",
+  "wire",
+  "original_reporting",
+  "republication",
+  "synthesis",
+  "corpus_synthesis",
+] as const;
+
 export const REVIEW_STATUSES = ["imported_unreviewed", "needs_review", "reviewed"] as const;
+
+/**
+ * ADR-06 (B18, proposed): kinds of claim. A fact, an attribution, a denial
+ * and a judgment are distinct claims, never merged into one sentence.
+ */
+export const CLAIM_KINDS = ["fact", "attribution", "denial", "judgment"] as const;
+export type ClaimKind = (typeof CLAIM_KINDS)[number];
+
+/** AGENTS.md rule 6: event, perpetrator, sponsor, motive and impact are separate claims. */
+export const CLAIM_ASPECTS = ["occurrence", "perpetrator", "sponsor", "motive", "impact"] as const;
+
+/**
+ * AGENTS.md rule 7: exact legal or procedural status of a named person at a
+ * date. Not ordered; `sentenced` does not state whether the judgment is final.
+ */
+export const PROCEDURAL_STATUSES = [
+  "under_investigation",
+  "charged",
+  "convicted",
+  "sentenced",
+  "acquitted",
+  "proceedings_closed",
+] as const;
 
 export const KNOWN_ISSUE_CODES = ["misclassified_category", "date_reflects_publication"] as const;
 
@@ -216,6 +254,27 @@ export const MEASURE_QUALIFIERS = ["exact", "approx", "more_than", "less_than", 
 
 /** `target`: planned or programmed values (e.g. IRIS² 2030), not observations. */
 export const EXPOSURE_STATUSES = ["observed", "target"] as const;
+
+/**
+ * B19 (FABLE C §§5.3, 8.3): editorial groupings of exposures. The kind fixes
+ * how a group is read: `supply_chain` orders consecutive stages of one chain
+ * (position 1 = upstream); `before_after` groups records whose two measures
+ * are the same quantity before and after, in measure order. A grouping is a
+ * reading aid, not a measure: it adds no value, period or causal link.
+ */
+export const EXPOSURE_GROUP_KINDS = ["supply_chain", "before_after"] as const;
+export type ExposureGroupKind = (typeof EXPOSURE_GROUP_KINDS)[number];
+
+export const EXPOSURE_GROUP_KIND = {
+  rare_earth_magnets: "supply_chain",
+  eu_gas: "before_after",
+} as const satisfies Record<string, ExposureGroupKind>;
+
+export type ExposureGroup = keyof typeof EXPOSURE_GROUP_KIND;
+export const EXPOSURE_GROUPS = Object.keys(EXPOSURE_GROUP_KIND) as [
+  ExposureGroup,
+  ...ExposureGroup[],
+];
 
 export const TRANSLATION_STATUSES = ["machine", "reviewed"] as const;
 

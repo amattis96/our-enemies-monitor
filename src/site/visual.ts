@@ -32,6 +32,13 @@ export const RELATION_GROUP_ICON: Record<RelationGroup, string> = {
   context: "rel-context",
 };
 
+/** Neutral context for these cable incidents; neither intent nor sponsorship is established. */
+export const RELATION_GROUP_OVERRIDES: Readonly<Record<string, RelationGroup>> = {
+  "G-0419": "context",
+  "G-0420": "context",
+  "G-0421": "context",
+};
+
 /** Categorical colour token of each relation group (fixed order, never cycled). */
 export const RELATION_GROUP_COLOR: Record<RelationGroup, string> = {
   security_intelligence: "var(--series-1)",

@@ -4,7 +4,12 @@ import { COLLECTION_NAMES, COLLECTIONS, TRANSLATION_STATUSES } from "../model/in
 import { readDataFiles } from "../pipeline/load.ts";
 import { DATA_DIR } from "../pipeline/paths.ts";
 import { serializeRecord } from "../pipeline/serialize.ts";
-import { localizedTexts, sourceHash, translationProblem } from "../pipeline/translations.ts";
+import {
+  localizedTexts,
+  sourceHash,
+  targetHash,
+  translationProblem,
+} from "../pipeline/translations.ts";
 
 // English translation workflow, deduplicated by Italian text.
 //
@@ -44,42 +49,49 @@ if (command === "export") {
   const statusFlag = process.argv.indexOf("--status");
   const status = (statusFlag > 0 ? process.argv[statusFlag + 1] : "machine") as "machine";
   if (!TRANSLATION_STATUSES.includes(status)) throw new Error(`invalid --status ${status}`);
+  const input: unknown = JSON.parse(readFileSync(file, "utf8"));
+  if (
+    !input ||
+    typeof input !== "object" ||
+    Array.isArray(input) ||
+    Object.values(input).some((v) => typeof v !== "string")
+  )
+    throw new Error("dictionary must contain only string values");
   const memory = new Map(
-    Object.entries(JSON.parse(readFileSync(file, "utf8")) as Record<string, string>).filter(
-      ([, en]) => typeof en === "string" && en.trim() !== "",
-    ),
+    Object.entries(input as Record<string, string>).filter(([, en]) => en.trim() !== ""),
   );
   let complete = 0;
   let partial = 0;
+  let unmatched = 0;
+  const plan: { path: string; text: string }[] = [];
   for (const { dataFile, record } of records) {
-    let changed = false;
-    for (const text of localizedTexts(record)) {
-      const en = memory.get(text.it);
-      if (en !== undefined && text.en !== en) {
-        text.en = en;
-        changed = true;
-      }
-    }
     const texts = localizedTexts(record);
     if (texts.length === 0) continue;
-    if (texts.every((t) => t.en !== undefined)) {
-      const review = record.review as { translations?: { en?: object } };
-      const state = { status, source_hash: sourceHash(record) };
-      if (JSON.stringify(review.translations?.en) !== JSON.stringify(state)) {
-        review.translations = { ...review.translations, en: state };
-        changed = true;
-      }
-      complete++;
-    } else if (texts.some((t) => t.en !== undefined)) {
+    const matches = texts.filter((t) => memory.has(t.it)).length;
+    if (matches === 0) {
+      unmatched++;
+      continue;
+    }
+    if (matches !== texts.length) {
       partial++;
+      continue;
     }
-    if (changed) {
-      const parsed = COLLECTIONS[dataFile.collection].parse(record);
-      writeFileSync(path.join(DATA_DIR, dataFile.path), serializeRecord(parsed));
-    }
+    for (const text of texts) text.en = memory.get(text.it);
+    const review = record.review as { translations?: { en?: object } };
+    review.translations = {
+      ...review.translations,
+      en: { status, source_hash: sourceHash(record), target_hash: targetHash(record) },
+    };
+    const parsed = COLLECTIONS[dataFile.collection].parse(record);
+    const problem = translationProblem(parsed as never);
+    if (problem) throw new Error(`${dataFile.path}: ${problem}`);
+    const output = serializeRecord(parsed);
+    if (output !== dataFile.text)
+      plan.push({ path: path.join(DATA_DIR, dataFile.path), text: output });
+    complete++;
   }
+  for (const item of plan) writeFileSync(item.path, item.text);
   console.log(
-    `${complete} record(s) fully translated, ${partial} partially translated (not marked).`,
-    `Collections: ${COLLECTION_NAMES.join(", ")}`,
+    `${complete} record(s) fully covered, ${partial} partially matched (ignored), ${unmatched} unmatched. Collections: ${COLLECTION_NAMES.join(", ")}`,
   );
 }

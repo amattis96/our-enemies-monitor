@@ -16,13 +16,26 @@
   ],
   "urls": [],
   "cited_in": [],
+  "origin_type": "corpus_synthesis",
+  "derived_from": [
+    "S00",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06"
+  ],
   "review": {
     "status": "imported_unreviewed",
-    "notes": [],
+    "notes": [
+      "B17 (ADR-05, 2026-11-15): origin_type corpus_synthesis set because the record is a project corpus document (type corpus_document); structural criterion, no content verification. derived_from lists the inputs the document itself declares: \"Corpus principale: Fonte_00, Fonte_01, Fonte_02, Fonte_03, Fonte_04, Fonte_05 e Fonte_06\" (header, line 7)."
+    ],
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "7f99415df6215877"
+        "source_hash": "7f99415df6215877",
+        "target_hash": "3751fe9d8046ddbc"
       }
     }
   },

@@ -10,6 +10,7 @@ import "../styles/global.css";
 import "../styles/shell.css";
 import type { Language } from "../../../src/model/index.ts";
 import { ui } from "../../../src/site/i18n.ts";
+import { serializeJsonLd } from "../../../src/site/jsonld.ts";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import { alternatePath, assetHref } from "../lib/links.ts";
@@ -24,6 +25,10 @@ interface Props {
   translated?: boolean;
   /** Console views (timeline, board, atlas) use the wide page. */
   wide?: boolean;
+  /** Machine-readable alternates of the page (record package, feed): `<link rel="alternate">`. */
+  alternates?: { href: string; type: string; title: string }[];
+  /** schema.org JSON-LD objects (`null` entries are ignored). */
+  jsonLd?: unknown;
 }
 
 const {
@@ -33,7 +38,10 @@ const {
   searchable = false,
   translated = true,
   wide = false,
+  alternates = [],
+  jsonLd,
 } = Astro.props;
+const ldObjects = (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).filter(Boolean);
 const t = ui(lang);
 const fullTitle = title === "Our Enemies Monitor" ? title : `${title} · Our Enemies Monitor`;
 const current = Astro.url.pathname;
@@ -58,6 +66,9 @@ const pageDescription = description ?? t.siteTagline;
     <meta property="og:locale" content={lang === "it" ? "it_IT" : "en_GB"} />
     <link rel="icon" href={assetHref("favicon.svg")} type="image/svg+xml" />
     <link rel="sitemap" href={assetHref("sitemap-index.xml")} />
+    {translated && <link rel="canonical" href={`${site}${current}`} />}
+    {alternates.map((alt) => <link rel="alternate" type={alt.type} title={alt.title} href={alt.href} />)}
+    {ldObjects.map((object) => <script type="application/ld+json" set:html={serializeJsonLd(object)} />)}
     {
       translated && (
         <>

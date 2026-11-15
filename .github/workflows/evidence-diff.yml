@@ -1,0 +1,103 @@
+name: Evidence diff
+
+# Runs on every pull request (no path filters: a required check that does not
+# start would leave the PR waiting forever). labeled/unlabeled re-run it so the
+# maintainer's `evidence-waiver` label takes effect without a new commit.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: evidence-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  evidence-diff:
+    # The name is a required status check context of the main ruleset: do not rename.
+    name: evidence-diff
+    runs-on: ubuntu-latest
+    # This job executes code from the PR head, so it holds read scopes only.
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+      actions: read # runs of the head commit, to date the push
+    steps:
+      # The head commit, not the merge ref: the diff is what the PR changes,
+      # wherever main has moved to meanwhile.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Maintainer waiver
+        id: waiver
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          # Optional repository variable; defaults to the repository owner.
+          OWNER: ${{ vars.MAINTAINER_LOGIN || github.repository_owner }}
+          ACTION: ${{ github.event.action }}
+        run: pnpm check:pr
+      - name: Editorial approval
+        if: always() && !cancelled()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          # Optional comma-separated repository variable, distinct from the waiver
+          # identity. Unset: the maintainer/owner, which cannot approve its own PR.
+          REVIEWERS: ${{ vars.ARTICLE_REVIEWERS || vars.MAINTAINER_LOGIN || github.repository_owner }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: pnpm check:article-review
+      - name: Evidence diff
+        if: always() && !cancelled()
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          WAIVER: ${{ steps.waiver.outputs.waiver }}
+          OWNER: ${{ vars.MAINTAINER_LOGIN || github.repository_owner }}
+        run: |
+          args=(--base "origin/$BASE_REF" --branch "$HEAD_REF")
+          if [ "$WAIVER" = "true" ]; then
+            args+=(--relaxed --waived-by "$OWNER")
+          fi
+          pnpm data:diff "${args[@]}"
+
+  # A push expires the waiver label. This job has the only write scope and runs
+  # no repository code: no checkout, no pnpm, only the GitHub CLI.
+  expire-waiver:
+    name: expire-waiver
+    if: github.event.action == 'synchronize' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Remove the evidence-waiver label
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # 404 means the label is not on the PR: nothing to expire.
+          if out=$(gh api -X DELETE "repos/$REPO/issues/$PR_NUMBER/labels/evidence-waiver" 2>&1); then
+            exit 0
+          fi
+          case "$out" in
+            *"HTTP 404"*) exit 0 ;;
+          esac
+          echo "$out" >&2
+          exit 1

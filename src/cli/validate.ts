@@ -1,7 +1,32 @@
+import { readCasePilot, validateCasePilot } from "../editorial/cases.ts";
+import { readInferenceRegistry, validateInferenceRegistry } from "../editorial/inferences.ts";
 import { readDataFiles } from "../pipeline/load.ts";
-import { summarize, validateDataFiles } from "../pipeline/validate.ts";
+import { type Issue, summarize, validateDataFiles } from "../pipeline/validate.ts";
 
 const { issues, dataset } = validateDataFiles(readDataFiles());
+
+/** B15: the forbidden-inference registry is checked against the same dataset. */
+function registryIssues(): Issue[] {
+  try {
+    return validateInferenceRegistry(readInferenceRegistry(), dataset);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return [{ severity: "error", file: "docs/audit/inferences/registry.v1.json", message }];
+  }
+}
+issues.push(...registryIssues());
+
+/** B18: the Case/Claim pilot is checked against the same dataset. */
+function casePilotIssues(): Issue[] {
+  try {
+    return validateCasePilot(readCasePilot(), dataset);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return [{ severity: "error", file: "docs/audit/cases/pilot.v1.json", message }];
+  }
+}
+issues.push(...casePilotIssues());
+
 const errors = issues.filter((i) => i.severity === "error");
 const warnings = issues.filter((i) => i.severity === "warning");
 

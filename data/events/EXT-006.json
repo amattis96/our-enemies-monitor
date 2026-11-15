@@ -50,7 +50,8 @@
     "translations": {
       "en": {
         "status": "machine",
-        "source_hash": "363813d55cc22953"
+        "source_hash": "363813d55cc22953",
+        "target_hash": "42f98d4872061ef8"
       }
     }
   },

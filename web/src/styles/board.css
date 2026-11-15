@@ -218,6 +218,11 @@
     transform: translateX(110%);
   }
 }
+@keyframes case-in-bottom {
+  from {
+    transform: translateY(110%);
+  }
+}
 @media (max-width: 759px) {
   .case-file {
     top: auto;
@@ -225,6 +230,11 @@
     right: 0.5rem;
     width: auto;
     max-height: 62%;
+  }
+}
+@media (max-width: 759px) and (prefers-reduced-motion: no-preference) {
+  .case-file {
+    animation-name: case-in-bottom;
   }
 }
 .case-file-tab {
@@ -284,6 +294,14 @@
   gap: 0.6rem;
   padding: 0.55rem 0.6rem;
   background: #fffdf6;
+  font-size: var(--text-sm);
+}
+.case-file-list li > div {
+  min-width: 0;
+}
+.board-caveat {
+  margin: var(--space-1) 0 0;
+  overflow-wrap: anywhere;
   font-size: var(--text-sm);
 }
 .case-file-line {

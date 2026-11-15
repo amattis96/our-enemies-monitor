@@ -149,6 +149,8 @@ stable between visits), with `--shadow-card`. Text uses `--card-ink` on
   translucent casing for contrast on cork.
 - Participation is excluded by default, as today.
 
+The visual group for cable incidents `G-0419`, `G-0420` and `G-0421` is neutral `context`; their canonical class is unchanged.
+
 ### Interaction
 
 - Pan (drag the background), zoom (⌘/Ctrl + wheel, pinch, + / − buttons,
@@ -159,15 +161,17 @@ stable between visits), with `--shadow-card`. Text uses `--card-ink` on
   38–80 % adds titles; > 80 % adds kind label and record ID.
 - Drag a card to rearrange (positions kept until reload); click opens
   the **case file drawer** (manila folder styling): title, kind, ID, every
-  visible relationship with predicate, family and level stamp, a link to the
+  visible relationship with predicate, family, level stamp and full localized caveat when present, a link to the
   full profile and a button that isolates the neighbourhood. Neighbours in
-  the drawer are buttons that move the selection.
+  the drawer are buttons that move the selection. Below 760 px the case file
+  enters from the bottom; at 760 px and above it enters from the right. Its
+  final position is contained within the board and long content scrolls internally.
 - `?focus=<ID>` (used by entity pages) opens the board on that card.
 - Keyboard: every card is a focusable button (Tab), `Enter`/`Space` opens
   the drawer, `Esc` clears. *Deferred:* arrow-key travel along threads.
 - **Board / List toggle** (`ui-board` / `ui-list`): the list view is the
   full accessible twin (current "text list of visible links", upgraded to a
-  sortable `DataTable`).
+  sortable `DataTable`). The current List places the full caveat under the predicate; SVG thread titles also include it. Italian fallback text is marked with its language.
 - Legend panel (collapsible): relation chips (toggle filters), thread
   swatches per level (toggle filters), card forms per kind, plus the
   `LimitsNote` with *not-transitive.svg*.
