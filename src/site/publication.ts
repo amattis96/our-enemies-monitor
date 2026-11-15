@@ -35,6 +35,12 @@ export type PublicationReport = {
     omitted_sources: string[];
     omitted_notes: number;
   }[];
+  /**
+   * IDs of published records whose public form differs from the canonical file
+   * (filtered fields or references), sorted. The canonical record in Git is then
+   * not the content that was exported.
+   */
+  transformed: string[];
 };
 
 function originalHypothesis(h: Hypothesis) {
@@ -200,7 +206,20 @@ export function publicationReport(
   const counts = Object.fromEntries(
     COLLECTION_NAMES.map((c) => [c, withheld.filter((r) => r.collection === c).length]),
   ) as Record<keyof Dataset, number>;
-  return { kind: "publication_report", dataset: visible, withheld, counts, projections };
+  const transformed = COLLECTION_NAMES.flatMap((collection) => {
+    const canonical = new Map<string, unknown>(dataset[collection].map((r) => [r.id, r]));
+    return visible[collection]
+      .filter((r) => JSON.stringify(r) !== JSON.stringify(canonical.get(r.id)))
+      .map((r) => r.id);
+  }).sort();
+  return {
+    kind: "publication_report",
+    dataset: visible,
+    withheld,
+    counts,
+    projections,
+    transformed,
+  };
 }
 export function publishedDataset(dataset: Dataset, references?: M5References): Dataset {
   return publicationReport(dataset, references).dataset;

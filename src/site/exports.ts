@@ -114,7 +114,7 @@ export function buildCatalog(
     record_packages: {
       path_template: "records/<ID>.json",
       count: COLLECTION_NAMES.reduce((n, name) => n + dataset[name].length, 0),
-      note: "One package per published record, from the same public projection: the record, a citation with the commit, and the IDs of the published records it points to or is pointed at by. A withheld ID has no package.",
+      note: "One package per published record, from the same public projection: the record, a citation of that projection (cite_as: commit, package path, SHA-256 of the record member), the canonical file in Git for provenance only (canonical_source; relation filtered = it holds content withheld from the projection), and the IDs of the published records it points to or is pointed at by. A withheld ID has no package.",
     },
     manifest: "manifest.json",
     datasets: [
@@ -172,7 +172,7 @@ export function exportFiles(
     { path: "inferences.json", text: json(counterInferenceAudit(registry, model)) },
     { path: "articles.json", text: json(buildArticlesIndex(articles, dataset, EXPORT_VERSION)) },
     { path: "changes.feed.json", text: json(buildChangesFeed(history, dataset)) },
-    ...buildRecordPackages(dataset, commit, EXPORT_VERSION),
+    ...buildRecordPackages(dataset, commit, EXPORT_VERSION, new Set(report.transformed)),
     ...schemas,
   ];
 }

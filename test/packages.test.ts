@@ -9,6 +9,7 @@ import {
   buildRecordPackages,
   FEED_MAX_ITEMS,
   publicArticles,
+  recordDigest,
   recordPages,
   relatedIndex,
 } from "../src/site/packages.ts";
@@ -76,14 +77,49 @@ describe("record packages (D A6, A7)", () => {
     expect(parsed.cite_as.commit).toBe(commit.commit);
     expect(parsed.cite_as.text).toContain("0123456");
     expect(parsed.cite_as.text).toContain("2026-11-15");
-    expect(parsed.cite_as.repository_permalink).toBe(
-      `https://github.com/amattis96/our-enemies-monitor/blob/${commit.commit}/${parsed.cite_as.repository_path}`,
+    expect(parsed.cite_as.cites).toBe("public_projection");
+    expect(parsed.cite_as.package_path).toBe(`records/${parsed.id}.json`);
+    expect(parsed.cite_as.record_sha256).toBe(recordDigest(parsed.record));
+    expect(parsed.canonical_source.repository_permalink).toBe(
+      `https://github.com/amattis96/our-enemies-monitor/blob/${commit.commit}/${parsed.canonical_source.repository_path}`,
     );
     expect(buildRecordPackages(pub, commit, "v1")).toEqual(buildRecordPackages(pub, commit, "v1"));
     const noGit = JSON.parse(
       buildRecordPackages(pub, { commit: null, commit_date: null }, "v1")[0]?.text ?? "",
     );
-    expect(noGit.cite_as.repository_permalink).toBeNull();
+    expect(noGit.canonical_source.repository_permalink).toBeNull();
+  });
+
+  it("cite the exported projection, not the canonical file, when they differ (H08)", () => {
+    const canonical = loadReadModel().dataset;
+    const files = exportFiles(report, commit, [], undefined, [], []);
+    const pkg = (id: string) =>
+      JSON.parse(files.find((f) => f.path === `records/${id}.json`)?.text ?? "null");
+    const digestOf = (record: unknown) => recordDigest(record);
+
+    // H08: the canonical file holds events, sources and notes the projection omits.
+    expect(report.transformed).toContain("H08");
+    const h08 = pkg("H08");
+    const h08Canonical = canonical.hypotheses.find((h) => h.id === "H08");
+    expect(h08.canonical_source.relation).toBe("filtered");
+    expect(h08.cite_as.record_sha256).toBe(digestOf(h08.record));
+    expect(h08.cite_as.record_sha256).not.toBe(digestOf(h08Canonical));
+    const omitted = report.projections.find((p) => p.id === "H08");
+    for (const id of [...(omitted?.omitted_events ?? []), ...(omitted?.omitted_sources ?? [])]) {
+      expect(JSON.stringify(h08)).not.toContain(`"${id}"`);
+    }
+
+    // A record with no projection: the package equals the canonical file.
+    const plain = pub.events.find((e) => !report.transformed.includes(e.id));
+    if (!plain) throw new Error("no untransformed event");
+    const p = pkg(plain.id);
+    expect(p.canonical_source.relation).toBe("identical");
+    expect(p.cite_as.record_sha256).toBe(digestOf(canonical.events.find((e) => e.id === plain.id)));
+
+    // The manifest hash covers the whole package file.
+    const manifest = buildManifest(report, files, commit);
+    const entry = manifest.files.find((f) => f.path === "records/H08.json");
+    expect(entry?.sha256).toMatch(/^[0-9a-f]{64}$/);
   });
 
   it("list as related only public records, symmetrically", () => {

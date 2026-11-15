@@ -78,3 +78,7 @@ Adottate dall'orchestratore su mandato del manutentore, **da confermare**.
 - `data/` non modificata: `pnpm data:diff` non necessario.
 
 **Resta.** Conferma delle decisioni e rilettura dei testi (§5); Atom, `statements.ndjson` e JSON-LD dei record non fatti.
+
+## Correzione post-audit (2026-11-15)
+
+`cite_as.repository_permalink` rimandava al record canonico in `data/`, che può differire legittimamente dalla proiezione esportata (es. `H08`: eventi, fonti e note non pubblicabili). Ora `cite_as` cita la proiezione pubblica (`cites: public_projection`, versione dell'export, commit, `package_path`, `record_sha256` sul solo membro `record`, quindi senza hash circolare; il file intero resta nel manifest) e il permalink Git passa in `canonical_source`, marcato `relation: filtered | identical` in base a `PublicationReport.transformed`. Nessun ID trattenuto entra nei pacchetti (solo il flag). Test in `test/packages.test.ts` per `H08` e per un record identico.

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import {
   type Article,
   COLLECTION_NAMES,
@@ -98,11 +99,26 @@ export function relatedIndex(dataset: Dataset): Map<string, Related> {
   return index;
 }
 
-/** One package per published record: `records/<ID>.json`. */
+/** SHA-256 of the `record` member exactly as serialized in the package (compact JSON, UTF-8). */
+export function recordDigest(record: unknown): string {
+  return createHash("sha256").update(JSON.stringify(record)).digest("hex");
+}
+
+/**
+ * One package per published record: `records/<ID>.json`.
+ *
+ * `cite_as` identifies the PUBLIC PROJECTION that was exported (export version,
+ * commit, package path, SHA-256 of the `record` member; the file itself is
+ * hashed in `manifest.json`). `canonical_source` points to the canonical file
+ * in Git for provenance only: when `relation` is `filtered`, that file holds
+ * fields or references withheld from the public projection and is NOT the
+ * content of the package. `transformed` lists those IDs (PublicationReport).
+ */
 export function buildRecordPackages(
   dataset: Dataset,
   commit: PackageCommit,
   exportVersion: string,
+  transformed: ReadonlySet<string> = new Set(),
 ): { path: string; text: string }[] {
   const related = relatedIndex(dataset);
   return COLLECTION_NAMES.flatMap((collection) =>
@@ -117,22 +133,36 @@ export function buildRecordPackages(
       ]
         .filter((part) => part !== null)
         .join(", ");
+      const packagePath = `records/${record.id}.json`;
+      const filtered = transformed.has(record.id);
       return {
-        path: `records/${record.id}.json`,
+        path: packagePath,
         text: compact({
           export_version: exportVersion,
           id: record.id,
           collection,
           cite_as: {
             text: `${text}.`,
+            cites: "public_projection",
+            export_version: exportVersion,
             commit: commit.commit,
             commit_date: commit.commit_date,
             license: "CC0-1.0",
             pages: recordPages(collection, record.id),
+            package_path: packagePath,
+            record_sha256: recordDigest(record),
+            digest_scope:
+              "SHA-256 of the `record` member re-serialized as compact JSON (JSON.stringify, UTF-8); the whole file is hashed in manifest.json.",
+          },
+          canonical_source: {
+            relation: filtered ? "filtered" : "identical",
             repository_path: repositoryPath,
             repository_permalink: commit.commit
               ? `${REPOSITORY_URL}/blob/${commit.commit}/${repositoryPath}`
               : null,
+            note: filtered
+              ? "Provenance only. The canonical file in Git holds fields or references withheld from the public projection: it is not the content of this package and its extra content is not published."
+              : "Provenance only. At this commit the public projection equals the canonical file.",
           },
           record,
           related: related.get(record.id),
