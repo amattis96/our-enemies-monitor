@@ -62,7 +62,7 @@ pnpm check:contrast     # WCAG contrast of the Dossier colour tokens (docs/desig
 pnpm validate           # data validation only (errors fail, warnings print)
 pnpm validate:sidecars  # archived sources/incremental/*.proposals.json + ingest queue
 pnpm validate:articles  # content/articles/ validation + publication gate report
-pnpm articles:hash [--write]  # English source_hash of each article
+pnpm articles:hash [ID ...] [--write]  # both hashes; --write requires explicit IDs
 pnpm test               # Vitest
 pnpm format:data        # rewrite data/ in canonical form
 pnpm schemas            # regenerate schemas/*.schema.json after model changes
@@ -73,7 +73,8 @@ pnpm dev                # Astro dev server (no search index)
 pnpm preview            # serve the last build
 pnpm check:links        # internal links of the built site (after pnpm build)
 pnpm i18n:export <f>    # untranslated/stale Italian texts → { it: "" }
-pnpm i18n:import <f> --status machine|reviewed   # apply { it: en } translations
+pnpm i18n:import <f> --status machine|reviewed   # apply fully covered records only
+pnpm i18n:migrate-hashes [--write]  # one-time legacy target hash migration; dry run by default
 pnpm data:diff [--base origin/main] [--relaxed]   # strict evidence + path-policy diff vs the merge base
 pnpm check:pr                                     # CI only: does the evidence-waiver label count?
 pnpm ingest <Fonte_XX.proposals.json> [--write]   # M6 sidecar → needs_review candidates (dry run by default)
@@ -161,6 +162,8 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
   `pnpm validate` fails. Re-translate with `pnpm i18n:export` → translate →
   `pnpm i18n:import`, or remove the record's `en` texts and
   `review.translations`.
+- Both `source_hash` (Italian) and `target_hash` (English) must match. Hashes detect edits, not semantic fidelity or reviewer identity. Import requires non-empty dictionary entries for every text in each record; partial matches are ignored and reported. An empty dictionary is a no-op. See [translation glossary](docs/TRANSLATION_GLOSSARY.md).
+- `pnpm articles:hash --write ID ...` updates only selected articles after translation; stale reviewed translations require human review.
 - AI translations are imported with `--status machine`; only a human
   reviewer may import with `--status reviewed`.
 - Relationship predicates stay in Italian on every page (they are literal).

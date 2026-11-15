@@ -59,7 +59,7 @@ The geographic scope includes EU member states, other European countries, Ukrain
 | **Strategic dependencies** | Trace relevant supply chains, chokepoints and infrastructure exposure. |
 | **Updates and corrections** | See newly added material and changes to existing assessments. |
 
-**Internationalization:** English and Italian are intended as initial interface languages, followed by major European languages and progressively broader EU-language coverage. Translations will not alter canonical entity IDs or the meaning and provenance of an attribution.
+**Internationalization:** English and Italian are intended as initial interface languages, followed by major European languages and progressively broader EU-language coverage. Translations will not alter canonical entity IDs or the meaning and provenance of an attribution. Italian and English texts carry separate change-detection hashes; these do not establish semantic fidelity or reviewer identity. Imports apply only to records fully covered by the supplied dictionary. See the [translation glossary](docs/TRANSLATION_GLOSSARY.md).
 
 ## Research corpus
 

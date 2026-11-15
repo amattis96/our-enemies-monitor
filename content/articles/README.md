@@ -6,7 +6,7 @@ canonical records themselves.
 - `<ID>.it.md` — canonical Italian text; its YAML front matter holds every
   field (links, references, review).
 - `<ID>.en.md` — optional English translation (title, summary, body and
-  `translation: { status, source_hash }`).
+  `translation: { status, source_hash, target_hash }`).
 - `ART-NNNN` — real editorial articles. `ART-DEMO-NNN` is reserved for testing;
   demonstration fixtures were removed from the published collection when real
   articles were approved (2026-11-13).
@@ -18,4 +18,4 @@ article with `needs_review` does not publish it. AI-produced English translation
 retain `translation.status: machine` until independently reviewed.
 
 Check with `pnpm validate:articles`; set English hashes with
-`pnpm articles:hash --write`.
+`pnpm articles:hash --write ART-NNNN` after translation. Both hashes detect text changes, not semantic fidelity or reviewer identity; stale reviewed translations require human review.

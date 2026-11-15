@@ -24,7 +24,7 @@ export type ArticleDiffOptions = {
 
 const LINK_KINDS = ["events", "entities", "relationships", "hypotheses"] as const;
 
-function sideOf(files: ArticleFile[], id: string): Side {
+function sideOf(files: ArticleFile[], id: string, historical = false): Side {
   const side: Side = { it: null, en: null, broken: [], files: new Map() };
   for (const file of files) {
     const name = file.path.split("/").pop() ?? "";
@@ -33,7 +33,16 @@ function sideOf(files: ArticleFile[], id: string): Side {
     side.files.set(match[2] ?? "", file.text);
     try {
       const split = splitFrontMatter(file.text);
-      const schema = match[2] === "it" ? ArticleFrontMatterIt : ArticleFrontMatterEn;
+      const schema =
+        match[2] === "it"
+          ? ArticleFrontMatterIt
+          : historical
+            ? ArticleFrontMatterEn.extend({
+                translation: ArticleFrontMatterEn.shape.translation.extend({
+                  target_hash: ArticleFrontMatterEn.shape.translation.shape.target_hash.optional(),
+                }),
+              })
+            : ArticleFrontMatterEn;
       const parsed = split ? schema.safeParse(split.data) : null;
       if (!split || !parsed?.success) {
         side.broken.push(file.path);
@@ -69,7 +78,7 @@ export function diffArticles(
   const idsOf = (files: ArticleFile[]) => files.flatMap((f) => articleIdOf(f.path) ?? []);
 
   for (const id of [...new Set([...idsOf(before), ...idsOf(after)])].sort()) {
-    const was = sideOf(before, id);
+    const was = sideOf(before, id, true);
     const is = sideOf(after, id);
     for (const path of is.broken)
       err(path, "front matter cannot be parsed or fails its schema", false);
@@ -135,6 +144,9 @@ export function diffArticles(
         was.en.body !== is.en.body;
       if (englishChanged && italianSame) {
         note(id, "English text changed while the Italian text did not");
+      }
+      if (was.en.front.translation.target_hash !== is.en.front.translation.target_hash) {
+        note(id, "translation.target_hash changed");
       }
       if (was.en.front.translation.source_hash !== is.en.front.translation.source_hash) {
         note(id, "translation.source_hash changed");

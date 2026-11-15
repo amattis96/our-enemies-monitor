@@ -322,11 +322,16 @@
                 "source_hash": {
                   "type": "string",
                   "pattern": "^[0-9a-f]{16}$"
+                },
+                "target_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{16}$"
                 }
               },
               "required": [
                 "status",
-                "source_hash"
+                "source_hash",
+                "target_hash"
               ],
               "additionalProperties": false
             }

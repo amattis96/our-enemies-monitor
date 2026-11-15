@@ -28,6 +28,12 @@ export function sourceHash(record: object): string {
   return createHash("sha256").update(JSON.stringify(texts)).digest("hex").slice(0, 16);
 }
 
+/** Fingerprint of the English texts in the same traversal order. */
+export function targetHash(record: object): string {
+  const texts = localizedTexts(record).map((text) => text.en);
+  return createHash("sha256").update(JSON.stringify(texts)).digest("hex").slice(0, 16);
+}
+
 /** Problems with the English translation of a record, if any. */
 export function translationProblem(record: { review: Review }): string | null {
   const texts = localizedTexts(record);
@@ -41,6 +47,9 @@ export function translationProblem(record: { review: Review }): string | null {
   }
   if (state.source_hash !== sourceHash(record)) {
     return "English translation is stale: the Italian text changed (re-translate or remove it)";
+  }
+  if (state.target_hash !== targetHash(record)) {
+    return "English translation changed since its target hash was recorded";
   }
   return null;
 }

@@ -3,6 +3,7 @@ import { Article, ArticleFrontMatterIt, type Dataset } from "../src/model/index.
 import {
   type ArticleFile,
   articleSourceHash,
+  articleTargetHash,
   bodyProblems,
   readArticleFiles,
   splitFrontMatter,
@@ -89,7 +90,7 @@ id: ${id}
 lang: en
 title: ${JSON.stringify(title)}
 summary: "Summary."
-translation: { status: machine, source_hash: "${hash}" }
+translation: { status: machine, source_hash: "${hash}", target_hash: "${articleTargetHash({ title, summary: "Summary.", body: "## Section\n\nText." })}" }
 ---
 ## Section
 
@@ -195,6 +196,18 @@ describe("article reference resolution", () => {
     );
     expect(errorsOf([englishFile("ART-0001", "0000000000000000")]).map((e) => e.message)).toContain(
       "English translation without the canonical Italian file",
+    );
+  });
+
+  it("rejects an English-only body edit", () => {
+    const itFile = italianFile();
+    const itSplit = splitFrontMatter(itFile.text);
+    const front = ArticleFrontMatterIt.parse(itSplit?.data);
+    const hash = articleSourceHash({ ...front, body: itSplit?.body ?? "" });
+    const en = englishFile("ART-0001", hash);
+    en.text += "\nChanged.\n";
+    expect(errorsOf([itFile, en]).map((issue) => issue.message)).toContainEqual(
+      expect.stringContaining("target hash"),
     );
   });
 

@@ -183,6 +183,13 @@ describe("validator (M3 rules)", () => {
     expect(errors).toContainEqual(expect.stringContaining("translation is stale"));
   });
 
+  it("flags an English-only change", () => {
+    const errors = committedErrorsAfter("relationships/G-0041.json", (r) => {
+      (r.caveat as { en: string }).en = "Convicted by a UK court";
+    });
+    expect(errors).toContainEqual(expect.stringContaining("target hash"));
+  });
+
   it("flags English text without a translation state", () => {
     const errors = committedErrorsAfter("events/TL-0001.json", (r) => {
       (r.review as { translations?: unknown }).translations = undefined;

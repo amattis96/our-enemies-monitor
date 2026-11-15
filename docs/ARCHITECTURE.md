@@ -82,7 +82,7 @@ src/
     baseline/themes.ts    Editorial category → theme classification
     baseline/places.ts    Editorial geography token → ISO country classification
     baseline/exposures.ts Transcription of the Fonte_08 §12.2 exposure matrix
-    translations.ts    Localized-text traversal, source hash, translation checks
+    translations.ts    Localized-text traversal, source and target hashes, translation checks
     diff.ts            Evidence diff between two versions of data/ (strict by default, waivable errors)
     article-diff.ts    Evidence diff of content/articles/ (review gates, reviewed articles frozen)
     policy.ts          Path policy by branch prefix, immutable sources, waiver label rule
@@ -213,8 +213,8 @@ Every record also carries:
   Records added later by editors may have an empty list;
 - `review`: `{ status, notes, translations? }` with status
   `imported_unreviewed`, `needs_review` or `reviewed`. `translations.en` =
-  `{ status: machine | reviewed, source_hash }`, where `source_hash`
-  fingerprints the Italian texts the translation was made from.
+  `{ status: machine | reviewed, source_hash, target_hash }`, where the hashes
+  fingerprint the Italian source and English target texts respectively.
 
 ### Editorial articles (M6)
 
@@ -227,7 +227,7 @@ Markdown natively. `data/` keeps its one-JSON-record-per-file contract, and
 
 - **Files:** `<ID>.it.md` (canonical, all metadata in its YAML front matter)
   and an optional `<ID>.en.md` (title, summary, body and `translation:
-  { status, source_hash }`). `src/model/article.ts` defines both front
+  { status, source_hash, target_hash }`). `src/model/article.ts` defines both front
   matters and the assembled `Article` (localized `title`, `summary`, `body`);
   `pnpm schemas` writes `article-it-front-matter`, `article-en-front-matter`
   and `articles` JSON Schemas next to the collection schemas.
@@ -247,8 +247,7 @@ Markdown natively. `data/` keeps its one-JSON-record-per-file contract, and
   real article is published.
 - **Translation:** `source_hash` is `sha256(JSON.stringify([title, summary,
   body]))` of the Italian texts, first 16 hex digits (the record convention of
-  `src/pipeline/translations.ts`); `pnpm articles:hash [--write]` prints or
-  sets it. A changed Italian text makes the English file stale (error).
+  `src/pipeline/translations.ts`); `target_hash` hashes the English title, summary and trimmed body in the same way. `pnpm articles:hash [ID ...]` prints both; `--write ID ...` updates selected machine translations only. Stale reviewed translations require human review. Hashes detect changes, not semantic fidelity or reviewer identity.
 
 ### Not yet modeled (by design)
 
@@ -282,8 +281,7 @@ the source file and keeps it as provenance.
 
 **Translations (M3):** `pnpm i18n:export <file>` writes the unique Italian
 texts lacking (or with stale) English; `pnpm i18n:import <file> --status
-machine|reviewed` applies `{ it: en }` to every matching text and records the
-translation state. The baseline's 1,087 unique texts were machine-translated
+machine|reviewed` applies `{ it: en }` only to records whose every text has a non-empty dictionary entry; partial matches are reported and unchanged. Empty imports do nothing. Both hashes are recorded. `pnpm i18n:migrate-hashes [--write]` preflights the legacy metadata migration, dry run by default; it never renews a stale source hash. The baseline's 1,087 unique texts were machine-translated
 (status `machine`); English pages say so.
 
 ## Baseline in numbers
@@ -428,7 +426,7 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
   (see Incremental ingest).
 - `pnpm validate:articles` validates `content/articles/` and lists which
   articles the publication gate shows or withholds, and why (part of
-  `pnpm check`); `pnpm articles:hash [--write]` computes English source hashes.
+  `pnpm check`); `pnpm articles:hash [ID ...] [--write]` computes both hashes, and requires IDs for writes.
 
 ### Validation rules
 
@@ -446,7 +444,7 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    have a country.
 9. Translations: English texts require a `review.translations.en` state, must
    be complete for the record, and the `source_hash` must match the current
-   Italian (a changed Italian text makes the translation stale → error).
+   Italian and `target_hash` must match the English (changes make the translation stale → error). See [translation glossary](TRANSLATION_GLOSSARY.md).
 10. Warning: person relationships with missing or unregistered `primary_url` are
    withheld. A separate Unicode name/domain heuristic warns once per non-person
    entity with relationships; it has false positives and negatives and does not

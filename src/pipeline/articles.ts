@@ -11,7 +11,7 @@ import {
   FIXTURE_TITLE_PREFIX,
 } from "../model/index.ts";
 import { repoPath } from "./paths.ts";
-import { sourceHash, translationProblem } from "./translations.ts";
+import { sourceHash, targetHash, translationProblem } from "./translations.ts";
 import type { Issue } from "./validate.ts";
 
 /**
@@ -65,6 +65,15 @@ export function articleSourceHash(it: { title: string; summary: string; body: st
     title: { it: it.title },
     summary: { it: it.summary },
     body: { it: it.body },
+  });
+}
+
+/** Fingerprint of the loaded English title, summary and trimmed body. */
+export function articleTargetHash(en: { title: string; summary: string; body: string }): string {
+  return targetHash({
+    title: { it: "", en: en.title },
+    summary: { it: "", en: en.summary },
+    body: { it: "", en: en.body },
   });
 }
 

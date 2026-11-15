@@ -55,6 +55,7 @@ summary: Summary
 translation:
   status: ${o.translation ?? "machine"}
   source_hash: ${o.hash ?? "0123456789abcdef"}
+  target_hash: 0123456789abcdef
 ---
 ${o.enBody ?? "## Body\n\nText."}
 `;
@@ -140,4 +141,15 @@ describe("article diff", () => {
       notes(run(files(), files({ body: "## Corpo\n\nNuovo.", enBody: "## Body\n\nNew." }))),
     ).not.toContainEqual(expect.stringContaining("English text changed while"));
   });
+});
+
+it("reads historical translations without target hash while keeping the current side strict", () => {
+  const before = files().map((f) => ({
+    ...f,
+    text: f.text.replace("  target_hash: 0123456789abcdef\n", ""),
+  }));
+  const after = files({ enBody: "## Body\n\nEdited." });
+  expect(notes(run(before, after))).toContainEqual(expect.stringContaining("English text changed"));
+  expect(notes(run(before, after))).toContain("translation.target_hash changed");
+  expect(errs(run(after, before))).toContainEqual(expect.stringContaining("fails its schema"));
 });

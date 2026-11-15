@@ -117,6 +117,7 @@ export const ProvenanceEntry = z.union([
 export const TranslationState = z.strictObject({
   status: z.enum(TRANSLATION_STATUSES),
   source_hash: z.string().regex(/^[0-9a-f]{16}$/),
+  target_hash: z.string().regex(/^[0-9a-f]{16}$/),
 });
 
 export const Review = z.strictObject({

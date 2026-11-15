@@ -33,7 +33,8 @@
     "check:pr": "node src/cli/pr-policy.ts",
     "audit:publication": "node src/cli/audit-publication.ts",
     "audit:m5": "node src/cli/audit-m5.ts",
-    "ingest": "node src/cli/ingest.ts"
+    "ingest": "node src/cli/ingest.ts",
+    "i18n:migrate-hashes": "node src/cli/migrate-translation-hashes.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",

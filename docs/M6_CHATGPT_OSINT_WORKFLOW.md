@@ -149,10 +149,11 @@ One PR on a dedicated branch (proposed `research/article-YYYYMMDD-<topic>`) addi
    translation:
      status: machine                 # never reviewed from an AI task
      source_hash: "0123456789abcdef"
+     target_hash: "0123456789abcdef"
    ---
    ```
 
-   `source_hash` = first 16 hex digits of SHA-256 of the UTF-8 JSON array `[title, summary, body]` of the **Italian** file (body trimmed; no spaces between JSON tokens; non-ASCII not escaped), e.g. in Python `hashlib.sha256(json.dumps([t, s, b], ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()[:16]`. If the task cannot compute it, the maintainer runs `pnpm articles:hash --write`; CI fails until it matches.
+   `source_hash` = first 16 hex digits of SHA-256 of the UTF-8 JSON array `[title, summary, body]` of the **Italian** file (body trimmed; no spaces between JSON tokens; non-ASCII not escaped), e.g. in Python `hashlib.sha256(json.dumps([t, s, b], ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()[:16]`. `target_hash` uses the same algorithm over the English title, summary and trimmed body. If the task cannot compute them, the maintainer runs `pnpm articles:hash --write ART-NNNN` after translation; CI fails until both match. Stale reviewed translations require human review. Hashes detect changes, not semantic fidelity or reviewer identity.
 4. **Publication gate.** A merged article appears on the site only when an editor sets `review.status: reviewed` **and** every linked record and cited source is public under the M5 policy. Linking a `needs_review` / `pending_integration` record (e.g. a Fonte_09 candidate) or a restricted person relationship keeps the whole article withheld until that record is published: an article never surfaces withheld evidence. `pnpm validate:articles` prints each article's state and the reasons.
 5. **Not allowed:** editing `data/`, sources or other articles; setting `reviewed` (article or translation); `fixture: true`; inventing record IDs or citing URLs that do not support the stated proposition. New facts found during the investigation go in a **separate** candidate evidence proposal for the Task A/ingest pipeline, not into `links`.
 
@@ -418,7 +419,7 @@ A shortened sidecar (the complete hand-authored Fonte_10 fixture is `test/fixtur
 
 - **Now:** canonical `it` plus `en` for existing structured records with tracked source hashes, as described in `AGENTS.md` and `src/pipeline/translations.ts`.
 - **Task A POC:** one complete **Italian** incremental MD. It does not imply that all its proposals already have English translations. At ingest time, only approved canonical texts enter the translation queue; missing/stale translations remain explicitly identified.
-- **Task B target:** generate Italian and English articles in the same task; keep names, article IDs, citations and evidence qualifiers consistent; track translation status and source-content hashes.
+- **Task B target:** generate Italian and English articles in the same task; keep names, article IDs, citations and evidence qualifiers consistent; track translation status and both source and target hashes.
 - **Later:** add French, German, Spanish, Polish and/or other relevant European languages based on priorities and existing i18n routes; regenerate **only stale translations**, not the entire corpus.
 - **Editorial control:** AI translation is labeled `machine` until reviewed; automated validation cannot promote it to `reviewed`. Future automated translation must not be confused with a completed implementation.
 
