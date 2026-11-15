@@ -250,3 +250,11 @@ This project does not guarantee that an external mirror is accurate, current or 
 ---
 
 *Our Enemies Monitor: investigate the links, preserve the evidence, distinguish what is known from what is inferred.*
+
+Article publication requires human editorial authorization. CI checks an
+independent maintainer review on the exact PR HEAD with explicit article IDs;
+reviewed English translations require a separate marker. This does not replace
+the evidence diff or its waiver rules, and the PR author cannot approve their
+own work. Article validation also reports possible missing case links as
+editorial warnings, without inferring relationships. See the
+[article instructions](content/articles/README.md).

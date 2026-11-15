@@ -98,6 +98,17 @@ Articles must not convert graph proximity, shared interests or competing allegat
 
 ### Article contract (what Task B must output)
 
+`reviewed` means human editorial authorization to publish; Task C assistance
+is not approval, and English review is separate. CI requires a distinct human
+maintainer review on the exact HEAD, with `Publication-Approval: ART-0001`
+covering the affected IDs and, for promoted or changed reviewed English, a
+separate `Translation-Approval: ART-0001` line. The owner cannot approve their
+own PR. Generic approval and front-matter claims do not substitute; this is
+independent of the evidence waiver and strict diff. Agents must not grant
+approval. Validation may warn about mentioned entities without case links;
+this is an editorial prompt and must not trigger inferred or automatic links. Marker lines must be at the top level, outside Markdown code fences and quotations.
+
+
 One PR on a dedicated branch (proposed `research/article-YYYYMMDD-<topic>`) adding **only** files under `content/articles/` (plus, separately, any candidate evidence manifest). Validation: `pnpm validate:articles` (part of `pnpm check`). JSON Schemas: `schemas/article-it-front-matter.schema.json`, `schemas/article-en-front-matter.schema.json`. See `content/articles/README.md` and the demo fixtures for complete examples.
 
 1. **ID.** The next unused `ART-NNNN` (four digits), checking `main` **and open PRs**. Never reuse or renumber. `ART-DEMO-NNN` is reserved for test fixtures.

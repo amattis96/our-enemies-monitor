@@ -155,3 +155,30 @@ export function diffArticles(
   }
   return flags;
 }
+
+/** Independent editorial approvals needed for changes; B02 flags remain unchanged. */
+export function requiredArticleApprovals(before: ArticleFile[], after: ArticleFile[]) {
+  const publication: string[] = [];
+  const translation: string[] = [];
+  const ids = [...new Set([...before, ...after].flatMap((f) => articleIdOf(f.path) ?? []))].sort();
+  for (const id of ids) {
+    const was = sideOf(before, id, true);
+    const current = sideOf(after, id);
+    if (current.broken.length || was.broken.length) throw new Error(`Cannot assess article ${id}`);
+    const changed = ["it", "en"].some((lang) => was.files.get(lang) !== current.files.get(lang));
+    if (!changed) continue;
+    if (
+      was.it?.front.review.status === "reviewed" ||
+      current.it?.front.review.status === "reviewed"
+    )
+      publication.push(id);
+    if (
+      (current.en?.front.translation.status === "reviewed" &&
+        was.en?.front.translation.status !== "reviewed") ||
+      (was.en?.front.translation.status === "reviewed" &&
+        was.files.get("en") !== current.files.get("en"))
+    )
+      translation.push(id);
+  }
+  return { publication, translation };
+}

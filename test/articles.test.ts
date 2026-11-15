@@ -1,5 +1,6 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { Article, ArticleFrontMatterIt, type Dataset } from "../src/model/index.ts";
+import { articleMentionWarnings } from "../src/pipeline/article-links.ts";
 import {
   type ArticleFile,
   articleSourceHash,
@@ -352,5 +353,63 @@ describe("article rendering and Markdown export", () => {
     );
     expect(output).toContain("accessed 2026-11-13");
     expect(output).toContain("https://example.org/oem/en/entities/GRU/");
+  });
+});
+
+describe("editorial missing-link diagnostics", () => {
+  it("matches full Unicode token boundaries and ignores short IDs", () => {
+    const article = validateArticleFiles(readArticleFiles(), raw).articles.find(
+      (a) => a.id === "ART-0002",
+    );
+    const entity = published.entities[0];
+    const relation = published.relationships.find((r) => r.events.length > 0);
+    if (!article || !entity || !relation) throw new Error("fixture unavailable");
+    const dataset = {
+      ...published,
+      entities: [
+        { ...entity, id: "GRU", name: { it: "Nome Inusuale", en: "Unusual Name" } },
+        { ...entity, id: "RU", name: { it: "Nome Differente", en: "Different Name" } },
+      ],
+      relationships: [{ ...relation, subject: "GRU", object: "RU" }],
+    };
+    const text = (body: string) => ({
+      ...article,
+      title: { it: "Titolo" },
+      summary: { it: "Sommario" },
+      body: { it: body },
+      links: { events: [], relationships: [], hypotheses: [], entities: [] },
+    });
+    expect(articleMentionWarnings(text("GRUppo RU"), dataset)).toEqual([]);
+    expect(articleMentionWarnings(text("(GRU)"), dataset)).toEqual(["GRU"]);
+    expect(articleMentionWarnings(text("nome inusuale"), dataset)).toEqual(["GRU"]);
+  });
+  it("warns on the original ART-0002 despite entity links, and preserves public backlinks after correction", () => {
+    const files = readArticleFiles();
+    const original = files.map((f) =>
+      f.path.endsWith("ART-0002.it.md")
+        ? {
+            ...f,
+            text: f.text
+              .replace("events: [TL-0064]", "events: []")
+              .replace("hypotheses: [H02]", "hypotheses: []"),
+          }
+        : f,
+    );
+    const result = validateArticleFiles(original, raw);
+    expect(
+      result.issues.some(
+        (issue) =>
+          issue.severity === "warning" &&
+          issue.file.includes("ART-0002") &&
+          issue.message.includes("GRU"),
+      ),
+    ).toBe(true);
+    const corrected = validateArticleFiles(files, raw);
+    expect(corrected.issues.filter((issue) => issue.file.includes("ART-0002"))).toEqual([]);
+    const articles = publishedArticles(corrected.articles, published);
+    expect(articles.map((a) => a.id)).toEqual(expect.arrayContaining(["ART-0001", "ART-0002"]));
+    const backlinks = articleBacklinks(articles);
+    expect(backlinks.get("TL-0064")?.map((a) => a.id)).toContain("ART-0002");
+    expect(backlinks.get("H02")?.map((a) => a.id)).toContain("ART-0002");
   });
 });

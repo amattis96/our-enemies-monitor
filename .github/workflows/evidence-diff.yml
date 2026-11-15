@@ -6,6 +6,8 @@ name: Evidence diff
 on:
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
 
 permissions:
   contents: read
@@ -49,10 +51,21 @@ jobs:
           OWNER: ${{ vars.MAINTAINER_LOGIN || github.repository_owner }}
           ACTION: ${{ github.event.action }}
         run: pnpm check:pr
-      - name: Evidence diff
+      - name: Editorial approval
+        if: always() && !cancelled()
         env:
-          BASE_REF: ${{ github.base_ref }}
-          HEAD_REF: ${{ github.head_ref }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          OWNER: ${{ vars.MAINTAINER_LOGIN || github.repository_owner }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: pnpm check:article-review
+      - name: Evidence diff
+        if: always() && !cancelled()
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
           WAIVER: ${{ steps.waiver.outputs.waiver }}
           OWNER: ${{ vars.MAINTAINER_LOGIN || github.repository_owner }}
         run: |

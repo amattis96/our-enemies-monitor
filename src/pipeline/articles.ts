@@ -10,6 +10,8 @@ import {
   FIXTURE_ARTICLE_ID,
   FIXTURE_TITLE_PREFIX,
 } from "../model/index.ts";
+import { publishedDataset } from "../site/publication.ts";
+import { articleMentionWarnings } from "./article-links.ts";
 import { repoPath } from "./paths.ts";
 import { sourceHash, targetHash, translationProblem } from "./translations.ts";
 import type { Issue } from "./validate.ts";
@@ -213,6 +215,16 @@ export function validateArticleFiles(files: ArticleFile[], dataset: Dataset): Ar
       if (problem) error(en.file, problem);
     }
     articles.push(article);
+  }
+  const publicData = publishedDataset(dataset);
+  for (const article of articles) {
+    const mentions = articleMentionWarnings(article, publicData);
+    if (mentions.length)
+      issues.push({
+        severity: "warning",
+        file: `content/articles/${article.id}.it.md`,
+        message: `Editorial check: mentions ${mentions.join(", ")} but has no event, relationship or hypothesis links`,
+      });
   }
   return { articles, issues };
 }

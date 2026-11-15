@@ -264,3 +264,18 @@ same as an editor signing off on legal or factual responsibility.
 5. In the PR, state what is known versus inferred and any contrary evidence
    (see CONTRIBUTING.md and the pull request template); check the evidence
    diff in the CI job summary.
+
+## Article editorial authorization
+
+`reviewed` denotes human editorial authorization to publish the current
+article; Task C does not grant it, and translation review is separate. The
+required `check:article-review` CI step checks a distinct human maintainer's
+review on the exact PR HEAD. The review must contain `Publication-Approval:`
+followed by all affected article IDs, comma-separated; for promoted or modified
+reviewed English also include a separate `Translation-Approval:` line. A
+front-matter assertion or generic code approval is insufficient. The PR author
+cannot self-approve, so an owner-authored PR needs another authorized reviewer.
+This check is independent of B02's evidence waiver and leaves the strict diff
+unchanged. Agents do not approve or set human review statuses. Mention warnings
+from `validate:articles` request editorial investigation; do not infer roles
+or add links solely to silence them.

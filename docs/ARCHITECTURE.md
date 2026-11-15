@@ -679,3 +679,23 @@ contributor / research agent          maintainer
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
 | **M6** ChatGPT source and article workflow | Daily ChatGPT incremental OSINT source PR, planned thematic research task, deterministic ingest and bilingual article pages | Task A configured and manual POC succeeded; sidecar contract and `pnpm ingest` implemented; article model, validation, gate and pages done (demo fixtures only); Task A sidecar prompt, unattended run and Task B pending |
 | **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); implementation in the portal | Done (2026-11-12): themes, shell, evidence stamps, newest-first timeline, evidence board, interactive atlas; deferred items listed in `docs/design/IMPLEMENTATION_PLAN.md` |
+
+### Article editorial approval and link diagnostics
+
+`pnpm check:article-review` is a read-only CI check in the required
+`evidence-diff` job, independent of the B02 waiver and strict diff. It compares
+article changes against the same merge base and checks the live PR HEAD before
+and after paginated reviews. A distinct human maintainer's latest decisive
+review must approve the exact HEAD and contain `Publication-Approval: ART-0001`
+with every affected ID. Promotion or modification of reviewed English requires
+`Translation-Approval: ART-0001` as well. API errors, malformed data and stale
+HEAD fail closed; generic approval and front-matter claims do not count. The
+owner cannot approve their own PR. This check runs PR code with read-only
+permissions; identity separation and repository protection remain operational
+dependencies, and the maintainer must run the live canary. Marker lines must be at the top level, outside Markdown code fences and quotations.
+
+`validateArticleFiles` emits a warning when no event, relationship or
+hypothesis is linked and a complete IT/EN entity name or unambiguous ID occurs
+in the text, for entities structurally associated with a public event. It does
+not infer a role, add links, or block publication. The static publication gate
+checks declared links; it does not establish semantic completeness.
