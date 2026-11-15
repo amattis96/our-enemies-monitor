@@ -36,6 +36,7 @@
     "audit:m5": "node src/cli/audit-m5.ts",
     "benchmark:measure": "node src/cli/benchmark.ts measure",
     "benchmark:score": "node src/cli/benchmark.ts score",
+    "audit:mentions": "node src/cli/mentions.ts",
     "ingest": "node src/cli/ingest.ts",
     "i18n:migrate-hashes": "node src/cli/migrate-translation-hashes.ts"
   },

@@ -1,6 +1,7 @@
 import type { Dataset, Relationship } from "../model/index.ts";
 import type { ExportFile } from "../site/exports.ts";
 import type { PublicationReport } from "../site/publication.ts";
+import { participationEdges, scanMentions } from "./mentions.ts";
 
 /**
  * B12 measurement baseline. Pure, read-only reproductions of the measurable
@@ -175,18 +176,6 @@ export function mulberry32(seed: number): () => number {
 
 type Pair = [string, string];
 
-function participationEdges(dataset: Dataset): Pair[] {
-  const events = new Set(dataset.events.map((e) => e.id));
-  const entities = new Set(dataset.entities.map((e) => e.id));
-  const edges: Pair[] = [];
-  for (const r of [...dataset.relationships].sort(byId)) {
-    if (r.relation_class !== "event_participation") continue;
-    const [entity, event] = events.has(r.subject) ? [r.object, r.subject] : [r.subject, r.object];
-    if (entities.has(entity) && events.has(event)) edges.push([entity, event]);
-  }
-  return edges;
-}
-
 function pairsWithTwoEvents(edges: Pair[]): number {
   const byEvent = new Map<string, Set<string>>();
   for (const [entity, event] of edges) {
@@ -255,38 +244,10 @@ export function e5CoParticipation(dataset: Dataset, runs = 500, seed = 7) {
   };
 }
 
-const fold = (s: string) =>
-  s
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/\p{Mn}/gu, "");
-const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 /** E6 — entity names in event text without a participation edge (A appendix matcher). */
 export function e6MentionsWithoutEdge(dataset: Dataset) {
-  const linked = new Map<string, Set<string>>();
-  for (const [entity, event] of participationEdges(dataset)) {
-    const set = linked.get(event) ?? new Set();
-    set.add(entity);
-    linked.set(event, set);
-  }
-  const names = [...dataset.entities].sort(byId).map((entity) => ({
-    id: entity.id,
-    patterns: entity.name.it
-      .split(/\s*\/\s*|\(|\)|,|;/)
-      .map((p) => fold(p).trim())
-      .filter((p) => p.length >= 5)
-      .map((p) => new RegExp(`(?<![a-z0-9])${escapeRegExp(p)}(?![a-z0-9])`)),
-  }));
-  const mentions: { event: string; entity: string }[] = [];
-  for (const event of [...dataset.events].sort(byId)) {
-    const text = fold(`${event.title.it} ${event.description.it}`);
-    for (const { id, patterns } of names) {
-      if (linked.get(event.id)?.has(id)) continue;
-      if (patterns.some((re) => re.test(text))) mentions.push({ event: event.id, entity: id });
-    }
-  }
-  const linkedEntities = new Set([...linked.values()].flatMap((s) => [...s]));
+  const mentions = scanMentions(dataset).map(({ event, entity }) => ({ event, entity }));
+  const linkedEntities = new Set(participationEdges(dataset).map(([entity]) => entity));
   return {
     matcher: "A appendix simplified matcher (name segments >= 5 chars, no stop list)",
     mentions: mentions.length,

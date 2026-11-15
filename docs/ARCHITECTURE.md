@@ -96,7 +96,8 @@ src/
                        articles.ts (article publication gate, back-links, HTML and
                        Markdown rendering)
   audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E6,
-                       D T1–T11) and question-benchmark scorer (benchmark.ts)
+                       D T1–T11), question-benchmark scorer (benchmark.ts) and the
+                       text–graph mention queue (mentions.ts, shared matcher with E6)
   cli/                 Entry points used by package scripts
 test/                  Vitest suites; fixtures/ holds hand-authored test inputs
                        (Fonte_10.proposals.json, a faithful subset of PR #3)
@@ -110,6 +111,7 @@ web/                   Astro portal
   src/lib/             Base-path/language links, cached read model, SVG map rendering
 docs/                  Architecture and project documentation
   audit/baseline/      Dated measurement baselines, benchmark case file and answers template
+  audit/mentions/      Text–graph queue inputs (exclusions.v1.json, review.v1.json) and dated reports
   design/              Dossier design system v1: concept, foundations, components, page blueprints,
                        UI/UX audit, M7 plan, tokens.css, SVG assets, specimen.html (not yet used by web/)
 .github/workflows/     ci.yml (check, deploy) and evidence-diff.yml; no LLM API job
@@ -176,6 +178,32 @@ are the reference for blocks B13, B16 and B19; `baseline-*.json` files are
 excluded from Biome so they stay byte-identical to the command output. Case expected answers describe
 the data at `as_of_commit`; a data change that alters them requires a new case
 file version.
+
+## Text–graph mention queue (B14)
+
+`pnpm audit:mentions [--format md|json] [--out <file>]` is read-only and lists
+entity names that appear in the Italian title/description of an event without a
+participation edge (FABLE A §4.6). The matcher lives in `src/audit/mentions.ts`
+and is the same one the B12 baseline uses for E6 (name segments of at least five
+characters, folded, whole word), so the raw count is identical (111 at the
+time of writing). The queue is that list minus a versioned lexicon exclusion
+list (`docs/audit/mentions/exclusions.v1.json`: generic segments such as
+«collegati» or a composite entity that duplicates two states); every excluded
+mention stays listed in the report with its reason. Each row carries the matched
+segment, the excerpt, the entity kind, how many relationships the entity has and
+which of them already cite the event in `events`.
+
+Outcomes `documented-role` / `context-only` / `false-positive` / `needs-evidence`
+are recorded in `docs/audit/mentions/review.v1.json`, one entry per
+(event, entity), with `state: proposta` (an unreviewed suggestion) or
+`state: revisionata` (requires `reviewer` and `reviewed_on`, a named human).
+The report states the sampled precision with a Wilson 95 % interval and the
+review state of every row; stale exclusions or entries for pairs no longer in
+the queue make the command exit non-zero. The command never writes under
+`data/`, `sources/` or `schemas/` (`--out` refuses those paths): turning a
+mention into a relationship is a separate, human-approved data change under the
+usual evidence rules. A mention is a candidate for review, not a missing edge.
+Dated Markdown reports are kept in `docs/audit/mentions/`.
 
 ## Data model
 

@@ -80,6 +80,7 @@ pnpm check:pr                                     # CI only: does the evidence-w
 pnpm ingest <Fonte_XX.proposals.json> [--write]   # M6 sidecar → needs_review candidates (dry run by default)
 pnpm benchmark:measure [--out <f>] [--pages web/dist]  # read-only audit baseline JSON (FABLE A E1–E6, D T1–T11)
 pnpm benchmark:score <answers.json>               # grade answers to docs/audit/baseline/benchmark-cases.v1.json
+pnpm audit:mentions [--format md|json] [--out <f>]  # read-only text–graph mention queue (B14); never writes data/
 ```
 
 Before declaring work done, run `pnpm check` (and `pnpm build` plus
@@ -122,7 +123,10 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - `src/audit/` — read-only measurement baseline and benchmark scorer;
   dated outputs and the B1–B20 case file live in `docs/audit/baseline/`.
   Agents never run external models for the benchmark and never edit an
-  archived baseline: produce a new dated file instead.
+  archived baseline: produce a new dated file instead. The mention queue
+  (`pnpm audit:mentions`, inputs in `docs/audit/mentions/`) is a review list,
+  not a source of edges: agents may add outcomes only as `state: proposta`,
+  never `revisionata`, and never create relationships from it.
 - `src/cli/` — script entry points. `test/` — Vitest suites.
 - `data/` — canonical records. `schemas/` — generated, never hand-edited.
 - `docs/design/` — Dossier design system v1: the single source of the
