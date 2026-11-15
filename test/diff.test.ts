@@ -105,7 +105,18 @@ describe("evidence diff", () => {
     ).toContainEqual(expect.stringContaining("hypothesis promoted"));
   });
 
-  it("flags raised evidence levels", () => {
+  it("flags a change of evidence level in either direction, without ranking E2/E3 (ADR-04)", () => {
+    const report = diffData(
+      base,
+      changed("relationships/G-0002.json", (r) => {
+        r.evidence_level = "E3";
+      }),
+      { persons },
+    );
+    expect(report.flags.map((f) => f.message)).toContain("evidence level changed E2 → E3");
+  });
+
+  it("flags changed evidence levels", () => {
     const report = diffData(
       base,
       changed("relationships/G-0002.json", (r) => {
@@ -113,7 +124,7 @@ describe("evidence diff", () => {
       }),
       { persons },
     );
-    expect(report.flags.map((f) => f.message)).toContain("evidence level raised E2 → E1");
+    expect(report.flags.map((f) => f.message)).toContain("evidence level changed E2 → E1");
   });
 
   it("is strict on every branch by default (R3)", () => {

@@ -6,7 +6,7 @@ import { validateDataFiles } from "../src/pipeline/validate.ts";
 import { counterInferenceAudit } from "../src/site/inferences.ts";
 import { publicationReport } from "../src/site/publication.ts";
 import { buildReadModel } from "../src/site/read-model.ts";
-import { buildTraces, notSaid, traceFor, weakestLink } from "../src/site/trace.ts";
+import { buildTraces, evidenceComposition, notSaid, traceFor } from "../src/site/trace.ts";
 
 const dataset = validateDataFiles(readDataFiles()).dataset;
 const registry = readInferenceRegistry();
@@ -65,15 +65,28 @@ describe("trace (B16)", () => {
     }
   });
 
-  it("states the weakest link as the highest evidence code", () => {
-    expect(weakestLink([])).toBeNull();
-    expect(weakestLink(["E1", "E3", "E3", "E2"])).toEqual({ level: "E3", count: 2, total: 4 });
+  it("describes the evidentiary make-up without ranking levels (ADR-04)", () => {
+    expect(evidenceComposition([])).toEqual([]);
+    expect(evidenceComposition(["E3", "E2", "E3", "E1"])).toEqual([
+      { level: "E1", count: 1 },
+      { level: "E2", count: 1 },
+      { level: "E3", count: 2 },
+    ]);
+    for (const t of traces) {
+      const kinds = t.not_said.map((n) => n.kind);
+      expect(kinds).not.toContain("weakest");
+      if (t.steps.length > 1) expect(kinds).toContain("composition");
+      for (const n of t.not_said) {
+        expect(n.text.it).not.toMatch(/più debole|meno solid|più solid|più forte/);
+        expect(n.text.en ?? "").not.toMatch(/weakest|strongest|stronger|weaker/i);
+      }
+    }
   });
 
   it("says plainly when the public graph holds no path", () => {
     const base = traces[0];
     if (!base) throw new Error("no trace");
-    const none = notSaid({ ...base, steps: [], interrupted_at: [], weakest: null });
+    const none = notSaid({ ...base, steps: [], interrupted_at: [], composition: [] });
     expect(none.map((n) => n.kind)).toContain("no_path");
     expect(none.map((n) => n.kind)).not.toContain("shortest_only");
   });

@@ -93,3 +93,7 @@ Accettazione C §8.1: **soddisfatta** per `H06`, `H07`, `H15` (interruzione e ip
 - `data/` non modificata: `pnpm data:diff` non necessario.
 
 **Resta.** Revisione umana delle classificazioni (B15 §6); pagina per la coppia esatta Kerimov–SpaceX e validazione con utenti (§8); misura del benchmark su un modello.
+
+## Correzione post-audit (2026-11-15)
+
+La revisione finale ha rilevato che `weakestLink()` ordinava E1–E5 e presentava il codice più alto come «anello più debole», in contrasto con ADR-04 (E1–E4 sono tipi di base probatoria, non una graduatoria; E2 ed E3 non sono ordinabili). Sostituito da `evidenceComposition()`: il blocco «Che cosa non dice» riporta la composizione probatoria (conteggi per livello) e dice esplicitamente che i livelli non si sommano né si ordinano e non qualificano un legame fra gli estremi. Interruzioni, caveat, ipotesi e inferenze vietate restano invariati. Anche la frase «non l'unico né il più solido» è stata riformulata. Test in `test/trace.test.ts` (nessun testo pubblico confronta livelli per solidità).

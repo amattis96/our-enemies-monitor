@@ -18,7 +18,9 @@ Ogni relazione porta `evidence_level` (E1–E4) ed `evidence_status` (codice ori
 ## Conseguenze
 
 - Nessun dato cambia; la validazione di B03 resta invariata.
-- Restano da correggere a parte (fuori da B18): il trattamento ordinale nel diff (`raised`) e nella riconciliazione di Fonte_09, e la visualizzazione doppia livello/stato sulle pagine.
+- Correzione post-audit (2026-11-15): il diff segnala ora ogni cambio di livello in entrambe le direzioni (`evidence level changed`), non solo il «raised» ordinale; il Tracciato (B16) non indica più un «anello più debole» ma la composizione probatoria del cammino (conteggi per livello). Nessuna relazione è stata riclassificata.
+- La «scelta del più basso» di Fonte_09 è stata una decisione dell'import manuale, non codice: i record restano invariati; un'eventuale revisione è editoriale.
+- Resta da correggere a parte: la visualizzazione doppia livello/stato sulle pagine.
 
 ## Alternative scartate
 

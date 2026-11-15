@@ -332,10 +332,11 @@ its categories and, while the classification is a `proposta`, the label
 «proposta non rivista». The closing block «Che cosa questo tracciato non dice»
 is generated from the structure of the trace (`notSaid`): n documented
 relationships in a row are not a documented relationship between the ends; each
-interruption; the weakest link (highest evidence code and how many steps carry
-it); the participation-is-not-control rule when the path crosses an event; every
+interruption; the evidentiary make-up of the path (how many steps carry each
+level, never a single "weakest link": E1-E4 are kinds of basis, not a ranking,
+ADR-04); the participation-is-not-control rule when the path crosses an event; every
 open hypothesis (E5) and public forbidden inference on the pair; and the
-reminder that it is the shortest public path, not the only or strongest one.
+reminder that it is the shortest public path, not the only one.
 The wording lives in `src/site/trace.ts` with tests (`test/trace.test.ts`), not
 in the template. Hypothesis pages and the hypotheses index link to the trace.
 
@@ -866,7 +867,7 @@ contributor / research agent          maintainer
   same level; for articles, new articles not `needs_review`, `reviewed` set on
   an article or its translation, any change or deletion of a reviewed article,
   fixture mismatches. *Attention* flags (listed, not failing): named persons,
-  raised evidence levels, new control/financing relationships, hypotheses,
+  changed evidence levels (any direction: levels are not a ranking), new control/financing relationships, hypotheses,
   replaced sources, changed dates/URLs, English-only edits, links removed or
   added to unreviewed records, fewer references. The report prints flags even
   when `data/` is unchanged.

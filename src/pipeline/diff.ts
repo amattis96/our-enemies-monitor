@@ -31,7 +31,6 @@ export type DiffReport = { changes: RecordChange[]; flags: Flag[] };
 
 type AnyRecord = Record<string, unknown> & { id: string };
 
-const LEVEL_RANK: Record<string, number> = { E5: 0, E4: 1, E3: 2, E2: 3, E1: 4 };
 const STRONG_GROUPS = new Set(["control", "financial"]);
 
 function parse(file: DataFile): AnyRecord | null {
@@ -254,12 +253,12 @@ function checkRelationship(
   const person = [record.subject, record.object].find((id) => persons.has(String(id)));
   if (person) attention(record.id, `concerns the named person ${String(person)}`);
   if (previous) {
-    const before = LEVEL_RANK[String(previous.evidence_level)] ?? 0;
-    const after = LEVEL_RANK[String(record.evidence_level)] ?? 0;
-    if (after > before) {
+    // Any change of level needs attention: E1-E4 are kinds of basis, not a
+    // ranking (ADR-04), so E2 → E3 is as much a change of claim as E2 → E1.
+    if (previous.evidence_level !== record.evidence_level) {
       attention(
         record.id,
-        `evidence level raised ${String(previous.evidence_level)} → ${String(record.evidence_level)}`,
+        `evidence level changed ${String(previous.evidence_level)} → ${String(record.evidence_level)}`,
       );
     }
   }

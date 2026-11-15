@@ -41,7 +41,7 @@ export type NotSaidKind =
   | "no_path"
   | "chain"
   | "interruption"
-  | "weakest"
+  | "composition"
   | "participation"
   | "hypothesis"
   | "forbidden"
@@ -64,22 +64,23 @@ export type Trace = {
   steps: TraceStep[];
   /** Relationship IDs whose caveat interrupts composition, in path order. */
   interrupted_at: string[];
-  weakest: { level: EvidenceLevel; count: number; total: number } | null;
+  /**
+   * Evidentiary make-up of the path: how many steps carry each level, in code
+   * order. A description, not a score: E1-E4 are kinds of basis, not a ranking
+   * (ADR-04), so no single level is singled out as the "weakest".
+   */
+  composition: { level: EvidenceLevel; count: number }[];
   hypotheses: TraceHypothesis[];
   forbidden: PublicForbiddenInference[];
   not_said: NotSaid[];
 };
 
-/** Weakest link: the highest evidence code among the steps (E1 is strongest). */
-export function weakestLink(levels: EvidenceLevel[]): Trace["weakest"] {
-  if (levels.length === 0) return null;
-  const rank = (l: EvidenceLevel) => EVIDENCE_LEVELS.indexOf(l);
-  const weakest = levels.reduce((a, b) => (rank(b) > rank(a) ? b : a));
-  return {
-    level: weakest,
-    count: levels.filter((l) => l === weakest).length,
-    total: levels.length,
-  };
+/** Per-level step counts, in code order; levels absent from the path are omitted. */
+export function evidenceComposition(levels: EvidenceLevel[]): Trace["composition"] {
+  return EVIDENCE_LEVELS.map((level) => ({
+    level,
+    count: levels.filter((l) => l === level).length,
+  })).filter((c) => c.count > 0);
 }
 
 const both = (it: string, en: string): LocalizedText => ({ it, en });
@@ -136,14 +137,19 @@ export function notSaid(trace: Omit<Trace, "not_said">): NotSaid[] {
     );
   }
 
-  if (trace.weakest && n > 1) {
-    const { level, count, total } = trace.weakest;
-    const label = EVIDENCE_SHORT[level];
+  if (n > 1) {
+    const list = (lang: "it" | "en") =>
+      trace.composition
+        .map(
+          ({ level, count }) =>
+            `${level} (${(EVIDENCE_SHORT[level][lang] ?? "").toLowerCase()}) ×${count}`,
+        )
+        .join(", ");
     add(
-      "weakest",
+      "composition",
       both(
-        `Anello più debole: ${level} (${label.it.toLowerCase()}), ${count} passaggi su ${total}. Il cammino non è più solido del suo tratto meno solido.`,
-        `Weakest link: ${level} (${label.en.toLowerCase()}), ${count} of ${total} steps. A path is no stronger than its weakest stretch.`,
+        `Composizione probatoria: ${list("it")}. Ogni livello descrive il tipo di base di un singolo passaggio, non un grado di affidabilità: i livelli non si sommano e non si ordinano, e nessuno di essi qualifica un legame fra gli estremi.`,
+        `Evidentiary make-up: ${list("en")}. Each level describes the kind of basis of a single step, not a degree of reliability: levels do not add up or rank, and none of them qualifies a link between the ends.`,
       ),
       null,
     );
@@ -187,8 +193,8 @@ export function notSaid(trace: Omit<Trace, "not_said">): NotSaid[] {
     add(
       "shortest_only",
       both(
-        "È il cammino più breve nel grafo pubblico, non l'unico né il più solido. Le relazioni con restrizioni su persone non fanno parte del grafo pubblico: un altro cammino può esistere fuori da qui.",
-        "It is the shortest path in the public graph, not the only one nor the strongest. Relationships restricted for named persons are not in the public graph: another path may exist outside it.",
+        "È il cammino più breve nel grafo pubblico, non l'unico, e non il solo possibile su altre basi probatorie. Le relazioni con restrizioni su persone non fanno parte del grafo pubblico: un altro cammino può esistere fuori da qui.",
+        "It is the shortest path in the public graph, not the only one, nor the only one possible on other evidentiary bases. Relationships restricted for named persons are not in the public graph: another path may exist outside it.",
       ),
       null,
     );
@@ -230,7 +236,7 @@ export function buildTraces(
       pair: annotation.pair,
       steps,
       interrupted_at: annotation.interrupted_at,
-      weakest: weakestLink(steps.map((s) => s.evidence_level)),
+      composition: evidenceComposition(steps.map((s) => s.evidence_level)),
       hypotheses: onPair,
       forbidden: audit.forbidden_inferences.filter((f) => annotation.forbidden_by.includes(f.id)),
     };
