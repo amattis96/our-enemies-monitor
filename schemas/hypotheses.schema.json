@@ -6,7 +6,7 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^H\\d{2}$"
+      "pattern": "^H(?:\\d{2}|[1-9]\\d{2})$"
     },
     "subject": {
       "anyOf": [
@@ -128,7 +128,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "pattern": "^(S\\d{2}|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
+        "pattern": "^(S(?:\\d{2}|[1-9]\\d{2})|F\\d{2}|P\\d{2}|WEB|WEB-EXT-\\d{3})$"
       }
     },
     "review": {

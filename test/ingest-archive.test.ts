@@ -86,6 +86,31 @@ function directory(entries: Record<string, string>): string {
 }
 const json = (value: unknown) => `${JSON.stringify(value, null, 2)}\n`;
 
+describe("extended archive numbering", () => {
+  it("orders mixed versions numerically and blocks pending predecessors", () => {
+    const s99 = ProposalFile.parse({ ...sidecarJson(99, []), schema_version: "1.0" });
+    const s100 = sidecar(100, []);
+    const s101 = sidecar(101, []);
+    expect(
+      [keyed(s101), keyed(s99), keyed(s100)]
+        .sort(compareSidecars)
+        .map((s) => s.proposals.source.code),
+    ).toEqual(["S99", "S100", "S101"]);
+    expect(archiveContext(keyed(s101), archiveOf(s101, s99, s100), dataset).pending).toEqual([
+      "S99",
+      "S100",
+    ]);
+  });
+  it("recognizes S100 markers on rerun", () => {
+    const proposals = sidecar(100, [sabotage("one")]);
+    const first = planIngest(proposals, context());
+    expect(first.fatal).toEqual([]);
+    const again = planIngest(proposals, context({ dataset: afterPlan(first).dataset }));
+    expect(outcome(again, "one")?.classification).toBe("already_applied");
+    expect(again.writes).toEqual([]);
+  });
+});
+
 describe("ingest order and gate (R9, T6)", () => {
   it("T-a1: an ingested earlier sidecar dedupes a later one through data/", () => {
     const s12 = sidecar(12, [sabotage("s12-ev")]);
@@ -508,13 +533,13 @@ describe("archive check (R12, R13)", () => {
   it("T-e1: names the file and field of an invalid sidecar", () => {
     expect(
       errors({
-        "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.1" }),
+        "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.2" }),
         "Fonte_13.proposals.json": "{ broken",
         "Fonte_12_test.md": "",
         "Fonte_13_test.md": "",
       }),
     ).toEqual([
-      'Fonte_12.proposals.json: invalid proposals sidecar: schema_version: Invalid input: expected "1.0"',
+      "Fonte_12.proposals.json: invalid proposals sidecar: schema_version: unsupported or missing version 1.2",
       expect.stringMatching(
         /^Fonte_13\.proposals\.json: invalid proposals sidecar: not valid JSON/,
       ),
@@ -550,9 +575,10 @@ describe("archive check (R12, R13)", () => {
     expect(found).toContain(`Fonte_13.proposals.json: ${markdownOf(12)} is declared by 2 sidecars`);
   });
 
-  it("T-r13c: three-digit Fonte numbers are refused until IDs are widened", () => {
-    expect(errors({ "Fonte_100_x.md": "" })).toEqual([
-      "Fonte_100_x.md: Fonte_100: only two-digit source numbers are supported (IDs S\\d{2})",
+  it("T-r13c: accepts Fonte_100 and rejects noncanonical aliases", () => {
+    expect(errors({ "Fonte_100_x.md": "" })).toEqual([]);
+    expect(errors({ "Fonte_099_x.md": "" })).toEqual([
+      "Fonte_099_x.md: Fonte_099: source numbers must have two digits or be 100–999",
     ]);
   });
 
@@ -640,7 +666,7 @@ describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R
   it("T-d1 (CLI): invalid other sidecars are warnings, not a stop", () => {
     setArchive({
       [fixtureMarkdown()]: "# Fonte_10 placeholder for tests\n",
-      "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.1" }),
+      "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.2" }),
       "Fonte_13.proposals.json": "{ broken",
     });
     const run = ingest(repoPath(FIXTURE), "--json");
@@ -664,7 +690,7 @@ describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R
 
   it("T-e1 (CLI): validate:sidecars fails on an invalid archived sidecar", () => {
     setArchive({
-      "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.1" }),
+      "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.2" }),
       "Fonte_12_test.md": "",
     });
     const run = validateSidecars();

@@ -55,7 +55,7 @@ if (!input) {
   process.exit(1);
 }
 const skip = values("--skip-pending");
-const badSkip = skip.filter((code) => !/^S\d{2}$/.test(code));
+const badSkip = skip.filter((code) => !/^S(?:\d{2}|[1-9]\d{2})$/.test(code));
 if (badSkip.length > 0) {
   console.error(`--skip-pending expects a source code such as S12, got: ${badSkip.join(", ")}`);
   process.exit(1);

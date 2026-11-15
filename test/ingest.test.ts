@@ -14,15 +14,21 @@ import path from "node:path";
 import { beforeAll, describe, expect, it } from "vitest";
 import type { Dataset } from "../src/model/index.ts";
 import { ProposalFile } from "../src/model/proposals.ts";
-import { checkPlan, plannedFiles } from "../src/pipeline/ingest/apply.ts";
+import { applyPlan, checkPlan, plannedFiles } from "../src/pipeline/ingest/apply.ts";
 import {
   type ArchiveContext,
   archiveContext,
   readArchive,
 } from "../src/pipeline/ingest/archive.ts";
-import { type IngestContext, type IngestPlan, planIngest } from "../src/pipeline/ingest/plan.ts";
+import {
+  type IngestContext,
+  type IngestPlan,
+  nextId,
+  planIngest,
+} from "../src/pipeline/ingest/plan.ts";
 import { type DataFile, readDataFiles } from "../src/pipeline/load.ts";
 import { REPO_ROOT, repoPath } from "../src/pipeline/paths.ts";
+import { serializeRecord } from "../src/pipeline/serialize.ts";
 import { validateDataFiles } from "../src/pipeline/validate.ts";
 import { publishedDataset } from "../src/site/publication.ts";
 import { base, event, FIXTURE, fixtureJson, freeIds, relationship } from "./helpers/ingest.ts";
@@ -54,6 +60,12 @@ const outcome = (plan: IngestPlan, ref: string) => plan.operations.find((o) => o
 const afterPlan = (plan: IngestPlan, start = files) =>
   validateDataFiles(plannedFiles(plan, start)).dataset;
 
+function firstRecord<T>(records: T[]): T {
+  const record = records[0];
+  if (record === undefined) throw new Error("Expected a non-empty dataset collection");
+  return record;
+}
+
 /** A minimal sidecar around synthetic operations. */
 function sidecar(operations: unknown[], references: unknown[] = []): ProposalFile {
   const json = fixtureJson();
@@ -70,6 +82,156 @@ function sidecar(operations: unknown[], references: unknown[] = []): ProposalFil
 }
 
 describe("proposals contract", () => {
+  it("enforces versioned ID boundaries and exact source filenames", () => {
+    const legacy = fixtureJson();
+    const source = {
+      ...legacy.source,
+      code: "S100",
+      file: "sources/incremental/Fonte_100_test.md",
+      baseline_source: "S100",
+    };
+    const current = { ...legacy, schema_version: "1.1", source, operations: [] };
+    expect(ProposalFile.safeParse(current).success).toBe(true);
+    expect(ProposalFile.safeParse({ ...current, schema_version: "1.0" }).success).toBe(false);
+    for (const version of ["1.2", "2.0", undefined])
+      expect(ProposalFile.safeParse({ ...current, schema_version: version }).success).toBe(false);
+    for (const code of ["S001", "S099", "S1000"])
+      expect(ProposalFile.safeParse({ ...current, source: { ...source, code } }).success).toBe(
+        false,
+      );
+    for (const file of [
+      "sources/incremental/Fonte_099_test.md",
+      "sources/incremental/Fonte_1000_test.md",
+      "sources/incremental/Fonte_100test.md",
+    ])
+      expect(ProposalFile.safeParse({ ...current, source: { ...source, file } }).success).toBe(
+        false,
+      );
+    expect(
+      ProposalFile.safeParse({
+        ...legacy,
+        source: { ...legacy.source, file: "sources/incremental/Fonte_100_test.md" },
+      }).success,
+    ).toBe(false);
+    const citation = {
+      ...base,
+      op: "add_citation",
+      ref: "a",
+      item: "a",
+      evidence_level: "E1",
+      target: "H100",
+      note: { it: "Nota" },
+      sources: ["S100"],
+    };
+    expect(ProposalFile.safeParse({ ...current, operations: [citation] }).success).toBe(true);
+    expect(ProposalFile.safeParse({ ...legacy, operations: [citation] }).success).toBe(false);
+    for (const id of ["H099", "H1000"])
+      expect(
+        ProposalFile.safeParse({ ...current, operations: [{ ...citation, target: id }] }).success,
+      ).toBe(false);
+  });
+
+  it("keeps each extended typed reference out of 1.0 while accepting it in 1.1", () => {
+    const legacy = fixtureJson();
+    const citation = {
+      ...base,
+      op: "add_citation",
+      ref: "a",
+      item: "a",
+      evidence_level: "E1",
+      target: "H01",
+      note: { it: "Nota" },
+      sources: ["S09"],
+    };
+    const shell = { ...legacy, operations: [citation] };
+    const cases = [
+      { ...shell, operations: [{ ...citation, target: "H100" }] },
+      { ...shell, operations: [{ ...citation, sources: ["S100"] }] },
+      { ...shell, source: { ...legacy.source, baseline_source: "S100" } },
+    ];
+    for (const proposal of cases) {
+      expect(ProposalFile.safeParse({ ...proposal, schema_version: "1.0" }).success).toBe(false);
+      expect(ProposalFile.safeParse({ ...proposal, schema_version: "1.1" }).success).toBe(true);
+    }
+  });
+
+  it("allocates hypotheses through 999 and reports exhaustion without partial writes", () => {
+    for (const [last, next] of [
+      ["H32", "H33"],
+      ["H98", "H99"],
+      ["H99", "H100"],
+      ["H998", "H999"],
+    ] as const)
+      expect(nextId([last], "H", 2, 3)).toBe(next);
+    for (const [id, prefix, width] of [
+      ["H999", "H", 2],
+      ["EXT-999", "EXT-", 3],
+      ["WEB-EXT-999", "WEB-EXT-", 3],
+      ["G-9999", "G-", 4],
+    ] as const)
+      expect(() => nextId([id], prefix, width, prefix === "H" ? 3 : width)).toThrow("exhausted");
+    const copy = structuredClone(dataset);
+    copy.events.push({ ...firstRecord(copy.events), id: "EXT-999" });
+    const before = JSON.stringify(copy);
+    const plan = planIngest(sidecar([event("first"), event("later")]), context({ dataset: copy }));
+    expect(plan.fatal.join(" ")).toContain("EXT-999 exhausted");
+    expect(plan.fatal.join(" ")).toContain("first");
+    expect(plan.fatal.join(" ")).toContain("later");
+    expect(plan.writes).toEqual([]);
+    expect(JSON.stringify(copy)).toBe(before);
+  });
+
+  it("makes each namespace exhaustion fatal after prior operations", () => {
+    const hypothesis = {
+      op: "create_hypothesis",
+      ref: "last",
+      item: "last",
+      ...base,
+      sources: ["S09"],
+      evidence_level: "E5",
+      subject: "PL",
+      object: "RU",
+      hypothesis_type: "UNIQUE_SYNTHETIC_TYPE",
+      question: { it: "Domanda nuova?" },
+      current_limit: { it: "Limite." },
+      evidence_needed: { it: "Prova." },
+      priority: null,
+      events: [],
+      external_url: null,
+    };
+    const cases = [
+      { collection: "hypotheses", id: "H999", op: hypothesis },
+      {
+        collection: "relationships",
+        id: "G-9999",
+        op: relationship("last", { sources: ["S09"], predicate: "SYNTHETIC_EXHAUSTION_TEST" }),
+      },
+      {
+        collection: "sources",
+        id: "WEB-EXT-999",
+        op: event("last", { sources: ["R01"], title: { it: "Secondo evento unico" } }),
+      },
+    ] as const;
+    for (const test of cases) {
+      const copy = structuredClone(dataset);
+      if (test.collection === "hypotheses")
+        copy.hypotheses.push({ ...firstRecord(copy.hypotheses), id: test.id });
+      if (test.collection === "relationships")
+        copy.relationships.push({ ...firstRecord(copy.relationships), id: test.id });
+      if (test.collection === "sources")
+        copy.sources.push({ ...firstRecord(copy.sources), id: test.id });
+      const plan = planIngest(
+        sidecar([event("prior", { sources: ["S09"] }), test.op, event("remaining")]),
+        context({ dataset: copy }),
+      );
+      expect(plan.fatal.join(" ")).toContain(`${test.id} exhausted`);
+      expect(plan.fatal.join(" ")).toContain("last");
+      expect(plan.fatal.join(" ")).toContain("remaining");
+      expect(plan.writes).toEqual([]);
+      expect(() => applyPlan(plan)).toThrow("blocked plan");
+    }
+  });
+
   it("accepts the hand-authored Fonte_10 fixture", () => {
     expect(fonte10.operations).toHaveLength(10);
     expect(fonte10.source.code).toBe("S10");
@@ -436,6 +598,50 @@ describe("reconciliation edge cases", () => {
 });
 
 describe("pnpm ingest CLI", () => {
+  it("reports exhausted IDs in text and JSON dry runs without writing", () => {
+    const root = mkdtempSync(path.join(tmpdir(), "oem-exhaust-"));
+    try {
+      cpSync(repoPath("data"), path.join(root, "data"), { recursive: true });
+      mkdirSync(path.join(root, "sources", "incremental"), { recursive: true });
+      symlinkSync(repoPath("sources/original"), path.join(root, "sources", "original"));
+      cpSync(repoPath("sources/incremental"), path.join(root, "sources", "incremental"), {
+        recursive: true,
+      });
+      mkdirSync(path.join(root, "docs", "audit"), { recursive: true });
+      cpSync(
+        repoPath("docs/audit/M5_2026-11-12.json"),
+        path.join(root, "docs/audit/M5_2026-11-12.json"),
+      );
+      const eventRecord = firstRecord(dataset.events);
+      const exhausted = {
+        ...eventRecord,
+        id: "EXT-999",
+        provenance: [],
+        review: { ...eventRecord.review, status: "needs_review" as const },
+      };
+      writeFileSync(path.join(root, "data/events/EXT-999.json"), serializeRecord(exhausted));
+      const proposal = sidecar([event("first"), event("later")]);
+      const input = path.join(root, "input.json");
+      writeFileSync(input, JSON.stringify(proposal));
+      writeFileSync(path.join(root, proposal.source.file), "# Test\n");
+      const before = readdirSync(path.join(root, "data/events"));
+      for (const args of [[], ["--json"]]) {
+        const run = spawnSync(process.execPath, [repoPath("src/cli/ingest.ts"), input, ...args], {
+          env: { ...process.env, OEM_REPO_ROOT: root },
+          encoding: "utf8",
+        });
+        expect(run.status).toBe(1);
+        expect(run.stderr).toBe("");
+        expect(run.stdout).toContain("EXT-999 exhausted");
+        expect(run.stderr).not.toContain("    at ");
+        if (args.length) expect(JSON.parse(run.stdout).writes).toEqual([]);
+      }
+      expect(readdirSync(path.join(root, "data/events"))).toEqual(before);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("writes canonical candidates once, then nothing, and data/ still validates", () => {
     const root = mkdtempSync(path.join(tmpdir(), "oem-ingest-"));
     try {

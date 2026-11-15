@@ -260,3 +260,5 @@ editorial warnings, without inferring relationships. See the
 [article instructions](content/articles/README.md).
 
 Scheduled-task configuration is described in the [14 November snapshot](docs/CHATGPT_SCHEDULED_TASKS.md). The [replacement prompts](docs/automation/CHATGPT_TASK_PROMPTS.md) and [run log contract](docs/automation/TASK_RUN_LOG.md) await maintainer application and issue configuration; they do not establish live external settings.
+
+New M6 proposals use schema version 1.1; existing 1.0 sidecars remain readable. Corpus source (S) and hypothesis (H) IDs support two digits or 100–999 without leading-zero aliases. See the [M6 contract](docs/M6_CHATGPT_OSINT_WORKFLOW.md) for compatibility and ingest rules. A source archive without a Git checkout builds with a history warning; Git failures in a checkout fail the build.

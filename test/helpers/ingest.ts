@@ -29,6 +29,7 @@ export function sidecarJson(
   const json = fixtureJson();
   return {
     ...json,
+    schema_version: "1.1",
     source: {
       ...json.source,
       code: `S${String(number).padStart(2, "0")}`,

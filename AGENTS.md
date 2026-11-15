@@ -204,7 +204,7 @@ The legacy `.github/agent/research-prompt.md` is a pointer, not an active prompt
   earlier archived sidecar is not ingested. Never pass `--skip-pending`
   yourself: it is a maintainer-only escape; ask instead. Ingest is never
   wired into CI or run on merge.
-- **Sidecar contract changes:** bump `schema_version`, run `pnpm schemas`,
+- **Sidecar contract changes:** new sidecars use 1.1; 1.0 remains readable with legacy two-digit typed S/H fields. S/H and Fonte numbers use two digits or 100–999 without leading-zero aliases; filenames must match the full code and include the underscore before the title. Namespace exhaustion blocks the entire ingest plan with no writes. Git history errors fail the build; only a proven source archive without a checkout may warn and return no history. For future changes, bump `schema_version`, run `pnpm schemas`,
   update the tests, `docs/M6_CHATGPT_OSINT_WORKFLOW.md` §4 and the Task A
   prompt text (§4.6) in the same change. Do not relax the person,
   E5-only-in-hypotheses or needs_review rules to make a sidecar pass.

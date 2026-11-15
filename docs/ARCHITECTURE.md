@@ -164,12 +164,12 @@ corpus; other languages are translations.
 | Event | `TL-0001` … / `EXT-001` … | Fonte_06 timeline / Fonte_07 new evidence (`EXT-001`–`004`) / Fonte_09 (`EXT-005`–`034`) |
 | Entity | `RU`, `GRU`, `VOE`, `RU_PRESS` (uppercase code) | Fonte_07 nodes (non-event) |
 | Relationship | `G-0001` … (gaps allowed) | Fonte_07 edges |
-| Hypothesis | `H01` … | Fonte_07 hypotheses (`H01`–`H22`) / Fonte_09 (`H23`–`H32`) |
-| Source | `S00`–`S09`, `F01`–`F30`, `P01`–`P11`, `WEB`, `WEB-EXT-001`… | Corpus documents and cited references (`S09`, `WEB-EXT-005`–`054`: Fonte_09) |
+| Hypothesis | `H00`–`H99`, `H100`–`H999` | Fonte_07 hypotheses (`H01`–`H22`) / Fonte_09 (`H23`–`H32`) |
+| Source | `S00`–`S99`, `S100`–`S999`; `F01`–`F30`, `P01`–`P11`, `WEB`, `WEB-EXT-001`… | Corpus documents and cited references (`S09`, `WEB-EXT-005`–`054`: Fonte_09) |
 | Exposure | `X-001` … | Fonte_08 §12.2 exposure matrix (one row each) |
 
 Later incremental sources ingested with `pnpm ingest` get the next free
-`EXT-NNN`, `G-NNNN`, `H##` and `WEB-EXT-NNN` (highest existing + 1, gaps never
+`EXT-NNN`, `G-NNNN`, `H##`/`H###` and `WEB-EXT-NNN` (highest existing + 1, gaps never
 filled), and register their document as corpus source `S10`, `S11`, ….
 Original IDs are never renumbered. Fonte_07 duplicates every timeline event
 as a graph node (`EV_TL-0001`, `EV_EXT-001`); the importer merges them into
@@ -457,10 +457,10 @@ sources/original/*  --(one-time)-->  pnpm import:baseline  -->  data/**/*.json
    fixture rules, English source hash, and a Markdown body without raw HTML
    or level-1 headings. A fixture that links a withheld record is an error.
 12. Archived sidecars (`pnpm validate:sidecars`): each passes the
-   `ProposalFile` contract; it is named `Fonte_NN.proposals.json` with
+   `ProposalFile` contract (new sidecars 1.1, legacy 1.0 retains two-digit typed S/H fields); it is named `Fonte_NN.proposals.json` with
    `source.code` `SNN`; its `source.file` is in `sources/incremental/` with the
    same number; at most one Markdown and one sidecar per `Fonte_NN`; code and
-   file unique among sidecars; no three-digit `Fonte_NNN` (IDs are `S\d{2}`);
+   file unique among sidecars; S/H use two digits or 100–999 (no leading-zero aliases), while F/P remain two digits;
    the code is not registered in `data/sources` for another file. Warnings:
    Markdown from Fonte_12 on without a sidecar, sidecars not yet ingested.
    Files that are neither `*.proposals.json` nor `Fonte_*` Markdown (e.g. a
@@ -684,3 +684,5 @@ hypothesis is linked and a complete IT/EN entity name or unambiguous ID occurs
 in the text, for entities structurally associated with a public event. It does
 not infer a role, add links, or block publication. The static publication gate
 checks declared links; it does not establish semantic completeness.
+
+The proposals schema publishes both 1.0 and 1.1 branches at one URL. Corpus code and Markdown filename must match fully with an underscore before the title; formerly accepted malformed prefix matches are rejected. Ingest allocates hypothesis IDs with two-digit minimum and three-digit maximum; exhaustion of any namespace makes the whole plan fatal with no writes. Git history probes the checkout before reading: source archives without a Git checkout warn and show no history; Git operational errors, including buffer exhaustion, fail the build.

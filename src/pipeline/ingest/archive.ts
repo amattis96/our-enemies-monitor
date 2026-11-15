@@ -1,7 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import type { Dataset } from "../../model/index.ts";
-import { ProposalFile } from "../../model/proposals.ts";
+import type { ProposalFile } from "../../model/proposals.ts";
+import { ProposalFileV10, ProposalFileV11 } from "../../model/proposals.ts";
 import type { Issue } from "../validate.ts";
 
 /**
@@ -59,7 +60,14 @@ export function parseSidecar(text: string): { proposals: ProposalFile } | { prob
   } catch (error) {
     return { problems: [`not valid JSON: ${(error as Error).message}`] };
   }
-  const parsed = ProposalFile.safeParse(json);
+  const version =
+    typeof json === "object" && json !== null && "schema_version" in json
+      ? json.schema_version
+      : undefined;
+  const schema = version === "1.0" ? ProposalFileV10 : version === "1.1" ? ProposalFileV11 : null;
+  if (!schema)
+    return { problems: [`schema_version: unsupported or missing version ${String(version)}`] };
+  const parsed = schema.safeParse(json);
   if (parsed.success) return { proposals: parsed.data };
   return {
     problems: parsed.error.issues.map(
@@ -220,8 +228,8 @@ export function checkArchive(archive: Archive, dataset: Dataset): Issue[] {
       else if (name.startsWith("Fonte_")) error(file, "Markdown name must be Fonte_NN_<title>.md");
       continue;
     }
-    if (digits.length !== 2) {
-      error(file, `Fonte_${digits}: only two-digit source numbers are supported (IDs S\\d{2})`);
+    if (!/^(?:\d{2}|[1-9]\d{2})$/.test(digits)) {
+      error(file, `Fonte_${digits}: source numbers must have two digits or be 100–999`);
       continue;
     }
     const byNumber = isSidecar ? sidecarByNumber : markdownByNumber;

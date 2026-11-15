@@ -27,8 +27,9 @@ import {
 export const EVENT_ID = /^(TL-\d{4}|EXT-\d{3})$/;
 export const ENTITY_ID = /^[A-Z][A-Z0-9_]*$/;
 export const RELATIONSHIP_ID = /^G-\d{4}$/;
-export const HYPOTHESIS_ID = /^H\d{2}$/;
-export const SOURCE_ID = /^(S\d{2}|F\d{2}|P\d{2}|WEB|WEB-EXT-\d{3})$/;
+export const HYPOTHESIS_ID = /^H(?:\d{2}|[1-9]\d{2})$/;
+export const CORPUS_SOURCE_ID = /^S(?:\d{2}|[1-9]\d{2})$/;
+export const SOURCE_ID = /^(S(?:\d{2}|[1-9]\d{2})|F\d{2}|P\d{2}|WEB|WEB-EXT-\d{3})$/;
 export const EXPOSURE_ID = /^X-\d{3}$/;
 /** ISO 3166-1 alpha-2 country code. */
 export const COUNTRY_CODE = /^[A-Z]{2}$/;
