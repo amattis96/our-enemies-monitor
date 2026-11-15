@@ -672,6 +672,8 @@
     font: 400 var(--text-read) / var(--leading-read) var(--font-serif);
     font-variation-settings: "opsz" 16;
     max-width: var(--measure);
+    /* Allow long URLs and inline identifiers to wrap without widening the viewport. */
+    overflow-wrap: anywhere;
   }
   .article-body > p:first-of-type::first-letter {
     float: left;
@@ -710,8 +712,13 @@
     padding: 0 0.25rem;
     border-radius: 0.2rem;
   }
+  .article-body pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
   .article-body table {
     display: block;
+    max-width: 100%;
     overflow-x: auto;
     margin-bottom: 1rem;
     font-family: var(--font-sans);
@@ -784,6 +791,8 @@
   .record-footer {
     margin-top: var(--space-8);
     padding: var(--space-4);
+    /* Review notes can contain long, uninterrupted commit hashes. */
+    overflow-wrap: anywhere;
     border: 1px solid var(--rule);
     border-radius: var(--radius-2);
     background: var(--paper-raised);

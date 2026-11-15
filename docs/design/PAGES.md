@@ -67,6 +67,7 @@ Limits of this article · Record footer
 - Rail collapses below the deck on < 1180 px as a horizontal "In the file"
   strip.
 - Reading progress: 2 px signal bar under the nav (scroll-driven, optional).
+- Responsive overflow: long reference URLs, identifiers and provenance/review hashes must wrap within the article or record footer. Markdown tables and fenced code blocks may scroll horizontally **inside their own element**, but must not create page-level horizontal scrolling (including at 320 px in both languages).
 
 *Implemented:* kicker, display title, italic deck, mono byline, serif body
 with drop cap, references and linked records. *Deferred:* the "In the file"
