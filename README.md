@@ -145,35 +145,55 @@ Read `data/v1/vocabulary.json` first: it defines evidence levels (kinds of basis
 
 **Full design, data model, validation rules and milestones:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Contributor and agent rules: [AGENTS.md](AGENTS.md).
 
-## M6: active ChatGPT scheduled research and integration
+## M6: four active ChatGPT research and integration tasks
 
-The 14 November snapshot records three **ChatGPT product scheduled tasks** independent of repository CI, with **Europe/Rome** schedules:
+**Verified 15 November 2026:** four ChatGPT product automations are enabled,
+independently of repository GitHub Actions, in the `Europe/Rome` timezone:
 
-| Task | Schedule in dated snapshot | Adopted responsibility |
+| Task | Schedule | Responsibility |
 | --- | --- | --- |
-| **A: Our Enemies Monitor OSINT** | **Daily 01:00** | Research incremental developments, check the last merged cutoff with at least 72 hours' overlap, deduplicate against `main` and open PRs, and propose a new immutable `Fonte_XX` Markdown **plus validated-where-possible M6 JSON sidecar** in a PR. No `data/` edits and no merge. |
-| **B: Our Enemies Monitor Editorial** | **Friday 03:00**, weekly | Independently research one substantial case and propose a sourced Italian article and its complete English translation in a PR. Content remains `needs_review`; no automatic editorial approval. |
-| **C: Our Enemies Monitor Review** | **Friday 05:00**, weekly | List all open PRs and review eligible same-repository research/agent PRs, evidence, conflicts and CI; review-only under the adopted governance (the maintainer approves and merges); the configured prompt still has to be updated. Never bypass human publication approval. |
+| **A: OSINT & Ingest** | **Daily 00:30** | Research with 72-hour overlap, immutable `Fonte_XX` Markdown + schema 1.1 sidecar PR; separately prepare a data-only `agent/ingest-*` PR for an earlier **merged** pending sidecar when an executable environment is available |
+| **B: Editorial** | **Mon/Wed/Fri 02:00** | Independently research one substantial European case and propose a sourced IT/EN article pair with real translation hashes; editorial status remains `needs_review` |
+| **C: Review & Fix** | **Mon/Wed/Fri 03:30** | Independently review evidence and CI, correct supported problems in eligible existing PR branches, and leave an exact-HEAD `READY_FOR_D` handoff or a blocker |
+| **D: Approval & Merge** | **Mon/Wed/Fri 05:00** | Recheck C handoff, diff, risk, freshness, `check` and `evidence-diff`; sequentially squash-merge eligible PRs and verify CI/Pages on the new main HEAD |
 
-**Authoritative dated snapshot and end-to-end lifecycle:** [docs/CHATGPT_SCHEDULED_TASKS.md](docs/CHATGPT_SCHEDULED_TASKS.md). **Detailed M6 source/sidecar and article contracts:** [docs/M6_CHATGPT_OSINT_WORKFLOW.md](docs/M6_CHATGPT_OSINT_WORKFLOW.md).
+See the [scheduled task register](docs/CHATGPT_SCHEDULED_TASKS.md),
+[verbatim active prompts](docs/automation/CHATGPT_TASK_PROMPTS.md) and
+[run log contract](docs/automation/TASK_RUN_LOG.md).
+The tasks run in ChatGPT; neither the prompts nor the schedule in these
+Markdown files automatically configure the ChatGPT scheduler.
 
-The ChatGPT tasks run **outside GitHub Actions** and use no in-repository paid LLM API job. The schedules and prompts live in ChatGPT, so the linked document is a dated configuration snapshot, not a runtime scheduler.
+**Autonomy is gated:** Task D is the only agent allowed to merge, and it
+cannot use admin bypass, `evidence-waiver`, direct pushes, human APPROVE
+reviews or automatic promotion to `reviewed`. C and D use the same GitHub
+account today, so their separate reviews are **not independent GitHub
+identities**. Code-owner review is not required by the current classic
+protection; control-plane changes therefore remain maintainer-only.
+The mandatory GitHub Actions contexts are `check` and `evidence-diff`
+on an up-to-date PR. The next task never assumes its predecessor has finished.
 
-A merged `sources/incremental/Fonte_XX*.md` becomes visible in the **documentary archive** through the normal build, but its `.proposals.json` is **not ingested automatically**. A separate, currently **manual** `pnpm ingest` workflow can prepare `needs_review` candidate records under `data/` for another reviewed PR. Similarly, merged bilingual article files are **not publicly published** while editorially unreviewed. The M5 gate continues to separate archived sources, canonical candidates and publication-eligible data. GitHub Actions performs deterministic checking, building and Pages deployment.
+Merging a source adds it to the documentary archive, not `data/`. The
+separate deterministic `pnpm ingest` step creates `needs_review`
+candidates on an ingest PR, not in CI and not on merge. Merging an unreviewed
+article creates a versioned **draft**, which remains withheld by the M5
+publication gate. Human editorial approval is still required to mark an
+article or translation `reviewed` or set `human_approved`.
 
 ~~~mermaid
 flowchart TD
-    A[ChatGPT A: daily OSINT] --> P1[Source Markdown + M6 sidecar PR]
-    B[ChatGPT B: weekly investigation] --> P2[IT/EN article PR]
-    P1 --> C[ChatGPT C: review; maintainer: approve + merge]
-    P2 --> C
-    C --> Archive[Versioned source archive]
-    C --> Drafts[Unreviewed article files remain withheld]
-    Archive --> Ingest[Separate manual pnpm ingest + data PR]
-    Ingest --> Human[Human editorial review and approval]
-    Human --> Canonical[Publication-eligible canonical data]
-    C --> CI[GitHub Actions CI + Pages build]
-    Canonical --> CI
+    A["A: OSINT (daily)"] --> S["Source MD + sidecar PR"]
+    A --> I["Archived sidecar → data-only ingest PR"]
+    B["B: investigations (Mon/Wed/Fri)"] --> R["IT/EN article PR"]
+    S --> C["C: review + fixes"]
+    I --> C
+    R --> C
+    C --> H{"Current HEAD ready?"}
+    H -->|No| Hold["Fix / further evidence / human decision"]
+    H -->|Yes| D["D: independent recheck + mandatory CI"]
+    D -->|Pass| M["Sequential squash merge → main"]
+    D -->|Fail / pending| Hold
+    M --> P["Main CI + Pages deploy"]
+    P --> Gate["M5 publication gate: reviewed content only"]
 ~~~
 
 ## Data model and temporal integrity
@@ -213,7 +233,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [x] Add the rare-earth Filiera and gas before/after on `/dependencies/` and a role matrix on entity pages (B19).
 - [x] Publish per-record JSON packages (`data/v1/records/<ID>.json`), an articles index, a changes feed (JSON Feed), minimal JSON-LD, `canonical`/`<time>` markup and a sitemap with `lastmod` — withheld records excluded and tested (B20).
 - [x] Add read-only cadence measures for the A/B/C automations (`pnpm cadence:measure`) and propose ADR-08 (B21).
-- [ ] Measure 2–4 A/B/C cycles and decide on the cadence change (ADR-08); schedules unchanged until then.
+- [ ] Measure 2–4 cycles under the 15 November A/B/C/D schedule, recalibrate K1–K5 and revisit ADR-08 (its original schedule proposal is historical).
 - [ ] Case file (Fascicolo del caso) and structured questions, after ADR-06 and reviewed case data.
 - [ ] Complete human evidentiary sign-off and integrate/reject Fonte_09 proposals in controlled reviewed changesets.
 - [x] Build the interactive timeline, graph and profile pages (M2, Italian MVP).
@@ -222,15 +242,18 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 - [ ] Review the English machine translations.
 - [x] Set up agent-specific research branches, CI checks, evidence diffs and pull requests (M4).
 - [x] Implement the M4 contribution/review/CI mechanism and GitHub Pages deployment; retire its legacy paid Anthropic research job in favor of the M6 design.
-- [x] Configure daily 01:00 Europe/Rome ChatGPT OSINT Task A and prove manual GitHub source PR write (Fonte_10, PR #3).
+- [x] Configure daily ChatGPT OSINT Task A (rescheduled to 00:30 Europe/Rome on 15 November) and prove manual source PR write (Fonte_10, PR #3).
 - [x] Verify unattended daily ChatGPT-to-GitHub source PR creation (Fonte_12 + sidecar, PR #18; complete CI/ingest validation remains a separate check).
 - [x] Implement deterministic, validated and idempotent source-to-canonical ingestion without model API calls (M6: `pnpm ingest` + proposals sidecar contract).
 - [x] Require and produce a `Fonte_XX.proposals.json` sidecar in unattended Task A (observed with Fonte_12, PR #18).
 - [ ] Run and review canonical ingestion of merged incremental sidecars in separate controlled PRs.
 - [x] Implement the article contract, validation, publication gate and IT/EN article pages with Markdown downloads (M6; real approved articles published, demo fixtures removed).
-- [x] Schedule weekly ChatGPT Task B (Friday 03:00 Europe/Rome), and observe creation of bilingual research PRs.
-- [x] Configure weekly ChatGPT Task C (Friday 05:00 Europe/Rome) for review with CI checks (merge role being withdrawn, see B01).
-- [ ] Separate agent identity and `main` ruleset (B01, maintainer settings pending).
+- [x] Reschedule ChatGPT Task B to Mon/Wed/Fri 02:00 Europe/Rome and record its complete active editorial prompt.
+- [x] Reschedule ChatGPT Task C to Mon/Wed/Fri 03:30 Europe/Rome with active PR review and repair.
+- [x] Create ChatGPT Task D, Mon/Wed/Fri 05:00 Europe/Rome, with exact-HEAD handoff verification, sequential merge and main CI monitoring.
+- [x] Configure classic `main` branch protection with zero required PR approvals, `strict: true`, and required `check` plus `evidence-diff` (maintainer output, 15 November 2026).
+- [ ] Implement separate agent identity and a hardened control-plane ruleset (B01; intentionally deferred in single-account mode).
+- [ ] Verify at least one complete unattended C → D merge and resulting main deploy under the new governance.
 - [x] Publish first real bilingual reviewed investigations (ART-0001 and ART-0002); retain human editorial approval for future articles.
 - [x] Publish the public portal and its correction policy (changes page, contribution rules).
 - [x] Design the *Dossier* design system and audit the portal UI/UX ([docs/design/](docs/design/README.md), M7 design).
@@ -240,7 +263,7 @@ At minimum, distinguish **when an event happened** from **when it was reported, 
 
 ## Contributing and corrections
 
-The project welcomes **documented additions, competing interpretations, corrections and technical contributions**. See [CONTRIBUTING.md](CONTRIBUTING.md): use the correction or new-evidence issue forms, or open a pull request; every data pull request gets an automatic evidence diff and needs the maintainer's review. Proposed updates should include the primary sources, the precise affected records, what is known versus inferred, and any conflicting evidence.
+The project welcomes **documented additions, competing interpretations, corrections and technical contributions**. See [CONTRIBUTING.md](CONTRIBUTING.md): use the correction or new-evidence issue forms, or open a pull request; every data pull request gets an automatic evidence diff and a substantive C → D review; control-plane changes and publication approvals still require the maintainer. Proposed updates should include the primary sources, the precise affected records, what is known versus inferred, and any conflicting evidence.
 
 Please do not submit unsupported allegations, personal data without a legitimate research basis, or speculative links as confirmed relationships. Preserve an individual's legal or procedural status accurately. Publication and republication of third-party materials must respect their licenses and applicable law.
 
@@ -275,6 +298,6 @@ own work. Article validation also reports possible missing case links as
 editorial warnings, without inferring relationships. See the
 [article instructions](content/articles/README.md).
 
-Scheduled-task configuration is described in the [14 November snapshot](docs/CHATGPT_SCHEDULED_TASKS.md). The [replacement prompts](docs/automation/CHATGPT_TASK_PROMPTS.md) and [run log contract](docs/automation/TASK_RUN_LOG.md) await maintainer application and issue configuration; they do not establish live external settings.
+The [15 November task register](docs/CHATGPT_SCHEDULED_TASKS.md) records four active automations and their schedules. Their [full, verified prompt snapshot](docs/automation/CHATGPT_TASK_PROMPTS.md) and [run log contract](docs/automation/TASK_RUN_LOG.md) document the operational workflow; a central log issue is not yet configured. Repository documents do not themselves update ChatGPT automations.
 
 New M6 proposals use schema version 1.1; existing 1.0 sidecars remain readable. Corpus source (S) and hypothesis (H) IDs support two digits or 100–999 without leading-zero aliases. See the [M6 contract](docs/M6_CHATGPT_OSINT_WORKFLOW.md) for compatibility and ingest rules. A source archive without a Git checkout builds with a history warning; Git failures in a checkout fail the build.

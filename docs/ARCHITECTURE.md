@@ -1,6 +1,6 @@
 # Technical architecture
 
-**Status (13 November 2026):** M1–M7 built. M5 retains claim-level verification and publication quarantine. M6 provides deterministic sidecar ingestion and bilingual editorial articles. M7 implements the Dossier design system. Three ChatGPT tasks handle incremental OSINT, weekly investigations and PR review, while deterministic GitHub Actions performs CI and Pages deploy. Research Markdown merged under `sources/incremental/` and `sources/thematic/` appears automatically in the website's documentary archive, **without** advancing canonical timeline/graph counts or claim approval. Approved real articles replace the former demonstration fixtures.
+**Status (13 November 2026):** M1–M7 built. M5 retains claim-level verification and publication quarantine. M6 provides deterministic sidecar ingestion and bilingual editorial articles. M7 implements the Dossier design system. Four scheduled ChatGPT tasks handle incremental OSINT plus separate ingest PRs, investigations, review/fixes and controlled merge, while deterministic GitHub Actions performs CI and Pages deploy. Research Markdown merged under `sources/incremental/` and `sources/thematic/` appears automatically in the website's documentary archive, **without** advancing canonical timeline/graph counts or claim approval. Approved real articles replace the former demonstration fixtures.
 This document describes the implemented code; see [AGENTS.md](../AGENTS.md) for agent rules.
 
 ## Principles
@@ -818,36 +818,52 @@ the publication (noted in the job summary); deploys are also serialized in a
 fails is therefore not deployed: the site catches up at the next green tip. (`cancel-in-progress: false` alone is not enough: GitHub
 keeps one pending run per group and replaces it with a newer one.)
 
-**Required checks and workflow contract:** the job names `check` (`ci.yml`)
-and `evidence-diff` (`evidence-diff.yml`) are the status check contexts the adopted `main` ruleset is intended to require; application and live configuration remain pending maintainer verification. The job names are set explicitly and guarded by
-`test/workflows.test.ts` (which also asserts no path filters, the concurrency
-rule and SHA pinning). `evidence-diff` runs on every PR (`opened`,
-`synchronize`, `reopened`, `labeled`, `unlabeled`) and checks out the PR head
-commit, not the merge ref. It is added to the ruleset only after one run
-under its final name has succeeded. A `pull_request` workflow runs the
-version of the workflow and scripts in the PR, so the gate executes
-PR-controlled code and a PR that edits them can make its own check pass. It is
-a **review aid**, not a barrier. The intended barrier is required CODEOWNERS
-review under the B01 ruleset with a machine account unable to bypass it; this protection is not established by these workflow definitions. Running
-the gate from the base commit or under `pull_request_target` is deferred
-(D-B02-6). For the same reason the `evidence-diff` job, which runs that code,
-holds read scopes only (`contents`, `issues`, `pull-requests`, `actions`); the
-only write scope (`issues: write`) belongs to the separate `expire-waiver` job,
-which checks out and runs no repository code.
+**Required checks and workflow contract (settings verified 15 November 2026):**
+the contexts `check` (`ci.yml`) and `evidence-diff`
+(`evidence-diff.yml`) are both required in the classic `main`
+branch protection, with `strict: true`. The maintainer also set zero
+required approving reviews and disabled mandatory CODEOWNERS approval,
+allowing the same GitHub account to open and merge a compliant PR.
+`test/workflows.test.ts` guards the stable job names; do not rename
+them. `evidence-diff` runs on every PR and evaluates the submitted
+head commit. Article review is a separate check for transitions to
+human `reviewed` status.
+
+**Control-plane limitation:** workflow/script changes in a PR can
+alter the checks that examine that same PR. The tripwire reports those
+paths, but this is **attention, not an enforcement boundary**. In
+single-account mode there is no enforced code-owner review and no
+ruleset, so Task D's explicit policy **forbids automatic merge of
+control-plane changes** pending a maintainer decision. Identity
+separation and base-branch enforcement remain future hardening work.
+`evidence-diff` runs with read-only repository permissions; the
+separate `expire-waiver` job removes the label after new commits.
 
 ## Editorial workflow and AI agents
 
 ```text
-contributor / research agent          maintainer
-        |                                  |
-  branch + edits in data/                  |
-        |                                  |
-  pull request ──► CI: check, build, check:links
-                   evidence-diff job (job summary): strict rules on every
-                   branch, path policy by branch prefix, maintainer waiver
-        |                                  |
-        └──────────────► maintainer approval ─► squash merge to main ─► deploy
+ChatGPT A (daily OSINT) ---------> source Markdown + sidecar PR
+      |                                         |
+      +--> merged pending sidecar --> agent/ingest data-only PR
+ChatGPT B (IT/EN investigation) --> article draft PR
+                                                |
+                                  ChatGPT C: review + fixes
+                                                |
+                               READY_FOR_D at exact PR HEAD
+                                                |
+                              ChatGPT D: independent recheck
+                                   check + evidence-diff
+                                                |
+                               sequential squash merge to main
+                                                |
+                                main CI + GitHub Pages deploy
 ```
+
+**Publication boundary:** merging a source archives it; a separate
+ingest PR creates needs_review candidates; a merged article remains
+unpublished while needs_review. Only authorized human review can
+promote reviewed or human_approved states. C and D share a GitHub
+identity today and their two passes are not separate GitHub approvals.
 
 - **Contributions:** `CONTRIBUTING.md` (EN/IT), issue forms for corrections
   and new evidence (`.github/ISSUE_TEMPLATE/`), and a pull request template
@@ -886,8 +902,9 @@ contributor / research agent          maintainer
     validation, publication gate, leak guard, `package.json`, lockfile,
     `AGENTS.md`). It takes no branch name, so renaming a branch cannot avoid
     it, but the job runs the PR head's own code: it makes the change visible,
-    it is not a barrier. The barrier is a ruleset requiring code owner review
-    (maintainer setting; see `docs/audit/fable-2026-11/FINAL_HARDENING_2026-11-15.md`).
+    it is not a barrier. No such ruleset or code-owner review is currently
+    enforced; Task D's prompt-level prohibition on merging control-plane
+    changes is an operational policy, not a technical access restriction.
   - **Maintainer waiver:** the label `evidence-waiver` lowers the *waivable*
     errors to attention flags that stay listed under "Waived by the
     maintainer". `pnpm check:pr` (`src/cli/pr-policy.ts`) decides in CI, from
@@ -907,25 +924,28 @@ contributor / research agent          maintainer
 
   The CI `evidence-diff` job runs it on every pull request and publishes the
   report in the job summary.
-- **M6 research design:** the paid Anthropic workflow is retired. The 14 November task snapshot records unattended source and article runs, including Fonte_12 with a sidecar in PR #18. This checkout archives Fonte_09–11; Fonte_10 and Fonte_11 lack sidecars and their recovery is deferred. Manual deterministic ingestion and bilingual article pages are implemented. [Run logging](automation/TASK_RUN_LOG.md) and [replacement prompts](automation/CHATGPT_TASK_PROMPTS.md) are procedures pending external configuration, not an implemented logger. See the [M6 workflow](M6_CHATGPT_OSINT_WORKFLOW.md) for contracts. GitHub Actions performs CI and deployment, not LLM inference.
-- **Protection (14 November snapshot; not live verified):** `.github/CODEOWNERS` assigns every path to
-  the maintainer. Classic branch protection on `main` requires the `check`
-  status and a code-owner review, forbids force pushes and deletion, but has
-  `enforce_admins` off, so the maintainer (admin) can push directly and merge
-  without the required review; merges so far have done so. ChatGPT tasks act
-  through the maintainer's own account via the ChatGPT Codex Connector app and
-  the local Claude Code uses the maintainer's `gh` token: the separation
-  between agents and maintainer is a convention, not a control.
-- **Protection (adopted target, to be applied by the maintainer):** agents use
-  a separate machine account with the Write role (conditional on verifying
-  that the ChatGPT connector accepts it). A ruleset on `main` requires a
-  pull request, one code-owner approval, the `check` status on an up-to-date
-  branch (`evidence-diff` after maintainer verification and configuration), linear history and squash merges,
-  and forbids force pushes and deletion; only the maintainer may bypass, and
-  only through a pull request. A second ruleset limits the machine account to
-  `research/**` and `agent/**`. Workflows cannot approve PRs and merged
-  branches are deleted. Task C reviews but does not merge, and no agent
-  pushes to `main`. Settings procedure and decisions D1-D7:
+- **M6 research design (verified 15 November 2026):** The retired paid
+  Anthropic workflow is not reactivated. Four active ChatGPT tasks A/B/C/D
+  implement daily OSINT and post-merge ingest PR preparation, three
+  investigations per week, active PR fixes, and final conditional merge.
+  [Recorded live prompts](automation/CHATGPT_TASK_PROMPTS.md) and
+  [run logging](automation/TASK_RUN_LOG.md) specify the exact contracts.
+  A central GitHub log issue is not yet configured. CI and Pages deployment
+  remain deterministic GitHub Actions operations, not LLM inference.
+- **Protection, current:** the maintainer's 15 November CLI output confirms
+  classic protection on `main` requires an up-to-date branch
+  (`strict: true`), `check` and `evidence-diff`; required PR approval
+  count is zero, code-owner and last-push approval are disabled.
+  Repository rulesets were absent in the API snapshot. ChatGPT and local
+  agents use `amattis96`, so separate task roles are not separate
+  identities. Task D may merge ordinary compliant research/data PRs
+  after Task C verification; no agent may admin-bypass, waive checks,
+  directly push main or merge changes to the control plane.
+  Humans retain publication approvals and governance changes.
+- **Protection, deferred hardening:** a separate machine identity and
+  ruleset-backed owner approval/base-branch check for control-plane
+  paths are still advisable. Earlier B01 settings proposals are
+  historical, not the live configuration. See
   [B01 analysis](audit/fable-2026-11/blocks/B01_ANALYSIS.md).
 - **Changes page:** `/changes/` lists the known baseline anomalies, every
   record's review notes and the history of data commits read from Git at
@@ -943,7 +963,7 @@ contributor / research agent          maintainer
 | **Fonte_09** Incremental update | First incremental source (cut-off 2026-11-11): 30 candidate events, 50 references, 18 entities, 14 relationships, hypotheses H23–H32; English machine-translated, editorial review pending | Imported (needs review) |
 
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
-| **M6** ChatGPT source and article workflow | Source and article research, deterministic ingest and bilingual pages | Repository contracts and pages implemented; runs recorded in the dated snapshot. External prompt, identity and logging application remains pending; ingestion and editorial approval remain manual |
+| **M6** ChatGPT source and article workflow | Four ChatGPT tasks, deterministic ingest and bilingual pages | A/B/C/D configured 15 November 2026; active prompts archived, ingest PR generation authorized for Task A when executable, first autonomous D merge not yet verified; human editorial approval retained |
 | **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); implementation in the portal | Done (2026-11-12): themes, shell, evidence stamps, newest-first timeline, evidence board, interactive atlas; deferred items listed in `docs/design/IMPLEMENTATION_PLAN.md` |
 
 ### Article editorial approval and link diagnostics

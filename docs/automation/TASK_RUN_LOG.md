@@ -1,37 +1,68 @@
 # Scheduled task run log contract
 
-This is the adopted operational contract; external application is pending. It is not an implemented logger or a record of past runs. The maintainer selects and configures a dedicated GitHub issue and verifies comment permissions. Each task posts one structured comment per attempt and also returns the same report in ChatGPT. Comments are editable and do not independently prove execution. If the issue is unknown or unwritable, do not create it, change permissions or use an alternative channel: retain the report in ChatGPT, set `log_delivery: not_configured` or `failed`, and request maintainer action. Delivery failure is separate from the work outcome. Never include logs in research PRs or source archives.
+Applies to **Tasks A, B, C and D**. The task's visible ChatGPT result is
+mandatory; a dedicated maintainer-selected GitHub issue may receive
+**one structured comment per execution** only once configured and
+writable. As of 15 November 2026 no such issue has been configured.
+An absent destination means `log_delivery: not_configured`, not
+failure of the research itself; never create an issue or move logs to
+another location without authorization. Logs and PR comments can be
+edited and are not cryptographically independent evidence.
 
-Use a stable Run-ID for each attempt: task, actual UTC start timestamp and an optional attempt number. Record actual start and end with offsets; keep the scheduled trigger separate. Unknown or unobserved values are null or explicitly unverified. Outcomes are `findings`, `no_material_update`, `partial`, `blocked`, or `failed`. Use `no_material_update` only after the intended coverage was actually completed; unavailable sources or partial coverage are not a negative finding and do not justify `closed_insufficient`.
-
-Copy this template for every run; omit secrets and unnecessary personal data:
+Each attempt gets a stable Run-ID containing its task identifier and
+actual UTC start time, with an optional attempt suffix. Record the
+scheduled trigger separately from actual execution. Missing values are
+`null` or explicitly `unverified`; never invent timestamps, source
+coverage, tests, approvals or GitHub actions.
 
 ```yaml
-run_id: <task-actual-UTC-start-attempt>
-task: <A|B|C>
-trigger_scheduled: <timestamp with offset or null>
-started: <actual timestamp with offset or null>
-finished: <actual timestamp with offset or null>
-main_start_sha: <sha or null>
-instructions_commit: <sha or null>
+run_id: <A|B|C|D>-<actual-UTC-start>-<attempt>
+task: <A|B|C|D>
+trigger_scheduled: <ISO timestamp with offset or null>
+started: <ISO timestamp with offset or null>
+finished: <ISO timestamp with offset or null>
+main_start_sha: <SHA or null>
+instructions_commit: <SHA or null>
 coverage_planned: <window or null>
-coverage_actual: <window and limitations or null>
+coverage_actual: <actual window and limitations or null>
 questions_and_queries: []
 sources_consulted: []
 new_material_and_duplicates: []
 candidates_discarded_and_reasons: []
-prs_created_or_reviewed: [] # URL and exact head SHA
-excluded_pr_metadata: [] # C: URL, number, SHA and reason; no payload
-checks: [] # name, result, URL and SHA; identify pending and not run
+prs_created_or_reviewed: [] # URL, category, head/base SHA, changed files
+excluded_pr_metadata: [] # C/D: URL, number, SHA, reason; no payload inspection
+corrections_and_commits: [] # C: files and new SHA; D: merge commit SHA
+review_handoffs: [] # C verdict and exact SHA, D verification of that handoff
+checks: [] # status, conclusion, URL and exact checked SHA; pending/not run explicit
+main_ci_and_deploy: [] # D: each merge's resulting main SHA and final CI/deploy
 obstacles: []
 remaining_actions: []
 outcome: <findings|no_material_update|partial|blocked|failed>
 log_delivery: <delivered|failed|not_configured>
 ```
 
-URLs document consultation, not support for a claim. Do not reconstruct missing runs or infer execution from silence. Examples below are **abstract illustrations**, not actual runs:
+Use `no_material_update` only after the planned coverage was actually
+completed and found no defensible material. An interrupted search or
+unverifiable CI is `partial` or `blocked`, not a negative scan.
+Report outcomes of acquisition and ingest separately when A performs both.
 
-- Completed coverage with supported material: `outcome: findings`; describe sources and proposed PR with its SHA.
-- Completed intended coverage with no material change: `outcome: no_material_update`; record actual window and queries.
-- Incomplete coverage or an execution error: `outcome: partial` or `failed`; describe missing access and checks not run.
-- A valid work report whose issue is unavailable: keep its actual outcome and set `log_delivery: not_configured` or `failed`.
+For **C**, also write one PR-local handoff comment beginning
+`OEM Task C | Review & Fix` per reviewed eligible PR. It identifies
+PR URL, exact reviewed head SHA, base SHA, evidence checked, changes
+and fixes, check URLs/conclusions and one of:
+`READY_FOR_D`, `PENDING_CHECKS`, `BLOCKED_HUMAN`,
+`BLOCKED_EVIDENCE`, `BLOCKED_TECHNICAL`, `STALE`.
+Only mark READY when the necessary checks are green for the current SHA.
+This handoff is **not** GitHub APPROVE or editorial authorization.
+
+For **D**, independently confirm the handoff and live GitHub data and
+record `MERGED`, `PENDING_C`, `STALE`, `PENDING_CHECKS`,
+`PENDING_MAIN_CI`, `BLOCKED_POLICY`, `BLOCKED_EVIDENCE`,
+`BLOCKED_EDITORIAL`, `BLOCKED_TECHNICAL` or `EXCLUDED`
+for each PR. Report the merge SHA and observed post-merge CI/deploy,
+never just a generic success. If a relevant check is still running,
+stop further merges and report `PENDING_MAIN_CI`.
+
+URLs document consultation, not proof that the quoted source supports a
+claim. Never include secrets or unnecessary personal information in logs,
+and never put run-log files inside research PRs or source archives.

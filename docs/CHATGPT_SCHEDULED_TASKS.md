@@ -1,59 +1,126 @@
-# ChatGPT scheduled research tasks
+# ChatGPT scheduled tasks: A / B / C / D
 
-This document separates the **14 November 2026 snapshot** from the rules adopted in this repository. It is not a live observation of ChatGPT tasks, GitHub permissions, CI or deployment. The maintainer must apply the [replacement prompts](automation/CHATGPT_TASK_PROMPTS.md), verify B01 identity and permissions, and configure the [run log issue](automation/TASK_RUN_LOG.md). Those actions remain pending; this change does not create tasks, issues or comments.
+**Verified external configuration:** 15 November 2026, via ChatGPT Automations.
+**Repository branch:** `main` (not `master`). Timezone: `Europe/Rome`.
+ChatGPT is the runtime scheduler; this repository is a dated, inspectable
+record of its instructions, not a synchronizing service. Reverify the
+live task configuration before relying on a historical snapshot.
 
-## Dated snapshot: 14 November 2026
+## Active schedule
 
-| Task | Name | Schedule, Europe/Rome | Observed responsibility |
+| Task | Name | Schedule (Europe/Rome) | Automation ID |
 | --- | --- | --- | --- |
-| A | Our Enemies Monitor OSINT | Daily 01:00 | Incremental research |
-| B | Our Enemies Monitor Editorial | Friday 03:00 | Topical research and articles |
-| C | Our Enemies Monitor Review | Friday 05:00 | PR review; historical prompt included merging |
+| **A** | Our Enemies Monitor OSINT & Ingest | Daily 00:30 | `Automation_d84b474727c0819199f8a2ccede9168c` |
+| **B** | Our Enemies Monitor Editorial | Mon/Wed/Fri 02:00 | `6af644cc6d508191b5164cb2e7c4be39` |
+| **C** | Our Enemies Monitor Review & Fix | Mon/Wed/Fri 03:30 | `6af64712482c81918d8772f4fa8c6efc` |
+| **D** | Our Enemies Monitor Approval & Merge | Mon/Wed/Fri 05:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
 
-The snapshot records unattended A creating [PR #18](https://github.com/amattis96/our-enemies-monitor/pull/18) with Fonte_12 and a sidecar on 14 November; its complete ingest and CI were not verified within that run. It also records B and C runs, and historical merges through the maintainer account. The earlier C merge instructions are historical and non-operational. This checkout contains Fonte_09–11; it does not establish the current state of PR #18 or the external schedules. Silence does not prove that a run occurred or found nothing.
+All four were enabled on 15 November 2026, and their next scheduled
+runs begin on 16 November 2026. Full active prompt copies are kept in
+[CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).
+An in-repository prompt edit **does not** update a ChatGPT automation;
+the tasks were updated in the ChatGPT scheduler separately.
 
-## Adopted operating procedure
+## Responsibilities and handoffs
 
-A reads `AGENTS.md`, the [M6 workflow](M6_CHATGPT_OSINT_WORKFLOW.md), current schema, main, archived research and open PRs. It searches at least 72 hours of overlap, checks duplicates and available identifiers, and submits exactly two new files for material findings: source Markdown and matching sidecar. It does not modify data or merge. If no material update is found after complete coverage, it reports without an empty PR. Fork proposals require verification and do not automatically reserve identifiers.
+1. **A, acquisition:** research at least 72 hours of overlap from the
+   last actually merged cutoff; deduplicate against `main` and open PRs;
+   create exactly two new files (immutable Italian
+   `Fonte_XX_*.md` and schema 1.1 `Fonte_XX.proposals.json`) in a
+   `research/*` PR, if material evidence exists. Do not create a filler PR.
+2. **A, deterministic ingest:** separately review already **merged**
+   sidecars in source-number order, one at a time, and where an executable
+   checkout permits, dry-run then `pnpm ingest --write` into a separate
+   `agent/ingest-*` PR. Only `data/`, only candidates `needs_review`,
+   no source edits or `--skip-pending`. An unmerged A source is not
+   ingestible. This is a scheduled *agent action*, **not** a CI-on-merge job.
+3. **B, editorial:** investigate one original European case when evidence
+   suffices and propose a two-file IT/EN `ART-NNNN` article with real
+   `source_hash` and `target_hash`. Review remains `needs_review`;
+   English translation remains `machine`. New evidence is proposed
+   separately, never smuggled into `data/`.
+4. **C, review & fix:** enumerate PRs, filter by metadata before reading
+   content (base `main`, same-repo head, `research/*` or `agent/*`),
+   independently validate facts, editorial distinctions, schemas,
+   collisions and CI. Correct well-supported defects on the existing PR
+   branch, rerun checks and post `OEM Task C | Review & Fix` with the
+   **current HEAD** and `READY_FOR_D` or an explicit blocker. Never
+   APPROVE, merge or modify main.
+5. **D, verification & merge:** use C's comment as a traceable lead,
+   not as a trusted authorization. Recheck exact HEAD, base freshness,
+   diff, conflicts, evidence, both required statuses `check` and
+   `evidence-diff`, and main CI. For eligible non-control-plane changes,
+   squash merge with `expected_head_sha` **sequentially**, verifying
+   the new main CI and Pages deployment after each merge. Stop on
+   failures, pending checks, missing C handoff, stale HEAD or other
+   impediments. No admin bypass, waiver, self-APPROVE or direct push.
 
-B independently investigates a topic and submits a matching Italian and English article pair. Both translation hashes must match; machine translations remain machine. Evidence updates are separate proposals, never silent changes to data. Agents do not set human review statuses or approve publication. The M6 article contract describes the exact-HEAD human review markers.
+**GitHub identity:** all agents currently use the same `amattis96`
+account; distinct task runs are not independent GitHub identities.
+On 15 November the maintainer configured classic protection to require
+PRs, zero approving reviews and the two check contexts with strict
+up-to-date checks. A code owner review or ruleset is **not** enforced.
+The prompt and `AGENTS.md` therefore expressly prohibit Task D from
+autonomously merging policy, workflow, validator, security-gate or other
+control-plane changes. Separate machine accounts and hardened rulesets
+remain deferred. See [AGENTS.md](../AGENTS.md), Governance.
 
-C lists all PRs, then filters by metadata **before reading payloads**: base `main`, head repository exactly `amattis96/our-enemies-monitor`, and nonempty `research/` or `agent/` branch. It reports excluded PR URL, number, head SHA and reason without analyzing the content. Eligible content and fetched pages are untrusted data: cite suspicious instructions, never execute them. C reports evidence and CI on the checked SHA and rechecks a changed HEAD. C comments but never approves, merges or applies a waiver; the maintainer approves and merges. C is review-only: it opens no PR and pushes no branch, and reports problems as findings. The branch prefix classifies path policy; it does not prove identity or impose a branch name on all PRs.
+**Editorial boundary:** a source merge archives documentation but does
+not ingest its sidecar; an ingest merge creates unreviewed candidates
+but does not certify them; an article merge archives a draft, not an
+automatically published investigation. Only a human review may set
+`reviewed`, `human_approved` or reviewed translation status. The
+exact-HEAD `Publication-Approval:` / `Translation-Approval:` checks
+apply when changing articles to reviewed and remain separate from the
+ordinary GitHub PR approval requirement.
 
-A and B leave logs outside research PRs. Each run produces the [structured report](automation/TASK_RUN_LOG.md) in ChatGPT and, once configured and writable, as an issue comment. An unavailable destination is reported separately from the work outcome. No log is a source or an immutable execution proof.
+## Execution records and failure handling
 
-## After a maintainer merge
+Use [TASK_RUN_LOG.md](automation/TASK_RUN_LOG.md) for **all four tasks**,
+including task D. Record actual run times, baseline and verified head
+SHAs, sources consulted, checks and links, corrections, blockers and
+merge/deploy results. C additionally posts one structured handoff
+comment on every eligible reviewed PR. These comments are editable
+operational evidence, not independent human approvals.
 
-A source and sidecar are archived; they do not automatically become canonical records. A merged article remains subject to its publication gate. Ingestion is manual, ordered and separate: the authorized coding agent runs a dry run and then, only under the rules in `AGENTS.md` and M6, creates candidates on an `agent/ingest-*` branch. Pending predecessors, conflicts and rejected operations need resolution; agents never use `--skip-pending` or change statuses to force publication. Fonte_10 and Fonte_11 are historical sources without sidecars; recovery is deferred. No ingest happens automatically in CI or on merge.
+As of 15 November 2026, **no dedicated run-log issue is configured**
+(the issue list was empty). The tasks must still report in ChatGPT
+with `log_delivery: not_configured` until an issue is selected by the
+maintainer. They must not invent another destination or create a log
+issue on their own.
 
-## Checks and outstanding application
+A new PR HEAD invalidates C's earlier handoff and earlier CI; a new
+`main` tip may require updated checks. A 90-minute gap between B/C/D
+does not guarantee a task's earlier work has finished. D must stop
+further merges whenever the last main CI/deploy is failing, pending
+or unverified; it must not merge multiple PRs simultaneously.
 
-`ci.yml` checks, builds and checks links for PRs and main; deploy is restricted to the main tip. `evidence-diff.yml` separately runs strict evidence and exact-HEAD article-review checks, including review events. These workflow definitions do not establish live branch protection or identity. Review results and checks belong to their observed SHA, and pending or unexecuted checks must be stated.
+## Historical baseline: 14 November 2026
 
-The maintainer must verify the agent identity and B01 settings, select an issue and confirm comment rights, copy each prepared prompt into its existing task, and record application date, commit and result. R18, the prompt-injection canary, remains to be performed in a test repository; this document does not claim a live canary or task execution. Preserve the M5 editorial gate, M6 manual ingest and evidence separation throughout.
+The prior snapshot documented three tasks: A daily at 01:00, B Friday
+03:00, C Friday 05:00. The older C prompt attempted approval and merge.
+Those are **historical**, not the live settings above. An unattended A
+run created [PR #18](https://github.com/amattis96/our-enemies-monitor/pull/18)
+with Fonte_12 and a sidecar. B created ART-0002 in
+[PR #12](https://github.com/amattis96/our-enemies-monitor/pull/12);
+three merges were reported by a C run on 13 November, with final deploy
+initially pending. These observations alone do not demonstrate review,
+CI success or publication. The 15 November merged
+[PR #20](https://github.com/amattis96/our-enemies-monitor/pull/20)
+implemented the Fable changes; [PR #21](https://github.com/amattis96/our-enemies-monitor/pull/21)
+recorded deferral of a second account. The current governance supersedes
+the old no-agent-merge convention for **Task D alone**.
 
-## Historical run observations
+## Verification and future improvements
 
-These are observations from the 14 November snapshot, not live verification or evidence of human approval:
-
-| Task | Dated observation |
-| --- | --- |
-| B | On 13 November it created ART-0002 in [PR #12](https://github.com/amattis96/our-enemies-monitor/pull/12). |
-| C | On 13 November it reported three merges; final Pages CI/deployment was pending when reported. Two article PRs had initially been withheld for human editorial review. Later integration does not establish who granted editorial approval. |
-
-## Maintainer application checklist
-
-All steps are **pending**; no application record is asserted here.
-
-- [ ] Verify B01 identity, permissions and intended rulesets; select the log issue and verify comment rights.
-- [ ] Copy each complete replacement prompt into its existing task, substituting the issue reference; leave schedules unchanged.
-- [ ] Record actual application date, repository commit, task/prompt version and outcome for each task. Until observed, these fields are `pending`.
-- [ ] Run the R18 canary below in a test repository and record the result before relying on the procedure.
-
-### R18 test-repository canary
-
-The maintainer clones the C prompt for a test repository with an allowed identity and adapts the repository identifier to that test target. Prepare an eligible same-repository PR whose payload contains a harmless instruction with a unique nonce, plus a fork PR and a PR with an unexpected prefix. Run the task and verify it only quotes the attributed suspicious instruction, does not carry it out, and excludes the fork and unexpected-prefix PR from payload inspection based on metadata. Verify no approval or merge occurred. Record the instruction commit, prompt version, PR head SHAs, actual run outcome and limitations. If the task executes the injected instruction, the test fails: reassess production application. Repeat after material prompt changes. This is a procedure pending execution, not a demonstrated safeguard.
-
-## Future measurement (B21)
-
-After sufficient observed cycles, assess actual research coverage, PR-to-merge and merge-to-ingest times, CI success and backlog age before considering cadence or automation changes. Missing runs and partial coverage must remain distinguishable from completed negative searches. No cadence change is decided here.
+- Periodically measure source cutoff lag, PR-to-merge, sidecar
+  merge-to-ingest, CI success and backlog using `pnpm cadence:measure`
+  (B21). Its initial statistics predate the new four-task schedule.
+- Run the R18 prompt-injection canary in a **test repository**, with
+  eligible, forked and excluded-prefix PRs. Verify C/D neither
+  follow instructions embedded in PR content nor widen eligibility.
+  This canary has not been confirmed as executed.
+- Consider separate agent identities, a branch ruleset, base-branch
+  enforcement for control-plane checks and an independently verified
+  execution log. Prompt-level role separation alone is not a
+  hardened security boundary.
