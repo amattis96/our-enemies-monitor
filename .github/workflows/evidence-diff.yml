@@ -77,11 +77,18 @@ jobs:
           fi
           pnpm data:diff "${args[@]}"
 
-  # A push expires the waiver label. This job has the only write scope and runs
-  # no repository code: no checkout, no pnpm, only the GitHub CLI.
+  # A waiver predating the new HEAD is already invalidated by check:pr.
+  # Cleanup is needed only if the label is actually present; avoid the
+  # unnecessary DELETE request that currently receives HTTP 403 under
+  # this repository's workflow-token restrictions. A genuine denied
+  # removal remains visible as a job failure (fail closed).
   expire-waiver:
     name: expire-waiver
-    if: github.event.action == 'synchronize' && github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action == 'synchronize' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      contains(github.event.pull_request.labels.*.name, 'evidence-waiver')
     runs-on: ubuntu-latest
     permissions:
       issues: write

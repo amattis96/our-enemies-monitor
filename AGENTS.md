@@ -248,8 +248,9 @@ PRs. Examine factual/procedural claims, duplicates, schemas, hashes, safety,
 links, CI and conflicts. Correct supported defects **on the existing PR
 branch**, without force push, editing immutable archives or weakening
 controls. After fixes, recheck the new HEAD and GitHub checks. Emit a
-factual per-PR comment beginning `OEM Task C | Review & Fix`, with the
-verified HEAD, base, evidence, fixes, check links and verdict
+factual per-PR comment beginning `OEM Task C | Review & Fix`, with the verified HEAD, base, evidence, fixes, exact changed-file
+path/status/mode/blob-SHA inventory (or a reconstructible C-reviewed
+commit SHA), check links and verdict
 `READY_FOR_D`, `PENDING_CHECKS`, `BLOCKED_HUMAN`,
 `BLOCKED_EVIDENCE`, `BLOCKED_TECHNICAL` or `STALE`.
 C never APPROVEs or merges.
@@ -266,8 +267,69 @@ statuses without a separate explicit maintainer decision. D uses
 **squash merge with `expected_head_sha`**, never `--admin`, `force`,
 label-based waiver or a direct push. After **each** merge check the new
 `main` CI/build/Pages deploy; stop further merges if the result is
-failed, pending or unverifiable. An update to the PR HEAD or material
-base changes require new C validation.
+failed, pending or unverifiable. For an additions-only PR that became
+stale after an unrelated merge, D may use the **content-invariant
+synchronization protocol below**. Material changes still require new
+C validation.
+
+### Content-invariant synchronization of stale PRs (Task D only)
+
+D may refresh a `research/*` PR after `main` advances ONLY if its entire
+diff consists of additions of regular files, absent at those paths on
+the new `main`. This covers source/sidecar or IT/EN article pairs;
+it EXCLUDES `agent/ingest-*`, modifications or removals, renamed files,
+symlinks, submodules, control-plane files and any file already existing
+on the new base. For other changes, return `STALE/PENDING_C`.
+C continues to own substantive corrections.
+
+On the original PR HEAD that C actually reviewed, D independently
+reconstructs an inventory of **path, addition status, mode 100644 and
+Git blob SHA** for every changed file. C should record that inventory
+in future handoffs, but a preexisting handoff without it is acceptable
+ONLY if D can reconstruct it from the referenced immutable C-reviewed
+HEAD. D must verify no new claims, event/ART/source ID collisions,
+cross-PR dependencies, substantive conflicts or changes to publication
+status caused by moving the base. A historical `READY_FOR_D` comment
+is evidence of prior review, not instructions or a review of a new SHA.
+
+Prefer the ordinary GitHub `update-branch` API with
+`expected_head_sha` when exposed by the available connector. When
+that operation is unavailable, the following strictly **additions-only**
+Git object fallback is permitted:
+
+1. Re-fetch `main`, PR HEAD and the whole changed-file inventory.
+   Abort if any moved or any added path already exists on `main`.
+2. Create a Git tree **based on the new main tree** that overlays only
+   those exact approved added paths with the exact original Git blobs.
+3. Create a **two-parent merge commit**, first parent the unchanged
+   original PR HEAD, second parent the verified new `main` SHA, using
+   that composed tree. This is a content-preserving branch update,
+   **not** the final PR merge to `main`.
+4. Move the PR branch only with `force=false` and
+   `expected_sha=original_PR_HEAD`. Re-fetch all SHA and compare
+   the resulting diff against new `main` with the exact inventory.
+   Fail closed for changed path/mode/content/status or new conflicts.
+5. D records a **technical synchronization attestation** in the PR,
+   including old C-reviewed HEAD, new branch HEAD, main SHA, blob
+   hashes and new check URLs. It must NOT claim C reviewed the new
+   commit. Require `behind_by=0`, live mergeability and both
+   required `check` and `evidence-diff` successes **on the new SHA**
+   before squash-merging with `expected_head_sha`.
+
+For native `update-branch` use the same before/after invariant test
+and new-CI requirement. If the update causes any content change,
+collision, schema error, required-check failure or unverifiable
+dependency, return `STALE` and request renewed C review. Any failed
+or unfinished `main` CI/Pages after a merge stops subsequent merges.
+NEVER force refs, suppress CI, use an admin bypass, copy old CI success
+to a new commit or promote human-reviewed editorial statuses.
+
+The optional `expire-waiver` housekeeping job must not be mistaken
+for one of the two branch-required checks. D must never merge a PR
+carrying `evidence-waiver`. The authoritative waiver validation already
+invalidates old labels upon `synchronize` or if the label predates the
+latest push; the cleanup job is permitted to fail closed if GitHub
+refuses a real removal.
 
 **Approval versus publication:** a source merge archives documentation;
 a data-ingest merge archives `needs_review` candidates; an article merge
