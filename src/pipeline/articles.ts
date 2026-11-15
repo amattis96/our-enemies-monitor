@@ -6,10 +6,10 @@ import {
   Article,
   ArticleFrontMatterEn,
   ArticleFrontMatterIt,
-  hasAiVerificationNote,
   type Dataset,
   FIXTURE_ARTICLE_ID,
   FIXTURE_TITLE_PREFIX,
+  hasAiVerificationNote,
 } from "../model/index.ts";
 import { publishedDataset } from "../site/publication.ts";
 import { articleMentionWarnings } from "./article-links.ts";

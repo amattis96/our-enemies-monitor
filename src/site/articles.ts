@@ -1,6 +1,12 @@
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
-import { hasAiVerificationNote, type Article, type ArticleReference, type Dataset, type Language } from "../model/index.ts";
+import {
+  type Article,
+  type ArticleReference,
+  type Dataset,
+  hasAiVerificationNote,
+  type Language,
+} from "../model/index.ts";
 import { type ArticleFile, readArticleFiles, validateArticleFiles } from "../pipeline/articles.ts";
 import type { Issue } from "../pipeline/validate.ts";
 import { formatPredicate } from "./format.ts";

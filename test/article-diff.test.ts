@@ -85,7 +85,6 @@ describe("article diff", () => {
     );
   });
 
-
   it("permits AI-only approval with a C provenance note, never as human reviewed", () => {
     const note =
       "AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary evidence and independent counter-checks";

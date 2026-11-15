@@ -248,15 +248,21 @@ describe("article publication gate", () => {
     expect(publishedArticles([article], published)).toEqual([]);
   });
 
-
   it("publishes AI-verified articles with traceable C review, without claiming human approval", () => {
     const article = parse({
       status: "ai_verified",
-      notes: ["AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary source and contrary evidence verified"],
+      notes: [
+        "AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary source and contrary evidence verified",
+      ],
     });
     expect(withheldReasons(article, published)).toEqual([]);
     expect(publishedArticles([article], published)).toEqual([article]);
-    const exportText = articleMarkdown(article, "it", buildReadModel(published), () => "https://example.org/");
+    const exportText = articleMarkdown(
+      article,
+      "it",
+      buildReadModel(published),
+      () => "https://example.org/",
+    );
     expect(exportText).toContain("review_status: ai_verified");
     expect(exportText).toContain("non approvazione umana");
   });
@@ -267,7 +273,9 @@ describe("article publication gate", () => {
     ).toContain("ai_verified requires a structured AI-Verification: Task C note");
     const article = parse({
       status: "ai_verified",
-      notes: ["AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary source and contrary evidence verified"],
+      notes: [
+        "AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary source and contrary evidence verified",
+      ],
       events: ["TL-0001", "EXT-005"],
     });
     expect(withheldReasons(article, published)).toContain(

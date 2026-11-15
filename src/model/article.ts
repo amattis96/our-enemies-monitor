@@ -81,9 +81,11 @@ export function hasAiVerificationNote(notes: readonly string[]): boolean {
 }
 
 export const ArticleReview = Review.safeExtend({
-  status: z.enum(ARTICLE_REVIEW_STATUSES).describe(
-    "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses.",
-  ),
+  status: z
+    .enum(ARTICLE_REVIEW_STATUSES)
+    .describe(
+      "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses.",
+    ),
 });
 
 /** Front matter of the canonical Italian file `content/articles/<ID>.it.md`. */

@@ -104,7 +104,10 @@ export function diffArticles(
       const front = is.it.front;
       const status = front.review.status;
       if (!was.it && status === "reviewed") {
-        err(id, `new article with review.status "${status}" (expected "needs_review" or "ai_verified")`);
+        err(
+          id,
+          `new article with review.status "${status}" (expected "needs_review" or "ai_verified")`,
+        );
       }
       if (status === "ai_verified" && !hasAiVerificationNote(front.review.notes)) {
         err(id, "ai_verified without structured Task C provenance", false);
@@ -144,11 +147,16 @@ export function diffArticles(
       }
     }
     if (a.review.status === "ai_verified" && b.review.status === "ai_verified") {
-      if (was.it.body !== is.it.body || was.en?.text !== is.en?.text ||
-          !isDeepStrictEqual(a.links, b.links) ||
-          !isDeepStrictEqual(a.references, b.references) ||
-          a.title !== b.title || a.summary !== b.summary ||
-          a.date !== b.date || a.updated !== b.updated) {
+      if (
+        was.it.body !== is.it.body ||
+        was.en?.text !== is.en?.text ||
+        !isDeepStrictEqual(a.links, b.links) ||
+        !isDeepStrictEqual(a.references, b.references) ||
+        a.title !== b.title ||
+        a.summary !== b.summary ||
+        a.date !== b.date ||
+        a.updated !== b.updated
+      ) {
         err(id, "editing ai_verified content requires resetting status to needs_review", false);
       }
     }
