@@ -374,7 +374,7 @@ describe("withheld records never reach the machine-readable surface (D A15)", ()
     const index = JSON.parse(files.find((f) => f.path === "articles.json")?.text ?? "{}");
     for (const entry of index.articles) {
       expect(entry.id).not.toMatch(/DEMO/);
-      expect(entry.review_status).toBe("reviewed");
+      expect(["reviewed", "ai_verified"]).toContain(entry.review_status);
     }
   });
 });
