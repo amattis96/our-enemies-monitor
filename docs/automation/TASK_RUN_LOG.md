@@ -32,7 +32,8 @@ candidates_discarded_and_reasons: []
 prs_created_or_reviewed: [] # URL, category, head/base SHA, changed files
 excluded_pr_metadata: [] # C/D: URL, number, SHA, reason; no payload inspection
 corrections_and_commits: [] # C: files and new SHA; D: merge commit SHA
-review_handoffs: [] # C verdict and exact SHA, D verification of that handoff
+review_handoffs: [] # C verdict / C-reviewed SHA, path/status/mode/blob-SHA inventory; D re-verification
+branch_synchronizations: [] # D: old C-reviewed HEAD, new HEAD, main SHA, unchanged file blobs and new CI URLs
 checks: [] # status, conclusion, URL and exact checked SHA; pending/not run explicit
 main_ci_and_deploy: [] # D: each merge's resulting main SHA and final CI/deploy
 obstacles: []
@@ -52,6 +53,8 @@ PR URL, exact reviewed head SHA, base SHA, evidence checked, changes
 and fixes, check URLs/conclusions and one of:
 `READY_FOR_D`, `PENDING_CHECKS`, `BLOCKED_HUMAN`,
 `BLOCKED_EVIDENCE`, `BLOCKED_TECHNICAL`, `STALE`.
+Include the exact changed paths, add/modify/delete status, mode and Git blob
+SHA for every file (or a reproducible manifest tied to the exact HEAD).
 Only mark READY when the necessary checks are green for the current SHA.
 This handoff is **not** GitHub APPROVE or editorial authorization.
 
@@ -59,7 +62,10 @@ For **D**, independently confirm the handoff and live GitHub data and
 record `MERGED`, `PENDING_C`, `STALE`, `PENDING_CHECKS`,
 `PENDING_MAIN_CI`, `BLOCKED_POLICY`, `BLOCKED_EVIDENCE`,
 `BLOCKED_EDITORIAL`, `BLOCKED_TECHNICAL` or `EXCLUDED`
-for each PR. Report the merge SHA and observed post-merge CI/deploy,
+for each PR. A safe additions-only branch sync must record both old C-reviewed
+and new D-synchronized SHA, new main base, identical blob inventory, fresh
+checks and any conflict/collision recheck. This is not a second C approval.
+Report the merge SHA and observed post-merge CI/deploy,
 never just a generic success. If a relevant check is still running,
 stop further merges and report `PENDING_MAIN_CI`.
 
