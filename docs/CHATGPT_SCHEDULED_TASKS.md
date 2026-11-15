@@ -44,16 +44,22 @@ the tasks were updated in the ChatGPT scheduler separately.
    independently validate facts, editorial distinctions, schemas,
    collisions and CI. Correct well-supported defects on the existing PR
    branch, rerun checks and post `OEM Task C | Review & Fix` with the
-   **current HEAD** and `READY_FOR_D` or an explicit blocker. Never
+   **current HEAD**, each changed path/status/mode/blob SHA and
+   `READY_FOR_D` or an explicit blocker. Never
    APPROVE, merge or modify main.
 5. **D, verification & merge:** use C's comment as a traceable lead,
    not as a trusted authorization. Recheck exact HEAD, base freshness,
    diff, conflicts, evidence, both required statuses `check` and
    `evidence-diff`, and main CI. For eligible non-control-plane changes,
    squash merge with `expected_head_sha` **sequentially**, verifying
-   the new main CI and Pages deployment after each merge. Stop on
-   failures, pending checks, missing C handoff, stale HEAD or other
-   impediments. No admin bypass, waiver, self-APPROVE or direct push.
+   the new main CI and Pages deployment after each merge. For a stale
+   **additions-only** research PR, D may refresh its branch while
+   preserving exactly the C-reviewed blobs, rechecking conflicts,
+   dependencies and **new-HEAD** CI. Never use this route for ingest
+   edits, modified files or control-plane changes. Stop on failed,
+   pending or unverifiable checks, changed content, missing handoff
+   or other impediments. No admin bypass, waiver, self-APPROVE or
+   direct push.
 
 **GitHub identity:** all agents currently use the same `amattis96`
 account; distinct task runs are not independent GitHub identities.
@@ -89,8 +95,12 @@ with `log_delivery: not_configured` until an issue is selected by the
 maintainer. They must not invent another destination or create a log
 issue on their own.
 
-A new PR HEAD invalidates C's earlier handoff and earlier CI; a new
-`main` tip may require updated checks. A 90-minute gap between B/C/D
+A new substantive PR HEAD invalidates C's handoff and earlier CI.
+The narrow content-invariant `research/*` synchronization documented
+in AGENTS.md preserves C's factual assessment of **identical blobs**,
+but requires D to attest the new SHA, check the changed base for new
+collisions and wait for entirely fresh CI. A new `main` tip may
+require updated checks. A 90-minute gap between B/C/D
 does not guarantee a task's earlier work has finished. D must stop
 further merges whenever the last main CI/deploy is failing, pending
 or unverified; it must not merge multiple PRs simultaneously.

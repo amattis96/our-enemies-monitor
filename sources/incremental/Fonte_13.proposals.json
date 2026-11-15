@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S13",
+    "file": "sources/incremental/Fonte_13_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-15.md",
+    "title": {
+      "it": "Fonte_13 | Aggiornamento OSINT incrementale per l'Europa | 15 novembre 2026"
+    },
+    "created_at": "2026-11-15",
+    "coverage": {
+      "start": "2026-11-10",
+      "end": "2026-11-15"
+    },
+    "baseline_source": "S11",
+    "repository_commit": "19b2533057e0e82fb05431817af7c4691e7eb1b0"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Starshield Service Disruptions and the Need to Strengthen Ukrainian Air Defense: Volodymyr Zelenskyy Met with Mark Rutte"
+      },
+      "publisher": "Presidenza dell'Ucraina",
+      "url": "https://www.president.gov.ua/en/news/situaciya-z-pereboyami-v-roboti-starshield-i-neobhidnist-pos-107301",
+      "published": "2026-11-12"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "Ukraine's Zelenskiy escalates criticism of SpaceX over speed caps"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/aerospace-defense/ukraines-zelenskiy-escalates-criticism-spacex-over-speed-caps-2026-11-14/",
+      "published": "2026-11-14"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "US floated idea of Ukraine ceding Donbas for NATO membership, Zelenskiy says"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/us-floated-idea-ukraine-ceding-donbas-nato-membership-zelenskiy-says-2026-11-14/",
+      "published": "2026-11-14"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "Zelenskyy says a new European security framework floated by US could benefit Putin"
+      },
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/f9a8629626c087424f05adc85d127780",
+      "published": "2026-11-14"
+    },
+    {
+      "key": "R05",
+      "title": {
+        "it": "Zelenskiy says restrictions still in place on Starshield, hampering operations inside Ukraine"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.investing.com/news/world-news/zelenskiy-says-restrictions-still-in-place-on-starshield-hampering-operations-inside-ukraine-5026383",
+      "published": "2026-11-13"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261115-001",
+      "item": "OEM-20261115-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R05"
+      ],
+      "notes": [
+        "Il dato operativo sulle restrizioni è una dichiarazione delle autorità ucraine, non una misura indipendente dei terminali. Non inferire sabotaggio, mandante o finalità politica."
+      ],
+      "update_type": "STRATEGIC_UPDATE",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Ucraina: protesta ufficiale per le restrizioni Starshield e richiesta di chiarimenti a SpaceX e Stati Uniti"
+      },
+      "description": {
+        "it": "Il 12 novembre la Presidenza ucraina ha pubblicato un resoconto dell'incontro Zelenskyy-Rutte che segnala interruzioni di Starshield sulla linea del fronte e nei territori occupati. Il 13 e 14 novembre Zelenskyy ha reiterato pubblicamente la richiesta di ripristino e chiarimenti, affermando che il limite a 161 km/h persiste da cinque giorni. La dichiarazione è verificata come comunicazione istituzionale, non come misurazione tecnica indipendente."
+      },
+      "date": {
+        "start": "2026-11-12",
+        "end": "2026-11-14",
+        "precision": "day"
+      },
+      "published": "2026-11-14",
+      "themes": [
+        "platforms_technology",
+        "industry_dependencies",
+        "armed_conflict"
+      ],
+      "geography": {
+        "it": "Ucraina, linea del fronte e territori temporaneamente occupati"
+      },
+      "places": [
+        "UA"
+      ],
+      "evidence_note": {
+        "it": "E1 comunicazioni ufficiali ucraine; E3 Reuters sulle contestazioni e sulla risposta di SpaceX. Le prestazioni effettive non sono state verificate indipendentemente."
+      },
+      "publisher": "Presidenza dell'Ucraina",
+      "url": "https://www.president.gov.ua/en/news/situaciya-z-pereboyami-v-roboti-starshield-i-neobhidnist-pos-107301",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": {
+          "text": {
+            "it": "Secondo Zelenskyy, i limiti ostacolano i droni intercettori contro Shahed a reazione; il nesso operativo è una valutazione della parte ucraina e non una perizia indipendente."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R01",
+            "R02"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "SpaceX nega di aver introdotto nuove restrizioni o modifiche operative. Non è documentato chi abbia disposto eventuali limiti, né una motivazione politica. L'episodio era già emerso il 12 novembre: questa voce riguarda l'escalation istituzionale e la risposta del 14, non un secondo guasto autonomo."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261115-002",
+      "item": "OEM-20261115-002",
+      "sources": [
+        "R03",
+        "R04"
+      ],
+      "notes": [
+        "È documentata la dichiarazione pubblica di Zelenskyy, non la formulazione ufficiale di una proposta americana o un accordo. Non attribuire una proposta concordata a NATO o UE."
+      ],
+      "update_type": "STRATEGIC_UPDATE",
+      "evidence_level": "E3",
+      "title": {
+        "it": "Zelenskyy riferisce una proposta esplorativa statunitense su Donbas e adesione NATO, senza accordo"
+      },
+      "description": {
+        "it": "Il 14 novembre Zelenskyy ha dichiarato ai giornalisti che negoziatori statunitensi avevano sondato l'ipotesi di un ritiro ucraino dal Donbas in cambio dell'adesione alla NATO o di garanzie comparabili. Ha dichiarato di non accettare cessioni territoriali e di ritenere necessario terminare la guerra prima di ridefinire la sicurezza europea. Le fonti attestano la dichiarazione del presidente, non l'esistenza di un'offerta formale approvata da Stati Uniti o NATO."
+      },
+      "date": {
+        "start": "2026-11-14",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-14",
+      "themes": [
+        "geopolitics_diplomacy",
+        "eu_nato_response",
+        "armed_conflict"
+      ],
+      "geography": {
+        "it": "Ucraina, Stati Uniti, sicurezza euro-atlantica"
+      },
+      "places": [
+        "UA",
+        "US"
+      ],
+      "evidence_note": {
+        "it": "E3 Reuters e AP concordano sul contenuto della dichiarazione di Zelenskyy. La natura e i termini dell'eventuale sondaggio statunitense non sono confermati da un testo negoziale."
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/us-floated-idea-ukraine-ceding-donbas-nato-membership-zelenskiy-says-2026-11-14/",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Non sono disponibili proposta scritta, accettazione statunitense, decisione NATO o concessione ucraina. Non confondere il resoconto di un'ipotesi discussa con un accordo. La dichiarazione si colloca dopo il coordinamento europeo già coperto dalla PR #18."
+      },
+      "related": []
+    }
+  ]
+}
