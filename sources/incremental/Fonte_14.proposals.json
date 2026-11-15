@@ -73,8 +73,8 @@
   "operations": [
     {
       "op": "create_event",
-      "ref": "OEM-20261115-001",
-      "item": "OEM-20261115-001",
+      "ref": "OEM-20261115-003",
+      "item": "OEM-20261115-003",
       "sources": [
         "R01",
         "R02",
@@ -138,8 +138,8 @@
     },
     {
       "op": "create_event",
-      "ref": "OEM-20261115-002",
-      "item": "OEM-20261115-002",
+      "ref": "OEM-20261115-004",
+      "item": "OEM-20261115-004",
       "sources": [
         "R04",
         "R05"

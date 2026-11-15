@@ -32,7 +32,7 @@ Questi procedimenti sono **autonomi**: nessuna fonte acquisita dimostra una regi
 
 ## C. Registro strutturato delle evidenze
 
-### OEM-20261115-001 | NEW_JUDICIAL | Regno Unito: verdetto nel procedimento relativo alla sorveglianza di giornalisti Iran International
+### OEM-20261115-003 | NEW_JUDICIAL | Regno Unito: verdetto nel procedimento relativo alla sorveglianza di giornalisti Iran International
 
 - **Data del provvedimento:** 12 novembre 2026; **data comunicazione primaria:** 12 novembre; **periodo della condotta giudicata:** agosto 2024 – marzo 2025, secondo le fonti giudiziarie e Reuters [R01–R03].
 - **Geografia:** Londra, Regno Unito. **Ambito:** sicurezza nazionale, intelligence straniera, intimidazione della stampa in esilio.
@@ -45,7 +45,7 @@ Questi procedimenti sono **autonomi**: nessuna fonte acquisita dimostra una regi
 - **Impatto europeo:** procedimento nel Regno Unito e rilevanza per la sicurezza della stampa dissidente; nessun attacco violento riuscito viene imputato come esito di questo specifico fascicolo.
 - **Proposta per M6:** `create_event` con tipo `NEW_JUDICIAL` e sola registrazione del provvedimento, lasciando distinti titolo giudiziario, ricostruzione dell'accusa e attribuzione statale. Fonti [R01–R03]; [R06] per osservazione sul contesto.
 
-### OEM-20261115-002 | NEW_JUDICIAL | Polonia: atto d'accusa relativo ai sabotaggi ferroviari del 2025
+### OEM-20261115-004 | NEW_JUDICIAL | Polonia: atto d'accusa relativo ai sabotaggi ferroviari del 2025
 
 - **Data dell'atto contestuale:** 28 ottobre 2026 (deposito dell'imputazione); **prima comunicazione pubblica della Procura:** 12 novembre 2026; **periodo dei sabotaggi contestati:** autunno 2025. La distinzione è essenziale: **non è avvenuto un nuovo attentato ferroviario il 12 novembre** [R04–R05].
 - **Geografia:** località Mika (distretto di Garwolin) e Gołąb (distretto di Puławy), Polonia; linea ferroviaria n. 7 Varsavia–Lublino e direttrice verso l'Ucraina.
