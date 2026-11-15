@@ -35,7 +35,9 @@ export function targetHash(record: object): string {
 }
 
 /** Problems with the English translation of a record, if any. */
-export function translationProblem(record: { review: Pick<Review, "translations"> }): string | null {
+export function translationProblem(record: {
+  review: Pick<Review, "translations">;
+}): string | null {
   const texts = localizedTexts(record);
   const state = record.review.translations?.en;
   const translated = texts.filter((t) => t.en !== undefined).length;
