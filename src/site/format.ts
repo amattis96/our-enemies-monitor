@@ -120,6 +120,7 @@ export const REVIEW_STATUS_LABELS = {
     en: "Imported from the baseline, not yet reviewed",
   },
   needs_review: { it: "Da rivedere", en: "Needs review" },
+  ai_verified: { it: "Verificato da IA", en: "AI-verified (not human-reviewed)" },
   reviewed: { it: "Rivisto", en: "Reviewed" },
 } satisfies Record<string, Labels>;
 

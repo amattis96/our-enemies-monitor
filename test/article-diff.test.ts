@@ -85,6 +85,35 @@ describe("article diff", () => {
     );
   });
 
+  it("permits AI-only approval with a C provenance note, never as human reviewed", () => {
+    const note =
+      "AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary evidence and independent counter-checks";
+    expect(errs(run([], files({ status: "ai_verified", notes: [note] })))).toEqual([]);
+    expect(errs(run(files(), files({ status: "ai_verified", notes: [note] })))).toEqual([]);
+    expect(errs(run(files(), files({ status: "ai_verified" })))).toContainEqual(
+      expect.stringContaining("without structured Task C provenance"),
+    );
+    expect(
+      errs(
+        run(
+          files(),
+          files({ status: "ai_verified", notes: [note], body: "## Changed\n\nContent." }),
+        ),
+      ),
+    ).toContainEqual(expect.stringContaining("must preserve all article content"));
+    expect(
+      errs(
+        run(
+          files({ status: "ai_verified", notes: [note] }),
+          files({ status: "ai_verified", notes: [note], body: "## Changed\n\nContent." }),
+        ),
+      ),
+    ).toContainEqual(expect.stringContaining("requires resetting status"));
+    expect(errs(run([], files({ status: "reviewed" })))).toContainEqual(
+      expect.stringContaining("expected"),
+    );
+  });
+
   it("rejects a reviewed translation", () => {
     expect(errs(run(files(), files({ translation: "reviewed" })))).toContainEqual(
       expect.stringContaining("translation"),

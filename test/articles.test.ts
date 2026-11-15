@@ -36,7 +36,8 @@ type ItOptions = {
   id?: string;
   fixture?: boolean;
   title?: string;
-  status?: "needs_review" | "reviewed";
+  status?: "needs_review" | "ai_verified" | "reviewed";
+  notes?: string[];
   kind?: "human" | "ai" | "fixture";
   events?: string[];
   entities?: string[];
@@ -52,6 +53,7 @@ function italianFile(options: ItOptions = {}): ArticleFile {
     fixture = false,
     title = "Titolo di prova",
     status = "reviewed",
+    notes = [],
     kind = "ai",
     events = ["TL-0001"],
     entities = ["RU"],
@@ -76,7 +78,7 @@ links:
   hypotheses: ${list(hypotheses)}
 references:
 ${sources.map((s) => `  - source: ${s}`).join("\n")}
-review: { status: ${status}, notes: [] }
+review: { status: ${status}, notes: ${JSON.stringify(notes)} }
 ---
 ${body}
 `;
@@ -243,6 +245,42 @@ describe("article publication gate", () => {
   it("withholds needs_review articles that are not fixtures", () => {
     const article = parse({ status: "needs_review" });
     expect(withheldReasons(article, published)).toEqual(["review status needs_review"]);
+    expect(publishedArticles([article], published)).toEqual([]);
+  });
+
+  it("publishes AI-verified articles with traceable C review, without claiming human approval", () => {
+    const article = parse({
+      status: "ai_verified",
+      notes: [
+        "AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary source and contrary evidence verified",
+      ],
+    });
+    expect(withheldReasons(article, published)).toEqual([]);
+    expect(publishedArticles([article], published)).toEqual([article]);
+    const exportText = articleMarkdown(
+      article,
+      "it",
+      buildReadModel(published),
+      () => "https://example.org/",
+    );
+    expect(exportText).toContain("review_status: ai_verified");
+    expect(exportText).toContain("non approvazione umana");
+  });
+
+  it("blocks an AI publication with no structured C provenance or withheld linked records", () => {
+    expect(
+      errorsOf([italianFile({ status: "ai_verified" })]).map((issue) => issue.message),
+    ).toContain("ai_verified requires a structured AI-Verification: Task C note");
+    const article = parse({
+      status: "ai_verified",
+      notes: [
+        "AI-Verification: Task C; reviewed_head=0123456789abcdef0123456789abcdef01234567; date=2026-11-15; basis=Primary source and contrary evidence verified",
+      ],
+      events: ["TL-0001", "EXT-005"],
+    });
+    expect(withheldReasons(article, published)).toContain(
+      "links.events: EXT-005 is withheld from the public site",
+    );
     expect(publishedArticles([article], published)).toEqual([]);
   });
 

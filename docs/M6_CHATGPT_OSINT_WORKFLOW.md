@@ -116,11 +116,41 @@ Give each update a locally stable `OEM-YYYYMMDD-NNN` reference with an action ca
 
 A Markdown artifact **is not** a canonical import and does not by itself advance the public timeline. It becomes part of the merged archival baseline **only after merge to `main`**. Open PR contents must be checked for overlap and possible filename/ID collisions; fork proposals require verification and do not automatically reserve IDs. If an unarchived proposal collides, allocate the next free number and update both new files consistently; never renumber an archived source.
 
+## Automated AI editorial publication
+
+An independent factual review by Task C may change an article's Italian
+frontmatter to `review.status: ai_verified` and append a note with the
+strict format `AI-Verification: Task C; reviewed_head=<40 hex>; date=YYYY-MM-DD; basis=<20+ chars>`.
+A note alone is **not** independently authenticated. Task C must actually
+recheck the original reporting, authoritative sources, contrary evidence,
+procedural status, full IT/EN meaning, hash integrity and all public
+references. It then leaves its `OEM Task C | Review & Fix` handoff
+on the PR's **final HEAD**. D independently checks the handoff,
+original manuscript, note and current-HEAD CI before a normal squash merge.
+
+For an older manuscript already merged with `needs_review`, C may create
+one `agent/publish-ART-NNNN-*` PR modifying **only Italian review.status
+and notes**, never the article text, dates, sources, links or translation.
+The evidence diff rejects content changes during promotion. D treats this
+as a publication PR and checks it exactly like a new AI-verified article.
+After the merge, the normal site build makes it visible in both languages,
+labelled **verificato da IA / AI-verified**, with a separate unreviewed
+machine-translation warning. Human `reviewed` and translation
+`reviewed` still require their own independent human approvals.
+
+If the AI assessment is incomplete, the article remains `needs_review`
+and unpublished. A successful source PR or canonical ingest does not
+automatically promote facts, persons or graph edges, and the site
+will not include an article linked to withheld records/sources.
+Control-plane changes remain maintainer-only. This is **process-level
+dual verification under a shared GitHub identity**, not independent
+cryptographic identity separation.
+
 ## 3. Task B: thematic investigation and articles
 
 The second independent ChatGPT task selects an open hypothesis, unanswered question, suspicious network pattern or strategic exposure from the current evidence graph, then conducts **its own** source search rather than merely summarizing existing records.
 
-The 14 November snapshot records a weekly Friday 03:00 Europe/Rome schedule; current external settings require verification.
+The schedule verified 15 November is Monday/Wednesday/Friday 02:00 Europe/Rome. Task B produces an unpublished draft; Task C and D can release it automatically as `ai_verified` when the evidence and independent checks permit.
 
 Deliverables:
 
@@ -201,7 +231,7 @@ One PR on a dedicated branch (proposed `research/article-YYYYMMDD-<topic>`) addi
    ```
 
    `source_hash` = first 16 hex digits of SHA-256 of the UTF-8 JSON array `[title, summary, body]` of the **Italian** file (body trimmed; no spaces between JSON tokens; non-ASCII not escaped), e.g. in Python `hashlib.sha256(json.dumps([t, s, b], ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()[:16]`. `target_hash` uses the same algorithm over the English title, summary and trimmed body. If the task cannot compute them, the maintainer runs `pnpm articles:hash --write ART-NNNN` after translation; CI fails until both match. Stale reviewed translations require human review. Hashes detect changes, not semantic fidelity or reviewer identity.
-4. **Publication gate.** A merged article appears on the site only when an editor sets `review.status: reviewed` **and** every linked record and cited source is public under the M5 policy. Linking a `needs_review` / `pending_integration` record (e.g. a Fonte_09 candidate) or a restricted person relationship keeps the whole article withheld until that record is published: an article never surfaces withheld evidence. `pnpm validate:articles` prints each article's state and the reasons.
+4. **Publication gate.** A merged article appears on the site only when its status is **`reviewed` (human) or `ai_verified` (independent C/D automated review, with structured provenance)** **and** every linked record and cited source is public under the M5 policy. Linking a `needs_review` / `pending_integration` record (e.g. a Fonte_09 candidate) or a restricted person relationship keeps the whole article withheld until that record is published: an article never surfaces withheld evidence. `pnpm validate:articles` prints each article's state and the reasons.
 5. **Not allowed:** editing `data/`, sources or other articles; setting `reviewed` (article or translation); `fixture: true`; inventing record IDs or citing URLs that do not support the stated proposition. New facts found during the investigation go in a **separate** candidate evidence proposal for the Task A/ingest pipeline, not into `links`.
 
 ## 4. Repository-driven ingest: the proposals sidecar and `pnpm ingest`

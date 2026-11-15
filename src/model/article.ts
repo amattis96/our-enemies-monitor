@@ -68,10 +68,25 @@ export const ArticleReference = z.union([
   }),
 ]);
 
-/** Article review: never `imported_unreviewed` (articles are not imported). */
-export const ArticleReview = Review.refine((review) => review.status !== "imported_unreviewed", {
-  message: "articles are either needs_review or reviewed",
-  path: ["status"],
+/**
+ * Article-specific statuses, deliberately separate from canonical record Review.
+ * ai_verified means automated editorial examination, NOT human approval.
+ */
+export const ARTICLE_REVIEW_STATUSES = ["needs_review", "ai_verified", "reviewed"] as const;
+export const AI_VERIFICATION_NOTE =
+  /^AI-Verification: Task C; reviewed_head=[0-9a-f]{40}; date=\d{4}-\d{2}-\d{2}; basis=.{20,}$/;
+
+export function hasAiVerificationNote(notes: readonly string[]): boolean {
+  return notes.some((note) => AI_VERIFICATION_NOTE.test(note));
+}
+
+export const ArticleReview = z.strictObject({
+  ...Review.shape,
+  status: z
+    .enum(ARTICLE_REVIEW_STATUSES)
+    .describe(
+      "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses.",
+    ),
 });
 
 /** Front matter of the canonical Italian file `content/articles/<ID>.it.md`. */
@@ -90,7 +105,7 @@ export const ArticleFrontMatterIt = z.strictObject({
   links: ArticleLinks,
   references: z.array(ArticleReference).min(1),
   review: z.strictObject({
-    status: z.enum(["needs_review", "reviewed"]),
+    status: z.enum(ARTICLE_REVIEW_STATUSES),
     notes: z.array(z.string().min(1)),
   }),
 });

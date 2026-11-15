@@ -89,7 +89,17 @@ const generation = [
       <span>{REVIEW_STATUS_LABELS[article.review.status][lang]}</span>
     </p>
     {
-      article.review.status !== "reviewed" && !article.fixture && (
+      article.review.status === "ai_verified" && (
+        <div class="notice" role="note">
+          {c(
+            "Analisi verificata da agenti IA (Task C e D), non approvata da un revisore umano. I fatti, le attribuzioni e le ipotesi sono distinti nel testo; fonti e correzioni sono consultabili nel repository.",
+            "AI-verified analysis (Tasks C and D), not approved by a human editor. Facts, attributions and hypotheses are distinguished in the text; sources and corrections are available in the repository.",
+          )}
+        </div>
+      )
+    }
+    {
+      article.review.status === "needs_review" && !article.fixture && (
         <div class="notice">{c("Bozza in attesa di revisione editoriale.", "Draft awaiting editorial review.")}</div>
       )
     }

@@ -1,6 +1,12 @@
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
-import type { Article, ArticleReference, Dataset, Language } from "../model/index.ts";
+import {
+  type Article,
+  type ArticleReference,
+  type Dataset,
+  hasAiVerificationNote,
+  type Language,
+} from "../model/index.ts";
 import { type ArticleFile, readArticleFiles, validateArticleFiles } from "../pipeline/articles.ts";
 import type { Issue } from "../pipeline/validate.ts";
 import { formatPredicate } from "./format.ts";
@@ -9,8 +15,8 @@ import { publishedDataset } from "./publication.ts";
 import type { ReadModel } from "./read-model.ts";
 
 /**
- * Public rules for editorial articles (M6). An article is published only
- * when it is reviewed and every record or source it links is itself public,
+ * Public rules for editorial articles (M6). An article is published when
+ * human reviewed OR AI-verified with a traceable C handoff note, and every record or source it links is public,
  * so an article can never surface a withheld record. Demo fixtures are the
  * one exception to the review rule: they are shown with a test banner, and
  * they may link only public records (a validation error otherwise).
@@ -21,8 +27,11 @@ const LINK_COLLECTIONS = ["events", "entities", "relationships", "hypotheses"] a
 /** Reasons an article is withheld from the public site; empty = published. */
 export function withheldReasons(article: Article, published: Dataset): string[] {
   const reasons: string[] = [];
-  if (article.review.status !== "reviewed" && !article.fixture) {
+  if (!article.fixture && !["reviewed", "ai_verified"].includes(article.review.status)) {
     reasons.push(`review status ${article.review.status}`);
+  }
+  if (article.review.status === "ai_verified" && !hasAiVerificationNote(article.review.notes)) {
+    reasons.push("missing structured AI verification provenance");
   }
   for (const collection of LINK_COLLECTIONS) {
     const ids = new Set(published[collection].map((record) => record.id));
@@ -192,6 +201,8 @@ const STRINGS = {
     fixture:
       "DEMO / TEST — Contenuto di prova generato per verificare la sezione articoli. Non è un'analisi reale e non aggiunge fatti alla base di conoscenza.",
     review: "Bozza in attesa di revisione editoriale.",
+    ai_verified:
+      "Indagine prodotta o verificata con sistemi di IA: controllo editoriale automatizzato C/D, non approvazione umana. Le attribuzioni e le accuse restano circoscritte alle fonti citate; eventuali correzioni sono tracciate nel repository.",
     machine: "Traduzione automatica dall'italiano, non ancora rivista.",
     references: "Riferimenti",
     linked: "Record collegati",
@@ -207,6 +218,8 @@ const STRINGS = {
     fixture:
       "DEMO / TEST — Test content generated to exercise the articles section. It is not a real analysis and adds no facts to the knowledge base.",
     review: "Draft awaiting editorial review.",
+    ai_verified:
+      "Investigation produced or verified using AI systems: automated editorial checks by C/D, not human editorial approval. Attributions and allegations remain limited to cited sources; corrections are tracked in the repository.",
     machine: "Machine translation from Italian, not yet reviewed.",
     references: "References",
     linked: "Linked records",
@@ -251,7 +264,11 @@ export function articleMarkdown(
   ];
   const notices = [
     article.fixture ? t.fixture : null,
-    article.review.status === "reviewed" || article.fixture ? null : t.review,
+    article.review.status === "ai_verified"
+      ? t.ai_verified
+      : article.review.status === "reviewed" || article.fixture
+        ? null
+        : t.review,
     translation?.status === "machine" ? t.machine : null,
   ].filter((notice) => notice !== null);
   const references = article.references.map(

@@ -39,13 +39,15 @@ the tasks were updated in the ChatGPT scheduler separately.
    `source_hash` and `target_hash`. Review remains `needs_review`;
    English translation remains `machine`. New evidence is proposed
    separately, never smuggled into `data/`.
-4. **C, review & fix:** enumerate PRs, filter by metadata before reading
+4. **C, review & fix + AI publication:** enumerate PRs, filter by metadata before reading
    content (base `main`, same-repo head, `research/*` or `agent/*`),
    independently validate facts, editorial distinctions, schemas,
    collisions and CI. Correct well-supported defects on the existing PR
    branch, rerun checks and post `OEM Task C | Review & Fix` with the
    **current HEAD**, each changed path/status/mode/blob SHA and
-   `READY_FOR_D` or an explicit blocker. Never
+   `READY_FOR_D` or an explicit blocker. For eligible evidence-complete
+   articles, C may set `ai_verified` with a structured note, or create
+   a narrow `agent/publish-ART-*` PR for an existing draft. Never
    APPROVE, merge or modify main.
 5. **D, verification & merge:** use C's comment as a traceable lead,
    not as a trusted authorization. Recheck exact HEAD, base freshness,
@@ -72,10 +74,13 @@ control-plane changes. Separate machine accounts and hardened rulesets
 remain deferred. See [AGENTS.md](../AGENTS.md), Governance.
 
 **Editorial boundary:** a source merge archives documentation but does
-not ingest its sidecar; an ingest merge creates unreviewed candidates
-but does not certify them; an article merge archives a draft, not an
-automatically published investigation. Only a human review may set
-`reviewed`, `human_approved` or reviewed translation status. The
+not ingest its sidecar; an ingest merge creates unreviewed candidates.
+An article merge publishes **only** if `ai_verified` with C provenance,
+D verification and current-HEAD checks, or separately `reviewed` by
+a human. A `needs_review` article remains a withheld draft. AI-only
+publication is conspicuously labelled, never described as human approval.
+Only a human review may set `reviewed`, `human_approved` or reviewed
+translation status. The
 exact-HEAD `Publication-Approval:` / `Translation-Approval:` checks
 apply when changing articles to reviewed and remain separate from the
 ordinary GitHub PR approval requirement.

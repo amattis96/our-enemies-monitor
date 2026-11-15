@@ -254,8 +254,8 @@
         "status": {
           "type": "string",
           "enum": [
-            "imported_unreviewed",
             "needs_review",
+            "ai_verified",
             "reviewed"
           ],
           "description": "Editorial review status of the record. imported_unreviewed is provisional, not verified. Definitions: vocabulary.json#/review_statuses."

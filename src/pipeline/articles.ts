@@ -9,6 +9,7 @@ import {
   type Dataset,
   FIXTURE_ARTICLE_ID,
   FIXTURE_TITLE_PREFIX,
+  hasAiVerificationNote,
 } from "../model/index.ts";
 import { publishedDataset } from "../site/publication.ts";
 import { articleMentionWarnings } from "./article-links.ts";
@@ -154,6 +155,12 @@ export function validateArticleFiles(files: ArticleFile[], dataset: Dataset): Ar
     const fixtureId = FIXTURE_ARTICLE_ID.test(id);
     if (data.fixture !== fixtureId) {
       error(file, "fixture: true is required exactly for ART-DEMO-NNN IDs");
+    }
+    if (data.review.status === "ai_verified" && !hasAiVerificationNote(data.review.notes)) {
+      error(file, "ai_verified requires a structured AI-Verification: Task C note");
+    }
+    if (data.fixture && data.review.status === "ai_verified") {
+      error(file, "fixtures cannot be ai_verified");
     }
     if (data.fixture) {
       for (const [lang, title] of [
