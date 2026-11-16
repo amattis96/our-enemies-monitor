@@ -150,7 +150,18 @@ cryptographic identity separation.
 
 The second independent ChatGPT task selects an open hypothesis, unanswered question, suspicious network pattern or strategic exposure from the current evidence graph, then conducts **its own** source search rather than merely summarizing existing records.
 
-The schedule verified 15 November is Monday/Wednesday/Friday 02:00 Europe/Rome. Task B produces an unpublished draft; Task C and D can release it automatically as `ai_verified` when the evidence and independent checks permit.
+The schedule verified 16 November is Monday/Wednesday/Friday 02:00 Europe/Rome.
+Task B produces an **editorially unreviewed `needs_review` article** inside a
+normally **non-draft GitHub PR**. GitHub draft and article review statuses
+are different. Task C and D can release it automatically as `ai_verified`
+when evidence, independent checks and CI permit. The absence of local
+`pnpm` is reported but is not a reason to open a complete research PR
+as draft; GitHub CI validates the exact HEAD. For a draft received from
+A/B, Task C performs substantive review, uses GitHub's
+`mark_pull_request_ready_for_review` after all checks pass and posts a
+new exact-HEAD `READY_FOR_D` handoff; D itself must still reject
+draft PRs. A source-only PR's archiving does not require an ingest dry-run:
+that step belongs to the separate subsequent canonical-data PR.
 
 Deliverables:
 

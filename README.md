@@ -174,6 +174,14 @@ require C to review again. Code-owner review is not required by the current clas
 protection; control-plane changes therefore remain maintainer-only.
 The mandatory GitHub Actions contexts are `check` and `evidence-diff`
 on an up-to-date PR. The next task never assumes its predecessor has finished.
+**Ready for review is now automatic:** A/B submit complete research PRs
+as non-draft even when local pnpm is unavailable; GitHub CI validates
+the committed files and C independently verifies factual claims. C
+actively reviews eligible drafts and, after full checks, converts them
+to Ready for review before issuing its final handoff. D never merges
+drafts. A source PR requires schema/CI, **not** a local dry-run of
+the separate later canonical ingest step. Missing evidence still
+blocks publication; this workflow does not weaken the M5 gate.
 
 Merging a source adds it to the documentary archive, not `data/`. The
 separate deterministic `pnpm ingest` step creates `needs_review`

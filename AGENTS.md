@@ -244,6 +244,35 @@ investigative topic; produce exactly
 needs_review` and English `translation.status: machine`. Propose new
 evidence separately for M6; never modify `data/` or infer graph edges.
 
+**Unattended PR readiness and CLI availability:** Task A and Task B normally
+create **non-draft, Ready for review** research PRs once the sources,
+claim caveats and file contracts are complete. Editorial `needs_review`
+describes the article's *content*, not the GitHub PR's `draft` state.
+A missing executable checkout, unavailable local `pnpm`, or pending
+GitHub checks must be reported honestly but **do not alone justify
+opening an otherwise complete PR as draft**. GitHub's required `check`
+runs lint, tests, schema/sidecar/article validation, build and link
+checks on the exact commit. Task C independently examines evidence,
+including primary/contrary sources and duplicate records; a green CI
+alone cannot establish factual accuracy. A source-only PR does not
+require the `pnpm ingest` dry-run: this is a prerequisite for the
+**separate** `agent/ingest-*` PR.
+
+Task C **must review eligible draft PRs** instead of excluding them.
+If a draft PR is factually and technically ready and both required
+GitHub checks succeed on its current HEAD, C calls the GitHub
+`mark_pull_request_ready_for_review` mutation (when available),
+re-fetches and confirms `draft:false`, then posts its exact-HEAD
+`OEM Task C | Review & Fix` handoff. C should take **one PR all the
+way to a verifiable verdict** before starting superficial reviews of
+additional PRs. When factual evidence is still missing, C retains
+draft and documents specific `BLOCKED_EVIDENCE` reasons; when GitHub
+cannot perform the transition it reports `BLOCKED_TECHNICAL`.
+D **never merges draft PRs** or infers readiness from green CI.
+If `main` advances after a completed C review, D may use only the
+documented additions-only, content-invariant synchronization with
+fresh exact-HEAD checks; content changes require renewed C review.
+
 **Task C review and repair plus automated editorial release:** first filter
 PRs using trusted GitHub metadata:
 base `main`, head repository exactly `amattis96/our-enemies-monitor`,

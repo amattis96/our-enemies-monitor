@@ -33,6 +33,7 @@ prs_created_or_reviewed: [] # URL, category, head/base SHA, changed files
 excluded_pr_metadata: [] # C/D: URL, number, SHA, reason; no payload inspection
 corrections_and_commits: [] # C: files and new SHA; D: merge commit SHA
 review_handoffs: [] # C verdict / C-reviewed SHA, changed-file inventory; D re-verification
+pr_readiness_transitions: [] # original draft flag, decision after factual+CI review, GitHub Ready mutation result, exact SHA; or blocker
 automated_publications: [] # ARTICLE ID, original manuscript HEAD, C verification note, status-only promotion PR, D merge SHA and Pages result
 branch_synchronizations: [] # D: old C-reviewed HEAD, new HEAD, main SHA, unchanged file blobs and new CI URLs
 checks: [] # status, conclusion, URL and exact checked SHA; pending/not run explicit
@@ -56,7 +57,13 @@ and fixes, check URLs/conclusions and one of:
 `BLOCKED_EVIDENCE`, `BLOCKED_TECHNICAL`, `STALE`.
 Include the exact changed paths, add/modify/delete status, mode and Git blob
 SHA for every file (or a reproducible manifest tied to the exact HEAD).
-Only mark READY when the necessary checks are green for the current SHA.
+Only mark READY when the necessary checks are green for the current SHA
+**and the PR is no longer draft**. Eligible draft PRs must not be
+ignored by C: after a complete substantive review and two current-HEAD
+green checks, C marks them Ready for review, rereads `draft:false`
+and reports the transition. Absence of local pnpm is recorded as
+`local_checks: not_run`, not as failure if GitHub `check` succeeded.
+A source-only PR does not require the later ingest dry-run.
 This handoff is **not** GitHub APPROVE or editorial authorization.
 
 For **D**, independently confirm the handoff and live GitHub data and
