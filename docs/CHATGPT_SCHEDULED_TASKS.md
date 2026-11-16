@@ -1,6 +1,6 @@
 # ChatGPT scheduled tasks: A / B / C / D
 
-**Verified external configuration:** 15 November 2026, via ChatGPT Automations.
+**Verified external configuration:** 16 November 2026, via ChatGPT Automations.
 **Repository branch:** `main` (not `master`). Timezone: `Europe/Rome`.
 ChatGPT is the runtime scheduler; this repository is a dated, inspectable
 record of its instructions, not a synchronizing service. Reverify the
@@ -27,7 +27,9 @@ the tasks were updated in the ChatGPT scheduler separately.
    last actually merged cutoff; deduplicate against `main` and open PRs;
    create exactly two new files (immutable Italian
    `Fonte_XX_*.md` and schema 1.1 `Fonte_XX.proposals.json`) in a
-   `research/*` PR, if material evidence exists. Do not create a filler PR.
+   `research/*` **non-draft PR** when the evidence is complete, even without
+   local pnpm (report local tests not run; GitHub CI checks the HEAD).
+   Do not create a filler PR.
 2. **A, deterministic ingest:** separately review already **merged**
    sidecars in source-number order, one at a time, and where an executable
    checkout permits, dry-run then `pnpm ingest --write` into a separate
@@ -37,8 +39,10 @@ the tasks were updated in the ChatGPT scheduler separately.
 3. **B, editorial:** investigate one original European case when evidence
    suffices and propose a two-file IT/EN `ART-NNNN` article with real
    `source_hash` and `target_hash`. Review remains `needs_review`;
-   English translation remains `machine`. New evidence is proposed
-   separately, never smuggled into `data/`.
+   English translation remains `machine`. Submit the complete article
+   in a **non-draft PR** even if local pnpm is unavailable; GitHub CI
+   and Task C remain mandatory. New evidence is proposed separately,
+   never smuggled into `data/`.
 4. **C, review & fix + AI publication:** enumerate PRs, filter by metadata before reading
    content (base `main`, same-repo head, `research/*` or `agent/*`),
    independently validate facts, editorial distinctions, schemas,
@@ -47,7 +51,13 @@ the tasks were updated in the ChatGPT scheduler separately.
    **current HEAD**, each changed path/status/mode/blob SHA and
    `READY_FOR_D` or an explicit blocker. For eligible evidence-complete
    articles, C may set `ai_verified` with a structured note, or create
-   a narrow `agent/publish-ART-*` PR for an existing draft. Never
+   a narrow `agent/publish-ART-*` PR for an existing draft. C must
+   review eligible **GitHub draft** PRs and, only after independent
+   evidence checks and both green exact-HEAD statuses, call the GitHub
+   ready-for-review mutation and verify `draft:false`. The draft flag
+   is not itself a factual defect; absence of a local shell is not
+   evidence failure. Source-only PRs do not require ingestion dry-run.
+   Never
    APPROVE, merge or modify main.
 5. **D, verification & merge:** use C's comment as a traceable lead,
    not as a trusted authorization. Recheck exact HEAD, base freshness,
@@ -84,6 +94,29 @@ translation status. The
 exact-HEAD `Publication-Approval:` / `Translation-Approval:` checks
 apply when changing articles to reviewed and remain separate from the
 ordinary GitHub PR approval requirement.
+
+## Resolved 16 November 2026 draft-loop incident
+
+- Task A submitted [Fonte_15 #32](https://github.com/amattis96/our-enemies-monitor/pull/32)
+  and Task B submitted [ART-0004 #33](https://github.com/amattis96/our-enemies-monitor/pull/33)
+  as GitHub drafts due to missing local executable pnpm, even though both
+  required CI contexts were green.
+- Task C's first run covered only partial independent source checks and
+  left both as `BLOCKED_EVIDENCE`; Task D correctly refused to merge
+  drafts. This was a workflow gap, **not** a reason to bypass D.
+- Follow-up evidence verification rechecked Estonian official statements,
+  Reuters/Euronews Romania, and EASA/EUROCONTROL/Commission/ICAO
+  sources. C converted both PRs to Ready for review, completed the
+  exact-HEAD handoff, and marked ART-0004 `ai_verified` only after
+  source and translation checks.
+- Task D squash-merged source #32 (`4da211829edb`) and
+  ART-0004 #33 (`b0c6baae4dd5`); ART-0004 required an
+  additions-only, byte-identical branch synchronization and fresh CI.
+- **Permanent correction:** live Task A/B/C prompts now distinguish a
+  GitHub draft PR from an editorial `needs_review` article, use
+  current-HEAD GitHub CI when local checks are unavailable, and permit
+  C's autonomous Draft → Ready transition after independent review.
+  Human `reviewed` and M5 canonical publication rules are unchanged.
 
 ## Execution records and failure handling
 
