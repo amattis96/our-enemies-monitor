@@ -131,7 +131,7 @@ describe("canonical data", () => {
     const baseline: Dataset = {
       ...dataset,
       events: dataset.events.filter(
-        (event) => /^EXT-\\d{3}$/.test(event.id) && Number(event.id.slice(4)) <= 34,
+        (event) => event.id.startsWith("EXT-") && Number(event.id.slice(4)) <= 34,
       ),
     };
     const e7 = e7IndependentRoots(baseline);
