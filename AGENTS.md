@@ -211,8 +211,8 @@ workflow must not be reactivated. The legacy
 | --- | --- | --- |
 | **A: OSINT & Ingest** | Every day 00:30 | Fresh source + schema 1.1 sidecar PR; separately ingest the earliest already-merged pending sidecar into a data-only PR when executable |
 | **B: Editorial** | Mon/Wed/Fri 02:00 | One independently researched IT/EN article pair as a `needs_review` PR when defensible |
-| **C: Review & Fix** | Mon/Wed/Fri 03:30 | Evidence/code review, targeted fixes on eligible PR branches, tests and exact-HEAD handoff |
-| **D: Approval & Merge** | Mon/Wed/Fri 05:00 | Verify C handoff independently, required checks and merge readiness; sequential squash merge and verify main CI/deploy |
+| **C: Review & Fix** | Daily 03:30 and 04:30 | Evidence/code review, targeted fixes on eligible PR branches, tests and exact-HEAD handoff |
+| **D: Approval & Merge** | Daily 05:00 and 06:00 | Verify C handoff independently, required checks and merge readiness; sequential squash merge and verify main CI/deploy |
 
 **Task A acquisition:** examine the actual merged coverage cutoff, rescan
 at least 72 hours of overlap, deduplicate against merged records and all open
@@ -234,7 +234,7 @@ never changes `provenance`, reviewed records or source archives, never
 automatically applies `propose_correction`, and must not use
 `--skip-pending`. Stop on unresolved conflict/rejection or blocked
 validation; report the issue instead of fabricating a manual import.
-One sidecar per PR. Task A does **not** ingest in CI or on merge.
+One sidecar per PR. The GitHub Actions `stage-ingest.yml` job is permitted to **prepare only a candidate branch** from the earliest archived and un-ingested sidecar, after a successful CI push to `main`. The read-only preparation job runs a deterministic dry-run, refuses any conflicts/rejections, writes only local `data/` candidates as `needs_review`, validates the result and performs a strict evidence diff. A separate write-only job receives a verified Git bundle, runs no repository code and pushes the `agent/ingest-fonte-*` branch. It does **not** create a PR, merge, publish, modify `main`, approve records, or bypass review. Task A inspects the staged branch, relevant successful staging run, files, review statuses and current `main`, then opens a **separate data-only PR** using its GitHub connection (so ordinary PR checks run). A branch that is stale, unverified or inconsistent must be discarded or rebuilt, never merged blindly. If no valid staged branch is available, Task A may ingest with an executable checkout under the original rules; without either path it reports a blocker. See `docs/automation/INGEST_STAGING.md`.
 
 **Task B editorial:** choose a nonduplicate, independently sourced European
 investigative topic; produce exactly
