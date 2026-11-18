@@ -12,8 +12,8 @@ live task configuration before relying on a historical snapshot.
 | --- | --- | --- | --- |
 | **A** | Our Enemies Monitor OSINT & Ingest | Daily 00:30 | `Automation_d84b474727c0819199f8a2ccede9168c` |
 | **B** | Our Enemies Monitor Editorial | Mon/Wed/Fri 02:00 | `6af644cc6d508191b5164cb2e7c4be39` |
-| **C** | Our Enemies Monitor Review & Fix | Mon/Wed/Fri 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
-| **D** | Our Enemies Monitor Approval & Merge | Mon/Wed/Fri 05:00 and 06:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
+| **C** | Our Enemies Monitor Review & Fix | Daily 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
+| **D** | Our Enemies Monitor Approval & Merge | Daily 05:00 and 06:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
 
 All four were enabled on 15 November 2026, and their next scheduled
 runs begin on 16 November 2026. Full active prompt copies are kept in
