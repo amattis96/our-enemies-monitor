@@ -126,14 +126,22 @@ describe("canonical data", () => {
   });
 
   it("computes A E7 from derived_from alone (B17 acceptance)", () => {
-    const e7 = e7IndependentRoots(dataset);
+    // The historical S09 cohort is fixed; newer S12+ candidates legitimately
+    // add EXT-035+ events and must not invalidate the B17 baseline acceptance.
+    const baseline: Dataset = {
+      ...dataset,
+      events: dataset.events.filter(
+        (event) => /^EXT-\\d{3}$/.test(event.id) && Number(event.id.slice(4)) <= 34,
+      ),
+    };
+    const e7 = e7IndependentRoots(baseline);
     expect(e7.ext_events_with_external_refs).toBe(34);
     expect(e7.single_reference).toBe(18);
     // Same function, genealogy filled in memory: the count moves with the
     // fields, not with publisher text.
     const withGenealogy: Dataset = {
-      ...dataset,
-      sources: dataset.sources.map((s) => {
+      ...baseline,
+      sources: baseline.sources.map((s) => {
         const fix = [ministry, wire, copy].find((g) => g.id === s.id);
         return fix ? { ...s, ...fix } : s;
       }),
