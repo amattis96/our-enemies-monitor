@@ -32,7 +32,6 @@ jobs:
           ref: main
           fetch-depth: 0
           persist-credentials: false
-          persist-credentials: true
       - id: tip
         name: Verify successful CI belongs to current main
         env:
