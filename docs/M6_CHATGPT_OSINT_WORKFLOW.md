@@ -247,7 +247,9 @@ One PR on a dedicated branch (proposed `research/article-YYYYMMDD-<topic>`) addi
 
 ## 4. Repository-driven ingest: the proposals sidecar and `pnpm ingest`
 
-**Current state:** implemented as a deterministic TypeScript command. A maintainer, local coding agent or Task A with an executable checkout can run the importer **after a source has merged**, into a separate `agent/ingest-*` PR. This is an explicit agent-run action, not a CI-on-merge hook; no model or paid API is called by the importer. The Markdown report remains human-readable, and a structured sidecar defines only the candidate operations.
+**GitHub-native staging option:** A successful CI push to `main` can trigger `.github/workflows/stage-ingest.yml` to prepare a checked `agent/ingest-fonte-NN` branch using the same deterministic importer. This branch is **not a PR and not a publication**. The next Task A run must verify its exact main base, the successful staging job, candidate-only `data/` diff, statuses and source ordering before opening the usual ingest PR via the separate GitHub app. This avoids relying on an executable checkout inside ChatGPT. A generated branch or the green staging job does not replace subsequent PR checks, independent Task C review or Task D merge. A failed/blocked staging job is a genuine blocker, not permission to skip a source. See [staging runbook](automation/INGEST_STAGING.md).
+
+**Current state:** implemented as a deterministic TypeScript command. A maintainer, local coding agent or Task A with an executable checkout can run the importer **after a source has merged**, into a separate `agent/ingest-*` PR. This is an explicit agent-run action or a deterministic candidate-branch staging job, never an automatic canonical merge or publication; no model or paid API is called by the importer. The Markdown report remains human-readable, and a structured sidecar defines only the candidate operations.
 
 ```text
 Fonte_XX.md (report) + Fonte_XX.proposals.json (operations)
