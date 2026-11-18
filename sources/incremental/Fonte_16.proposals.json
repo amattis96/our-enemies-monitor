@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S16",
+    "file": "sources/incremental/Fonte_16_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-17.md",
+    "title": {
+      "it": "Fonte_16 | Aggiornamento OSINT incrementale per l'Europa | 17 novembre 2026"
+    },
+    "created_at": "2026-11-17",
+    "coverage": {
+      "start": "2026-11-13",
+      "end": "2026-11-17"
+    },
+    "baseline_source": "S15",
+    "repository_commit": "dc7ee7cc006d8149f88197831660ddadfb0cd06e"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Russia’s FIMI and malicious cyber activities: Council imposes sanctions on 30 individuals and two entities"
+      },
+      "publisher": "Consiglio dell'Unione europea",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/11/16/russia-s-fimi-and-malicious-cyber-activities-council-imposes-sanctions-on-30-individuals-and-two-entities/",
+      "published": "2026-11-16"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "Council Decision (CFSP) 2026/2556 of 16 November 2026"
+      },
+      "publisher": "Gazzetta ufficiale dell'Unione europea / EUR-Lex",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202602556",
+      "published": "2026-11-16"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Council Decision (CFSP) 2026/2546 of 16 November 2026"
+      },
+      "publisher": "Gazzetta ufficiale dell'Unione europea / EUR-Lex",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202602546",
+      "published": "2026-11-16"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "Ukraine: EU lists 113 individuals and entities to further restrict Russia’s ability to finance its war of aggression"
+      },
+      "publisher": "Consiglio dell'Unione europea",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/11/16/ukraine-eu-lists-113-individuals-and-entities-to-further-restrict-russia-s-ability-to-finance-its-war-of-aggression/pdf/",
+      "published": "2026-11-16"
+    },
+    {
+      "key": "R05",
+      "title": {
+        "it": "EU expands Russia sanctions list by 145 names and entities"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/finance/eu-expands-russia-sanctions-list-by-145-names-entities-2026-11-16/",
+      "published": "2026-11-16"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261117-001",
+      "item": "OEM-20261117-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "notes": [
+        "L'atto E1 è distinto dalle attribuzioni E2 relative a SDA e NoName057(16).",
+        "Non attribuire singoli attacchi o controllo operativo alle persone senza riscontro individuale."
+      ],
+      "update_type": "NEW_POLICY",
+      "evidence_level": "E1",
+      "title": {
+        "it": "UE: nuove designazioni per FIMI russa e cyberattacchi"
+      },
+      "description": {
+        "it": "Il 16 novembre 2026 il Consiglio UE ha adottato misure restrittive contro 30 persone e due entità nei regimi relativi alle attività destabilizzanti russe e ai cyberattacchi."
+      },
+      "date": {
+        "start": "2026-11-16",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-16",
+      "themes": [
+        "finance_sanctions",
+        "information_manipulation",
+        "cyber",
+        "eu_nato_response"
+      ],
+      "geography": {
+        "it": "Unione europea"
+      },
+      "places": [],
+      "evidence_note": {
+        "it": "E1: adozione di misure restrittive da parte del Consiglio UE; le attribuzioni e motivazioni dei singoli designati sono istituzionali E2, non verdetti penali."
+      },
+      "publisher": "Consiglio dell'Unione europea",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/11/16/russia-s-fimi-and-malicious-cyber-activities-council-imposes-sanctions-on-30-individuals-and-two-entities/",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Nessuna sentenza penale è implicata dalla designazione; non esaminate singolarmente le difese o impugnazioni di tutti i soggetti."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261117-002",
+      "item": "OEM-20261117-002",
+      "sources": [
+        "R04",
+        "R05"
+      ],
+      "notes": [
+        "Il totale Reuters 145 include anche le 32 designazioni del diverso pacchetto FIMI/cyber.",
+        "Non interpretare la designazione come condanna penale o prova di responsabilità individuale in attacchi."
+      ],
+      "update_type": "NEW_POLICY",
+      "evidence_level": "E1",
+      "title": {
+        "it": "UE: 113 nuove designazioni in settori finanziari, energetici e flotta ombra"
+      },
+      "description": {
+        "it": "Il 16 novembre 2026 il Consiglio UE ha adottato misure restrittive contro 12 persone e 101 entità nel regime relativo all'integrità territoriale ucraina, comprendendo istituzioni finanziarie e soggetti nei settori energia, e-commerce e commercio petrolifero."
+      },
+      "date": {
+        "start": "2026-11-16",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-16",
+      "themes": [
+        "finance_sanctions",
+        "energy",
+        "industry_dependencies",
+        "eu_nato_response"
+      ],
+      "geography": {
+        "it": "Unione europea"
+      },
+      "places": [],
+      "evidence_note": {
+        "it": "E1: adozione di misure restrittive da parte del Consiglio UE; le attribuzioni e motivazioni dei singoli designati sono istituzionali E2, non verdetti penali."
+      },
+      "publisher": "Consiglio dell'Unione europea",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/11/16/ukraine-eu-lists-113-individuals-and-entities-to-further-restrict-russia-s-ability-to-finance-its-war-of-aggression/pdf/",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Nessuna sentenza penale è implicata dalla designazione; non esaminate singolarmente le difese o impugnazioni di tutti i soggetti."
+      },
+      "related": []
+    }
+  ]
+}
