@@ -33,6 +33,8 @@ import {
 // Regression tests of block B04 (Fable B R9–R13, T6–T8): ingest order and
 // gate, unforgeable markers, duplicates that carry new evidence, invalid
 // archived sidecars, the archive check and the legacy Markdown URL filter.
+// Synthetic S812/S813 codes and isolated CLI archives avoid collisions with
+// incrementally ingested S12+ production records and sidecar queue order.
 
 let files: DataFile[];
 let dataset: Dataset;
@@ -113,12 +115,12 @@ describe("extended archive numbering", () => {
 
 describe("ingest order and gate (R9, T6)", () => {
   it("T-a1: an ingested earlier sidecar dedupes a later one through data/", () => {
-    const s12 = sidecar(12, [sabotage("s12-ev")]);
-    const s13 = sidecar(13, [sabotage("s13-ev")]);
+    const s12 = sidecar(812, [sabotage("s12-ev")]);
+    const s13 = sidecar(813, [sabotage("s13-ev")]);
     const [created] = freeIds(dataset, "EXT-", 3, 1);
 
     const before = archiveContext(keyed(s13), archiveOf(s12, s13), dataset);
-    expect(before.pending).toEqual(["S12"]);
+    expect(before.pending).toEqual(["S812"]);
 
     const first = planIngest(
       s12,
@@ -126,7 +128,7 @@ describe("ingest order and gate (R9, T6)", () => {
     );
     expect(first.fatal).toEqual([]);
     expect(outcome(first, "s12-ev")).toMatchObject({ classification: "new", id: created });
-    expect(first.attention).toContain("s12-ev: also proposed by S13 s13-ev");
+    expect(first.attention).toContain("s12-ev: also proposed by S813 s13-ev");
 
     const ingested = afterPlan(first).dataset;
     expect(isIngested(s12, ingested)).toBe(true);
@@ -138,37 +140,37 @@ describe("ingest order and gate (R9, T6)", () => {
   });
 
   it("T-a2: refuses while an earlier archived sidecar is not ingested", () => {
-    const s12 = sidecar(12, [sabotage("s12-ev")]);
-    const s13 = sidecar(13, [sabotage("s13-ev", { url: "https://example.org/altro" })]);
+    const s12 = sidecar(812, [sabotage("s12-ev")]);
+    const s13 = sidecar(813, [sabotage("s13-ev", { url: "https://example.org/altro" })]);
     const plan = planIngest(s13, context(archiveContext(keyed(s13), archiveOf(s12, s13), dataset)));
     expect(plan.fatal).toEqual([
-      "S12 precedes S13 in the archive and is not ingested: ingest S12 first",
+      "S812 precedes S813 in the archive and is not ingested: ingest S812 first",
     ]);
   });
 
   it("T-a2b: --skip-pending steps over one pending sidecar and records it", () => {
-    const s12 = sidecar(12, [sabotage("s12-ev")]);
-    const s13 = sidecar(13, [sabotage("s13-ev", { url: "https://example.org/altro" })]);
-    const position = archiveContext(keyed(s13), archiveOf(s12, s13), dataset, [], ["S12", "S11"]);
-    expect(position).toMatchObject({ pending: [], skipped: ["S12"], unusedSkips: ["S11"] });
+    const s12 = sidecar(812, [sabotage("s12-ev")]);
+    const s13 = sidecar(813, [sabotage("s13-ev", { url: "https://example.org/altro" })]);
+    const position = archiveContext(keyed(s13), archiveOf(s12, s13), dataset, [], ["S812", "S11"]);
+    expect(position).toMatchObject({ pending: [], skipped: ["S812"], unusedSkips: ["S11"] });
     const plan = planIngest(s13, context(position));
     expect(plan.fatal).toEqual([]);
-    const corpus = plan.writes.find((w) => w.id === "S13")?.record as {
+    const corpus = plan.writes.find((w) => w.id === "S813")?.record as {
       review: { notes: string[] };
     };
     expect(corpus.review.notes).toContain(
-      "Ingested while S12 was pending, skipped by maintainer (--skip-pending).",
+      "Ingested while S812 was pending, skipped by maintainer (--skip-pending).",
     );
   });
 
   it("T-a2c: another archived sidecar declaring the input's code blocks the run", () => {
-    const s12 = sidecar(12, [sabotage("s12-ev")]);
+    const s12 = sidecar(812, [sabotage("s12-ev")]);
     const archive = archiveOf(s12);
     const copy = { ...keyed(s12), name: "copy.proposals.json", path: "elsewhere/copy.json" };
     expect(archiveContext(keyed(s12), archive, dataset).sameCode).toEqual([]);
     const plan = planIngest(s12, context(archiveContext(copy, archive, dataset)));
     expect(plan.fatal).toEqual([
-      "sources/incremental/Fonte_12.proposals.json also declares S12: fix the archive numbering (pnpm validate:sidecars)",
+      "sources/incremental/Fonte_812.proposals.json also declares S812: fix the archive numbering (pnpm validate:sidecars)",
     ]);
   });
 
@@ -190,29 +192,29 @@ describe("ingest order and gate (R9, T6)", () => {
       .sort(compareSidecars)
       .map((k) => [k.proposals.source.code, k.proposals.source.created_at, k.name]);
     expect(sorted).toEqual([
-      ["S12", "2026-11-14", "a.json"],
-      ["S12", "2026-11-14", "c.json"],
-      ["S12", "2026-11-15", "b.json"],
-      ["S13", "2026-11-01", "a.json"],
+      ["S812", "2026-11-14", "a.json"],
+      ["S812", "2026-11-14", "c.json"],
+      ["S812", "2026-11-15", "b.json"],
+      ["S813", "2026-11-01", "a.json"],
     ]);
     expect(compareSidecars(items[3] as (typeof items)[0], items[3] as (typeof items)[0])).toBe(0);
   });
 
   it("T-a3: the archive order does not depend on the directory listing", () => {
-    const s12 = sidecarJson(12, [sabotage("s12-ev")]);
-    const s13 = sidecarJson(13, [sabotage("s13-ev")]);
+    const s12 = sidecarJson(812, [sabotage("s12-ev")]);
+    const s13 = sidecarJson(813, [sabotage("s13-ev")]);
     const dir = directory({
-      "Fonte_12.proposals.json": json(s12),
-      "Fonte_13.proposals.json": json(s13),
-      "Fonte_12_test.md": "# 12\n",
-      "Fonte_13_test.md": "# 13\n",
+      "Fonte_812.proposals.json": json(s12),
+      "Fonte_813.proposals.json": json(s13),
+      "Fonte_812_test.md": "# 12\n",
+      "Fonte_813_test.md": "# 13\n",
     });
     try {
-      const names = ["Fonte_13_test.md", "Fonte_13.proposals.json", "Fonte_12.proposals.json"];
-      const forward = readArchive(dir, [...names, "Fonte_12_test.md"]);
-      const backward = readArchive(dir, ["Fonte_12_test.md", ...names].reverse());
+      const names = ["Fonte_813_test.md", "Fonte_813.proposals.json", "Fonte_812.proposals.json"];
+      const forward = readArchive(dir, [...names, "Fonte_812_test.md"]);
+      const backward = readArchive(dir, ["Fonte_812_test.md", ...names].reverse());
       expect(forward).toEqual(backward);
-      expect(forward.sidecars.map((s) => s.proposals.source.code)).toEqual(["S12", "S13"]);
+      expect(forward.sidecars.map((s) => s.proposals.source.code)).toEqual(["S812", "S813"]);
       const s14 = sidecar(14, [sabotage("s14-ev")]);
       const plan = (archive: Archive) =>
         planIngest(s14, context(archiveContext(keyed(s14), archive, dataset)));
@@ -224,20 +226,20 @@ describe("ingest order and gate (R9, T6)", () => {
 
   it("T-a4: later sidecars and --compare files are attention only", () => {
     const s11 = sidecar(11, [sabotage("mine")]);
-    const s12 = sidecar(12, [sabotage("theirs", { url: `${URL_A}/` })]);
-    const open = sidecar(13, [sabotage("open-pr")]);
+    const s12 = sidecar(812, [sabotage("theirs", { url: `${URL_A}/` })]);
+    const open = sidecar(813, [sabotage("open-pr")]);
     const position = archiveContext(keyed(s11), archiveOf(s12), dataset, [open]);
     expect(position.pending).toEqual([]);
     const plan = planIngest(s11, context(position));
     expect(outcome(plan, "mine")).toMatchObject({ classification: "new" });
-    expect(plan.attention).toContain("mine: also proposed by S12 theirs, S13 open-pr");
+    expect(plan.attention).toContain("mine: also proposed by S812 theirs, S813 open-pr");
   });
 
   it("T-a5: a relationship on a duplicate event resolves to the existing ID (N3)", () => {
-    const s12 = sidecar(12, [sabotage("s12-ev")]);
+    const s12 = sidecar(812, [sabotage("s12-ev")]);
     const ingested = afterPlan(planIngest(s12, context()));
     const existing = freeIds(dataset, "EXT-", 3, 1)[0];
-    const s13 = sidecar(13, [
+    const s13 = sidecar(813, [
       sabotage("s13-ev"),
       relationship("s13-rel", { object: "@s13-ev", primary_url: "https://example.org/act" }),
     ]);
@@ -395,7 +397,7 @@ describe("no silent loss on matched events (review)", () => {
   it("a published duplicate carrying only contrary evidence is a conflict listing it", () => {
     const ext001 = dataset.events.find((e) => e.id === "EXT-001");
     const plan = planIngest(
-      sidecar(12, [
+      sidecar(812, [
         event("contrary", {
           url: ext001?.url,
           sources: ext001?.sources,
@@ -424,7 +426,7 @@ describe("no silent loss on matched events (review)", () => {
     expect(plan.attention).toContain(
       "contrary: contrary-rel attach to EXT-001, whose new evidence from contrary was not applied",
     );
-    const corpus = plan.writes.find((w) => w.id === "S12")?.record as {
+    const corpus = plan.writes.find((w) => w.id === "S812")?.record as {
       review: { notes: string[] };
     };
     expect(corpus.review.notes.at(-1)).toBe(
@@ -436,7 +438,7 @@ describe("no silent loss on matched events (review)", () => {
   it("a needs_review duplicate with a differing description is enriched with a note, not changed", () => {
     const ext034 = dataset.events.find((e) => e.id === "EXT-034");
     const plan = planIngest(
-      sidecar(12, [
+      sidecar(812, [
         event("desc", { url: ext034?.url, sources: ["WEB-EXT-051"], notes: ["Nota."] }),
       ]),
       context(),
@@ -448,14 +450,14 @@ describe("no silent loss on matched events (review)", () => {
     };
     expect(record.description).toEqual(ext034?.description);
     expect(record.review.notes).toContain(
-      "Proposed by S12, not applied: description: Descrizione documentata.",
+      "Proposed by S812, not applied: description: Descrizione documentata.",
     );
     expect(record.review.notes).toContain("Sidecar note: Nota.");
   });
 
   it("a near-duplicate conflict lists everything the operation proposed", () => {
     const plan = planIngest(
-      sidecar(12, [
+      sidecar(812, [
         event("near", {
           title: { it: "Raid ucraino sul porto di Ust-Luga, con versioni divergenti" },
           date: { start: "2026-11-11", end: null, precision: "day" },
@@ -482,7 +484,7 @@ describe("legacy Markdown URL filter (defect f)", () => {
       .map((m) => m[0])
       .find((u) => !eventUrls.has(u));
     expect(url).toBeDefined();
-    const s12 = sidecar(12, [sabotage("f1", { url })]);
+    const s12 = sidecar(812, [sabotage("f1", { url })]);
     const position = archiveContext(keyed(s12), real, dataset);
     expect([...position.legacyMarkdown.keys()].some((f) => f.includes("Fonte_09_"))).toBe(false);
     const plan = planIngest(s12, context(position));
@@ -493,7 +495,7 @@ describe("legacy Markdown URL filter (defect f)", () => {
     const real = readArchive(repoPath("sources/incremental"));
     const [file, text] = [...real.markdown].find(([f]) => f.includes("Fonte_10_")) ?? ["", ""];
     const url = text.match(/https:\/\/[^\s)>\]]+/)?.[0] as string;
-    const s12 = sidecar(12, [sabotage("f2", { url })]);
+    const s12 = sidecar(812, [sabotage("f2", { url })]);
     const plan = planIngest(s12, context(archiveContext(keyed(s12), real, dataset)));
     expect(outcome(plan, "f2")?.classification).toBe("conflict");
     expect(outcome(plan, "f2")?.unapplied?.target).toBeNull();
@@ -519,60 +521,60 @@ describe("archive check (R12, R13)", () => {
 
   it("accepts a clean archive and lists the ingest queue as warnings", () => {
     const issues = check({
-      "Fonte_12.proposals.json": json(sidecarJson(12, [sabotage("a")])),
-      "Fonte_12_test.md": "# 12\n",
-      "Fonte_13_test.md": "# 13\n",
+      "Fonte_812.proposals.json": json(sidecarJson(812, [sabotage("a")])),
+      "Fonte_812_test.md": "# 12\n",
+      "Fonte_813_test.md": "# 13\n",
     });
     expect(issues.filter((i) => i.severity === "error")).toEqual([]);
     expect(issues.map((i) => i.message)).toEqual([
       "Markdown source without a proposals sidecar",
-      "S12 not yet ingested (position 1 of 1 in ingest order)",
+      "S812 not yet ingested (position 1 of 1 in ingest order)",
     ]);
   });
 
   it("T-e1: names the file and field of an invalid sidecar", () => {
     expect(
       errors({
-        "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.2" }),
-        "Fonte_13.proposals.json": "{ broken",
-        "Fonte_12_test.md": "",
-        "Fonte_13_test.md": "",
+        "Fonte_812.proposals.json": json({ ...sidecarJson(812, []), schema_version: "1.2" }),
+        "Fonte_813.proposals.json": "{ broken",
+        "Fonte_812_test.md": "",
+        "Fonte_813_test.md": "",
       }),
     ).toEqual([
-      "Fonte_12.proposals.json: invalid proposals sidecar: schema_version: unsupported or missing version 1.2",
+      "Fonte_812.proposals.json: invalid proposals sidecar: schema_version: unsupported or missing version 1.2",
       expect.stringMatching(
-        /^Fonte_13\.proposals\.json: invalid proposals sidecar: not valid JSON/,
+        /^Fonte_813\.proposals\.json: invalid proposals sidecar: not valid JSON/,
       ),
     ]);
   });
 
   it("ignores non-source files but refuses misnamed sidecars and Fonte Markdown", () => {
     expect(errors({ "README.md": "# archive\n", "notes.txt": "" })).toEqual([]);
-    const found = errors({ "fonte12.proposals.json": "{}", "Fonte_12.md": "" });
-    expect(found).toContain("Fonte_12.md: Markdown name must be Fonte_NN_<title>.md");
+    const found = errors({ "fonte12.proposals.json": "{}", "Fonte_812.md": "" });
+    expect(found).toContain("Fonte_812.md: Markdown name must be Fonte_NN_<title>.md");
     expect(found).toContain("fonte12.proposals.json: sidecar name must be Fonte_NN.proposals.json");
   });
 
   it("T-r13a: one Markdown per Fonte number", () => {
-    expect(errors({ "Fonte_12_a_2026-11-14.md": "", "Fonte_12_b_2026-11-15.md": "" })).toEqual([
-      "Fonte_12_a_2026-11-14.md: Fonte_12 is used by 2 Markdown sources: sources/incremental/Fonte_12_a_2026-11-14.md, sources/incremental/Fonte_12_b_2026-11-15.md",
-      "Fonte_12_b_2026-11-15.md: Fonte_12 is used by 2 Markdown sources: sources/incremental/Fonte_12_a_2026-11-14.md, sources/incremental/Fonte_12_b_2026-11-15.md",
+    expect(errors({ "Fonte_812_a_2026-11-14.md": "", "Fonte_812_b_2026-11-15.md": "" })).toEqual([
+      "Fonte_812_a_2026-11-14.md: Fonte_812 is used by 2 Markdown sources: sources/incremental/Fonte_812_a_2026-11-14.md, sources/incremental/Fonte_812_b_2026-11-15.md",
+      "Fonte_812_b_2026-11-15.md: Fonte_812 is used by 2 Markdown sources: sources/incremental/Fonte_812_a_2026-11-14.md, sources/incremental/Fonte_812_b_2026-11-15.md",
     ]);
   });
 
   it("T-r13b: code and file are unique and match the sidecar name", () => {
-    const s12 = json(sidecarJson(12, []));
+    const s12 = json(sidecarJson(812, []));
     const found = errors({
-      "Fonte_12.proposals.json": s12,
-      "Fonte_13.proposals.json": s12,
-      "Fonte_12_test.md": "",
-      "Fonte_13_test.md": "",
+      "Fonte_812.proposals.json": s12,
+      "Fonte_813.proposals.json": s12,
+      "Fonte_812_test.md": "",
+      "Fonte_813_test.md": "",
     });
     expect(found).toContain(
-      "Fonte_13.proposals.json: source.code S12 does not match the file name Fonte_13.proposals.json",
+      "Fonte_813.proposals.json: source.code S812 does not match the file name Fonte_813.proposals.json",
     );
-    expect(found).toContain("Fonte_12.proposals.json: S12 is declared by 2 sidecars");
-    expect(found).toContain(`Fonte_13.proposals.json: ${markdownOf(12)} is declared by 2 sidecars`);
+    expect(found).toContain("Fonte_812.proposals.json: S812 is declared by 2 sidecars");
+    expect(found).toContain(`Fonte_813.proposals.json: ${markdownOf(12)} is declared by 2 sidecars`);
   });
 
   it("T-r13c: accepts Fonte_100 and rejects noncanonical aliases", () => {
@@ -596,10 +598,10 @@ describe("archive check (R12, R13)", () => {
 describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R12)", () => {
   let root: string;
   const incremental = () => path.join(root, "sources", "incremental");
-  /** The real archive plus `entries` (data/sources registers the real Markdown). */
+  /** Isolated CLI archive: never inherit the live S12+ ingest queue. */
   const setArchive = (entries: Record<string, string>) => {
     rmSync(incremental(), { recursive: true, force: true });
-    cpSync(repoPath("sources/incremental"), incremental(), { recursive: true });
+    mkdirSync(incremental(), { recursive: true });
     for (const [name, text] of Object.entries(entries))
       writeFileSync(path.join(incremental(), name), text);
   };
@@ -631,34 +633,34 @@ describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R
 
   it("T-a2 (CLI): exits 1 and writes nothing while an earlier sidecar is pending", () => {
     setArchive({
-      "Fonte_12.proposals.json": json(sidecarJson(12, [sabotage("s12-ev")])),
-      "Fonte_12_test.md": "# 12\n",
-      "Fonte_13.proposals.json": json(sidecarJson(13, [sabotage("s13-ev")])),
-      "Fonte_13_test.md": "# 13\n",
+      "Fonte_812.proposals.json": json(sidecarJson(812, [sabotage("s12-ev")])),
+      "Fonte_812_test.md": "# 12\n",
+      "Fonte_813.proposals.json": json(sidecarJson(813, [sabotage("s13-ev")])),
+      "Fonte_813_test.md": "# 13\n",
     });
-    const run = ingest(path.join(incremental(), "Fonte_13.proposals.json"), "--write", "--json");
+    const run = ingest(path.join(incremental(), "Fonte_813.proposals.json"), "--write", "--json");
     expect(run.status).toBe(1);
     const report = JSON.parse(run.stdout);
     expect(report.fatal).toEqual([
-      "S12 precedes S13 in the archive and is not ingested: ingest S12 first",
+      "S812 precedes S813 in the archive and is not ingested: ingest S812 first",
     ]);
     expect(report.written).toEqual([]);
   }, 60_000);
 
-  it("T-a2b (CLI): --skip-pending S12 lets S13 through with a warning", () => {
+  it("T-a2b (CLI): --skip-pending S812 lets S813 through with a warning", () => {
     setArchive({
-      "Fonte_12.proposals.json": json(sidecarJson(12, [sabotage("s12-ev")])),
-      "Fonte_12_test.md": "# 12\n",
-      "Fonte_13.proposals.json": json(sidecarJson(13, [sabotage("s13-ev")])),
-      "Fonte_13_test.md": "# 13\n",
+      "Fonte_812.proposals.json": json(sidecarJson(812, [sabotage("s12-ev")])),
+      "Fonte_812_test.md": "# 12\n",
+      "Fonte_813.proposals.json": json(sidecarJson(813, [sabotage("s13-ev")])),
+      "Fonte_813_test.md": "# 13\n",
     });
-    const input = path.join(incremental(), "Fonte_13.proposals.json");
-    const run = ingest(input, "--json", "--skip-pending", "S12");
+    const input = path.join(incremental(), "Fonte_813.proposals.json");
+    const run = ingest(input, "--json", "--skip-pending", "S812");
     expect(run.status).toBe(0);
     const report = JSON.parse(run.stdout);
     expect(report.fatal).toEqual([]);
     expect(report.warnings).toEqual([
-      "S12 is pending and was skipped by the maintainer (--skip-pending S12)",
+      "S812 is pending and was skipped by the maintainer (--skip-pending S812)",
     ]);
     expect(ingest(input, "--skip-pending", "12").status).toBe(1);
   }, 60_000);
@@ -666,22 +668,22 @@ describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R
   it("T-d1 (CLI): invalid other sidecars are warnings, not a stop", () => {
     setArchive({
       [fixtureMarkdown()]: "# Fonte_10 placeholder for tests\n",
-      "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.2" }),
-      "Fonte_13.proposals.json": "{ broken",
+      "Fonte_812.proposals.json": json({ ...sidecarJson(812, []), schema_version: "1.2" }),
+      "Fonte_813.proposals.json": "{ broken",
     });
     const run = ingest(repoPath(FIXTURE), "--json");
     expect(run.status).toBe(0);
     const warnings = JSON.parse(run.stdout).warnings as string[];
     expect(warnings).toHaveLength(2);
-    expect(warnings[0]).toContain("sources/incremental/Fonte_12.proposals.json");
+    expect(warnings[0]).toContain("sources/incremental/Fonte_812.proposals.json");
     expect(warnings[0]).toContain("schema_version:");
-    expect(warnings[1]).toContain("sources/incremental/Fonte_13.proposals.json");
+    expect(warnings[1]).toContain("sources/incremental/Fonte_813.proposals.json");
     expect(warnings[1]).toContain("not valid JSON");
   }, 60_000);
 
   it("T-d2 (CLI): a broken input sidecar exits 1 with a readable message", () => {
-    setArchive({ "Fonte_12.proposals.json": "{ broken", "Fonte_12_test.md": "" });
-    const run = ingest(path.join(incremental(), "Fonte_12.proposals.json"));
+    setArchive({ "Fonte_812.proposals.json": "{ broken", "Fonte_812_test.md": "" });
+    const run = ingest(path.join(incremental(), "Fonte_812.proposals.json"));
     expect(run.status).toBe(1);
     expect(run.stderr).toContain("invalid proposals sidecar");
     expect(run.stderr).toContain("not valid JSON");
@@ -690,12 +692,12 @@ describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R
 
   it("T-e1 (CLI): validate:sidecars fails on an invalid archived sidecar", () => {
     setArchive({
-      "Fonte_12.proposals.json": json({ ...sidecarJson(12, []), schema_version: "1.2" }),
-      "Fonte_12_test.md": "",
+      "Fonte_812.proposals.json": json({ ...sidecarJson(812, []), schema_version: "1.2" }),
+      "Fonte_812_test.md": "",
     });
     const run = validateSidecars();
     expect(run.status).toBe(1);
-    expect(run.stderr).toContain("sources/incremental/Fonte_12.proposals.json");
+    expect(run.stderr).toContain("sources/incremental/Fonte_812.proposals.json");
     expect(run.stderr).toContain("schema_version");
   }, 60_000);
 
