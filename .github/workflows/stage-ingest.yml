@@ -117,7 +117,7 @@ jobs:
         run: |
           set -euo pipefail
           git switch -c "$BRANCH"
-          pnpm ingest "$SIDECAR" --json > /tmp/oem-ingest-plan.json
+          node src/cli/ingest.ts "$SIDECAR" --json > /tmp/oem-ingest-plan.json
           node --input-type=module <<'NODE'
           import { readFileSync } from "node:fs";
           const report = JSON.parse(readFileSync("/tmp/oem-ingest-plan.json", "utf8"));
