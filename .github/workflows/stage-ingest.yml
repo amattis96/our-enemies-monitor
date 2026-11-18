@@ -1,0 +1,156 @@
+name: Stage deterministic OSINT ingest
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+# The privileged job checks out the trusted main branch, never PR head code.
+# The GITHUB_TOKEN pushes only a candidate branch. A ChatGPT task opens its PR
+# through its separate GitHub connection, causing required PR checks to run.
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: osint-ingest-staging
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - id: tip
+        name: Verify successful CI belongs to current main
+        env:
+          EXPECTED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          git fetch origin main
+          actual=$(git rev-parse HEAD)
+          current=$(git rev-parse origin/main)
+          if [ "$actual" != "$current" ] || { [ -n "$EXPECTED_SHA" ] && [ "$actual" != "$EXPECTED_SHA" ]; }; then
+            echo "current=false" >> "$GITHUB_OUTPUT"
+            echo "Stale workflow run; current main is $current" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "current=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+        if: steps.tip.outputs.current == 'true'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        if: steps.tip.outputs.current == 'true'
+        with:
+          node-version: 26
+          cache: pnpm
+      - name: Install dependencies
+        if: steps.tip.outputs.current == 'true'
+        run: pnpm install --frozen-lockfile
+      - id: pending
+        name: Find earliest archived, not-yet-ingested sidecar
+        if: steps.tip.outputs.current == 'true'
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from "node:fs";
+          import { readArchive, isIngested } from "./src/pipeline/ingest/archive.ts";
+          import { readDataFiles } from "./src/pipeline/load.ts";
+          import { repoPath } from "./src/pipeline/paths.ts";
+          import { validateDataFiles } from "./src/pipeline/validate.ts";
+
+          const result = validateDataFiles(readDataFiles());
+          if (result.issues.some((issue) => issue.severity === "error")) {
+            throw new Error("Canonical data is invalid; ingest staging is blocked.");
+          }
+          const archive = readArchive(repoPath("sources/incremental"));
+          if (archive.invalid.length) {
+            throw new Error("Invalid archived sidecar; correct the archive before staging.");
+          }
+          const next = archive.sidecars.find((sidecar) => !isIngested(sidecar.proposals, result.dataset));
+          if (!next) {
+            appendFileSync(process.env.GITHUB_OUTPUT, "found=false\n");
+            console.log("No pending archived sidecars.");
+          } else {
+            const code = next.proposals.source.code;
+            appendFileSync(
+              process.env.GITHUB_OUTPUT,
+              "found=true\ncode=" + code + "\npath=" + next.path +
+                "\nbranch=agent/ingest-fonte-" + code.slice(1).toLowerCase() + "\n",
+            );
+            console.log("First pending sidecar: " + code + " (" + next.path + ")");
+          }
+          NODE
+      - id: guard
+        name: Avoid parallel ingest branches and PRs
+        if: steps.pending.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.pending.outputs.branch }}
+        run: |
+          if gh pr list --repo "$GITHUB_REPOSITORY" --state open --json headRefName \
+            --jq '.[] | select(.headRefName | startswith("agent/ingest-")) | .headRefName' | grep -q .; then
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            echo "An ingest PR is already open; deferring the next sidecar." >> "$GITHUB_STEP_SUMMARY"
+          elif git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            echo "Candidate branch $BRANCH already exists; Task A must open its PR." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Run deterministic ingest and stage candidate branch
+        if: steps.guard.outputs.proceed == 'true'
+        env:
+          SIDECAR: ${{ steps.pending.outputs.path }}
+          CODE: ${{ steps.pending.outputs.code }}
+          BRANCH: ${{ steps.pending.outputs.branch }}
+        run: |
+          set -euo pipefail
+          git switch -c "$BRANCH"
+          pnpm ingest "$SIDECAR" --json > /tmp/oem-ingest-plan.json
+          node --input-type=module <<'NODE'
+          import { readFileSync } from "node:fs";
+          const report = JSON.parse(readFileSync("/tmp/oem-ingest-plan.json", "utf8"));
+          const errors = report.validation.filter((entry) => entry.severity === "error");
+          if (report.fatal.length || errors.length || report.summary.conflict || report.summary.rejected) {
+            console.error("Unresolved conflicts/rejections; no candidate branch will be pushed.");
+            console.error(JSON.stringify({
+              source: report.source, summary: report.summary, fatal: report.fatal,
+              validationErrors: errors, attention: report.attention,
+            }, null, 2));
+            process.exit(1);
+          }
+          NODE
+          pnpm ingest "$SIDECAR" --write
+          pnpm format:data
+          pnpm check
+          git add -- data
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "No candidate data changes; refusing an empty branch." >&2
+            exit 1
+          fi
+          if git diff --cached --name-only | grep -v '^data/' ; then
+            echo "Ingest modified a forbidden path; refusing to push." >&2
+            exit 1
+          fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m "feat(data): stage ingest $CODE candidates"
+          pnpm data:diff --base origin/main --branch "$BRANCH"
+          git diff --check origin/main...HEAD
+          # A moving main invalidates an ingest branch. Never push stale data.
+          git fetch origin main
+          test "$(git merge-base HEAD origin/main)" = "$(git rev-parse origin/main)"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          {
+            echo "### Candidate ingest branch prepared"
+            echo "- Source: $CODE"
+            echo "- Branch: $BRANCH"
+            echo "- All records remain needs_review; no publication or merge occurred"
+            echo "- Task A must open a data-only PR, then C/D perform their normal checks"
+          } >> "$GITHUB_STEP_SUMMARY"
