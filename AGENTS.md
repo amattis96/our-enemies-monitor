@@ -211,8 +211,8 @@ workflow must not be reactivated. The legacy
 | --- | --- | --- |
 | **A: OSINT & Ingest** | Every day 00:30 | Fresh source + schema 1.1 sidecar PR; separately ingest the earliest already-merged pending sidecar into a data-only PR when executable |
 | **B: Editorial** | Mon/Wed/Fri 02:00 | One independently researched IT/EN article pair as a `needs_review` PR when defensible |
-| **C: Review & Fix** | Mon/Wed/Fri 03:30 and 04:30 | Evidence/code review, targeted fixes on eligible PR branches, tests and exact-HEAD handoff |
-| **D: Approval & Merge** | Mon/Wed/Fri 05:00 and 06:00 | Verify C handoff independently, required checks and merge readiness; sequential squash merge and verify main CI/deploy |
+| **C: Review & Fix** | Daily 03:30 and 04:30 | Evidence/code review, targeted fixes on eligible PR branches, tests and exact-HEAD handoff |
+| **D: Approval & Merge** | Daily 05:00 and 06:00 | Verify C handoff independently, required checks and merge readiness; sequential squash merge and verify main CI/deploy |
 
 **Task A acquisition:** examine the actual merged coverage cutoff, rescan
 at least 72 hours of overlap, deduplicate against merged records and all open
