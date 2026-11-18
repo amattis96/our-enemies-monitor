@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M7 implemented.** Four ChatGPT tasks A/B/C/D handle daily OSINT, investigations, review and controlled merge. Both human-reviewed and separately labelled AI-verified articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main.
+**Phase: M1–M7 implemented.** Four ChatGPT tasks A/B/C/D handle daily OSINT, investigations, review and controlled merge. Both human-reviewed and separately labelled AI-verified articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main. Deterministic ingest staging may generate a candidate data-only branch, but a separate PR, Task C/D review and an appropriate public review status are still required before any canonical record appears on the site.
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
