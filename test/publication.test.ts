@@ -168,16 +168,13 @@ describe("B05 hypothesis projection and withheld registry", () => {
     expect(report.dataset.hypotheses).toHaveLength(22);
     expect(report.dataset.hypotheses.find((h) => h.id === "H19")?.events).toEqual([]);
     expect(report.dataset.hypotheses.find((h) => h.id === "H20")?.events).toEqual([]);
-    expect(report.counts).toEqual({
-      events: 34,
-      entities: 18,
-      relationships: 25,
-      hypotheses: 10,
-      sources: 51,
-      exposures: 0,
-    });
+    // Counts derive from the actual withheld records. Subsequent M6 ingests
+    // may legitimately add needs_review candidates without publishing them.
     for (const collection of Object.keys(raw) as (keyof Dataset)[]) {
       const publicIds = new Set(report.dataset[collection].map((r) => r.id));
+      expect(report.counts[collection]).toBe(
+        raw[collection].filter((record) => !publicIds.has(record.id)).length,
+      );
       expect(
         report.withheld
           .filter((r) => r.collection === collection)
