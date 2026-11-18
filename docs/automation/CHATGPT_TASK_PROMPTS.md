@@ -10,8 +10,8 @@ and current `AGENTS.md` before applying any replacement.
 | --- | --- | --- | --- |
 | A | Our Enemies Monitor OSINT & Ingest | Every day 00:30 | `Automation_d84b474727c0819199f8a2ccede9168c` |
 | B | Our Enemies Monitor Editorial | Mon/Wed/Fri 02:00 | `6af644cc6d508191b5164cb2e7c4be39` |
-| C | Our Enemies Monitor Review & Fix | Mon/Wed/Fri 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
-| D | Our Enemies Monitor Approval & Merge | Mon/Wed/Fri 05:00 and 06:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
+| C | Our Enemies Monitor Review & Fix | Daily 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
+| D | Our Enemies Monitor Approval & Merge | Daily 05:00 and 06:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
 
 The current four-task agreement gives A acquisition and separate
 deterministic ingest preparation, B editorial investigation, C active
