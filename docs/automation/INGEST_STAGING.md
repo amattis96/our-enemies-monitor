@@ -34,4 +34,4 @@ This is a control-plane change and is **not eligible for autonomous Task D merge
 
 No additional paid API, GitHub App secret, personal access token or third-party secret is necessary for staging: GitHub Actions can push a candidate branch via an isolated publisher job, while the existing ChatGPT GitHub connector opens the subsequent PR.
 
-Task C and D now each have a second scheduled pass on Monday/Wednesday/Friday at 04:30 and 06:00 Europe/Rome respectively. Those retries handle a one-minute post-merge CI, but do not guarantee that unlimited queued PRs clear in the same night; source and ingest queues must be monitored for backlog growth.
+Task C and D now run daily, with two passes at 03:30/04:30 and 05:00/06:00 Europe/Rome respectively. Those retries handle a one-minute post-merge CI, but do not guarantee that unlimited queued PRs clear in the same night; source and ingest queues must be monitored for backlog growth.
