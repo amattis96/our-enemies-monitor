@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { cpSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, readdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -183,10 +183,10 @@ describe("ingest order and gate (R9, T6)", () => {
       }),
     });
     const items = [
-      at(13, "2026-11-01", "a.json"),
-      at(12, "2026-11-15", "b.json"),
-      at(12, "2026-11-14", "c.json"),
-      at(12, "2026-11-14", "a.json"),
+      at(813, "2026-11-01", "a.json"),
+      at(812, "2026-11-15", "b.json"),
+      at(812, "2026-11-14", "c.json"),
+      at(812, "2026-11-14", "a.json"),
     ];
     const sorted = [...items]
       .sort(compareSidecars)
@@ -604,6 +604,11 @@ describe("CLI: archive order, invalid sidecars and pnpm validate:sidecars (R9, R
   const setArchive = (entries: Record<string, string>) => {
     rmSync(incremental(), { recursive: true, force: true });
     mkdirSync(incremental(), { recursive: true });
+    // Preserve archived Markdown referenced by the live canonical data,
+    // but isolate synthetic sidecars from the real S12+ ingest queue.
+    const archive = repoPath("sources/incremental");
+    for (const name of readdirSync(archive))
+      if (name.endsWith(".md")) cpSync(path.join(archive, name), path.join(incremental(), name));
     for (const [name, text] of Object.entries(entries))
       writeFileSync(path.join(incremental(), name), text);
   };
