@@ -574,7 +574,9 @@ describe("archive check (R12, R13)", () => {
       "Fonte_813.proposals.json: source.code S812 does not match the file name Fonte_813.proposals.json",
     );
     expect(found).toContain("Fonte_812.proposals.json: S812 is declared by 2 sidecars");
-    expect(found).toContain(`Fonte_813.proposals.json: ${markdownOf(12)} is declared by 2 sidecars`);
+    expect(found).toContain(
+      `Fonte_813.proposals.json: ${markdownOf(812)} is declared by 2 sidecars`,
+    );
   });
 
   it("T-r13c: accepts Fonte_100 and rejects noncanonical aliases", () => {
