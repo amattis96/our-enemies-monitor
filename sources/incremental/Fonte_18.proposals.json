@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S18",
+    "file": "sources/incremental/Fonte_18_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-19.md",
+    "title": {
+      "it": "Fonte_18 | Aggiornamento OSINT incrementale per l'Europa | 19 novembre 2026"
+    },
+    "created_at": "2026-11-19",
+    "coverage": {
+      "start": "2026-11-15",
+      "end": "2026-11-19"
+    },
+    "baseline_source": "S17",
+    "repository_commit": "6d61729b00e03990e851adefc9066c61dcdfa346"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Commission proposes €45 billion in additional financial support for Ukraine in 2027"
+      },
+      "publisher": "European Commission",
+      "url": "https://enlargement.ec.europa.eu/news/commission-proposes-eur45-billion-additional-financial-support-ukraine-2027-2026-11-18_en",
+      "published": "2026-11-18"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "EU proposes fresh $49 billion loan for Ukraine as war costs mount"
+      },
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/8c1baf00b55973a3534096aae2cc73a2",
+      "published": "2026-11-18"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "EU proposes €45 billion Ukraine loan, to be repaid after Russia pays reparations"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/eu-proposes-new-45-billion-loan-ukraine-2027-be-repaid-by-russia-2026-11-18/",
+      "published": "2026-11-18"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261119-001",
+      "item": "OEM-20261119-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "notes": [
+        "Il 18 novembre è la data della proposta della Commissione, non dell'approvazione o dell'erogazione.",
+        "Distinguere il nuovo prestito proposto di 45 miliardi dal prestito già adottato di 90 miliardi per 2026–2027; controllare duplicati in data/ prima dell'ingest."
+      ],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Commissione europea: proposta di ulteriore prestito fino a 45 miliardi per l'Ucraina nel 2027"
+      },
+      "description": {
+        "it": "Il 18 novembre 2026 la Commissione europea ha adottato un pacchetto di proposte legislative per un nuovo prestito UE fino a 45 miliardi di euro per l'Ucraina nel 2027, finanziato sui mercati con garanzia del bilancio UE. Sono proposti fino a 25 miliardi per assistenza militare e 20 miliardi per sostegno al bilancio. Il testo deve ancora essere approvato dagli organi legislativi competenti e non costituisce un'erogazione."
+      },
+      "date": {
+        "start": "2026-11-18",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-18",
+      "themes": [
+        "armed_conflict",
+        "eu_nato_response",
+        "geopolitics_diplomacy"
+      ],
+      "geography": {
+        "it": "Unione europea e Ucraina"
+      },
+      "places": [
+        "EU",
+        "UA"
+      ],
+      "evidence_note": {
+        "it": "E1: comunicato ufficiale della Commissione relativo all'adozione di proposte legislative; AP e Reuters confermano l'annuncio. Non si tratta di approvazione definitiva o disbursement."
+      },
+      "publisher": "European Commission",
+      "url": "https://enlargement.ec.europa.eu/news/commission-proposes-eur45-billion-additional-financial-support-ukraine-2027-2026-11-18_en",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": {
+          "text": {
+            "it": "La Commissione propone fino a 25 miliardi per la difesa ucraina e fino a 20 miliardi per il bilancio; l'impatto finanziario effettivo dipende dall'approvazione e dalle future erogazioni."
+          },
+          "evidence_level": "E1",
+          "sources": [
+            "R01"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "Le proposte devono ancora essere esaminate e adottate dal Parlamento europeo e dal Consiglio. Non è documentato alcun nuovo esborso di 45 miliardi."
+      },
+      "related": []
+    }
+  ]
+}
