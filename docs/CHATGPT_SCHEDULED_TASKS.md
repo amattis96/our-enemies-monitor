@@ -1,6 +1,6 @@
 # ChatGPT scheduled tasks: A / B / C / D
 
-**Verified external configuration:** 18 November 2026, via ChatGPT Automations. The C/D retry slots were added after the morning CI-pending halt.
+**Verified external configuration:** 20 November 2026, via ChatGPT Automations. The C/D retry slots and the removal of Task D's inaccessible GitHub administration-API prerequisite are active in the scheduler.
 **Repository branch:** `main` (not `master`). Timezone: `Europe/Rome`.
 ChatGPT is the runtime scheduler; this repository is a dated, inspectable
 record of its instructions, not a synchronizing service. Reverify the
@@ -20,6 +20,16 @@ runs begin on 16 November 2026. Full active prompt copies are kept in
 [CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).
 An in-repository prompt edit **does not** update a ChatGPT automation;
 the tasks were updated in the ChatGPT scheduler separately.
+
+**Task D availability fix (20 November 2026):** the GitHub App cannot read
+repository branch protection or ruleset administration endpoints (HTTP 403),
+but this is not a merge-readiness failure. The live D prompt now skips those
+administrative reads entirely. It requires the normal current-HEAD checks,
+C's review handoff, mergeability and safe diff, then invokes GitHub's ordinary
+merge endpoint, which enforces protection server-side. A rejected merge is a
+real stop; a 403 on an unrelated administrative read is not. PR #41
+successfully merged with this distinction. This does not authorize direct
+pushes, bypasses, control-plane merges by D, or AI promotion to human-reviewed.
 
 ## Responsibilities and handoffs
 
