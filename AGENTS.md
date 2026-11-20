@@ -310,7 +310,19 @@ for its **current HEAD**. D rechecks the actual diff, evidence-sensitive
 changes, the two required GitHub Actions statuses `check` and
 `evidence-diff` on the relevant commit, the publication boundary,
 reviews/discussions and readiness for ordinary merge. Neither C's text
-nor a green check alone is sufficient. No accepted change to the
+nor a green check alone is sufficient.
+
+**Operational rule (20 November 2026):** GitHub's installed connector may
+return HTTP 403 for branch-protection, ruleset and other administration-only
+GET endpoints even when an ordinary PR merge is authorized. Task D MUST NOT
+read these administrative endpoints as a prerequisite, and their 403 is NOT
+`BLOCKED_TECHNICAL`. It must instead validate the current PR head, actual
+diff, C handoff, mergeability, blocking reviews, main status and both exact
+GitHub Actions checks, then use the ordinary squash-merge API with
+`expected_head_sha`. GitHub itself enforces branch rules on the merge
+request. A rejection **of the merge API** is authoritative: stop, record its
+message and do not bypass. This does not relax evidence, publication,
+control-plane or human-approval gates. No accepted change to the
 control plane, human-reviewed content, waivers or human-only editorial
 statuses without a separate explicit maintainer decision. D uses
 **squash merge with `expected_head_sha`**, never `--admin`, `force`,
