@@ -24,9 +24,15 @@ writing candidates locally, because historical acceptance tests reused S12/S13
 as synthetic fixtures and asserted frozen S09-era dataset counts. PR #39
 modified only the tests to isolate fixtures and derive withheld-count assertions
 from the current dataset; its exact-HEAD `check` and `evidence-diff` jobs
-passed, and it was merged on 20 November. Do not remove `pnpm check` from
-staging: the correction is to test reproducible invariants, not to bypass
-validation. Confirm the first subsequent successful staging run and its
+passed, and it was merged on 20 November. The next staging run identified a
+second frozen assumption: `test/genealogy.test.ts` incorrectly required
+`origin_type: corpus_synthesis` on every `corpus_document`, whereas M6 newly
+registered documents may lawfully leave `origin_type` unset pending genealogy
+classification. The follow-up test correction retains positive assertions
+for the original S00–S08 syntheses and validates declared genealogies.
+Do not remove `pnpm check` from staging: correct tests to reflect the typed
+schema and persistent invariants rather than bypassing validation.
+Confirm the first subsequent successful staging run and its
 candidate branch independently before declaring ingestion operational.
 
 ## Failure handling and observability
