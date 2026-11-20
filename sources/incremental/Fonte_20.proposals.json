@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S20",
+    "file": "sources/incremental/Fonte_20_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-21.md",
+    "title": {
+      "it": "Fonte_20 | Aggiornamento OSINT incrementale per l'Europa | 21 novembre 2026"
+    },
+    "created_at": "2026-11-21",
+    "coverage": {
+      "start": "2026-11-17",
+      "end": "2026-11-21"
+    },
+    "baseline_source": "S19",
+    "repository_commit": "e8b1c04854df06f6a08d6aa99dbf980225da7543"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Russia uses Danish criminal networks in assassination attempt on Danish soil"
+      },
+      "publisher": "Danish Security and Intelligence Service (PET)",
+      "url": "https://pet.dk/en/about-pet/news-list/russia-uses-danish-criminal-networks-in-assassination-attempt-on-danish-soil/2026/11/20",
+      "published": "2026-11-20"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "Nordsjællands Politi udvider fængslingsgrundlaget for to personer til forsøg på manddrab og for at yde hjælp til en udenlandsk efterretningstjeneste"
+      },
+      "publisher": "Nordsjællands Politi",
+      "url": "https://politi.dk/nordsjaellands-politi/nyhedsliste/nordsjaellands_politi_udvider_faengslingsgrundlag/2026/11/20",
+      "published": "2026-11-20"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Denmark says it thwarted Russian plot to assassinate US-Ukrainian rapper"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/two-danes-suspected-being-hired-by-russia-kill-us-ukrainian-rapper-2026-11-20/",
+      "published": "2026-11-20"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261121-001",
+      "item": "OEM-20261121-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "notes": [
+        "25 settembre è la data dell'intervento di polizia; la nuova attribuzione e decisione cautelare sono del 20 novembre.",
+        "Due sospettati sono oggetto dell'estensione cautelare, non quattro; non assegnare responsabilità individuali accertate.",
+        "Controllare deduplicazione su tutti gli eventi prima dell'allocazione canonica."
+      ],
+      "update_type": "NEW_EVIDENCE",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Danimarca: PET attribuisce a intelligence russa un presunto tentativo di omicidio sventato a settembre"
+      },
+      "description": {
+        "it": "Il 25 settembre 2026 la polizia danese ha arrestato tre persone in auto a Hellerup, trovando due pistole e due coltelli, e una quarta persona più tardi. Il 20 novembre il tribunale di Lyngby ha esteso per due sospettati i presupposti della custodia cautelare ai reati di tentato omicidio e assistenza a un servizio di intelligence straniero. La responsabilità penale resta da accertare."
+      },
+      "date": {
+        "start": "2026-09-25",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-20",
+      "themes": [
+        "intelligence",
+        "hybrid_sabotage",
+        "justice"
+      ],
+      "geography": {
+        "it": "Hellerup e Charlottenlund, Zelanda settentrionale, Danimarca"
+      },
+      "places": [
+        "DK"
+      ],
+      "evidence_note": {
+        "it": "E1: comunicazione della polizia su arresti e decisione cautelare; E2: valutazione PET sull'origine russa; E4: responsabilità individuali contestate, senza condanna."
+      },
+      "publisher": "Nordsjællands Politi",
+      "url": "https://politi.dk/nordsjaellands-politi/nyhedsliste/nordsjaellands_politi_udvider_faengslingsgrundlag/2026/11/20",
+      "claims": {
+        "perpetrator": {
+          "text": {
+            "it": "Due persone in custodia cautelare sono sospettate di tentato omicidio e di assistenza a un servizio d'intelligence straniero; negano gli addebiti. Non esiste accertamento definitivo della loro responsabilità."
+          },
+          "evidence_level": "E4",
+          "sources": [
+            "R01",
+            "R02",
+            "R03"
+          ]
+        },
+        "sponsor": {
+          "text": {
+            "it": "PET valuta che servizi d'intelligence russi abbiano pianificato e avviato il tentativo; si tratta di un'attribuzione d'intelligence, distinta dall'accertamento penale."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R01"
+          ]
+        },
+        "motive": null,
+        "impact": {
+          "text": {
+            "it": "L'intervento di polizia ha impedito secondo PET l'azione prevista presso un evento pubblico; Reuters riporta la cancellazione del concerto."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R01",
+            "R03"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "I due sospettati negano gli addebiti; l'ambasciata russa respinge l'attribuzione. Non sono pubblici tutti gli atti istruttori e non risulta una condanna."
+      },
+      "related": []
+    }
+  ]
+}
