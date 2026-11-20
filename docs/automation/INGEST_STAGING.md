@@ -17,6 +17,18 @@ The `.github/workflows/stage-ingest.yml` workflow is the **execution bridge**, n
 7. On its next daily run, **ChatGPT Task A** retrieves the staging run and branch through its GitHub connection. It must verify the successful run on the correct `main` commit, the latest head, candidate review statuses and the exact `data/` diff, then open a regular PR from the prepared branch to `main`. This GitHub-app-created PR triggers ordinary `check` and `evidence-diff` CI. If `main` moved, A leaves the branch unsubmitted and reports `STAGING_STALE`: the new staging workflow must rebuild the branch safely; no blind rebase of canonical data.
 8. Task C performs the same independent substantive review as for other `agent/ingest-*` PRs. Task D can merge after a corresponding current-head handoff and both required checks, with no administrator bypass. New canonical records remain `needs_review` and **are excluded from the public timeline and graph until separately authorized**.
 
+## Regression test fix, 20 November 2026
+
+The first staging attempts (18–19 November) reached S12 but failed after
+writing candidates locally, because historical acceptance tests reused S12/S13
+as synthetic fixtures and asserted frozen S09-era dataset counts. PR #39
+modified only the tests to isolate fixtures and derive withheld-count assertions
+from the current dataset; its exact-HEAD `check` and `evidence-diff` jobs
+passed, and it was merged on 20 November. Do not remove `pnpm check` from
+staging: the correction is to test reproducible invariants, not to bypass
+validation. Confirm the first subsequent successful staging run and its
+candidate branch independently before declaring ingestion operational.
+
 ## Failure handling and observability
 
 - **No pending sidecar:** successful no-op.
