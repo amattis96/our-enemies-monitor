@@ -1,0 +1,22 @@
+{
+  "id": "WEB-EXT-060",
+  "type": "external_reference",
+  "title": {
+    "it": "Russia says Europeans can join Ukraine peace talks if they show readiness to contribute"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/europe/russia-says-europeans-can-join-ukraine-peace-talks-if-they-show-readiness-2026-11-13/"
+  ],
+  "cited_in": [
+    "S12"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S12 R06] S12 reference R06, published 2026-11-13."
+    ]
+  },
+  "provenance": []
+}
