@@ -15,6 +15,14 @@ live task configuration before relying on a historical snapshot.
 | **C** | Our Enemies Monitor Review & Fix | Daily 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
 | **D** | Our Enemies Monitor Approval & Merge | Daily 05:00 and 06:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
 
+**Task D retirement (21 November 2026, maintainer decision):** merging moved
+to the GitHub workflow `auto-merge.yml` ([AUTO_MERGE.md](automation/AUTO_MERGE.md)),
+because D's connector cannot read `main` push/Pages runs and its gate never
+opened. The maintainer should pause or delete D in ChatGPT; until then a D run
+is harmless (it merges nothing or merges a PR the workflow would merge too).
+Task C must keep writing `Status: READY_FOR_D` with the reviewed 40-hex HEAD,
+and must not repeat negative verdict tokens in a READY handoff.
+
 All four were enabled on 15 November 2026, and their next scheduled
 runs begin on 16 November 2026. Full active prompt copies are kept in
 [CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).

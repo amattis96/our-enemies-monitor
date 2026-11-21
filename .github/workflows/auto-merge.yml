@@ -1,0 +1,112 @@
+name: Auto-merge
+
+# Automated integration gate: replaces the ChatGPT Task D merge step, whose
+# GitHub connector cannot read push/Pages runs of main. Decision logic lives in
+# src/pipeline/auto-merge.ts (tested); see docs/automation/AUTO_MERGE.md.
+#
+# Runs main's own workflow file and code (schedule, workflow_run, issue_comment
+# and workflow_dispatch always use the default branch), never PR head code.
+# Kill switch: repository variable AUTOMERGE_ENABLED=false. Per-PR hold: the
+# `automerge:hold` label.
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_run:
+    workflows: ["CI", "Evidence diff"]
+    types: [completed]
+  issue_comment:
+    types: [created, edited]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: auto-merge
+  cancel-in-progress: false
+
+jobs:
+  decide:
+    if: >-
+      vars.AUTOMERGE_ENABLED != 'false' &&
+      (github.event_name != 'issue_comment' ||
+       (github.event.issue.pull_request && startsWith(github.event.comment.body, 'OEM Task C')))
+    runs-on: ubuntu-latest
+    # Executes repository code from main: read scopes only.
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+      checks: read
+      actions: read
+    outputs:
+      action: ${{ steps.plan.outputs.action }}
+      pr: ${{ steps.plan.outputs.pr }}
+      head_sha: ${{ steps.plan.outputs.head_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+      - id: plan
+        name: Choose the next action
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          OWNER: ${{ vars.MAINTAINER_LOGIN || github.repository_owner }}
+          CAN_UPDATE: ${{ secrets.AUTOMERGE_TOKEN != '' }}
+        run: node src/cli/auto-merge.ts
+
+  act:
+    needs: decide
+    if: needs.decide.outputs.action == 'merge' || needs.decide.outputs.action == 'update' || needs.decide.outputs.action == 'dispatch-ci'
+    runs-on: ubuntu-latest
+    # Write scopes, no repository code: only fixed gh API calls on validated inputs.
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: Perform the action
+        env:
+          # A token other than GITHUB_TOKEN makes the merge trigger main's push CI
+          # and the branch update trigger PR checks. Without it, CI on main is
+          # dispatched explicitly after each merge.
+          GH_TOKEN: ${{ secrets.AUTOMERGE_TOKEN || github.token }}
+          HAS_PAT: ${{ secrets.AUTOMERGE_TOKEN != '' }}
+          REPO: ${{ github.repository }}
+          ACTION: ${{ needs.decide.outputs.action }}
+          PR: ${{ needs.decide.outputs.pr }}
+          HEAD_SHA: ${{ needs.decide.outputs.head_sha }}
+        run: |
+          set -euo pipefail
+          case "$ACTION" in
+            merge|update)
+              [[ "$PR" =~ ^[1-9][0-9]*$ ]] || { echo "invalid PR number" >&2; exit 1; }
+              [[ "$HEAD_SHA" =~ ^[0-9a-f]{40}$ ]] || { echo "invalid HEAD SHA" >&2; exit 1; }
+              ;;
+          esac
+          case "$ACTION" in
+            merge)
+              # Squash merge pinned to the verified HEAD: GitHub refuses it if the
+              # branch moved or a required check is not satisfied.
+              gh api -X PUT "repos/$REPO/pulls/$PR/merge" \
+                -f merge_method=squash -f sha="$HEAD_SHA"
+              echo "Merged #$PR at $HEAD_SHA" >> "$GITHUB_STEP_SUMMARY"
+              if [ "$HAS_PAT" != "true" ]; then
+                gh workflow run ci.yml --repo "$REPO" --ref main
+                echo "CI dispatched on main" >> "$GITHUB_STEP_SUMMARY"
+              fi
+              ;;
+            update)
+              gh api -X PUT "repos/$REPO/pulls/$PR/update-branch" -f expected_head_sha="$HEAD_SHA"
+              echo "Updated #$PR from $HEAD_SHA" >> "$GITHUB_STEP_SUMMARY"
+              ;;
+            dispatch-ci)
+              gh workflow run ci.yml --repo "$REPO" --ref main
+              echo "CI dispatched on main" >> "$GITHUB_STEP_SUMMARY"
+              ;;
+          esac
