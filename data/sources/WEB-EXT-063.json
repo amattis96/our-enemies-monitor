@@ -1,0 +1,22 @@
+{
+  "id": "WEB-EXT-063",
+  "type": "external_reference",
+  "title": {
+    "it": "Zelenskiy says restrictions still in place on Starshield, hampering operations inside Ukraine"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.investing.com/news/world-news/zelenskiy-says-restrictions-still-in-place-on-starshield-hampering-operations-inside-ukraine-5026383"
+  ],
+  "cited_in": [
+    "S13"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13 R05] S13 reference R05, published 2026-11-13."
+    ]
+  },
+  "provenance": []
+}

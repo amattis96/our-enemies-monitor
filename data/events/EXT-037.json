@@ -1,0 +1,52 @@
+{
+  "id": "EXT-037",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-12",
+    "end": "2026-11-14",
+    "precision": "day"
+  },
+  "title": {
+    "it": "Ucraina: protesta ufficiale per le restrizioni Starshield e richiesta di chiarimenti a SpaceX e Stati Uniti"
+  },
+  "description": {
+    "it": "Il 12 novembre la Presidenza ucraina ha pubblicato un resoconto dell'incontro Zelenskyy-Rutte che segnala interruzioni di Starshield sulla linea del fronte e nei territori occupati. Il 13 e 14 novembre Zelenskyy ha reiterato pubblicamente la richiesta di ripristino e chiarimenti, affermando che il limite a 161 km/h persiste da cinque giorni. La dichiarazione è verificata come comunicazione istituzionale, non come misurazione tecnica indipendente."
+  },
+  "category": null,
+  "themes": [
+    "platforms_technology",
+    "industry_dependencies",
+    "armed_conflict"
+  ],
+  "geography": {
+    "it": "Ucraina, linea del fronte e territori temporaneamente occupati"
+  },
+  "places": [
+    "UA"
+  ],
+  "evidence_note": {
+    "it": "E1 comunicazioni ufficiali ucraine; E3 Reuters sulle contestazioni e sulla risposta di SpaceX. Le prestazioni effettive non sono state verificate indipendentemente."
+  },
+  "evidence_level": "E1",
+  "publisher": "Presidenza dell'Ucraina",
+  "url": "https://www.president.gov.ua/en/news/situaciya-z-pereboyami-v-roboti-starshield-i-neobhidnist-pos-107301",
+  "sources": [
+    "S13",
+    "WEB-EXT-061",
+    "WEB-EXT-062",
+    "WEB-EXT-063"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13 OEM-20261115-001] OEM-20261115-001 (S13). Update type STRATEGIC_UPDATE; candidate event, not yet merged into the timeline.",
+      "New evidence published 2026-11-14; the date is that of the conduct.",
+      "Impact claim (E2; WEB-EXT-061, WEB-EXT-062): Secondo Zelenskyy, i limiti ostacolano i droni intercettori contro Shahed a reazione; il nesso operativo è una valutazione della parte ucraina e non una perizia indipendente.",
+      "Contrary evidence and uncertainty: SpaceX nega di aver introdotto nuove restrizioni o modifiche operative. Non è documentato chi abbia disposto eventuali limiti, né una motivazione politica. L'episodio era già emerso il 12 novembre: questa voce riguarda l'escalation istituzionale e la risposta del 14, non un secondo guasto autonomo.",
+      "Sidecar note: Il dato operativo sulle restrizioni è una dichiarazione delle autorità ucraine, non una misura indipendente dei terminali. Non inferire sabotaggio, mandante o finalità politica."
+    ]
+  },
+  "provenance": []
+}

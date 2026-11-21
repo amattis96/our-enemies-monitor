@@ -1,0 +1,22 @@
+{
+  "id": "WEB-EXT-064",
+  "type": "external_reference",
+  "title": {
+    "it": "US floated idea of Ukraine ceding Donbas for NATO membership, Zelenskiy says"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/world/europe/us-floated-idea-ukraine-ceding-donbas-nato-membership-zelenskiy-says-2026-11-14/"
+  ],
+  "cited_in": [
+    "S13"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13 R03] S13 reference R03, published 2026-11-14."
+    ]
+  },
+  "provenance": []
+}

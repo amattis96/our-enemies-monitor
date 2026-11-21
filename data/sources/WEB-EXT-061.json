@@ -1,0 +1,22 @@
+{
+  "id": "WEB-EXT-061",
+  "type": "external_reference",
+  "title": {
+    "it": "Starshield Service Disruptions and the Need to Strengthen Ukrainian Air Defense: Volodymyr Zelenskyy Met with Mark Rutte"
+  },
+  "publisher": "Presidenza dell'Ucraina",
+  "files": [],
+  "urls": [
+    "https://www.president.gov.ua/en/news/situaciya-z-pereboyami-v-roboti-starshield-i-neobhidnist-pos-107301"
+  ],
+  "cited_in": [
+    "S13"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13 R01] S13 reference R01, published 2026-11-12."
+    ]
+  },
+  "provenance": []
+}

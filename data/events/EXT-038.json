@@ -1,0 +1,51 @@
+{
+  "id": "EXT-038",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-14",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Zelenskyy riferisce una proposta esplorativa statunitense su Donbas e adesione NATO, senza accordo"
+  },
+  "description": {
+    "it": "Il 14 novembre Zelenskyy ha dichiarato ai giornalisti che negoziatori statunitensi avevano sondato l'ipotesi di un ritiro ucraino dal Donbas in cambio dell'adesione alla NATO o di garanzie comparabili. Ha dichiarato di non accettare cessioni territoriali e di ritenere necessario terminare la guerra prima di ridefinire la sicurezza europea. Le fonti attestano la dichiarazione del presidente, non l'esistenza di un'offerta formale approvata da Stati Uniti o NATO."
+  },
+  "category": null,
+  "themes": [
+    "geopolitics_diplomacy",
+    "eu_nato_response",
+    "armed_conflict"
+  ],
+  "geography": {
+    "it": "Ucraina, Stati Uniti, sicurezza euro-atlantica"
+  },
+  "places": [
+    "UA",
+    "US"
+  ],
+  "evidence_note": {
+    "it": "E3 Reuters e AP concordano sul contenuto della dichiarazione di Zelenskyy. La natura e i termini dell'eventuale sondaggio statunitense non sono confermati da un testo negoziale."
+  },
+  "evidence_level": "E3",
+  "publisher": "Reuters",
+  "url": "https://www.reuters.com/world/europe/us-floated-idea-ukraine-ceding-donbas-nato-membership-zelenskiy-says-2026-11-14/",
+  "sources": [
+    "S13",
+    "WEB-EXT-064",
+    "WEB-EXT-065"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13 OEM-20261115-002] OEM-20261115-002 (S13). Update type STRATEGIC_UPDATE; candidate event, not yet merged into the timeline.",
+      "New evidence published 2026-11-14; the date is that of the conduct.",
+      "Contrary evidence and uncertainty: Non sono disponibili proposta scritta, accettazione statunitense, decisione NATO o concessione ucraina. Non confondere il resoconto di un'ipotesi discussa con un accordo. La dichiarazione si colloca dopo il coordinamento europeo già coperto dalla PR #18.",
+      "Sidecar note: È documentata la dichiarazione pubblica di Zelenskyy, non la formulazione ufficiale di una proposta americana o un accordo. Non attribuire una proposta concordata a NATO o UE."
+    ]
+  },
+  "provenance": []
+}

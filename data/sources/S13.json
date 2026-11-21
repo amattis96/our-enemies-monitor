@@ -1,0 +1,21 @@
+{
+  "id": "S13",
+  "type": "corpus_document",
+  "title": {
+    "it": "Fonte_13 | Aggiornamento OSINT incrementale per l'Europa | 15 novembre 2026"
+  },
+  "publisher": null,
+  "files": [
+    "sources/incremental/Fonte_13_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-15.md"
+  ],
+  "urls": [],
+  "cited_in": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13] Incremental source (coverage 2026-11-10–2026-11-15, created 2026-11-15, baseline S11, commit 19b2533057e0e82fb05431817af7c4691e7eb1b0), registered by pnpm ingest from its proposals sidecar.",
+      "Ingest outcome: 2 new, 0 enrichment, 0 duplicate, 0 already_applied, 0 conflict, 0 rejected."
+    ]
+  },
+  "provenance": []
+}

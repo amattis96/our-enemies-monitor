@@ -1,0 +1,22 @@
+{
+  "id": "WEB-EXT-062",
+  "type": "external_reference",
+  "title": {
+    "it": "Ukraine's Zelenskiy escalates criticism of SpaceX over speed caps"
+  },
+  "publisher": "Reuters",
+  "files": [],
+  "urls": [
+    "https://www.reuters.com/business/aerospace-defense/ukraines-zelenskiy-escalates-criticism-spacex-over-speed-caps-2026-11-14/"
+  ],
+  "cited_in": [
+    "S13"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13 R02] S13 reference R02, published 2026-11-14."
+    ]
+  },
+  "provenance": []
+}

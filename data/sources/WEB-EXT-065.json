@@ -1,0 +1,22 @@
+{
+  "id": "WEB-EXT-065",
+  "type": "external_reference",
+  "title": {
+    "it": "Zelenskyy says a new European security framework floated by US could benefit Putin"
+  },
+  "publisher": "Associated Press",
+  "files": [],
+  "urls": [
+    "https://apnews.com/article/f9a8629626c087424f05adc85d127780"
+  ],
+  "cited_in": [
+    "S13"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S13 R04] S13 reference R04, published 2026-11-14."
+    ]
+  },
+  "provenance": []
+}
