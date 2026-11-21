@@ -40,7 +40,7 @@
     "status": "needs_review",
     "notes": [
       "[ingest S12 OEM-20261114-001] OEM-20261114-001 (S12). Update type NEW_EVIDENCE; candidate event, not yet merged into the timeline.",
-      "New evidence published 2026-11-13; the date is that of the conduct.",
+      "New evidence published 2026-11-13; this date refers to the BSI security advisory as reported by Reuters, not to an established intrusion or exploitation event.",
       "Contrary evidence and uncertainty: Non è dimostrato che la stessa vulnerabilità sia stata sfruttata in tutti gli incidenti; versioni e copertura delle patch richiedono verifica primaria.",
       "Sidecar note: Avviso tecnico, non nuovo incidente di sabotaggio; verificare bollettino BSI primario prima di affermare versioni firmware."
     ]
