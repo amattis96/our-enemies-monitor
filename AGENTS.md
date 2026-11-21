@@ -201,7 +201,7 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 
 ## Scheduled research, editorial review and automated integration
 
-**Live task configuration verified 15 November 2026 (Europe/Rome):**
+**Live task configuration verified 21 November 2026 (Europe/Rome):**
 [scheduled-task register](docs/CHATGPT_SCHEDULED_TASKS.md) and
 [recorded full prompts](docs/automation/CHATGPT_TASK_PROMPTS.md). These
 schedules execute in ChatGPT, not in GitHub Actions; recheck their live state
