@@ -862,13 +862,23 @@ ChatGPT B (IT/EN investigation) --> article draft PR
                                                 |
                                READY_FOR_D at exact PR HEAD
                                                 |
-                              ChatGPT D: independent recheck
-                                   check + evidence-diff
+                     auto-merge.yml (GitHub Actions, replaces D):
+                       path policy + check + evidence-diff + main CI
                                                 |
                                sequential squash merge to main
                                                 |
                                 main CI + GitHub Pages deploy
 ```
+
+**Automated integration (21 November 2026):** `.github/workflows/auto-merge.yml`
+replaces Task D's merge step. A read-only job runs `src/cli/auto-merge.ts`
+from `main` (pure rules in `src/pipeline/auto-merge.ts`, tested in
+`test/auto-merge.test.ts`) and picks one action; a write job that runs no
+repository code performs a squash merge pinned to the HEAD SHA, a native
+branch update, or a CI dispatch on `main`. `ci.yml` accepts
+`workflow_dispatch` (build and deploy on `main`) and `stage-ingest.yml`
+follows dispatched main CI too, because merges made with `GITHUB_TOKEN` do
+not emit push events. See [AUTO_MERGE.md](automation/AUTO_MERGE.md).
 
 **Stale branch handling:** on a strict-protected `main`, each merge can
 make other PRs stale. Task D may synchronize only **additions-only
