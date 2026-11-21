@@ -163,7 +163,9 @@ See the [scheduled task register](docs/CHATGPT_SCHEDULED_TASKS.md),
 The tasks run in ChatGPT; neither the prompts nor the schedule in these
 Markdown files automatically configure the ChatGPT scheduler.
 
-**Autonomy is gated:** Task D is the only agent allowed to merge, and it
+**Autonomy is gated:** since 21 November 2026 the `auto-merge.yml` GitHub
+workflow is the only merger ([details](docs/automation/AUTO_MERGE.md)): it
+merges a C-handed-off PR once its checks and `main` CI are green. Task D (retired) was the only agent allowed to merge, and it
 cannot use admin bypass, `evidence-waiver`, direct pushes, human APPROVE
 reviews or automatic promotion to `reviewed`. C and D use the same GitHub
 account today, so their separate reviews are **not independent GitHub

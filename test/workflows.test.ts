@@ -159,6 +159,27 @@ describe("workflow contract", () => {
     }
   });
 
+  it("auto-merge decides with read scopes and acts without repository code", () => {
+    const wf = workflow("auto-merge.yml");
+    expect(wf.permissions).toEqual({ contents: "read" });
+    expect(wf.concurrency).toEqual({ group: "auto-merge", "cancel-in-progress": false });
+    const decide = wf.jobs.decide;
+    expect(Object.values(decide?.permissions ?? {})).not.toContain("write");
+    const act = wf.jobs.act;
+    expect(JSON.stringify(act?.steps)).not.toMatch(/checkout|pnpm|setup-node|node src/);
+    expect(JSON.stringify(act?.steps)).toContain("merge_method=squash");
+    expect(JSON.stringify(act?.steps)).toContain('sha=\\"$HEAD_SHA\\"');
+    expect(JSON.stringify(act?.steps)).not.toMatch(/--admin|force/);
+  });
+
+  it("dispatched CI on main still builds and deploys", () => {
+    const ci = read("ci.yml");
+    expect(ci).toContain("workflow_dispatch:");
+    expect(workflow("ci.yml").jobs.deploy?.if).toBe(
+      "github.event_name != 'pull_request' && github.ref == 'refs/heads/main'",
+    );
+  });
+
   it("keeps Dependabot for GitHub Actions", () => {
     const config = parse(readFileSync(path.join(REPO_ROOT, ".github/dependabot.yml"), "utf8")) as {
       updates: Array<{ "package-ecosystem": string }>;
