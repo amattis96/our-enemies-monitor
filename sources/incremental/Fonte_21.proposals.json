@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S21",
+    "file": "sources/incremental/Fonte_21_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-23.md",
+    "title": {
+      "it": "Fonte_21 | Aggiornamento OSINT incrementale per l'Europa | 23 novembre 2026"
+    },
+    "created_at": "2026-11-23",
+    "coverage": {
+      "start": "2026-11-18",
+      "end": "2026-11-23"
+    },
+    "baseline_source": "S20",
+    "repository_commit": "924e99e7ab74bcca29bd0fcd3f0934452295e4db"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Naruszenie polskiej przestrzeni powietrznej. Komentarz Szefa BBN"
+      },
+      "publisher": "Biuro Bezpieczeństwa Narodowego",
+      "url": "https://www.bbn.gov.pl/pl/wydarzenia/10584,Naruszenie-polskiej-przestrzeni-powietrznej-Komentarz-Szefa-BBN.html",
+      "published": "2026-11-20"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "Aktualny stan czynności procesowych w sprawie ujawnienia obiektow latajacych"
+      },
+      "publisher": "Prokuratura Okręgowa w Lublinie",
+      "url": "https://www.gov.pl/web/po-lublin/aktualny-stan-czynnosci-procesowych-w-sprawie-ujawnienia-obiektow-latajacych-na-terenie-wojewodztwa-lubelskiego-i-podkarpackiego",
+      "published": "2026-11-21"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Rosyjskie obiekty naruszyły polską przestrzeń powietrzną. Kolejna odsłona rosyjskiej eskalacji"
+      },
+      "publisher": "Kancelaria Prezesa Rady Ministrów",
+      "url": "https://www.gov.pl/web/premier/rosyjskie-obiekty-naruszyly-polska-przestrzen-powietrzna-kolejna-odslona-rosyjskiej-eskalacji",
+      "published": "2026-11-20"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "Three Russian missiles flew into Poland Friday, prosecutors say"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/three-russian-missiles-flew-into-poland-friday-prosecutors-say-2026-11-22/",
+      "published": "2026-11-22"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261123-001",
+      "item": "OEM-20261123-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R03",
+        "R04"
+      ],
+      "notes": [
+        "Un unico episodio con tre punti di caduta; non creare tre eventi.",
+        "Le identificazioni del 20 novembre sono preliminari; Reuters riporta il 22 novembre una successiva classificazione della procura, da verificare sull'atto originale.",
+        "Non inferire intenzionalità dalla coincidenza con esercitazioni alleate; nessuna responsabilità individuale accertata."
+      ],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Polonia: tre oggetti caduti durante la violazione dello spazio aereo del 20 novembre 2026"
+      },
+      "description": {
+        "it": "Il 20 novembre 2026 le autorità polacche hanno registrato la caduta di tre oggetti a Nowy Lipowiec, Rudnik nad Sanem e Mołodycz. Il 21 novembre la procura di Lublino ha confermato attività di indagine e repertazione nei tre siti. Le classificazioni tecniche iniziali erano provvisorie."
+      },
+      "date": {
+        "start": "2026-11-20",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-22",
+      "themes": [
+        "geopolitics_diplomacy",
+        "eu_nato_response"
+      ],
+      "geography": {
+        "it": "Nowy Lipowiec, Rudnik nad Sanem e Mołodycz, Polonia"
+      },
+      "places": [
+        "PL"
+      ],
+      "evidence_note": {
+        "it": "E1: caduta di tre oggetti e indagine documentate da BBN e procura; E2: attribuzione di origine russa e valutazione politica del governo; E3: Reuters riporta l'aggiornamento tecnico della procura del 22 novembre, non verificato sul comunicato originale."
+      },
+      "publisher": "Biuro Bezpieczeństwa Narodowego",
+      "url": "https://www.bbn.gov.pl/pl/wydarzenia/10584,Naruszenie-polskiej-przestrzeni-powietrznej-Komentarz-Szefa-BBN.html",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": {
+          "text": {
+            "it": "Il governo polacco ha attribuito alla Russia la provenienza degli oggetti; non sono documentati in questa fonte l'unità di lancio o una catena di comando specifica."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R03"
+          ]
+        },
+        "motive": null,
+        "impact": {
+          "text": {
+            "it": "Le autorità hanno isolato tre siti e avviato accertamenti tecnici e investigativi; nessuna quantificazione di danni o vittime è attribuita qui."
+          },
+          "evidence_level": "E1",
+          "sources": [
+            "R02"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "Il BBN ha descritto preliminarmente il terzo oggetto come probabile drone, mentre Reuters il 22 novembre riferisce che la procura ha identificato tutti e tre come missili Kh-101. Il testo primario della dichiarazione del 22 non è stato acquisito. L'intenzionalità non è accertata."
+      },
+      "related": []
+    }
+  ]
+}
