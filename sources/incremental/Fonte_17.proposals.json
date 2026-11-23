@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S17",
+    "file": "sources/incremental/Fonte_17_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-18.md",
+    "title": {
+      "it": "Fonte_17 | Aggiornamento OSINT incrementale per l'Europa | 18 novembre 2026"
+    },
+    "created_at": "2026-11-18",
+    "coverage": {
+      "start": "2026-11-13",
+      "end": "2026-11-18"
+    },
+    "baseline_source": "S15",
+    "repository_commit": "dc7ee7cc006d8149f88197831660ddadfb0cd06e"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Jointly with Defence Forces, SSU strikes Crimean bridge: one arch and road span completely destroyed"
+      },
+      "publisher": "Security Service of Ukraine (SBU)",
+      "url": "https://ssu.gov.ua/en/novyny/sbu-spilno-iz-sylamy-oborony-urazyla-krymskyi-mist-odnu-z-arok-ta-avtomobilnyi-prolit-povnistiu-znyshcheno-video",
+      "published": "2026-11-17"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "Ukrainian drones and missiles strike Kerch Bridge that links Russia with Crimea"
+      },
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/df4b867cf8f70e88843d8fefea5d643c",
+      "published": "2026-11-17"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "Ukraine cripples Crimean road bridge in blow to Putin before meeting with Xi and Trump"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/europe/ukraine-strikes-crimean-bridge-second-day-russia-pounds-kyiv-bridges-2026-11-17/",
+      "published": "2026-11-17"
+    },
+    {
+      "key": "R04",
+      "title": {
+        "it": "France is not 'co-belligerent' in Ukraine, French minister says"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/france-is-not-co-belligerent-ukraine-french-minister-says-2026-11-17/",
+      "published": "2026-11-17"
+    },
+    {
+      "key": "R05",
+      "title": {
+        "it": "Zelenskiy says Ukraine struck Crimea bridge in response to Russian attacks on infrastructure"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/aerospace-defense/zelenskiy-says-ukraine-struck-crimea-bridge-response-russian-attacks-2026-11-17/",
+      "published": "2026-11-17"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261118-001",
+      "item": "OEM-20261118-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R03",
+        "R05"
+      ],
+      "notes": [
+        "La fase decisiva è riferita alla notte 16–17 novembre; la durata complessiva di sette fasi è un'affermazione delle autorità ucraine.",
+        "Le dimensioni del danno e la navigabilità non sono state verificate indipendentemente in tutti i dettagli. Non moltiplicare le sette fasi in sette nuovi eventi."
+      ],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E2",
+      "title": {
+        "it": "Ponte di Kerch: attacco ucraino e grave danneggiamento della sezione stradale"
+      },
+      "description": {
+        "it": "Tra il 16 e il 17 novembre 2026 droni e missili hanno colpito il ponte sullo stretto di Kerch che collega la Russia alla Crimea occupata. Il servizio di sicurezza ucraino ha rivendicato l'operazione e riferito il crollo di un arco e di una campata stradale, oltre a danni preliminari alla sezione ferroviaria. Le autorità russe hanno riconosciuto l'attacco e la sospensione temporanea del traffico, senza confermare integralmente l'entità dei danni dichiarata da Kyiv."
+      },
+      "date": {
+        "start": "2026-11-16",
+        "end": "2026-11-17",
+        "precision": "day"
+      },
+      "published": "2026-11-17",
+      "themes": [
+        "armed_conflict",
+        "infrastructure_space",
+        "geopolitics_diplomacy"
+      ],
+      "geography": {
+        "it": "Stretto di Kerch, collegamento tra Russia e Crimea ucraina occupata"
+      },
+      "places": [
+        "UA",
+        "RU"
+      ],
+      "evidence_note": {
+        "it": "E2: rivendicazione ufficiale SBU e riconoscimento russo dell'attacco, corroborati da AP e Reuters; immagini e dettagli tecnici non tutti verificati indipendentemente."
+      },
+      "publisher": "Security Service of Ukraine (SBU)",
+      "url": "https://ssu.gov.ua/en/novyny/sbu-spilno-iz-sylamy-oborony-urazyla-krymskyi-mist-odnu-z-arok-ta-avtomobilnyi-prolit-povnistiu-znyshcheno-video",
+      "claims": {
+        "perpetrator": {
+          "text": {
+            "it": "SBU e Forze di difesa ucraine rivendicano l'operazione coordinata in sette fasi."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R01",
+            "R05"
+          ]
+        },
+        "sponsor": null,
+        "motive": {
+          "text": {
+            "it": "Il presidente ucraino presenta l'attacco come risposta ai bombardamenti russi sulle infrastrutture ucraine."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R05"
+          ]
+        },
+        "impact": {
+          "text": {
+            "it": "Il governo ucraino riferisce il crollo della sezione stradale e danni ferroviari; fonti russe confermano l'interruzione del traffico ma non tutti i dettagli tecnici. Il ponte è un collegamento logistico strategico."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R01",
+            "R02",
+            "R03"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "La Russia ha inizialmente minimizzato alcuni danni; la ferrovia sarebbe tornata operativa nel corso del 17 novembre. AP e Reuters non hanno verificato indipendentemente ogni video e stima. Nessuna conclusione definitiva sulla durata dell'interruzione o sul blocco della navigazione."
+      },
+      "related": []
+    },
+    {
+      "op": "create_event",
+      "ref": "OEM-20261118-002",
+      "item": "OEM-20261118-002",
+      "sources": [
+        "R04"
+      ],
+      "notes": [
+        "La notizia verificabile è la dichiarazione pubblica ministeriale del 17 novembre; non si assume come data di inizio della missione l'estate 2026 riferita da RFI.",
+        "Il ministro qualifica la missione come addestramento e manutenzione lontano dal fronte e nega la cobelligeranza; non sono disponibili ordini operativi o numeri verificati indipendentemente."
+      ],
+      "update_type": "NEW_POLICY",
+      "evidence_level": "E2",
+      "title": {
+        "it": "Francia: confermata presenza limitata di formatori e tecnici militari in Ucraina"
+      },
+      "description": {
+        "it": "Il 17 novembre 2026 il ministro degli Esteri francese Jean-Noël Barrot ha confermato pubblicamente la presenza di un numero limitato di personale francese in Ucraina per addestramento e manutenzione, lontano dalla linea del fronte. Ha dichiarato che la Francia non è cobelligerante e non intende diventarlo. Reuters collega la dichiarazione a domande sulla missione indicata come «Volia»; la sua consistenza e la data d'avvio non sono verificate autonomamente."
+      },
+      "date": {
+        "start": "2026-11-17",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-17",
+      "themes": [
+        "armed_conflict",
+        "eu_nato_response",
+        "geopolitics_diplomacy"
+      ],
+      "geography": {
+        "it": "Francia e Ucraina"
+      },
+      "places": [
+        "FR",
+        "UA"
+      ],
+      "evidence_note": {
+        "it": "E2: dichiarazione pubblica del ministro francese riferita da Reuters; l'esistenza di un'attività di formazione/manutenzione è riconosciuta, non è provata alcuna missione di combattimento."
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/world/france-is-not-co-belligerent-ukraine-french-minister-says-2026-11-17/",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": {
+          "text": {
+            "it": "Il ministro presenta il supporto come contributo alla difesa ucraina e alla sicurezza europea."
+          },
+          "evidence_level": "E2",
+          "sources": [
+            "R04"
+          ]
+        },
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Il ministro esclude esplicitamente una missione militare di combattimento e la cobelligeranza. Nessun dato indipendente sul numero di militari, sulle regole d'ingaggio o sul calendario della missione; non inferire partecipazione diretta alle ostilità."
+      },
+      "related": []
+    }
+  ]
+}

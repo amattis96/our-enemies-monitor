@@ -1,6 +1,6 @@
 # ChatGPT scheduled tasks: A / B / C / D
 
-**Verified external configuration:** 16 November 2026, via ChatGPT Automations.
+**Verified external configuration:** 20 November 2026, via ChatGPT Automations. The C/D retry slots and the removal of Task D's inaccessible GitHub administration-API prerequisite are active in the scheduler.
 **Repository branch:** `main` (not `master`). Timezone: `Europe/Rome`.
 ChatGPT is the runtime scheduler; this repository is a dated, inspectable
 record of its instructions, not a synchronizing service. Reverify the
@@ -12,14 +12,34 @@ live task configuration before relying on a historical snapshot.
 | --- | --- | --- | --- |
 | **A** | Our Enemies Monitor OSINT & Ingest | Daily 00:30 | `Automation_d84b474727c0819199f8a2ccede9168c` |
 | **B** | Our Enemies Monitor Editorial | Mon/Wed/Fri 02:00 | `6af644cc6d508191b5164cb2e7c4be39` |
-| **C** | Our Enemies Monitor Review & Fix | Mon/Wed/Fri 03:30 | `6af64712482c81918d8772f4fa8c6efc` |
-| **D** | Our Enemies Monitor Approval & Merge | Mon/Wed/Fri 05:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
+| **C** | Our Enemies Monitor Review & Fix | Daily 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
+| **D** | Our Enemies Monitor Approval & Merge | Paused 21 November 2026 (was daily 05:00 and 06:00) | `Automation_3acbfb8631b08191a714de25bca509ca` |
+
+**Task D retirement (21 November 2026, maintainer decision):** merging moved
+to the GitHub workflow `auto-merge.yml` ([AUTO_MERGE.md](automation/AUTO_MERGE.md)),
+because D's connector cannot read `main` push/Pages runs and its gate never
+opened. The maintainer paused D in ChatGPT on 21 November 2026. The same day
+A, B and C prompts were updated (C: blocked/pending PRs first, fixes committed
+and verified by GitHub CI, machine-readable handoff); see
+[CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).
+Task C must keep writing `Status: READY_FOR_D` with the reviewed 40-hex HEAD,
+and must not repeat negative verdict tokens in a READY handoff.
 
 All four were enabled on 15 November 2026, and their next scheduled
 runs begin on 16 November 2026. Full active prompt copies are kept in
 [CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).
 An in-repository prompt edit **does not** update a ChatGPT automation;
 the tasks were updated in the ChatGPT scheduler separately.
+
+**Task D availability fix (20 November 2026):** the GitHub App cannot read
+repository branch protection or ruleset administration endpoints (HTTP 403),
+but this is not a merge-readiness failure. The live D prompt now skips those
+administrative reads entirely. It requires the normal current-HEAD checks,
+C's review handoff, mergeability and safe diff, then invokes GitHub's ordinary
+merge endpoint, which enforces protection server-side. A rejected merge is a
+real stop; a 403 on an unrelated administrative read is not. PR #41
+successfully merged with this distinction. This does not authorize direct
+pushes, bypasses, control-plane merges by D, or AI promotion to human-reviewed.
 
 ## Responsibilities and handoffs
 
@@ -30,7 +50,7 @@ the tasks were updated in the ChatGPT scheduler separately.
    `research/*` **non-draft PR** when the evidence is complete, even without
    local pnpm (report local tests not run; GitHub CI checks the HEAD).
    Do not create a filler PR.
-2. **A, deterministic ingest:** separately review already **merged**
+2. **A, deterministic ingest:** before attempting local import, inspect any `agent/ingest-fonte-*` candidate branch produced by the successful `stage-ingest.yml` GitHub Actions workflow. Its trusted candidate `data/` diff must be verified against current `main` before A opens a separate PR via the GitHub connection. This staged-branch route does not waive C/D/CI or review rules. If no such branch exists, separately review already **merged**
    sidecars in source-number order, one at a time, and where an executable
    checkout permits, dry-run then `pnpm ingest --write` into a separate
    `agent/ingest-*` PR. Only `data/`, only candidates `needs_review`,
@@ -138,7 +158,7 @@ The narrow content-invariant `research/*` synchronization documented
 in AGENTS.md preserves C's factual assessment of **identical blobs**,
 but requires D to attest the new SHA, check the changed base for new
 collisions and wait for entirely fresh CI. A new `main` tip may
-require updated checks. A 90-minute gap between B/C/D
+require updated checks. A retry at 04:30 for C and 06:00 for D mitigates one-run bottlenecks, but still cannot guarantee the next merge; a 90-minute gap between B/C/D
 does not guarantee a task's earlier work has finished. D must stop
 further merges whenever the last main CI/deploy is failing, pending
 or unverified; it must not merge multiple PRs simultaneously.

@@ -38,7 +38,10 @@
     "S09",
     "WEB-EXT-035",
     "WEB-EXT-036",
-    "WEB-EXT-037"
+    "WEB-EXT-037",
+    "WEB-EXT-057",
+    "WEB-EXT-060",
+    "S12"
   ],
   "known_issues": [],
   "review": {
@@ -46,7 +49,8 @@
     "notes": [
       "Fonte_09 OEM26-018, update type ONGOING_UPDATE. Evidence level of the main link per Fonte_09: E1 incontri / E3 reporting negoziale.",
       "Themes, places and the single evidence_level (the lower of any pair given) were assigned editorially from the Fonte_09 text.",
-      "Monitor separately: trilateral talks, executed humanitarian agreements, ceasefire, territorial concessions, sanctions changes."
+      "Monitor separately: trilateral talks, executed humanitarian agreements, ceasefire, territorial concessions, sanctions changes.",
+      "[ingest S12 OEM-20261114-002-ext022] OEM-20261114-002 (S12). Adds sources (E1): Il 13 novembre il Consiglio europeo ha definito il formato della squadra europea; questo aggiorna il contesto dei colloqui di Abu Dhabi, senza provare la partecipazione russa a un tavolo allargato. [WEB-EXT-057, WEB-EXT-060]"
     ],
     "translations": {
       "en": {

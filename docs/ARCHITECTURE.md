@@ -848,6 +848,8 @@ separation and base-branch enforcement remain future hardening work.
 `evidence-diff` runs with read-only repository permissions; the
 separate `expire-waiver` job removes the label after new commits.
 
+**Deterministic ingest staging (proposed operational path):** `.github/workflows/stage-ingest.yml` is triggered after successful `main` CI or by manual dispatch. It checks out only the current trusted `main` tip, chooses the earliest archived sidecar absent from `data/sources/`, runs dry-run and write-mode `pnpm ingest` with fail-closed classification checks, formats and validates data, then emits a Git bundle. An isolated job with write permission but no repository-code execution verifies the bundle and pushes one `agent/ingest-fonte-*` **candidate branch only**. A pending ingest PR/branch suppresses duplicate staging. It never creates a PR, touches `main`, bypasses evidence checks or promotes content. A separate ChatGPT Task A execution checks the branch and creates its PR through the connected GitHub app, allowing standard PR CI to run. C and D remain the evidence-review and controlled-merge gates; `needs_review` records remain excluded from public canonical views. This is not automatic publication. See [ingest staging runbook](automation/INGEST_STAGING.md).
+
 ## Editorial workflow and AI agents
 
 ```text
@@ -860,13 +862,23 @@ ChatGPT B (IT/EN investigation) --> article draft PR
                                                 |
                                READY_FOR_D at exact PR HEAD
                                                 |
-                              ChatGPT D: independent recheck
-                                   check + evidence-diff
+                     auto-merge.yml (GitHub Actions, replaces D):
+                       path policy + check + evidence-diff + main CI
                                                 |
                                sequential squash merge to main
                                                 |
                                 main CI + GitHub Pages deploy
 ```
+
+**Automated integration (21 November 2026):** `.github/workflows/auto-merge.yml`
+replaces Task D's merge step. A read-only job runs `src/cli/auto-merge.ts`
+from `main` (pure rules in `src/pipeline/auto-merge.ts`, tested in
+`test/auto-merge.test.ts`) and picks one action; a write job that runs no
+repository code performs a squash merge pinned to the HEAD SHA, a native
+branch update, or a CI dispatch on `main`. `ci.yml` accepts
+`workflow_dispatch` (build and deploy on `main`) and `stage-ingest.yml`
+follows dispatched main CI too, because merges made with `GITHUB_TOKEN` do
+not emit push events. See [AUTO_MERGE.md](automation/AUTO_MERGE.md).
 
 **Stale branch handling:** on a strict-protected `main`, each merge can
 make other PRs stale. Task D may synchronize only **additions-only

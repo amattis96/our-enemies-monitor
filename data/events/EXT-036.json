@@ -1,0 +1,58 @@
+{
+  "id": "EXT-036",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-13",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "Consiglio europeo informale di Dublino: proposta di squadra europea a cinque paesi"
+  },
+  "description": {
+    "it": "Il 13 novembre 2026 il presidente del Consiglio europeo ha annunciato il formato di coordinamento della squadra europea per i colloqui sull'Ucraina: istituzioni UE con Francia, Germania, Italia, Polonia e Regno Unito. La partecipazione effettiva al prossimo round e l'accettazione russa non risultano ancora formalizzate."
+  },
+  "category": null,
+  "themes": [
+    "geopolitics_diplomacy",
+    "eu_nato_response"
+  ],
+  "geography": {
+    "it": "Dublino, Irlanda; Unione europea e Regno Unito"
+  },
+  "places": [
+    "IE",
+    "FR",
+    "DE",
+    "IT",
+    "PL",
+    "GB",
+    "UA"
+  ],
+  "evidence_note": {
+    "it": "E1 dichiarazione ufficiale del Consiglio europeo sulla composizione; E3 riscontri giornalistici sulla controversia diplomatica."
+  },
+  "evidence_level": "E1",
+  "publisher": "European Council",
+  "url": "https://www.consilium.europa.eu/en/meetings/european-council/2026/11/13/",
+  "sources": [
+    "S12",
+    "WEB-EXT-057",
+    "WEB-EXT-058",
+    "WEB-EXT-059",
+    "WEB-EXT-060"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S12 OEM-20261114-002] OEM-20261114-002 (S12). Update type STRATEGIC_UPDATE; candidate event, not yet merged into the timeline.",
+      "New evidence published 2026-11-13; the date is that of the conduct.",
+      "Contrary evidence and uncertainty: Il Cremlino non aveva confermato la propria accettazione della partecipazione europea; nessun accordo territoriale o cessate il fuoco.",
+      "Context only, not a duplicate or causal link: EXT-022, EXT-032.",
+      "Sidecar note: Decisione sul formato della rappresentanza europea, non un accordo negoziale con la Russia."
+    ]
+  },
+  "provenance": []
+}
