@@ -102,6 +102,12 @@ describe("genealogy validation", () => {
     ]);
   });
 
+  it("accepts a newly registered corpus document with undetermined genealogy", () => {
+    const source: GenealogySource = { id: "S812", type: "corpus_document" };
+    expect(genealogyIssues([source])).toEqual([]);
+    expect(independentRoots(["S812"], [source]).undetermined).toEqual(["S812"]);
+  });
+
   it("flags E1 records resting only on corpus syntheses, and only those", () => {
     const sources = [corpus("S00"), ext("F02")];
     const records = [
@@ -121,19 +127,38 @@ describe("canonical data", () => {
     expect(issues.filter((i) => i.severity === "error")).toEqual([]);
     const s08 = dataset.sources.find((s) => s.id === "S08");
     expect(s08?.derived_from).toEqual(["S00", "S01", "S02", "S03", "S04", "S05", "S06", "S07"]);
-    for (const s of dataset.sources)
-      expect(s.origin_type === "corpus_synthesis", s.id).toBe(s.type === "corpus_document");
+    // Historical consolidated sources have established genealogy. Newly
+    // ingested M6 corpus documents may leave origin_type undetermined.
+    for (const id of ["S00", "S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"]) {
+      const source = dataset.sources.find((s) => s.id === id);
+      expect(source?.type, id).toBe("corpus_document");
+      expect(source?.origin_type, id).toBe("corpus_synthesis");
+    }
+    for (const source of dataset.sources) {
+      if (source.origin_type === "corpus_synthesis")
+        expect(source.type, source.id).toBe("corpus_document");
+      if (source.type === "corpus_document" && source.origin_type !== undefined)
+        expect(source.origin_type, source.id).toBe("corpus_synthesis");
+    }
   });
 
   it("computes A E7 from derived_from alone (B17 acceptance)", () => {
-    const e7 = e7IndependentRoots(dataset);
+    // The historical S09 cohort is fixed; newer S12+ candidates legitimately
+    // add EXT-035+ events and must not invalidate the B17 baseline acceptance.
+    const baseline: Dataset = {
+      ...dataset,
+      events: dataset.events.filter(
+        (event) => event.id.startsWith("EXT-") && Number(event.id.slice(4)) <= 34,
+      ),
+    };
+    const e7 = e7IndependentRoots(baseline);
     expect(e7.ext_events_with_external_refs).toBe(34);
     expect(e7.single_reference).toBe(18);
     // Same function, genealogy filled in memory: the count moves with the
     // fields, not with publisher text.
     const withGenealogy: Dataset = {
-      ...dataset,
-      sources: dataset.sources.map((s) => {
+      ...baseline,
+      sources: baseline.sources.map((s) => {
         const fix = [ministry, wire, copy].find((g) => g.id === s.id);
         return fix ? { ...s, ...fix } : s;
       }),

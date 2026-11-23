@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S19",
+    "file": "sources/incremental/Fonte_19_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-20.md",
+    "title": {
+      "it": "Fonte_19 | Aggiornamento OSINT incrementale per l'Europa | 20 novembre 2026"
+    },
+    "created_at": "2026-11-20",
+    "coverage": {
+      "start": "2026-11-16",
+      "end": "2026-11-20"
+    },
+    "baseline_source": "S18",
+    "repository_commit": "e6c26164ee74d4f33bad6613ea344f932332f86d"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "EC Midday press briefing of 19/11/2026"
+      },
+      "publisher": "European Commission",
+      "url": "https://audiovisual.ec.europa.eu/de/media/video/I-298222",
+      "published": "2026-11-19"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "EU Commission confirms it was targeted in cyberattack through use of AI tools"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/legal/litigation/eu-commission-targeted-cyberattack-politico-reports-2026-11-19/",
+      "published": "2026-11-19"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "A cyberattack using artificial intelligence targeted the EU in October, official says"
+      },
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/79705095e8141cd650196dbff1cf3c70",
+      "published": "2026-11-19"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261120-001",
+      "item": "OEM-20261120-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "notes": [
+        "Data 22 ottobre = rilevamento, non data accertata dell'inizio dell'intrusione.",
+        "Nessuna attribuzione statale; non assumere un'esfiltrazione di dati in assenza di prove.",
+        "La portata e i dettagli tecnici non sono confermati. Verificare eventuale corrispondenza canonica prima dell'ingest."
+      ],
+      "update_type": "NEW_EVENT",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Commissione europea: campagna informatica con strumenti AI rilevata il 22 ottobre 2026"
+      },
+      "description": {
+        "it": "La Commissione europea ha rilevato il 22 ottobre 2026 una campagna informatica che ha utilizzato strumenti di intelligenza artificiale, confermata dopo accertamenti preliminari il 26 ottobre. Ha temporaneamente disattivato alcune applicazioni come misura preventiva, ripristinandone in seguito la maggior parte. Il 19 novembre ha confermato pubblicamente l'incidente e l'indagine in corso."
+      },
+      "date": {
+        "start": "2026-10-22",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-19",
+      "themes": [
+        "cyber",
+        "infrastructure_space",
+        "eu_nato_response"
+      ],
+      "geography": {
+        "it": "Commissione europea, Bruxelles, Belgio"
+      },
+      "places": [
+        "BE"
+      ],
+      "evidence_note": {
+        "it": "E1: conferenza stampa ufficiale della Commissione europea del 19 novembre 2026; la data 22 ottobre indica il rilevamento. La campagna è dichiarata AI-assisted, senza attribuzione pubblica."
+      },
+      "publisher": "European Commission",
+      "url": "https://audiovisual.ec.europa.eu/de/media/video/I-298222",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": null,
+        "impact": {
+          "text": {
+            "it": "Alcune applicazioni della Commissione sono state temporaneamente disattivate a titolo precauzionale; la maggior parte è stata ripristinata. La Commissione non ha quantificato la portata e non ha rilevato prove di una violazione dei dati del personale nel complesso."
+          },
+          "evidence_level": "E1",
+          "sources": [
+            "R01"
+          ]
+        }
+      },
+      "contrary_evidence": {
+        "it": "Nessuna attribuzione dell'autore; nessuna prova finora rilevata di un data breach che riguardi il personale nel complesso. Le indiscrezioni sulla compromissione di dati specifici non sono confermate; indagine in corso."
+      },
+      "related": []
+    }
+  ]
+}

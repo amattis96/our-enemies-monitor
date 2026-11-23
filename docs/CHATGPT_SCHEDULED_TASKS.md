@@ -1,6 +1,6 @@
 # ChatGPT scheduled tasks: A / B / C / D
 
-**Verified external configuration:** 18 November 2026, via ChatGPT Automations. The C/D retry slots were added after the morning CI-pending halt.
+**Verified external configuration:** 20 November 2026, via ChatGPT Automations. The C/D retry slots and the removal of Task D's inaccessible GitHub administration-API prerequisite are active in the scheduler.
 **Repository branch:** `main` (not `master`). Timezone: `Europe/Rome`.
 ChatGPT is the runtime scheduler; this repository is a dated, inspectable
 record of its instructions, not a synchronizing service. Reverify the
@@ -13,13 +13,33 @@ live task configuration before relying on a historical snapshot.
 | **A** | Our Enemies Monitor OSINT & Ingest | Daily 00:30 | `Automation_d84b474727c0819199f8a2ccede9168c` |
 | **B** | Our Enemies Monitor Editorial | Mon/Wed/Fri 02:00 | `6af644cc6d508191b5164cb2e7c4be39` |
 | **C** | Our Enemies Monitor Review & Fix | Daily 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
-| **D** | Our Enemies Monitor Approval & Merge | Daily 05:00 and 06:00 | `Automation_3acbfb8631b08191a714de25bca509ca` |
+| **D** | Our Enemies Monitor Approval & Merge | Paused 21 November 2026 (was daily 05:00 and 06:00) | `Automation_3acbfb8631b08191a714de25bca509ca` |
+
+**Task D retirement (21 November 2026, maintainer decision):** merging moved
+to the GitHub workflow `auto-merge.yml` ([AUTO_MERGE.md](automation/AUTO_MERGE.md)),
+because D's connector cannot read `main` push/Pages runs and its gate never
+opened. The maintainer paused D in ChatGPT on 21 November 2026. The same day
+A, B and C prompts were updated (C: blocked/pending PRs first, fixes committed
+and verified by GitHub CI, machine-readable handoff); see
+[CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).
+Task C must keep writing `Status: READY_FOR_D` with the reviewed 40-hex HEAD,
+and must not repeat negative verdict tokens in a READY handoff.
 
 All four were enabled on 15 November 2026, and their next scheduled
 runs begin on 16 November 2026. Full active prompt copies are kept in
 [CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).
 An in-repository prompt edit **does not** update a ChatGPT automation;
 the tasks were updated in the ChatGPT scheduler separately.
+
+**Task D availability fix (20 November 2026):** the GitHub App cannot read
+repository branch protection or ruleset administration endpoints (HTTP 403),
+but this is not a merge-readiness failure. The live D prompt now skips those
+administrative reads entirely. It requires the normal current-HEAD checks,
+C's review handoff, mergeability and safe diff, then invokes GitHub's ordinary
+merge endpoint, which enforces protection server-side. A rejected merge is a
+real stop; a 403 on an unrelated administrative read is not. PR #41
+successfully merged with this distinction. This does not authorize direct
+pushes, bypasses, control-plane merges by D, or AI promotion to human-reviewed.
 
 ## Responsibilities and handoffs
 

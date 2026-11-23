@@ -1,0 +1,49 @@
+{
+  "id": "EXT-035",
+  "record_type": "event",
+  "timeline_status": "pending_integration",
+  "date": {
+    "start": "2026-11-13",
+    "end": null,
+    "precision": "day"
+  },
+  "title": {
+    "it": "BSI tedesco: avviso sui controllori Danfoss della refrigerazione industriale"
+  },
+  "description": {
+    "it": "Il 13 novembre 2026 Reuters ha riportato una nuova allerta del BSI sulle vulnerabilità persistenti nei sistemi di controllo Danfoss AK-SM 800A, con raccomandazioni per isolamento dall'Internet pubblico, VPN e aggiornamenti. L'avviso segue incidenti cyber europei già documentati; non costituisce prova di un nuovo attacco né di un autore comune."
+  },
+  "category": null,
+  "themes": [
+    "cyber",
+    "industry_dependencies"
+  ],
+  "geography": {
+    "it": "Germania e sistemi di refrigerazione commerciale europei"
+  },
+  "places": [
+    "DE"
+  ],
+  "evidence_note": {
+    "it": "E3 resoconto Reuters di un'allerta BSI; il testo originale del bollettino BSI non è stato acquisito con URL puntuale."
+  },
+  "evidence_level": "E3",
+  "publisher": "Reuters",
+  "url": "https://www.reuters.com/world/german-watchdog-warns-some-cooling-systems-remain-vulnerable-hacking-2026-11-13/",
+  "sources": [
+    "S12",
+    "WEB-EXT-055",
+    "WEB-EXT-056"
+  ],
+  "known_issues": [],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S12 OEM-20261114-001] OEM-20261114-001 (S12). Update type NEW_EVIDENCE; candidate event, not yet merged into the timeline.",
+      "New evidence published 2026-11-13; this date refers to the BSI security advisory as reported by Reuters, not to an established intrusion or exploitation event.",
+      "Contrary evidence and uncertainty: Non è dimostrato che la stessa vulnerabilità sia stata sfruttata in tutti gli incidenti; versioni e copertura delle patch richiedono verifica primaria.",
+      "Sidecar note: Avviso tecnico, non nuovo incidente di sabotaggio; verificare bollettino BSI primario prima di affermare versioni firmware."
+    ]
+  },
+  "provenance": []
+}

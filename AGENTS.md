@@ -171,8 +171,10 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 - Work on a branch and open a PR for data changes produced by research agents;
   never push directly to `main`.
 - Agents never push directly to `main`. Tasks A and B create PRs; Task C
-  reviews and may fix their branches; **only Task D may perform ordinary
-  squash merges**, after the exact-HEAD handoff and both mandatory checks.
+  reviews and may fix their branches; **only the `auto-merge.yml` workflow
+  performs ordinary squash merges** (since 21 November 2026; it replaces
+  Task D's merge step, see [AUTO_MERGE.md](docs/automation/AUTO_MERGE.md)),
+  after C's `READY_FOR_D` handoff and both mandatory checks.
   No agent submits a GitHub APPROVE review, grants **human** editorial
   authorization, applies `evidence-waiver`, or uses administrator/ruleset
   bypass. Task C alone may assign article status `ai_verified` after
@@ -199,7 +201,7 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 
 ## Scheduled research, editorial review and automated integration
 
-**Live task configuration verified 15 November 2026 (Europe/Rome):**
+**Live task configuration verified 21 November 2026 (Europe/Rome):**
 [scheduled-task register](docs/CHATGPT_SCHEDULED_TASKS.md) and
 [recorded full prompts](docs/automation/CHATGPT_TASK_PROMPTS.md). These
 schedules execute in ChatGPT, not in GitHub Actions; recheck their live state
@@ -212,7 +214,7 @@ workflow must not be reactivated. The legacy
 | **A: OSINT & Ingest** | Every day 00:30 | Fresh source + schema 1.1 sidecar PR; separately ingest the earliest already-merged pending sidecar into a data-only PR when executable |
 | **B: Editorial** | Mon/Wed/Fri 02:00 | One independently researched IT/EN article pair as a `needs_review` PR when defensible |
 | **C: Review & Fix** | Daily 03:30 and 04:30 | Evidence/code review, targeted fixes on eligible PR branches, tests and exact-HEAD handoff |
-| **D: Approval & Merge** | Daily 05:00 and 06:00 | Verify C handoff independently, required checks and merge readiness; sequential squash merge and verify main CI/deploy |
+| **D: Approval & Merge** | Retired 21 November 2026 | Merge step moved to the `auto-merge.yml` GitHub workflow (below); the D rules that follow describe the conditions that workflow enforces |
 
 **Task A acquisition:** examine the actual merged coverage cutoff, rescan
 at least 72 hours of overlap, deduplicate against merged records and all open
@@ -303,6 +305,21 @@ then review that new PR exactly like others. No canonical data or
 human-reviewed content may be touched. If a C-reviewed AI draft remains
 `needs_review`, D may archive it, but it stays unpublished.
 
+**Automated integration (`auto-merge.yml`, 21 November 2026):** Task D's
+ChatGPT connector cannot read push/Pages runs of `main`, so its gate never
+opened. A GitHub workflow now merges, using main's own code: eligible
+branch and path policy (never the control plane), no `evidence-waiver` /
+`automerge:hold` label, latest maintainer-account C handoff `READY_FOR_D`
+naming a PR commit (a moved HEAD needs an identical path/status/blob
+inventory), `check` + `evidence-diff` green on the HEAD, green CI on the
+current `main`, then one squash merge pinned to the HEAD SHA per run. With
+the `AUTOMERGE_TOKEN` secret it also updates behind branches through the
+native update-branch API. Task C is unchanged and remains the evidentiary
+gate. Agents never edit this workflow or its decision module without a
+maintainer PR. See [AUTO_MERGE.md](docs/automation/AUTO_MERGE.md). The D
+rules below remain the reference conditions; where they require an agent
+action, the workflow performs the equivalent check.
+
 **Task D merge and AI publication gate:** the PR must be eligible,
 nondraft, conflict-free,
 up to date with `main`, and have C's complete `READY_FOR_D` handoff
@@ -310,7 +327,19 @@ for its **current HEAD**. D rechecks the actual diff, evidence-sensitive
 changes, the two required GitHub Actions statuses `check` and
 `evidence-diff` on the relevant commit, the publication boundary,
 reviews/discussions and readiness for ordinary merge. Neither C's text
-nor a green check alone is sufficient. No accepted change to the
+nor a green check alone is sufficient.
+
+**Operational rule (20 November 2026):** GitHub's installed connector may
+return HTTP 403 for branch-protection, ruleset and other administration-only
+GET endpoints even when an ordinary PR merge is authorized. Task D MUST NOT
+read these administrative endpoints as a prerequisite, and their 403 is NOT
+`BLOCKED_TECHNICAL`. It must instead validate the current PR head, actual
+diff, C handoff, mergeability, blocking reviews, main status and both exact
+GitHub Actions checks, then use the ordinary squash-merge API with
+`expected_head_sha`. GitHub itself enforces branch rules on the merge
+request. A rejection **of the merge API** is authoritative: stop, record its
+message and do not bypass. This does not relax evidence, publication,
+control-plane or human-approval gates. No accepted change to the
 control plane, human-reviewed content, waivers or human-only editorial
 statuses without a separate explicit maintainer decision. D uses
 **squash merge with `expected_head_sha`**, never `--admin`, `force`,
@@ -453,7 +482,7 @@ Because `enforce_admins` is not known to be enabled, these settings
 alone cannot guarantee an administrative user will be prevented from
 bypassing them. Agent policy explicitly forbids such bypasses.
 
-For ordinary PRs **only Task D is delegated to execute squash merges**
+For ordinary PRs **only the auto-merge workflow (formerly Task D) executes squash merges**
 after a verified C handoff and successful required checks. This delegation
 does **not** authorize GitHub APPROVE reviews, `evidence-waiver`, force
 merges, code-owner impersonation, publication approvals or updates to

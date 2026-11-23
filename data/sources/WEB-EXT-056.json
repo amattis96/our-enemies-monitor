@@ -1,0 +1,22 @@
+{
+  "id": "WEB-EXT-056",
+  "type": "external_reference",
+  "title": {
+    "it": "BSI warnt vor weiteren Lücken in Danfoss-Kühlsteuerungen"
+  },
+  "publisher": "IT-Daily",
+  "files": [],
+  "urls": [
+    "https://www.it-daily.net/shortnews/bsi-danfoss-kuehlsteuerungen"
+  ],
+  "cited_in": [
+    "S12"
+  ],
+  "review": {
+    "status": "needs_review",
+    "notes": [
+      "[ingest S12 R02] S12 reference R02, published 2026-11-13."
+    ]
+  },
+  "provenance": []
+}
