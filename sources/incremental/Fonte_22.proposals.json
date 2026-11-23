@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.1",
+  "source": {
+    "code": "S22",
+    "file": "sources/incremental/Fonte_22_Aggiornamento_OSINT_Eventi_Reti_Europa_2026-11-24.md",
+    "title": {
+      "it": "Fonte_22 | Aggiornamento OSINT incrementale per l'Europa | 24 novembre 2026"
+    },
+    "created_at": "2026-11-24",
+    "coverage": {
+      "start": "2026-11-20",
+      "end": "2026-11-24"
+    },
+    "baseline_source": "S21",
+    "repository_commit": "c1507325bb4877a29ad5530a011fc8a61558f5ad"
+  },
+  "references": [
+    {
+      "key": "R01",
+      "title": {
+        "it": "Statement by President von der Leyen on the 22nd package of sanctions against Russia"
+      },
+      "publisher": "Commissione europea",
+      "url": "https://cyprus.representation.ec.europa.eu/news/statement-president-von-der-leyen-22nd-package-sanctions-against-russia-2026-11-23_en",
+      "published": "2026-11-23"
+    },
+    {
+      "key": "R02",
+      "title": {
+        "it": "EU Commission proposes ban on Russian athletes, ex-fighters in new Russia sanctions package"
+      },
+      "publisher": "Reuters",
+      "url": "https://www.reuters.com/business/finance/eu-commission-proposes-22nd-sanctions-package-russia-2026-11-23/",
+      "published": "2026-11-23"
+    },
+    {
+      "key": "R03",
+      "title": {
+        "it": "EU proposes sweeping new Russia sanctions targeting banks, crypto and sports events"
+      },
+      "publisher": "Associated Press",
+      "url": "https://apnews.com/article/ecad86868390f6602b346c70d1fa5757",
+      "published": "2026-11-23"
+    }
+  ],
+  "operations": [
+    {
+      "op": "create_event",
+      "ref": "OEM-20261124-001",
+      "item": "OEM-20261124-001",
+      "sources": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "notes": [
+        "Proposed sanctions only; do not treat as adopted or effective. Verify final Council legal acts and bank/vessel lists before updating."
+      ],
+      "update_type": "NEW_POLICY",
+      "evidence_level": "E1",
+      "title": {
+        "it": "Commissione UE: presentazione del 22º pacchetto proposto di sanzioni contro la Russia"
+      },
+      "description": {
+        "it": "Il 23 novembre 2026 la Commissione europea ha presentato il 22º pacchetto proposto di misure restrittive contro la Russia, includendo restrizioni finanziarie e crypto, su partecipazione sportiva/culturale e visti. La proposta non equivale all'adozione di divieti efficaci da parte del Consiglio."
+      },
+      "date": {
+        "start": "2026-11-23",
+        "end": null,
+        "precision": "day"
+      },
+      "published": "2026-11-23",
+      "themes": [
+        "sanctions"
+      ],
+      "geography": {
+        "it": "Unione europea; misure proposte relative alla Russia e a intermediari in paesi terzi"
+      },
+      "places": [],
+      "evidence_note": {
+        "it": "E1: dichiarazione primaria della Commissione sulla proposta; E3: dettagli aggiuntivi riferiti da Reuters e AP. Nessuna adozione finale documentata."
+      },
+      "publisher": "Commissione europea",
+      "url": "https://cyprus.representation.ec.europa.eu/news/statement-president-von-der-leyen-22nd-package-sanctions-against-russia-2026-11-23_en",
+      "claims": {
+        "perpetrator": null,
+        "sponsor": null,
+        "motive": {
+          "text": {
+            "it": "La Commissione dichiara di voler aumentare la pressione economica sulla Russia per la guerra contro l'Ucraina; si tratta della motivazione istituzionale della proposta."
+          },
+          "evidence_level": "E1",
+          "sources": [
+            "R01"
+          ]
+        },
+        "impact": null
+      },
+      "contrary_evidence": {
+        "it": "Le misure richiedono l'approvazione degli Stati membri e potrebbero essere modificate. Non attribuire effetti economici realizzati o responsabilità penali a una proposta."
+      },
+      "related": []
+    }
+  ]
+}
