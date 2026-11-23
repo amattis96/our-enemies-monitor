@@ -71,7 +71,8 @@
       },
       "published": "2026-11-23",
       "themes": [
-        "sanctions"
+        "finance_sanctions",
+        "eu_nato_response"
       ],
       "geography": {
         "it": "Unione europea; misure proposte relative alla Russia e a intermediari in paesi terzi"
