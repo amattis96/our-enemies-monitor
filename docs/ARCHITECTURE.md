@@ -1014,6 +1014,7 @@ two passes are not separate GitHub approvals or cryptographic signatures.
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
 | **M6** ChatGPT source and article workflow | Four ChatGPT tasks, deterministic ingest and bilingual pages | A/B/C/D configured 15 November 2026; active prompts archived, ingest PR generation authorized for Task A when executable, first autonomous D merge not yet verified; human editorial approval retained |
 | **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); implementation in the portal | Done (2026-11-12): themes, shell, evidence stamps, newest-first timeline, evidence board, interactive atlas; deferred items listed in `docs/design/IMPLEMENTATION_PLAN.md` |
+| **M8–M13** Investigative engine | Implementation plan v1.2 (frozen scope: 140 items, 39 packages PK-00…PK-38): foundations, investigative cycle, public clarity, interoperability, knowledge expansion, validated statistics. See `docs/roadmap/ENGINE_PLAN.md` | Planned (2026-11-24); first cycle PK-00, 02, 03, 04, 05, 15A; PK-01 awaits decisions D1 and D13 |
 
 ### Article editorial approval and link diagnostics
 
