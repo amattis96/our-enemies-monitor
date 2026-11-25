@@ -501,29 +501,84 @@ dialog.palette[open] {
 .site-footer-inner {
   max-width: var(--page-wide);
   margin: 0 auto;
-  padding: var(--space-6) var(--gutter) var(--space-7);
+  padding: var(--space-5) var(--gutter) var(--space-4);
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
 }
-@media (min-width: 760px) {
+@media (min-width: 960px) {
   .site-footer-inner {
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: minmax(16rem, 1.3fr) 1fr 1fr 0.8fr;
+    gap: var(--space-6);
   }
 }
 .footer-brand p {
-  max-width: 44ch;
-  margin-top: var(--space-3);
+  max-width: 38ch;
+  margin: var(--space-2) 0 0;
+  line-height: 1.5;
 }
-.site-footer nav ul {
+.footer-group .kicker {
+  margin: 0 0 var(--space-2);
+}
+.footer-group ul {
   display: grid;
-  gap: 0.45rem;
-  margin-top: 0.6rem;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.site-footer nav a {
+@media (max-width: 959px) {
+  .footer-group ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-4);
+  }
+}
+.footer-group a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.15rem 0;
   color: var(--ink-2);
   text-decoration: none;
 }
-.site-footer nav a:hover {
+.footer-group a .icon {
+  width: 1.05em;
+  height: 1.05em;
+  color: var(--ink-3);
+  transition: color var(--dur-fast) ease;
+}
+.footer-group a:hover,
+.footer-group a:focus-visible {
   color: var(--accent);
+}
+.footer-group a:hover .icon,
+.footer-group a:focus-visible .icon {
+  color: var(--accent);
+}
+.footer-group a:hover span {
   text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.footer-bar {
+  max-width: var(--page-wide);
+  margin: 0 auto;
+  padding: var(--space-3) var(--gutter) var(--space-4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+.footer-bar p {
+  margin: 0;
+}
+.footer-bar a {
+  color: var(--ink-2);
+}
+.footer-bar a .icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
 }
