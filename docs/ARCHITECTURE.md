@@ -1,6 +1,6 @@
 # Technical architecture
 
-**Status (13 November 2026):** M1–M7 built. M5 retains claim-level verification and publication quarantine. M6 provides deterministic sidecar ingestion and bilingual editorial articles. M7 implements the Dossier design system. Four scheduled ChatGPT tasks handle incremental OSINT plus separate ingest PRs, investigations, review/fixes and controlled merge, while deterministic GitHub Actions performs CI and Pages deploy. Research Markdown merged under `sources/incremental/` and `sources/thematic/` appears automatically in the website's documentary archive, **without** advancing canonical timeline/graph counts or claim approval. Approved real articles replace the former demonstration fixtures.
+**Status (25 November 2026):** M1–M7 built. M8–M13 investigative engine (PK-00…PK-38): code delivered in five waves, but only PK-00, 03, 04, 05, 15A and 21 are `completed`; every other delivered package is `awaiting_acceptance` until its blocking packages are completed and the owner decisions D1–D14 it depends on are resolved (`pnpm check:roadmap`, enforced by `pnpm check`). `PK-15B` and `PK-34`–`PK-36` remain blocked, `PK-32` deferred (D8). New discovery generators run only in `shadow`. M5 retains claim-level verification and publication quarantine. M6 provides deterministic sidecar ingestion and bilingual editorial articles. M7 implements the Dossier design system. Four scheduled ChatGPT tasks handle incremental OSINT plus separate ingest PRs, investigations, review/fixes and controlled merge, while deterministic GitHub Actions performs CI and Pages deploy. Research Markdown merged under `sources/incremental/` and `sources/thematic/` appears automatically in the website's documentary archive, **without** advancing canonical timeline/graph counts or claim approval. Approved real articles replace the former demonstration fixtures.
 This document describes the implemented code; see [AGENTS.md](../AGENTS.md) for agent rules.
 
 ## Principles
@@ -103,8 +103,31 @@ src/
   audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E7,
                        D T1–T11), question-benchmark scorer (benchmark.ts) and the
                        text–graph mention queue (mentions.ts, shared matcher with E6),
-                       cadence measures K1–K5 (cadence.ts, B21/ADR-08)
+                       cadence measures K1–K5 (cadence.ts, B21/ADR-08), AI search
+                       benchmark (ai-benchmark.ts, PK-23)
+  roadmap/             Executable roadmap plan/progress validator and renderer (PK-00)
+  quality/             Test families, reference sets and quality metrics (PK-02)
+  identity/            Entity identifiers, linkage, merge/split lifecycle (PK-04)
+  temporal/            Temporal model, as-of queries, append-only snapshot register (PK-05)
+  security/            Public/private boundary, publication gateway, quarantine, workflow audit (PK-01)
+  claims/              Canonical predicates, claim migration, provenance (PK-06)
+  retractions/         Corrections register, impact and containment policy (PK-07)
+  runs/                RunManifest schema, missed-run detection, sanitisation (PK-08)
+  discovery/           Queue state machine, dormant hypotheses, generators (shadow by default),
+                       backtest, leads & temporal paths (PK-09–11, PK-14, PK-27)
+  orchestration/       Task contract, component lifecycle, backpressure, devil's advocate (PK-12)
+  briefs/              Briefs, false alarms and countermeasures (PK-13)
+  engine/              ENGINE_VERSION, engine manifest and changelog (PK-08, PK-16)
+  query/               Shared query library used by the portal, CLI and MCP (PK-22)
+  taxonomies/          Versioned DISARM/ATT&CK/sabotage taxonomies, JRC/Hybrid CoE vulnerabilities, risk calendar (PK-25, PK-25-CAL)
+  acquisition/         Multilingual source registry and coverage reporting (PK-26)
+  search/              Hybrid lexical/semantic search index and evaluation (PK-28)
+  dependencies/        Strategic dependency engine, supply chain catalog, propagation (PK-29)
+  i18n/                European language rollout, fallback/hreflang, IATE qualifier check, build budget (PK-31)
+  statistics/          Observational pilot, adapters, sequential/spatial/experimental methods, Data Readiness Gate, backtesting & scenarios (PK-33..PK-38)
   cli/                 Entry points used by package scripts
+packages/
+  mcp/                 Read-only MCP server exposing public projection tools (PK-22)
 test/                  Vitest suites; fixtures/ holds hand-authored test inputs
                        (Fonte_10.proposals.json, a faithful subset of PR #3)
 web/                   Astro portal
@@ -1014,7 +1037,7 @@ two passes are not separate GitHub approvals or cryptographic signatures.
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
 | **M6** ChatGPT source and article workflow | Four ChatGPT tasks, deterministic ingest and bilingual pages | A/B/C/D configured 15 November 2026; active prompts archived, ingest PR generation authorized for Task A when executable, first autonomous D merge not yet verified; human editorial approval retained |
 | **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); implementation in the portal | Done (2026-11-12): themes, shell, evidence stamps, newest-first timeline, evidence board, interactive atlas; deferred items listed in `docs/design/IMPLEMENTATION_PLAN.md` |
-| **M8–M13** Investigative engine | Implementation plan v1.2 (frozen scope: 140 items, 39 packages PK-00…PK-38): foundations, investigative cycle, public clarity, interoperability, knowledge expansion, validated statistics. See `docs/roadmap/ENGINE_PLAN.md` | Planned (2026-11-24); first cycle PK-00, 02, 03, 04, 05, 15A; PK-01 awaits decisions D1 and D13 |
+| **M8–M13** Investigative engine | Implementation plan v1.2 (frozen scope: 140 items, 39 packages PK-00…PK-38): foundations, investigative cycle, public clarity, interoperability, knowledge expansion, validated statistics. See `docs/roadmap/ENGINE_PLAN.md` | Code delivered in Waves 1–5 (2026-11-25). Completed: PK-00, 03, 04, 05, 15A, 21. Awaiting acceptance (blocking packages or owner decisions D1–D14 still open): PK-01, 02, 06A–D, 07–14, 16–20, 22–31, 33, 37, 38. Blocked: PK-15B, 34–36. Deferred: PK-32 (D8). Status is read from `docs/roadmap/progress/` and enforced by `pnpm check:roadmap` |
 
 ### Article editorial approval and link diagnostics
 

@@ -1,0 +1,24 @@
+{
+  "id": "PK-31",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented European multilingual rollout, fallback/hreflang, IATE qualifier check, and i18n build budget CLI in src/i18n/ and src/cli/check-i18n-budget.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/projections-i18n-situation.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Multilingual rollout, fallback/hreflang, IATE qualifier checks, and i18n budget checks verified in test/projections-i18n-situation.test.ts"
+  ],
+  "notes": "Awaiting D7/D11 publication gates for European language rollout.",
+  "updated_at": "2026-11-25T23:10:00Z"
+}

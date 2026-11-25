@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0.0",
+  "engine_version": "0.1.0",
+  "updated_at": "2026-11-25",
+  "methods": [
+    {
+      "id": "m5_evidentiary_gate",
+      "name": {
+        "it": "Gate probatorio M5 e verifica delle fonti primarie",
+        "en": "M5 evidentiary gate and primary source verification"
+      },
+      "version": "1.0.0",
+      "status": "active",
+      "public_summary": {
+        "it": "Verifica che ogni record pubblicabile abbia livello di evidenza coerente, stato di revisione valido e fonte primaria collegata per le relazioni su persone fisiche.",
+        "en": "Verifies that every publishable record has a consistent evidence level, valid review status, and a linked primary source for relationships involving named persons."
+      },
+      "limitations": {
+        "it": "La corrispondenza strutturale delle fonti non equivale a un accertamento giudiziario né a un'approvazione editoriale umana.",
+        "en": "Structural source matching does not constitute a judicial finding or human editorial approval."
+      },
+      "evidentiary_criteria": {
+        "it": "Nessun record needs_review o relazione su persona senza fonte primaria registrata entra nel portale pubblico.",
+        "en": "No needs_review record or person relationship without a registered primary source enters the public portal."
+      },
+      "detection_mechanics": "Evaluates consistentEvidence() and personReference() in src/site/publication.ts and enforces fail-closed export scanning in src/security/gateway.ts."
+    },
+    {
+      "id": "missed_run_reconciliation",
+      "name": {
+        "it": "Riconciliazione indipendente delle esecuzioni mancanti",
+        "en": "Independent missed-run reconciliation"
+      },
+      "version": "1.0.0",
+      "status": "active",
+      "public_summary": {
+        "it": "Confronta gli slot pianificati con i manifest di esecuzione registrati e segnala come missed le esecuzioni non avviate oltre la finestra di tolleranza.",
+        "en": "Compares scheduled execution slots against recorded run manifests and flags unstarted runs as missed after the grace window."
+      },
+      "limitations": {
+        "it": "Dipende dalla registrazione degli slot attesi e non misura la qualità semantica dell'esecuzione.",
+        "en": "Depends on the expected slot schedule and does not measure semantic output quality."
+      },
+      "evidentiary_criteria": {
+        "it": "Un'esecuzione mai partita non può autodichiararsi completata; lo stato missed è registrato in modo indipendente.",
+        "en": "A run that never started cannot self-report; missed status is recorded independently."
+      },
+      "detection_mechanics": "Compares ScheduledSlot[] against RunManifest[] in src/runs/missed.ts using slot_id or task+scheduled_at matching and defaultGraceMinutes."
+    },
+    {
+      "id": "dormant_hypothesis_reactivation",
+      "name": {
+        "it": "Valutazione della novità materiale per ipotesi dormienti",
+        "en": "Material novelty evaluation for dormant hypotheses"
+      },
+      "version": "1.0.0",
+      "status": "shadow",
+      "public_summary": {
+        "it": "Valuta se un nuovo segnale o documento giustifica la riapertura probatoria di un'ipotesi dormiente oppure se si tratta di semplice ripresa o controllo periodico.",
+        "en": "Evaluates whether a new signal or document warrants evidentiary reopening of a dormant hypothesis rather than a routine reprise or periodic check."
+      },
+      "limitations": {
+        "it": "In fase shadow: i candidati non modificano automaticamente i record canonici né promuovono ipotesi E5.",
+        "en": "In shadow phase: candidates do not automatically modify canonical records or promote E5 hypotheses."
+      },
+      "evidentiary_criteria": {
+        "it": "Richiede una fonte indipendente con evidenza discriminante, una rettifica sostanziale o una smentita documentata.",
+        "en": "Requires an independent source with discriminating evidence, a substantial retraction, or a documented refutation."
+      },
+      "detection_mechanics": "Evaluates B17 independentRoots() against known_root_ids, min_recheck_interval_hours, and novelty_threshold in src/discovery/dormant.ts."
+    },
+    {
+      "id": "retraction_containment",
+      "name": {
+        "it": "Contenimento e propagazione delle rettifiche",
+        "en": "Retraction containment and propagation"
+      },
+      "version": "1.0.0",
+      "status": "active",
+      "public_summary": {
+        "it": "Propaga la sospensione cautelativa o la rettifica di una fonte contestata su tutte le proiezioni controllate da OEM entro la soglia massima di obsolescenza.",
+        "en": "Propagates precautionary suspension or correction of a contested source across all OEM-controlled projections within the maximum staleness limit."
+      },
+      "limitations": {
+        "it": "Il contenimento riguarda solo le proiezioni controllate da OEM; copie esterne, fork e archivi di terzi non sono richiamabili.",
+        "en": "Containment applies only to OEM-controlled projections; external copies, forks, and third-party archives cannot be recalled."
+      },
+      "evidentiary_criteria": {
+        "it": "I fatti storici canonici non vengono cancellati silenziosamente; ogni rettifica resta tracciata nel registro.",
+        "en": "Canonical historical facts are never silently erased; every correction remains traced in the register."
+      },
+      "detection_mechanics": "Computes transitive impact via src/retractions/impact.ts and enforces DEFAULT_MAX_STALENESS_SECONDS in src/retractions/policy.ts."
+    }
+  ],
+  "thresholds": {
+    "code_thresholds": {
+      "missed_run_grace_minutes": 30,
+      "dormant_min_recheck_interval_hours": 168,
+      "dormant_novelty_threshold": 0.5,
+      "retraction_max_staleness_seconds": 86400,
+      "quality_min_precision": 0.9,
+      "quality_min_recall": 0.85,
+      "quality_min_caveat_preservation_rate": 0.95,
+      "quality_min_ex_ante_composite": 0.7,
+      "quality_min_ex_post_yield_rate": 0.5
+    },
+    "security_thresholds": {
+      "prompt_injection_high_severity_block": true,
+      "holdout_max_evaluations_before_rotation": 25,
+      "quarantine_marker_prefix": "<<<OEM_QUARANTINED_SOURCE",
+      "max_api_cost_per_run_usd": 5,
+      "rate_limit_backoff_seconds": 60,
+      "protection_details": "Private quarantine regex rules, holdout fixture checksums, and gateway leak patterns enforced in src/security/.",
+      "investigative_queries": [
+        "internal-only query template: unverified entity cross-check",
+        "internal-only query template: pre-publication source triage"
+      ]
+    }
+  },
+  "cadences": [
+    {
+      "task_id": "task_a_osint_ingest",
+      "role": "acquisition_and_ingest",
+      "schedule": "Daily 00:30",
+      "timezone": "Europe/Rome",
+      "status": "active"
+    },
+    {
+      "task_id": "task_b_editorial",
+      "role": "editorial_drafting",
+      "schedule": "Mon/Wed/Fri 02:00",
+      "timezone": "Europe/Rome",
+      "status": "active"
+    },
+    {
+      "task_id": "task_c_review_fix",
+      "role": "review_and_verification",
+      "schedule": "Daily 03:30 and 04:30",
+      "timezone": "Europe/Rome",
+      "status": "active"
+    },
+    {
+      "task_id": "task_d_legacy_merge",
+      "role": "merge_retired",
+      "schedule": "Paused 2026-11-21 (replaced by auto-merge.yml)",
+      "timezone": "Europe/Rome",
+      "status": "paused"
+    },
+    {
+      "task_id": "auto_merge_workflow",
+      "role": "automated_integration",
+      "schedule": "On verified C handoff + green CI",
+      "timezone": "UTC",
+      "status": "event_driven"
+    }
+  ],
+  "roles": [
+    {
+      "id": "task_a_osint_ingest",
+      "label": {
+        "it": "Task A — Acquisizione OSINT e ingestione",
+        "en": "Task A — OSINT acquisition and ingest"
+      },
+      "responsibilities": {
+        "it": "Raccoglie fonti incrementali e prepara proposte sidecar schema 1.1; importa solo come candidati needs_review dopo il merge della fonte.",
+        "en": "Collects incremental sources and prepares schema 1.1 sidecar proposals; imports only as needs_review candidates after source merge."
+      },
+      "can_set_human_reviewed": false
+    },
+    {
+      "id": "task_b_editorial",
+      "label": {
+        "it": "Task B — Redazione indagini",
+        "en": "Task B — Editorial drafting"
+      },
+      "responsibilities": {
+        "it": "Redige analisi tematiche bilingui IT/EN collegate ai record canonici esistenti, lasciando lo stato iniziale a needs_review.",
+        "en": "Drafts bilingual IT/EN thematic analyses linked to existing canonical records, leaving initial status as needs_review."
+      },
+      "can_set_human_reviewed": false
+    },
+    {
+      "id": "task_c_review_fix",
+      "label": {
+        "it": "Task C — Revisione critica e verifica",
+        "en": "Task C — Critical review and verification"
+      },
+      "responsibilities": {
+        "it": "Verifica fonti, duplicati, caveat e coerenza probatoria; può assegnare solo ai_verified agli articoli idonei con nota strutturata, mai reviewed.",
+        "en": "Verifies sources, duplicates, caveats, and evidentiary consistency; may assign only ai_verified to eligible articles with a structured note, never reviewed."
+      },
+      "can_set_human_reviewed": false
+    },
+    {
+      "id": "auto_merge_workflow",
+      "label": {
+        "it": "Workflow auto-merge.yml",
+        "en": "auto-merge.yml workflow"
+      },
+      "responsibilities": {
+        "it": "Esegue squash merge ordinari su main solo dopo handoff READY_FOR_D di Task C e controlli CI verdi, escludendo il piano di controllo.",
+        "en": "Performs ordinary squash merges to main only after Task C READY_FOR_D handoff and green CI checks, excluding the control plane."
+      },
+      "can_set_human_reviewed": false
+    },
+    {
+      "id": "human_maintainer",
+      "label": {
+        "it": "Titolare ed editori umani",
+        "en": "Human maintainer and editors"
+      },
+      "responsibilities": {
+        "it": "Unica autorità autorizzata ad assegnare lo stato reviewed, approvare modifiche al piano di controllo, gestire dati personali D12 e decidere rettifiche.",
+        "en": "Sole authority permitted to assign reviewed status, approve control-plane changes, handle D12 personal data, and decide retractions."
+      },
+      "can_set_human_reviewed": true
+    }
+  ],
+  "models": [
+    {
+      "role": "task_a_osint_ingest",
+      "provider": "openai-chatgpt",
+      "model": "scheduled-automation",
+      "purpose": {
+        "it": "Acquisizione periodica e preparazione di sidecar strutturati.",
+        "en": "Periodic acquisition and structured sidecar preparation."
+      }
+    },
+    {
+      "role": "task_b_editorial",
+      "provider": "openai-chatgpt",
+      "model": "scheduled-automation",
+      "purpose": {
+        "it": "Redazione di bozze investigative bilingui.",
+        "en": "Drafting bilingual investigative analyses."
+      }
+    },
+    {
+      "role": "task_c_review_fix",
+      "provider": "openai-chatgpt",
+      "model": "scheduled-automation",
+      "purpose": {
+        "it": "Verifica indipendente di fonti, schemi e caveat.",
+        "en": "Independent verification of sources, schemas, and caveats."
+      }
+    }
+  ],
+  "operational_metrics": {
+    "measured_at": "2026-11-25T00:00:00Z",
+    "runs_recorded": 0,
+    "missed_runs": 0,
+    "informative_resolutions": 0,
+    "last_snapshot_id": "SNAP-2026-11-25-0001"
+  }
+}

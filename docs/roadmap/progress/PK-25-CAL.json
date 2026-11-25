@@ -1,0 +1,24 @@
+{
+  "id": "PK-25-CAL",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented risk calendar aggregation and risk dossier builder in src/taxonomies/calendar.ts with Astro routes under web/src/pages/[...lang]/elezioni/"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/knowledge-expansion.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Risk calendar aggregation and dossier generation verified in test/knowledge-expansion.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

@@ -13,6 +13,8 @@ const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
 const articles = getArticles();
 const fixtures = articles.some((article) => article.fixture);
+const statuses = [...new Set(articles.map((a) => a.review.status))];
+const generatorKinds = [...new Set(articles.map((a) => a.generated_by.kind))];
 ---
 
 <Base
@@ -37,6 +39,23 @@ const fixtures = articles.some((article) => article.fixture);
       "Thematic analyses in Italian and English. Each article cites its sources and links the canonical records it discusses: the evidence stays in those records, with their level and review status. An article does not turn graph proximity or a hypothesis into proof.",
     )}
   </p>
+
+  {articles.length > 0 && (
+    <div class="flex flex-wrap gap-2 my-4" role="group" aria-label={c("Filtra indagini", "Filter investigations")} data-article-filters>
+      <button type="button" class="chip" data-filter-status="" aria-pressed="true">{c("Tutti", "All")} ({articles.length})</button>
+      {statuses.map((st) => (
+        <button type="button" class="chip" data-filter-status={st} aria-pressed="false">
+          {REVIEW_STATUS_LABELS[st][lang]}
+        </button>
+      ))}
+      {generatorKinds.map((gk) => (
+        <button type="button" class="chip" data-filter-kind={gk} aria-pressed="false">
+          {gk}
+        </button>
+      ))}
+    </div>
+  )}
+
   {
     fixtures && (
       <div class="test-banner max-w-3xl" role="note">
@@ -52,9 +71,13 @@ const fixtures = articles.some((article) => article.fixture);
     articles.length === 0 ? (
       <p class="meta">{c("Nessun articolo pubblicato.", "No article published.")}</p>
     ) : (
-      <ul class="grid gap-6 md:grid-cols-2 mt-6">
+      <ul class="grid gap-6 md:grid-cols-2 mt-6" data-article-list>
         {articles.map((article) => (
-          <li class:list={["card", article.fixture && "card-test"]}>
+          <li
+            class:list={["card", article.fixture && "card-test"]}
+            data-status={article.review.status}
+            data-kind={article.generated_by.kind}
+          >
             <p class="meta">
               {article.fixture && <><FixtureBanner lang={lang} compact />{" "}</>}
               <time datetime={article.date}>{formatPartialDate(article.date, lang)}</time> ·{" "}
@@ -70,3 +93,38 @@ const fixtures = articles.some((article) => article.fixture);
     )
   }
 </Base>
+
+<script is:inline>
+  (() => {
+    const bar = document.querySelector("[data-article-filters]");
+    const list = document.querySelector("[data-article-list]");
+    if (!bar || !list) return;
+    let activeStatus = "";
+    let activeKind = "";
+    const apply = () => {
+      for (const li of Array.from(list.children)) {
+        const st = li.getAttribute("data-status") || "";
+        const kd = li.getAttribute("data-kind") || "";
+        li.hidden = (activeStatus && st !== activeStatus) || (activeKind && kd !== activeKind);
+      }
+    };
+    for (const btn of Array.from(bar.querySelectorAll("button"))) {
+      btn.addEventListener("click", () => {
+        if (btn.hasAttribute("data-filter-status")) {
+          activeStatus = btn.getAttribute("data-filter-status") || "";
+          for (const b of Array.from(bar.querySelectorAll("[data-filter-status]"))) {
+            b.setAttribute("aria-pressed", String(b === btn));
+          }
+        }
+        if (btn.hasAttribute("data-filter-kind")) {
+          const val = btn.getAttribute("data-filter-kind") || "";
+          activeKind = activeKind === val ? "" : val;
+          for (const b of Array.from(bar.querySelectorAll("[data-filter-kind]"))) {
+            b.setAttribute("aria-pressed", String((b.getAttribute("data-filter-kind") || "") === activeKind));
+          }
+        }
+        apply();
+      });
+    }
+  })();
+</script>

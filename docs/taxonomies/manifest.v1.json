@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_version": "2026.11.1",
+  "updated_at": "2026-11-25T00:00:00Z",
+  "frameworks": {
+    "disarm": {
+      "id": "disarm",
+      "name": "DISARM Framework",
+      "version": "1.5",
+      "domain": "FIMI",
+      "url": "https://disarm.foundation/"
+    },
+    "mitre_attack": {
+      "id": "mitre_attack",
+      "name": "MITRE ATT&CK Enterprise",
+      "version": "16.1",
+      "domain": "cyber",
+      "url": "https://attack.mitre.org/"
+    },
+    "internal_sabotage": {
+      "id": "internal_sabotage",
+      "name": "OEM Internal Sabotage & Hybrid Infrastructure Taxonomy",
+      "version": "1.0.0",
+      "domain": "sabotage_infrastructure",
+      "url": null
+    }
+  },
+  "techniques": [
+    {
+      "id": "DISARM-T0049",
+      "framework": "disarm",
+      "external_code": "T0049",
+      "name": "Flooding the Information Space",
+      "category": "FIMI",
+      "description": "Overwhelming information channels with high-volume coordinated messaging or synthetic noise.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "DISARM-T0084",
+      "framework": "disarm",
+      "external_code": "T0084",
+      "name": "Inauthentic Accounts and Amplification",
+      "category": "FIMI",
+      "description": "Deploying coordinated inauthentic accounts or botnets to artificially amplify narratives.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "DISARM-T0096",
+      "framework": "disarm",
+      "external_code": "T0096",
+      "name": "Cross-Platform Laundering",
+      "category": "FIMI",
+      "description": "Moving narratives across fringe, state, and mainstream platforms to obscure origin.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "ATT&CK-T1566",
+      "framework": "mitre_attack",
+      "external_code": "T1566",
+      "name": "Phishing",
+      "category": "cyber",
+      "description": "Sending targeted messages to gain initial access or harvest credentials.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "ATT&CK-T1486",
+      "framework": "mitre_attack",
+      "external_code": "T1486",
+      "name": "Data Encrypted for Impact",
+      "category": "cyber",
+      "description": "Encrypting data or systems to disrupt availability of critical services.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "ATT&CK-T1498",
+      "framework": "mitre_attack",
+      "external_code": "T1498",
+      "name": "Network Denial of Service",
+      "category": "cyber",
+      "description": "Degrading or blocking availability of targeted networks or public services.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "SAB-INFRA-001",
+      "framework": "internal_sabotage",
+      "external_code": "SAB-001",
+      "name": "Subsea Cable and Pipeline Tampering",
+      "category": "critical_infrastructure",
+      "description": "Physical interference with subsea telecommunications cables, power interconnectors, or energy pipelines.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "SAB-INFRA-002",
+      "framework": "internal_sabotage",
+      "external_code": "SAB-002",
+      "name": "Rail and Logistics Signaling Disruption",
+      "category": "critical_infrastructure",
+      "description": "Physical sabotage or unauthorized radio interference targeting railway signaling and logistics hubs.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "SAB-PROXY-001",
+      "framework": "internal_sabotage",
+      "external_code": "SAB-003",
+      "name": "Recruited Low-Tier Paid Saboteur (Single-Use Proxy)",
+      "category": "paid_saboteurs",
+      "description": "Recruitment of non-intelligence local or criminal proxies via encrypted messaging for arson, vandalism, or reconnaissance.",
+      "status": "active",
+      "introduced_in": "1.0.0",
+      "parent_id": null
+    },
+    {
+      "id": "DISARM-T0010-LEGACY",
+      "framework": "disarm",
+      "external_code": "T0010-OLD",
+      "name": "Legacy Mass Bot Flooding",
+      "category": "FIMI",
+      "description": "Deprecated umbrella ID split into specific amplification and flooding techniques.",
+      "status": "deprecated",
+      "introduced_in": "0.9.0",
+      "parent_id": null
+    }
+  ],
+  "deprecations": [
+    {
+      "deprecated_id": "DISARM-T0010-LEGACY",
+      "deprecated_in": "1.0.0",
+      "reason": "Split into DISARM-T0084 (Inauthentic Accounts and Amplification) and DISARM-T0049 (Flooding the Information Space).",
+      "replacement_id": "DISARM-T0084"
+    }
+  ],
+  "migrations": [
+    {
+      "from_id": "DISARM-T0010-LEGACY",
+      "to_id": "DISARM-T0084",
+      "from_version": "0.9.0",
+      "to_version": "1.0.0",
+      "reversible": false,
+      "note": "Map legacy mass bot flooding records to DISARM-T0084; review whether DISARM-T0049 also applies."
+    }
+  ]
+}

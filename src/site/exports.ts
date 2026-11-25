@@ -10,6 +10,7 @@ import { loadPublishedArticles } from "./articles.ts";
 import { collectionCsvs } from "./csv.ts";
 import { type DataCommit, dataHistory } from "./history.ts";
 import { counterInferenceAudit } from "./inferences.ts";
+import { buildMetadataFiles } from "./metadata.ts";
 import { buildArticlesIndex, buildChangesFeed, buildRecordPackages } from "./packages.ts";
 import { type PublicationReport, publicationReport } from "./publication.ts";
 import { buildReadModel, evidenceGraph, hypothesisGraph, loadReadModel } from "./read-model.ts";
@@ -225,4 +226,19 @@ function gitValue(args: string[]): string | null {
   } catch {
     return null;
   }
+}
+
+/**
+ * Sidecar `<file>.metadata.json` descriptors for exported `data/v1/` files
+ * (including `manifest.json` when provided).
+ */
+export function exportMetadataFiles(
+  files: readonly ExportFile[],
+  manifest?: Manifest,
+  commit: ExportCommit = exportCommit(),
+): ExportFile[] {
+  const targets: ExportFile[] = manifest
+    ? [...files, { path: "manifest.json", text: `${JSON.stringify(manifest, null, 2)}\n` }]
+    : [...files];
+  return buildMetadataFiles(targets, EXPORT_VERSION, commit);
 }

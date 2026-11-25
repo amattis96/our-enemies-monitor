@@ -1,0 +1,24 @@
+{
+  "id": "PK-25",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented versioned taxonomy manifest (DISARM, MITRE ATT&CK, internal sabotage), JRC/Hybrid CoE vulnerability catalog, and classification/migration helpers in src/taxonomies/"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/knowledge-expansion.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Taxonomy manifest loading, technique resolution/migration, and JRC/Hybrid CoE vulnerability catalog verified in test/knowledge-expansion.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

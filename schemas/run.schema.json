@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run.schema.json",
+  "title": "run",
+  "type": "object",
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique identifier of the run."
+    },
+    "task": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Task or workflow name executed in this run."
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Operational role of the actor (e.g., discovery, verifier)."
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Execution or AI provider identifier."
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Model identifier used by the run, or none."
+    },
+    "scheduled_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?Z$",
+      "description": "UTC timestamp when the run was scheduled to start."
+    },
+    "started_at": {
+      "description": "UTC timestamp when the run actually started, or null if missed.",
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?Z$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "finished_at": {
+      "description": "UTC timestamp when the run finished, or null if missed or incomplete.",
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?Z$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "input_commit_sha": {
+      "description": "Git commit SHA of the repository input state.",
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "output_commit_sha": {
+      "description": "Git commit SHA produced by the run, if any.",
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "prompt_hash": {
+      "description": "SHA-256 hash of the prompt template used by the run.",
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "configuration_hash": {
+      "description": "SHA-256 hash of the task configuration used by the run.",
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "engine_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Engine version constant active during the run."
+    },
+    "window": {
+      "description": "Optional time window covered by the run.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?Z$",
+              "description": "Inclusive UTC start timestamp of the covered time window."
+            },
+            "to": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?Z$",
+              "description": "Inclusive UTC end timestamp of the covered time window."
+            }
+          },
+          "required": [
+            "from",
+            "to"
+          ],
+          "additionalProperties": false,
+          "description": "Time window covered by a scheduled or manual run."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "queries": {
+      "default": [],
+      "description": "Private list of search or investigative queries executed.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sources_consulted": {
+      "default": [],
+      "description": "Private list of sources or URLs consulted during the run.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "estimated_cost": {
+      "description": "Estimated monetary or unit cost of the run.",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "errors": {
+      "default": [],
+      "description": "Errors recorded during the run.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Machine-readable error code."
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Detailed error message (private by default if sensitive)."
+          },
+          "sensitive": {
+            "default": false,
+            "description": "When true, the error message is stripped from public projections.",
+            "type": "boolean"
+          },
+          "stage": {
+            "description": "Optional pipeline or task stage where the error occurred.",
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "additionalProperties": false,
+        "description": "Structured error entry recorded during a run."
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed_with_results",
+        "completed_no_results",
+        "partial",
+        "failed",
+        "cancelled",
+        "missed"
+      ],
+      "description": "Terminal or missed status of the run."
+    },
+    "slot_id": {
+      "description": "Optional scheduled slot identifier for missed-run reconciliation.",
+      "type": "string",
+      "minLength": 1
+    },
+    "notes": {
+      "description": "Optional operational notes for private diagnostics.",
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "run_id",
+    "task",
+    "role",
+    "provider",
+    "model",
+    "scheduled_at",
+    "engine_version",
+    "status"
+  ],
+  "additionalProperties": false,
+  "description": "Authoritative private run manifest for scheduled tasks, Actions, and code agents."
+}

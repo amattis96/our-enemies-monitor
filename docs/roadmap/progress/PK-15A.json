@@ -1,0 +1,29 @@
+{
+  "id": "PK-15A",
+  "status": "completed",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-1-m8-integration",
+      "recorded_at": "2026-11-25T22:34:00Z",
+      "outcome": "Implemented bilingual glossary (src/site/glossary.ts, web/src/pages/[...lang]/glossario.astro, web/src/components/GlossaryTerm.astro), plain-language labels/navigation/evidence definitions, and test/clarity.test.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "pnpm check",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:33:40Z"
+    },
+    {
+      "command": "pnpm build && pnpm check:links",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:33:40Z"
+    }
+  ],
+  "completion_evidence": [
+    "Bilingual glossary, human-readable NodeLink foregrounding, EvidenceStamp plain-language definitions, simplified SiteHeader/SiteFooter/ExportMenu/SearchPalette, and enriched hypotheses index",
+    "pnpm check (including check:contrast and 39/39 vitest files, 415/415 tests), pnpm build (937 pages), and pnpm check:links (0 problems) pass"
+  ],
+  "updated_at": "2026-11-25T22:34:00Z"
+}

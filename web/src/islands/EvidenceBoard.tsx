@@ -24,9 +24,20 @@ import { ExportMenu } from "./ExportMenu.tsx";
 
 const LABELS = {
   it: {
+    loading: "Caricamento della bacheca…",
     loadError: "Impossibile caricare i dati della bacheca.",
     groups: "Famiglie di relazione",
     levels: "Livello di evidenza",
+    moreFilters: "Filtri avanzati",
+    domain: "Dominio / nodo",
+    relationType: "Tipo di relazione",
+    period: "Periodo",
+    status: "Stato evidenza",
+    statusAll: "Tutte",
+    statusCaveat: "Con avvertenza",
+    statusNoCaveat: "Senza avvertenza",
+    provenance: "Provenienza / ID",
+    knowledgeDate: "Data conoscenza",
     kinds: "Tipi di scheda",
     visible: (n: number, e: number) => `${n} schede, ${e} fili visibili`,
     wheelHint: (mod: string) =>
@@ -70,9 +81,20 @@ const LABELS = {
     allDetail: "Comprese le famiglie escluse dai filtri",
   },
   en: {
+    loading: "Loading the board…",
     loadError: "Unable to load the board data.",
     groups: "Relationship families",
     levels: "Evidence level",
+    moreFilters: "Advanced filters",
+    domain: "Domain / node",
+    relationType: "Relation type",
+    period: "Period",
+    status: "Evidentiary status",
+    statusAll: "All",
+    statusCaveat: "With caveat",
+    statusNoCaveat: "Without caveat",
+    provenance: "Provenance / ID",
+    knowledgeDate: "Knowledge date",
     kinds: "Card types",
     visible: (n: number, e: number) => `${n} cards, ${e} visible threads`,
     wheelHint: (mod: string) => `${mod} + wheel or pinch to zoom; drag the background to move`,
@@ -149,6 +171,154 @@ type Edge = {
 type Detail = "pin" | "compact" | "full";
 
 const LEVELS = ["E1", "E2", "E3", "E4"] as const;
+
+export type BoardFilters = {
+  groups: string[];
+  levels: string[];
+  domain: string;
+  relationType: string;
+  period: string;
+  status: "" | "with_caveat" | "no_caveat";
+  provenance: string;
+  knowledgeDate: string;
+  focus: string | null;
+  isolated: boolean;
+  view: "board" | "list";
+};
+
+function sameSet(a: string[], b: string[]): boolean {
+  if (a.length !== b.length) return false;
+  const setA = new Set(a);
+  return b.every((item) => setA.has(item));
+}
+
+/** Parse URL query params into board filters, keeping ?focus= compatibility. */
+export function parseBoardFilters(
+  search: string,
+  defaultGroups: string[],
+  defaultLevels: string[],
+): BoardFilters {
+  const p = new URLSearchParams(search);
+  const rawGroups = p.get("famiglie") ?? p.get("groups");
+  const rawLevels = p.get("livelli") ?? p.get("levels");
+  const rawStatus = p.get("stato") ?? p.get("status") ?? "";
+  const status = rawStatus === "with_caveat" || rawStatus === "no_caveat" ? rawStatus : "";
+  return {
+    groups: rawGroups ? rawGroups.split(",").filter(Boolean) : [...defaultGroups],
+    levels: rawLevels ? rawLevels.split(",").filter(Boolean) : [...defaultLevels],
+    domain: p.get("dominio") ?? p.get("domain") ?? "",
+    relationType: p.get("relazione") ?? p.get("relation") ?? "",
+    period: p.get("periodo") ?? p.get("period") ?? "",
+    status,
+    provenance: p.get("provenienza") ?? p.get("provenance") ?? "",
+    knowledgeDate: p.get("conoscenza") ?? p.get("knowledge") ?? "",
+    focus: p.get("focus"),
+    isolated: p.get("isola") === "1" || p.get("isolated") === "1",
+    view: p.get("vista") === "list" || p.get("view") === "list" ? "list" : "board",
+  };
+}
+
+/** Serialize only non-default board filters into a shareable query string. */
+export function serializeBoardFilters(
+  f: BoardFilters,
+  defaultGroups: string[],
+  defaultLevels: string[],
+): string {
+  const p = new URLSearchParams();
+  if (!sameSet(f.groups, defaultGroups)) p.set("famiglie", [...f.groups].sort().join(","));
+  if (!sameSet(f.levels, defaultLevels)) p.set("livelli", [...f.levels].sort().join(","));
+  if (f.domain.trim()) p.set("dominio", f.domain.trim());
+  if (f.relationType.trim()) p.set("relazione", f.relationType.trim());
+  if (f.period.trim()) p.set("periodo", f.period.trim());
+  if (f.status) p.set("stato", f.status);
+  if (f.provenance.trim()) p.set("provenienza", f.provenance.trim());
+  if (f.knowledgeDate.trim()) p.set("conoscenza", f.knowledgeDate.trim());
+  if (f.focus) p.set("focus", f.focus);
+  if (f.isolated) p.set("isola", "1");
+  if (f.view === "list") p.set("vista", "list");
+  const s = p.toString();
+  return s ? `?${s}` : "";
+}
+
+/** Filter edges by all board filter dimensions. */
+export function filterBoardEdges<
+  T extends {
+    id: string;
+    source: string;
+    target: string;
+    group: string;
+    level: string;
+    label?: string;
+    literal?: string;
+    caveat?: LocalizedText | null;
+  },
+>(edges: T[], f: BoardFilters, hypotheses: boolean, nodeLabels?: Map<string, string>): T[] {
+  const groupSet = new Set(f.groups);
+  const levelSet = new Set(f.levels);
+  const dom = f.domain.trim().toLowerCase();
+  const rel = f.relationType.trim().toLowerCase();
+  const prov = f.provenance.trim().toLowerCase();
+  const per = f.period.trim().toLowerCase();
+  const kd = f.knowledgeDate.trim().toLowerCase();
+  return edges.filter((e) => {
+    if (!hypotheses && (!groupSet.has(e.group) || !levelSet.has(e.level))) return false;
+    if (f.isolated && f.focus && e.source !== f.focus && e.target !== f.focus) return false;
+    if (f.status === "with_caveat" && !e.caveat) return false;
+    if (f.status === "no_caveat" && e.caveat) return false;
+    if (rel && !`${e.label ?? ""} ${e.literal ?? ""} ${e.group}`.toLowerCase().includes(rel))
+      return false;
+    if (dom) {
+      const sLabel = nodeLabels?.get(e.source) ?? "";
+      const tLabel = nodeLabels?.get(e.target) ?? "";
+      if (!`${e.source} ${e.target} ${sLabel} ${tLabel}`.toLowerCase().includes(dom)) return false;
+    }
+    if (prov && !`${e.id} ${e.caveat?.it ?? ""} ${e.caveat?.en ?? ""}`.toLowerCase().includes(prov))
+      return false;
+    if (per && !`${e.id} ${e.caveat?.it ?? ""} ${e.caveat?.en ?? ""}`.toLowerCase().includes(per))
+      return false;
+    if (kd && !`${e.id} ${e.caveat?.it ?? ""} ${e.caveat?.en ?? ""}`.toLowerCase().includes(kd))
+      return false;
+    return true;
+  });
+}
+
+/** Keyboard arrow navigation along incident threads from the currently selected card. */
+export function nextThreadNeighbor(
+  currentId: string,
+  edges: { source: string; target: string }[],
+  direction: "next" | "prev",
+): string | null {
+  const neighbors: string[] = [];
+  const seen = new Set<string>();
+  for (const e of edges) {
+    const other = e.source === currentId ? e.target : e.target === currentId ? e.source : null;
+    if (other && !seen.has(other)) {
+      seen.add(other);
+      neighbors.push(other);
+    }
+  }
+  if (neighbors.length === 0) return null;
+  return direction === "next" ? (neighbors[0] ?? null) : (neighbors[neighbors.length - 1] ?? null);
+}
+
+/** Build an accessible ARIA live announcement string for filter or selection changes. */
+export function boardAriaAnnouncement(
+  lang: Language,
+  counts: { nodes: number; edges: number },
+  selectedLabel?: string | null,
+  selectedLinks?: number,
+): string {
+  const base =
+    lang === "it"
+      ? `${counts.nodes} schede, ${counts.edges} fili visibili.`
+      : `${counts.nodes} cards, ${counts.edges} visible threads.`;
+  if (!selectedLabel) return base;
+  const sel =
+    lang === "it"
+      ? ` Selezionato ${selectedLabel}, ${selectedLinks ?? 0} collegamenti visibili.`
+      : ` Selected ${selectedLabel}, ${selectedLinks ?? 0} visible links.`;
+  return `${base}${sel}`;
+}
 
 const DEFAULT_SIZE: [number, number] = [158, 78];
 const SIZE: Partial<Record<Kind, [number, number]>> = {
@@ -364,17 +534,27 @@ export default function EvidenceBoard(props: Props) {
   const viewportRef = useRef<SVGGElement>(null);
   const zoomRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
   const scaleRef = useRef(1);
+  const defaultGroupList = useMemo(
+    () => Object.keys(groupLabels).filter((g) => g !== "participation"),
+    [groupLabels],
+  );
+  const defaultLevelList = useMemo(() => [...LEVELS], []);
   const [data, setData] = useState<{ nodes: GraphNode[]; edges: Edge[] } | null>(null);
   const [failed, setFailed] = useState(false);
-  const [groups, setGroups] = useState(
-    () => new Set(Object.keys(groupLabels).filter((g) => g !== "participation")),
-  );
-  const [levels, setLevels] = useState<Set<string>>(() => new Set(LEVELS));
+  const [groups, setGroups] = useState(() => new Set(defaultGroupList));
+  const [levels, setLevels] = useState<Set<string>>(() => new Set(defaultLevelList));
+  const [domain, setDomain] = useState("");
+  const [relationType, setRelationType] = useState("");
+  const [period, setPeriod] = useState("");
+  const [status, setStatus] = useState<"" | "with_caveat" | "no_caveat">("");
+  const [provenance, setProvenance] = useState("");
+  const [knowledgeDate, setKnowledgeDate] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
   const [isolated, setIsolated] = useState(false);
   const [view, setView] = useState<"board" | "list">("board");
   const [detail, setDetail] = useState<Detail>("compact");
   const [moved, setMoved] = useState<Record<string, [number, number]>>({});
+  const urlInitialized = useRef(false);
   const drag = useRef<{
     id: string;
     x: number;
@@ -421,21 +601,109 @@ export default function EvidenceBoard(props: Props) {
   }, [dataUrl]);
 
   const nodeById = useMemo(() => new Map((data?.nodes ?? []).map((n) => [n.id, n])), [data]);
+  const nodeLabelsMap = useMemo(
+    () => new Map((data?.nodes ?? []).map((n) => [n.id, localized(n.label, lang)])),
+    [data, lang],
+  );
   const position = useCallback(
     (id: string): [number, number] => moved[id] ?? layout[id] ?? [0, 0],
     [moved, layout],
   );
 
+  // Sync URL filters in on mount and out on state changes.
+  useEffect(() => {
+    if (urlInitialized.current) return;
+    urlInitialized.current = true;
+    const parsed = parseBoardFilters(window.location.search, defaultGroupList, defaultLevelList);
+    setGroups(new Set(parsed.groups));
+    setLevels(new Set(parsed.levels));
+    setDomain(parsed.domain);
+    setRelationType(parsed.relationType);
+    setPeriod(parsed.period);
+    setStatus(parsed.status);
+    setProvenance(parsed.provenance);
+    setKnowledgeDate(parsed.knowledgeDate);
+    if (parsed.focus) setSelected(parsed.focus);
+    setIsolated(parsed.isolated);
+    setView(parsed.view);
+  }, [defaultGroupList, defaultLevelList]);
+
+  useEffect(() => {
+    const query = serializeBoardFilters(
+      {
+        groups: [...groups],
+        levels: [...levels],
+        domain,
+        relationType,
+        period,
+        status,
+        provenance,
+        knowledgeDate,
+        focus: selected,
+        isolated,
+        view,
+      },
+      defaultGroupList,
+      defaultLevelList,
+    );
+    const next = `${window.location.pathname}${query}${window.location.hash}`;
+    if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+      window.history.replaceState(null, "", next);
+    }
+  }, [
+    groups,
+    levels,
+    domain,
+    relationType,
+    period,
+    status,
+    provenance,
+    knowledgeDate,
+    selected,
+    isolated,
+    view,
+    defaultGroupList,
+    defaultLevelList,
+  ]);
+
   const visible = useMemo(() => {
     if (!data) return { nodes: [] as GraphNode[], edges: [] as Edge[] };
-    let edges = hypotheses
-      ? data.edges
-      : data.edges.filter((e) => groups.has(e.group) && levels.has(e.level));
-    if (isolated && selected)
-      edges = edges.filter((e) => e.source === selected || e.target === selected);
+    const edges = filterBoardEdges(
+      data.edges,
+      {
+        groups: [...groups],
+        levels: [...levels],
+        domain,
+        relationType,
+        period,
+        status,
+        provenance,
+        knowledgeDate,
+        focus: selected,
+        isolated,
+        view,
+      },
+      hypotheses,
+      nodeLabelsMap,
+    );
     const ids = new Set(edges.flatMap((e) => [e.source, e.target]));
     return { nodes: data.nodes.filter((n) => ids.has(n.id)), edges };
-  }, [data, groups, levels, hypotheses, isolated, selected]);
+  }, [
+    data,
+    groups,
+    levels,
+    domain,
+    relationType,
+    period,
+    status,
+    provenance,
+    knowledgeDate,
+    hypotheses,
+    isolated,
+    selected,
+    view,
+    nodeLabelsMap,
+  ]);
 
   const neighbours = useMemo(() => {
     if (!selected) return null;
@@ -693,8 +961,30 @@ export default function EvidenceBoard(props: Props) {
     return [x, y - sizeOf(kind)[1] / 2 + 4];
   };
 
+  const resetFilters = () => {
+    setGroups(new Set(defaultGroupList));
+    setLevels(new Set(defaultLevelList));
+    setDomain("");
+    setRelationType("");
+    setPeriod("");
+    setStatus("");
+    setProvenance("");
+    setKnowledgeDate("");
+    setIsolated(false);
+  };
+
+  const announcement = boardAriaAnnouncement(
+    lang,
+    { nodes: visible.nodes.length, edges: visible.edges.length },
+    selectedNode ? localized(selectedNode.label, lang) : null,
+    selectedEdges.length,
+  );
+
   return (
     <div className={`board-shell${hypotheses ? " is-hypotheses" : ""}`}>
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {data ? announcement : t.loading}
+      </div>
       <div className="board-toolbar">
         {!hypotheses && (
           <>
@@ -753,6 +1043,77 @@ export default function EvidenceBoard(props: Props) {
             </fieldset>
           </>
         )}
+        <details style={{ gridColumn: "1 / -1" }}>
+          <summary className="kicker">{t.moreFilters}</summary>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+              gap: "var(--space-3)",
+              paddingTop: "var(--space-2)",
+            }}
+          >
+            <label style={{ display: "grid", gap: "0.25rem" }}>
+              <span className="kicker">{t.domain}</span>
+              <input
+                type="search"
+                value={domain}
+                onChange={(e) => setDomain(e.target.value)}
+                style={{ height: "2.25rem", padding: "0 0.5rem", fontSize: "var(--text-sm)" }}
+              />
+            </label>
+            <label style={{ display: "grid", gap: "0.25rem" }}>
+              <span className="kicker">{t.relationType}</span>
+              <input
+                type="search"
+                value={relationType}
+                onChange={(e) => setRelationType(e.target.value)}
+                style={{ height: "2.25rem", padding: "0 0.5rem", fontSize: "var(--text-sm)" }}
+              />
+            </label>
+            <label style={{ display: "grid", gap: "0.25rem" }}>
+              <span className="kicker">{t.period}</span>
+              <input
+                type="search"
+                value={period}
+                onChange={(e) => setPeriod(e.target.value)}
+                placeholder="YYYY"
+                style={{ height: "2.25rem", padding: "0 0.5rem", fontSize: "var(--text-sm)" }}
+              />
+            </label>
+            <label style={{ display: "grid", gap: "0.25rem" }}>
+              <span className="kicker">{t.status}</span>
+              <select
+                value={status}
+                onChange={(e) => setStatus(e.target.value as "" | "with_caveat" | "no_caveat")}
+                style={{ height: "2.25rem", padding: "0 0.5rem", fontSize: "var(--text-sm)" }}
+              >
+                <option value="">{t.statusAll}</option>
+                <option value="with_caveat">{t.statusCaveat}</option>
+                <option value="no_caveat">{t.statusNoCaveat}</option>
+              </select>
+            </label>
+            <label style={{ display: "grid", gap: "0.25rem" }}>
+              <span className="kicker">{t.provenance}</span>
+              <input
+                type="search"
+                value={provenance}
+                onChange={(e) => setProvenance(e.target.value)}
+                style={{ height: "2.25rem", padding: "0 0.5rem", fontSize: "var(--text-sm)" }}
+              />
+            </label>
+            <label style={{ display: "grid", gap: "0.25rem" }}>
+              <span className="kicker">{t.knowledgeDate}</span>
+              <input
+                type="search"
+                value={knowledgeDate}
+                onChange={(e) => setKnowledgeDate(e.target.value)}
+                placeholder="YYYY-MM-DD"
+                style={{ height: "2.25rem", padding: "0 0.5rem", fontSize: "var(--text-sm)" }}
+              />
+            </label>
+          </div>
+        </details>
         <div className="board-actions">
           <p className="meta" aria-live="polite">
             {t.visible(visible.nodes.length, visible.edges.length)}
@@ -813,18 +1174,15 @@ export default function EvidenceBoard(props: Props) {
               </svg>
             </button>
           </div>
+          {!data && !failed ? (
+            <div className="board-empty" role="status">
+              <p>{t.loading}</p>
+            </div>
+          ) : null}
           {visible.edges.length === 0 && data ? (
             <div className="board-empty">
               <p>{t.empty}</p>
-              <button
-                type="button"
-                className="btn"
-                onClick={() => {
-                  setGroups(new Set(Object.keys(groupLabels).filter((g) => g !== "participation")));
-                  setLevels(new Set(LEVELS));
-                  setIsolated(false);
-                }}
-              >
+              <button type="button" className="btn" onClick={resetFilters}>
                 {t.reset}
               </button>
             </div>
@@ -856,7 +1214,12 @@ export default function EvidenceBoard(props: Props) {
                     Math.PI;
                   const width = detail === "pin" ? style.width * 0.8 : style.width;
                   return (
-                    <g key={edge.id} className={`thread${dim ? " is-dim" : ""}`}>
+                    <g
+                      key={edge.id}
+                      className={`thread${dim ? " is-dim" : ""}`}
+                      data-group={edge.group}
+                      data-level={edge.level}
+                    >
                       <title>{`${nameOf(edge.source)} → ${edge.label} → ${nameOf(edge.target)} (${edge.id}, ${edge.level})${edge.caveat ? ` · ${lang === "it" ? "Avvertenza" : "Caveat"}: ${pick(edge.caveat, lang).value}` : ""}`}</title>
                       <path
                         d={d}
@@ -942,6 +1305,7 @@ export default function EvidenceBoard(props: Props) {
                     // biome-ignore lint/a11y/useSemanticElements: an SVG group cannot be a <button>; it gets the button role and keyboard handling.
                     <g
                       key={node.id}
+                      data-node-id={node.id}
                       transform={`translate(${x} ${y})`}
                       className={`board-card${dim ? " is-dim" : ""}${isSelected ? " is-selected" : ""}`}
                       role="button"
@@ -958,6 +1322,24 @@ export default function EvidenceBoard(props: Props) {
                         } else if (e.key === "Escape") {
                           setSelected(null);
                           setIsolated(false);
+                        } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                          e.preventDefault();
+                          const nextId = nextThreadNeighbor(node.id, visible.edges, "next");
+                          if (nextId) {
+                            setSelected(nextId);
+                            svgRef.current
+                              ?.querySelector<SVGGElement>(`[data-node-id="${nextId}"]`)
+                              ?.focus();
+                          }
+                        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                          e.preventDefault();
+                          const prevId = nextThreadNeighbor(node.id, visible.edges, "prev");
+                          if (prevId) {
+                            setSelected(prevId);
+                            svgRef.current
+                              ?.querySelector<SVGGElement>(`[data-node-id="${prevId}"]`)
+                              ?.focus();
+                          }
                         }
                       }}
                     >
@@ -1019,6 +1401,56 @@ export default function EvidenceBoard(props: Props) {
               </g>
             </g>
           </svg>
+
+          {selectedNode && (
+            <section
+              className="board-context-card card"
+              aria-label={localized(selectedNode.label, lang)}
+              style={{
+                position: "absolute",
+                left: "0.75rem",
+                bottom: "0.75rem",
+                zIndex: 3,
+                maxWidth: "min(20rem, calc(100% - 1.5rem))",
+                background: "var(--card)",
+                color: "var(--card-ink)",
+                border: "1px solid var(--rule-strong)",
+                boxShadow: "var(--shadow-card)",
+                padding: "var(--space-3)",
+              }}
+            >
+              <p className="kicker" style={{ margin: 0, color: "var(--ink-3)" }}>
+                {kindLabels[selectedNode.kind]} · {selectedNode.id}
+              </p>
+              <p
+                style={{
+                  margin: "0.25rem 0 0.4rem",
+                  fontFamily: "var(--font-serif)",
+                  fontWeight: 600,
+                }}
+              >
+                {localized(selectedNode.label, lang)}
+              </p>
+              <p className="meta" style={{ margin: "0 0 0.5rem" }}>
+                {t.links(selectedEdges.length)}
+              </p>
+              {selectedEdges[0]?.caveat && (
+                <BoardCaveat caveat={selectedEdges[0].caveat} lang={lang} />
+              )}
+              <div className="flex flex-wrap gap-2 mt-2">
+                <a className="btn" href={pageOf(selectedNode.id)}>
+                  {t.open}
+                </a>
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  onClick={() => setIsolated((v) => !v)}
+                >
+                  {isolated ? t.release : t.isolate}
+                </button>
+              </div>
+            </section>
+          )}
 
           {selectedNode && (
             <aside className="case-file" aria-label={t.caseFile}>
@@ -1109,50 +1541,59 @@ export default function EvidenceBoard(props: Props) {
         </div>
       ) : (
         <div className="table-wrap board-list">
-          <table className="stack">
-            <thead>
-              <tr>
-                <th scope="col">{hypotheses ? t.hypothesis : t.id}</th>
-                <th scope="col">{t.subject}</th>
-                <th scope="col">{t.predicate}</th>
-                <th scope="col">{t.object}</th>
-                <th scope="col">{hypotheses ? t.priority : t.group}</th>
-                <th scope="col">{t.level}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {visible.edges.map((e) => (
-                <tr key={e.id}>
-                  <td data-label={hypotheses ? t.hypothesis : t.id} className="mono">
-                    {e.id}
-                  </td>
-                  <td data-label={t.subject}>
-                    <a href={pageOf(e.source)}>{nameOf(e.source)}</a>
-                  </td>
-                  <td data-label={t.predicate}>
-                    <span lang="it">{e.label}</span>
-                    <BoardCaveat caveat={e.caveat} lang={lang} />
-                  </td>
-                  <td data-label={t.object}>
-                    <a href={pageOf(e.target)}>{nameOf(e.target)}</a>
-                  </td>
-                  <td data-label={hypotheses ? t.priority : t.group}>
-                    {hypotheses
-                      ? (props.priorityLabels?.[e.priority ?? ""] ?? e.priority)
-                      : groupLabels[e.group]}
-                  </td>
-                  <td data-label={t.level}>
-                    <span className="stamp" data-level={e.level}>
-                      <svg className="icon" aria-hidden="true">
-                        <use href={`${sprite}#${EVIDENCE_ICON[e.level]}`} />
-                      </svg>
-                      {e.level}
-                    </span>
-                  </td>
+          {visible.edges.length === 0 && data ? (
+            <div style={{ padding: "var(--space-5)", textAlign: "center" }}>
+              <p>{t.empty}</p>
+              <button type="button" className="btn" onClick={resetFilters}>
+                {t.reset}
+              </button>
+            </div>
+          ) : (
+            <table className="stack">
+              <thead>
+                <tr>
+                  <th scope="col">{hypotheses ? t.hypothesis : t.id}</th>
+                  <th scope="col">{t.subject}</th>
+                  <th scope="col">{t.predicate}</th>
+                  <th scope="col">{t.object}</th>
+                  <th scope="col">{hypotheses ? t.priority : t.group}</th>
+                  <th scope="col">{t.level}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {visible.edges.map((e) => (
+                  <tr key={e.id}>
+                    <td data-label={hypotheses ? t.hypothesis : t.id} className="mono">
+                      {e.id}
+                    </td>
+                    <td data-label={t.subject}>
+                      <a href={pageOf(e.source)}>{nameOf(e.source)}</a>
+                    </td>
+                    <td data-label={t.predicate}>
+                      <span lang="it">{e.label}</span>
+                      <BoardCaveat caveat={e.caveat} lang={lang} />
+                    </td>
+                    <td data-label={t.object}>
+                      <a href={pageOf(e.target)}>{nameOf(e.target)}</a>
+                    </td>
+                    <td data-label={hypotheses ? t.priority : t.group}>
+                      {hypotheses
+                        ? (props.priorityLabels?.[e.priority ?? ""] ?? e.priority)
+                        : groupLabels[e.group]}
+                    </td>
+                    <td data-label={t.level}>
+                      <span className="stamp" data-level={e.level}>
+                        <svg className="icon" aria-hidden="true">
+                          <use href={`${sprite}#${EVIDENCE_ICON[e.level]}`} />
+                        </svg>
+                        {e.level}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       )}
 

@@ -1,0 +1,26 @@
+# Our Enemies Monitor
+
+> Evidence-based OSINT knowledge base on foreign interference, hybrid threats, geopolitical pressure, and strategic dependencies affecting Europe.
+
+## Evidentiary Caveats (Read Before Citing)
+
+- **Canonical language:** Italian (`it`) is canonical; English (`en`) translations may be machine-translated and unreviewed.
+- **Public projection only:** Withheld or restricted records are excluded from all pages, exports, feeds, and sitemaps.
+- **Evidence levels (E1–E5):** Levels classify the kind of evidentiary basis (E1 judicial/official, E2 institutional attribution, E3 journalistic/OSINT, E4 technical/corporate, E5 open verification hypothesis), not a ranking.
+- **Hypotheses (E5) are not facts:** Hypothesis pages (`H##`) record open verification questions and must never be cited as established relationships.
+- **Provisional imports:** Records marked `imported_unreviewed` are provisional baseline entries, not independently verified facts.
+- **License:** CC0-1.0 for project-original data; cited third-party sources retain their own rights.
+
+## Key Navigation & Machine-Readable Endpoints
+
+- [Observatory (IT)](https://amattis96.github.io/our-enemies-monitor/)
+- [Observatory (EN)](https://amattis96.github.io/our-enemies-monitor/en/)
+- [Timeline (IT)](https://amattis96.github.io/our-enemies-monitor/timeline/)
+- [Entities (IT)](https://amattis96.github.io/our-enemies-monitor/entities/)
+- [Hypotheses / E5 (IT)](https://amattis96.github.io/our-enemies-monitor/hypotheses/)
+- [Sources (IT)](https://amattis96.github.io/our-enemies-monitor/sources/)
+- [Methodology](https://amattis96.github.io/our-enemies-monitor/methodology/)
+- [Data & Exports Index](https://amattis96.github.io/our-enemies-monitor/data/v1/index.json)
+- [Articles Index](https://amattis96.github.io/our-enemies-monitor/data/v1/articles.json)
+- [Changes Feed](https://amattis96.github.io/our-enemies-monitor/data/v1/changes.feed.json)
+- [Citation Metadata (CITATION.cff)](https://github.com/amattis96/our-enemies-monitor/blob/main/CITATION.cff)

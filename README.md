@@ -10,7 +10,7 @@ The project is being designed as a **multilingual, continuously maintained knowl
 
 ## Status
 
-**Phase: M1–M7 implemented.** Four ChatGPT tasks A/B/C/D handle daily OSINT, investigations, review and controlled merge. Both human-reviewed and separately labelled AI-verified articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main. Deterministic ingest staging may generate a candidate data-only branch, but a separate PR, Task C/D review and an appropriate public review status are still required before any canonical record appears on the site.
+**Phase: M1–M7 implemented; M8–M13 investigative engine code delivered, mostly awaiting acceptance** (only PK-00, 03, 04, 05, 15A and 21 are completed; the rest waits on blocking packages and owner decisions, tracked in `docs/roadmap/progress/`). Four ChatGPT tasks A/B/C/D handle daily OSINT, investigations, review and controlled merge. Both human-reviewed and separately labelled AI-verified articles are published on the site; incremental and thematic documentary sources are preserved under `sources/` and listed on the homepage and source archive. **Source acquisition does not imply ingestion into canonical `data/`**: the public timeline and graphs remain at their last reviewed canonical baseline until proposals are imported and approved. GitHub Actions validates and deploys on main. Deterministic ingest staging may generate a candidate data-only branch, but a separate PR, Task C/D review and an appropriate public review status are still required before any canonical record appears on the site.
 
 **Live site:** https://amattis96.github.io/our-enemies-monitor/ (Italian) · https://amattis96.github.io/our-enemies-monitor/en/ (English, machine-translated, not yet reviewed).
 
@@ -25,7 +25,7 @@ The initial research corpus has a cutoff of **21 October 2026** and covers **200
 | Open investigative hypotheses | 22 |
 | Additional externally verified records pending timeline integration | 4 |
 
-**Update of 11 November 2026 (Fonte_09):** a first incremental source adds 30 candidate events and 50 web references (22 October–11 November 2026), 10 new hypotheses (H23–H32), 18 entities and 14 sourced relationships. They are pending timeline integration and editorial review, are not part of the baseline counts above, and the 30 items are not 30 independent attacks. Current totals in `data/`: 181 events, 458 relationships, 32 hypotheses, 106 sources.
+**Update of 11 November 2026 (Fonte_09):** a first incremental source adds 30 candidate events and 50 web references (22 October–11 November 2026), 10 new hypotheses (H23–H32), 18 entities and 14 sourced relationships. They are pending timeline integration and editorial review, are not part of the baseline counts above, and the 30 items are not 30 independent attacks. Current totals in `data/`: 183 events (147 timeline, 36 pending), 220 entities, 458 relationships (291 event participation, 167 direct), 32 hypotheses, 113 sources, 14 exposures.
 
 The graph includes contextual and event-participation edges. **Not every edge represents financing, operational control or attribution.** These counts describe the structure of the current research corpus and must not be used as a quantitative measure of hostility.
 

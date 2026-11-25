@@ -20,6 +20,7 @@ import { getModel } from "../../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
 const model = getModel();
 const { entities, hypotheses, sources } = model.dataset;
 const groups = ENTITY_KINDS.map((kind) => ({
@@ -28,6 +29,7 @@ const groups = ENTITY_KINDS.map((kind) => ({
     .filter((e) => e.kind === kind)
     .sort((a, b) => textOf(a.name, lang).localeCompare(textOf(b.name, lang), lang)),
 }));
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 ---
 
 <Base title={ui(lang).navEntities} lang={lang}>
@@ -38,50 +40,161 @@ const groups = ENTITY_KINDS.map((kind) => ({
       label={ui(lang).exportLabel}
       groups={[
         { title: ui(lang).exportDataset, items: collectionExports("entities", ui(lang).navEntities, lang) },
-        { title: choose(lang, "Relazioni fra le entità", "Relationships between entities"), items: collectionExports("relationships", choose(lang, "Tutte le relazioni pubblicate", "All published relationships"), lang) },
+        { title: c("Relazioni fra le entità", "Relationships between entities"), items: collectionExports("relationships", c("Tutte le relazioni pubblicate", "All published relationships"), lang) },
       ]}
     />
   </div>
   <p class="lede">
-    {choose(
-      lang,
+    {c(
       "Il grafo documenta anche alleati, partner commerciali, regolatori e soggetti colpiti: la presenza in questo elenco non implica illecito né intento ostile.",
       "The graph also documents allies, trading partners, regulators and targeted parties: appearing in this list implies neither wrongdoing nor hostile intent.",
     )}
   </p>
-  <nav aria-label={choose(lang, "Tipi di entità", "Entity types")} class="flex flex-wrap gap-2 my-6">
+
+  <div class="entity-controls my-5" data-entity-controls>
+    <div class="entity-search-row">
+      <label class="entity-search-field">
+        <span class="kicker">{c("Filtra entità", "Filter entities")}</span>
+        <input type="search" id="entity-filter-q" placeholder={c("Nome o ID…", "Name or ID…")} />
+      </label>
+      <div class="seg" role="group" aria-label={c("Ordina", "Sort")}>
+        <button type="button" id="sort-az" aria-pressed="true">A–Z</button>
+        <button type="button" id="sort-links" aria-pressed="false">{c("Più collegamenti", "Most links")}</button>
+      </div>
+    </div>
+    <div class="entity-alpha" role="group" aria-label={c("Filtro alfabetico", "Alphabet bar")}>
+      <button type="button" class="chip" data-alpha="" aria-pressed="true">{c("Tutte", "All")}</button>
+      {alphabet.map((letter) => (
+        <button type="button" class="chip" data-alpha={letter} aria-pressed="false">{letter}</button>
+      ))}
+    </div>
+  </div>
+
+  <nav aria-label={c("Tipi di entità", "Entity types")} class="flex flex-wrap gap-2 my-6">
     {
       groups.map((g) => (
         <a class="chip" href={`#${g.kind}`}>
           <Icon name={KIND_ICON[g.kind]} />
-          {ENTITY_KIND_PLURALS[g.kind][lang]} <span class="mono text-muted">{g.entities.length}</span>
+          {ENTITY_KIND_PLURALS[g.kind][lang]} <span class="mono text-muted" data-group-count={g.kind}>{g.entities.length}</span>
         </a>
       ))
     }
   </nav>
   {
     groups.map((g) => (
-      <section id={g.kind}>
+      <section id={g.kind} data-entity-group={g.kind}>
         <h2 class="section-title flex items-center gap-2">
           <Icon name={KIND_ICON[g.kind]} />
           {ENTITY_KIND_PLURALS[g.kind][lang]}
         </h2>
         <ul class="entity-list">
-          {g.entities.map((e) => (
-            <li>
-              <a href={href(`entities/${e.id}/`, lang)}>
-                <span><T text={e.name} lang={lang} /></span>
-                <span class="mono text-xs text-muted">{e.id} · {model.relationshipsOf(e.id).length}</span>
-              </a>
-            </li>
-          ))}
+          {g.entities.map((e) => {
+            const label = textOf(e.name, lang);
+            const relCount = model.relationshipsOf(e.id).length;
+            return (
+              <li data-name={label.toLowerCase()} data-id={e.id.toLowerCase()} data-links={String(relCount)} data-initial={label.slice(0, 1).toUpperCase()}>
+                <a href={href(`entities/${e.id}/`, lang)}>
+                  <span><T text={e.name} lang={lang} /></span>
+                  <span class="mono text-xs text-muted">{e.id} · {relCount}</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </section>
     ))
   }
 </Base>
 
+<script is:inline>
+  (() => {
+    const qInput = document.getElementById("entity-filter-q");
+    const sortAz = document.getElementById("sort-az");
+    const sortLinks = document.getElementById("sort-links");
+    const alphaBtns = Array.from(document.querySelectorAll("[data-alpha]"));
+    const sections = Array.from(document.querySelectorAll("[data-entity-group]"));
+    let activeAlpha = "";
+    let sortMode = "az";
+
+    const apply = () => {
+      const q = (qInput?.value || "").trim().toLowerCase();
+      for (const sec of sections) {
+        const list = sec.querySelector(".entity-list");
+        if (!list) continue;
+        const items = Array.from(list.children);
+        items.sort((a, b) => {
+          if (sortMode === "links") {
+            return Number(b.getAttribute("data-links") || 0) - Number(a.getAttribute("data-links") || 0);
+          }
+          return (a.getAttribute("data-name") || "").localeCompare(b.getAttribute("data-name") || "");
+        });
+        let visibleCount = 0;
+        for (const li of items) {
+          list.appendChild(li);
+          const name = li.getAttribute("data-name") || "";
+          const id = li.getAttribute("data-id") || "";
+          const initial = li.getAttribute("data-initial") || "";
+          const matchQ = !q || name.includes(q) || id.includes(q);
+          const matchAlpha = !activeAlpha || initial === activeAlpha;
+          const show = matchQ && matchAlpha;
+          li.hidden = !show;
+          if (show) visibleCount++;
+        }
+        sec.hidden = visibleCount === 0;
+        const kind = sec.getAttribute("data-entity-group");
+        const badge = document.querySelector(`[data-group-count="${kind}"]`);
+        if (badge) badge.textContent = String(visibleCount);
+      }
+    };
+
+    qInput?.addEventListener("input", apply);
+    sortAz?.addEventListener("click", () => {
+      sortMode = "az";
+      sortAz.setAttribute("aria-pressed", "true");
+      sortLinks?.setAttribute("aria-pressed", "false");
+      apply();
+    });
+    sortLinks?.addEventListener("click", () => {
+      sortMode = "links";
+      sortLinks.setAttribute("aria-pressed", "true");
+      sortAz?.setAttribute("aria-pressed", "false");
+      apply();
+    });
+    for (const btn of alphaBtns) {
+      btn.addEventListener("click", () => {
+        activeAlpha = btn.getAttribute("data-alpha") || "";
+        for (const b of alphaBtns) b.setAttribute("aria-pressed", String(b === btn));
+        apply();
+      });
+    }
+  })();
+</script>
+
 <style>
+  .entity-controls {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .entity-search-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: end;
+  }
+  .entity-search-field {
+    display: grid;
+    gap: 0.25rem;
+    flex: 1 1 16rem;
+  }
+  .entity-search-field input {
+    height: 2.5rem;
+    padding: 0 0.65rem;
+  }
+  .entity-alpha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
   .entity-list {
     display: grid;
     gap: 0 var(--space-5);

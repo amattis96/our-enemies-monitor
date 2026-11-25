@@ -1,0 +1,24 @@
+{
+  "id": "PK-28",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented hybrid lexical/semantic search index, content hashing, and evaluation harness in src/search/hybrid.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/knowledge-expansion.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Hybrid search indexing, query scoring, and lexical comparison verified in test/knowledge-expansion.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

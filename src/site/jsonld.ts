@@ -1,4 +1,4 @@
-import type { Article, Language } from "../model/index.ts";
+import type { Article, Entity, Event, Language, Source } from "../model/index.ts";
 import { pick, textOf } from "./i18n.ts";
 import { REPOSITORY_URL } from "./packages.ts";
 
@@ -96,5 +96,165 @@ export function articleJsonLd({ siteUrl, lang, pageUrl, article }: ArticleInput)
       contentUrl: `${siteUrl}/articles/${article.id}.${body.fallback ? "it" : lang}.md`,
     },
     ...(citations.length > 0 ? { citation: citations } : {}),
+  };
+}
+
+type EventJsonLdInput = {
+  lang: Language;
+  pageUrl: string;
+  event: Event;
+  sources?: readonly Source[];
+};
+
+/** Semantic JSON-LD for a public event record (country-level location only, never invented coordinates). */
+export function eventJsonLd({ lang, pageUrl, event, sources = [] }: EventJsonLdInput) {
+  const title = pick(event.title, lang);
+  const description = textOf(event.description, lang);
+  const citations: { "@type": "CreativeWork"; name: string; url?: string; identifier?: string }[] =
+    sources.map((source) =>
+      source.urls[0]
+        ? { "@type": "CreativeWork", name: textOf(source.title, lang), url: source.urls[0] }
+        : { "@type": "CreativeWork", name: textOf(source.title, lang), identifier: source.id },
+    );
+  if (event.record_type === "dataset_metadata") {
+    return {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      identifier: event.id,
+      name: title.value,
+      description,
+      url: pageUrl,
+      inLanguage: title.fallback ? "it" : lang,
+      dateCreated: event.date.start,
+      creativeWorkStatus: event.review.status,
+      license: CC0_URL,
+      isAccessibleForFree: true,
+    };
+  }
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    identifier: event.id,
+    name: title.value,
+    description,
+    url: pageUrl,
+    inLanguage: title.fallback ? "it" : lang,
+    startDate: event.date.start,
+    ...(event.date.end ? { endDate: event.date.end } : {}),
+    ...(event.places.length > 0
+      ? {
+          location: event.places.map((code) => ({
+            "@type": "Country",
+            name: code,
+          })),
+        }
+      : {}),
+    creativeWorkStatus: event.review.status,
+    ...(event.evidence_level
+      ? {
+          additionalProperty: {
+            "@type": "PropertyValue",
+            name: "evidence_level",
+            value: event.evidence_level,
+          },
+        }
+      : {}),
+    ...(citations.length > 0 ? { citation: citations } : {}),
+    license: CC0_URL,
+    isAccessibleForFree: true,
+  };
+}
+
+type EntityJsonLdInput = {
+  lang: Language;
+  pageUrl: string;
+  entity: Entity;
+};
+
+function schemaTypeForEntityKind(kind: Entity["kind"]): string {
+  switch (kind) {
+    case "person":
+      return "Person";
+    case "state":
+      return "Country";
+    case "organization":
+    case "institution":
+    case "company":
+      return "Organization";
+    case "asset":
+      return "Thing";
+  }
+}
+
+/** Semantic JSON-LD for a public entity (Organization, Person, Country, or Thing). */
+export function entityJsonLd({ lang, pageUrl, entity }: EntityJsonLdInput) {
+  const name = pick(entity.name, lang);
+  const sameAs: string[] = [];
+  if (entity.external_ids?.wikidata_qid) {
+    sameAs.push(`https://www.wikidata.org/wiki/${entity.external_ids.wikidata_qid}`);
+  }
+  if (entity.external_ids?.official_website) {
+    sameAs.push(entity.external_ids.official_website);
+  }
+  const alternateName = entity.aliases?.map((alias) => alias.name) ?? [];
+  return {
+    "@context": "https://schema.org",
+    "@type": schemaTypeForEntityKind(entity.kind),
+    identifier: entity.id,
+    name: name.value,
+    url: pageUrl,
+    inLanguage: name.fallback ? "it" : lang,
+    additionalType: entity.kind,
+    ...(entity.country ? { addressCountry: entity.country } : {}),
+    ...(alternateName.length > 0 ? { alternateName } : {}),
+    ...(sameAs.length > 0 ? { sameAs } : {}),
+    ...(entity.external_ids?.lei ? { leiCode: entity.external_ids.lei } : {}),
+    creativeWorkStatus: entity.review.status,
+  };
+}
+
+export function organizationJsonLd(input: EntityJsonLdInput) {
+  return entityJsonLd(input);
+}
+
+export function personJsonLd(input: EntityJsonLdInput) {
+  return entityJsonLd(input);
+}
+
+type SourceJsonLdInput = {
+  lang: Language;
+  pageUrl: string;
+  source: Source;
+};
+
+/** Semantic JSON-LD for a public source record. */
+export function sourceJsonLd({ lang, pageUrl, source }: SourceJsonLdInput) {
+  const title = pick(source.title, lang);
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    identifier: source.id,
+    name: title.value,
+    url: pageUrl,
+    inLanguage: title.fallback ? "it" : lang,
+    ...(source.publisher
+      ? {
+          publisher: {
+            "@type": "Organization",
+            name: source.publisher,
+          },
+        }
+      : {}),
+    ...(source.urls.length > 0 ? { sameAs: source.urls } : {}),
+    ...(source.origin_type
+      ? {
+          additionalProperty: {
+            "@type": "PropertyValue",
+            name: "origin_type",
+            value: source.origin_type,
+          },
+        }
+      : {}),
+    creativeWorkStatus: source.review.status,
   };
 }

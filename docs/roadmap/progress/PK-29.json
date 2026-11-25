@@ -1,0 +1,24 @@
+{
+  "id": "PK-29",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented strategic dependency engine, supply chain catalog, capacity computation, and propagation candidates in src/dependencies/engine.ts and docs/dependencies/"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/knowledge-expansion.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Supply chain catalog, indicator comparison, and propagation candidates verified in test/knowledge-expansion.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

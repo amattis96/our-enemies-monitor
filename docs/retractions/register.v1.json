@@ -1,0 +1,7 @@
+{
+  "registry": "retractions",
+  "version": 1,
+  "max_staleness_seconds": 86400,
+  "uncontrollable_copies_declaration": "OEM guarantees containment and suspension only across OEM-controlled projections. Immutable releases, external archives, DOIs, downloaded copies, forks, third-party caches, and third-party citations remain outside OEM's direct control and cannot be recalled.",
+  "entries": []
+}

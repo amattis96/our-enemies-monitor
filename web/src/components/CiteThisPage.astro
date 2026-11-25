@@ -1,0 +1,96 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import {
+  formatApaCitation,
+  formatBibtexCitation,
+  snapshotStatusNotice,
+} from "../../../src/site/seo.ts";
+
+interface Props {
+  title: string;
+  url: string;
+  lang: Language;
+  id?: string;
+  generatedAt: string;
+  snapshotId?: string;
+  snapshotStatus?: "accepted" | "published" | "superseded" | "withdrawn" | "deployment_failed";
+  supersededByUrl?: string;
+  doi?: string;
+  authors?: string[];
+}
+
+const {
+  title,
+  url,
+  lang,
+  id,
+  generatedAt,
+  snapshotId,
+  snapshotStatus,
+  supersededByUrl,
+  doi,
+  authors,
+} = Astro.props;
+
+const c = (it: string, en: string) => choose(lang, it, en);
+const citationInput = {
+  title,
+  url,
+  lang,
+  generatedAt,
+  ...(id ? { id } : {}),
+  ...(snapshotId ? { snapshotId } : {}),
+  ...(snapshotStatus ? { snapshotStatus } : {}),
+  ...(supersededByUrl ? { supersededByUrl } : {}),
+  ...(doi ? { doi } : {}),
+  ...(authors ? { authors } : {}),
+};
+const apa = formatApaCitation(citationInput);
+const bibtex = formatBibtexCitation(citationInput);
+const notice = snapshotStatusNotice({
+  lang,
+  ...(snapshotStatus ? { status: snapshotStatus } : {}),
+  ...(supersededByUrl ? { supersededByUrl } : {}),
+});
+---
+
+<section class="cite-this-page mt-6" aria-labelledby={`cite-${id ?? "page"}`}>
+  <h2 id={`cite-${id ?? "page"}`}>{c("Cita questa pagina", "Cite this page")}</h2>
+  <p class="meta">
+    {c("Data di generazione:", "Generated:")}{" "}
+    <time datetime={generatedAt}>{generatedAt.slice(0, 10)}</time>
+    {snapshotId && (
+      <>
+        {" "}· Snapshot <span class="mono">{snapshotId}</span>
+      </>
+    )}
+    {" "}· <a href={url}>{c("Permalink dello snapshot", "Snapshot permalink")}</a>
+    {doi && (
+      <>
+        {" "}· DOI: <a href={`https://doi.org/${doi}`}>{doi}</a>
+      </>
+    )}
+  </p>
+  {
+    notice && (
+      <div class="notice mt-2" data-caveat>
+        <strong>{c("Stato dello snapshot:", "Snapshot status:")}</strong>{" "}
+        {notice.message}{" "}
+        {supersededByUrl && (
+          <a href={supersededByUrl}>{c("Vai alla versione corrente", "Go to current version")}</a>
+        )}
+      </div>
+    )
+  }
+  <div class="mt-3 grid gap-3">
+    <div>
+      <p class="text-sm font-medium">APA</p>
+      <pre class="mono text-xs p-2 overflow-x-auto">{apa}</pre>
+    </div>
+    <div>
+      <p class="text-sm font-medium">BibTeX</p>
+      <pre class="mono text-xs p-2 overflow-x-auto">{bibtex}</pre>
+    </div>
+  </div>
+</section>

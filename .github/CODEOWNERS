@@ -1,12 +1,22 @@
-# Every change needs the maintainer's review. Sensitive paths are listed
-# explicitly so that ownership survives if more owners are added for data/.
-*                       @amattis96
-/data/                  @amattis96
-/.github/               @amattis96
-/src/                   @amattis96
-/schemas/               @amattis96
-/sources/original/      @amattis96
-/AGENTS.md              @amattis96
-/CLAUDE.md              @amattis96
-/package.json           @amattis96
-/pnpm-lock.yaml         @amattis96
+# Control-plane ownership only (PK-01).
+# Content/data paths (content/articles/, data/, sources/incremental/) are
+# intentionally omitted so ordinary PRs remain automergeable.
+# .github/ itself is protected so CODEOWNERS and workflows require maintainer review.
+/.github/                                   @amattis96
+/src/cli/                                   @amattis96
+/src/pipeline/                              @amattis96
+/src/security/                              @amattis96
+/src/site/publication.ts                    @amattis96
+/src/site/surface.ts                        @amattis96
+/schemas/                                   @amattis96
+/sources/original/                          @amattis96
+/docs/security/                             @amattis96
+/docs/roadmap/plan.v1.json                  @amattis96
+/docs/quality/thresholds.v1.json            @amattis96
+/docs/quality/sets/                         @amattis96
+/docs/audit/inferences/registry.v1.json     @amattis96
+/AGENTS.md                                  @amattis96
+/CLAUDE.md                                  @amattis96
+/package.json                               @amattis96
+/pnpm-lock.yaml                             @amattis96
+/pnpm-workspace.yaml                        @amattis96

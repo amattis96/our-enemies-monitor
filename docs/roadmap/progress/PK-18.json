@@ -1,0 +1,25 @@
+{
+  "id": "PK-18",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-4-integration",
+      "recorded_at": "2026-11-25T23:01:00Z",
+      "outcome": "Implemented summary-first cards, URL-synced filters on TimelineExplorer.tsx & EvidenceBoard.tsx, keyboard thread navigation, ARIA live announcements, lazy hydration, NewSinceLastVisit.astro, and inizia-qui.astro / 404.astro UX improvements"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/ux-design.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:01:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Summary-first layout, URL-synced filters, ARIA live regions, and keyboard navigation verified in test/ux-design.test.ts",
+    "Contrast and layout verified via pnpm check:contrast and pnpm build"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

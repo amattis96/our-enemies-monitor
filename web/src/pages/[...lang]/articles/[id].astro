@@ -20,6 +20,7 @@ import {
   ui,
 } from "../../../../../src/site/i18n.ts";
 import { articleJsonLd } from "../../../../../src/site/jsonld.ts";
+import CiteThisPage from "../../../components/CiteThisPage.astro";
 import DateRange from "../../../components/DateRange.astro";
 import ExportMenu from "../../../components/ExportMenu.astro";
 import FixtureBanner from "../../../components/FixtureBanner.astro";
@@ -44,6 +45,18 @@ const c = (it: string, en: string) => choose(lang, it, en);
 const model = getModel();
 const body = pick(article.body, lang);
 const linked = linkedRecords(article, model, lang);
+const linkedEntities = linked.filter((r) => r.collection === "entities");
+const evidenceCounts: Record<string, number> = {
+  E1: 0,
+  E2: 0,
+  E3: 0,
+  E4: 0,
+  E5: article.links.hypotheses.length,
+};
+for (const relId of article.links.relationships) {
+  const rel = model.dataset.relationships.find((r) => r.id === relId);
+  if (rel) evidenceCounts[rel.evidence_level] = (evidenceCounts[rel.evidence_level] ?? 0) + 1;
+}
 const groups = [
   ["events", c("Eventi", "Events")],
   ["entities", c("Entità", "Entities")],
@@ -55,10 +68,12 @@ const repo = "https://github.com/amattis96/our-enemies-monitor";
 const translation = article.review.translations?.en;
 const { kind, tool, run_date } = article.generated_by;
 const siteUrl = new URL(assetHref(""), Astro.site ?? "http://localhost").href.replace(/\/$/, "");
+const pageUrl = new URL(href(`articles/${article.id}/`, lang), Astro.site ?? "http://localhost")
+  .href;
 const jsonLd = articleJsonLd({
   siteUrl,
   lang,
-  pageUrl: new URL(href(`articles/${article.id}/`, lang), Astro.site ?? "http://localhost").href,
+  pageUrl,
   article,
 });
 const markdownAlternates = downloads.map((code) => ({
@@ -83,6 +98,27 @@ const generation = [
     </p>
     <h1 class="article-title"><T text={article.title} lang={lang} /></h1>
     <p class="article-dek"><T text={article.summary} lang={lang} /></p>
+    <aside class="dossier-rail card" aria-label={c("Nel fascicolo", "In the dossier")} data-pagefind-ignore>
+      <p class="kicker" style="margin:0;">{c("Nel fascicolo", "In the dossier")}</p>
+      <p class="meta" style="margin:0.35rem 0;">
+        {c("Entità citate:", "Cited entities:")} <b>{linkedEntities.length}</b> ·{" "}
+        {c("Record collegati:", "Linked records:")} <b>{linked.length}</b>
+      </p>
+      <p class="mono text-xs" style="margin:0.35rem 0;">
+        E1:{evidenceCounts.E1} · E2:{evidenceCounts.E2} · E3:{evidenceCounts.E3} · E4:{evidenceCounts.E4} · E5:{evidenceCounts.E5}
+      </p>
+      {linkedEntities.length > 0 && (
+        <ul class="list-disc pl-5 text-sm my-2">
+          {linkedEntities.slice(0, 5).map((ent) => (
+            <li><a href={href(ent.path, lang)}>{ent.label}</a></li>
+          ))}
+        </ul>
+      )}
+      <div class="flex flex-wrap gap-2 mt-2 text-xs">
+        <a class="chip" href={href("network/", lang)}>{c("Apri sulla bacheca", "Open on the board")}</a>
+        <a class="chip" href={href("timeline/", lang)}>{c("Eventi in cronologia", "Events on timeline")}</a>
+      </div>
+    </aside>
     <ExportMenu
       class="export-start article-export"
       label={ui(lang).exportLabel}
@@ -208,6 +244,13 @@ const generation = [
       {article.review.notes.map((note) => <span class="block" lang="it">{note}</span>)}
     </p>
   </section>
+  <CiteThisPage
+    title={textOf(article.title, lang)}
+    url={pageUrl}
+    lang={lang}
+    id={article.id}
+    generatedAt={article.generated_by.run_date ?? "2026-11-25"}
+  />
 </Base>
 
 <style>

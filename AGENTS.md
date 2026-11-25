@@ -57,7 +57,7 @@ A change whose docs describe something the code does not do is incomplete.
 
 ```bash
 pnpm install            # exact pinned versions
-pnpm check              # everything CI runs: lint, typecheck, test, validate, sidecars, articles, schema freshness, M5 audit, contrast
+pnpm check              # everything CI runs: lint, typecheck, test, validate, sidecars, articles, schema freshness, M5 audit, contrast, roadmap, engine manifest
 pnpm check:contrast     # WCAG contrast of the Dossier colour tokens (docs/design/tokens.css)
 pnpm validate           # data validation only (errors fail, warnings print)
 pnpm validate:sidecars  # archived sources/incremental/*.proposals.json + ingest queue
@@ -82,6 +82,17 @@ pnpm benchmark:measure [--out <f>] [--pages web/dist]  # read-only audit baselin
 pnpm benchmark:score <answers.json>               # grade answers to docs/audit/baseline/benchmark-cases.v1.json
 pnpm cadence:measure --prs <f> --runs <f> [--since/--until <ISO>]  # read-only K1–K5 cadence measures (B21) from gh JSON + git
 pnpm audit:mentions [--format md|json] [--out <f>]  # read-only text–graph mention queue (B14); never writes data/
+pnpm check:roadmap      # validate docs/roadmap/plan.v1.json and progress/ (PK-00)
+pnpm check:engine-manifest  # verify engine manifest and run-log contracts
+pnpm check:i18n-budget  # check multilingual build & Pagefind index budget (PK-31)
+pnpm check:seo          # verify Item 92 GEO/SEO contracts on web/dist (after pnpm build)
+pnpm quality:report     # read-only data quality report (PK-02)
+pnpm audit:entities     # audit entity identity, aliases, and classification (PK-04)
+pnpm asof <YYYY-MM-DD>  # point-in-time temporal state query (PK-05)
+pnpm impact <ID>        # retraction impact on downstream records (PK-07)
+pnpm backtest           # run zero-leakage historical backtest (PK-14 / PK-38)
+pnpm brief              # generate investigative brief (PK-13)
+pnpm discovery:shadow   # read-only shadow run of the discovery generators; prints counts only
 ```
 
 Before declaring work done, run `pnpm check` (and `pnpm build` plus
@@ -202,8 +213,9 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 ## Scheduled research, editorial review and automated integration
 
 **Live task configuration verified 21 November 2026 (Europe/Rome):**
-[scheduled-task register](docs/CHATGPT_SCHEDULED_TASKS.md) and
-[recorded full prompts](docs/automation/CHATGPT_TASK_PROMPTS.md). These
+[scheduled-task register](docs/CHATGPT_SCHEDULED_TASKS.md),
+[recorded full prompts](docs/automation/CHATGPT_TASK_PROMPTS.md), and
+[M8/M9 prompt updates guide](docs/automation/SCHEDULED_TASKS_PROMPT_UPDATES.md). These
 schedules execute in ChatGPT, not in GitHub Actions; recheck their live state
 before treating this snapshot as current. The retired paid Anthropic API
 workflow must not be reactivated. The legacy
@@ -587,3 +599,20 @@ This check is independent of B02's evidence waiver and leaves the strict diff
 unchanged. Agents do not approve or set human review statuses. Mention warnings
 from `validate:articles` request editorial investigation; do not infer roles
 or add links solely to silence them.
+
+## Search and AI discoverability
+
+- **Item 92 (Search & GEO contract):** Every public page and dossier must open
+  with a lead summary of at most 40 words stating who, what, when, and the
+  evidence level (`E1`–`E5`, never collapsed into a single score).
+- **Stable URLs:** Never change or remove a published URL without an explicit
+  redirect rule (or documented exception) verified by `pnpm check:seo`.
+- **New record types:** Any new public record type must ship with valid
+  schema.org JSON-LD, a clean `.md` alternate representation, a text
+  alternative for interactive/visual views, and inclusion in the sitemap.
+- **Entity identity, dates, and caveats:** Use stable canonical names with
+  aliases/`sameAs`, explicit dates (preserving precision), and keep essential
+  evidentiary caveats (`E5` hypothesis status, `imported_unreviewed`, `ai_verified`,
+  public-projection limits) immediately adjacent to the data.
+- **Verification gate:** `pnpm check:seo` is required on built output
+  (`pnpm build && pnpm check:seo`) with zero blocking errors.

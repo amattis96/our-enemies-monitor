@@ -79,6 +79,12 @@ export function collectionCsvs(
     { name: "places", value: (e) => e.places },
     { name: "evidence_level", value: (e) => e.evidence_level },
     ...bilingual<Row<"events">>("evidence_note", (e) => e.evidence_note),
+    { name: "known_issues_codes", value: (e) => e.known_issues.map((k) => k.code) },
+    { name: "known_issues_it", value: (e) => e.known_issues.map((k) => k.note.it) },
+    {
+      name: "known_issues_en",
+      value: (e) => e.known_issues.map((k) => k.note.en ?? k.note.it),
+    },
     { name: "publisher", value: (e) => e.publisher },
     { name: "url", value: (e) => e.url },
     { name: "sources", value: (e) => e.sources },

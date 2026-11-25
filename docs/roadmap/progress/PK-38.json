@@ -1,0 +1,24 @@
+{
+  "id": "PK-38",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented M13 Data Readiness Gate, advanced zero-leakage backtesting, interruption recovery, and end-to-end scenario tests in src/statistics/"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/statistics-scenarios.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Data Readiness Gate, zero-leakage backtest, interruption recovery, and end-to-end scenarios verified in test/statistics-scenarios.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

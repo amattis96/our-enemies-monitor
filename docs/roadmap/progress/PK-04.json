@@ -1,0 +1,29 @@
+{
+  "id": "PK-04",
+  "status": "completed",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-1-m8-integration",
+      "recorded_at": "2026-11-25T22:34:00Z",
+      "outcome": "Implemented src/identity/, src/cli/audit-entities.ts, docs/identity/, and test/identity.test.ts; wired optional external_ids and aliases on Entity in src/model/schemas.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "node src/cli/audit-entities.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:30:45Z"
+    },
+    {
+      "command": "pnpm check",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:33:40Z"
+    }
+  ],
+  "completion_evidence": [
+    "Entity resolution audit (220 entities, 3 uncertain, auto_merge_enabled=false), person data minimization guard, and additive Entity external_ids/aliases schema verified",
+    "test/identity.test.ts and full pnpm check (39/39 files, 415/415 tests) pass"
+  ],
+  "updated_at": "2026-11-25T22:34:00Z"
+}

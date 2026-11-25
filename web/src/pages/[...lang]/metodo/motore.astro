@@ -1,0 +1,188 @@
+---
+import {
+  projectPublicEngineManifest,
+  readEngineManifest,
+} from "../../../../../src/engine/manifest.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../../src/site/i18n.ts";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const manifest = projectPublicEngineManifest(readEngineManifest());
+
+const STATUS_LABELS: Record<string, { it: string; en: string }> = {
+  active: { it: "Attivo", en: "Active" },
+  experimental: { it: "Sperimentale", en: "Experimental" },
+  shadow: { it: "Shadow (solo osservazione)", en: "Shadow (observation only)" },
+  disabled: { it: "Disattivato", en: "Disabled" },
+};
+---
+
+<Base
+  title={c("Motore e trasparenza", "Engine and transparency")}
+  lang={lang}
+  description={c(
+    "Proiezione pubblica del manifest del motore: ruoli, percorso di un dato, metodi, limiti e differenza tra Verificato da IA e Rivisto.",
+    "Public projection of the engine manifest: roles, data journey, methods, limitations, and the difference between AI Verified and Reviewed.",
+  )}
+>
+  <p class="kicker">{ui(lang).navMethod}</p>
+  <h1>{c("Trasparenza del motore", "Engine transparency")}</h1>
+  <p class="lede max-w-3xl">
+    {c(
+      `Versione attiva del motore: ${manifest.engine_version} (aggiornamento manifest: ${manifest.updated_at}). Questa pagina è generata dalla proiezione pubblica del manifest del motore: espone metodi, ruoli, cadenze e criteri probatori, escludendo soglie operative di sicurezza, dettagli delle protezioni, query investigative e meccaniche interne di rilevamento.`,
+      `Active engine version: ${manifest.engine_version} (manifest updated: ${manifest.updated_at}). This page is generated from the public projection of the engine manifest: it publishes methods, roles, cadences, and evidentiary criteria, while stripping security thresholds, protection details, investigative queries, and exact detection mechanics.`,
+    )}
+  </p>
+
+  <section class="mt-8">
+    <h2>{c("Chi fa cosa", "Who does what")}</h2>
+    <p class="max-w-3xl">
+      {c(
+        "La produzione e la verifica dei contenuti sono separate tra agenti automatizzati e controllo umano:",
+        "Content production and verification are separated between automated agents and human oversight:",
+      )}
+    </p>
+    <div class="relative overflow-x-auto mt-4">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{c("Ruolo", "Role")}</th>
+            <th scope="col">{c("Responsabilità", "Responsibilities")}</th>
+            <th scope="col">{c("Può impostare «Rivisto»", "Can set «Reviewed»")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {manifest.roles.map((role) => (
+            <tr>
+              <td><strong>{role.label[lang]}</strong></td>
+              <td>{role.responsibilities[lang]}</td>
+              <td>
+                {role.can_set_human_reviewed
+                  ? c("Sì (solo titolare umano)", "Yes (human maintainer only)")
+                  : c("No", "No")}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Percorso di un dato", "Data journey")}</h2>
+    <ol class="list-decimal pl-5 space-y-2 max-w-3xl">
+      <li>
+        <strong>{c("Acquisizione e quarantena", "Acquisition and quarantine")}:</strong>{" "}
+        {c(
+          "Le fonti incrementali vengono archiviate immutabili e racchiuse in quarantena prima di qualsiasi lettura da parte di agenti.",
+          "Incremental sources are archived immutably and wrapped in quarantine envelopes before any agent read.",
+        )}
+      </li>
+      <li>
+        <strong>{c("Proposta e ingestione deterministica", "Proposal and deterministic ingest")}:</strong>{" "}
+        {c(
+          "I sidecar validati generano candidati in stato needs_review, senza mai promuovere ipotesi o modificare la provenienza originale.",
+          "Validated sidecars generate needs_review candidates without promoting hypotheses or altering original provenance.",
+        )}
+      </li>
+      <li>
+        <strong>{c("Revisione e gate probatorio M5", "Review and M5 evidentiary gate")}:</strong>{" "}
+        {c(
+          "Ogni affermazione viene verificata rispetto alle fonti primarie, alla genealogia B17 e alle inferenze vietate B15.",
+          "Each claim is checked against primary sources, B17 source genealogy, and B15 forbidden inferences.",
+        )}
+      </li>
+      <li>
+        <strong>{c("Gateway di pubblicazione e portale", "Publication gateway and portal")}:</strong>{" "}
+        {c(
+          "Solo i record e gli articoli conformi attraversano il gateway verso il portale statico, gli export e l'indice di ricerca; i record trattenuti restano fuori dalle proiezioni pubbliche.",
+          "Only compliant records and articles cross the gateway into the static portal, exports, and search index; withheld records stay out of public projections.",
+        )}
+      </li>
+    </ol>
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Significato di «Verificato da IA» e «Rivisto»", "Meaning of «AI Verified» and «Reviewed»")}</h2>
+    <div class="grid gap-4 md:grid-cols-2 mt-4 max-w-4xl">
+      <div class="card">
+        <h3>{c("Verificato da IA (ai_verified)", "AI Verified (ai_verified)")}</h3>
+        <p>
+          {c(
+            "Stato riservato agli articoli che hanno superato la verifica sostanziale delle fonti da parte del revisore automatico (Task C) con nota strutturata e controllo CI sul commit esatto. Non equivale ad approvazione umana né a prova definitiva di ogni affermazione, e mantiene l'avviso pubblico di traduzione automatica.",
+            "Status reserved for articles that passed substantive source verification by the automated reviewer (Task C) with a structured note and CI check on the exact commit. It does not equal human approval or definitive proof of every assertion, and retains the public machine-translation notice.",
+          )}
+        </p>
+      </div>
+      <div class="card">
+        <h3>{c("Rivisto (reviewed)", "Reviewed (reviewed)")}</h3>
+        <p>
+          {c(
+            "Autorizzazione editoriale umana assegnata esclusivamente dal titolare o da revisori umani autorizzati dopo controllo diretto delle fonti primarie, dei limiti e della traduzione. Nessun agente o script può impostare lo stato reviewed.",
+            "Human editorial authorization assigned solely by the maintainer or authorized human editors after direct inspection of primary sources, limitations, and translation. No agent or script may set reviewed.",
+          )}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Metodi registrati", "Registered methods")}</h2>
+    <div class="grid gap-4 mt-4 max-w-4xl">
+      {manifest.methods.map((method) => (
+        <article class="card">
+          <p class="meta">
+            <span class="font-mono">{method.id}</span> · v{method.version} ·{" "}
+            {STATUS_LABELS[method.status]?.[lang] ?? method.status}
+          </p>
+          <h3>{method.name[lang]}</h3>
+          <p>{method.public_summary[lang]}</p>
+          <p class="meta mt-2">
+            <strong>{c("Criteri probatori", "Evidentiary criteria")}:</strong>{" "}
+            {method.evidentiary_criteria[lang]}
+          </p>
+          <p class="meta mt-1">
+            <strong>{c("Limiti", "Limitations")}:</strong>{" "}
+            {method.limitations[lang]}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Cadenze e modelli dichiarati", "Declared cadences and models")}</h2>
+    <div class="relative overflow-x-auto mt-4">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{c("Attività", "Task")}</th>
+            <th scope="col">{c("Ruolo", "Role")}</th>
+            <th scope="col">{c("Pianificazione", "Schedule")}</th>
+            <th scope="col">{c("Stato", "Status")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {manifest.cadences.map((cadence) => (
+            <tr>
+              <td class="font-mono">{cadence.task_id}</td>
+              <td>{cadence.role}</td>
+              <td>{cadence.schedule} ({cadence.timezone})</td>
+              <td>{cadence.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="meta mt-4">
+      {c("Vedi anche", "See also")}:{" "}
+      <a href={href("stato/", lang)}>{c("Stato delle esecuzioni", "Run status")}</a>{" "}
+      · <a href={href("rettifiche/", lang)}>{c("Rettifiche e diritto di replica", "Corrections and right of reply")}</a>{" "}
+      · <a href={href("methodology/", lang)}>{c("Metodologia completa", "Full methodology")}</a>.
+    </p>
+  </section>
+</Base>

@@ -1,0 +1,24 @@
+{
+  "id": "PK-21",
+  "status": "completed",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-4-integration",
+      "recorded_at": "2026-11-25T23:01:00Z",
+      "outcome": "Implemented CITATION.cff, CiteThisPage.astro (APA + BibTeX + snapshot status notices), and integrated citation blocks into event, hypothesis, and article pages"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/seo-cite-benchmark.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:01:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "CITATION.cff metadata and APA/BibTeX citation formatters verified in test/seo-cite-benchmark.test.ts",
+    "CiteThisPage.astro integrated on record and article pages and verified by pnpm build && pnpm check:links"
+  ],
+  "updated_at": "2026-11-25T23:01:00Z"
+}

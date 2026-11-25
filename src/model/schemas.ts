@@ -201,6 +201,9 @@ export const Event = z.strictObject({
   date: DateRange.describe(
     "Date of the fact with explicit precision; distinct from the date of its discovery, attribution, judgment or publication.",
   ),
+  first_reported: PartialDate.optional().describe(
+    "Date when the fact was first reported or disclosed (YYYY, YYYY-MM or YYYY-MM-DD), distinct from the fact date; absent when unknown.",
+  ),
   title: LocalizedText.describe("Short title."),
   description: LocalizedText.describe(
     "Description of the record. Event, perpetrator, sponsor, motive and impact are distinct claims.",
@@ -261,6 +264,73 @@ export const Entity = z.strictObject({
   country: CountryCode.nullable().describe(
     "ISO 3166-1 alpha-2 code of a state entity; null for every other kind.",
   ),
+  external_ids: z
+    .strictObject({
+      lei: z
+        .string()
+        .regex(/^[0-9A-Z]{18}[0-9]{2}$/)
+        .optional()
+        .describe("ISO 17442 20-character Legal Entity Identifier (LEI)."),
+      registry_numbers: z
+        .array(
+          z.strictObject({
+            number: z
+              .string()
+              .min(1)
+              .describe("Official registration number in the national register."),
+            jurisdiction: CountryCode.describe(
+              "ISO 3166-1 alpha-2 country code of the issuing jurisdiction.",
+            ),
+            registry: z
+              .string()
+              .min(1)
+              .optional()
+              .describe("Name or code of the corporate/public registry."),
+          }),
+        )
+        .optional()
+        .describe("Qualified national/regional registration numbers with jurisdiction."),
+      wikidata_qid: z
+        .string()
+        .regex(/^Q[1-9]\d*$/)
+        .optional()
+        .describe("Wikidata item identifier (e.g., Q12345)."),
+      official_website: Url.optional().describe("Official primary website URL."),
+      sanctions_ids: z
+        .array(z.string().min(1))
+        .optional()
+        .describe("External sanctions list identifiers (e.g., OpenSanctions, EU FSF, OFAC)."),
+    })
+    .optional()
+    .describe(
+      "Qualified external identifiers (LEI, registry numbers, Wikidata QID, official website); absent when none.",
+    ),
+  aliases: z
+    .array(
+      z.strictObject({
+        name: z.string().min(1).describe("Alias or historical name string."),
+        kind: z
+          .enum(["rename", "merger", "subsidiary", "transliteration"])
+          .describe("Kind of alias relationship (rename, merger, subsidiary, or transliteration)."),
+        valid_from: PartialDate.nullable().describe(
+          "Start date of validity (YYYY, YYYY-MM, or YYYY-MM-DD), or null if unknown.",
+        ),
+        valid_to: PartialDate.nullable().describe(
+          "End date of validity (YYYY, YYYY-MM, or YYYY-MM-DD), or null if ongoing or unknown.",
+        ),
+        script: z
+          .enum(["latin", "cyrillic", "other"])
+          .optional()
+          .describe("Script of the alias (latin, cyrillic, or other)."),
+        note: z
+          .string()
+          .min(1)
+          .optional()
+          .describe("Optional context or source note for the alias."),
+      }),
+    )
+    .optional()
+    .describe("Temporal aliases, historical names, and transliterations; absent when none."),
   review,
   provenance,
 });

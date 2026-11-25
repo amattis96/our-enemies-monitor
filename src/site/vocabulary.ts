@@ -265,6 +265,10 @@ const WITHHELD_REASONS: Record<WithheldReason, Label> = {
     it: "Fonte non citata da record pubblici",
     en: "Source not cited by public records",
   },
+  retraction_suspended: {
+    it: "Sospeso per ritrattazione della fonte decisiva",
+    en: "Suspended due to decisive-source retraction",
+  },
 };
 
 /** Reading rules R1-R5 (FABLE D §11.2). Declarations, not commands. */

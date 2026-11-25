@@ -78,3 +78,16 @@ merged and can run in parallel branches.
 - `README.md`: roadmap line for M7 and the site screenshots.
 - `AGENTS.md`: "use semantic tokens and the `Icon`/`EvidenceStamp`
   components; never hard-code colours" once 7.1 lands.
+
+## Deferred items audit (60–67)
+
+| Item | Area | Disposition | Motivation |
+| --- | --- | --- | --- |
+| 60 | Evidence board contextual detail card next to selected card | `implemented` | Added `.board-context-card` overlay in `EvidenceBoard.tsx` showing kind, ID, title, link count, primary caveat, and quick actions next to the selected card alongside the full case-file drawer. |
+| 61 | Complete entity card (synthesis, tabs, mini-board, entity mini-timeline) | `implemented` | Added synthesis lede, accessible progressive-enhancement tabs, radial SVG mini-board of 1-hop public neighbours, and chronological entity mini-timeline in `web/src/pages/[...lang]/entities/[id].astro`. |
+| 62 | Grouped searchable/sortable A–Z entity index | `implemented` | Added live search input, A–Z / Most-links sort toggle, and A–Z alphabet bar in `web/src/pages/[...lang]/entities/index.astro` while preserving kind grouping. |
+| 63 | Timeline mobile bottom filter sheet | `implemented` | Added `"Filtri (n) / Filters (n)"` mobile trigger and modal bottom sheet in `TimelineExplorer.tsx` for viewports `< 760px`. |
+| 64 | Article "Nel fascicolo / In the dossier" panel + index filters | `implemented` | Added `.dossier-rail` panel with cited entities, E1–E5 evidence mix, and board/timeline links in `articles/[id].astro`, plus status/kind filter chips in `articles/index.astro`. |
+| 65 | Inline `ClaimLink` stamps and citation popovers in articles | `discarded` | Requires a custom Markdown AST extension in `content/articles/` and `src/site/articles.ts`; existing References and Linked records sections already provide full source traceability without altering the article contract. |
+| 66 | Animated Atlas projection interpolation and label collision avoidance | `discarded` | Atlas uses two build-time static SVG projections in `atlas.astro` for zero-JS reliability and fast load; runtime projection interpolation would require shipping full GeoJSON topology to the client. |
+| 67 | Sticky-note hypothesis cards and priority pins on Hypotheses board | `discarded` | `EvidenceBoard.tsx` already renders yellow H-ID tags, red dash-dot threads, masking tape banner, and priority in List view; per-hypothesis sticky-note cards would overlap on multi-edge nodes. |

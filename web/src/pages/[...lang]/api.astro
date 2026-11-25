@@ -1,0 +1,163 @@
+---
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { assetHref, href } from "../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const endpoints = [
+  {
+    path: "data/v1/manifest.json",
+    format: "JSON",
+    desc: c(
+      "Conteggi pubblicati, commit e hash SHA-256 di tutti i file v1.",
+      "Published counts, commit, and SHA-256 hashes of all v1 files.",
+    ),
+  },
+  {
+    path: "data/v1/events.json",
+    format: "JSON / CSV",
+    desc: c(
+      "Eventi della cronologia con date, precisione, temi e valutazioni.",
+      "Timeline events with dates, precision, themes, and assessments.",
+    ),
+  },
+  {
+    path: "data/v1/entities.json",
+    format: "JSON / CSV",
+    desc: c(
+      "Entità censite (Stati, istituzioni, aziende, organizzazioni, persone, asset).",
+      "Catalogued entities (states, institutions, companies, organizations, persons, assets).",
+    ),
+  },
+  {
+    path: "data/v1/relationships.json",
+    format: "JSON / CSV",
+    desc: c(
+      "Relazioni pubbliche tipizzate con livello E1–E4 e caveat; le relazioni riservate su persone sono escluse.",
+      "Public typed relationships with E1–E4 level and caveats; restricted person links are excluded.",
+    ),
+  },
+  {
+    path: "data/v1/hypotheses.json",
+    format: "JSON / CSV",
+    desc: c(
+      "Ipotesi investigative aperte (E5), mai mescolate con i fatti documentati.",
+      "Open investigative hypotheses (E5), never mixed with documented facts.",
+    ),
+  },
+  {
+    path: "data/v1/sources.json",
+    format: "JSON / CSV",
+    desc: c(
+      "Registro delle fonti primarie e secondarie.",
+      "Registry of primary and secondary sources.",
+    ),
+  },
+  {
+    path: "data/v1/exposures.json",
+    format: "JSON / CSV",
+    desc: c(
+      "Esposizioni e dipendenze strategiche quantificate.",
+      "Quantified strategic exposures and dependencies.",
+    ),
+  },
+  {
+    path: "data/v1/graph.json",
+    format: "JSON",
+    desc: c(
+      "Proiezione a grafo pubblico per la Bacheca delle relazioni.",
+      "Public graph projection for the Evidence Board.",
+    ),
+  },
+  {
+    path: "data/v1/hypotheses-graph.json",
+    format: "JSON",
+    desc: c(
+      "Proiezione separata per la Bacheca delle ipotesi (E5).",
+      "Separate projection for the Hypotheses Board (E5).",
+    ),
+  },
+  {
+    path: "data/v1/articles.json",
+    format: "JSON",
+    desc: c(
+      "Indice degli articoli pubblicati e dei record collegati.",
+      "Index of published articles and linked records.",
+    ),
+  },
+  {
+    path: "data/v1/vocabulary.json",
+    format: "JSON",
+    desc: c(
+      "Vocabolari controllati (livelli, temi, gruppi di relazione, generi).",
+      "Controlled vocabularies (levels, themes, relation groups, kinds).",
+    ),
+  },
+];
+---
+
+<Base
+  title={c("API statica e contratto dati v1", "Static API and data/v1 contract")}
+  lang={lang}
+  description={c("Documentazione degli endpoint statici JSON, CSV e JSON Schema sotto data/v1/.", "Documentation of static JSON, CSV and JSON Schema endpoints under data/v1/.")}
+  searchable
+>
+  <header class="page-head">
+    <p class="kicker">{ui(lang).navMethod}</p>
+    <h1>{c("API statica data/v1", "Static API data/v1")}</h1>
+    <p class="lede">
+      {c(
+        "Tutti i dati pubblici sono serviti come file statici immutabili per build sotto data/v1/, verificabili tramite manifest SHA-256 e JSON Schema.",
+        "All public data is served as build-time static files under data/v1/, verifiable via the SHA-256 manifest and JSON Schemas.",
+      )}
+    </p>
+  </header>
+
+  <div class="callout callout-plain max-w-3xl">
+    <p style="margin:0;">
+      {c(
+        "Regola probatoria: ogni endpoint deriva dalla sola proiezione pubblica. I predicati delle relazioni restano in italiano letterale; i record riservati relativi a persone senza fonte primaria collegata non vengono mai esportati.",
+        "Evidentiary rule: every endpoint derives strictly from the public projection. Relationship predicates stay in literal Italian; restricted person records without a linked primary source are never exported.",
+      )}
+    </p>
+  </div>
+
+  <h2 class="section-title">{c("Endpoint disponibili", "Available endpoints")}</h2>
+  <div class="table-wrap">
+    <table class="stack">
+      <thead>
+        <tr>
+          <th scope="col">{c("Percorso", "Path")}</th>
+          <th scope="col">{c("Formato", "Format")}</th>
+          <th scope="col">{c("Descrizione", "Description")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {endpoints.map((ep) => (
+          <tr>
+            <td data-label={c("Percorso", "Path")} class="mono">
+              <a href={assetHref(ep.path)}>{ep.path}</a>
+            </td>
+            <td data-label={c("Formato", "Format")} class="mono">{ep.format}</td>
+            <td data-label={c("Descrizione", "Description")}>{ep.desc}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">{c("Pacchetti per singolo record ed esempi", "Per-record packages and examples")}</h2>
+  <p class="max-w-3xl">
+    {c("Ogni record pubblico è disponibile anche come pacchetto JSON individuale a", "Each public record is also available as an individual JSON package at")}{" "}
+    <code>data/v1/records/&lt;ID&gt;.json</code>.{" "}
+    {c("Per scaricare l'indice completo e verificarne l'integrità:", "To fetch the manifest and verify integrity:")}
+  </p>
+  <pre class="card mono text-xs overflow-x-auto"><code>curl -sS {assetHref("data/v1/manifest.json")} | head -n 20</code></pre>
+  <p class="mt-4">
+    <a href={href("data/", lang)}>{c("Vai alla pagina Dati", "Go to Data page")}</a> ·{" "}
+    <a href={href("methodology/", lang)}>{c("Leggi la metodologia", "Read methodology")}</a>
+  </p>
+</Base>

@@ -8,6 +8,7 @@ import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-mono/600.css";
 import "../styles/global.css";
 import "../styles/shell.css";
+import "../styles/lab.css";
 import type { Language } from "../../../src/model/index.ts";
 import { ui } from "../../../src/site/i18n.ts";
 import { serializeJsonLd } from "../../../src/site/jsonld.ts";
@@ -74,6 +75,7 @@ const pageDescription = description ?? t.siteTagline;
         <>
           <link rel="alternate" hreflang="it" href={`${site}${alternatePath(current, "it")}`} />
           <link rel="alternate" hreflang="en" href={`${site}${alternatePath(current, "en")}`} />
+          <link rel="alternate" hreflang="x-default" href={`${site}${alternatePath(current, "it")}`} />
         </>
       )
     }

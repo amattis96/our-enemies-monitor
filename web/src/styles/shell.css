@@ -481,6 +481,10 @@ dialog.palette[open] {
   font: italic 400 var(--text-lg) / 1.4 var(--font-serif);
   color: var(--ink-2);
 }
+.masthead-start {
+  margin: var(--space-2) 0 0;
+  text-align: center;
+}
 .masthead-rule {
   max-width: var(--page-max);
   margin: 0 auto;
