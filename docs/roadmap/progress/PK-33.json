@@ -1,9 +1,24 @@
 {
   "id": "PK-33",
-  "status": "blocked",
+  "status": "awaiting_acceptance",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented observational pilot dataset and platform adapters in src/statistics/pilot.ts and src/statistics/adapters.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/statistics-scenarios.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Observational pilot dataset and platform adapter contracts verified in test/statistics-scenarios.test.ts"
+  ],
+  "notes": "Awaiting live observational acquisition acceptance and Data Readiness Gate evaluation.",
+  "updated_at": "2026-11-25T23:10:00Z"
 }

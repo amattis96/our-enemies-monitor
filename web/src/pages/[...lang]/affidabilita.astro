@@ -1,0 +1,65 @@
+---
+import { EVIDENCE_LEVELS } from "../../../../src/model/index.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../src/site/i18n.ts";
+import { projectReliabilityRegister } from "../../../../src/site/stix.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+import "../../styles/lab.css";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const register = projectReliabilityRegister(getModel());
+---
+
+<Base
+  title={c("Registro di affidabilità", "Reliability register")}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Distribuzione delle fonti per origine, stato di revisione e livelli di evidenza E1–E5.",
+    "Source distribution by origin type, review status, and E1–E5 evidence levels.",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">{c("Metodo · Affidabilità", "Method · Reliability")}</span>
+    <h1 class="mt-3">{c("Registro di affidabilità delle fonti", "Source reliability register")}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "I livelli di evidenza (E1–E5) indicano il tipo di base documentale, non un punteggio numerico o una graduatoria automatica.",
+        "Evidence levels (E1–E5) indicate the kind of documentary basis, not a numeric score or automatic ranking.",
+      )}{" "}
+      <a href={href("sources/", lang)}>{c("Elenco delle fonti", "Source index")}</a>.
+    </p>
+
+    <section class="mt-6">
+      <h2>{c("Distribuzione per livello di evidenza", "Distribution by evidence level")}</h2>
+      <div class="flex flex-wrap gap-3 mt-3">
+        {EVIDENCE_LEVELS.map((lvl) => (
+          <span class="lab-pill">{lvl}: {register.byEvidenceLevel[lvl]}</span>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8 grid gap-6 md:grid-cols-2">
+      <div class="card">
+        <h2>{c("Origine delle fonti (ADR-05)", "Source origin types (ADR-05)")}</h2>
+        <ul class="mt-3 space-y-1 text-sm font-mono">
+          {Object.entries(register.byOriginType).map(([origin, count]) => (
+            <li>{origin}: {count}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="card">
+        <h2>{c("Stato di revisione delle fonti", "Source review status")}</h2>
+        <ul class="mt-3 space-y-1 text-sm font-mono">
+          {Object.entries(register.byReviewStatus).map(([status, count]) => (
+            <li>{status}: {count}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </div>
+</Base>

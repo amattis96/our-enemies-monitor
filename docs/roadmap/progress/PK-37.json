@@ -1,9 +1,23 @@
 {
   "id": "PK-37",
-  "status": "blocked",
+  "status": "completed",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented descriptive situation room projection in src/site/stix.ts (buildSituationRoom) and Astro route web/src/pages/[...lang]/situazione.astro"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/projections-i18n-situation.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Descriptive situation room aggregation and projection verified in test/projections-i18n-situation.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:10:00Z"
 }

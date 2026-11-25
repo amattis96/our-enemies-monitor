@@ -1,0 +1,105 @@
+---
+import { choose, languageFromParam, languagePaths, textOf } from "../../../../../src/site/i18n.ts";
+import { projectLaboratory } from "../../../../../src/site/laboratory.ts";
+import { projectTechniques, type TechniqueProjection } from "../../../../../src/site/stix.ts";
+import T from "../../../components/T.astro";
+import Base from "../../../layouts/Base.astro";
+import { assetHref, href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+import "../../../styles/lab.css";
+
+export function getStaticPaths() {
+  const model = getModel();
+  const techniques = projectTechniques(model, projectLaboratory(model));
+  return languagePaths().flatMap((lp) =>
+    techniques.map((tech) => ({
+      params: { lang: lp.params.lang, id: tech.id },
+      props: { tech },
+    })),
+  );
+}
+
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const { tech } = Astro.props as { tech: TechniqueProjection };
+---
+
+<Base
+  title={choose(lang, tech.title.it, tech.title.en)}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Proiezione pubblica della tecnica con distinzione tra fatti documentati, avvisi investigativi e anomalie statistiche.",
+    "Public technique projection distinguishing documented facts, investigative notices, and statistical anomalies.",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">{c("Proiezione · Tecnica", "Projection · Technique")}</span>
+    <h1 class="mt-3">{choose(lang, tech.title.it, tech.title.en)}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "Questa scheda separa i fatti documentati (E1–E3) dagli avvisi investigativi (E4–E5) e dai segnali statistici descrittivi. Solo i record pubblici sono inclusi.",
+        "This sheet separates documented facts (E1–E3) from investigative notices (E4–E5) and descriptive statistical signals. Only public records are included.",
+      )}{" "}
+      <a href={assetHref("data/v1/stix-cyber.json")}>{c("Bundle STIX 2.1 cyber (JSON)", "Cyber STIX 2.1 bundle (JSON)")}</a>.
+    </p>
+
+    <section class="mt-6">
+      <h2>{c("Fatti documentati (E1–E3)", "Documented facts (E1–E3)")}</h2>
+      {tech.documentedFacts.length === 0 ? (
+        <p class="meta mt-2">{c("Nessun evento E1–E3 pubblico in questa categoria.", "No public E1–E3 events in this category.")}</p>
+      ) : (
+        <div class="lab-cards">
+          {tech.documentedFacts.slice(0, 12).map((ev) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{ev.id}</span>
+                <span class="lab-pill">{ev.evidence_level ?? "N/D"} · {ev.date.start}</span>
+              </div>
+              <p class="mb-0 font-semibold"><T text={ev.title} lang={lang} /></p>
+              <a class="meta" href={href(`events/${ev.id}/`, lang)}>{c("Scheda evento", "Event record")} →</a>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+
+    <section class="mt-8">
+      <h2>{c("Avvisi investigativi e ipotesi (E4–E5)", "Investigative notices & hypotheses (E4–E5)")}</h2>
+      <div class="notice max-w-3xl mt-3">
+        {c(
+          "Gli avvisi investigativi e le ipotesi E5 rappresentano domande di verifica aperte o denunce non corroborate, mai fatti accertati.",
+          "Investigative notices and E5 hypotheses represent open verification questions or uncorroborated allegations, never established facts.",
+        )}
+      </div>
+      <div class="lab-cards">
+        {tech.investigativeNotices.openHypotheses.slice(0, 8).map((q) => (
+          <article class="lab-card">
+            <div class="lab-card-header">
+              <span class="lab-code">{q.id}</span>
+              <span class="lab-pill">E5 · {q.priority}</span>
+            </div>
+            <p class="mb-0"><T text={q.question} lang={lang} /></p>
+            <a class="meta" href={href(`piste/${q.id}/`, lang)}>{c("Scheda pista", "Lead record")} →</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2>{c("Anomalie statistiche (segnali non causali)", "Statistical anomalies (non-causal signals)")}</h2>
+      <div class="lab-cards">
+        {tech.statisticalAnomalies.map((anom) => (
+          <article class="lab-card">
+            <div class="lab-card-header">
+              <span class="lab-code">{anom.id}</span>
+              <span class="lab-pill">{c("Segnale descrittivo", "Descriptive signal")}</span>
+            </div>
+            <p class="mb-0 font-semibold">{choose(lang, anom.label.it, anom.label.en)}</p>
+            <p class="meta mb-0">{choose(lang, anom.note.it, anom.note.en)}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

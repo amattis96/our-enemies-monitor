@@ -1,0 +1,217 @@
+{
+  "version": "1.0.0",
+  "source": "IATE (Interactive Terminology for Europe) & OEM Translation Glossary",
+  "canonical_language": "it",
+  "target_languages": ["en", "fr", "de", "pl", "uk", "es", "ro", "lt", "lv", "et"],
+  "entries": [
+    {
+      "id": "presunto",
+      "iate_id": "IATE-782411",
+      "it": "presunto",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["alleged", "presumed", "suspected"],
+        "fr": ["présumé", "allégué"],
+        "de": ["mutmaßlich", "angeblich", "vermutet"],
+        "pl": ["domniemany", "rzekomy", "podejrzewany"],
+        "uk": ["ймовірний", "нібито", "передбачуваний"],
+        "es": ["presunto", "supuesto"],
+        "ro": ["presupus", "pretins", "prezumtiv"],
+        "lt": ["įtariamas", "numanomas", "tariamas"],
+        "lv": ["iespējamais", "domājamais", "aizdomās turamais"],
+        "et": ["väidetav", "oletatav"]
+      },
+      "notes": "Preserves unestablished or pre-judicial status; never translate as confirmed."
+    },
+    {
+      "id": "contestato",
+      "iate_id": "IATE-894120",
+      "it": "contestato",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["contested", "disputed", "challenged", "charged"],
+        "fr": ["contesté", "disputé", "reproché"],
+        "de": ["umstritten", "angefochten", "bestritten", "vorgeworfen"],
+        "pl": ["kwestionowany", "sporny", "zarzucany"],
+        "uk": ["оскаржуваний", "спірний", "інкримінований"],
+        "es": ["impugnado", "disputado", "cuestionado"],
+        "ro": ["contestat", "disputat"],
+        "lt": ["ginčijamas", "užginčytas"],
+        "lv": ["apstrīdēts", "strīdīgs"],
+        "et": ["vaidlustatud", "vaieldav"]
+      },
+      "notes": "Retain whether it refers to a disputed fact or a formal charge."
+    },
+    {
+      "id": "non_dimostrato",
+      "iate_id": "IATE-112034",
+      "it": "non dimostrato",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["not demonstrated", "unproven", "not established", "undemonstrated"],
+        "fr": ["non démontré", "non établi", "non prouvé"],
+        "de": ["nicht nachgewiesen", "unbewiesen", "nicht belegt"],
+        "pl": ["nieudowodniony", "niewykazany", "niepotwierdzony"],
+        "uk": ["не доведено", "недоведений", "не встановлено"],
+        "es": ["no demostrado", "no probado", "no establecido"],
+        "ro": ["nedemonstrat", "nedovedit", "nestabilit"],
+        "lt": ["neįrodytas", "nepatvirtintas"],
+        "lv": ["nepierādīts", "nav pierādīts"],
+        "et": ["tõendamata", "tõestamata"]
+      },
+      "notes": "Must retain explicit negation and scope of evidentiary limitation."
+    },
+    {
+      "id": "non_implica",
+      "iate_id": "IATE-112035",
+      "it": "non implica",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["does not imply", "not imply"],
+        "fr": ["n'implique pas", "ne signifie pas"],
+        "de": ["impliziert nicht", "bedeutet nicht", "lässt nicht auf"],
+        "pl": ["nie oznacza", "nie implikuje"],
+        "uk": ["не означає", "не свідчить про"],
+        "es": ["no implica"],
+        "ro": ["nu implică"],
+        "lt": ["nereiškia", "neimplikuoja"],
+        "lv": ["nenozīmē", "neimplikē"],
+        "et": ["ei tähenda", "ei eelda"]
+      },
+      "notes": "Crucial negative caveat preventing false inference."
+    },
+    {
+      "id": "attribuzione_istituzionale",
+      "iate_id": "IATE-3540190",
+      "it": "attribuzione istituzionale",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["institutional attribution", "attributed by"],
+        "fr": ["attribution institutionnelle", "attribué par"],
+        "de": ["institutionelle Zuschreibung", "zugeschrieben von"],
+        "pl": ["atrybucja instytucjonalna", "przypisane przez"],
+        "uk": ["інституційна атрибуція", "приписано"],
+        "es": ["atribución institucional", "atribuido por"],
+        "ro": ["atribuire instituțională", "atribuit de"],
+        "lt": ["institucinis priskyrimas", "priskirta"],
+        "lv": ["institucionāla attiecināšana", "attiecināts"],
+        "et": ["institutsionaalne omistamine", "omistatud"]
+      },
+      "notes": "E2 attribution by government/intelligence/institution; not a judicial conviction."
+    },
+    {
+      "id": "accertato",
+      "iate_id": "IATE-782499",
+      "it": "accertato",
+      "critical_qualifier": false,
+      "terms": {
+        "en": ["established", "documented", "verified", "found"],
+        "fr": ["établi", "avéré", "constaté"],
+        "de": ["festgestellt", "nachgewiesen", "erwiesen"],
+        "pl": ["stwierdzony", "ustalony", "udokumentowany"],
+        "uk": ["встановлений", "підтверджений", "задокументований"],
+        "es": ["establecido", "constatado", "acreditado"],
+        "ro": ["stabilit", "constatat", "dovedit"],
+        "lt": ["nustatytas", "patvirtintas"],
+        "lv": ["konstatēts", "pierādīts"],
+        "et": ["tuvastatud", "kindlaks tehtud"]
+      },
+      "notes": "Use according to the standard of proof of the cited source."
+    },
+    {
+      "id": "condanna_primo_grado",
+      "iate_id": "IATE-901244",
+      "it": "condanna in primo grado",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["conviction at first instance", "first-instance conviction"],
+        "fr": ["condamnation en première instance"],
+        "de": ["Verurteilung in erster Instanz", "erstinstanzliche Verurteilung"],
+        "pl": ["wyrok skazujący pierwszej instancji", "skazanie w pierwszej instancji"],
+        "uk": ["вирок першої інстанції", "засудження в першій інстанції"],
+        "es": ["condena en primera instancia"],
+        "ro": ["condamnare în primă instanță"],
+        "lt": ["pirmosios instancijos apkaltinamasis nuosprendis"],
+        "lv": ["pirmās instances notiesājošs spriedums"],
+        "et": ["esimese astme süüdimõistev otsus"]
+      },
+      "notes": "Never omit 'first instance'; a first-instance conviction is not necessarily final."
+    },
+    {
+      "id": "condanna",
+      "iate_id": "IATE-901243",
+      "it": "condanna",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["conviction", "sentence"],
+        "fr": ["condamnation"],
+        "de": ["Verurteilung"],
+        "pl": ["wyrok skazujący", "skazanie"],
+        "uk": ["засудження", "вирок"],
+        "es": ["condena"],
+        "ro": ["condamnare"],
+        "lt": ["apkaltinamasis nuosprendis", "nuteisimas"],
+        "lv": ["notiesāšana", "notiesājošs spriedums"],
+        "et": ["süüdimõistmine", "karistus"]
+      },
+      "notes": "State court and procedural date where known."
+    },
+    {
+      "id": "stato_del_procedimento",
+      "iate_id": "IATE-901250",
+      "it": "stato del procedimento",
+      "critical_qualifier": false,
+      "terms": {
+        "en": ["procedural status", "stage of proceedings"],
+        "fr": ["état de la procédure", "stade de la procédure"],
+        "de": ["Verfahrensstand"],
+        "pl": ["stan postępowania", "etap postępowania"],
+        "uk": ["стан провадження", "стадія провадження"],
+        "es": ["estado del procedimiento"],
+        "ro": ["stadiul procedurii"],
+        "lt": ["proceso stadija"],
+        "lv": ["procesa stadija"],
+        "et": ["menetluse seis"]
+      },
+      "notes": "Distinguish investigation, charge, trial, conviction, appeal, or final judgment."
+    },
+    {
+      "id": "ipotesi",
+      "iate_id": "IATE-220118",
+      "it": "ipotesi",
+      "critical_qualifier": true,
+      "terms": {
+        "en": ["hypothesis"],
+        "fr": ["hypothèse"],
+        "de": ["Hypothese"],
+        "pl": ["hipoteza"],
+        "uk": ["гіпотеза"],
+        "es": ["hipótesis"],
+        "ro": ["ipoteză"],
+        "lt": ["hipotezė"],
+        "lv": ["hipotēze"],
+        "et": ["hüpotees"]
+      },
+      "notes": "E5 open verification question; never translate as fact or finding."
+    },
+    {
+      "id": "fonte_primaria",
+      "iate_id": "IATE-3540201",
+      "it": "fonte primaria",
+      "critical_qualifier": false,
+      "terms": {
+        "en": ["primary source"],
+        "fr": ["source primaire"],
+        "de": ["Primärquelle"],
+        "pl": ["źródło pierwotne"],
+        "uk": ["першоджерело"],
+        "es": ["fuente primaria"],
+        "ro": ["sursă primară"],
+        "lt": ["pirminis šaltinis"],
+        "lv": ["primārais avots"],
+        "et": ["esmane allikas"]
+      },
+      "notes": "Official document, judgment, or original primary record."
+    }
+  ]
+}

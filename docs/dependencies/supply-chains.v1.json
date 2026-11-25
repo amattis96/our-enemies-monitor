@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_version": "2026.11.1",
+  "updated_at": "2026-11-25T00:00:00Z",
+  "supply_chains": [
+    {
+      "id": "SC-RARE-EARTH-MAGNETS",
+      "name": "Rare Earth Elements & Permanent Magnets (NdFeB)",
+      "sector": "critical_raw_materials",
+      "description": "Multi-stage supply chain from extraction through separation/refining to sintered permanent magnet manufacturing.",
+      "stages": [
+        {
+          "stage_id": "SC-REE-STAGE-1",
+          "order": 1,
+          "name": "Mining & Concentrate",
+          "key_actors": ["CN", "AU", "US", "MM"]
+        },
+        {
+          "stage_id": "SC-REE-STAGE-2",
+          "order": 2,
+          "name": "Chemical Separation & Oxide Refining",
+          "key_actors": ["CN", "MY", "EE"]
+        },
+        {
+          "stage_id": "SC-REE-STAGE-3",
+          "order": 3,
+          "name": "Sintered NdFeB Magnet Manufacturing",
+          "key_actors": ["CN", "JP", "EU"]
+        }
+      ],
+      "indicators": [
+        {
+          "id": "IND-REE-REFINING-CONC",
+          "name": "China share of global rare earth refining capacity",
+          "dimension": "concentration",
+          "unit": "percent",
+          "denominator": "global_rare_earth_refining_output_tonnes",
+          "period": "2024",
+          "geographic_scope": "Global",
+          "source": "European Commission Critical Raw Materials Study / IEA 2024",
+          "version": "1.0.0",
+          "value_nature": "estimated",
+          "value": 89,
+          "uncertainty_interval": { "lower": 85, "upper": 92, "confidence_level": 0.9 },
+          "as_of": "2024-12-31T00:00:00Z"
+        },
+        {
+          "id": "IND-REE-EU-IMPORT-FLOW",
+          "name": "EU share of rare earth magnet imports from China",
+          "dimension": "flow",
+          "unit": "percent",
+          "denominator": "eu_total_permanent_magnet_imports_eur",
+          "period": "2024",
+          "geographic_scope": "EU27",
+          "source": "Eurostat Comext HS 850511",
+          "version": "1.0.0",
+          "value_nature": "measured",
+          "value": 93,
+          "uncertainty_interval": null,
+          "as_of": "2024-12-31T00:00:00Z"
+        },
+        {
+          "id": "IND-REE-EU-EFFECTIVE-CAP",
+          "name": "EU operational rare earth separation effective capacity",
+          "dimension": "effective_capacity",
+          "unit": "tonnes_per_year",
+          "denominator": "eu_annual_separated_ree_oxide_demand",
+          "period": "2025",
+          "geographic_scope": "EU27",
+          "source": "EU Raw Materials Information System (RMIS)",
+          "version": "1.0.0",
+          "value_nature": "effective_operational_capacity",
+          "value": 3000,
+          "uncertainty_interval": { "lower": 2500, "upper": 3500, "confidence_level": 0.8 },
+          "as_of": "2025-06-01T00:00:00Z"
+        },
+        {
+          "id": "IND-REE-EU-ANNOUNCED-CAP",
+          "name": "EU announced new magnet & refining plant capacity (2028 target)",
+          "dimension": "nominal_capacity",
+          "unit": "tonnes_per_year",
+          "denominator": "eu_annual_separated_ree_oxide_demand",
+          "period": "2028",
+          "geographic_scope": "EU27",
+          "source": "European Critical Raw Materials Act project announcements",
+          "version": "1.0.0",
+          "value_nature": "announced_capacity",
+          "value": 12000,
+          "uncertainty_interval": { "lower": 6000, "upper": 14000, "confidence_level": 0.7 },
+          "as_of": "2025-06-01T00:00:00Z"
+        },
+        {
+          "id": "IND-REE-EU-STOCK",
+          "name": "EU strategic rare earth oxide stockpile",
+          "dimension": "stock",
+          "unit": "days_of_demand",
+          "denominator": "eu_daily_industrial_consumption",
+          "period": "2025",
+          "geographic_scope": "EU27",
+          "source": "EU Member State Strategic Stockpile Survey",
+          "version": "1.0.0",
+          "value_nature": "unavailable",
+          "value": null,
+          "uncertainty_interval": null,
+          "as_of": "2025-06-01T00:00:00Z"
+        },
+        {
+          "id": "IND-REE-SUBSTITUTABILITY",
+          "name": "Short-term non-NdFeB substitution readiness in EV traction motors",
+          "dimension": "substitutability",
+          "unit": "days_to_retool",
+          "denominator": "oem_platform_qualification_cycle",
+          "period": "2025",
+          "geographic_scope": "EU27",
+          "source": "JRC Supply Chain Vulnerability Assessment",
+          "version": "1.0.0",
+          "value_nature": "estimated",
+          "value": 540,
+          "uncertainty_interval": { "lower": 365, "upper": 730, "confidence_level": 0.85 },
+          "as_of": "2025-03-01T00:00:00Z"
+        },
+        {
+          "id": "IND-REE-RESPONSE-TIME",
+          "name": "New non-Chinese separation facility commissioning lead time",
+          "dimension": "response_time",
+          "unit": "months",
+          "denominator": "greenfield_permitting_to_commercial_output",
+          "period": "2025",
+          "geographic_scope": "Global",
+          "source": "IEA Critical Minerals Outlook",
+          "version": "1.0.0",
+          "value_nature": "estimated",
+          "value": 48,
+          "uncertainty_interval": { "lower": 36, "upper": 72, "confidence_level": 0.8 },
+          "as_of": "2025-01-01T00:00:00Z"
+        }
+      ],
+      "countermeasures": [
+        {
+          "countermeasure_id": "CM-EU-CRMA-2024",
+          "title": "EU Critical Raw Materials Act (Regulation 2024/1252)",
+          "stage": "implementation"
+        }
+      ]
+    },
+    {
+      "id": "SC-EU-NATURAL-GAS",
+      "name": "EU Natural Gas & LNG Import Infrastructure",
+      "sector": "energy",
+      "description": "Pipeline and LNG regasification supply chain for EU27 natural gas security.",
+      "stages": [
+        {
+          "stage_id": "SC-GAS-STAGE-1",
+          "order": 1,
+          "name": "Upstream Extraction & Liquefaction",
+          "key_actors": ["NO", "US", "QA", "DZ", "RU"]
+        },
+        {
+          "stage_id": "SC-GAS-STAGE-2",
+          "order": 2,
+          "name": "Pipeline Transit & LNG Regasification",
+          "key_actors": ["EU", "DE", "NL", "BE", "IT"]
+        },
+        {
+          "stage_id": "SC-GAS-STAGE-3",
+          "order": 3,
+          "name": "Underground Gas Storage (UGS)",
+          "key_actors": ["EU"]
+        }
+      ],
+      "indicators": [
+        {
+          "id": "IND-GAS-RU-PIPELINE-FLOW",
+          "name": "Russian pipeline gas share of EU27 total gas imports",
+          "dimension": "flow",
+          "unit": "percent",
+          "denominator": "eu27_total_natural_gas_imports_bcm",
+          "period": "2024",
+          "geographic_scope": "EU27",
+          "source": "Bruegel European Natural Gas Imports Tracker / Eurostat",
+          "version": "1.0.0",
+          "value_nature": "measured",
+          "value": 11,
+          "uncertainty_interval": { "lower": 10, "upper": 12, "confidence_level": 0.95 },
+          "as_of": "2024-12-31T00:00:00Z"
+        },
+        {
+          "id": "IND-GAS-EU-STORAGE-STOCK",
+          "name": "EU27 underground gas storage fill level (winter start)",
+          "dimension": "stock",
+          "unit": "percent",
+          "denominator": "eu27_working_gas_storage_capacity_twh",
+          "period": "2024-11",
+          "geographic_scope": "EU27",
+          "source": "GIE AGSI+",
+          "version": "1.0.0",
+          "value_nature": "measured",
+          "value": 95.2,
+          "uncertainty_interval": null,
+          "as_of": "2024-11-01T00:00:00Z"
+        },
+        {
+          "id": "IND-GAS-LNG-EFFECTIVE-CAP",
+          "name": "EU27 effective operational LNG regasification capacity",
+          "dimension": "effective_capacity",
+          "unit": "bcm_per_year",
+          "denominator": "eu27_annual_regasification_throughput",
+          "period": "2025",
+          "geographic_scope": "EU27",
+          "source": "ACER / ENTSO-G",
+          "version": "1.0.0",
+          "value_nature": "effective_operational_capacity",
+          "value": 215,
+          "uncertainty_interval": { "lower": 205, "upper": 225, "confidence_level": 0.9 },
+          "as_of": "2025-01-15T00:00:00Z"
+        }
+      ],
+      "countermeasures": [
+        {
+          "countermeasure_id": "CM-EU-REPOWEREU-2022",
+          "title": "REPowerEU Gas Storage & Diversification Regulation",
+          "stage": "observed_effectiveness"
+        }
+      ]
+    }
+  ]
+}

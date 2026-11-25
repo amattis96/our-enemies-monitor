@@ -1,0 +1,183 @@
+---
+import { EVIDENCE_LEVELS } from "../../../../src/model/index.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../src/site/i18n.ts";
+import { projectLaboratory } from "../../../../src/site/laboratory.ts";
+import { buildSituationRoom } from "../../../../src/site/stix.ts";
+import T from "../../components/T.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+import "../../styles/lab.css";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const model = getModel();
+const lab = projectLaboratory(model);
+const room = buildSituationRoom(model, lab);
+---
+
+<Base
+  title={c("Sala situazione", "Situation room")}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Sala situazione descrittiva mobile-first: ultimi eventi verificati, dossier, aggiornamenti probatori, piste pubblicabili, contromisure e copertura.",
+    "Mobile-first descriptive Situation Room: latest verified events, dossiers, evidentiary updates, publishable leads, countermeasures, and coverage.",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">{c("PK-37 · Sala situazione", "PK-37 · Situation room")}</span>
+    <h1 class="mt-3">{c("Sala situazione descrittiva", "Descriptive situation room")}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "Sintesi mobile-first generata esclusivamente dai record pubblici. Nessun dato riservato o fingerprint privato è incluso; ogni elemento rimanda alla propria scheda con caveat.",
+        "Mobile-first synthesis generated strictly from public records. Zero private records or fingerprints are included; every item links to its record with caveat.",
+      )}
+    </p>
+    <p class="meta font-mono mt-2">
+      {c("Generato alle (UTC)", "Generated at (UTC)")}: {room.generated_at}
+    </p>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+      <div class="card">
+        <p class="meta">{c("Eventi pubblici", "Public events")}</p>
+        <p class="text-xl font-mono font-semibold">{room.coverage.events_total}</p>
+      </div>
+      <div class="card">
+        <p class="meta">{c("Entità", "Entities")}</p>
+        <p class="text-xl font-mono font-semibold">{room.coverage.entities_total}</p>
+      </div>
+      <div class="card">
+        <p class="meta">{c("Relazioni", "Relationships")}</p>
+        <p class="text-xl font-mono font-semibold">{room.coverage.relationships_total}</p>
+      </div>
+      <div class="card">
+        <p class="meta">{c("Temi coperti", "Themes covered")}</p>
+        <p class="text-xl font-mono font-semibold">{room.coverage.themes_covered}</p>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2>{c("Ultimi eventi verificati", "Latest verified events")}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+        {room.verified_events.map((item) => (
+          <article class="lab-card">
+            <div class="lab-card-header">
+              <span class="lab-code">{item.id}</span>
+              <span class="lab-pill">{item.evidenceLevel ?? "N/D"} · {item.date}</span>
+            </div>
+            <p class="mb-0 font-semibold"><T text={item.title} lang={lang} /></p>
+            <p class="meta mb-0">{choose(lang, item.caveat.it, item.caveat.en ?? item.caveat.it)}</p>
+            <a class="meta" href={href(item.hrefPath, lang)}>{c("Scheda", "Record")} →</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h2>{c("Dossier e calendario elettorale", "Dossiers & calendar")}</h2>
+        <div class="lab-cards">
+          {room.dossiers_calendar.length === 0 ? (
+            <p class="meta">{c("Nessun dossier elettorale pubblico.", "No public electoral dossiers.")}</p>
+          ) : (
+            room.dossiers_calendar.map((d) => (
+              <article class="lab-card">
+                <div class="lab-card-header">
+                  <span class="lab-code">{d.id}</span>
+                  <span class="lab-pill">{d.date}</span>
+                </div>
+                <p class="mb-0 font-semibold"><T text={d.title} lang={lang} /></p>
+                <p class="meta mb-0">{choose(lang, d.caveat.it, d.caveat.en ?? d.caveat.it)}</p>
+                <a class="meta" href={href(d.hrefPath, lang)}>{c("Dossier", "Dossier")} →</a>
+              </article>
+            ))
+          )}
+        </div>
+      </div>
+
+      <div>
+        <h2>{c("Aggiornamenti probatori", "Evidentiary updates")}</h2>
+        <div class="lab-cards">
+          {room.evidentiary_updates.map((u) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{u.id}</span>
+                <span class="lab-pill">{u.evidenceLevel ?? "N/D"}</span>
+              </div>
+              <p class="mb-0 text-sm">{choose(lang, u.title.it, u.title.en ?? u.title.it)}</p>
+              <p class="meta mb-0">{choose(lang, u.caveat.it, u.caveat.en ?? u.caveat.it)}</p>
+              <a class="meta" href={href(u.hrefPath, lang)}>{c("Scheda", "Record")} →</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h2>{c("Piste pubblicabili e cold case riattivati", "Publishable leads & reactivated cold cases")}</h2>
+        <div class="lab-cards">
+          {room.publishable_leads.map((q) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{q.id}</span>
+                <span class="lab-pill">E5 · {q.priority}</span>
+              </div>
+              <p class="mb-0"><T text={q.question} lang={lang} /></p>
+              <a class="meta" href={href(`piste/${q.id}/`, lang)}>{c("Pista sanitizzata", "Sanitized lead")} →</a>
+            </article>
+          ))}
+          {room.reactivated_cold_cases.map((cc) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{cc.hypothesis_id}</span>
+                <span class="lab-pill">{cc.status}</span>
+              </div>
+              <p class="meta mb-0">{cc.period_summary}</p>
+              <a class="meta" href={href("cold-case/", lang)}>{c("Registro cold case", "Cold case register")} →</a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2>{c("Contromisure europee e brief recenti", "European countermeasures & recent briefs")}</h2>
+        <div class="lab-cards">
+          {room.european_countermeasures.map((cm) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{cm.id}</span>
+              </div>
+              <p class="mb-0 font-semibold"><T text={cm.title} lang={lang} /></p>
+              <p class="meta mb-0">{choose(lang, cm.caveat.it, cm.caveat.en ?? cm.caveat.it)}</p>
+              <a class="meta" href={href(cm.hrefPath, lang)}>{c("Scheda", "Record")} →</a>
+            </article>
+          ))}
+          {room.recent_briefs.map((b) => (
+            <article class="lab-card">
+              <p class="mb-0 font-semibold">{choose(lang, b.title.it, b.title.en ?? b.title.it)}</p>
+              <p class="meta mb-0">{choose(lang, b.caveat.it, b.caveat.en ?? b.caveat.it)}</p>
+              <a class="meta" href={href(b.hrefPath, lang)}>{c("Archivio brief", "Briefs archive")} →</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2>{c("Copertura per livello di evidenza", "Coverage by evidence level")}</h2>
+      <div class="flex flex-wrap gap-3 mt-3">
+        {EVIDENCE_LEVELS.map((lvl) => (
+          <span class="lab-pill">{lvl}: {room.coverage.by_evidence_level[lvl]}</span>
+        ))}
+      </div>
+      <p class="meta mt-3">
+        <a href={href("copertura/", lang)}>{c("Dettaglio copertura", "Coverage details")} →</a> ·{" "}
+        <a href={href("affidabilita/", lang)}>{c("Registro di affidabilità", "Reliability register")} →</a>
+      </p>
+    </section>
+  </div>
+</Base>

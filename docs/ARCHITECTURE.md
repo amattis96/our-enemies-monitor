@@ -1,6 +1,6 @@
 # Technical architecture
 
-**Status (13 November 2026):** M1–M7 built. M5 retains claim-level verification and publication quarantine. M6 provides deterministic sidecar ingestion and bilingual editorial articles. M7 implements the Dossier design system. Four scheduled ChatGPT tasks handle incremental OSINT plus separate ingest PRs, investigations, review/fixes and controlled merge, while deterministic GitHub Actions performs CI and Pages deploy. Research Markdown merged under `sources/incremental/` and `sources/thematic/` appears automatically in the website's documentary archive, **without** advancing canonical timeline/graph counts or claim approval. Approved real articles replace the former demonstration fixtures.
+**Status (25 November 2026):** M1–M7 built; M8–M13 investigative engine (PK-00…PK-38) implemented across Waves 1–5 (`PK-32` deferred per D8; `PK-01`, `PK-15B`, `PK-23`, `PK-26`, `PK-31`, `PK-33` awaiting external/owner acceptance or live acquisition; `PK-34`–`PK-36` conditioned on the M13 Data Readiness Gate). M5 retains claim-level verification and publication quarantine. M6 provides deterministic sidecar ingestion and bilingual editorial articles. M7 implements the Dossier design system. Four scheduled ChatGPT tasks handle incremental OSINT plus separate ingest PRs, investigations, review/fixes and controlled merge, while deterministic GitHub Actions performs CI and Pages deploy. Research Markdown merged under `sources/incremental/` and `sources/thematic/` appears automatically in the website's documentary archive, **without** advancing canonical timeline/graph counts or claim approval. Approved real articles replace the former demonstration fixtures.
 This document describes the implemented code; see [AGENTS.md](../AGENTS.md) for agent rules.
 
 ## Principles
@@ -103,8 +103,30 @@ src/
   audit/               Read-only measurement baseline (baseline.ts: FABLE A E1–E7,
                        D T1–T11), question-benchmark scorer (benchmark.ts) and the
                        text–graph mention queue (mentions.ts, shared matcher with E6),
-                       cadence measures K1–K5 (cadence.ts, B21/ADR-08)
+                       cadence measures K1–K5 (cadence.ts, B21/ADR-08), AI search
+                       benchmark (ai-benchmark.ts, PK-23)
+  roadmap/             Executable roadmap plan/progress validator and renderer (PK-00)
+  quality/             Data quality metrics and reporting (PK-02)
+  identity/            Entity resolution, alias/sameAs audit, classification (PK-03)
+  temporal/            Bitemporal model, as-of queries, point-in-time snapshots (PK-04)
+  security/            Source quarantine, prompt-injection & integrity checks (PK-01)
+  claims/              Atomic claims, falsifiability, supporting/contrary links (PK-06)
+  retractions/         Corrections, retractions, and audit trail (PK-07)
+  runs/                RunManifest schema, missed-run detection, run logs (PK-08)
+  discovery/           Discovery queue/leases, dormant cases, leads & temporal paths (PK-09, PK-10, PK-27)
+  orchestration/       Backpressure, coverage bias, discovery/critic role separation (PK-12)
+  briefs/              Structured investigative briefs and case-file generation (PK-13)
+  engine/              Investigative engine manifest and execution runtime (PK-14)
+  query/               Structured query engine and analytical projections (PK-15A/B)
+  taxonomies/          Versioned DISARM/ATT&CK/sabotage taxonomies, JRC/Hybrid CoE vulnerabilities, risk calendar (PK-25, PK-25-CAL)
+  acquisition/         Multilingual source registry and coverage reporting (PK-26)
+  search/              Hybrid lexical/semantic search index and evaluation (PK-28)
+  dependencies/        Strategic dependency engine, supply chain catalog, propagation (PK-29)
+  i18n/                European language rollout, fallback/hreflang, IATE qualifier check, build budget (PK-31)
+  statistics/          Observational pilot, adapters, sequential/spatial/experimental methods, Data Readiness Gate, backtesting & scenarios (PK-33..PK-38)
   cli/                 Entry points used by package scripts
+packages/
+  mcp/                 Read-only MCP server exposing public projection tools (PK-22)
 test/                  Vitest suites; fixtures/ holds hand-authored test inputs
                        (Fonte_10.proposals.json, a faithful subset of PR #3)
 web/                   Astro portal
@@ -1014,7 +1036,7 @@ two passes are not separate GitHub approvals or cryptographic signatures.
 | **M5** Evidence gate | Publication projection, evidence/source matching, Fonte_09 reconciliation, audit checks | Technically complete; outstanding evidence review tracked |
 | **M6** ChatGPT source and article workflow | Four ChatGPT tasks, deterministic ingest and bilingual pages | A/B/C/D configured 15 November 2026; active prompts archived, ingest PR generation authorized for Task A when executable, first autonomous D merge not yet verified; human editorial approval retained |
 | **M7** Dossier design system | Concept, foundations, icon set, logo, illustrations, motion, component and page specs, UI/UX audit (`docs/design/`); implementation in the portal | Done (2026-11-12): themes, shell, evidence stamps, newest-first timeline, evidence board, interactive atlas; deferred items listed in `docs/design/IMPLEMENTATION_PLAN.md` |
-| **M8–M13** Investigative engine | Implementation plan v1.2 (frozen scope: 140 items, 39 packages PK-00…PK-38): foundations, investigative cycle, public clarity, interoperability, knowledge expansion, validated statistics. See `docs/roadmap/ENGINE_PLAN.md` | Planned (2026-11-24); first cycle PK-00, 02, 03, 04, 05, 15A; PK-01 awaits decisions D1 and D13 |
+| **M8–M13** Investigative engine | Implementation plan v1.2 (frozen scope: 140 items, 39 packages PK-00…PK-38): foundations, investigative cycle, public clarity, interoperability, knowledge expansion, validated statistics. See `docs/roadmap/ENGINE_PLAN.md` | Implemented across Waves 1–5 (2026-11-25): `PK-00`, `02`–`14`, `15A`, `16`–`22`, `24`, `25`, `25-CAL`, `27`–`30`, `37`, `38` completed; `PK-01`, `15B`, `23`, `26`, `31`, `33` awaiting acceptance/live gates; `PK-32` deferred (D8); `PK-34`–`36` blocked on M13 Data Readiness Gate |
 
 ### Article editorial approval and link diagnostics
 

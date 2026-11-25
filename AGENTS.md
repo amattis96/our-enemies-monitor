@@ -82,6 +82,16 @@ pnpm benchmark:measure [--out <f>] [--pages web/dist]  # read-only audit baselin
 pnpm benchmark:score <answers.json>               # grade answers to docs/audit/baseline/benchmark-cases.v1.json
 pnpm cadence:measure --prs <f> --runs <f> [--since/--until <ISO>]  # read-only K1–K5 cadence measures (B21) from gh JSON + git
 pnpm audit:mentions [--format md|json] [--out <f>]  # read-only text–graph mention queue (B14); never writes data/
+pnpm check:roadmap      # validate docs/roadmap/plan.v1.json and progress/ (PK-00)
+pnpm check:engine-manifest  # verify engine manifest and run-log contracts
+pnpm check:i18n-budget  # check multilingual build & Pagefind index budget (PK-31)
+pnpm check:seo          # verify Item 92 GEO/SEO contracts on web/dist (after pnpm build)
+pnpm quality:report     # read-only data quality report (PK-02)
+pnpm audit:entities     # audit entity identity, aliases, and classification (PK-03)
+pnpm asof <YYYY-MM-DD>  # point-in-time temporal state query (PK-04)
+pnpm impact <ID>        # analyze downstream dependency/graph impact (PK-05)
+pnpm backtest           # run zero-leakage historical backtest (PK-16 / PK-38)
+pnpm brief              # generate investigative brief (PK-13)
 ```
 
 Before declaring work done, run `pnpm check` (and `pnpm build` plus
@@ -202,8 +212,9 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 ## Scheduled research, editorial review and automated integration
 
 **Live task configuration verified 21 November 2026 (Europe/Rome):**
-[scheduled-task register](docs/CHATGPT_SCHEDULED_TASKS.md) and
-[recorded full prompts](docs/automation/CHATGPT_TASK_PROMPTS.md). These
+[scheduled-task register](docs/CHATGPT_SCHEDULED_TASKS.md),
+[recorded full prompts](docs/automation/CHATGPT_TASK_PROMPTS.md), and
+[M8/M9 prompt updates guide](docs/automation/SCHEDULED_TASKS_PROMPT_UPDATES.md). These
 schedules execute in ChatGPT, not in GitHub Actions; recheck their live state
 before treating this snapshot as current. The retired paid Anthropic API
 workflow must not be reactivated. The legacy

@@ -51,7 +51,8 @@
     "check:engine-manifest": "node src/cli/check-engine-manifest.ts",
     "check:seo": "node src/cli/check-seo.ts",
     "backtest": "node src/cli/backtest.ts",
-    "brief": "node src/cli/generate-brief.ts"
+    "brief": "node src/cli/generate-brief.ts",
+    "check:i18n-budget": "node src/cli/check-i18n-budget.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",

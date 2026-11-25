@@ -1,9 +1,24 @@
 {
   "id": "PK-26",
-  "status": "blocked",
+  "status": "awaiting_acceptance",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented multilingual source registry and coverage reporting in src/acquisition/source-registry.ts and docs/acquisition/"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/knowledge-expansion.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Source registry filtering and coverage bias reporting verified in test/knowledge-expansion.test.ts"
+  ],
+  "notes": "Awaiting live multilingual acquisition validation and D7/D11 acceptance.",
+  "updated_at": "2026-11-25T23:10:00Z"
 }
