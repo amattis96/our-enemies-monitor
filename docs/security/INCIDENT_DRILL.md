@@ -23,7 +23,7 @@ This document records the tabletop incident response drill for accidental public
 | **2. Containment** | `T+15m` to `T+30m` | Set `AUTOMERGE_ENABLED=false`; cancel active `ci.yml` / `publish-gateway.yml` runs; place `automerge:hold` on open PRs. | `gh run list` shows no active deploy; auto-merge halted. |
 | **3. Retraction & Rebuild** | `T+30m` to `T+1h` | Remove leaked record from public repo, add leak pattern to `validatePublicationGateway()`, rebuild and redeploy clean `main`. | `validatePublicationGateway()` passes; live URL returns 404/clean state. |
 | **4. Credential Rotation** | `T+1h` to `T+2h` | Rotate GitHub App private key / any exposed tokens per `BACKUP_AND_ROTATION.md`; audit access logs. | Old tokens revoked; new tokens verified. |
-| **5. History Rewrite (if PII/secrets)** | `T+2h` to `T+4h` | Verify encrypted backup, run `git filter-repo` on public repo to purge leaked blob, force-push `main`, request cache purge. | `git log -S <leaked-token>` returns empty. |
+| **5. History Rewrite (if PII/secrets)** | `T+2h` to `T+4h` | Verify the repository bundle, run `git filter-repo` on the repo to purge leaked blob, force-push `main`, request cache purge. | `git log -S <leaked-token>` returns empty. |
 | **6. Disclosure & Uncontrollable Copies** | `T+4h` to `T+24h` | Publish incident notice; explicitly list uncontrollable copies (forks, web archives, search caches, CDN mirrors). | Notice published; regression test added to `test/security.test.ts`. |
 
 ## 4. Drill Sign-Off Criteria

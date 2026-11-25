@@ -19,6 +19,6 @@
   "completion_evidence": [
     "Orchestration transitions, budget, and backpressure verified in test/orchestration-briefs.test.ts (7/7)"
   ],
-  "notes": "Awaiting external acceptance: M9 4-week live cycle, owner decisions D4/D9/D12, 4 live briefs, and external scheduled task prompt updates (docs/automation/SCHEDULED_TASKS_PROMPT_UPDATES.md).",
-  "updated_at": "2026-11-25T22:50:30Z"
+  "notes": "Awaiting acceptance: PK-02, PK-08 and PK-09 completed, owner decision D9 (AI budget), the M9 four-week live cycle and the prompt updates applied to the live tasks by the owner.",
+  "updated_at": "2026-11-26T12:00:00Z"
 }

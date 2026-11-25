@@ -1,28 +1,29 @@
-# Encrypted Backup, Restore Drill & Credential Rotation (`BACKUP_AND_ROTATION.md`)
+# Snapshots, Backup & Credential Rotation (`BACKUP_AND_ROTATION.md`)
 
-This document defines the operational controls for **D14** (snapshots, backups, restore verification) and **PK-01** credential hygiene.
+This document defines the operational controls for **D14** (snapshots and backups, resolved by the owner on 26 November 2026) and **PK-01** credential hygiene.
 
 ## 1. Snapshot & Backup Taxonomy (D14)
 
-- **Public Snapshots**: Immutable, publicly verifiable releases of the sanitized public dataset (permanent unless formally retracted with notice).
-- **Private Encrypted Backups**: Full encrypted archives of the private repository (`sources/original/`, `sources/incremental/`, private discovery queue, operational manifests, holdout sets, and Git history).
+- **Git history**: the single public repository is the authoritative record of data, sources, discovery queue, run manifests and knowledge-time revisions. Every change is a reviewed commit on `main`.
+- **Snapshot register**: append-only transitions in `docs/snapshots/` (PK-05) state what was accepted and published at each moment.
+- **Repository backup**: a periodic `git bundle --all` of the repository kept by the maintainer outside GitHub, so the project survives the loss of the GitHub account. No encryption is required: the content is already public.
 - **Uncontrollable External Copies**: Forks, search caches, CDN mirrors, and external archives. These cannot be deleted after publication and must be declared in any incident disclosure.
+- **No confidential estate**: there is no private repository to back up. If confidential human investigations are ever introduced (`private_investigative`, future and optional), their encrypted storage and restore drill will be defined by that new owner decision.
 
-## 2. Encrypted Backup Procedure
+## 2. Backup Procedure
 
-- **Frequency**: Daily incremental + weekly full snapshot of the private repository (`git bundle --all`).
-- **Encryption**: Client-side encryption using `age` (X25519 public-key encryption) or KMS-wrapped AES-256-GCM before leaving the host. Private decryption keys are stored offline / in a hardware-backed secret manager, never in CI.
-- **Storage**: Off-site redundant object storage with versioning and object-lock enabled.
+- **Frequency**: monthly, and before any history-sensitive maintenance (`git bundle create oem-YYYY-MM.bundle --all`).
+- **Storage**: any storage under the maintainer's control outside GitHub, with the bundle SHA-256 recorded next to it.
 
 ## 3. Periodic Restore Drill (Quarterly)
 
-Every quarter, the Maintainer executes a full restore test in an isolated temporary directory:
+Every quarter, the Maintainer executes a restore test in an isolated temporary directory:
 
-1. Fetch the latest weekly encrypted backup bundle and decrypt using the offline recovery key.
-2. Verify archive SHA-256 checksum against the signed backup manifest.
+1. Fetch the latest repository bundle.
+2. Verify its SHA-256 checksum against the recorded value.
 3. Clone/unbundle into a clean temporary directory and run `git fsck --full`.
 4. Run `pnpm install --frozen-lockfile && pnpm validate && pnpm test` to verify repository integrity and schema validity.
-5. Record the drill date, bundle SHA-256, and verification result in the private operational log, then securely wipe the temporary directory.
+5. Record the drill date, bundle SHA-256, and verification result in the maintainer's notes, then delete the temporary directory.
 
 ## 4. Credential Rotation Schedule
 

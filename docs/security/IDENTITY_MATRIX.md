@@ -8,7 +8,7 @@ To prevent privilege escalation and self-approval (D13), **our-enemies-monitor**
 | :--- | :--- | :--- |
 | **Investigative Agent** | Scheduled / Research Bot | Acquires OSINT sources, writes quarantined proposals and article drafts on `research/*` branches. |
 | **Implementation Agent** | Engineering Bot | Proposes code, schema, and control-plane updates on feature/fix branches. |
-| **Publication Gateway** | Isolated Workflow / App | Reads validated private artifacts on `main` and emits **only** sanitized public projections. |
+| **Publication Gateway** | Isolated Workflow / App | Reads the validated repository state on `main` and admits **only** publishable records into the public projections. |
 | **Auto-Merge App** | GitHub App (replaces personal PAT `AUTOMERGE_TOKEN`) | Merges ordinary content/data PRs once all required checks pass and no control-plane paths are touched. |
 | **Maintainer (`@amattis96`)** | Human Owner | Sole code owner of the control plane; sole authority for `evidence-waiver`, rulesets, and break-glass actions. |
 

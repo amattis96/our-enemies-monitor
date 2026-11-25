@@ -1,5 +1,15 @@
 # Scheduled task run log contract
 
+> **Run Manifest (PK-08), from 26 November 2026.** Besides this human-readable
+> report, A, B, C, E and F emit a machine-readable `RunManifest`
+> (`src/runs/schema.ts`). Its authorized persistence path is
+> `docs/runs/manifests/<run_id>.json` on an `agent/runs-<task>-<YYYY>-W<ww>`
+> branch, never inside source, ingest, article or queue PRs; see
+> [docs/runs/README.md](../runs/README.md). The YAML report below and the
+> manifest must agree. Queries and public URLs are ordinary OSINT and may be
+> recorded; credentials, URL authentication parameters and unnecessary
+> personal data may not.
+
 Applies to **Tasks A, B, C and D**. The task's visible ChatGPT result is
 mandatory; a dedicated maintainer-selected GitHub issue may receive
 **one structured comment per execution** only once configured and

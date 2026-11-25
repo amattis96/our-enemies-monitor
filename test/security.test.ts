@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -9,75 +10,101 @@ import { isControlPlane } from "../src/pipeline/policy.ts";
 import {
   auditWorkflows,
   checkArtificialCorroboration,
+  checkBoundary,
   classifyPath,
+  classifyRecord,
   createEmbeddingGuard,
   createProviderGuard,
+  DESTINATIONS,
   detectPromptInjection,
   quarantineSource,
   scanQuarantinedSource,
   validatePublicationGateway,
 } from "../src/security/index.ts";
 
-describe("security boundary & provider/embedding guards", () => {
-  it("rejects disallowed data classes for external AI subscriptions and retaining APIs", () => {
-    const subGuard = createProviderGuard("chatgpt_subscription", "editorial_draft");
-    expect(() => subGuard.assertPayload({ dataClass: "editorial_draft" })).not.toThrow();
-    expect(() => subGuard.assertPayload({ dataClass: "private_investigative" })).toThrow(
-      /BoundaryViolation/,
-    );
-    expect(() => subGuard.assertPayload({ dataClass: "holdout_evaluation" })).toThrow(
-      /BoundaryViolation/,
-    );
+describe("material classes, provider and embedding guards (D1/D12, single public repository)", () => {
+  const ordinary = [
+    "public_publishable",
+    "investigative_pending",
+    "editorial_draft",
+    "operational",
+  ] as const;
 
-    const stdApiGuard = createProviderGuard("claude_api_standard", "public_publishable");
-    expect(() => stdApiGuard.assertPayload({ dataClass: "public_publishable" })).not.toThrow();
-    expect(() => stdApiGuard.assertPayload({ dataClass: "private_investigative" })).toThrow(
-      /BoundaryViolation/,
-    );
+  it("lets ordinary subscription AIs and APIs process unqualified OSINT, drafts and operational data", () => {
+    for (const destination of ["ai_subscription", "ai_api"] as const) {
+      const guard = createProviderGuard(destination);
+      for (const dataClass of ordinary) {
+        expect(() => guard.assertPayload({ dataClass })).not.toThrow();
+      }
+    }
+  });
 
-    const zdrGuard = createProviderGuard("claude_api_zdr", "private_investigative");
-    expect(() => zdrGuard.assertPayload({ dataClass: "private_investigative" })).not.toThrow();
-    expect(() => zdrGuard.assertPayload({ dataClass: "restricted_operational" })).toThrow(
-      /BoundaryViolation/,
+  it("allows ordinary OSINT on local and external embedding services, no ZDR required", () => {
+    for (const destination of ["embedding_local", "embedding_external"] as const) {
+      const guard = createEmbeddingGuard(destination);
+      for (const dataClass of ordinary) {
+        expect(() => guard.assertPayload({ dataClass })).not.toThrow();
+      }
+    }
+  });
+
+  it("stores pending OSINT in the repository but keeps it out of public projections", () => {
+    expect(checkBoundary("investigative_pending", "repository").allowed).toBe(true);
+    expect(checkBoundary("investigative_pending", "public_site").allowed).toBe(false);
+    expect(checkBoundary("investigative_pending", "public_export").allowed).toBe(false);
+    expect(checkBoundary("editorial_draft", "public_site").allowed).toBe(false);
+    expect(checkBoundary("operational", "public_export").allowed).toBe(false);
+    expect(checkBoundary("public_publishable", "public_site").allowed).toBe(true);
+  });
+
+  it("keeps genuinely sensitive classes isolated", () => {
+    // Future confidential investigations have no store: denied everywhere.
+    for (const destination of DESTINATIONS) {
+      expect(checkBoundary("private_investigative", destination).allowed).toBe(false);
+    }
+    // A holdout reaches only the external evaluator, never the repository or an agent.
+    expect(checkBoundary("holdout_evaluation", "external_evaluator").allowed).toBe(true);
+    for (const destination of [
+      "repository",
+      "ai_subscription",
+      "ai_api",
+      "embedding_external",
+    ] as const) {
+      expect(checkBoundary("holdout_evaluation", destination).allowed).toBe(false);
+    }
+    const guard = createProviderGuard("ai_subscription", "holdout_evaluation");
+    expect(() => guard.assertPayload({ dataClass: "investigative_pending" })).toThrow(
+      /Isolated context mixing denied/,
     );
   });
 
-  it("rejects private and holdout data on external embedding services", () => {
-    const extRetaining = createEmbeddingGuard("embedding_external_retaining", "public_publishable");
-    expect(() => extRetaining.assertPayload({ dataClass: "public_publishable" })).not.toThrow();
-    expect(() => extRetaining.assertPayload({ dataClass: "private_investigative" })).toThrow(
-      /BoundaryViolation/,
-    );
-
-    const extZdr = createEmbeddingGuard("embedding_external_zdr", "editorial_draft");
-    expect(() => extZdr.assertPayload({ dataClass: "editorial_draft" })).not.toThrow();
-    expect(() => extZdr.assertPayload({ dataClass: "private_investigative" })).toThrow(
-      /BoundaryViolation/,
-    );
-
-    const localEmb = createEmbeddingGuard("embedding_local", "private_investigative");
-    expect(() => localEmb.assertPayload({ dataClass: "private_investigative" })).not.toThrow();
-    expect(() => localEmb.assertPayload({ dataClass: "holdout_evaluation" })).toThrow(
-      /BoundaryViolation/,
-    );
+  it("does not treat needs_review as confidential", () => {
+    expect(classifyRecord({ status: "needs_review" })).toBe("investigative_pending");
+    expect(classifyRecord({ status: "imported_unreviewed" })).toBe("public_publishable");
+    expect(
+      checkBoundary(classifyRecord({ status: "needs_review" }), "ai_subscription").allowed,
+    ).toBe(true);
   });
 
-  it("blocks cross-domain context/cache mixing", () => {
-    const zdrGuard = createProviderGuard("chatgpt_api_zdr", "public_publishable");
-    expect(() =>
-      zdrGuard.assertPayload({
-        dataClass: "private_investigative",
-        contextDomain: "public_publishable",
-      }),
-    ).toThrow(/Cross-domain context mixing denied/);
-  });
-
-  it("classifies repository paths into expected data classes", () => {
-    expect(classifyPath("docs/quality/sets/dev.v1.json")).toBe("holdout_evaluation");
-    expect(classifyPath("sources/incremental/Fonte_12.md")).toBe("private_investigative");
-    expect(classifyPath("docs/runs/2026-11-25.json")).toBe("restricted_operational");
+  it("classifies repository paths into material classes", () => {
+    expect(classifyPath("sources/incremental/Fonte_12.md")).toBe("investigative_pending");
+    expect(classifyPath("docs/discovery/queue/dq-1.json")).toBe("investigative_pending");
+    expect(classifyPath("docs/runs/manifests/run-1.json")).toBe("operational");
+    expect(classifyPath("docs/quality/sets/dev.v1.json")).toBe("operational");
+    expect(classifyPath("docs/quality/holdout/answers.json")).toBe("holdout_evaluation");
     expect(classifyPath("content/articles/ART-0001.it.md")).toBe("editorial_draft");
     expect(classifyPath("data/entities/RU.json")).toBe("public_publishable");
+  });
+
+  it("keeps no file in the repository classified as holdout or confidential", () => {
+    const files = execFileSync("git", ["ls-files"], { cwd: REPO_ROOT, encoding: "utf8" })
+      .split("\n")
+      .filter(Boolean);
+    const isolated = files.filter((f) => {
+      const c = classifyPath(f);
+      return c === "holdout_evaluation" || c === "private_investigative";
+    });
+    expect(isolated).toEqual([]);
   });
 });
 

@@ -6,9 +6,17 @@ import { REPO_ROOT } from "../pipeline/paths.ts";
 
 /**
  * 3-tier reference set model (dev, validation, holdout) built on
- * docs/audit/baseline/benchmark-cases.v1.json with strict access-boundary
- * enforcement, aggregate-only holdout evaluation, and rotation tracking.
+ * docs/audit/baseline/benchmark-cases.v1.json, with role-based access guards
+ * in code, aggregate-only holdout evaluation and rotation tracking.
+ *
+ * Methodological limit (26 November 2026): all three tiers are public files
+ * in the repository. The code guards keep honest callers from reading
+ * solutions, but any agent with repository access can read them, so the
+ * `holdout` tier is a held-out PUBLIC split, never an independent holdout.
+ * Independent evaluation needs a fresh case set not exposed to the evaluated
+ * agent, or an external evaluator; results must state which one was used.
  */
+export const HOLDOUT_IS_INDEPENDENT = false as const;
 
 export const REFERENCE_TIERS = ["dev", "validation", "holdout"] as const;
 export const CALLER_ROLES = ["implementation_agent", "evaluator", "human_reviewer"] as const;
@@ -193,8 +201,9 @@ export function buildTierSplitsFromBaseline(baselinePath: string = DEFAULT_BASEL
 }
 
 /**
- * Enforces tier access boundaries. Implementation agents are strictly blocked
- * from reading holdout solutions (and validation solutions).
+ * Role guard on tier solutions: implementation agents calling this API are
+ * refused holdout and validation solutions. It prevents accidental use by
+ * cooperating code, not deliberate reading of the public files.
  */
 export function getReferenceSetSolutions(
   tier: ReferenceTier,

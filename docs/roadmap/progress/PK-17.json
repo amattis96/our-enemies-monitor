@@ -19,6 +19,6 @@
   "completion_evidence": [
     "Transparency pages and right-of-reply checks verified in test/transparency-rights.test.ts (8/8)"
   ],
-  "notes": "Awaiting external acceptance: M9 4-week live cycle, owner decisions D4/D9/D12, 4 live briefs, and external scheduled task prompt updates.",
-  "updated_at": "2026-11-25T22:50:30Z"
+  "notes": "Awaiting acceptance: owner decision D4 (reply channel) and PK-07 completed. D12 resolved on 26 November 2026; no published response-time commitment until D4.",
+  "updated_at": "2026-11-26T12:00:00Z"
 }

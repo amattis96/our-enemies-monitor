@@ -1,3 +1,4 @@
+import { containsSecret, redactSecrets } from "./minimize.ts";
 import {
   type PublicRunError,
   type PublicRunManifest,
@@ -6,16 +7,13 @@ import {
   type RunManifest,
 } from "./schema.ts";
 
-const SENSITIVE_MESSAGE_PATTERNS: readonly RegExp[] = [
-  /https?:\/\//i,
-  /\bsources\/(original|incremental)\b/i,
-  /\b(bearer|token|secret|password|api[_-]?key|authorization)\b/i,
-  /\b(query|queries|hypothesis|entity|dossier)\b/i,
-];
-
+/**
+ * Only genuinely sensitive errors are withheld from the status page: flagged
+ * `sensitive`, or still carrying a secret. Ordinary OSINT terms, public URLs
+ * and source paths are not sensitive (D1/D12, 26 November 2026).
+ */
 function isSensitiveError(error: RunError): boolean {
-  if (error.sensitive) return true;
-  return SENSITIVE_MESSAGE_PATTERNS.some((pattern) => pattern.test(error.message));
+  return error.sensitive || containsSecret(error.message);
 }
 
 function sanitizeRunError(error: RunError): PublicRunError {
@@ -28,15 +26,16 @@ function sanitizeRunError(error: RunError): PublicRunError {
     result.stage = error.stage;
   }
   if (!sensitive) {
-    result.message = error.message;
+    result.message = redactSecrets(error.message);
   }
   return result;
 }
 
 /**
- * Produce the sanitized public projection of a RunManifest (PK-08).
- * Strips `queries`, `sources_consulted`, `notes`, and sensitive error messages
- * so non-publishable investigative trails never leak to the public repository.
+ * Compact summary of a RunManifest for the public status page `/stato`
+ * (PK-08). The full minimized manifest, with queries and consulted sources,
+ * is stored in `docs/runs/manifests/`; the page shows only status, timing,
+ * provider/model, versions, cost and non-sensitive errors.
  */
 export function sanitizeRunManifest(manifest: RunManifest): PublicRunManifest {
   const projected: PublicRunManifest = {

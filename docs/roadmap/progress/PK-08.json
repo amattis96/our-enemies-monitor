@@ -19,6 +19,6 @@
   "completion_evidence": [
     "Run manifest schema, public/private projection, missed-run reconciliation, and schemas/run.schema.json verified in test/runs-queue-dormant.test.ts (14/14)"
   ],
-  "notes": "Awaiting external maintainer gates: owner decisions D1/D12/D13/D14, 7-day live scheduled runs, and private repository setup.",
-  "updated_at": "2026-11-25T22:42:00Z"
+  "notes": "No private repository needed (D1): manifests are stored in docs/runs/manifests/ via agent/runs-* PRs. Acceptance still needs 7 consecutive days of valid manifests and a deliberately skipped run detected as missed.",
+  "updated_at": "2026-11-26T12:00:00Z"
 }

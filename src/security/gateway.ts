@@ -60,7 +60,7 @@ const DEFAULT_FORBIDDEN_PATTERNS: readonly RegExp[] = [
   /\b(?:ghp|gho|ghu|ghs)_[A-Za-z0-9]{20,}\b/,
   /\bgithub_pat_[A-Za-z0-9_]{20,}\b/,
   /\bsk-[A-Za-z0-9]{20,}\b/,
-  /"dataClass"\s*:\s*"(?:private_investigative|restricted_operational|holdout_evaluation)"/,
+  /"dataClass"\s*:\s*"(?:private_investigative|holdout_evaluation)"/,
 ];
 
 function checkExportLeaks(
