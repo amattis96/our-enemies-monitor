@@ -1,5 +1,14 @@
 import { z } from "zod";
 import {
+  CANONICAL_PREDICATES,
+  CLASSIFICATION_STATUSES,
+  EVIDENCE_NATURES,
+  EVIDENTIARY_VERIFICATION_STATES,
+  MigrationState,
+} from "../claims/index.ts";
+import {
+  CountryCode,
+  DateRange,
   EntityId,
   EventId,
   LocalizedText,
@@ -14,6 +23,7 @@ import {
 import {
   CLAIM_ASPECTS,
   CLAIM_KINDS,
+  ORIGIN_TYPES,
   PROCEDURAL_STATUSES,
   RELATIONSHIP_EVIDENCE_LEVELS,
 } from "./vocabularies.ts";
@@ -168,3 +178,144 @@ export type Case = z.infer<typeof Case>;
 export type Claim = z.infer<typeof Claim>;
 export type PersonStatus = z.infer<typeof PersonStatus>;
 export type CasePilotFile = z.infer<typeof CasePilotFile>;
+
+// ---------------------------------------------------------------------------
+// PK-06A: Qualified assertions & multi-incident cases ready for data/cases/ and data/claims/
+
+export const INCIDENT_ID = /^INC-\d{4}$/;
+export const IncidentId = z.string().regex(INCIDENT_ID);
+
+/**
+ * Distinguishes "un'autorità ha attribuito" (`authority_attributed`) from
+ * "l'attribuzione è accertata" (`attribution_established`).
+ */
+export const ATTRIBUTION_QUALIFICATIONS = [
+  "authority_attributed",
+  "attribution_established",
+  "denied",
+  "disputed",
+  "unattributed",
+] as const;
+export type AttributionQualification = (typeof ATTRIBUTION_QUALIFICATIONS)[number];
+
+export const EVIDENCE_POLARITIES = ["supporting", "contrary"] as const;
+export type EvidencePolarity = (typeof EVIDENCE_POLARITIES)[number];
+
+export const EvidenceItem = z.strictObject({
+  id: z.string().min(1).describe("Stable identifier of the evidence item."),
+  polarity: z
+    .enum(EVIDENCE_POLARITIES)
+    .describe("Whether the evidence supports or contradicts the assertion."),
+  source_id: SourceId.describe("Source code citing or carrying this evidence."),
+  origin_type: z
+    .enum([...ORIGIN_TYPES, "unknown"])
+    .optional()
+    .describe("B17 origin_type of the evidence source, or 'unknown' when undetermined."),
+  evidence_nature: z
+    .enum(EVIDENCE_NATURES)
+    .describe("Nature of the evidence (official_document, direct_testimony, etc.)."),
+  summary: LocalizedText.describe("Concise summary of what this evidence establishes or disputes."),
+  url: Url.nullable().describe("Direct URL of the evidence document, or null when absent."),
+});
+export type EvidenceItem = z.infer<typeof EvidenceItem>;
+
+export const QualifiedAssertion = z.strictObject({
+  id: ClaimId.describe("Stable assertion ID (CL-####); never renumbered or reused."),
+  case_id: CaseId.describe("Case this assertion belongs to."),
+  incident_id: IncidentId.nullable().describe(
+    "Specific incident within a multi-incident case, or null if case-wide.",
+  ),
+  subject: NodeId.describe("Subject entity or event ID of the assertion."),
+  canonical_predicate: z
+    .enum(CANONICAL_PREDICATES)
+    .nullable()
+    .describe("Canonical predicate ID from PK-06C taxonomy, or null when unmapped/needs_review."),
+  original_predicate: z
+    .string()
+    .min(1)
+    .describe("Original predicate from the corpus or editorial record, preserved verbatim."),
+  classification_status: z
+    .enum(CLASSIFICATION_STATUSES)
+    .describe("PK-06C classification status: mapped, unmapped, or needs_review."),
+  object: NodeId.describe("Object entity or event ID of the assertion."),
+  temporal_interval: DateRange.describe("Temporal interval of the asserted fact or attribution."),
+  asserted_by: NodeId.nullable().describe(
+    "Entity making the assertion (e.g. authority or court), or null when not stated.",
+  ),
+  attribution_qualification: z
+    .enum(ATTRIBUTION_QUALIFICATIONS)
+    .describe(
+      "Explicitly distinguishes authority_attributed (an authority attributed) from attribution_established (attribution established).",
+    ),
+  supporting_evidence: z
+    .array(EvidenceItem)
+    .describe("Supporting evidence items with their origin and nature."),
+  contrary_evidence: z
+    .array(EvidenceItem)
+    .describe("Contrary or disputing evidence items with their origin and nature."),
+  evidence_level: z
+    .enum(RELATIONSHIP_EVIDENCE_LEVELS)
+    .nullable()
+    .describe("Evidentiary qualification (E1-E4), or null when not assigned."),
+  verification_state: z
+    .enum(EVIDENTIARY_VERIFICATION_STATES)
+    .describe("PK-06D evidentiary verification state: pending, verified, or disputed."),
+  migration: MigrationState.describe("PK-06D three-dimensional migration state."),
+  review: Review.describe("Editorial review state of the assertion."),
+  provenance: emptyProvenance,
+});
+export type QualifiedAssertion = z.infer<typeof QualifiedAssertion>;
+
+export const Incident = z.strictObject({
+  id: IncidentId.describe("Stable incident ID (INC-####) within a case."),
+  title: LocalizedText.describe("Short title of the distinct incident."),
+  date: DateRange.describe("Temporal interval of this specific incident."),
+  events: z
+    .array(EventId)
+    .min(1)
+    .describe("Events that are phases of this specific incident (counted once per incident)."),
+  places: z.array(CountryCode).describe("ISO 3166-1 alpha-2 country codes for this incident."),
+});
+export type Incident = z.infer<typeof Incident>;
+
+export const QualifiedCase = z.strictObject({
+  id: CaseId.describe("Stable case ID (CASE-####); never renumbered or reused."),
+  title: LocalizedText.describe("Short title of the case."),
+  summary: LocalizedText.describe("What the case groups; it adds no claim of its own."),
+  incidents: z
+    .array(Incident)
+    .min(1)
+    .describe(
+      "Distinct incidents grouped under this case, enabling separate incident counts per case.",
+    ),
+  events: z
+    .array(EventId)
+    .min(1)
+    .describe("All events that are phases of the case across its incidents."),
+  assertions: z
+    .array(ClaimId)
+    .min(1)
+    .describe("Assertion IDs belonging to this case; every case must have at least one assertion."),
+  grouping_basis: LocalizedText.describe(
+    "Why these incidents and events form one case, stated from the records.",
+  ),
+  sources,
+  migration: MigrationState.describe("PK-06D three-dimensional migration state."),
+  review: Review.describe("Editorial review state of the case."),
+  provenance: emptyProvenance,
+});
+export type QualifiedCase = z.infer<typeof QualifiedCase>;
+
+export const CaseCollectionFile = z.strictObject({
+  collection: z.literal("cases").describe("Collection name for data/cases/."),
+  version: z.literal(1).describe("Collection format version."),
+  cases: z.array(QualifiedCase).describe("Qualified multi-incident cases."),
+});
+export type CaseCollectionFile = z.infer<typeof CaseCollectionFile>;
+
+export const ClaimCollectionFile = z.strictObject({
+  collection: z.literal("claims").describe("Collection name for data/claims/."),
+  version: z.literal(1).describe("Collection format version."),
+  claims: z.array(QualifiedAssertion).describe("Qualified assertions."),
+});
+export type ClaimCollectionFile = z.infer<typeof ClaimCollectionFile>;

@@ -1,9 +1,24 @@
 {
   "id": "PK-06B",
-  "status": "blocked",
+  "status": "completed",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-2-m8-integration",
+      "recorded_at": "2026-11-25T22:42:00Z",
+      "outcome": "Implemented external input quarantine and untrusted source isolation in src/security/quarantine.ts and test/security.test.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/security.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:41:55Z"
+    }
+  ],
+  "completion_evidence": [
+    "Quarantine delimiter and prompt-injection isolation helpers verified in src/security/quarantine.ts",
+    "test/security.test.ts passes (13/13 tests)"
+  ],
+  "updated_at": "2026-11-25T22:42:00Z"
 }

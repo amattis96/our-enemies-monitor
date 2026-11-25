@@ -1,0 +1,104 @@
+name: Publish gateway
+
+# Isolated private -> public publication gateway (PK-01).
+# Runs only from trusted main (workflow_run after CI or workflow_dispatch),
+# never on pull requests. Read-only permissions on jobs that execute repository code.
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-gateway
+  cancel-in-progress: false
+
+jobs:
+  validate-and-stage:
+    name: validate-and-stage
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      staged: ${{ steps.gateway.outputs.staged }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - id: gateway
+        name: Run private-to-public publication gateway
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/oem-gateway"
+          node --input-type=module <<'NODE'
+          import { appendFileSync, writeFileSync } from "node:fs";
+          import path from "node:path";
+          import { readDataFiles } from "./src/pipeline/load.ts";
+          import { validateDataFiles } from "./src/pipeline/validate.ts";
+          import { validatePublicationGateway } from "./src/security/gateway.ts";
+
+          const dataResult = validateDataFiles(readDataFiles());
+          if (dataResult.issues.some((i) => i.severity === "error")) {
+            throw new Error("Canonical data validation failed; publication gateway aborted.");
+          }
+          const verdict = validatePublicationGateway(dataResult.dataset);
+          if (!verdict.passed || !verdict.public_dataset) {
+            console.error(JSON.stringify({ errors: verdict.errors, leaks: verdict.leaks }, null, 2));
+            throw new Error("Publication gateway rejected dataset.");
+          }
+          const outDir = path.join(process.env.RUNNER_TEMP, "oem-gateway");
+          writeFileSync(
+            path.join(outDir, "gateway-summary.json"),
+            JSON.stringify(
+              {
+                passed: verdict.passed,
+                checks: verdict.checks,
+                withheld_count: verdict.withheld_count,
+              },
+              null,
+              2,
+            ) + "\n",
+          );
+          appendFileSync(process.env.GITHUB_OUTPUT, "staged=true\n");
+          NODE
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: steps.gateway.outputs.staged == 'true'
+        with:
+          name: public-gateway-summary
+          path: ${{ runner.temp }}/oem-gateway/gateway-summary.json
+          retention-days: 1
+          if-no-files-found: error
+
+  publish-summary:
+    name: publish-summary
+    needs: validate-and-stage
+    if: needs.validate-and-stage.outputs.staged == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: public-gateway-summary
+          path: ${{ runner.temp }}/oem-gateway-summary
+      - name: Record gateway verification summary
+        env:
+          SUMMARY_PATH: ${{ runner.temp }}/oem-gateway-summary/gateway-summary.json
+        run: |
+          set -euo pipefail
+          cat "$SUMMARY_PATH" >> "$GITHUB_STEP_SUMMARY"

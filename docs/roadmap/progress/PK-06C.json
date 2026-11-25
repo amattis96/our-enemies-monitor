@@ -1,9 +1,24 @@
 {
   "id": "PK-06C",
-  "status": "blocked",
+  "status": "completed",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-2-m8-integration",
+      "recorded_at": "2026-11-25T22:42:00Z",
+      "outcome": "Implemented private-to-public publication gateway and workflow .github/workflows/publish-gateway.yml with src/security/gateway.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/security.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:41:55Z"
+    }
+  ],
+  "completion_evidence": [
+    "Fail-closed publication gateway checks schema_valid, visibility_enforced, evidentiary_valid, m5_gate_passed, sanitized, and export_leak_free",
+    "test/security.test.ts passes (13/13 tests)"
+  ],
+  "updated_at": "2026-11-25T22:42:00Z"
 }

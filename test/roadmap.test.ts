@@ -43,6 +43,26 @@ function initialProgressMap(): Map<string, PackageProgress> {
     entry.completion_evidence = [];
     delete entry.notes;
   }
+  for (const id of [
+    "PK-01",
+    "PK-06A",
+    "PK-06B",
+    "PK-06C",
+    "PK-06D",
+    "PK-07",
+    "PK-08",
+    "PK-09",
+    "PK-10",
+  ]) {
+    const entry = copy.get(id);
+    if (!entry) continue;
+    entry.status = "blocked";
+    entry.linked_prs = [];
+    entry.runs = [];
+    entry.test_results = [];
+    entry.completion_evidence = [];
+    delete entry.notes;
+  }
   return copy;
 }
 
@@ -151,7 +171,7 @@ describe("Executable roadmap (PK-00)", () => {
 
   it("supports operational progress updates and subpackage unlocking without modifying plan.v1.json", () => {
     const p = clonePlan();
-    const pm = cloneProgressMap();
+    const pm = initialProgressMap();
 
     const complete = (id: string, prNumber: number) => {
       const entry = pm.get(id);

@@ -1,9 +1,24 @@
 {
   "id": "PK-07",
-  "status": "blocked",
+  "status": "completed",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-2-m8-integration",
+      "recorded_at": "2026-11-25T22:42:00Z",
+      "outcome": "Implemented src/retractions/{impact,policy,register,index}.ts, src/cli/impact.ts, docs/retractions/register.v1.json, wired suspendedRecordIds() into src/site/publication.ts, and added test/retractions.test.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/retractions.test.ts test/packages.test.ts test/m5.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:41:55Z"
+    }
+  ],
+  "completion_evidence": [
+    "Source impact index, tiered retraction policy, append-only register, and publication suspension across OEM-controlled projections verified",
+    "test/retractions.test.ts (7/7), test/packages.test.ts (19/19), and test/m5.test.ts (3/3) pass"
+  ],
+  "updated_at": "2026-11-25T22:42:00Z"
 }

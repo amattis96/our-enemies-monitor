@@ -45,7 +45,9 @@
     "quality:report": "node src/cli/quality-report.ts",
     "audit:entities": "node src/cli/audit-entities.ts",
     "asof": "node src/cli/asof.ts",
-    "snapshot": "node src/cli/snapshot.ts"
+    "snapshot": "node src/cli/snapshot.ts",
+    "impact": "node src/cli/impact.ts",
+    "check:missed-runs": "node src/cli/check-missed-runs.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",
