@@ -215,6 +215,72 @@ describe("private-to-public publication gateway", () => {
     expect(verdict.public_dataset).toBeNull();
     expect(verdict.checks.export_leak_free).toBe(false);
   });
+
+  it("accepts sources/original paths in provenance but still flags them in any other field", () => {
+    const ds = makeDataset();
+    const first = ds.entities[0];
+    if (!first) throw new Error("missing entity");
+    first.provenance = [
+      { file: "sources/original/Fonte_07_nodi.csv", row: 54 },
+    ] as unknown as typeof first.provenance;
+    ds.sources.push({
+      id: "S07",
+      type: "corpus_document",
+      files: ["sources/original/Fonte_07_nodi.csv"],
+      derived_from: [],
+      relies_on: [],
+      cited_in: [],
+      review: { status: "reviewed", notes: [] },
+      provenance: [],
+    } as unknown as (typeof ds.sources)[number]);
+    const ok = validatePublicationGateway(ds, { skipSchemaCheck: true });
+    expect(ok.leaks).toEqual([]);
+    expect(ok.passed).toBe(true);
+
+    first.name = { it: "Vedi sources/original/Fonte_07_nodi.csv", en: "x" };
+    const leaked = validatePublicationGateway(ds, { skipSchemaCheck: true });
+    expect(leaked.passed).toBe(false);
+    expect(leaked.checks.export_leak_free).toBe(false);
+  });
+
+  it("reports corpus-only E1 relationships as ADR-05 warnings without blocking", () => {
+    const ds = makeDataset();
+    ds.entities.push({
+      id: "UA",
+      kind: "state",
+      name: { it: "Ucraina", en: "Ukraine" },
+      country: "UA",
+      domain: "geopolitics",
+      aliases: [],
+      review: { status: "reviewed", notes: [] },
+      provenance: [],
+    } as (typeof ds.entities)[number]);
+    ds.sources.push({
+      id: "F01",
+      type: "corpus_document",
+      origin_type: "corpus_synthesis",
+      derived_from: [],
+      relies_on: [],
+      cited_in: ["G-9001"],
+      review: { status: "reviewed", notes: [] },
+      provenance: [],
+    } as unknown as (typeof ds.sources)[number]);
+    ds.relationships.push({
+      id: "G-9001",
+      subject: "RU",
+      predicate: "AGGRESSIONE_MILITARE",
+      object: "UA",
+      evidence_level: "E1",
+      evidence_status: "VERIFICATO",
+      sources: ["F01"],
+      events: [],
+      review: { status: "reviewed", notes: [] },
+      provenance: [],
+    } as unknown as (typeof ds.relationships)[number]);
+    const verdict = validatePublicationGateway(ds, { skipSchemaCheck: true });
+    expect(verdict.warnings.some((w) => w.includes("G-9001"))).toBe(true);
+    expect(verdict.errors.some((e) => e.includes("corpus_synthesis"))).toBe(false);
+  });
 });
 
 describe("workflow security audit & control plane boundaries", () => {

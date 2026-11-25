@@ -42,6 +42,9 @@ export const GatewayVerdictSchema = z
       .describe("Total number of records withheld from the public projection."),
     leaks: z.array(z.string()).describe("Detected boundary leaks or forbidden references."),
     errors: z.array(z.string()).describe("Validation or policy errors blocking publication."),
+    warnings: z
+      .array(z.string())
+      .describe("Non-blocking findings with the same severity as in `pnpm validate` (ADR-05)."),
   })
   .describe("Fail-closed verdict from the private-to-public publication gateway.");
 
@@ -91,7 +94,19 @@ function checkExportLeaks(
     }
   }
 
-  const serialized = JSON.stringify(visible);
+  // Two fields legitimately cite the public archive in this repository:
+  // `provenance` (rows of `sources/original/` for imported records, hard
+  // rule 3, verified by `pnpm validate`) and a corpus source's `files` (the
+  // archived documents themselves). Both are public on record pages and in
+  // data/v1. Only these fields are exempt: an archive path anywhere else in
+  // a public record is still a leak.
+  const scannable = {
+    ...visible,
+    sources: visible.sources.map(({ files: _files, ...rest }) => rest),
+  };
+  const serialized = JSON.stringify(scannable, (key, value) =>
+    key === "provenance" ? undefined : value,
+  );
   for (const pattern of DEFAULT_FORBIDDEN_PATTERNS) {
     if (pattern.test(serialized)) {
       leaks.push(`Forbidden pattern matched in public export: ${pattern.source}`);
@@ -158,11 +173,13 @@ export function validatePublicationGateway(
       `Relationship ${r.id} has inconsistent evidence_level (${r.evidence_level}) and evidence_status (${r.evidence_status}).`,
     );
   }
-  const corpusE1Ids = corpusOnlyE1(visible.relationships, visible.sources);
-  for (const id of corpusE1Ids) {
-    errors.push(`Relationship ${id} is E1 but relies solely on corpus_synthesis sources.`);
-  }
-  const evidentiaryValid = invalidEvidence.length === 0 && corpusE1Ids.length === 0;
+  // ADR-05: a corpus synthesis alone is not enough for E1, but the ADR and
+  // `pnpm validate` classify it as a warning to review, not a publication
+  // block. The gateway reports it with the same severity.
+  const warnings = corpusOnlyE1(visible.relationships, visible.sources).map(
+    (id) => `Relationship ${id} is E1 but relies solely on corpus_synthesis sources (ADR-05).`,
+  );
+  const evidentiaryValid = invalidEvidence.length === 0;
 
   const m5Violations = report.withheld.filter(
     (w) =>
@@ -209,6 +226,7 @@ export function validatePublicationGateway(
     withheld_count: report.withheld.length,
     leaks,
     errors,
+    warnings,
     public_dataset: passed ? visible : null,
   };
 }

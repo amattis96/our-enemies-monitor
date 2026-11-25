@@ -38,3 +38,10 @@ The confidentiality boundary applies **before** any branch push, pull request, P
    - Agent sessions, prompt caches, and vector stores **must** be strictly separated by confidentiality domain.
    - An agent context holding `private_investigative` or `holdout_evaluation` data must never be reused for `public_publishable` or `editorial_draft` generation.
    - Enforced programmatically in `src/security/boundary.ts` (`createProviderGuard`, `createEmbeddingGuard`).
+
+## 4. Publication gateway rules (`src/security/gateway.ts`)
+
+The gateway (`publish-gateway.yml`, after CI on `main`) fails closed on schema errors, non-publishable records in the projection, inconsistent evidence level/status, M5 person-link violations, unsanitized hypothesis notes and export leaks. Two clarifications keep it aligned with the rest of the repository:
+
+- **Archive paths.** `sources/original/` and `sources/incremental/` paths are a leak anywhere in a public record **except** `provenance` (imported rows, hard rule 3) and a corpus source's `files` (the archived documents). Both are public by design on record pages and in `data/v1`.
+- **Corpus-only E1** (ADR-05) is reported as a non-blocking warning in the gateway summary, with the same severity as in `pnpm validate`; it is an editorial review item, not a publication block.
