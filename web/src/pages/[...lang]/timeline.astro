@@ -2,6 +2,7 @@
 import { THEME_LABELS } from "../../../../src/model/index.ts";
 import { languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
 import { timelineItems } from "../../../../src/site/read-model.ts";
+import TextAlternative from "../../components/TextAlternative.astro";
 import TimelineExplorer from "../../islands/TimelineExplorer.tsx";
 import Base from "../../layouts/Base.astro";
 import { assetHref, href } from "../../lib/links.ts";
@@ -12,6 +13,12 @@ const lang = languageFromParam(Astro.params.lang);
 const items = timelineItems(getModel(), lang);
 const themes = Object.entries(THEME_LABELS).map(([id, label]) => ({ id, label: label[lang] }));
 const it = lang === "it";
+const textItems = items.slice(0, 50).map((item) => ({
+  id: item.id,
+  label: item.title,
+  hrefPath: `events/${item.id}/`,
+  meta: item.dateLabel,
+}));
 ---
 
 <Base title={ui(lang).navTimeline} lang={lang} wide description={it ? "Cronologia degli eventi documentati, 2007–2026." : "Timeline of documented events, 2007–2026."}>
@@ -35,6 +42,7 @@ const it = lang === "it";
     sprite={assetHref("icons.svg")}
     dataBase={assetHref("data/v1/")}
   />
+  <TextAlternative lang={lang} view="timeline" items={textItems} />
 </Base>
 
 <style is:global>

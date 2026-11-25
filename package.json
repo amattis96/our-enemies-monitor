@@ -49,6 +49,7 @@
     "impact": "node src/cli/impact.ts",
     "check:missed-runs": "node src/cli/check-missed-runs.ts",
     "check:engine-manifest": "node src/cli/check-engine-manifest.ts",
+    "check:seo": "node src/cli/check-seo.ts",
     "backtest": "node src/cli/backtest.ts",
     "brief": "node src/cli/generate-brief.ts"
   },

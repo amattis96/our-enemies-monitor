@@ -55,6 +55,22 @@ const relationsCsv = pageRelationshipsCsv([...direct, ...participations.map((p) 
   url: (id) => absolute(`${model.nodeKind(id) === "event" ? "events" : "entities"}/${id}/`),
   restricted: (r) => model.isRestricted(r),
 });
+
+// Mini-board: top 8 unrestricted direct neighbours arranged radially around the entity.
+const publicDirect = direct.filter((r) => !model.isRestricted(r));
+const neighbourIds = [
+  ...new Set(publicDirect.map((r) => (r.subject === entity.id ? r.object : r.subject))),
+].slice(0, 8);
+const miniNodes = neighbourIds.map((id, i) => {
+  const angle = (i / Math.max(1, neighbourIds.length)) * Math.PI * 2 - Math.PI / 2;
+  return {
+    id,
+    label: model.nodeLabel(id, lang),
+    x: Math.round(160 + Math.cos(angle) * 112),
+    y: Math.round(110 + Math.sin(angle) * 76),
+    href: href(`${model.nodeKind(id) === "event" ? "events" : "entities"}/${id}/`, lang),
+  };
+});
 ---
 
 <Base title={textOf(entity.name, lang)} lang={lang} alternates={packageAlternate(entity.id)} searchable>
@@ -85,6 +101,15 @@ const relationsCsv = pageRelationshipsCsv([...direct, ...participations.map((p) 
         }]}
       />
     </div>
+    <p class="lede mt-3">
+      {c(
+        `Scheda di sintesi: ${ENTITY_KIND_LABELS[entity.kind][lang]} nel dominio ${entity.domain}. Documenta ${direct.length} relazioni dirette, ${participations.length} partecipazioni ad eventi e ${hypotheses.length} ipotesi aperte.`,
+        `Synthesis: ${ENTITY_KIND_LABELS[entity.kind][lang]} in domain ${entity.domain}. Documents ${direct.length} direct relationships, ${participations.length} event participations and ${hypotheses.length} open hypotheses.`,
+      )}
+      {roles.period && (
+        <>{" "}{c("Arco temporale osservato:", "Observed span:")}{" "}{formatPartialDate(roles.period.from, lang)} – {formatPartialDate(roles.period.to, lang)}.</>
+      )}
+    </p>
     <div class="kpis mt-4 entity-kpis">
       <a class="kpi" href="#direct"><b>{direct.length}</b><span class="kicker">{c("relazioni dirette", "direct relationships")}</span></a>
       <a class="kpi" href="#events"><b>{participations.length}</b><span class="kicker">{c("eventi", "events")}</span></a>
@@ -105,137 +130,218 @@ const relationsCsv = pageRelationshipsCsv([...direct, ...participations.map((p) 
     )
   }
 
-  {
-    roles.total >= 3 && (
-      <section aria-labelledby="roles-title">
-        <h2 id="roles-title" class="section-title">{c("Matrice dei ruoli", "Role matrix")}</h2>
-        <p class="meta max-w-3xl">
-          {c(
-            "Le relazioni pubbliche di questa entità contate per gruppo di relazione e livello di evidenza. Un conteggio non è un grado di responsabilità: la partecipazione a un evento è presenza o ruolo, non attribuzione.",
-            "This entity's public relationships counted by relation group and evidence level. A count is not a degree of responsibility: participation in an event is presence or role, not attribution.",
-          )}
-        </p>
-        <div class="table-wrap">
-          <table class="roles">
-            <caption class="sr-only">{c("Matrice dei ruoli", "Role matrix")}</caption>
-            <thead>
-              <tr>
-                <th scope="col">{c("Gruppo", "Group")}</th>
-                {levels.map((l) => <th scope="col" class="num"><EvidenceStamp level={l} lang={lang} variant="compact" /></th>)}
-                <th scope="col" class="num">{c("Totale", "Total")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {roles.rows.map((row) => (
-                <tr>
-                  <th scope="row"><span class="inline-flex items-center gap-1"><Icon name={RELATION_GROUP_ICON[row.group]} />{RELATION_GROUP_LABELS[row.group][lang]}</span></th>
-                  {levels.map((l) => <td class="num">{row.byLevel[l] || <span class="text-muted">·</span>}</td>)}
-                  <td class="num"><b>{row.total}</b></td>
-                </tr>
-              ))}
-              {roles.restricted > 0 && (
-                <tr>
-                  <th scope="row">{c("Riservate in attesa di fonte primaria", "Restricted pending a primary source")}</th>
-                  <td colspan="4" class="meta">{c("gruppo non mostrato", "group not shown")}</td>
-                  <td class="num"><b>{roles.restricted}</b></td>
-                </tr>
+  <div class="entity-tabs" data-entity-tabs>
+    <div class="entity-tablist" role="tablist" aria-label={c("Sezioni della scheda", "Profile sections")}>
+      <button type="button" role="tab" aria-selected="true" aria-controls="panel-overview" id="tab-overview" class="chip">
+        {c("Sintesi e ruoli", "Overview & roles")}
+      </button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="panel-relations" id="tab-relations" class="chip">
+        {c("Relazioni", "Relationships")} ({direct.length})
+      </button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="panel-board" id="tab-board" class="chip">
+        {c("Mini-bacheca e cronologia", "Mini-board & timeline")} ({participations.length})
+      </button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="panel-hypotheses" id="tab-hypotheses" class="chip">
+        {c("Ipotesi e articoli", "Hypotheses & articles")} ({hypotheses.length})
+      </button>
+    </div>
+
+    <div id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+      {
+        roles.total >= 3 ? (
+          <section aria-labelledby="roles-title">
+            <h2 id="roles-title" class="section-title">{c("Matrice dei ruoli", "Role matrix")}</h2>
+            <p class="meta max-w-3xl">
+              {c(
+                "Le relazioni pubbliche di questa entità contate per gruppo di relazione e livello di evidenza. Un conteggio non è un grado di responsabilità: la partecipazione a un evento è presenza o ruolo, non attribuzione.",
+                "This entity's public relationships counted by relation group and evidence level. A count is not a degree of responsibility: participation in an event is presence or role, not attribution.",
               )}
-            </tbody>
-            <tfoot>
-              <tr>
-                <th scope="row">{c("Totale", "Total")}</th>
-                {levels.map((l) => <td class="num">{roles.byLevel[l]}</td>)}
-                <td class="num"><b>{roles.total}</b></td>
-              </tr>
-            </tfoot>
-          </table>
+            </p>
+            <div class="table-wrap">
+              <table class="roles">
+                <caption class="sr-only">{c("Matrice dei ruoli", "Role matrix")}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{c("Gruppo", "Group")}</th>
+                    {levels.map((l) => <th scope="col" class="num"><EvidenceStamp level={l} lang={lang} variant="compact" /></th>)}
+                    <th scope="col" class="num">{c("Totale", "Total")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {roles.rows.map((row) => (
+                    <tr>
+                      <th scope="row"><span class="inline-flex items-center gap-1"><Icon name={RELATION_GROUP_ICON[row.group]} />{RELATION_GROUP_LABELS[row.group][lang]}</span></th>
+                      {levels.map((l) => <td class="num">{row.byLevel[l] || <span class="text-muted">·</span>}</td>)}
+                      <td class="num"><b>{row.total}</b></td>
+                    </tr>
+                  ))}
+                  {roles.restricted > 0 && (
+                    <tr>
+                      <th scope="row">{c("Riservate in attesa di fonte primaria", "Restricted pending a primary source")}</th>
+                      <td colspan="4" class="meta">{c("gruppo non mostrato", "group not shown")}</td>
+                      <td class="num"><b>{roles.restricted}</b></td>
+                    </tr>
+                  )}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row">{c("Totale", "Total")}</th>
+                    {levels.map((l) => <td class="num">{roles.byLevel[l]}</td>)}
+                    <td class="num"><b>{roles.total}</b></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="meta text-sm max-w-3xl">
+              {c("Base", "Base")}: {roles.total} {c("relazioni pubbliche", "public relationships")} ·{" "}
+              {c("periodo", "period")}:{" "}
+              {roles.period
+                ? `${formatPartialDate(roles.period.from, lang)} – ${formatPartialDate(roles.period.to, lang)}`
+                : c("nessun evento collegato", "no linked event")}
+              {roles.undated > 0 && <> ({roles.undated} {c("senza evento collegato", "without a linked event")})</>} ·{" "}
+              {c("fonte", "source")}: <a href={assetHref("data/v1/relationships.json")}>relationships.json</a>{" "}
+              {c("(proiezione pubblica; gruppi e livelli esistenti, nessuna nuova classe di ruolo)", "(public projection; existing groups and levels, no new role class)")}
+            </p>
+            {roles.predicates.length > 0 && (
+              <details class="max-w-3xl">
+                <summary>
+                  {c("Ruoli letterali negli eventi", "Literal roles in events")}: {roles.predicates.length} {c("predicati distinti", "distinct predicates")}
+                </summary>
+                <ul class="roles-predicates">
+                  {roles.predicates.map((p) => (
+                    <li><span lang="it">{formatPredicate(p.predicate)}</span> <span class="meta">× {p.count}</span></li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </section>
+        ) : (
+          <p class="meta mt-4">{c("Meno di 3 relazioni pubbliche: matrice dei ruoli omessa.", "Fewer than 3 public relationships: role matrix omitted.")}</p>
+        )
+      }
+    </div>
+
+    <div id="panel-relations" role="tabpanel" aria-labelledby="tab-relations">
+      <h2 id="direct" class="section-title">{c("Relazioni dirette", "Direct relationships")} ({direct.length})</h2>
+      <p class="meta max-w-3xl">
+        {c(
+          "Ogni predicato va letto letteralmente: «fornisce a» non significa «controlla», «sanziona» non significa «condanna».",
+          "Each predicate must be read literally (predicates are kept in the original Italian): “supplies” does not mean “controls”, “sanctions” does not mean “convicts”.",
+        )}
+      </p>
+      {
+        direct.length > 0 ? (
+          <RelationshipTable relationships={direct} caption={c("Relazioni dirette", "Direct relationships")} lang={lang} />
+        ) : (
+          <p class="meta">{c("Nessuna relazione diretta registrata.", "No direct relationship recorded.")}</p>
+        )
+      }
+    </div>
+
+    <div id="panel-board" role="tabpanel" aria-labelledby="tab-board">
+      <h2 class="section-title">{c("Mini-bacheca di vicinato", "Neighbourhood mini-board")}</h2>
+      {miniNodes.length > 0 ? (
+        <div class="mini-board-wrap card">
+          <svg viewBox="0 0 320 220" class="mini-board-svg" role="img" aria-label={c("Grafo locale dell'entità", "Local entity graph")}>
+            {miniNodes.map((n) => (
+              <line x1="160" y1="110" x2={n.x} y2={n.y} stroke="var(--rule-strong)" stroke-width="1.5" />
+            ))}
+            <g transform="translate(160 110)">
+              <rect x="-46" y="-16" width="92" height="32" rx="3" fill="var(--accent-wash)" stroke="var(--accent)" stroke-width="1.5" />
+              <text text-anchor="middle" y="4" font-size="10" font-family="var(--font-mono)" fill="var(--ink)">{entity.id}</text>
+            </g>
+            {miniNodes.map((n) => (
+              <a href={n.href}>
+                <g transform={`translate(${n.x} ${n.y})`}>
+                  <rect x="-42" y="-13" width="84" height="26" rx="2" fill="var(--paper-raised)" stroke="var(--rule-strong)" />
+                  <text text-anchor="middle" y="4" font-size="9" font-family="var(--font-sans)" fill="var(--ink)">
+                    {n.label.length > 14 ? `${n.label.slice(0, 13)}…` : n.label}
+                  </text>
+                </g>
+              </a>
+            ))}
+          </svg>
+          <p class="meta mb-0 mt-2">
+            <a href={`${href("network/", lang)}?focus=${entity.id}`}>{c("Apri l'intera rete sulla bacheca", "Open full network on the board")}</a>
+          </p>
         </div>
-        <p class="meta text-sm max-w-3xl">
-          {c("Base", "Base")}: {roles.total} {c("relazioni pubbliche", "public relationships")} ·{" "}
-          {c("periodo", "period")}:{" "}
-          {roles.period
-            ? `${formatPartialDate(roles.period.from, lang)} – ${formatPartialDate(roles.period.to, lang)}`
-            : c("nessun evento collegato", "no linked event")}
-          {roles.undated > 0 && <> ({roles.undated} {c("senza evento collegato", "without a linked event")})</>} ·{" "}
-          {c("fonte", "source")}: <a href={assetHref("data/v1/relationships.json")}>relationships.json</a>{" "}
-          {c("(proiezione pubblica; gruppi e livelli esistenti, nessuna nuova classe di ruolo)", "(public projection; existing groups and levels, no new role class)")}
-        </p>
-        {roles.predicates.length > 0 && (
-          <details class="max-w-3xl">
-            <summary>
-              {c("Ruoli letterali negli eventi", "Literal roles in events")}: {roles.predicates.length} {c("predicati distinti", "distinct predicates")}
-            </summary>
-            <ul class="roles-predicates">
-              {roles.predicates.map((p) => (
-                <li><span lang="it">{formatPredicate(p.predicate)}</span> <span class="meta">× {p.count}</span></li>
+      ) : (
+        <p class="meta">{c("Nessun vicino diretto pubblico da mostrare.", "No public direct neighbours to display.")}</p>
+      )}
+
+      <h2 id="events" class="section-title">{c("Mini-cronologia degli eventi", "Entity mini-timeline")} ({participations.length})</h2>
+      <p class="meta max-w-3xl">
+        {c("Presenza o ruolo nell'evento, non prova di comando, finanziamento o coordinamento.", "Presence or role in the event, not proof of command, financing or coordination.")}
+      </p>
+      {
+        participations.length > 0 ? (
+          <ol class="entity-timeline">
+            {participations.map(({ r, event }) => (
+              <li class="entity-timeline-item">
+                {event && <span class="mono meta">{formatDateRange(event.date.start, event.date.end, lang)}</span>}{" "}
+                <NodeLink id={r.subject === entity.id ? r.object : r.subject} lang={lang} />
+                {model.isRestricted(r) ? (
+                  <span class="meta"> · {c("ruolo riservato in attesa di fonte primaria", "role restricted pending a primary source")}</span>
+                ) : (
+                  <span class="meta"> · {c("ruolo", "role")}: <span lang="it">{formatPredicate(r.predicate)}</span></span>
+                )}{" "}
+                <EvidenceStamp level={r.evidence_level} lang={lang} variant="compact" />
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p class="meta">{c("Nessun evento registrato.", "No event recorded.")}</p>
+        )
+      }
+    </div>
+
+    <div id="panel-hypotheses" role="tabpanel" aria-labelledby="tab-hypotheses">
+      {
+        hypotheses.length > 0 ? (
+          <>
+            <h2 class="section-title">{c("Ipotesi aperte che la riguardano", "Open hypotheses concerning it")} ({hypotheses.length})</h2>
+            <p class="meta">{c("Domande investigative non dimostrate: non sono relazioni accertate.", "Unproven investigative questions: they are not established relationships.")}</p>
+            <ul class="list-disc pl-5">
+              {hypotheses.map((h) => (
+                <li>
+                  <a href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a>: <T text={h.question} lang={lang} />
+                </li>
               ))}
             </ul>
-          </details>
-        )}
-      </section>
-    )
-  }
-
-  <h2 id="direct" class="section-title">{c("Relazioni dirette", "Direct relationships")} ({direct.length})</h2>
-  <p class="meta max-w-3xl">
-    {c(
-      "Ogni predicato va letto letteralmente: «fornisce a» non significa «controlla», «sanziona» non significa «condanna».",
-      "Each predicate must be read literally (predicates are kept in the original Italian): “supplies” does not mean “controls”, “sanctions” does not mean “convicts”.",
-    )}
-  </p>
-  {
-    direct.length > 0 ? (
-      <RelationshipTable relationships={direct} caption={c("Relazioni dirette", "Direct relationships")} lang={lang} />
-    ) : (
-      <p class="meta">{c("Nessuna relazione diretta registrata.", "No direct relationship recorded.")}</p>
-    )
-  }
-
-  <h2 id="events" class="section-title">{c("Eventi in cui compare", "Events it appears in")} ({participations.length})</h2>
-  <p class="meta max-w-3xl">
-    {c("Presenza o ruolo nell'evento, non prova di comando, finanziamento o coordinamento.", "Presence or role in the event, not proof of command, financing or coordination.")}
-  </p>
-  {
-    participations.length > 0 ? (
-      <ul class="event-rows">
-        {participations.map(({ r, event }) => (
-          <li>
-            {event && <span class="meta">{formatDateRange(event.date.start, event.date.end, lang)} · </span>}
-            <NodeLink id={r.subject === entity.id ? r.object : r.subject} lang={lang} />
-            {model.isRestricted(r) ? (
-              <span class="meta"> · {c("ruolo riservato in attesa di fonte primaria", "role restricted pending a primary source")}</span>
-            ) : (
-              <span class="meta"> · {c("ruolo", "role")}: <span lang="it">{formatPredicate(r.predicate)}</span></span>
-            )}{" "}
-            <EvidenceStamp level={r.evidence_level} lang={lang} variant="compact" />
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p class="meta">{c("Nessun evento registrato.", "No event recorded.")}</p>
-    )
-  }
-
-  {
-    hypotheses.length > 0 && (
-      <>
-        <h2 class="section-title">{c("Ipotesi aperte che la riguardano", "Open hypotheses concerning it")} ({hypotheses.length})</h2>
-        <p class="meta">{c("Domande investigative non dimostrate: non sono relazioni accertate.", "Unproven investigative questions: they are not established relationships.")}</p>
-        <ul class="list-disc pl-5">
-          {hypotheses.map((h) => (
-            <li>
-              <a href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a>: <T text={h.question} lang={lang} />
-            </li>
-          ))}
-        </ul>
-      </>
-    )
-  }
-
-  <ArticleBacklinks id={entity.id} lang={lang} />
+          </>
+        ) : (
+          <p class="meta mt-4">{c("Nessuna ipotesi aperta collegata.", "No open hypothesis linked.")}</p>
+        )
+      }
+      <ArticleBacklinks id={entity.id} lang={lang} />
+    </div>
+  </div>
 
   <RecordFooter id={entity.id} collection="entities" review={entity.review} provenance={entity.provenance} lang={lang} />
 </Base>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-entity-tabs]");
+    if (!root) return;
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+    const activate = (tabId) => {
+      for (const t of tabs) {
+        const active = t.id === tabId;
+        t.setAttribute("aria-selected", String(active));
+        t.setAttribute("aria-pressed", String(active));
+      }
+      for (const p of panels) {
+        p.hidden = p.getAttribute("aria-labelledby") !== tabId;
+      }
+    };
+    activate("tab-overview");
+    for (const t of tabs) {
+      t.addEventListener("click", () => activate(t.id));
+    }
+  })();
+</script>
 
 <style>
   .entity-kpis {
@@ -246,28 +352,50 @@ const relationsCsv = pageRelationshipsCsv([...direct, ...participations.map((p) 
       grid-template-columns: repeat(4, 1fr);
     }
   }
+  .entity-tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-5) 0 var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--rule);
+  }
+  .mini-board-wrap {
+    max-width: 28rem;
+  }
+  .mini-board-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .entity-timeline {
+    list-style: none;
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--rule-strong);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .entity-timeline-item {
+    position: relative;
+  }
   .roles th,
   .roles td {
-    padding-inline: 0.35rem;
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--rule);
   }
-  .roles tbody th {
-    font-size: var(--text-sm);
-  }
-  .roles .num {
+  .roles th.num,
+  .roles td.num {
     text-align: right;
     font-variant-numeric: tabular-nums;
   }
   .roles tfoot th,
   .roles tfoot td {
     border-top: 2px solid var(--rule-strong);
+    border-bottom: 0;
   }
   .roles-predicates {
-    columns: 2 16rem;
+    margin-top: 0.5rem;
     padding-left: 1.25rem;
     list-style: disc;
-  }
-  .event-rows li {
-    padding: 0.55rem 0;
-    border-bottom: 1px solid var(--rule);
   }
 </style>

@@ -1,9 +1,25 @@
 {
   "id": "PK-20",
-  "status": "blocked",
+  "status": "awaiting_acceptance",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-4-integration",
+      "recorded_at": "2026-11-25T23:01:00Z",
+      "outcome": "Implemented SEO/GEO audit (src/site/seo.ts, src/cli/check-seo.ts), OG SVG endpoint (web/src/pages/og/[id].svg.ts), TextAlternative.astro, and AGENTS.md Search and AI discoverability contract"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "pnpm check:seo",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:01:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Automated SEO/GEO gate (pnpm check:seo) passed with 0 blocking errors across 955 HTML pages",
+    "SEO/GEO rules and leak checks verified in test/seo-cite-benchmark.test.ts"
+  ],
+  "notes": "Awaiting external acceptance: owner decisions D5/D10 and external registration/submission (Google Search Console, Bing Webmaster Tools, IndexNow).",
+  "updated_at": "2026-11-25T23:01:00Z"
 }

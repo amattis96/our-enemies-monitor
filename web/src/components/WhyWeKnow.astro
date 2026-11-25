@@ -1,0 +1,116 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import {
+  type DimensionStatus,
+  WHY_WE_KNOW_DIMENSIONS,
+  type WhyWeKnowBreakdown,
+  type WhyWeKnowDimension,
+} from "../../../src/site/laboratory.ts";
+import "../styles/lab.css";
+import EvidenceStamp from "./EvidenceStamp.astro";
+import T from "./T.astro";
+
+interface Props {
+  breakdown: WhyWeKnowBreakdown;
+  lang: Language;
+  compact?: boolean;
+}
+
+const { breakdown, lang, compact = false } = Astro.props;
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const DIMENSION_LABELS: Record<WhyWeKnowDimension, { it: string; en: string }> = {
+  occurrence: { it: "Occorrenza (fatto)", en: "Occurrence (fact)" },
+  perpetrator: { it: "Esecutore", en: "Perpetrator" },
+  sponsor: { it: "Mandante / finanziatore", en: "Sponsor / director" },
+  impact: { it: "Impatto / dipendenza", en: "Impact / dependency" },
+};
+
+const STATUS_LABELS: Record<DimensionStatus, { it: string; en: string }> = {
+  established: { it: "Accertato", en: "Established" },
+  attributed: { it: "Attribuito", en: "Attributed" },
+  disputed: { it: "Contestato", en: "Disputed" },
+  missing: { it: "Non documentato", en: "Not documented" },
+};
+---
+
+<section class="why-we-know" aria-label={c("Perché lo sappiamo?", "Why do we know this?")}>
+  <div class="why-we-know-head">
+    <div>
+      <p class="kicker">{c("Scomposizione probatoria", "Evidentiary breakdown")}</p>
+      <h2 class="mt-1 mb-0">{c("Perché lo sappiamo?", "Why do we know this?")}</h2>
+    </div>
+    <div class="why-we-know-totals">
+      <span>
+        {c("Asserzioni", "Assertions")}: <strong>{breakdown.total_assertions}</strong>
+      </span>
+      <span>
+        {c("Origini accertate", "Confirmed origins")}:{" "}
+        <strong>{breakdown.total_confirmed_origins}</strong>
+      </span>
+      <span>
+        {c("Incerte", "Uncertain")}: <strong>{breakdown.total_uncertain_origins}</strong>
+      </span>
+      {breakdown.total_unknown_origins > 0 && (
+        <span>
+          {c("Ignote (non contate)", "Unknown (not counted)")}:{" "}
+          <strong>{breakdown.total_unknown_origins}</strong>
+        </span>
+      )}
+    </div>
+  </div>
+
+  <div class="why-we-know-grid">
+    {WHY_WE_KNOW_DIMENSIONS.map((dim) => {
+      const entry = breakdown.dimensions[dim];
+      const shown = compact ? entry.assertions.slice(0, 3) : entry.assertions;
+      return (
+        <article class="why-dimension">
+          <div class="why-dimension-head">
+            <h3 class="why-dimension-title">{DIMENSION_LABELS[dim][lang]}</h3>
+            <span class="why-status" data-status={entry.status}>
+              {STATUS_LABELS[entry.status][lang]}
+            </span>
+          </div>
+          <div class="why-origins">
+            <span>
+              {c("Origini indipendenti accertate", "Confirmed independent origins")}:{" "}
+              <strong>{entry.confirmed_origins}</strong>
+            </span>
+            <span>
+              {c("Incerte", "Uncertain")}: <strong>{entry.uncertain_origins}</strong>
+            </span>
+            <span>
+              {c("Fonti", "Sources")}: <strong>{entry.source_count}</strong>
+            </span>
+          </div>
+
+          {shown.length === 0 ? (
+            <p class="meta mb-0">
+              {c(
+                "Nessuna asserzione pubblica documentata su questa dimensione.",
+                "No public assertion documented on this dimension.",
+              )}
+            </p>
+          ) : (
+            <ul class="why-assertions">
+              {shown.map((item) => (
+                <li>
+                  <span><T text={item.summary} lang={lang} /></span>
+                  <div class="why-assertion-meta">
+                    {item.evidence_level && (
+                      <EvidenceStamp level={item.evidence_level} lang={lang} variant="compact" />
+                    )}
+                    <span>{item.provenance_summary_it}</span>
+                    {item.sources.length > 0 && <span>[{item.sources.join(", ")}]</span>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </article>
+      );
+    })}
+  </div>
+</section>

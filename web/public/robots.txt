@@ -1,0 +1,40 @@
+# Our Enemies Monitor — Crawl & AI-Training Policy (Decision D5)
+# Search indexing and citation bots are permitted so public records remain discoverable
+# and verifiable. Bulk AI-training crawlers are disallowed pending explicit Decision D5.
+
+User-agent: *
+Allow: /
+
+# Search & citation assistants (permitted for retrieval and attribution)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# AI model training crawlers (disallowed under provisional D5 policy)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+Sitemap: https://amattis96.github.io/our-enemies-monitor/sitemap-index.xml

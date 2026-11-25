@@ -1,9 +1,23 @@
 {
   "id": "PK-22",
-  "status": "blocked",
+  "status": "completed",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-4-integration",
+      "recorded_at": "2026-11-25T23:01:00Z",
+      "outcome": "Implemented shared read-only query library (src/query/) and stdio JSON-RPC MCP server (packages/mcp/) exposing 12 read-only tools with Zod validation and site-parity publication filtering"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/query-mcp.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:01:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Read-only query engine, path grammar, B15 caveat interruptions, and all 12 MCP tools verified in test/query-mcp.test.ts (8/8)"
+  ],
+  "updated_at": "2026-11-25T23:01:00Z"
 }

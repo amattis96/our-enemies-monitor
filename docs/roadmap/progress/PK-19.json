@@ -1,9 +1,24 @@
 {
   "id": "PK-19",
-  "status": "blocked",
+  "status": "completed",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-4-integration",
+      "recorded_at": "2026-11-25T23:01:00Z",
+      "outcome": "Verified dossier design system, semantic tokens, responsive card/table layouts, and updated docs/design/IMPLEMENTATION_PLAN.md"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "pnpm check:contrast",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:01:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Semantic design tokens and WCAG contrast verified via pnpm check:contrast",
+    "UX and design regressions verified in test/ux-design.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:01:00Z"
 }

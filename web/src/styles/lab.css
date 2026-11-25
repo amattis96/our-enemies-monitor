@@ -1,0 +1,312 @@
+/*
+ * "Laboratorio" — Fourth visual register of the Dossier design system.
+ * Draft / worksheet aesthetic using semantic tokens only (no hard-coded colours).
+ * Distinct from Press (newsprint), Console (tabular), and Board (cork).
+ */
+
+.lab-sheet {
+  position: relative;
+  padding: var(--space-5);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius-2);
+  background-color: var(--paper-raised);
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--rule) 28%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--rule) 28%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 24px 24px;
+}
+
+.lab-register-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--caution);
+  border-radius: var(--radius-1);
+  background: var(--caution-wash);
+  color: var(--caution);
+  font: 600 var(--text-micro) / 1.2 var(--font-mono);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.lab-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.lab-subnav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-1);
+  background: var(--paper);
+  color: var(--ink-2);
+  font: 500 var(--text-xs) / 1.3 var(--font-mono);
+  text-decoration: none;
+}
+
+.lab-subnav a:hover,
+.lab-subnav a[aria-current="page"] {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+}
+
+.lab-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: var(--space-5);
+  border-bottom: 2px solid var(--rule);
+}
+
+.lab-tab {
+  appearance: none;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: var(--radius-2) var(--radius-2) 0 0;
+  padding: 0.55rem 0.9rem;
+  background: transparent;
+  color: var(--ink-2);
+  font: 600 var(--text-xs) / 1.3 var(--font-mono);
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.lab-tab:hover {
+  color: var(--ink);
+  background: var(--paper-sunken);
+}
+
+.lab-tab[aria-selected="true"] {
+  border-color: var(--rule);
+  background: var(--paper-raised);
+  color: var(--accent-strong);
+  margin-bottom: -2px;
+  padding-bottom: calc(0.55rem + 2px);
+}
+
+.lab-panel {
+  padding-top: var(--space-4);
+}
+
+.lab-panel[hidden] {
+  display: none;
+}
+
+.lab-cards {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .lab-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.lab-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: var(--space-4);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-2);
+  background: var(--paper-raised);
+}
+
+.lab-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.lab-code {
+  font: 600 var(--text-xs) / 1.2 var(--font-mono);
+  color: var(--ink-3);
+}
+
+.lab-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-1);
+  border: 1px solid var(--rule);
+  background: var(--paper-sunken);
+  color: var(--ink-2);
+  font: 600 var(--text-micro) / 1.2 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+}
+
+.lab-pill[data-priority="critical"],
+.lab-pill[data-priority="high"] {
+  border-color: var(--signal);
+  background: var(--signal-wash);
+  color: var(--signal);
+}
+
+.lab-pill[data-priority="medium"] {
+  border-color: var(--caution);
+  background: var(--caution-wash);
+  color: var(--caution);
+}
+
+.lab-voi-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font: 600 var(--text-xs) / 1.2 var(--font-mono);
+  color: var(--ink-2);
+}
+
+.lab-voi-track {
+  width: 4.5rem;
+  height: 0.45rem;
+  border-radius: var(--radius-pill);
+  background: var(--paper-sunken);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.lab-voi-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+/* ── "Perché lo sappiamo?" breakdown ───────────────────────────── */
+
+.why-we-know {
+  padding: var(--space-4);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-2);
+  background: var(--paper-raised);
+}
+
+.why-we-know-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.why-we-know-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  font: 500 var(--text-xs) / 1.3 var(--font-mono);
+  color: var(--ink-2);
+}
+
+.why-we-know-grid {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .why-we-know-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.why-dimension {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: var(--space-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-2);
+  background: var(--paper);
+}
+
+.why-dimension-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.why-dimension-title {
+  margin: 0;
+  font: 600 var(--text-sm) / 1.3 var(--font-sans);
+  color: var(--ink);
+}
+
+.why-status {
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-1);
+  border: 1px solid var(--rule);
+  font: 600 var(--text-micro) / 1.2 var(--font-mono);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.why-status[data-status="established"] {
+  border-color: var(--ok);
+  background: var(--ok-wash);
+  color: var(--ok);
+}
+
+.why-status[data-status="attributed"] {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+}
+
+.why-status[data-status="disputed"] {
+  border-color: var(--caution);
+  background: var(--caution-wash);
+  color: var(--caution);
+}
+
+.why-status[data-status="missing"] {
+  border-color: var(--rule);
+  background: var(--paper-sunken);
+  color: var(--ink-3);
+}
+
+.why-origins {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  font: 500 var(--text-xs) / 1.3 var(--font-mono);
+  color: var(--ink-2);
+}
+
+.why-assertions {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.4rem;
+  font-size: var(--text-sm);
+}
+
+.why-assertion-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+  margin-top: 0.2rem;
+  font: 400 var(--text-xs) / 1.3 var(--font-mono);
+  color: var(--ink-3);
+}

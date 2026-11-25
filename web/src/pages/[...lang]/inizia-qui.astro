@@ -1,0 +1,117 @@
+---
+import { summarize } from "../../../../src/pipeline/validate.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import NewSinceLastVisit from "../../components/NewSinceLastVisit.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const model = getModel();
+const counts = summarize(model.dataset);
+const latestEvent = model.events.at(-1)?.date.start ?? "2026-10-21";
+
+const paths = [
+  {
+    id: "citizen",
+    role: c("Cittadini e lettori", "Citizens and readers"),
+    summary: c(
+      "Capire cosa è documentato, distinguere i fatti accertati dalle ipotesi e leggere la cronologia senza gergo tecnico.",
+      "Understand what is documented, distinguish established facts from hypotheses, and read the timeline without jargon.",
+    ),
+    links: [
+      { to: "timeline/", label: c("Esplora la cronologia", "Explore the timeline") },
+      { to: "articles/", label: c("Leggi le indagini", "Read investigations") },
+      { to: "methodology/", label: c("Come leggere i livelli E1–E5", "How to read E1–E5 levels") },
+    ],
+  },
+  {
+    id: "journalist",
+    role: c("Giornalisti e redazioni", "Journalists and newsrooms"),
+    summary: c(
+      "Verificare fonti primarie, esaminare i legami sulla bacheca investigativa, controllare i caveat e scaricare pacchetti pronti per la citazione.",
+      "Verify primary sources, inspect links on the evidence board, check caveats, and download citation-ready packages.",
+    ),
+    links: [
+      { to: "network/", label: c("Apri la bacheca delle relazioni", "Open the evidence board") },
+      {
+        to: "sources/",
+        label: c("Consulta il registro delle fonti", "Browse the source registry"),
+      },
+      { to: "entities/", label: c("Cerca entità e persone", "Search entities and actors") },
+    ],
+  },
+  {
+    id: "researcher",
+    role: c("Ricercatori e analisti", "Researchers and analysts"),
+    summary: c(
+      "Accedere ai dati strutturati JSON/CSV, agli schemi canonici, alle ipotesi aperte E5 e alle dipendenze strategiche quantificate.",
+      "Access structured JSON/CSV data, canonical schemas, open E5 hypotheses, and quantified strategic dependencies.",
+    ),
+    links: [
+      { to: "api/", label: c("Contratto dati e API v1", "Data contract and API v1") },
+      {
+        to: "hypotheses/",
+        label: c("Esplora le ipotesi aperte (E5)", "Explore open hypotheses (E5)"),
+      },
+      { to: "dependencies/", label: c("Esposizioni e dipendenze", "Exposures and dependencies") },
+    ],
+  },
+];
+---
+
+<Base
+  title={c("Inizia qui", "Start here")}
+  lang={lang}
+  description={c("Percorsi guidati per cittadini, giornalisti e ricercatori.", "Guided entry paths for citizens, journalists and researchers.")}
+  searchable
+>
+  <header class="page-head">
+    <p class="kicker">{ui(lang).navHome}</p>
+    <h1>{c("Inizia qui", "Start here")}</h1>
+    <p class="lede">
+      {c(
+        "Tre percorsi rapidi per orientarsi nell'osservatorio in base a ciò che cerchi. Tutti i dati rispettano la stessa disciplina probatoria: ogni affermazione rimanda alle fonti e al proprio livello di evidenza.",
+        "Three quick paths to navigate the observatory according to what you need. Every view follows the same evidentiary discipline: every claim links back to its sources and evidence level.",
+      )}
+    </p>
+  </header>
+
+  <NewSinceLastVisit
+    lang={lang}
+    latestDate={latestEvent}
+    totalEvents={counts.timeline_events}
+    totalEntities={counts.entities}
+  />
+
+  <section class="start-grid mt-6" aria-label={c("Percorsi per profilo", "Paths by audience")}>
+    {paths.map((item) => (
+      <article class="card">
+        <p class="kicker">{item.id}</p>
+        <h2 style="margin-top:0.25rem;">{item.role}</h2>
+        <p>{item.summary}</p>
+        <ul class="list-disc pl-5 space-y-1">
+          {item.links.map((link) => (
+            <li>
+              <a href={href(link.to, lang)}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .start-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 760px) {
+    .start-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

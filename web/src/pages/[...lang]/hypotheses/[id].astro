@@ -8,6 +8,7 @@ import {
 import { choose, langParam, languageFromParam, textOf } from "../../../../../src/site/i18n.ts";
 import { annotationsFor, forbiddenFor } from "../../../../../src/site/inferences.ts";
 import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
+import CiteThisPage from "../../../components/CiteThisPage.astro";
 import EvidenceStamp from "../../../components/EvidenceStamp.astro";
 import InferencePath from "../../../components/InferencePath.astro";
 import NodeLink from "../../../components/NodeLink.astro";
@@ -31,6 +32,7 @@ const { hypothesis: h } = Astro.props as { hypothesis: Hypothesis };
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
 const audit = getInferenceAudit();
+const pageUrl = new URL(href(`hypotheses/${h.id}/`, lang), Astro.site ?? "http://localhost").href;
 ---
 
 <Base title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} lang={lang} description={textOf(h.question, lang)} alternates={packageAlternate(h.id)} searchable>
@@ -88,6 +90,8 @@ const audit = getInferenceAudit();
     <a href={href(`trace/${h.id}/`, lang)}>{c("Apri il tracciato fra i due soggetti", "Open the trace between the two subjects")}</a>
   </p>
   <InferencePath annotations={annotationsFor(audit, h.id)} forbidden={forbiddenFor(audit, h.id)} lang={lang} />
+  <CiteThisPage title={`${c("Ipotesi", "Hypothesis")} ${h.id}`} url={pageUrl} lang={lang} id={h.id} generatedAt="2026-11-25" />
+
   <ArticleBacklinks id={h.id} lang={lang} />
 
   <RecordFooter id={h.id} collection="hypotheses" review={h.review} provenance={h.provenance} lang={lang} />

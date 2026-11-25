@@ -9,13 +9,102 @@ import { href } from "../lib/links.ts";
     <Illustration name="not-found" />
     <h1>Pagina non trovata</h1>
     <p>
-      La pagina richiesta non esiste. Torna alla <a href={href()}>pagina iniziale</a> o usa la{" "}
-      <a href={href("search/")}>ricerca</a>.
+      La pagina richiesta non esiste o è stata spostata. Prova a cercare nell'archivio o scegli un percorso qui sotto.
     </p>
-    <h2 lang="en" class="mt-2">Page not found</h2>
+
+    <form action={href("search/")} method="get" class="notfound-search" role="search" aria-label="Cerca nel sito / Search site">
+      <input type="search" name="q" placeholder="Cerca evento, entità, ID…" aria-label="Cerca / Search" />
+      <button type="submit" class="btn">Cerca / Search</button>
+    </form>
+
+    <div id="notfound-suggestions" class="notfound-suggestions" hidden>
+      <p class="kicker" style="margin:0 0 0.35rem;">Percorsi suggeriti / Suggested paths</p>
+      <ul id="notfound-list" class="list-disc pl-5"></ul>
+    </div>
+
+    <div class="notfound-links">
+      <a href={href()}>Pagina iniziale</a> ·{" "}
+      <a href={href("inizia-qui/")}>Inizia qui</a> ·{" "}
+      <a href={href("timeline/")}>Cronologia</a> ·{" "}
+      <a href={href("network/")}>Bacheca</a> ·{" "}
+      <a href={href("entities/")}>Entità</a> ·{" "}
+      <a href={href("articles/")}>Indagini</a> ·{" "}
+      <a href={href("api/")}>API v1</a>
+    </div>
+
+    <h2 lang="en" class="mt-6">Page not found</h2>
     <p lang="en">
-      The requested page does not exist. Go to the <a href={href("", "en")}>home page</a> or use{" "}
-      <a href={href("search/", "en")}>search</a>.
+      The requested page does not exist or has moved. Try searching or jump to a section:
     </p>
+    <div lang="en" class="notfound-links">
+      <a href={href("", "en")}>Home page</a> ·{" "}
+      <a href={href("inizia-qui/", "en")}>Start here</a> ·{" "}
+      <a href={href("timeline/", "en")}>Timeline</a> ·{" "}
+      <a href={href("network/", "en")}>Evidence board</a> ·{" "}
+      <a href={href("entities/", "en")}>Entities</a> ·{" "}
+      <a href={href("articles/", "en")}>Investigations</a> ·{" "}
+      <a href={href("api/", "en")}>API v1</a>
+    </div>
   </div>
 </Base>
+
+<script is:inline>
+  (() => {
+    const path = window.location.pathname.toLowerCase();
+    const isEn = path.includes("/en/");
+    const prefix = isEn ? "/en/" : "/";
+    const candidates = [
+      { keys: ["time", "cron", "event"], href: `${prefix}timeline/`, label: isEn ? "Timeline" : "Cronologia" },
+      { keys: ["net", "bach", "graph", "board"], href: `${prefix}network/`, label: isEn ? "Evidence board" : "Bacheca" },
+      { keys: ["ent", "act", "org", "pers"], href: `${prefix}entities/`, label: isEn ? "Entities" : "Entità" },
+      { keys: ["art", "indag", "inv"], href: `${prefix}articles/`, label: isEn ? "Investigations" : "Indagini" },
+      { keys: ["api", "data", "json", "csv"], href: `${prefix}api/`, label: "API data/v1" },
+      { keys: ["start", "inizia", "help", "guide"], href: `${prefix}inizia-qui/`, label: isEn ? "Start here" : "Inizia qui" },
+    ];
+    const matches = candidates.filter((c) => c.keys.some((k) => path.includes(k)));
+    if (matches.length > 0) {
+      const box = document.getElementById("notfound-suggestions");
+      const list = document.getElementById("notfound-list");
+      if (box && list) {
+        for (const m of matches) {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = m.href;
+          a.textContent = m.label;
+          li.appendChild(a);
+          list.appendChild(li);
+        }
+        box.hidden = false;
+      }
+    }
+  })();
+</script>
+
+<style>
+  .notfound-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin: var(--space-4) auto;
+    max-width: 28rem;
+  }
+  .notfound-search input[type="search"] {
+    flex: 1 1 14rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+  }
+  .notfound-suggestions {
+    text-align: left;
+    max-width: 28rem;
+    margin: var(--space-3) auto;
+    padding: var(--space-3);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-2);
+    background: var(--paper-raised);
+  }
+  .notfound-links {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+  }
+</style>

@@ -2,8 +2,10 @@
 import type { Event } from "../../../../../src/model/index.ts";
 import { countryName, PRECISION_LABELS } from "../../../../../src/site/format.ts";
 import { choose, langParam, languageFromParam, textOf, ui } from "../../../../../src/site/i18n.ts";
+import { buildWhyWeKnow } from "../../../../../src/site/laboratory.ts";
 import { isParticipation } from "../../../../../src/site/read-model.ts";
 import ArticleBacklinks from "../../../components/ArticleBacklinks.astro";
+import CiteThisPage from "../../../components/CiteThisPage.astro";
 import DateRange from "../../../components/DateRange.astro";
 import EvidenceStamp from "../../../components/EvidenceStamp.astro";
 import Icon from "../../../components/Icon.astro";
@@ -16,6 +18,7 @@ import StatusLabel from "../../../components/StatusLabel.astro";
 import T from "../../../components/T.astro";
 import ThemeList from "../../../components/ThemeList.astro";
 import TranslationNotice from "../../../components/TranslationNotice.astro";
+import WhyWeKnow from "../../../components/WhyWeKnow.astro";
 import Base from "../../../layouts/Base.astro";
 import { href, packageAlternate } from "../../../lib/links.ts";
 import { getModel } from "../../../lib/model.ts";
@@ -36,6 +39,8 @@ const model = getModel();
 const participants = model.relationshipsOf(event.id).filter(isParticipation);
 const citing = model.relationshipsCiting(event.id);
 const hypotheses = model.dataset.hypotheses.filter((h) => h.events.includes(event.id));
+const whyWeKnow = buildWhyWeKnow(event.id, model);
+const pageUrl = new URL(href(`events/${event.id}/`, lang), Astro.site ?? "http://localhost").href;
 ---
 
 <Base title={textOf(event.title, lang)} lang={lang} description={textOf(event.description, lang)} alternates={packageAlternate(event.id)} searchable>
@@ -188,6 +193,10 @@ const hypotheses = model.dataset.hypotheses.filter((h) => h.events.includes(even
       </>
     )
   }
+
+  <WhyWeKnow breakdown={whyWeKnow} lang={lang} compact={true} />
+
+  <CiteThisPage title={textOf(event.title, lang)} url={pageUrl} lang={lang} id={event.id} generatedAt={event.date.start} />
 
   <ArticleBacklinks id={event.id} lang={lang} />
 

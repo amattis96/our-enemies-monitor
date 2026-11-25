@@ -1,0 +1,78 @@
+---
+import { choose, languageFromParam, languagePaths } from "../../../../src/site/i18n.ts";
+import { projectLaboratory } from "../../../../src/site/laboratory.ts";
+import T from "../../components/T.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+import "../../styles/lab.css";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const lab = projectLaboratory(getModel());
+---
+
+<Base
+  title={c("Domande aperte", "Open questions")}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Domande investigative pubbliche e ipotesi di verifica ordinate per valore dell'informazione (VoI).",
+    "Public investigative questions and verification hypotheses ordered by Value of Information (VoI).",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">{c("Laboratorio · Domande aperte", "Laboratory · Open questions")}</span>
+    <h1 class="mt-3">{c("Domande aperte e ipotesi", "Open questions & hypotheses")}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "Elenco pubblico moderato delle domande investigative aperte, ordinate per Valore dell'Informazione (VoI). Le code interne, le formulazioni insinuanti e i riferimenti a persone fisiche sono esclusi per impostazione predefinita.",
+        "Moderated public list of open investigative questions, ordered by Value of Information (VoI). Internal queues, insinuating phrasings, and natural-person references are excluded by default.",
+      )}
+    </p>
+
+    <nav class="lab-subnav" aria-label={c("Viste del laboratorio", "Laboratory views")}>
+      <a href={href("laboratorio/", lang)}>{c("Area unificata", "Unified view")}</a>
+      <a href={href("domande/", lang)} aria-current="page">{c("Domande aperte", "Open questions")}</a>
+      <a href={href("cold-case/", lang)}>{c("Cold case", "Cold cases")}</a>
+      <a href={href("copertura/", lang)}>{c("Copertura", "Coverage")}</a>
+    </nav>
+
+    <div class="lab-cards">
+      {lab.open_questions.map((item) => (
+        <article class="lab-card">
+          <div class="lab-card-header">
+            <span class="lab-code">{item.id}</span>
+            <span class="lab-pill" data-priority={item.priority}>{item.priority}</span>
+          </div>
+          <p class="mb-0 font-semibold"><T text={item.question} lang={lang} /></p>
+          {item.current_limit && (
+            <p class="meta mb-0">
+              <strong>{c("Limite attuale", "Current limit")}:</strong>{" "}
+              <T text={item.current_limit} lang={lang} />
+            </p>
+          )}
+          {item.evidence_needed && (
+            <p class="meta mb-0">
+              <strong>{c("Evidenza necessaria", "Evidence needed")}:</strong>{" "}
+              <T text={item.evidence_needed} lang={lang} />
+            </p>
+          )}
+          <div class="lab-card-header">
+            <span class="lab-voi-meter">
+              VoI {item.voi_score}
+              <span class="lab-voi-track" aria-hidden="true">
+                <span class="lab-voi-fill" style={`width: ${item.voi_score}%`}></span>
+              </span>
+            </span>
+            <a class="meta" href={href(`hypotheses/${item.id}/`, lang)}>
+              {c("Scheda", "Record")} →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>

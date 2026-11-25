@@ -1,0 +1,277 @@
+---
+import { EVIDENCE_LEVELS, THEME_LABELS } from "../../../../src/model/index.ts";
+import { choose, languageFromParam, languagePaths, textOf } from "../../../../src/site/i18n.ts";
+import { buildWhyWeKnow, projectLaboratory } from "../../../../src/site/laboratory.ts";
+import T from "../../components/T.astro";
+import WhyWeKnow from "../../components/WhyWeKnow.astro";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+import "../../styles/lab.css";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const model = getModel();
+const lab = projectLaboratory(model);
+const sampleEvent = model.events[0];
+const sampleWhyWeKnow = sampleEvent ? buildWhyWeKnow(sampleEvent.id, model) : null;
+---
+
+<Base
+  title={c("Laboratorio pubblico", "Public laboratory")}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Area di lavoro pubblica e moderata: domande aperte, cold case sanitizzati, ipotesi concorrenti, evidenze necessarie ordinate per VoI e copertura del dataset.",
+    "Moderated public workspace: open questions, sanitized cold cases, competing hypotheses, VoI-ordered needed evidence, and dataset coverage.",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">
+      {c("Laboratorio · Proiezione pubblica moderata", "Laboratory · Moderated public projection")}
+    </span>
+    <h1 class="mt-3">{c("Laboratorio di verifica", "Verification laboratory")}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "Quarto registro visivo del sistema: distingue ciò che è verificato da ciò che resta aperto. Le code interne, le domande insinuanti, le persone fisiche (per impostazione predefinita) e i fingerprint completi dei cold case restano esclusi dalla proiezione pubblica.",
+        "Fourth visual register of the system: separates verified facts from open investigation. Internal queues, insinuating questions, natural persons (by default), and full cold-case fingerprints are excluded from the public projection.",
+      )}
+    </p>
+
+    <nav class="lab-subnav" aria-label={c("Viste del laboratorio", "Laboratory views")}>
+      <a href={href("laboratorio/", lang)} aria-current="page">
+        {c("Area unificata", "Unified view")}
+      </a>
+      <a href={href("domande/", lang)}>{c("Domande aperte", "Open questions")}</a>
+      <a href={href("cold-case/", lang)}>{c("Cold case", "Cold cases")}</a>
+      <a href={href("copertura/", lang)}>{c("Copertura", "Coverage")}</a>
+    </nav>
+
+    <div class="lab-tabs" role="tablist" aria-label={c("Sezioni del laboratorio", "Laboratory sections")}>
+      <button type="button" class="lab-tab" role="tab" aria-selected="true" aria-controls="panel-questions" id="tab-questions">
+        {c("Domande aperte", "Open questions")} ({lab.open_questions.length})
+      </button>
+      <button type="button" class="lab-tab" role="tab" aria-selected="false" aria-controls="panel-cold" id="tab-cold">
+        {c("Cold case", "Cold cases")} ({lab.cold_cases.length})
+      </button>
+      <button type="button" class="lab-tab" role="tab" aria-selected="false" aria-controls="panel-competing" id="tab-competing">
+        {c("Ipotesi concorrenti", "Competing hypotheses")} ({lab.competing_hypotheses.length})
+      </button>
+      <button type="button" class="lab-tab" role="tab" aria-selected="false" aria-controls="panel-voi" id="tab-voi">
+        {c("Evidenze necessarie (VoI)", "Needed evidence (VoI)")} ({lab.needed_evidence.length})
+      </button>
+      <button type="button" class="lab-tab" role="tab" aria-selected="false" aria-controls="panel-coverage" id="tab-coverage">
+        {c("Copertura", "Coverage")}
+      </button>
+    </div>
+
+    <section id="panel-questions" class="lab-panel" role="tabpanel" aria-labelledby="tab-questions">
+      <h2>{c("Domande aperte pubbliche", "Public open questions")}</h2>
+      {lab.open_questions.length === 0 ? (
+        <p class="meta">{c("Nessuna domanda pubblica aperta al momento.", "No public open questions at the moment.")}</p>
+      ) : (
+        <div class="lab-cards">
+          {lab.open_questions.slice(0, 12).map((item) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{item.id}</span>
+                <span class="lab-pill" data-priority={item.priority}>{item.priority}</span>
+              </div>
+              <p class="mb-0 font-semibold"><T text={item.question} lang={lang} /></p>
+              {item.current_limit && (
+                <p class="meta mb-0">
+                  <strong>{c("Limite attuale", "Current limit")}:</strong>{" "}
+                  <T text={item.current_limit} lang={lang} />
+                </p>
+              )}
+              <div class="lab-card-header">
+                <span class="lab-voi-meter">
+                  VoI {item.voi_score}
+                  <span class="lab-voi-track" aria-hidden="true">
+                    <span class="lab-voi-fill" style={`width: ${item.voi_score}%`}></span>
+                  </span>
+                </span>
+                <a class="meta" href={href(`hypotheses/${item.id}/`, lang)}>
+                  {c("Scheda", "Record")} →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+      <p class="meta mt-4">
+        <a href={href("domande/", lang)}>{c("Apri la vista dedicata alle domande", "Open dedicated questions view")}</a>.
+      </p>
+    </section>
+
+    <section id="panel-cold" class="lab-panel" role="tabpanel" aria-labelledby="tab-cold" hidden>
+      <h2>{c("Cold case sanitizzati", "Sanitized cold cases")}</h2>
+      {lab.cold_cases.length === 0 ? (
+        <p class="meta">
+          {c(
+            "Nessun cold case pubblico archiviato. I fingerprint completi di riattivazione restano nel dominio riservato.",
+            "No public cold cases archived. Full reactivation fingerprints remain in the private domain.",
+          )}
+        </p>
+      ) : (
+        <div class="lab-cards">
+          {lab.cold_cases.map((cc) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{cc.hypothesis_id}</span>
+                <span class="lab-pill">{cc.status}</span>
+              </div>
+              <p class="meta mb-0">
+                {c("Periodo", "Period")}: {cc.period_summary} ·{" "}
+                {c("Riattivazioni", "Reactivations")}: {cc.reactivation_count}
+              </p>
+              {cc.closure_rationale && <p class="meta mb-0">{cc.closure_rationale}</p>}
+            </article>
+          ))}
+        </div>
+      )}
+      <p class="meta mt-4">
+        <a href={href("cold-case/", lang)}>{c("Apri la vista dedicata ai cold case", "Open dedicated cold-cases view")}</a>.
+      </p>
+    </section>
+
+    <section id="panel-competing" class="lab-panel" role="tabpanel" aria-labelledby="tab-competing" hidden>
+      <h2>{c("Ipotesi concorrenti", "Competing hypotheses")}</h2>
+      {lab.competing_hypotheses.length === 0 ? (
+        <p class="meta">
+          {c(
+            "Nessun gruppo di ipotesi concorrenti con spiegazioni alternative pubbliche al momento.",
+            "No competing hypothesis groups with public alternative explanations at the moment.",
+          )}
+        </p>
+      ) : (
+        <div class="lab-cards">
+          {lab.competing_hypotheses.map((group) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{group.group_key}</span>
+                <span class="lab-pill">{group.hypotheses.length} {c("ipotesi", "hypotheses")}</span>
+              </div>
+              <p class="mb-0 font-semibold"><T text={group.topic_label} lang={lang} /></p>
+              <ul class="why-assertions">
+                {group.hypotheses.map((h) => (
+                  <li><T text={h.question} lang={lang} /></li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+
+    <section id="panel-voi" class="lab-panel" role="tabpanel" aria-labelledby="tab-voi" hidden>
+      <h2>{c("Evidenze necessarie (ordinate per VoI)", "Needed evidence (VoI-ordered)")}</h2>
+      <div class="relative overflow-x-auto mt-4">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">VoI</th>
+              <th scope="col">{c("Evidenza richiesta", "Evidence needed")}</th>
+              <th scope="col">{c("Fonti attuali", "Current sources")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {lab.needed_evidence.slice(0, 20).map((item) => (
+              <tr>
+                <td class="font-mono">{item.id}</td>
+                <td class="font-mono font-semibold">{item.voi_score}</td>
+                <td><T text={item.evidence_needed} lang={lang} /></td>
+                <td class="font-mono">{item.source_count}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="panel-coverage" class="lab-panel" role="tabpanel" aria-labelledby="tab-coverage" hidden>
+      <h2>{c("Copertura del dataset", "Dataset coverage")}</h2>
+      <div class="grid gap-4 md:grid-cols-4 mt-4">
+        <div class="card">
+          <p class="meta">{c("Eventi pubblici", "Public events")}</p>
+          <p class="text-xl font-mono font-semibold">{lab.coverage.events_total}</p>
+        </div>
+        <div class="card">
+          <p class="meta">{c("Entità", "Entities")}</p>
+          <p class="text-xl font-mono font-semibold">{lab.coverage.entities_total}</p>
+        </div>
+        <div class="card">
+          <p class="meta">{c("Relazioni", "Relationships")}</p>
+          <p class="text-xl font-mono font-semibold">{lab.coverage.relationships_total}</p>
+        </div>
+        <div class="card">
+          <p class="meta">{c("Fonti", "Sources")}</p>
+          <p class="text-xl font-mono font-semibold">{lab.coverage.sources_total}</p>
+        </div>
+      </div>
+
+      <h3 class="mt-6">{c("Distribuzione per livello di evidenza", "Distribution by evidence level")}</h3>
+      <div class="flex flex-wrap gap-3 mt-2">
+        {EVIDENCE_LEVELS.map((lvl) => (
+          <span class="lab-pill">
+            {lvl}: {lab.coverage.by_evidence_level[lvl]}
+          </span>
+        ))}
+      </div>
+
+      <h3 class="mt-6">{c("Copertura per tema", "Coverage by theme")}</h3>
+      <div class="relative overflow-x-auto mt-2">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{c("Tema", "Theme")}</th>
+              <th scope="col">{c("Eventi", "Events")}</th>
+              <th scope="col">{c("Relazioni", "Relationships")}</th>
+              <th scope="col">{c("Domande aperte", "Open questions")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {lab.coverage.by_theme.map((row) => (
+              <tr>
+                <td>{textOf(THEME_LABELS[row.theme], lang)}</td>
+                <td class="font-mono">{row.events}</td>
+                <td class="font-mono">{row.relationships}</td>
+                <td class="font-mono">{row.hypotheses}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="meta mt-4">
+        <a href={href("copertura/", lang)}>{c("Apri la vista dedicata alla copertura", "Open dedicated coverage view")}</a>.
+      </p>
+    </section>
+
+    {sampleEvent && sampleWhyWeKnow && (
+      <div class="mt-8">
+        <p class="meta mb-2">
+          {c("Anteprima «Perché lo sappiamo?» per", "«Why do we know this?» preview for")}{" "}
+          <a href={href(`events/${sampleEvent.id}/`, lang)}>
+            {sampleEvent.id} — <T text={sampleEvent.title} lang={lang} />
+          </a>
+        </p>
+        <WhyWeKnow breakdown={sampleWhyWeKnow} lang={lang} compact={true} />
+      </div>
+    )}
+  </div>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".lab-tab"));
+    const panels = Array.from(document.querySelectorAll<HTMLElement>(".lab-panel"));
+    for (const tab of tabs) {
+      tab.addEventListener("click", () => {
+        const targetId = tab.getAttribute("aria-controls");
+        for (const t of tabs) t.setAttribute("aria-selected", t === tab ? "true" : "false");
+        for (const p of panels) p.hidden = p.id !== targetId;
+      });
+    }
+  </script>
+</Base>

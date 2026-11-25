@@ -1,9 +1,24 @@
 {
   "id": "PK-23",
-  "status": "blocked",
+  "status": "awaiting_acceptance",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-4-integration",
+      "recorded_at": "2026-11-25T23:01:00Z",
+      "outcome": "Implemented AI search benchmark suite (src/audit/ai-benchmark.ts, docs/audit/ai-benchmarks/) measuring citation accuracy, uncertainty preservation, and withheld-record non-leakage"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/seo-cite-benchmark.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:01:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Benchmark harness and scoring logic verified in test/seo-cite-benchmark.test.ts"
+  ],
+  "notes": "Awaiting external acceptance: 2 monthly live benchmark executions against external AI search engines.",
+  "updated_at": "2026-11-25T23:01:00Z"
 }
