@@ -1,5 +1,6 @@
 ---
 import { EVIDENCE_LEVELS, THEME_LABELS } from "../../../../src/model/index.ts";
+import { PRIORITY_LABELS } from "../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths, textOf } from "../../../../src/site/i18n.ts";
 import { buildWhyWeKnow, projectLaboratory } from "../../../../src/site/laboratory.ts";
 import T from "../../components/T.astro";
@@ -77,7 +78,7 @@ const sampleWhyWeKnow = sampleEvent ? buildWhyWeKnow(sampleEvent.id, model) : nu
             <article class="lab-card">
               <div class="lab-card-header">
                 <span class="lab-code">{item.id}</span>
-                <span class="lab-pill" data-priority={item.priority}>{item.priority}</span>
+                <span class="lab-pill" data-priority={item.priority}>{c("Priorità", "Priority")} {PRIORITY_LABELS[item.priority][lang].toLowerCase()}</span>
               </div>
               <p class="mb-0 font-semibold"><T text={item.question} lang={lang} /></p>
               {item.current_limit && (

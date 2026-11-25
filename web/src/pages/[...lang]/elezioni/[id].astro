@@ -1,5 +1,6 @@
 ---
-import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
+import { formatPartialDate, REVIEW_STATUS_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths, textOf } from "../../../../../src/site/i18n.ts";
 import {
   type ElectionDossierProjection,
   projectElectionDossiers,
@@ -27,19 +28,19 @@ const ev = dossier.event;
 ---
 
 <Base
-  title={`${c("Dossier elettorale", "Election dossier")} ${dossier.id}`}
+  title={`${textOf(ev.title, lang)} · ${c("Tema elezioni", "Elections theme")}`}
   lang={lang}
   wide={true}
   description={c(
-    "Dossier sugli eventi a rischio elettorale con livelli di evidenza e avvertenze metodologiche.",
-    "Election risk-event dossier with evidence levels and methodological caveats.",
+    "Scheda di un evento classificato nel tema elezioni e influenza politica, con le relazioni pubbliche che lo citano e i loro livelli di evidenza.",
+    "Record of an event filed under the elections and political influence theme, with the public relationships citing it and their evidence levels.",
   )}
 >
   <div class="lab-sheet">
-    <span class="lab-register-badge">{c("Dossier · Rischio elettorale", "Dossier · Election risk")}</span>
+    <span class="lab-register-badge">{c("Laboratorio · Tema elezioni", "Laboratory · Elections theme")}</span>
     <h1 class="mt-3"><T text={ev.title} lang={lang} /></h1>
     <p class="meta">
-      {dossier.id} · {ev.date.start} · {ev.evidence_level ?? "N/D"} · {ev.review.status}
+      {dossier.id} · {formatPartialDate(ev.date.start, lang)}{ev.evidence_level ? ` · ${ev.evidence_level}` : ""} · {REVIEW_STATUS_LABELS[ev.review.status][lang]}
     </p>
     <div class="notice max-w-3xl mt-4">
       {choose(lang, dossier.caveat.it, dossier.caveat.en)}

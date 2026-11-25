@@ -167,7 +167,7 @@ describe("PK-17 Corrections and right of reply", () => {
     expect(doc).toContain("https://github.com/amattis96/our-enemies-monitor/issues/new");
   });
 
-  it("connects /rettifiche to PK-07 retraction register and includes bilingual content and sample reply linkage", () => {
+  it("connects /rettifiche to the PK-07 register, bilingual, without invented replies or internal codes", () => {
     const register = readRetractionRegister();
     expect(register.registry).toBe("retractions");
 
@@ -176,8 +176,10 @@ describe("PK-17 Corrections and right of reply", () => {
     expect(rettifiche).toContain("readRetractionRegister");
     expect(rettifiche).toContain("Porta un'evidenza su GitHub");
     expect(rettifiche).toContain("Bring evidence on GitHub");
-    expect(rettifiche).toContain("D12");
-    expect(rettifiche).toContain("TL-0001");
-    expect(rettifiche).toContain("href(SAMPLE_LINKED_REPLY.target_path, lang)");
+    // A public page must not show a sample reply linked to a real record, nor
+    // undecided owner-decision codes or response-time commitments (D4 open).
+    expect(rettifiche).not.toContain("SAMPLE");
+    expect(rettifiche).not.toMatch(/\bD\d{1,2}\b/);
+    expect(rettifiche).not.toMatch(/\bPK-\d/);
   });
 });

@@ -15,34 +15,22 @@ const activeNotices = register.entries.filter(
 
 const GITHUB_ISSUE_URL =
   "https://github.com/amattis96/our-enemies-monitor/issues/new?labels=correction,evidence&title=Rettifica+%2F+Evidence%3A+&body=Record+ID%3A+%0APrimary+source+URL%3A+%0AWhat+is+known+vs+inferred%3A+%0A";
-
-const SAMPLE_LINKED_REPLY = {
-  reply_id: "REP-SAMPLE-001",
-  target_id: "TL-0001",
-  target_path: "events/TL-0001/",
-  status: { it: "Esempio procedurale collegato", en: "Linked procedural sample" },
-  recorded_at: "2026-11-25",
-  summary: {
-    it: "Replica di prova collegata alla scheda TL-0001 per dimostrare il collegamento pubblico tra segnalazione, verifica della fonte primaria e nota di contesto senza alterare i fatti storici canonici.",
-    en: "Sample right-of-reply linked to record TL-0001 to demonstrate public linkage between a submitted reply, primary-source verification, and context notice without silently altering canonical historical facts.",
-  },
-};
 ---
 
 <Base
   title={c("Rettifiche e diritto di replica", "Corrections and right of reply")}
   lang={lang}
   description={c(
-    "Registro pubblico delle rettifiche, avvisi di revisione in corso, procedura di diritto di replica e trattamento D12 dei dati personali.",
-    "Public retraction register, active review notices, right-of-reply procedure, and D12 personal-data handling.",
+    "Registro pubblico delle rettifiche e delle sospensioni cautelative, e come segnalare un errore o portare un'evidenza contraria.",
+    "Public register of corrections and precautionary suspensions, and how to report an error or bring contrary evidence.",
   )}
 >
   <p class="kicker">{ui(lang).navMethod}</p>
   <h1>{c("Rettifiche e diritto di replica", "Corrections and right of reply")}</h1>
   <p class="lede max-w-3xl">
     {c(
-      "Questa pagina è alimentata dal registro delle rettifiche (PK-07) e pubblica gli avvisi di revisione in corso, le correzioni tracciate e la procedura per esercitare il diritto di replica o portare nuove evidenze.",
-      "This page is fed by the retraction register (PK-07) and publishes active review notices, traced corrections, and the procedure to exercise the right of reply or bring new evidence.",
+      "Questa pagina è generata dal registro delle rettifiche: mostra gli avvisi di revisione in corso, le correzioni tracciate e come segnalare un errore o portare un'evidenza contraria.",
+      "This page is generated from the corrections register: it shows ongoing review notices, traced corrections and how to report an error or bring contrary evidence.",
     )}
   </p>
 
@@ -51,8 +39,8 @@ const SAMPLE_LINKED_REPLY = {
     {activeNotices.length === 0 ? (
       <div class="notice max-w-3xl mt-4">
         {c(
-          "Nessuna rettifica o sospensione attiva nel registro (docs/retractions/register.v1.json).",
-          "No active retractions or suspensions in the register (docs/retractions/register.v1.json).",
+          "Nessuna rettifica o sospensione attiva nel registro.",
+          "No active correction or suspension in the register.",
         )}
       </div>
     ) : (
@@ -73,7 +61,10 @@ const SAMPLE_LINKED_REPLY = {
     )}
     <p class="meta mt-4 max-w-3xl">
       <strong>{c("Copie non controllabili", "Uncontrollable copies")}:</strong>{" "}
-      {register.uncontrollable_copies_declaration}
+      {c(
+        "le sospensioni e le correzioni valgono per le pagine, gli export e l'indice di ricerca di questo sito. Copie già scaricate, archivi esterni, fork, cache e citazioni di terzi restano fuori dal nostro controllo e non possono essere ritirati.",
+        "suspensions and corrections apply to this site's pages, exports and search index. Copies already downloaded, external archives, forks, caches and third-party citations are outside our control and cannot be recalled.",
+      )}
     </p>
   </section>
 
@@ -95,11 +86,11 @@ const SAMPLE_LINKED_REPLY = {
         </p>
       </div>
       <div class="card">
-        <h3>{c("Evidenze sensibili e repliche personali (D12)", "Sensitive evidence and personal replies (D12)")}</h3>
+        <h3>{c("Evidenze sensibili e repliche personali", "Sensitive evidence and personal replies")}</h3>
         <p>
           {c(
-            "Per repliche riguardanti persone nominate, richieste di rimozione o oscuramento di dati personali (D12) o documenti non pubblicabili, utilizza il canale riservato diretto al titolare (amattis96) invece di una issue pubblica.",
-            "For replies concerning named persons, personal-data redaction or removal requests (D12), or non-public documents, use the private direct channel to the maintainer (amattis96) instead of a public issue.",
+            "Per repliche su persone nominate, richieste di rimozione di dati personali o documenti non pubblicabili non usare una segnalazione pubblica con quei contenuti. Un canale riservato dedicato è in preparazione: nel frattempo apri una segnalazione senza dati personali e chiedi un contatto privato.",
+            "For replies about named persons, personal-data removal requests or non-public documents, do not put that content in a public issue. A dedicated private channel is being set up: meanwhile, open an issue without personal data and ask for a private contact.",
           )}
         </p>
       </div>
@@ -107,13 +98,13 @@ const SAMPLE_LINKED_REPLY = {
   </section>
 
   <section class="mt-8 max-w-3xl">
-    <h2>{c("Procedura, tempi e moderazione", "Procedure, response times and moderation")}</h2>
+    <h2>{c("Procedura e moderazione", "Procedure and moderation")}</h2>
     <ul class="list-disc pl-5 space-y-2 mt-3">
       <li>
-        <strong>{c("Tempi di risposta dichiarati", "Declared response times")}:</strong>{" "}
+        <strong>{c("Tempi", "Timing")}:</strong>{" "}
         {c(
-          "presa in carico entro 48 ore; contenimento urgente D12 entro 24 ore; valutazione iniziale entro 5 giorni lavorativi; esito e pubblicazione nel registro entro 10 giorni lavorativi.",
-          "acknowledgement within 48 hours; urgent D12 containment within 24 hours; initial triage within 5 business days; resolution and register update within 10 business days.",
+          "la procedura formale di replica, con tempi di risposta dichiarati, è in definizione e sarà pubblicata qui. Fino ad allora le segnalazioni sono valutate senza impegni di tempo.",
+          "the formal reply procedure, with declared response times, is being defined and will be published here. Until then, reports are assessed without time commitments.",
         )}
       </li>
       <li>
@@ -124,7 +115,7 @@ const SAMPLE_LINKED_REPLY = {
         )}
       </li>
       <li>
-        <strong>{c("Dati personali (D12)", "Personal data (D12)")}:</strong>{" "}
+        <strong>{c("Dati personali", "Personal data")}:</strong>{" "}
         {c(
           "i dati personali non necessari o non più conservabili vengono rimossi lasciando una traccia amministrativa minima; nessuna relazione su persone fisiche viene pubblicata senza fonte primaria collegata.",
           "unnecessary or non-retainable personal data is removed while preserving a minimal administrative trace; no relationship about a named person is published without a linked primary source.",
@@ -135,18 +126,7 @@ const SAMPLE_LINKED_REPLY = {
 
   <section class="mt-8 max-w-3xl">
     <h2>{c("Repliche collegate alle schede", "Replies linked to records")}</h2>
-    <article class="card mt-3">
-      <p class="meta font-mono">
-        {SAMPLE_LINKED_REPLY.reply_id} · {SAMPLE_LINKED_REPLY.status[lang]} · {SAMPLE_LINKED_REPLY.recorded_at}
-      </p>
-      <p class="mt-1">
-        {SAMPLE_LINKED_REPLY.summary[lang]}
-      </p>
-      <p class="meta mt-2">
-        {c("Scheda collegata", "Linked record")}:{" "}
-        <a href={href(SAMPLE_LINKED_REPLY.target_path, lang)}>{SAMPLE_LINKED_REPLY.target_id}</a>
-      </p>
-    </article>
+    <p class="mt-3">{c("Nessuna replica registrata finora.", "No reply recorded so far.")}</p>
     <p class="meta mt-4">
       <a href={href("changes/", lang)}>{c("Modifiche e correzioni storiche", "Historical changes and corrections")}</a>{" "}
       · <a href={href("metodo/motore/", lang)}>{c("Trasparenza del motore", "Engine transparency")}</a>.

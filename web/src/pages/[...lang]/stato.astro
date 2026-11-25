@@ -22,7 +22,29 @@ const RUN_STATUS_LABELS: Record<string, { it: string; en: string }> = {
   partial: { it: "Parziale", en: "Partial" },
   failed: { it: "Fallita", en: "Failed" },
   cancelled: { it: "Annullata", en: "Cancelled" },
-  missed: { it: "Mancante (missed)", en: "Missed" },
+  missed: { it: "Mancante", en: "Missed" },
+};
+
+const raw = readEngineManifest();
+const TASK_LABELS: Record<string, { it: string; en: string }> = {
+  ...Object.fromEntries(raw.roles.map((r) => [r.id, r.label])),
+  task_d_legacy_merge: {
+    it: "Task D — Approvazione e merge (ritirato)",
+    en: "Task D — Approval and merge (retired)",
+  },
+};
+const SCHEDULE_IT: Record<string, string> = {
+  "Daily 00:30": "Ogni giorno alle 00:30",
+  "Mon/Wed/Fri 02:00": "Lunedì, mercoledì e venerdì alle 02:00",
+  "Daily 03:30 and 04:30": "Ogni giorno alle 03:30 e alle 04:30",
+  "Paused 2026-11-21 (replaced by auto-merge.yml)":
+    "Sospeso dal 21 novembre 2026 (sostituito dal workflow di auto-merge)",
+  "On verified C handoff + green CI": "Dopo l'handoff verificato di Task C e la CI verde",
+};
+const CADENCE_STATUS: Record<string, { it: string; en: string }> = {
+  active: { it: "Attivo", en: "Active" },
+  paused: { it: "Sospeso", en: "Paused" },
+  event_driven: { it: "Su evento", en: "Event-driven" },
 };
 ---
 
@@ -38,8 +60,8 @@ const RUN_STATUS_LABELS: Record<string, { it: string; en: string }> = {
   <h1>{c("Stato delle esecuzioni", "Execution status")}</h1>
   <p class="lede max-w-3xl">
     {c(
-      "Questa pagina è generata esclusivamente dalle proiezioni sanitizzate dei manifest di esecuzione (PK-08). Le query investigative, le fonti consultate e i messaggi d'errore sensibili restano nel dominio riservato. Le esecuzioni mai avviate vengono rilevate in modo indipendente e registrate come missed.",
-      "This page is generated exclusively from sanitized run manifest projections (PK-08). Investigative queries, consulted sources, and sensitive error messages remain in the private domain. Runs that never started are detected independently and recorded as missed.",
+      "Questa pagina è generata dalle versioni pubbliche dei registri di esecuzione: le ricerche svolte, le fonti consultate e i messaggi d'errore sensibili non vi compaiono. Le esecuzioni pianificate e mai avviate sono rilevate da un controllo indipendente e registrate come mancanti.",
+      "This page is generated from the public versions of the run records: the searches performed, the sources consulted and sensitive error messages do not appear. Scheduled runs that never started are detected by an independent check and recorded as missed.",
     )}
   </p>
 
@@ -53,7 +75,7 @@ const RUN_STATUS_LABELS: Record<string, { it: string; en: string }> = {
       <p class="text-xl font-mono font-semibold">{Math.max(runs.length, engine.operational_metrics.runs_recorded)}</p>
     </div>
     <div class="card">
-      <p class="meta">{c("Esecuzioni mancanti (missed)", "Missed runs")}</p>
+      <p class="meta">{c("Esecuzioni mancanti", "Missed runs")}</p>
       <p class="text-xl font-mono font-semibold">{Math.max(missedRuns.length, engine.operational_metrics.missed_runs)}</p>
     </div>
     <div class="card">
@@ -67,8 +89,8 @@ const RUN_STATUS_LABELS: Record<string, { it: string; en: string }> = {
     {runs.length === 0 ? (
       <div class="notice max-w-3xl mt-4">
         {c(
-          "Nessun manifest di esecuzione pubblico archiviato finora in docs/runs/. Quando le esecuzioni programmate o i rilevamenti missed vengono proiettati, compaiono automaticamente in questa tabella con stato e versione del motore.",
-          "No public run manifests archived yet in docs/runs/. Once scheduled runs or missed-run detections are projected, they appear automatically in this table with their status and engine version.",
+          "Nessun registro di esecuzione pubblico archiviato finora. Quando le esecuzioni pianificate, o quelle mancanti, vengono registrate, compaiono qui con stato e versione del motore.",
+          "No public run record archived so far. Once scheduled runs, or missed ones, are recorded, they appear here with their status and engine version.",
         )}
       </div>
     ) : (
@@ -117,9 +139,9 @@ const RUN_STATUS_LABELS: Record<string, { it: string; en: string }> = {
         <tbody>
           {engine.cadences.map((cadence) => (
             <tr>
-              <td class="font-mono">{cadence.task_id}</td>
-              <td>{cadence.schedule} ({cadence.timezone})</td>
-              <td>{cadence.status}</td>
+              <td>{TASK_LABELS[cadence.task_id]?.[lang] ?? cadence.task_id}</td>
+              <td>{lang === "it" ? (SCHEDULE_IT[cadence.schedule] ?? cadence.schedule) : cadence.schedule} ({cadence.timezone})</td>
+              <td>{CADENCE_STATUS[cadence.status]?.[lang] ?? cadence.status}</td>
             </tr>
           ))}
         </tbody>

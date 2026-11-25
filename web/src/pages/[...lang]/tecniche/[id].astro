@@ -1,5 +1,6 @@
 ---
-import { choose, languageFromParam, languagePaths, textOf } from "../../../../../src/site/i18n.ts";
+import { PRIORITY_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
 import { projectLaboratory } from "../../../../../src/site/laboratory.ts";
 import { projectTechniques, type TechniqueProjection } from "../../../../../src/site/stix.ts";
 import T from "../../../components/T.astro";
@@ -22,6 +23,10 @@ export function getStaticPaths() {
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
 const { tech } = Astro.props as { tech: TechniqueProjection };
+const events = [...tech.documentedFacts, ...tech.recordedEvents].sort(
+  (a, b) => b.date.start.localeCompare(a.date.start) || b.id.localeCompare(a.id),
+);
+const isCyber = tech.theme === "cyber";
 ---
 
 <Base
@@ -29,32 +34,37 @@ const { tech } = Astro.props as { tech: TechniqueProjection };
   lang={lang}
   wide={true}
   description={c(
-    "Proiezione pubblica della tecnica con distinzione tra fatti documentati, avvisi investigativi e anomalie statistiche.",
-    "Public technique projection distinguishing documented facts, investigative notices, and statistical anomalies.",
+    "Eventi pubblici del tema e domande aperte (E5), tenuti separati: un evento registrato non è un'attribuzione e una domanda aperta non è un fatto.",
+    "Public events in the theme and open questions (E5), kept apart: a recorded event is not an attribution and an open question is not a fact.",
   )}
 >
   <div class="lab-sheet">
-    <span class="lab-register-badge">{c("Proiezione · Tecnica", "Projection · Technique")}</span>
+    <span class="lab-register-badge">{c("Laboratorio · Tema", "Laboratory · Theme")}</span>
     <h1 class="mt-3">{choose(lang, tech.title.it, tech.title.en)}</h1>
     <p class="lede max-w-3xl">
       {c(
-        "Questa scheda separa i fatti documentati (E1–E3) dagli avvisi investigativi (E4–E5) e dai segnali statistici descrittivi. Solo i record pubblici sono inclusi.",
-        "This sheet separates documented facts (E1–E3) from investigative notices (E4–E5) and descriptive statistical signals. Only public records are included.",
-      )}{" "}
-      <a href={assetHref("data/v1/stix-cyber.json")}>{c("Bundle STIX 2.1 cyber (JSON)", "Cyber STIX 2.1 bundle (JSON)")}</a>.
+        "Questa scheda raccoglie gli eventi pubblici del tema e, separatamente, le domande aperte (E5). Il livello di evidenza è assegnato soprattutto alle relazioni che citano un evento: apri la scheda evento per vederlo.",
+        "This sheet gathers the theme's public events and, separately, the open questions (E5). The evidence level is mostly assigned to the relationships citing an event: open the event record to see it.",
+      )}
+      {isCyber && (
+        <>
+          {" "}
+          <a href={assetHref("data/v1/stix-cyber.json")}>{c("Bundle STIX 2.1 cyber (JSON)", "Cyber STIX 2.1 bundle (JSON)")}</a>.
+        </>
+      )}
     </p>
 
     <section class="mt-6">
-      <h2>{c("Fatti documentati (E1–E3)", "Documented facts (E1–E3)")}</h2>
-      {tech.documentedFacts.length === 0 ? (
-        <p class="meta mt-2">{c("Nessun evento E1–E3 pubblico in questa categoria.", "No public E1–E3 events in this category.")}</p>
+      <h2>{c("Eventi registrati", "Recorded events")} ({events.length})</h2>
+      {events.length === 0 ? (
+        <p class="meta mt-2">{c("Nessun evento pubblico in questo tema.", "No public events in this theme.")}</p>
       ) : (
         <div class="lab-cards">
-          {tech.documentedFacts.slice(0, 12).map((ev) => (
+          {events.slice(0, 12).map((ev) => (
             <article class="lab-card">
               <div class="lab-card-header">
                 <span class="lab-code">{ev.id}</span>
-                <span class="lab-pill">{ev.evidence_level ?? "N/D"} · {ev.date.start}</span>
+                <span class="lab-pill">{ev.evidence_level ? `${ev.evidence_level} · ` : ""}{ev.date.start}</span>
               </div>
               <p class="mb-0 font-semibold"><T text={ev.title} lang={lang} /></p>
               <a class="meta" href={href(`events/${ev.id}/`, lang)}>{c("Scheda evento", "Event record")} →</a>
@@ -62,44 +72,37 @@ const { tech } = Astro.props as { tech: TechniqueProjection };
           ))}
         </div>
       )}
+      {events.length > 12 && (
+        <p class="meta mt-3">
+          <a href={href("timeline/", lang)}>{c("Tutti gli eventi nella cronologia", "All events in the timeline")} →</a>
+        </p>
+      )}
     </section>
 
     <section class="mt-8">
-      <h2>{c("Avvisi investigativi e ipotesi (E4–E5)", "Investigative notices & hypotheses (E4–E5)")}</h2>
+      <h2>{c("Domande aperte (E5)", "Open questions (E5)")}</h2>
       <div class="notice max-w-3xl mt-3">
         {c(
-          "Gli avvisi investigativi e le ipotesi E5 rappresentano domande di verifica aperte o denunce non corroborate, mai fatti accertati.",
-          "Investigative notices and E5 hypotheses represent open verification questions or uncorroborated allegations, never established facts.",
+          "Le domande aperte e le ipotesi E5 sono verifiche da fare, mai fatti accertati né attribuzioni.",
+          "Open questions and E5 hypotheses are checks still to be made, never established facts or attributions.",
         )}
       </div>
-      <div class="lab-cards">
-        {tech.investigativeNotices.openHypotheses.slice(0, 8).map((q) => (
-          <article class="lab-card">
-            <div class="lab-card-header">
-              <span class="lab-code">{q.id}</span>
-              <span class="lab-pill">E5 · {q.priority}</span>
-            </div>
-            <p class="mb-0"><T text={q.question} lang={lang} /></p>
-            <a class="meta" href={href(`piste/${q.id}/`, lang)}>{c("Scheda pista", "Lead record")} →</a>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="mt-8">
-      <h2>{c("Anomalie statistiche (segnali non causali)", "Statistical anomalies (non-causal signals)")}</h2>
-      <div class="lab-cards">
-        {tech.statisticalAnomalies.map((anom) => (
-          <article class="lab-card">
-            <div class="lab-card-header">
-              <span class="lab-code">{anom.id}</span>
-              <span class="lab-pill">{c("Segnale descrittivo", "Descriptive signal")}</span>
-            </div>
-            <p class="mb-0 font-semibold">{choose(lang, anom.label.it, anom.label.en)}</p>
-            <p class="meta mb-0">{choose(lang, anom.note.it, anom.note.en)}</p>
-          </article>
-        ))}
-      </div>
+      {tech.investigativeNotices.openHypotheses.length === 0 ? (
+        <p class="meta mt-2">{c("Nessuna domanda aperta pubblica in questo tema.", "No public open question in this theme.")}</p>
+      ) : (
+        <div class="lab-cards">
+          {tech.investigativeNotices.openHypotheses.slice(0, 8).map((q) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{q.id}</span>
+                <span class="lab-pill">E5 · {c("priorità", "priority")} {PRIORITY_LABELS[q.priority][lang].toLowerCase()}</span>
+              </div>
+              <p class="mb-0"><T text={q.question} lang={lang} /></p>
+              <a class="meta" href={href(`piste/${q.id}/`, lang)}>{c("Scheda della domanda", "Question record")} →</a>
+            </article>
+          ))}
+        </div>
+      )}
     </section>
   </div>
 </Base>

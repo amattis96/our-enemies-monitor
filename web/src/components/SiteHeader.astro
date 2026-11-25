@@ -102,12 +102,16 @@ const mark = inlineSvg("logo-mark.svg", "hdr");
           </li>
         ))
       }
-      <li>
-        <a href={href("glossario/", lang)} aria-current={current.startsWith(href("glossario/", lang)) ? "page" : undefined}>
-          <Icon name="nav-methodology" />
-          {c("Glossario", "Glossary")}
-        </a>
-      </li>
+    </ul>
+    <ul class="sheet-secondary">
+      <li><a href={href("inizia-qui/", lang)}>{c("Inizia qui", "Start here")}</a></li>
+      <li><a href={href("laboratorio/", lang)}>{c("Laboratorio", "Laboratory")}</a></li>
+      <li><a href={href("situazione/", lang)}>{c("Sala situazione", "Situation room")}</a></li>
+      <li><a href={href("hypotheses/", lang)}>{t.navHypotheses}</a></li>
+      <li><a href={href("sources/", lang)}>{t.navSources}</a></li>
+      <li><a href={href("glossario/", lang)}>{c("Glossario", "Glossary")}</a></li>
+      <li><a href={href("data/", lang)}>{t.navData}</a></li>
+      <li><a href={href("changes/", lang)}>{t.navChanges}</a></li>
     </ul>
   </nav>
   <div class="sheet-tools">

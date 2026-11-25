@@ -154,18 +154,8 @@
   letter-spacing: var(--tracking-caps);
 }
 
-.lab-pill[data-priority="critical"],
-.lab-pill[data-priority="high"] {
-  border-color: var(--signal);
-  background: var(--signal-wash);
-  color: var(--signal);
-}
-
-.lab-pill[data-priority="medium"] {
-  border-color: var(--caution);
-  background: var(--caution-wash);
-  color: var(--caution);
-}
+/* Priority orders verification work; it is not a threat level (engine plan
+   principle 4), so priority pills stay neutral: no signal/caution colours. */
 
 .lab-voi-meter {
   display: inline-flex;

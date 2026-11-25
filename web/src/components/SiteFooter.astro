@@ -22,6 +22,19 @@ const referenceLinks = [
   ["changes/", t.navChanges],
   ["search/", t.navSearch],
 ] as const;
+
+/** New observatory sections (engine plan M10–M12): reachable from every page. */
+const observatoryLinks = [
+  ["inizia-qui/", c("Inizia qui", "Start here")],
+  ["laboratorio/", c("Laboratorio", "Laboratory")],
+  ["situazione/", c("Sala situazione", "Situation room")],
+  ["brief/", c("Brief", "Briefs")],
+  ["affidabilita/", c("Affidabilità delle fonti", "Source reliability")],
+  ["metodo/motore/", c("Trasparenza del motore", "Engine transparency")],
+  ["stato/", c("Stato delle esecuzioni", "Run status")],
+  ["rettifiche/", c("Rettifiche e replica", "Corrections and reply")],
+  ["api/", c("API e citazione", "API and citation")],
+] as const;
 ---
 
 <footer class="site-footer" data-pagefind-ignore>
@@ -37,6 +50,16 @@ const referenceLinks = [
         <a href={`${repo}/blob/main/LICENSE-DATA.md`}>CC0 1.0</a> · <a href={repo}>{t.footerSource}</a>
       </p>
     </div>
+    <nav aria-label={c("Osservatorio", "Observatory")}>
+      <p class="kicker">{c("Osservatorio", "Observatory")}</p>
+      <ul>
+        {observatoryLinks.map(([path, label]) => (
+          <li>
+            <a href={href(path, lang)}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
     <nav aria-label={t.footerMethod}>
       <p class="kicker">{t.footerMethod}</p>
       <ul>

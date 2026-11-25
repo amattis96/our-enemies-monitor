@@ -2,6 +2,7 @@
 import { choose, languageFromParam, languagePaths } from "../../../../../src/site/i18n.ts";
 import { projectLaboratory } from "../../../../../src/site/laboratory.ts";
 import { buildSituationRoom } from "../../../../../src/site/stix.ts";
+import T from "../../../components/T.astro";
 import Base from "../../../layouts/Base.astro";
 import { assetHref, href } from "../../../lib/links.ts";
 import { getModel } from "../../../lib/model.ts";
@@ -20,32 +21,32 @@ const situation = buildSituationRoom(model, projectLaboratory(model));
   lang={lang}
   wide={true}
   description={c(
-    "Archivio pubblico dei brief settimanali e degli avvisi giornalieri basati esclusivamente sui record pubblici.",
-    "Public archive of weekly briefs and daily alerts derived strictly from public records.",
+    "Archivio dei brief periodici dell'osservatorio, basati solo sui record pubblici. Nessun brief è ancora pubblicato: la generazione è in prova.",
+    "Archive of the observatory's periodic briefs, based only on public records. No brief is published yet: generation is in trial.",
   )}
 >
   <div class="lab-sheet">
-    <span class="lab-register-badge">{c("Brief · Archivio pubblico", "Briefs · Public archive")}</span>
-    <h1 class="mt-3">{c("Brief e avvisi", "Briefs & alerts")}</h1>
+    <span class="lab-register-badge">{c("Osservatorio · Brief", "Observatory · Briefs")}</span>
+    <h1 class="mt-3">{c("Brief periodici", "Periodic briefs")}</h1>
     <p class="lede max-w-3xl">
       {c(
-        "Sintesi periodiche basate esclusivamente sui record pubblici. Ogni voce mantiene il collegamento alla scheda canonica e al relativo caveat probatorio.",
-        "Periodic syntheses derived strictly from public records. Each item links to its canonical record and evidentiary caveat.",
+        "I brief saranno sintesi periodiche basate solo sui record pubblici, con il collegamento a ogni scheda e al suo caveat. La generazione è ancora in prova interna: finora non è stato pubblicato alcun brief.",
+        "Briefs will be periodic summaries based only on public records, linking every record and its caveat. Generation is still in internal trial: no brief has been published so far.",
       )}{" "}
       <a href={href("situazione/", lang)}>{c("Sala situazione", "Situation room")}</a> ·{" "}
       <a href={assetHref("data/v1/index.json")}>{c("Catalogo dati JSON", "JSON data catalog")}</a>.
     </p>
 
     <section class="mt-6">
-      <h2>{c("Ultimi eventi verificati inclusi nei brief", "Latest verified events included in briefs")}</h2>
+      <h2>{c("Nel frattempo: ultimi eventi integrati", "Meanwhile: latest integrated events")}</h2>
       <div class="lab-cards">
-        {situation.verified_events.map((item) => (
+        {situation.latest_events.map((item) => (
           <article class="lab-card">
             <div class="lab-card-header">
               <span class="lab-code">{item.id}</span>
-              <span class="lab-pill">{item.evidenceLevel ?? "N/D"} · {item.date}</span>
+              <span class="lab-pill">{item.date}</span>
             </div>
-            <p class="mb-0 font-semibold">{choose(lang, item.title.it, item.title.en ?? item.title.it)}</p>
+            <p class="mb-0 font-semibold"><T text={item.title} lang={lang} /></p>
             <p class="meta mb-0">{choose(lang, item.caveat.it, item.caveat.en ?? item.caveat.it)}</p>
             <a class="meta" href={href(item.hrefPath, lang)}>{c("Scheda", "Record")} →</a>
           </article>

@@ -315,6 +315,8 @@ export type TechniqueProjection = {
   title: { it: string; en: string };
   theme: Theme;
   documentedFacts: Event[];
+  /** Theme events without an event-level evidence grade (the grade lives on their relationships). */
+  recordedEvents: Event[];
   investigativeNotices: {
     uncorroboratedEvents: Event[];
     openHypotheses: PublicOpenQuestion[];
@@ -339,8 +341,11 @@ export function projectTechniques(
         e.evidence_level !== null &&
         (e.evidence_level === "E1" || e.evidence_level === "E2" || e.evidence_level === "E3"),
     );
+    // An event without its own grade is not "uncorroborated": its evidence is
+    // assessed on the relationships that cite it.
+    const recordedEvents = events.filter((e) => e.evidence_level === null);
     const uncorroboratedEvents = events.filter(
-      (e) => e.evidence_level === null || e.evidence_level === "E4" || e.evidence_level === "E5",
+      (e) => e.evidence_level === "E4" || e.evidence_level === "E5",
     );
     const openHypotheses = lab.open_questions.filter((q) => q.themes.includes(tech.theme));
 
@@ -349,6 +354,7 @@ export function projectTechniques(
       title: { it: tech.it, en: tech.en },
       theme: tech.theme,
       documentedFacts,
+      recordedEvents,
       investigativeNotices: {
         uncorroboratedEvents,
         openHypotheses,
@@ -421,8 +427,8 @@ export function projectElectionDossiers(model: ReadModel): ElectionDossierProjec
     event: ev,
     documentedRelationships: model.relationshipsCiting(ev.id).filter((r) => !model.isRestricted(r)),
     caveat: {
-      it: "Dossier informativo sugli eventi a rischio elettorale; distingue fatti documentati, attribuzioni E2 e avvisi investigativi.",
-      en: "Informational risk-event dossier; distinguishes documented facts, E2 attributions, and investigative notices.",
+      it: "Evento classificato nel tema elezioni e influenza politica. La classificazione tematica non è un'attribuzione: il livello di evidenza è quello delle relazioni elencate sotto.",
+      en: "Event filed under the elections and political influence theme. The theme is not an attribution: the evidence level is that of the relationships listed below.",
     },
   }));
 }
@@ -494,6 +500,9 @@ export type SituationRoomCountermeasureSummary = {
 
 export type SituationRoomModel = {
   generated_at: string;
+  /** Latest public, integrated events with their review caveat (no evidence claim). */
+  latest_events: SituationRoomItem[];
+  /** Latest public events carrying an event-level E1–E3 grade (often empty). */
   verified_events: SituationRoomItem[];
   dossiers_calendar: SituationRoomItem[];
   evidentiary_updates: SituationRoomItem[];
@@ -546,10 +555,26 @@ export function buildSituationRoom(
               en: `${e.evidence_level ?? "N/A"} · Imported unreviewed record`,
             }
           : {
-              it: `${e.evidence_level ?? "N/D"} · Scheda evento verificata`,
-              en: `${e.evidence_level ?? "N/A"} · Verified event record`,
+              it: `${e.evidence_level ?? "N/D"} · Scheda evento rivista`,
+              en: `${e.evidence_level ?? "N/A"} · Reviewed event record`,
             },
     }));
+
+  const reviewCaveat = (e: Event): LocalizedText =>
+    e.review.status === "reviewed"
+      ? { it: "Scheda rivista da un editore", en: "Editor-reviewed record" }
+      : {
+          it: "Record importato, non ancora rivisto: visibile in via provvisoria",
+          en: "Imported record, not yet reviewed: provisionally visible",
+        };
+  const latestEvents: SituationRoomItem[] = publicEvents.slice(0, limit).map((e) => ({
+    id: e.id,
+    title: e.title,
+    date: e.date.start,
+    hrefPath: `events/${e.id}/`,
+    evidenceLevel: e.evidence_level,
+    caveat: reviewCaveat(e),
+  }));
 
   const dossiersCalendar: SituationRoomItem[] = publicEvents
     .filter((e) => e.themes.includes("elections_influence"))
@@ -561,8 +586,8 @@ export function buildSituationRoom(
       hrefPath: `elezioni/${e.id}/`,
       evidenceLevel: e.evidence_level,
       caveat: {
-        it: "Dossier rischio elettorale · Non costituisce attribuzione automatica",
-        en: "Electoral risk dossier · Does not constitute automatic attribution",
+        it: "Tema elezioni e influenza politica · Il tema non implica un'attribuzione",
+        en: "Elections and political influence theme · The theme does not imply attribution",
       },
     }));
 
@@ -597,8 +622,8 @@ export function buildSituationRoom(
       title: e.title,
       hrefPath: `events/${e.id}/`,
       caveat: {
-        it: `${e.evidence_level ?? "E1"} · Misura istituzionale pubblica`,
-        en: `${e.evidence_level ?? "E1"} · Public institutional measure`,
+        it: "Tema risposte UE e NATO",
+        en: "EU and NATO responses theme",
       },
     }));
 
@@ -608,6 +633,7 @@ export function buildSituationRoom(
 
   return {
     generated_at: generatedAt,
+    latest_events: latestEvents,
     verified_events: verifiedEvents,
     dossiers_calendar: dossiersCalendar,
     evidentiary_updates: evidentiaryUpdates,

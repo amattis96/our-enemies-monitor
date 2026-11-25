@@ -1,5 +1,6 @@
 ---
 import { EVIDENCE_LEVELS } from "../../../../src/model/index.ts";
+import { PRIORITY_LABELS } from "../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths } from "../../../../src/site/i18n.ts";
 import { projectLaboratory } from "../../../../src/site/laboratory.ts";
 import { buildSituationRoom } from "../../../../src/site/stix.ts";
@@ -23,17 +24,17 @@ const room = buildSituationRoom(model, lab);
   lang={lang}
   wide={true}
   description={c(
-    "Sala situazione descrittiva mobile-first: ultimi eventi verificati, dossier, aggiornamenti probatori, piste pubblicabili, contromisure e copertura.",
-    "Mobile-first descriptive Situation Room: latest verified events, dossiers, evidentiary updates, publishable leads, countermeasures, and coverage.",
+    "Sala situazione descrittiva: ultimi eventi integrati, tema elezioni, relazioni documentate, domande aperte E5, risposte europee e copertura.",
+    "Descriptive situation room: latest integrated events, elections theme, documented relationships, open E5 questions, European responses and coverage.",
   )}
 >
   <div class="lab-sheet">
-    <span class="lab-register-badge">{c("PK-37 · Sala situazione", "PK-37 · Situation room")}</span>
+    <span class="lab-register-badge">{c("Osservatorio · Sala situazione", "Observatory · Situation room")}</span>
     <h1 class="mt-3">{c("Sala situazione descrittiva", "Descriptive situation room")}</h1>
     <p class="lede max-w-3xl">
       {c(
-        "Sintesi mobile-first generata esclusivamente dai record pubblici. Nessun dato riservato o fingerprint privato è incluso; ogni elemento rimanda alla propria scheda con caveat.",
-        "Mobile-first synthesis generated strictly from public records. Zero private records or fingerprints are included; every item links to its record with caveat.",
+        "Sintesi descrittiva generata solo dai record pubblici: non misura minacce né ostilità e non aggiunge valutazioni. Ogni elemento rimanda alla propria scheda, con il suo stato di revisione.",
+        "Descriptive summary generated only from public records: it does not measure threat or hostility and adds no assessment. Every item links to its record, with its review status.",
       )}
     </p>
     <p class="meta font-mono mt-2">
@@ -60,13 +61,19 @@ const room = buildSituationRoom(model, lab);
     </section>
 
     <section class="mt-8">
-      <h2>{c("Ultimi eventi verificati", "Latest verified events")}</h2>
+      <h2>{c("Ultimi eventi integrati", "Latest integrated events")}</h2>
+      <p class="meta max-w-3xl">
+        {c(
+          "Il livello di evidenza è assegnato alle relazioni che citano l'evento: apri la scheda per vederlo.",
+          "The evidence level is assigned to the relationships citing the event: open the record to see it.",
+        )}
+      </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-        {room.verified_events.map((item) => (
+        {room.latest_events.map((item) => (
           <article class="lab-card">
             <div class="lab-card-header">
               <span class="lab-code">{item.id}</span>
-              <span class="lab-pill">{item.evidenceLevel ?? "N/D"} · {item.date}</span>
+              <span class="lab-pill">{item.evidenceLevel ? `${item.evidenceLevel} · ` : ""}{item.date}</span>
             </div>
             <p class="mb-0 font-semibold"><T text={item.title} lang={lang} /></p>
             <p class="meta mb-0">{choose(lang, item.caveat.it, item.caveat.en ?? item.caveat.it)}</p>
@@ -78,10 +85,10 @@ const room = buildSituationRoom(model, lab);
 
     <section class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <h2>{c("Dossier e calendario elettorale", "Dossiers & calendar")}</h2>
+        <h2>{c("Tema elezioni e influenza politica", "Elections and political influence")}</h2>
         <div class="lab-cards">
           {room.dossiers_calendar.length === 0 ? (
-            <p class="meta">{c("Nessun dossier elettorale pubblico.", "No public electoral dossiers.")}</p>
+            <p class="meta">{c("Nessun evento pubblico in questo tema.", "No public events in this theme.")}</p>
           ) : (
             room.dossiers_calendar.map((d) => (
               <article class="lab-card">
@@ -99,7 +106,7 @@ const room = buildSituationRoom(model, lab);
       </div>
 
       <div>
-        <h2>{c("Aggiornamenti probatori", "Evidentiary updates")}</h2>
+        <h2>{c("Relazioni documentate (E1–E3)", "Documented relationships (E1–E3)")}</h2>
         <div class="lab-cards">
           {room.evidentiary_updates.map((u) => (
             <article class="lab-card">
@@ -118,16 +125,16 @@ const room = buildSituationRoom(model, lab);
 
     <section class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <h2>{c("Piste pubblicabili e cold case riattivati", "Publishable leads & reactivated cold cases")}</h2>
+        <h2>{c("Domande aperte (E5)", "Open questions (E5)")}</h2>
         <div class="lab-cards">
           {room.publishable_leads.map((q) => (
             <article class="lab-card">
               <div class="lab-card-header">
                 <span class="lab-code">{q.id}</span>
-                <span class="lab-pill">E5 · {q.priority}</span>
+                <span class="lab-pill">E5 · {c("priorità", "priority")} {PRIORITY_LABELS[q.priority][lang].toLowerCase()}</span>
               </div>
               <p class="mb-0"><T text={q.question} lang={lang} /></p>
-              <a class="meta" href={href(`piste/${q.id}/`, lang)}>{c("Pista sanitizzata", "Sanitized lead")} →</a>
+              <a class="meta" href={href(`piste/${q.id}/`, lang)}>{c("Scheda della domanda", "Question record")} →</a>
             </article>
           ))}
           {room.reactivated_cold_cases.map((cc) => (
@@ -144,7 +151,7 @@ const room = buildSituationRoom(model, lab);
       </div>
 
       <div>
-        <h2>{c("Contromisure europee e brief recenti", "European countermeasures & recent briefs")}</h2>
+        <h2>{c("Risposte UE e NATO e brief", "EU and NATO responses and briefs")}</h2>
         <div class="lab-cards">
           {room.european_countermeasures.map((cm) => (
             <article class="lab-card">
@@ -168,7 +175,7 @@ const room = buildSituationRoom(model, lab);
     </section>
 
     <section class="mt-8">
-      <h2>{c("Copertura per livello di evidenza", "Coverage by evidence level")}</h2>
+      <h2>{c("Affermazioni pubbliche per livello di evidenza", "Public statements by evidence level")}</h2>
       <div class="flex flex-wrap gap-3 mt-3">
         {EVIDENCE_LEVELS.map((lvl) => (
           <span class="lab-pill">{lvl}: {room.coverage.by_evidence_level[lvl]}</span>

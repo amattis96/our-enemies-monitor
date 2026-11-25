@@ -87,9 +87,9 @@ const paths = [
   />
 
   <section class="start-grid mt-6" aria-label={c("Percorsi per profilo", "Paths by audience")}>
-    {paths.map((item) => (
+    {paths.map((item, index) => (
       <article class="card">
-        <p class="kicker">{item.id}</p>
+        <p class="kicker">{c("Percorso", "Path")} {index + 1}</p>
         <h2 style="margin-top:0.25rem;">{item.role}</h2>
         <p>{item.summary}</p>
         <ul class="list-disc pl-5 space-y-1">
