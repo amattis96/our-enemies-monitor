@@ -1,6 +1,6 @@
 {
   "id": "PK-30",
-  "status": "completed",
+  "status": "awaiting_acceptance",
   "linked_prs": [],
   "runs": [
     {
@@ -19,5 +19,6 @@
   "completion_evidence": [
     "STIX bundle, technique/vulnerability projections, and withheld-ID safety verified in test/projections-i18n-situation.test.ts"
   ],
-  "updated_at": "2026-11-25T23:10:00Z"
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
 }

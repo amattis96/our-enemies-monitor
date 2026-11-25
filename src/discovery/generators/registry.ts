@@ -68,14 +68,19 @@ export type RegistryRunResult = {
   metrics: GeneratorRunMetrics[];
 };
 
+/**
+ * Every generator starts in `shadow` (plan §5.13): promotion to
+ * `experimental` or `active` is an explicit, recorded decision taken after
+ * the ex-ante/ex-post gate on a validation set, never a code default.
+ */
 export const DEFAULT_ACTIVATION_MAP: Record<string, GeneratorActivationState> = {
-  open_triads: "experimental",
-  weak_bridges: "experimental",
-  contradictions: "active",
+  open_triads: "shadow",
+  weak_bridges: "shadow",
+  contradictions: "shadow",
   relation_changes: "shadow",
   missing_links: "shadow",
-  judicial_updates: "experimental",
-  evidentiary_gaps: "active",
+  judicial_updates: "shadow",
+  evidentiary_gaps: "shadow",
 };
 
 export function createGeneratorRegistry(
@@ -85,21 +90,21 @@ export function createGeneratorRegistry(
   return [
     {
       id: "open_triads",
-      activation: activations.open_triads ?? "experimental",
+      activation: activations.open_triads ?? "shadow",
       min_ex_ante_quality: 0.9,
       min_ex_post_yield: 0.2,
       generator: createOpenTriadsGenerator(deps),
     },
     {
       id: "weak_bridges",
-      activation: activations.weak_bridges ?? "experimental",
+      activation: activations.weak_bridges ?? "shadow",
       min_ex_ante_quality: 0.85,
       min_ex_post_yield: 0.2,
       generator: createWeakBridgesGenerator(deps),
     },
     {
       id: "contradictions",
-      activation: activations.contradictions ?? "active",
+      activation: activations.contradictions ?? "shadow",
       min_ex_ante_quality: 0.9,
       min_ex_post_yield: 0.25,
       generator: createContradictionsGenerator(deps),
@@ -120,14 +125,14 @@ export function createGeneratorRegistry(
     },
     {
       id: "judicial_updates",
-      activation: activations.judicial_updates ?? "experimental",
+      activation: activations.judicial_updates ?? "shadow",
       min_ex_ante_quality: 0.9,
       min_ex_post_yield: 0.2,
       generator: createJudicialUpdatesGenerator(deps),
     },
     {
       id: "evidentiary_gaps",
-      activation: activations.evidentiary_gaps ?? "active",
+      activation: activations.evidentiary_gaps ?? "shadow",
       min_ex_ante_quality: 0.85,
       min_ex_post_yield: 0.2,
       generator: createEvidentiaryGapsGenerator(deps),

@@ -1,6 +1,6 @@
 {
   "id": "PK-24",
-  "status": "completed",
+  "status": "awaiting_acceptance",
   "linked_prs": [],
   "runs": [
     {
@@ -20,5 +20,6 @@
     "Sanitized laboratory projection, cold-case privacy guards, and WhyWeKnow breakdown verified in test/laboratory.test.ts (5/5)",
     "lab.css contrast and static build verified via pnpm check:contrast and pnpm build"
   ],
-  "updated_at": "2026-11-25T23:01:00Z"
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
 }

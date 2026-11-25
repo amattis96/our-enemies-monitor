@@ -1,6 +1,6 @@
 {
   "id": "PK-06D",
-  "status": "completed",
+  "status": "awaiting_acceptance",
   "linked_prs": [],
   "runs": [
     {
@@ -20,5 +20,6 @@
     "Sanitization strips sensitive notes/fields and blocks private paths or token patterns from public exports",
     "test/security.test.ts passes (13/13 tests)"
   ],
-  "updated_at": "2026-11-25T22:42:00Z"
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
 }

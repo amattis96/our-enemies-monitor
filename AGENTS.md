@@ -57,7 +57,7 @@ A change whose docs describe something the code does not do is incomplete.
 
 ```bash
 pnpm install            # exact pinned versions
-pnpm check              # everything CI runs: lint, typecheck, test, validate, sidecars, articles, schema freshness, M5 audit, contrast
+pnpm check              # everything CI runs: lint, typecheck, test, validate, sidecars, articles, schema freshness, M5 audit, contrast, roadmap, engine manifest
 pnpm check:contrast     # WCAG contrast of the Dossier colour tokens (docs/design/tokens.css)
 pnpm validate           # data validation only (errors fail, warnings print)
 pnpm validate:sidecars  # archived sources/incremental/*.proposals.json + ingest queue
@@ -87,11 +87,12 @@ pnpm check:engine-manifest  # verify engine manifest and run-log contracts
 pnpm check:i18n-budget  # check multilingual build & Pagefind index budget (PK-31)
 pnpm check:seo          # verify Item 92 GEO/SEO contracts on web/dist (after pnpm build)
 pnpm quality:report     # read-only data quality report (PK-02)
-pnpm audit:entities     # audit entity identity, aliases, and classification (PK-03)
-pnpm asof <YYYY-MM-DD>  # point-in-time temporal state query (PK-04)
-pnpm impact <ID>        # analyze downstream dependency/graph impact (PK-05)
-pnpm backtest           # run zero-leakage historical backtest (PK-16 / PK-38)
+pnpm audit:entities     # audit entity identity, aliases, and classification (PK-04)
+pnpm asof <YYYY-MM-DD>  # point-in-time temporal state query (PK-05)
+pnpm impact <ID>        # retraction impact on downstream records (PK-07)
+pnpm backtest           # run zero-leakage historical backtest (PK-14 / PK-38)
 pnpm brief              # generate investigative brief (PK-13)
+pnpm discovery:shadow   # read-only shadow run of the discovery generators; prints counts only
 ```
 
 Before declaring work done, run `pnpm check` (and `pnpm build` plus

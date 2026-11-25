@@ -254,6 +254,34 @@ describe("Executable roadmap (PK-00)", () => {
     expect(result.errors.some((e) => e.code === "incomplete_evidence")).toBe(true);
   });
 
+  it("rejects completed status while an owner decision or awaiting_acceptance dependency is open", () => {
+    const pm = cloneProgressMap();
+    const evidence = (id: string) => {
+      const entry = pm.get(id);
+      if (!entry) throw new Error(`Missing progress ${id}`);
+      entry.status = "completed";
+      entry.runs = [{ run_id: "r", recorded_at: "2026-11-26T12:00:00Z", outcome: "ok" }];
+      entry.test_results = [
+        { command: "pnpm test", passed: true, recorded_at: "2026-11-26T12:00:00Z" },
+      ];
+      entry.completion_evidence = ["verified"];
+    };
+    // PK-06A requires D2 (open): code delivered does not make it completed.
+    evidence("PK-06A");
+    // PK-19 requires PK-02, which is only awaiting acceptance.
+    const pk02 = pm.get("PK-02");
+    if (!pk02) throw new Error("Missing PK-02");
+    pk02.status = "awaiting_acceptance";
+    evidence("PK-19");
+
+    const result = validateRoadmap(plan, pm, activeWork);
+    const flagged = result.errors
+      .filter((e) => e.code === "inconsistent_status")
+      .map((e) => e.target);
+    expect(flagged).toContain("PK-06A");
+    expect(flagged).toContain("PK-19");
+  });
+
   it("renders Markdown status table and summary", () => {
     const freshPm = initialProgressMap();
     const result = validateRoadmap(plan, freshPm, activeWork);

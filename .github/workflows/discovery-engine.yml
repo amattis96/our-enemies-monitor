@@ -29,26 +29,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run deterministic discovery in shadow mode
-        run: |
-          node --input-type=module <<'NODE'
-          import { createDefaultLifecycleRegistry, evaluateBackpressure } from "./src/orchestration/index.ts";
-          import { evaluateDormantCases } from "./src/discovery/dormant.ts";
-          import { readDataFiles } from "./src/pipeline/load.ts";
-
-          const registry = createDefaultLifecycleRegistry();
-          const gate = registry.canExecute("discovery-engine");
-          if (!gate.allowed || gate.mutates_production) {
-            throw new Error(`Discovery engine must run in non-mutating shadow mode, got: ${JSON.stringify(gate)}`);
-          }
-          const backpressure = evaluateBackpressure({ open_prs: 0, review_queue: 0, avg_wait_minutes: 0 });
-          const data = readDataFiles();
-          const dormantSummary = evaluateDormantCases([], { now: new Date().toISOString().replace(/\.\d{3}Z$/, "Z") });
-          console.log(JSON.stringify({
-            mode: gate.effective_mode,
-            mutates_production: gate.mutates_production,
-            backpressure_level: backpressure.level,
-            entities_loaded: data.entities.length,
-            events_loaded: data.events.length,
-            dormant_evaluated: dormantSummary.evaluations.length,
-          }, null, 2));
-          NODE
+        run: pnpm discovery:shadow

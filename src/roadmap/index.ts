@@ -377,28 +377,18 @@ export function validateRoadmap(
         progress.linked_prs.some((pr) => pr.merged_at !== null) || progress.runs.length > 0;
       const hasPassingTest = progress.test_results.some((tr) => tr.passed);
       const hasEvidence = progress.completion_evidence.length > 0;
-      const depImplemented = (dep: string) =>
-        isDependencySatisfied(dep, plan, progressMap) ||
-        dep.startsWith("D") ||
-        progressMap.get(dep)?.status === "awaiting_acceptance";
-      const toCompleteMet = unit.dependencies.to_complete.every(depImplemented);
-
-      if (!unit.dependencies.requires.every(depImplemented) || !toCompleteMet) {
+      // A package is complete only when everything it requires or needs to
+      // complete is itself satisfied: open owner decisions and packages still
+      // `awaiting_acceptance` keep it out of `completed` (plan §1, §5.14).
+      const toCompleteMet = unit.dependencies.to_complete.every((dep) =>
+        isDependencySatisfied(dep, plan, progressMap),
+      );
+      if (!requiresMet || !toCompleteMet) {
         errors.push({
           severity: "error",
           code: "inconsistent_status",
           target: id,
           message: `${id} is marked 'completed' but required/to_complete dependencies are unsatisfied`,
-        });
-      } else if (
-        !requiresMet ||
-        !unit.dependencies.to_complete.every((dep) => isDependencySatisfied(dep, plan, progressMap))
-      ) {
-        warnings.push({
-          severity: "warning",
-          code: "open_external_gate",
-          target: id,
-          message: `${id} is marked 'completed' while an owner decision or awaiting_acceptance dependency remains open`,
         });
       }
       if (!hasMergedPrOrRun || !hasPassingTest || !hasEvidence) {
