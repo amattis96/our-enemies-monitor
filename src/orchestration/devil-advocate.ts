@@ -75,6 +75,14 @@ export const BlindSourceEvaluationSchema = z
   .describe("Phase 1 blind source evaluation completed before author conclusion is revealed.");
 export type BlindSourceEvaluation = z.infer<typeof BlindSourceEvaluationSchema>;
 
+export const MODEL_ATTESTATIONS = ["platform_reported", "self_declared", "unverifiable"] as const;
+export const ModelAttestationSchema = z
+  .enum(MODEL_ATTESTATIONS)
+  .describe(
+    "How the author and critic model identities are known: reported by the execution platform, only declared by the agent, or not verifiable.",
+  );
+export type ModelAttestation = z.infer<typeof ModelAttestationSchema>;
+
 export const CriticComparisonReportSchema = z
   .strictObject({
     session_id: z.string().min(1).describe("Identifier of the critic review session."),
@@ -101,6 +109,17 @@ export const CriticComparisonReportSchema = z
     final_recommendation: z
       .enum(["approve_ai_verified", "request_revision", "reject_insufficient_evidence"])
       .describe("Final critic recommendation."),
+    model_attestation: ModelAttestationSchema,
+    cross_model_verified: z
+      .boolean()
+      .describe(
+        "True only when the platform reported both models and they differ; never inferred from declared names alone.",
+      ),
+    independence_limit: z
+      .string()
+      .min(1)
+      .nullable()
+      .describe("Stated limitation when cross-model independence is not verified, else null."),
   })
   .describe("Phase 2 anti-anchoring critic comparison report.");
 export type CriticComparisonReport = z.infer<typeof CriticComparisonReportSchema>;
@@ -267,6 +286,8 @@ export function finalizeCriticReview(
     discrepancies?: readonly string[];
     compared_at?: string;
     final_recommendation?: CriticComparisonReport["final_recommendation"];
+    /** Defaults to `unverifiable`: cross-model review is never assumed. */
+    model_attestation?: ModelAttestation;
   } = {},
 ): CriticSessionState {
   if (session.blind_evaluation === null) {
@@ -286,6 +307,9 @@ export function finalizeCriticReview(
         ? "reject_insufficient_evidence"
         : "request_revision");
 
+  const attestation = input.model_attestation ?? "unverifiable";
+  const crossModel =
+    attestation === "platform_reported" && blind.critic_model !== author.author_model;
   const report = CriticComparisonReportSchema.parse({
     session_id: session.session_id,
     target_id: session.target_id,
@@ -299,6 +323,13 @@ export function finalizeCriticReview(
     discrepancies: [...(input.discrepancies ?? [])],
     anchoring_risk_detected: anchoringRisk,
     final_recommendation: recommendation,
+    model_attestation: attestation,
+    cross_model_verified: crossModel,
+    independence_limit: crossModel
+      ? null
+      : attestation === "platform_reported"
+        ? "Author and critic ran on the same model: the review is anti-anchoring but not cross-model."
+        : "The execution platform did not report the models used: cross-model independence is not verified.",
   });
 
   return {

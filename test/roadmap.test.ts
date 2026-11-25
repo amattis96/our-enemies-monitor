@@ -125,10 +125,24 @@ describe("Executable roadmap (PK-00)", () => {
     const freshPm = initialProgressMap();
     const result = validateRoadmap(plan, freshPm, activeWork);
     expect(result.errors).toEqual([]);
-    expect(result.computedStatuses.get("PK-01")).toBe("blocked");
+    // Owner decision 26 November 2026 (D1, D12, D14 resolved; single public
+    // repository): PK-01 can start (D13 is needed only to complete it), and
+    // PK-08 and the PK-25 calendar no longer wait on a private repository.
+    expect(result.computedStatuses.get("PK-01")).toBe("eligible");
+    expect(result.computedStatuses.get("PK-09")).toBe("blocked");
     expect(result.computedStatuses.get("PK-15B")).toBe("blocked");
     expect(result.computedStatuses.get("PK-32")).toBe("deferred");
-    expect(result.eligible).toEqual(["PK-00", "PK-02", "PK-03", "PK-04", "PK-05", "PK-15A"]);
+    expect(result.eligible).toEqual([
+      "PK-00",
+      "PK-01",
+      "PK-02",
+      "PK-03",
+      "PK-04",
+      "PK-05",
+      "PK-08",
+      "PK-15A",
+      "PK-25-CAL",
+    ]);
   });
 
   it("detects circular dependencies as structural errors", () => {
@@ -293,7 +307,9 @@ describe("Executable roadmap (PK-00)", () => {
     expect(table).toContain("| 01 | Sicurezza, identità, confine e gateway di pubblicazione |");
 
     const summary = renderRoadmapSummary(plan, freshPm, result.computedStatuses);
-    expect(summary).toContain("Pacchetti eligible (6): PK-00, PK-02, PK-03, PK-04, PK-05, PK-15A");
-    expect(summary).toContain("Decisioni aperte (14):");
+    expect(summary).toContain(
+      "Pacchetti eligible (9): PK-00, PK-01, PK-02, PK-03, PK-04, PK-05, PK-08, PK-15A, PK-25-CAL",
+    );
+    expect(summary).toContain("Decisioni aperte (11):");
   });
 });

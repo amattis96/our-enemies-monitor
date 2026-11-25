@@ -25,11 +25,15 @@ export const RunErrorSchema = z
     message: z
       .string()
       .min(1)
-      .describe("Detailed error message (private by default if sensitive)."),
+      .describe(
+        "Error message; redacted in stored manifests only when it contains secrets or is flagged sensitive.",
+      ),
     sensitive: z
       .boolean()
       .default(false)
-      .describe("When true, the error message is stripped from public projections."),
+      .describe(
+        "When true, the message holds genuinely sensitive detail (credentials, unnecessary personal data) and is redacted.",
+      ),
     stage: z
       .string()
       .min(1)
@@ -104,11 +108,15 @@ export const RunManifestSchema = z
     queries: z
       .array(z.string().min(1))
       .default([])
-      .describe("Private list of search or investigative queries executed."),
+      .describe(
+        "OSINT queries executed, when shareable; kept in the repository after secret minimization.",
+      ),
     sources_consulted: z
       .array(z.string().min(1))
       .default([])
-      .describe("Private list of sources or URLs consulted during the run."),
+      .describe(
+        "Public sources or URLs consulted; credentials and auth parameters are stripped before storage.",
+      ),
     estimated_cost: z
       .number()
       .nonnegative()
@@ -126,9 +134,13 @@ export const RunManifestSchema = z
       .string()
       .min(1)
       .optional()
-      .describe("Optional operational notes for private diagnostics."),
+      .describe(
+        "Optional operational notes (impediments, limits); minimized for secrets before storage.",
+      ),
   })
-  .describe("Authoritative private run manifest for scheduled tasks, Actions, and code agents.");
+  .describe(
+    "Run manifest for scheduled tasks, Actions and code agents, stored minimized in docs/runs/manifests/ of the single public repository (D1).",
+  );
 export type RunManifest = z.infer<typeof RunManifestSchema>;
 
 export const PublicRunManifestSchema = z

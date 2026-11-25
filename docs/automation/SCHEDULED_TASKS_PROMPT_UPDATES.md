@@ -2,7 +2,13 @@
 
 **Stato (26/11/2026, Europe/Rome):** A, B e C aggiornati nello scheduler ChatGPT; E (Discovery) e F (External AI Benchmark) attivi; D sospeso. Configurazione verificata direttamente nello scheduler. I [prompt completi effettivamente salvati](CHATGPT_TASK_PROMPTS.md) e il [registro delle cadenze](../CHATGPT_SCHEDULED_TASKS.md) sono il riferimento per audit e ripristino.
 
-**Transizione:** i prompt applicati mantengono le attività M6 e subordinano i nuovi percorsi ai contratti, alle autorizzazioni e allo stato effettivo dei package su main. La decisione del titolare è mantenere un unico repository per l'OSINT ordinario; la revisione architetturale è in corso. L'attivazione dello scheduler non equivale ad accettazione o attivazione di tutti i metodi. Dati realmente sensibili esclusi; nessun benchmark esterno o verifica cross-model viene simulato.
+**Transizione:** i prompt applicati mantengono le attività M6 e subordinano i nuovi percorsi ai contratti, alle autorizzazioni e allo stato effettivo dei package su main. La decisione del titolare è mantenere un unico repository per l'OSINT ordinario (D1, D12, D14 risolte il 26/11/2026, `docs/roadmap/plan.v1.json`).
+
+**Percorsi autorizzati su main (26/11/2026).** I prompt live leggono i contratti alla HEAD e non vanno riscritti: questi sono i "percorsi operativi separati autorizzati" a cui rimandano.
+- Run Manifest (A, B, C, E, F): `docs/runs/manifests/<run_id>.json` su branch `agent/runs-<task>-<AAAA>-W<SS>`, solo aggiunte, PR non draft revisionata da C ([docs/runs/README.md](../runs/README.md)); `pnpm runs:record`.
+- Benchmark F: `docs/audit/ai-benchmarks/runs/<run_id>.json` sullo stesso tipo di branch ([README](../audit/ai-benchmarks/README.md)).
+- Coda di discovery E: `docs/discovery/` su branch `agent/discovery-*` con `pnpm discovery:queue` ([docs/discovery/README.md](../discovery/README.md)). Oggi tutti i generatori sono `shadow`, quindi `enqueue` non scrive nulla ed E resta read-only, come prevede il suo prompt.
+- Verifica cross-model di C: dichiarabile solo se la piattaforma riporta entrambi i modelli (`model_attestation` in `src/orchestration/devil-advocate.ts`). L'attivazione dello scheduler non equivale ad accettazione o attivazione di tutti i metodi. Dati realmente sensibili esclusi; nessun benchmark esterno o verifica cross-model viene simulato.
 
 **Nota storica:** i blocchi incrementali qui sotto documentano la proposta M8/M9 del 25/11/2026. Non sono i prompt live e non vanno ricopiati automaticamente: alcuni dettagli (riservatezza, stati della coda, disponibilità dei modelli, persistenza) dipendono dai contratti correnti. Per aggiornamenti futuri, verificare lo scheduler e usare il testo completo registrato. Una modifica a questo file non cambia lo scheduler.
 

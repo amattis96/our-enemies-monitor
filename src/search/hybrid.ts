@@ -17,7 +17,9 @@ export const SearchChunkMetadataSchema = z
     language: z.string().min(2).describe("ISO 639-1 language code of the chunk."),
     visibility: z
       .enum(INDEX_VISIBILITIES)
-      .describe("Strict public vs private visibility boundary."),
+      .describe(
+        "public: may appear in public search projections; private: internal OSINT kept in the repository (pending, drafts), never in public indexes. Not a confidentiality class.",
+      ),
   })
   .describe("Provenance and boundary metadata attached to every indexed chunk.");
 export type SearchChunkMetadata = z.infer<typeof SearchChunkMetadataSchema>;
@@ -142,19 +144,27 @@ function cosineSimilarity(a: readonly number[], b: readonly number[]): number {
   return Math.max(0, dot);
 }
 
+const visibilityClass = (v: IndexVisibility): DataClass =>
+  v === "public" ? "public_publishable" : "investigative_pending";
+
+/**
+ * Public and internal indexes are separate, rebuildable projections (PK-28):
+ * internal material never enters or is served from a public index, and the
+ * two are not mixed in one query context.
+ */
 function assertVisibilityBoundary(
   indexVisibility: IndexVisibility,
   chunkVisibility: IndexVisibility,
 ): void {
-  const indexClass: DataClass =
-    indexVisibility === "public" ? "public_publishable" : "private_investigative";
-  const chunkClass: DataClass =
-    chunkVisibility === "public" ? "public_publishable" : "private_investigative";
-  const dest: Destination = indexVisibility === "public" ? "public_repo" : "private_repo";
-
-  const check = checkBoundary(chunkClass, dest, indexClass);
+  const dest: Destination = indexVisibility === "public" ? "public_export" : "repository";
+  const check = checkBoundary(visibilityClass(chunkVisibility), dest);
   if (!check.allowed) {
-    throw new Error(`Strict public/private index boundary violation: ${check.reason}`);
+    throw new Error(`Strict public/internal index boundary violation: ${check.reason}`);
+  }
+  if (indexVisibility !== chunkVisibility) {
+    throw new Error(
+      `Strict public/internal index boundary violation: ${chunkVisibility} material cannot share a ${indexVisibility} index or query context`,
+    );
   }
 }
 
@@ -190,7 +200,7 @@ export function buildHybridSearchIndex(input: {
   return {
     index_id: input.index_id,
     visibility: input.visibility,
-    data_class: input.visibility === "public" ? "public_publishable" : "private_investigative",
+    data_class: visibilityClass(input.visibility),
     embedding_model: embeddingModel,
     model_version: modelVersion,
     segmentation_version: segmentationVersion,

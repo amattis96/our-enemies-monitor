@@ -71,7 +71,13 @@ export const RecordRevisionSchema = z.strictObject({
 });
 export type RecordRevision = z.infer<typeof RecordRevisionSchema>;
 
-export const DEFAULT_REVISIONS_DIR = repoPath(".private/revisions");
+/**
+ * Knowledge-time revisions live in the single public repository (D1, 26
+ * November 2026). They are kept out of the public projections (portal, MCP,
+ * exports) by `assertPrivateDomainAccess`, which is a projection rule, not
+ * confidentiality.
+ */
+export const DEFAULT_REVISIONS_DIR = repoPath("docs/snapshots/revisions");
 
 export type RecordRevisionInput = {
   stage: KnowledgeStage;

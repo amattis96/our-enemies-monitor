@@ -142,7 +142,7 @@
     },
     "queries": {
       "default": [],
-      "description": "Private list of search or investigative queries executed.",
+      "description": "OSINT queries executed, when shareable; kept in the repository after secret minimization.",
       "type": "array",
       "items": {
         "type": "string",
@@ -151,7 +151,7 @@
     },
     "sources_consulted": {
       "default": [],
-      "description": "Private list of sources or URLs consulted during the run.",
+      "description": "Public sources or URLs consulted; credentials and auth parameters are stripped before storage.",
       "type": "array",
       "items": {
         "type": "string",
@@ -185,11 +185,11 @@
           "message": {
             "type": "string",
             "minLength": 1,
-            "description": "Detailed error message (private by default if sensitive)."
+            "description": "Error message; redacted in stored manifests only when it contains secrets or is flagged sensitive."
           },
           "sensitive": {
             "default": false,
-            "description": "When true, the error message is stripped from public projections.",
+            "description": "When true, the message holds genuinely sensitive detail (credentials, unnecessary personal data) and is redacted.",
             "type": "boolean"
           },
           "stage": {
@@ -224,7 +224,7 @@
       "minLength": 1
     },
     "notes": {
-      "description": "Optional operational notes for private diagnostics.",
+      "description": "Optional operational notes (impediments, limits); minimized for secrets before storage.",
       "type": "string",
       "minLength": 1
     }
@@ -240,5 +240,5 @@
     "status"
   ],
   "additionalProperties": false,
-  "description": "Authoritative private run manifest for scheduled tasks, Actions, and code agents."
+  "description": "Run manifest for scheduled tasks, Actions and code agents, stored minimized in docs/runs/manifests/ of the single public repository (D1)."
 }

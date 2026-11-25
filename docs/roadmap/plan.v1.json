@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "title": "OEM, piano di implementazione del motore investigativo",
-  "updated_at": "2026-11-24",
+  "updated_at": "2026-11-26",
   "frozen_scope": {
     "items_count": 140,
     "packages_count": 39,
@@ -51,8 +51,8 @@
       "id": "D1",
       "title": "Storage per il materiale non pubblicabile",
       "recommendation": "Repository privato separato, accessi per ruolo, gateway di pubblicazione. Verificare piano GitHub con ruleset su repo privati, credenziali task schedulati e accessi effettivi degli agenti.",
-      "status": "open",
-      "resolution": null,
+      "status": "resolved",
+      "resolution": "26 novembre 2026, titolare: repository unico pubblico our-enemies-monitor come fonte autorevole. Il materiale OSINT non ancora pubblicabile (fonti archiviate, candidati, ipotesi, piste, coda di discovery, verifiche negative, bozze, Run Manifest, metadati) resta nel repository con separazione logica (directory, schemi, stati, proiezioni). La presenza nel repository non implica validazione, approvazione, integrazione nel grafo o pubblicazione: decide il gateway di pubblicazione con il gate M5. Il materiale realmente confidenziale è una funzionalità futura e opzionale (private_investigative) che richiederà una nuova decisione esplicita; nessun repository privato è prerequisito dei pacchetti ordinari.",
       "blocks_description": "PK-01; completamento di PK-02 e PK-09"
     },
     {
@@ -139,8 +139,8 @@
       "id": "D12",
       "title": "Conservazione, redazione e cancellazione del materiale riservato",
       "recommendation": "Minimizzazione: traccia epistemica minima, rimozione di dati personali non necessari e di materiale non più conservabile; regole per provider AI esterni.",
-      "status": "open",
-      "resolution": null,
+      "status": "resolved",
+      "resolution": "26 novembre 2026, titolare: minimizzazione e protezione solo per il materiale effettivamente sensibile (credenziali e token, dati personali non necessari, URL con autenticazione, dettagli operativi realmente sensibili). Le normali attività investigative su fonti aperte non sono riservate e possono essere elaborate con i servizi AI in abbonamento (ChatGPT, Claude, Codex, Claude Code, Gemini) senza API Enterprise o ZDR. Restano pertinenza, minimizzazione, tracciabilità e rispetto delle fonti. Le policy per indagini umane confidenziali sono differite alla loro eventuale introduzione.",
       "blocks_description": "Completamento di PK-01, PK-09, PK-17"
     },
     {
@@ -155,8 +155,8 @@
       "id": "D14",
       "title": "Snapshot e backup",
       "recommendation": "Distinguere snapshot pubblici, revisioni riservate e copie esterne non controllabili; backup cifrati del riservato con prova periodica di ripristino.",
-      "status": "open",
-      "resolution": null,
+      "status": "resolved",
+      "resolution": "26 novembre 2026, titolare: versionamento Git, registro degli snapshot (docs/snapshots/) e backup adeguati al repository pubblico attuale. Nessun backup cifrato di un patrimonio riservato inesistente come prerequisito del motore OSINT.",
       "blocks_description": "Completamento di PK-01"
     }
   ],
@@ -200,26 +200,22 @@
       "recurring_cost": "medium",
       "impact": "critical",
       "dependencies": {
-        "requires": [
-          "D1",
-          "D13"
-        ],
+        "requires": [],
         "to_complete": [
-          "D12",
-          "D14"
+          "D13"
         ],
         "to_activate": [],
         "extensions": []
       },
       "deliverables": [
-        "docs/security/THREAT_MODEL.md e docs/security/PUBLIC_BOUNDARY.md",
-        "Gateway di pubblicazione dedicato tra repository riservato e pubblico",
+        "docs/security/THREAT_MODEL.md e docs/security/PUBLIC_BOUNDARY.md con classi di materiale ortogonali agli stati probatori ed editoriali",
+        "Gateway di pubblicazione come confine probatorio, editoriale e applicativo tra il patrimonio del repository e le proiezioni pubblicate (sito, grafo, timeline, API, MCP, export, feed, sitemap, metadati social, indici)",
         "Identità separate (GitHub App per auto-merge), CODEOWNERS limitato al piano di controllo, ruleset e isolamento workflow"
       ],
       "acceptance_criteria": [
         "Verifica via API: ruleset attivo, CODEOWNERS protetto, nessun bypass non autorizzato, approvazioni invalidate dopo nuovi commit.",
         "Una PR di contenuti passa in auto-merge senza approvazione umana; una PR sul piano di controllo non può essere unita dall'identità di auto-merge.",
-        "Un record riservato non raggiunge sito, export, sitemap, feed, metadati social o indici; test dei permessi di ogni workflow."
+        "Un record non pubblicabile conservato nel repository non raggiunge sito, export, API, MCP, sitemap, feed, metadati social o indici; test dei permessi di ogni workflow."
       ],
       "human_review_required": true,
       "execution_role": "implementation_agent, owner_approval"
@@ -239,9 +235,7 @@
       "dependencies": {
         "requires": [],
         "to_complete": [
-          "PK-01",
           "PK-08",
-          "D1",
           "D6",
           "D9"
         ],
@@ -250,12 +244,12 @@
       },
       "deliverables": [
         "Cinque famiglie di test: integrità dati, integrità evidenze, qualità discovery, qualità agenti, integrità pubblicazione",
-        "Set di riferimento B12 in tre livelli: sviluppo, validazione, holdout protetto",
+        "Set di riferimento B12 in tre livelli (sviluppo, validazione, split trattenuto pubblico) con limite dichiarato: un set pubblico non è un holdout indipendente; valutazione indipendente con set temporanei non esposti o valutatore esterno",
         "Test visivi Playwright (375, 768, 1440px, chiaro/scuro), axe, Lighthouse"
       ],
       "acceptance_criteria": [
         "Vincoli a zero di D6 attivi come gate bloccanti; rapporto JSON delle metriche versionato come stato operativo.",
-        "Test dei permessi: gli agenti di implementazione non leggono le risposte dell'holdout.",
+        "Nessuna metrica di agente calcolata dalle risposte attese; i risultati sullo split pubblico dichiarano di non essere una validazione indipendente; un holdout indipendente, se usato, non è conservato nel repository.",
         "Una PR di agente che modifica un risultato atteso non si unisce senza approvazione del titolare."
       ],
       "human_review_required": false,
@@ -337,7 +331,7 @@
         "extensions": []
       },
       "deliverables": [
-        "Tempo dei fatti (first_reported, valid_from, valid_to, asserted_on, precision) e tempo della conoscenza nel riservato",
+        "Tempo dei fatti (first_reported, valid_from, valid_to, asserted_on, precision) e tempo della conoscenza in docs/snapshots/revisions/, escluso dalle proiezioni pubbliche",
         "Registro append-only delle transizioni in docs/snapshots/events/ con hash deterministico",
         "Comando pnpm asof <data> --mode canonical|published|acquired|verified"
       ],
@@ -539,16 +533,14 @@
       "recurring_cost": "low",
       "impact": "high",
       "dependencies": {
-        "requires": [
-          "PK-01"
-        ],
+        "requires": [],
         "to_complete": [],
         "to_activate": [],
         "extensions": []
       },
       "deliverables": [
         "schemas/run.schema.json comune e costante ENGINE_VERSION",
-        "Manifest completo nel riservato e proiezione sanitizzata nel pubblico",
+        "Manifest minimizzato nel repository (docs/runs/manifests/, uno per run, append-only, tramite branch agent/runs-*) e riepilogo per /stato; query OSINT e fonti pubbliche conservate, solo segreti e dati realmente sensibili rimossi",
         "Controllo indipendente per stato missed e prevenzione dei cicli workflow con GITHUB_TOKEN"
       ],
       "acceptance_criteria": [
@@ -571,17 +563,14 @@
       "impact": "critical",
       "dependencies": {
         "requires": [
-          "PK-01",
           "PK-08"
         ],
-        "to_complete": [
-          "D12"
-        ],
+        "to_complete": [],
         "to_activate": [],
         "extensions": []
       },
       "deliverables": [
-        "Coda autorevole unica nel riservato con controllo ottimistico sulla revision in assegnazione e finalizzazione",
+        "Coda autorevole unica in docs/discovery/ (un file per voce, memoria negativa permanente) con controllo ottimistico sulla revision in assegnazione, finalizzazione e salvataggio",
         "Tre campi ortogonali: status, disposition, epistemic_outcome",
         "Interfaccia comune dei generatori in src/discovery/generators/"
       ],
@@ -617,7 +606,7 @@
         ]
       },
       "deliverables": [
-        "Stato dormant e impronta nel riservato",
+        "Stato dormant e impronta conservati nel repository, esclusi dalle proiezioni pubbliche salvo regole del Laboratorio",
         "Valutazione non meccanica della novità materiale e distinzione tra controllo pianificato e riapertura probatoria",
         "Storico delle riattivazioni e chiusure motivate"
       ],
@@ -903,9 +892,7 @@
           "PK-07",
           "D4"
         ],
-        "to_complete": [
-          "D12"
-        ],
+        "to_complete": [],
         "to_activate": [],
         "extensions": []
       },
@@ -914,7 +901,7 @@
         "Procedura di replica e canale Porta un'evidenza"
       ],
       "acceptance_criteria": [
-        "Procedura pubblicata in italiano e inglese; una replica di prova collegata a una scheda."
+        "Procedura pubblicata in italiano e inglese; una replica di prova, in un ambiente di test e non pubblicata come reale, collegata a una scheda."
       ],
       "human_review_required": true,
       "execution_role": "implementation_agent, owner_procedure"
@@ -1096,7 +1083,7 @@
         "packages/mcp/ in sola lettura sulla proiezione pubblicabile con limite di obsolescenza"
       ],
       "acceptance_criteria": [
-        "Parità con il sito sugli stessi filtri; nessun dato riservato raggiungibile; test dei limiti."
+        "Parità con il sito sugli stessi filtri; nessun dato non pubblicabile raggiungibile; test dei limiti."
       ],
       "human_review_required": false,
       "execution_role": "implementation_agent"
@@ -1146,7 +1133,6 @@
       "impact": "high",
       "dependencies": {
         "requires": [
-          "PK-01",
           "PK-06",
           "PK-09",
           "PK-10"
@@ -1181,7 +1167,6 @@
       "impact": "high",
       "dependencies": {
         "requires": [
-          "PK-01",
           "PK-02",
           "PK-06"
         ],
@@ -1211,9 +1196,7 @@
           "recurring_cost": "low",
           "impact": "high",
           "dependencies": {
-            "requires": [
-              "PK-01"
-            ],
+            "requires": [],
             "to_complete": [],
             "to_activate": [],
             "extensions": []
@@ -1242,7 +1225,6 @@
       "impact": "high",
       "dependencies": {
         "requires": [
-          "PK-01",
           "PK-08",
           "D7"
         ],
@@ -1315,7 +1297,7 @@
         ]
       },
       "deliverables": [
-        "Indice testuale, vettoriale e strutturato ricostruibile, con indici pubblici e riservati separati"
+        "Indice testuale, vettoriale e strutturato ricostruibile, con indici pubblici e interni separati"
       ],
       "acceptance_criteria": [
         "Confronto con la sola ricerca testuale sul set di validazione: precision@k, recall@k, nDCG@k, latenza, costo, conservazione dei caveat."
@@ -1628,7 +1610,7 @@
         "Pagina mobile-first con ultimi eventi verificati, dossier, aggiornamenti probatori, piste, contromisure, copertura e brief"
       ],
       "acceptance_criteria": [
-        "Nessun contenuto riservato; ogni elemento rimanda alla sua scheda con caveat."
+        "Nessun contenuto non pubblicabile; ogni elemento rimanda alla sua scheda con caveat."
       ],
       "human_review_required": false,
       "execution_role": "implementation_agent"

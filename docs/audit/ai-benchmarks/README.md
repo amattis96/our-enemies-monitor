@@ -27,3 +27,21 @@ Missing citations are classified separately from misinterpretations, and **verif
 ## 4. Non-Mutation Policy
 
 **A single bad answer never triggers a page mutation.** `scoreAiBenchmarkRun` always sets `requires_page_mutation: false` and only surfaces `review_candidates` when a verified failure recurs across multiple trials. Monthly runs are compared with `compareMonthlyRuns`.
+
+## 5. Storage and independence (26 November 2026)
+
+- **Recorded runs** go to `docs/audit/ai-benchmarks/runs/<run_id>.json`
+  (`AiBenchmarkRunSchema`, file name = `run_id`), added on an
+  `agent/runs-*` branch like run manifests; `pnpm validate:runs` checks them.
+- **Only real trials.** A trial records a model that was actually queried,
+  with its answer. Expected answers are never used as model output; a model
+  that could not be queried is `not_run`, not scored. A self-evaluation of the
+  agent's own model is reported separately and never as an external result.
+- **Contamination limit.** The case set `docs/audit/baseline/benchmark-cases.v1.json`
+  is public, so external engines and agents may have seen it: results are
+  open-book, not an independent holdout. Independent evaluation needs a fresh
+  set not exposed beforehand, or an external evaluator; each run states which.
+- **Critic selection.** `BenchmarkModelCandidateSchema` scores come only from
+  recorded trials; nothing promotes a model automatically. A critic review is
+  "cross-model" only when the platform reports both models
+  (`model_attestation: "platform_reported"` in `src/orchestration/devil-advocate.ts`).

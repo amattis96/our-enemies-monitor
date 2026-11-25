@@ -24,6 +24,6 @@
   "completion_evidence": [
     "Brief generation and false-alarm countermeasures verified in test/orchestration-briefs.test.ts (7/7) and dry-run CLI"
   ],
-  "notes": "Awaiting external acceptance: M9 4-week live cycle, owner decisions D4/D9/D12, 4 live briefs, and external scheduled task prompt updates (docs/automation/SCHEDULED_TASKS_PROMPT_UPDATES.md).",
-  "updated_at": "2026-11-25T22:50:30Z"
+  "notes": "Awaiting acceptance: PK-06 (D2) and PK-09 completed, four live briefs over the M9 cycle.",
+  "updated_at": "2026-11-26T12:00:00Z"
 }

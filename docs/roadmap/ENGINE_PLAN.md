@@ -1,6 +1,6 @@
 # OEM, piano di implementazione del motore investigativo
 
-24 novembre 2026 · titolare: Anto (amattis96) · versione 1.2, perimetro congelato
+24 novembre 2026, aggiornato il 26 novembre 2026 · titolare: Anto (amattis96) · versione 1.3, perimetro congelato
 
 ## 1. Stato del documento
 
@@ -13,6 +13,18 @@
 **Quattro tipi di dipendenza.** **Richiede**: il pacchetto non si inizia senza. **Per completare**: si inizia, ma non si chiude senza. **Per attivare**: si sviluppa e si chiude, ma non entra in produzione (o non pubblica) senza. **Estensioni**: capacità attivate in seguito, che non bloccano la versione base. Una decisione del titolare ancora aperta blocca solo i pacchetti interessati, non rende invalido il piano.
 
 **Fonte di verità operativa.** Da PK-00 il piano vive in `docs/roadmap/plan.v1.json`, da cui si generano la tabella di stato e `docs/roadmap/ENGINE_PLAN.md`. Questo documento è la versione iniziale leggibile di quel manifest.
+
+### Decisioni del 26 novembre 2026 (v1.3): repository unico
+
+Il titolare ha risolto **D1, D12 e D14**. Dove il testo della v1.2 parla di "repository riservato", "dominio riservato" o "nel riservato", vale quanto segue; il manifest `docs/roadmap/plan.v1.json` è aggiornato di conseguenza.
+
+- **D1. Repository unico.** `our-enemies-monitor` resta l'unico repository autorevole. Il materiale OSINT non ancora pubblicabile (fonti archiviate, candidati, ipotesi, piste, coda di discovery in `docs/discovery/`, verifiche negative, bozze, Run Manifest in `docs/runs/manifests/`, revisioni in `docs/snapshots/revisions/`, metadati) sta nel repository con separazione logica. La presenza nel repository non implica validazione, approvazione, integrazione nel grafo o pubblicazione: decide il gateway con il gate M5.
+- **Maturità, pubblicabilità e riservatezza sono distinte.** Classi di materiale (`public_publishable`, `investigative_pending`, `editorial_draft`, `operational`, `private_investigative`, `holdout_evaluation`), ortogonali agli stati probatori ed editoriali: `needs_review` non implica riservatezza. `private_investigative` è una funzionalità **futura e opzionale** senza archivio: directory, etichette e branch di un repository pubblico sono separazione logica, non controllo degli accessi.
+- **D12. Minimizzazione mirata.** Protezione solo per il materiale effettivamente sensibile (credenziali, dati personali non necessari, URL con autenticazione, dettagli operativi realmente sensibili). Le normali attività OSINT si possono elaborare con i servizi AI in abbonamento, senza API Enterprise né ZDR.
+- **D14.** Versionamento Git, registro degli snapshot e backup adeguati al repository pubblico; nessun backup cifrato di un patrimonio riservato inesistente.
+- **Gateway di pubblicazione.** Resta, ridefinito come confine probatorio, editoriale e applicativo tra il patrimonio del repository e le proiezioni pubblicate, non come trasferimento tra repository.
+- **Benchmark.** Un set pubblico non è un holdout indipendente: i risultati sullo split trattenuto lo dichiarano; la validazione indipendente richiede set temporanei non esposti o un valutatore esterno. Nessuna metrica di agente si calcola dalle risposte attese.
+- **Dipendenze.** PK-01 non richiede più D1 (D13 serve solo per completarlo); PK-08, PK-09, PK-24, PK-25, PK-25-CAL e PK-26 non dipendono più da PK-01; PK-02 non attende più PK-01 e D1; PK-09 e PK-17 non attendono più D12. Restano aperte D2-D11 e D13 con i loro effetti.
 
 ## 2. Principi vincolanti
 
@@ -112,11 +124,11 @@ Esito: architettura, suddivisione dei pacchetti, modello investigativo e approcc
 
 | Livello | Contenuto | Dove |
 | --- | --- | --- |
-| 1. Acquisizione | Fonti istituzionali, stampa multilingua, registri pubblici, quarantena | Repository riservato; `src/pipeline/ingest/`, sidecar |
+| 1. Acquisizione | Fonti istituzionali, stampa multilingua, registri pubblici, quarantena | Repository unico; `sources/incremental/`, `src/pipeline/ingest/`, sidecar |
 | 2. Evidenze e conoscenza | Entità, eventi, casi, asserzioni, fonti, provenienza, relazioni, tempo, snapshot | `data/`, `schemas/`, `docs/snapshots/` |
 | 3. Discovery | Generatori su grafo, tempo, semantica, dipendenze, anomalie, contraddizioni | `src/discovery/` (nuovo) |
-| 4. Indagine e verifica | Coda, agenti, ipotesi concorrenti, revisioni, gate editoriali | Repository riservato; proiezioni sanitizzate in `docs/discovery/` e `docs/runs/` |
-| Gateway di pubblicazione | Unico passaggio dal riservato al pubblico: schemi, visibilità, verifica probatoria, gate M5, sanitizzazione | Workflow dedicato (PK-01) |
+| 4. Indagine e verifica | Coda, agenti, ipotesi concorrenti, revisioni, gate editoriali | Repository unico: `docs/discovery/`, `docs/runs/manifests/`; proiezioni pubbliche moderate |
+| Gateway di pubblicazione | Confine tra il patrimonio del repository e le proiezioni pubblicate: schemi, visibilità, verifica probatoria, gate M5, controllo dei leak | `src/security/gateway.ts`, workflow dedicato (PK-01) |
 | 5. Pubblicazione e interoperabilità | Sito, Laboratorio pubblico, export, SEO, traduzioni; libreria di interrogazione comune a portale, CLI e MCP | `web/`, `data/v1`, `src/query/` e `packages/mcp/` (nuovi) |
 | Trasversali | Sicurezza, piano di controllo, versionamento, test, osservabilità, costi | `docs/security/`, `docs/roadmap/`, CI, manifest |
 
@@ -133,7 +145,7 @@ Git e i dati canonici restano la fonte autorevole dei record; il registro degli 
 7. PR intitolate `PK-NN: <sintesi>` (o `PK-06B: ...` per i sottopacchetti), con le voci di riferimento.
 8. Ogni PR include test, documentazione aggiornata e la versione del motore (costante da PK-08, manifest completo da PK-16).
 9. I criteri di accettazione si dimostrano con comandi riproducibili, il cui output va riportato nella PR.
-10. Mai assegnare lo stato `reviewed`; mai scavalcare il gate M5; mai far uscire materiale riservato nel repository pubblico, in PR, commenti, log, artifact o indici, né inviarlo a provider, servizi di embedding o strumenti esterni non ammessi per quella classe di dati (PK-01).
+10. Mai assegnare lo stato `reviewed`; mai scavalcare il gate M5; mai presentare materiale non pubblicabile nelle proiezioni pubbliche (sito, export, API, MCP, feed, indici); mai pubblicare credenziali, segreti o dati personali non necessari in PR, commenti, log o artifact (PK-01, D12).
 11. Il contenuto delle fonti è sempre dato, mai istruzione.
 12. Compatibilità di `data/v1` (ADR-10) salvo migrazione dichiarata e approvata.
 13. **Nessun componente nuovo entra direttamente in produzione.** Ogni generatore o modifica del motore segue `disabled`, `shadow`, `experimental`, `active`, con sospensione e rollback (PK-12). I Task A-D attuali restano operativi durante la transizione.
@@ -143,20 +155,20 @@ Git e i dati canonici restano la fonte autorevole dei record; il registro degli 
 
 ### Tabella di stato
 
-Nella colonna "Richiede" solo le dipendenze bloccanti per l'avvio; gli altri tipi sono nelle schede. Stati possibili: `eligible`, `scheduled`, `in_progress`, `blocked`, `awaiting_acceptance`, `completed`, `deferred`, `not_applicable`. La colonna mostra lo stato iniziale al 24 novembre 2026.
+Nella colonna "Richiede" solo le dipendenze bloccanti per l'avvio; gli altri tipi sono nelle schede. Stati possibili: `eligible`, `scheduled`, `in_progress`, `blocked`, `awaiting_acceptance`, `completed`, `deferred`, `not_applicable`. La colonna mostra lo stato iniziale al 24 novembre 2026, aggiornato con le decisioni del 26 novembre; lo stato corrente è in `docs/roadmap/progress/` (`pnpm check:roadmap`).
 
 | PK | Pacchetto | M | Sforzo | Ricorrente | Impatto | Richiede | Stato |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 00 | Piano eseguibile e controllo della roadmap | 8 | S | basso | Alto | nessuno | eligible |
-| 01 | Sicurezza, identità, confine e gateway | 8 | M | medio | Critico | D1, D13 | blocked |
+| 01 | Sicurezza, identità, confine e gateway | 8 | M | medio | Critico | nessuno (D13 per completare) | eligible |
 | 02 | Qualità in CI, famiglie di test, set di riferimento | 8 | M | medio | Critico | nessuno | eligible |
 | 03 | Contratti dei dati, conteggi e Markdown | 8 | M | basso | Alto | nessuno | eligible |
 | 04 | Identità delle entità | 8 | M | medio | Alto | nessuno | eligible |
 | 05 | Modello temporale e registro degli snapshot | 8 | M | basso | Critico | nessuno | eligible |
 | 06 | Casi, asserzioni, provenienza, predicati (06A-06D) | 8 | L | medio | Critico | 04, 05, D2 | blocked |
 | 07 | Propagazione e contenimento delle rettifiche | 8 | M | basso | Critico | 06B | blocked |
-| 08 | Manifest di esecuzione e registro delle ricerche | 9 | S | basso | Alto | 01 | blocked |
-| 09 | Coda di discovery con macchina a stati | 9 | M | medio | Critico | 01, 08 | blocked |
+| 08 | Manifest di esecuzione e registro delle ricerche | 9 | S | basso | Alto | nessuno | eligible |
+| 09 | Coda di discovery con macchina a stati | 9 | M | medio | Critico | 08 | blocked |
 | 10 | Ipotesi dormienti e riattivazione | 9 | S | basso | Alto | 09 | blocked |
 | 11 | Generatori deterministici v1 | 9 | M | medio | Alto | 02, 06, 09 | blocked |
 | 12 | Orchestrazione, transizione, budget, backpressure | 9 | M | alto | Alto | 02, 08, 09, D9 | blocked |
@@ -171,9 +183,9 @@ Nella colonna "Richiede" solo le dipendenze bloccanti per l'avvio; gli altri tip
 | 21 | Citabilità | 11 | S | basso | Medio | 05, 15A | blocked |
 | 22 | Libreria di interrogazione e server MCP | 11 | M | basso | Alto | 03, 06 | blocked |
 | 23 | Benchmark AI esterni | 11 | M | medio | Medio | 02, 20 | blocked |
-| 24 | Laboratorio pubblico e "Perché lo sappiamo?" | 11 | L | medio | Alto | 01, 06, 09, 10 | blocked |
-| 25 | Tassonomie, catalogo e calendario | 12 | M | medio | Alto | 01, 02, 06 (calendario: solo 01) | blocked |
-| 26 | Acquisizione multilingua e registro delle fonti | 12 | L | alto | Alto | 01, 08, D7 | blocked |
+| 24 | Laboratorio pubblico e "Perché lo sappiamo?" | 11 | L | medio | Alto | 06, 09, 10 | blocked |
+| 25 | Tassonomie, catalogo e calendario | 12 | M | medio | Alto | 02, 06 (calendario: nessuno) | blocked |
+| 26 | Acquisizione multilingua e registro delle fonti | 12 | L | alto | Alto | 08, D7 | blocked |
 | 27 | Piste e cammini temporali | 12 | L | medio | Alto | 05, 06, 11, 25 | blocked |
 | 28 | Ricerca ibrida | 12 | M | medio | Alto | 02, 06 | blocked |
 | 29 | Motore delle dipendenze strategiche | 12 | L | alto | Alto | 06, 09, 25 | blocked |
@@ -203,10 +215,10 @@ Una milestone si chiude senza attendere i pacchetti sperimentali o condizionati.
 
 | Milestone | Criterio di uscita |
 | --- | --- |
-| M8 | Confine riservato verificato da test; schemi versionati; migrazioni reversibili; identità e provenienza utilizzabili dal motore; piano eseguibile da `check:roadmap`. |
+| M8 | Confine di pubblicazione verificato da test; schemi versionati; migrazioni reversibili; identità e provenienza utilizzabili dal motore; piano eseguibile da `check:roadmap`. |
 | M9 | Quattro settimane di ciclo investigativo tracciato, con esiti revisionati, costi registrati e coda sotto controllo grazie alla backpressure. |
 | M10 | Esperienza d'uso migliorata senza regressioni, rettifiche pubblicabili, stato delle automazioni verificabile. |
-| M11 | Parità semantica tra le proiezioni attive (sito, export, Markdown, MCP), nessuna esposizione di dati riservati. |
+| M11 | Parità semantica tra le proiezioni attive (sito, export, Markdown, MCP), nessuna esposizione di dati non pubblicabili. |
 | M12 | Generatori avanzati validati, nuove piste pertinenti, almeno due filiere modellate, sala situazione descrittiva online. |
 | M13 | Metodi statistici attivati solo se validati; i metodi non idonei ai dati sono documentati come tali. |
 
@@ -235,27 +247,27 @@ Rispondono alle domande che precedono ogni correlazione (stessa entità? stesso 
 
 **Voci:** 7, 132, 137 · **Sforzo:** M · **Ricorrente:** medio · **Impatto:** critico · **Richiede:** D1, D13 · **Per completare:** D12, D14 · **Esecuzione:** agente di implementazione, approvazione del titolare
 
-**Obiettivo.** Impedire che fonti ostili manipolino agenti o corpus, e che materiale non pubblicabile esca dal dominio riservato.
+**Obiettivo.** Impedire che fonti ostili manipolino agenti o corpus, e che materiale non pubblicabile raggiunga le proiezioni pubbliche.
 
 **Consegne**
 
 - `docs/security/THREAT_MODEL.md`: avvelenamento dei dati, istruzioni nascoste nelle fonti, corroborazione artificiale, catena di fornitura; procedura di risposta a una pubblicazione accidentale (ritiro, rotazione delle credenziali, eventuale riscrittura della storia, comunicazione, dichiarazione delle copie non controllabili).
 - **Due repository.** Pubblico: record ammessi, asserzioni pubblicabili, Laboratorio pubblico, articoli, manifest sanitizzati, export. Riservato: fonti in quarantena, coda autorevole di discovery, piste non pubblicabili, esiti grezzi, log operativi, proposte di ingestione, evidenze sensibili, revisioni storiche, set di validazione e holdout.
-- **Gateway di pubblicazione**: unico percorso dal riservato al pubblico, in un workflow dedicato: validazione degli schemi, classificazione della visibilità, verifica probatoria, gate M5, sanitizzazione, controllo del contenuto esportato. Il confine vale prima di qualsiasi branch, PR, commento, log CI, artifact o indice di ricerca.
-- `docs/security/PUBLIC_BOUNDARY.md`: classi di contenuto e destinazioni ammesse per ciascuna, **servizi esterni compresi**: ChatGPT e Claude per modalità di accesso (abbonamento, API), conservazione dei dati presso le API dei modelli, servizi di embedding (mai materiale riservato presso servizi non autorizzati), log dei provider, notebook e strumenti esterni, cache e contesti degli agenti separati per dominio di riservatezza. Che un modello possa leggere un dato non significa che sia autorizzato a riceverlo.
+- **Gateway di pubblicazione** (v1.3): confine probatorio, editoriale e applicativo tra il patrimonio del repository e le proiezioni pubblicate (sito, grafo, timeline, API, MCP, export, feed, sitemap, metadati social, indici): validazione degli schemi, visibilità, verifica probatoria, gate M5, controllo dei leak, comportamento fail-closed. Non è un trasferimento tra repository.
+- `docs/security/PUBLIC_BOUNDARY.md` (v1.3): classi di materiale e destinazioni ammesse. Il materiale OSINT ordinario (pubblicabile, in attesa, bozze, operativo) va a repository, CI, AI in abbonamento o API ed embedding; solo `holdout_evaluation` e la futura `private_investigative` sono isolate. Credenziali e dati personali non necessari non si inviano a nessun servizio.
 - **Identità separate** con matrice dei permessi: agente investigativo (acquisizione e proposte), agente di implementazione (proposte, anche sul piano di controllo, mai approvazione), gateway (solo proposte sanitizzate), identità di auto-merge (solo merge ordinari, mai sul piano di controllo), titolare (tutto). L'auto-merge passa dal PAT personale `AUTOMERGE_TOKEN` a una GitHub App con permessi limitati.
 - **CODEOWNERS e ruleset.** Oggi CODEOWNERS assegna tutto (`*`) al titolare: va limitato al piano di controllo, incluso `.github/CODEOWNERS` stesso, così i contenuti restano in auto-merge e le regole richiedono il titolare. Ruleset con revisione obbligatoria dei code owner, approvazioni invalidate da nuovi commit, bypass verificati.
 - **Isolamento dei workflow**: verifica statica delle modifiche con codice del branch di base; build e test della PR in ambiente senza segreti; autorizzazione e merge in un workflow separato; nessun `pull_request_target` che esegua codice della PR.
 - Estensione di `CONTROL_PLANE` alle **regole**: `plan.v1.json`, soglie, criteri, set di riferimento e risultati attesi, grammatica dei percorsi, registro delle inferenze, policy di pubblicazione, definizione del manifest del motore. Restano fuori i file di stato operativo e i risultati generati.
 - Actions a SHA e `permissions` minimi, già in uso, resi obbligatori per ogni nuovo workflow con un test.
 - Quarantena delle fonti come dato delimitato; segnalazione di istruzioni rivolte a modelli; corroborazione artificiale tramite B17.
-- Backup cifrati del riservato con prova di ripristino, rotazione delle credenziali, verifica periodica degli accessi (D14).
+- Rotazione delle credenziali e verifica periodica degli accessi; backup secondo D14 (Git e snapshot, nessun patrimonio riservato da cifrare).
 
 **Accettazione**
 
 - Verifica via API: ruleset attivo, CODEOWNERS protetto, nessun bypass non autorizzato, approvazioni invalidate dopo nuovi commit.
 - Una PR di contenuti passa in auto-merge senza approvazione umana; una PR sul piano di controllo non può essere unita dall'identità di auto-merge.
-- Un record riservato non raggiunge sito, export, sitemap, feed, metadati social o indici; i client verso provider ed embedding rifiutano classi di dati non ammesse (test).
+- Un record non pubblicabile conservato nel repository non raggiunge sito, export, API, MCP, sitemap, feed, metadati social o indici; i client verso provider ed embedding rifiutano solo le classi isolate (test).
 - Test dei permessi di ogni workflow; esercitazione di pubblicazione accidentale documentata.
 
 ### PK-02. Qualità in CI, famiglie di test e set di riferimento
@@ -318,10 +330,10 @@ Rispondono alle domande che precedono ogni correlazione (stessa entità? stesso 
 **Consegne**
 
 - Tempo dei fatti: `first_reported` sugli eventi, uso effettivo di `valid_from` e `valid_to`, `asserted_on` sulle asserzioni, `precision` sempre rispettata (mai un giorno inventato).
-- Tempo della conoscenza: le **revisioni dei record** così come acquisite e verificate si conservano nel repository riservato, non solo `discovered_at` e `verified_at` sulla versione corrente; altrimenti una correzione successiva comparirebbe in una ricostruzione precedente.
+- Tempo della conoscenza: le **revisioni dei record** così come acquisite e verificate si conservano in `docs/snapshots/revisions/`, non solo `discovered_at` e `verified_at` sulla versione corrente; altrimenti una correzione successiva comparirebbe in una ricostruzione precedente.
 - Registro append-only delle **transizioni** in `docs/snapshots/events/`: `snapshot.accepted`, `deployment.failed`, `snapshot.published`, `snapshot.superseded`, `snapshot.withdrawn`. Ogni transizione: commit, istante UTC con precisione dichiarata, versione del dataset, versione della build del portale, versioni di schema e motore, hash del dataset. Indice aggregato generato per la consultazione; registrazioni idempotenti in caso di nuovo tentativo.
 - Hash del dataset con serializzazione deterministica, escludendo snapshot e manifest operativi: nessun hash include il file che lo contiene.
-- `pnpm asof <data> --mode canonical|published` dagli snapshot, nel dominio pubblico; `--mode acquired|verified` dalle revisioni conservate, solo nel dominio riservato e mai esposto da portale o MCP pubblico.
+- `pnpm asof <data> --mode canonical|published` dagli snapshot, nel dominio pubblico; `--mode acquired|verified` dalle revisioni conservate nel repository, mai esposte da portale o MCP pubblico.
 - Ricostruzioni anteriori al registro marcate come retrospettive parziali.
 
 **Accettazione**
@@ -376,7 +388,7 @@ Il ciclo discovery, ricerca, esito e riscontro diventa riproducibile, misurabile
 - `schemas/run.schema.json` comune a task schedulati, GitHub Actions e agenti di codice: `run_id`, task e ruolo, fornitore e modello, `scheduled_at`, `started_at`, `finished_at`, `input_commit_sha`, `output_commit_sha`, `prompt_hash`, `configuration_hash`, `engine_version`, finestra coperta, domande, fonti consultate, costo stimato, errori.
 - Stato: `completed_with_results`, `completed_no_results`, `partial`, `failed`, `cancelled`, `missed`.
 - Costante `ENGINE_VERSION` introdotta qui, prima del manifest completo di PK-16.
-- Manifest completo nel repository riservato; proiezione sanitizzata nel pubblico, senza query, fonti consultate o messaggi d'errore che possano rivelare indagini non pubblicabili.
+- (v1.3) Manifest minimizzato nel repository, `docs/runs/manifests/<run_id>.json`, append-only, registrato su branch `agent/runs-*` per non alterare i contratti delle altre PR. Si conservano query OSINT condivisibili e fonti pubbliche; si rimuovono credenziali, token, URL con autenticazione ed errori marcati sensibili. `/stato` ne mostra un riepilogo.
 - Controllo indipendente che confronta le esecuzioni previste dal calendario dei task con quelle registrate e scrive `missed`: un'esecuzione mai partita non può dichiararsi da sola.
 - **Prevenzione dei cicli:** i commit di metadati operativi (manifest, snapshot, stato della roadmap, documentazione generata) usano `GITHUB_TOKEN`, che non avvia altri workflow; ogni workflow si attiva solo quando cambia il proprio input significativo (contenuti, motore, portale, metadati), tramite filtri per percorso.
 - Prompt dei Task A-D aggiornati per produrre il manifest anche senza risultati.
@@ -391,7 +403,7 @@ Il ciclo discovery, ricerca, esito e riscontro diventa riproducibile, misurabile
 
 **Consegne**
 
-- **Coda autorevole unica nel repository riservato**; nel pubblico solo una proiezione editoriale delle voci pubblicabili, prodotta dal gateway. Indice generato, mai modificato a mano.
+- (v1.3) **Coda autorevole unica in `docs/discovery/`**: un file per voce, memoria negativa permanente, nessuna cancellazione, salvataggio con controllo ottimistico sulla revision; aggiornata su branch `agent/discovery-*`. Sul sito solo la proiezione moderata delle voci `publishable`.
 - Campi: metodo e versione, versione del motore, priorità, domanda, riferimenti, evidenze, spiegazioni alternative, falsificatori, chiave di deduplicazione, costo stimato, esecuzione d'origine, visibilità, `revision`, `lease_generation`, `assigned_run_id`, `lease_expires_at`, `input_snapshot`, `retry_count`, `next_eligible_at`, `outcome_refs`, storico delle transizioni.
 - Tre campi distinti: `status` (flusso: `queued`, `leased`, `researching`, `in_review`, `closed`, `failed_technical`); `disposition` (`accepted`, `duplicate`, `forbidden`, `discarded`); `epistemic_outcome` (`confirmed`, `contradicted`, `insufficient_evidence`, `undeterminable`). Un errore tecnico non è mai insufficienza di evidenze; una domanda inammissibile non è una domanda smentita.
 - Concorrenza senza broker: un solo assegnatore deterministico; controllo ottimistico sulla `revision` sia all'assegnazione sia alla **finalizzazione**. Un risultato si accetta solo se `lease_generation` e `assigned_run_id` corrispondono ancora all'assegnazione attiva; gli output tardivi si conservano come materiale da rivalutare e non sovrascrivono l'esito.
@@ -411,7 +423,7 @@ Il ciclo discovery, ricerca, esito e riscontro diventa riproducibile, misurabile
 
 **Consegne**
 
-- Stato `dormant` e impronta: entità, luoghi, temi, periodo; tecniche quando disponibili. Le impronte restano nel riservato.
+- Stato `dormant` e impronta: entità, luoghi, temi, periodo; tecniche quando disponibili. Le impronte restano nel repository, fuori dalle proiezioni pubbliche.
 - **Novità materiale valutata, non meccanica.** Non riattivano: ripresa di una notizia già nota, fonte nuova ma irrilevante, controllo periodico senza novità. Riattivano: fonte indipendente con evidenza discriminante, rettifica sostanziale della fonte originaria, smentita documentata. Un nuovo documento della stessa istituzione si valuta caso per caso. La genealogia è uno strumento di valutazione, non il criterio definitivo.
 - Soglie, intervallo minimo tra verifiche ridondanti, eccezioni per eventi realmente nuovi.
 - Distinzione tra **controllo pianificato** di un cold case e **riapertura probatoria**.
@@ -481,7 +493,7 @@ Il ciclo discovery, ricerca, esito e riscontro diventa riproducibile, misurabile
 **Consegne**
 
 - Due esperimenti distinti: **backtest retrospettivo** (il motore attuale sui dati disponibili allora) e **replay storico** (la versione del motore disponibile all'epoca, dove ricostruibile).
-- Dati da `asof --mode canonical` e, nel riservato, `--mode acquired`; confronto con ciò che è emerso dopo; rapporto di resa per metodo; scenari di prova anche prima che i metodi avanzati siano attivi.
+- Dati da `asof --mode canonical` e `--mode acquired` (revisioni nel repository); confronto con ciò che è emerso dopo; rapporto di resa per metodo; scenari di prova anche prima che i metodi avanzati siano attivi.
 - **Contaminazione temporale degli LLM:** un modello recente può conoscere esiti successivi anche se assenti dai dati. Per i generatori deterministici il controllo è completo; per gli agenti AI il limite è dichiarato in ogni rapporto.
 
 **Accettazione**
@@ -518,7 +530,7 @@ Traccia parallela, avviabile da subito: costo basso, beneficio immediato per i l
 **Consegne**
 
 - `engine.manifest.json` versionato (metodi, versioni, soglie, cadenze, ruoli, modelli): la definizione è regola protetta, i valori misurati sono stato operativo.
-- Manifest completo nel riservato; **proiezione pubblica** con metodi, metriche, limiti e criteri probatori, senza soglie operative di sicurezza, dettagli delle protezioni, query investigative o modalità precise di rilevamento, coerente con il threat model di PK-01.
+- Manifest del motore nel repository; **proiezione pubblica** con metodi, metriche, limiti e criteri probatori, senza soglie operative di sicurezza, dettagli delle protezioni, query investigative o modalità precise di rilevamento, coerente con il threat model di PK-01.
 - `docs/automation/ENGINE_CHANGELOG.md` generato dalle differenze tra versioni del manifest (voce 44).
 - `/metodo/motore` generata dalla proiezione pubblica più testi editoriali: chi fa cosa, percorso di un dato, significato di "Verificato da IA" e "Rivisto".
 - `/stato` generata dalle proiezioni sanitizzate dei manifest di esecuzione, comprese le esecuzioni `missed`.
@@ -620,7 +632,7 @@ Traccia parallela, avviabile da subito: costo basso, beneficio immediato per i l
 
 **Accettazione**
 
-- Parità con il sito sugli stessi filtri; nessun dato riservato raggiungibile; test dei limiti.
+- Parità con il sito sugli stessi filtri; nessun dato non pubblicabile raggiungibile; test dei limiti.
 
 ### PK-23. Benchmark AI esterni
 
@@ -661,7 +673,7 @@ Traccia parallela, avviabile da subito: costo basso, beneficio immediato per i l
 
 - Campo `techniques`: DISARM per la manipolazione informativa, MITRE ATT&CK per il cyber, tassonomia interna per sabotaggi, infrastrutture e sabotatori a pagamento.
 - Manifest versionato delle tassonomie con identificativi stabili, deprecazioni e migrazioni.
-- Catalogo delle vulnerabilità sul modello JRC e Hybrid CoE con segnali deboli; dettagli operativi solo nel repository riservato.
+- Catalogo delle vulnerabilità sul modello JRC e Hybrid CoE con segnali deboli; dettagli operativi esclusi dalla proiezione pubblica.
 - Calendario aggregato da fonti ufficiali nazionali e istituzionali; dossier generalizzati a ogni evento a rischio (elezioni, referendum, vertici, grandi eventi).
 
 **Accettazione**
@@ -688,7 +700,7 @@ Traccia parallela, avviabile da subito: costo basso, beneficio immediato per i l
 
 **Consegne**
 
-- Collezione `data/leads/` (riservata salvo proiezione autorizzata) con relazioni molti-a-molti verso le ipotesi.
+- Collezione `data/leads/` (interna salvo proiezione autorizzata) con relazioni molti-a-molti verso le ipotesi.
 - Passi tipizzati (documentato, temporale, analogia di tecniche, conseguenza ipotizzata) con ritardo, falsificatori, evidenze favorevoli e contrarie, condizioni di non valutabilità, impronta di riattivazione.
 - Cammini che rispettano il tempo con limite di lunghezza, penalizzazione dei nodi generici secondo PK-11, compatibilità temporale delle relazioni, grammatica dei percorsi.
 - Per le piste significative, cinque spiegazioni concorrenti: coordinamento intenzionale, convergenza indipendente, causa comune, dinamica ordinaria, errore informativo. Sono ammesse **ipotesi composite** (per esempio un evento con causa ordinaria poi amplificato in modo coordinato). "Non determinabile" non è una spiegazione ma un possibile **esito** della valutazione.
@@ -705,7 +717,7 @@ Traccia parallela, avviabile da subito: costo basso, beneficio immediato per i l
 **Consegne**
 
 - Indice testuale, vettoriale e strutturato, ricostruibile, senza database vettoriale dedicato finché le dimensioni non lo giustificano.
-- Metadati per ogni segmento: modello di embedding e versione, hash del contenuto, versione della segmentazione, lingua, visibilità. Indici pubblici e riservati realmente separati, cache e contesti recuperati compresi.
+- Metadati per ogni segmento: modello di embedding e versione, hash del contenuto, versione della segmentazione, lingua, visibilità. Indici pubblici e interni separati: il materiale interno non entra in un indice pubblico.
 - Usi: documenti pertinenti, casi analoghi con terminologia diversa, confronto tra lingue, riattivazione delle ipotesi dormienti, candidati di contraddizione, contesto per gli agenti. Gli embedding indicano cosa esaminare, non creano relazioni.
 
 **Accettazione**
@@ -792,7 +804,7 @@ Spostato da M13 a M12 come prodotto minimo descrittivo.
 
 **Accettazione**
 
-- Nessun contenuto riservato; ogni elemento rimanda alla sua scheda con caveat.
+- Nessun contenuto non pubblicabile; ogni elemento rimanda alla sua scheda con caveat.
 
 ## M13. Statistica validata
 
@@ -942,20 +954,20 @@ Tutte le voci 1-140 sono assegnate a un pacchetto oppure elencate qui; `check:ro
 
 | ID | Decisione | Raccomandazione | Blocca |
 | --- | --- | --- | --- |
-| D1 | Storage per il materiale non pubblicabile | Repository privato separato, accessi per ruolo, gateway di pubblicazione. Prima di decidere verificare: piano GitHub che consenta i ruleset sui repository privati; possibilità per i task schedulati di accedere al repository privato con credenziali proprie; accessi effettivi degli agenti | PK-01; completamento di PK-02 e PK-09 |
+| D1 | Storage per il materiale non pubblicabile | **Risolta il 26 novembre 2026:** repository unico pubblico con separazione logica; materiale confidenziale come funzionalità futura opzionale | nessuno |
 | D2 | Conferma di ADR-06 | Confermare, con migrazione progressiva, asserzioni qualificate e stati separati per migrazione strutturale, verifica probatoria e ciclo di vita | PK-06 |
 | D3 | Dominio e intestatario | Dominio stabile (per esempio .eu o .org) intestato al titolare | Solo PK-15B |
 | D4 | Canale riservato per repliche ed evidenze sensibili | Casella dedicata con procedura di moderazione | PK-17 |
 | D5 | Crawler AI per l'addestramento | Consentire ricerca e citazione; addestramento deciso a parte | Completamento di PK-20 |
-| D6 | Soglie di qualità | Vincoli a zero: record riservati esportati, riferimenti canonici non validi, inferenze vietate nel set di regressione, stati editoriali umani assegnati da agenti, caveat critici persi, regressioni non autorizzate dei contratti pubblici, errori gravi di accessibilità. Soglie calibrate per metodo e categoria; budget Lighthouse per tipo di pagina. Valutatore e set di riferimento protetti dagli agenti valutati | Completamento di PK-02 |
+| D6 | Soglie di qualità | Vincoli a zero: record non pubblicabili esportati, riferimenti canonici non validi, inferenze vietate nel set di regressione, stati editoriali umani assegnati da agenti, caveat critici persi, regressioni non autorizzate dei contratti pubblici, errori gravi di accessibilità. Soglie calibrate per metodo e categoria; budget Lighthouse per tipo di pagina. Valutatore e set di riferimento protetti dagli agenti valutati | Completamento di PK-02 |
 | D7 | Russo e ucraino | Entrambi per acquisizione; ucraino prioritario anche per pubblicazione | PK-26; pubblicazione in PK-31 |
 | D8 | Accesso ai dati delle piattaforme | Solo accessi legittimi e fonti effettivamente utilizzabili | PK-32 |
 | D9 | Budget AI | Tetto mensile distinto per consumi API, limiti degli abbonamenti, tempo degli agenti e capacità di revisione; quote morbide; riserva per P0 e P1; budget API dedicato ai benchmark in CI | PK-12; benchmark di PK-02 |
 | D10 | Account Search Console e Bing | Sotto il controllo del titolare | Completamento di PK-20 |
 | D11 | Revisori madrelingua | Bloccano la pubblicazione dei contenuti che li richiedono, non lo sviluppo | Pubblicazione in PK-31 |
-| D12 | Conservazione, redazione e cancellazione del materiale riservato | Minimizzazione: traccia epistemica minima, rimozione di dati personali non necessari e di materiale non più conservabile; regole per il trattamento dei dati presso i provider AI esterni | Completamento di PK-01, PK-09, PK-17 |
+| D12 | Conservazione, redazione e cancellazione | **Risolta il 26 novembre 2026:** minimizzazione solo del materiale effettivamente sensibile; servizi AI in abbonamento ammessi per l'OSINT ordinario; policy per indagini umane confidenziali differite | nessuno |
 | D13 | Autorità su policy, benchmark, soglie, workflow e gate | Solo il titolare approva, tramite ruleset; identità umana, identità di pubblicazione e identità di auto-merge separate (GitHub App al posto del PAT personale) | PK-01 |
-| D14 | Snapshot e backup | Distinguere snapshot pubblici (permanenti salvo ritiro motivato), revisioni riservate e copie esterne non controllabili; backup cifrati del riservato con prova periodica di ripristino | Completamento di PK-01 |
+| D14 | Snapshot e backup | **Risolta il 26 novembre 2026:** Git, registro degli snapshot e backup adeguati al repository pubblico | nessuno |
 
 ## Appendice. Catalogo delle voci 1-116 (analisi del 23 novembre)
 

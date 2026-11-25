@@ -1,47 +1,79 @@
 import { z } from "zod";
 
+/**
+ * Material classes (D1/D12, owner decision 26 November 2026).
+ *
+ * OEM is a public OSINT project kept in ONE public repository. Material that
+ * is not yet publishable is ordinary investigative work, not confidential:
+ * it lives in the repository and may be processed by ordinary AI services.
+ * Whether something reaches the portal, exports, MCP or search indexes is
+ * decided by the publication gateway and the M5 gate on the record itself
+ * (review status, evidence, person rules), never by this classification.
+ *
+ * - `public_publishable`: canonical material eligible for the public
+ *   projections (still subject to the gateway, record by record).
+ * - `investigative_pending`: OSINT not yet qualified: archived sources,
+ *   `needs_review` candidates, hypotheses, leads, discovery queue,
+ *   negative verifications.
+ * - `editorial_draft`: article drafts and translations.
+ * - `operational`: run manifests, metrics, quality reports, logs (minimized).
+ * - `private_investigative`: FUTURE, optional. Truly confidential human
+ *   investigations. No destination exists for it in the current architecture:
+ *   directories, labels or branches of a public repository are logical
+ *   separation, not access control, so the class is denied everywhere until
+ *   a new explicit owner decision provides a real confidential store.
+ * - `holdout_evaluation`: answers of an evaluation set that must stay unseen
+ *   by the agent under evaluation. A public file cannot be a holdout, so it is
+ *   never stored in the repository; it only reaches the external evaluator.
+ */
 export const DATA_CLASSES = [
   "public_publishable",
+  "investigative_pending",
   "editorial_draft",
+  "operational",
   "private_investigative",
-  "restricted_operational",
   "holdout_evaluation",
 ] as const;
 
 export const DataClassSchema = z
   .enum(DATA_CLASSES)
-  .describe("Confidentiality classification of repository content.");
+  .describe(
+    "Nature of the material (D1/D12): publishable, pending OSINT, draft, operational, future confidential, or evaluation holdout. Not an evidentiary or editorial status.",
+  );
 
 export type DataClass = z.infer<typeof DataClassSchema>;
 
+/** Classes that are genuinely isolated: never mixed with other contexts. */
+export const ISOLATED_CLASSES: ReadonlySet<DataClass> = new Set([
+  "private_investigative",
+  "holdout_evaluation",
+]);
+
 export const DESTINATIONS = [
-  "public_repo",
+  "repository",
   "public_site",
   "public_export",
-  "private_repo",
   "ci_logs",
   "ci_artifacts",
-  "chatgpt_subscription",
-  "chatgpt_api_zdr",
-  "chatgpt_api_standard",
-  "claude_subscription",
-  "claude_api_zdr",
-  "claude_api_standard",
+  "ai_subscription",
+  "ai_api",
   "embedding_local",
-  "embedding_external_zdr",
-  "embedding_external_retaining",
-  "external_notebook",
+  "embedding_external",
+  "external_tool",
+  "external_evaluator",
 ] as const;
 
 export const DestinationSchema = z
   .enum(DESTINATIONS)
-  .describe("Target storage, surface, or external AI/embedding service.");
+  .describe(
+    "Where material goes: the public repository, a public projection (site, export/API/MCP/feeds/indexes), CI, an AI service (subscription or API), an embedding service, an external tool, or an independent evaluator.",
+  );
 
 export type Destination = z.infer<typeof DestinationSchema>;
 
 export const EmbeddingDestinationSchema = z
-  .enum(["embedding_local", "embedding_external_zdr", "embedding_external_retaining"])
-  .describe("Target embedding service classification.");
+  .enum(["embedding_local", "embedding_external"])
+  .describe("Target embedding service.");
 
 export type EmbeddingDestination = z.infer<typeof EmbeddingDestinationSchema>;
 
@@ -52,15 +84,15 @@ export const BoundaryCheckResultSchema = z
     destination: DestinationSchema.describe("Target destination evaluated."),
     reason: z.string().describe("Human-readable explanation of the allow or deny decision."),
   })
-  .describe("Outcome of a confidentiality boundary check.");
+  .describe("Outcome of a material-class boundary check.");
 
 export type BoundaryCheckResult = z.infer<typeof BoundaryCheckResultSchema>;
 
 export const ProviderPayloadSchema = z
   .strictObject({
-    dataClass: DataClassSchema.describe("Confidentiality class of the payload being sent."),
+    dataClass: DataClassSchema.describe("Material class of the payload being sent."),
     contextDomain: DataClassSchema.optional().describe(
-      "Confidentiality domain of the active agent/cache context, to prevent cross-domain mixing.",
+      "Material class of the active agent/cache context; only isolated classes must not mix.",
     ),
     label: z.string().optional().describe("Optional identifier for audit diagnostics."),
   })
@@ -68,57 +100,67 @@ export const ProviderPayloadSchema = z
 
 export type ProviderPayload = z.infer<typeof ProviderPayloadSchema>;
 
-/** Allowed destinations per data class. Anything not listed is denied by default. */
+/** Ordinary working destinations for OSINT material that is not (yet) public. */
+const WORKING: readonly Destination[] = [
+  "repository",
+  "ci_logs",
+  "ci_artifacts",
+  "ai_subscription",
+  "ai_api",
+  "embedding_local",
+  "embedding_external",
+  "external_tool",
+];
+
+/**
+ * Allowed destinations per class. Anything not listed is denied by default.
+ * Public projections (`public_site`, `public_export`) are reachable only by
+ * `public_publishable` material, and only through the publication gateway.
+ * Using an AI provider never changes the evidentiary or editorial status of
+ * the material it processes.
+ */
 export const ALLOWED_DESTINATIONS: Record<DataClass, readonly Destination[]> = {
   public_publishable: [...DESTINATIONS],
-  editorial_draft: [
-    "private_repo",
-    "chatgpt_subscription",
-    "chatgpt_api_zdr",
-    "claude_subscription",
-    "claude_api_zdr",
-    "embedding_local",
-    "embedding_external_zdr",
-  ],
-  private_investigative: ["private_repo", "chatgpt_api_zdr", "claude_api_zdr", "embedding_local"],
-  restricted_operational: ["private_repo", "embedding_local"],
-  holdout_evaluation: ["private_repo"],
+  investigative_pending: WORKING,
+  editorial_draft: WORKING,
+  operational: WORKING,
+  private_investigative: [],
+  holdout_evaluation: ["external_evaluator"],
 };
 
-const PRIVATE_DOMAINS: ReadonlySet<DataClass> = new Set([
-  "private_investigative",
-  "restricted_operational",
-  "holdout_evaluation",
-]);
-
-/** Classify a repository-relative path into its default confidentiality class. */
+/** Classify a repository-relative path into its default material class. */
 export function classifyPath(filePath: string): DataClass {
   const normalized = filePath.replaceAll("\\", "/").replace(/^\.\//, "");
-  if (
-    normalized.startsWith("docs/quality/sets/") ||
-    normalized.includes("holdout") ||
-    normalized.startsWith("test/fixtures/holdout")
-  ) {
+  if (normalized.split("/").some((part) => part.toLowerCase().includes("holdout"))) {
     return "holdout_evaluation";
   }
   if (
     normalized.startsWith("docs/runs/") ||
     normalized.startsWith("logs/") ||
-    normalized.startsWith("docs/quality/reports/")
+    normalized.startsWith("docs/quality/")
   ) {
-    return "restricted_operational";
+    return "operational";
   }
   if (
     normalized.startsWith("sources/incremental/") ||
     normalized.startsWith("sources/thematic/") ||
-    normalized.startsWith("sources/quarantine/")
+    normalized.startsWith("sources/quarantine/") ||
+    normalized.startsWith("docs/discovery/")
   ) {
-    return "private_investigative";
+    return "investigative_pending";
   }
   if (normalized.startsWith("content/articles/")) {
     return "editorial_draft";
   }
   return "public_publishable";
+}
+
+/**
+ * Classify a canonical record by its review status. `needs_review` is pending
+ * OSINT, not confidential; publication is still decided by the gateway.
+ */
+export function classifyRecord(review: { status: string }): DataClass {
+  return review.status === "needs_review" ? "investigative_pending" : "public_publishable";
 }
 
 /** Check whether a data class is permitted to reach a given destination. */
@@ -134,13 +176,23 @@ export function checkBoundary(
 ): BoundaryCheckResult {
   if (
     contextDomain !== undefined &&
-    PRIVATE_DOMAINS.has(contextDomain) !== PRIVATE_DOMAINS.has(dataClass)
+    contextDomain !== dataClass &&
+    (ISOLATED_CLASSES.has(contextDomain) || ISOLATED_CLASSES.has(dataClass))
   ) {
     return {
       allowed: false,
       dataClass,
       destination,
-      reason: `Cross-domain context mixing denied: ${dataClass} payload cannot share context/cache with ${contextDomain}`,
+      reason: `Isolated context mixing denied: ${dataClass} payload cannot share context/cache with ${contextDomain}`,
+    };
+  }
+  if (dataClass === "private_investigative") {
+    return {
+      allowed: false,
+      dataClass,
+      destination,
+      reason:
+        "private_investigative is a future, optional feature with no confidential store; it needs an explicit owner decision before use",
     };
   }
   if (!isDestinationAllowed(dataClass, destination)) {
@@ -179,8 +231,10 @@ export type GuardedClient = {
 };
 
 /**
- * Create a guard for an external AI provider client (ChatGPT/Claude subscription or API).
- * Rejects disallowed data classes and cross-domain cache/context mixing.
+ * Create a guard for an AI provider client (subscription such as ChatGPT,
+ * Claude, Codex, Claude Code or Gemini, or a commercial API). Ordinary OSINT
+ * classes are allowed; only isolated classes are rejected, and isolated
+ * contexts are not mixed with others.
  */
 export function createProviderGuard(
   destination: Destination,
@@ -198,9 +252,9 @@ export function createProviderGuard(
 }
 
 /**
- * Create a guard for an embedding client.
- * Never permits private_investigative, restricted_operational, or holdout_evaluation
- * to be sent to external embedding services.
+ * Create a guard for an embedding client. Ordinary OSINT material may be
+ * embedded locally or externally; holdout answers and future confidential
+ * material may not.
  */
 export function createEmbeddingGuard(
   destination: EmbeddingDestination,

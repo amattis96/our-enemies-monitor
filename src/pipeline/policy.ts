@@ -14,11 +14,19 @@ import type { Flag } from "./diff.ts";
 
 export const WAIVER_LABEL = "evidence-waiver";
 
-export type BranchClass = "research" | "ingest" | "dependabot-actions" | "free";
+export type BranchClass =
+  | "research"
+  | "ingest"
+  | "runs"
+  | "discovery"
+  | "dependabot-actions"
+  | "free";
 
 export function branchClass(headRef: string): BranchClass {
   if (headRef.startsWith("research/")) return "research";
   if (headRef.startsWith("agent/ingest-")) return "ingest";
+  if (headRef.startsWith("agent/runs-")) return "runs";
+  if (headRef.startsWith("agent/discovery-")) return "discovery";
   if (headRef.startsWith("dependabot/github_actions/")) return "dependabot-actions";
   return "free"; // other agent/**, maintainer branches, forks: no path restriction
 }
@@ -38,6 +46,22 @@ const RULES: Record<Exclude<BranchClass, "free">, { allowed: Allowed[]; label: s
   ingest: {
     allowed: [{ prefix: "data/", statuses: ["A", "M", "D"] }],
     label: "agent/ingest-* branches (data/ only)",
+  },
+  // PK-08 (D1): run manifests are recorded in the single repository on their
+  // own branches, so source/ingest/article PR contracts stay unchanged.
+  runs: {
+    allowed: [
+      { prefix: "docs/runs/manifests/", statuses: ["A"] },
+      { prefix: "docs/audit/ai-benchmarks/runs/", statuses: ["A"] },
+    ],
+    label:
+      "agent/runs-* branches (docs/runs/manifests and docs/audit/ai-benchmarks/runs: add only)",
+  },
+  // PK-09 (D1): the discovery queue and its memory live in docs/discovery/;
+  // items change state (leases, outcomes) but are never deleted.
+  discovery: {
+    allowed: [{ prefix: "docs/discovery/", statuses: ["A", "M"] }],
+    label: "agent/discovery-* branches (docs/discovery: add or edit, never delete)",
   },
   "dependabot-actions": {
     allowed: [

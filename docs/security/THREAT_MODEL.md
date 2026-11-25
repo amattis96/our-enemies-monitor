@@ -1,15 +1,15 @@
 # Threat Model (`PK-01`)
 
-This document defines the threat model, trust boundaries, and accidental-publication response procedure for **our-enemies-monitor** under the dual-repository architecture (private investigative repository + public publication repository).
+This document defines the threat model, trust boundaries, and accidental-publication response procedure for **our-enemies-monitor** under the single public repository architecture decided by the owner on 26 November 2026 (D1): the repository holds both canonical records and not-yet-qualified OSINT; the publication gateway separates it from the public projections.
 
 ## 1. System & Trust Boundaries
 
 - **Untrusted external inputs**: OSINT sources (`sources/incremental/`, `sources/thematic/`), scraped web pages, PDFs, social media posts, and third-party feeds.
-- **Private investigative domain**: Quarantined sources, authoritative discovery queue, unpublished leads, raw run logs, operational manifests, ingestion proposals, sensitive evidence, historical revisions, validation and holdout sets (`docs/quality/sets/`).
+- **Repository, not yet public**: archived incremental and thematic sources, `needs_review` candidates, hypotheses, discovery queue (`docs/discovery/`), run manifests (`docs/runs/manifests/`), knowledge-time revisions (`docs/snapshots/revisions/`), drafts and reference sets. Ordinary OSINT (`investigative_pending`, `editorial_draft`, `operational`), not confidential. Genuinely confidential material (`private_investigative`) is a future, optional feature with no store today.
 - **Control plane**: Workflow definitions (`.github/workflows/`), `.github/CODEOWNERS`, `src/pipeline/policy.ts`, `src/security/`, `src/site/publication.ts`, `schemas/`, `docs/roadmap/plan.v1.json`, `docs/quality/thresholds.v1.json`, `docs/audit/inferences/registry.v1.json`, `docs/security/`.
-- **Public domain**: Published canonical records (`reviewed` or `imported_unreviewed` with `sources/original/` provenance), sanitized public projections, editorial articles, static site (`web/dist`), exports, sitemap, and search index.
+- **Public projections**: Published canonical records (`reviewed` or `imported_unreviewed` with `sources/original/` provenance), sanitized public projections, editorial articles, static site (`web/dist`), exports, sitemap, and search index.
 
-The security boundary applies **before** any branch push, pull request, PR comment, CI log, workflow artifact, or search index is created.
+Credentials, secrets and unnecessary personal data are excluded **before** any branch push, pull request, PR comment, CI log or workflow artifact; non-publishable records are excluded from every public projection by the gateway.
 
 ## 2. Threat Vectors & Mitigations
 
@@ -43,10 +43,10 @@ The security boundary applies **before** any branch push, pull request, PR comme
   - **Narrowed `CODEOWNERS` & extended `CONTROL_PLANE`**: `CODEOWNERS` protects only control-plane paths (including `.github/CODEOWNERS` itself) so ordinary content stays automergeable while control-plane changes require maintainer review.
 
 ### 2.5 Accidental Publication & External Boundary Leaks
-- **Threat**: Private investigative leads, `needs_review` records, operational run logs, holdout evaluation sets, or unredacted personal data leak into the public repository, PRs, CI logs, artifacts, search indexes, or external AI/embedding providers with data retention.
+- **Threat**: Non-publishable records (`needs_review`, withheld, unverified person links) reach a public projection presented as facts; or secrets, unnecessary personal data or holdout answers leak into the repository, PRs, CI logs, artifacts, search indexes or AI/embedding providers with data retention.
 - **Mitigations**:
-  - **Data classification & provider guard** (`src/security/boundary.ts`): enforces `ALLOWED_DESTINATIONS` per data class and rejects disallowed external AI/embedding destinations or cross-domain context mixing.
-  - **Publication gateway** (`src/security/gateway.ts`): single authorized path from private to public, performing schema validation, visibility filtering, evidentiary checks, M5 gate, sanitization, and serialized export leak scanning.
+  - **Material classes & provider guard** (`src/security/boundary.ts`): ordinary OSINT may go to AI subscriptions, APIs and embeddings; only isolated classes (holdout answers, future confidential material) are rejected, and isolated contexts are not mixed.
+  - **Publication gateway** (`src/security/gateway.ts`): boundary between the repository and its public projections, performing schema validation, visibility filtering, evidentiary checks, M5 gate, sanitization, and serialized export leak scanning.
 
 ## 3. Accidental Publication Response Procedure
 

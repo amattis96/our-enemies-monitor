@@ -15,7 +15,6 @@ import {
   PLAYWRIGHT_LIGHTHOUSE_CI_SPEC,
   RotationRecordSchema,
   runStaticHtmlAudit,
-  summarizeQualityMetrics,
   TEST_FAMILIES,
 } from "../quality/index.ts";
 
@@ -39,19 +38,29 @@ export const QualityReportSchema = z.strictObject({
   reference_sets: z
     .strictObject({
       dev_cases: z.number().int().nonnegative().describe("Number of cases in dev split."),
-      dev_reference_pass_rate: z
+      scorer_self_check_pass_rate: z
         .number()
         .min(0)
         .max(1)
-        .describe("Sanity pass rate of dev expected_answer texts against dev scorer."),
+        .describe(
+          "Share of dev expected answers the scorer accepts: a check of the scorer, not an agent result.",
+        ),
       holdout_aggregate: z
         .strictObject({
           tier: z.literal("holdout").describe("Holdout tier label."),
           rotation_id: z.string().min(1).describe("Active holdout rotation epoch ID."),
           total_cases: z.number().int().nonnegative().describe("Total holdout cases."),
           needs_rotation: z.boolean().describe("Whether holdout epoch requires rotation."),
+          independent: z
+            .literal(false)
+            .describe(
+              "Always false: B16-B20 are public in the repository, so they are not an independent holdout.",
+            ),
+          limitation: z.string().min(1).describe("Declared methodological limitation."),
         })
-        .describe("Aggregate-only holdout status without per-case leakage."),
+        .describe(
+          "Held-out public split: aggregate status, explicitly not an independent holdout.",
+        ),
     })
     .describe("3-tier reference set and rotation summary."),
   d6_gates: z
@@ -60,19 +69,16 @@ export const QualityReportSchema = z.strictObject({
       blockers: z.array(z.string()).describe("Failed D6 gate identifiers."),
     })
     .describe("Zero-tolerance D6 blocking gate result."),
-  metrics_summary: z
+  agent_metrics: z
     .strictObject({
-      precision: z.number().min(0).max(1).describe("Reference sanity precision."),
-      recall: z.number().min(0).max(1).describe("Reference sanity recall."),
-      f1: z.number().min(0).max(1).describe("Reference sanity F1."),
-      abstention_rate: z.number().min(0).max(1).describe("Reference sanity abstention rate."),
-      caveat_preservation_rate: z
-        .number()
-        .min(0)
-        .max(1)
-        .describe("Reference sanity caveat preservation rate."),
+      measured: z
+        .literal(false)
+        .describe("False until real agent answers from a recorded run are scored."),
+      note: z.string().min(1).describe("Why no agent metric is reported."),
     })
-    .describe("Operational quality metrics summary."),
+    .describe(
+      "Agent quality metrics (precision, recall, F1, abstention, caveats). Never computed from expected answers.",
+    ),
   discovery_eval: z
     .strictObject({
       ex_ante_composite: z.number().min(0).max(1).describe("Ex-ante composite quality score."),
@@ -130,6 +136,9 @@ export function generateQualityReport(options: { distDir?: string } = {}): Quali
     (Object.keys(dataset) as (keyof typeof dataset)[]).flatMap((k) => dataset[k].map((r) => r.id)),
   );
 
+  // Scorer self-check: the reference set's own expected answers must pass the
+  // scorer and must not cite invented IDs or forbidden phrasing. This checks
+  // the benchmark material, not any agent; agent metrics stay unmeasured.
   const devSet = loadDevReferenceSet();
   let devPassed = 0;
   let forbiddenHits = 0;
@@ -171,18 +180,6 @@ export function generateQualityReport(options: { distDir?: string } = {}): Quali
     severe_a11y_errors: visual.severe_errors,
   });
 
-  const metricsSummary = summarizeQualityMetrics(
-    { tp: devPassed, fp: 0, tn: 0, fn: devSet.cases.length - devPassed },
-    devSet.cases.map((c) => ({
-      case_id: c.id,
-      abstained: false,
-      unsupported_attributions: 0,
-      caveat_required: c.topic.includes("caveat") || c.topic.includes("forbidden"),
-      caveat_preserved: true,
-      identity_errors: 0,
-    })),
-  );
-
   const discovery = evaluateDiscovery([]);
 
   return QualityReportSchema.parse({
@@ -197,25 +194,25 @@ export function generateQualityReport(options: { distDir?: string } = {}): Quali
     })),
     reference_sets: {
       dev_cases: devSet.cases.length,
-      dev_reference_pass_rate:
+      scorer_self_check_pass_rate:
         devSet.cases.length === 0 ? 0 : Math.round((devPassed / devSet.cases.length) * 1000) / 1000,
       holdout_aggregate: {
         tier: "holdout",
         rotation_id: holdoutAgg.rotation_id,
         total_cases: holdoutAgg.total_cases,
         needs_rotation: needsRotation(holdoutRotation),
+        independent: false,
+        limitation:
+          "B16-B20 are public in docs/audit/baseline/: any agent with repository access can read them. Results on this split are not an independent validation; independent evaluation needs a fresh, unexposed case set or an external evaluator.",
       },
     },
     d6_gates: {
       passed: d6.passed,
       blockers: [...d6.blockers],
     },
-    metrics_summary: {
-      precision: metricsSummary.precision,
-      recall: metricsSummary.recall,
-      f1: metricsSummary.f1,
-      abstention_rate: metricsSummary.abstention_rate,
-      caveat_preservation_rate: metricsSummary.caveat_preservation_rate,
+    agent_metrics: {
+      measured: false,
+      note: "No recorded agent answers yet. Expected answers are used only for the scorer self-check and are never reported as agent results.",
     },
     discovery_eval: {
       ex_ante_composite: discovery.ex_ante.composite_score,

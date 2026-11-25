@@ -147,7 +147,9 @@ export const QueueItemSchema = z
     visibility: z
       .enum(QUEUE_VISIBILITIES)
       .default("private")
-      .describe("Whether the item is eligible for sanitized public projection."),
+      .describe(
+        "publishable: may appear in the public Laboratory; private: internal, kept in the repository and excluded from public projections (not confidential).",
+      ),
     status: z.enum(QUEUE_STATUSES).describe("Operational workflow status of the queue item."),
     disposition: z
       .enum(QUEUE_DISPOSITIONS)
@@ -226,13 +228,18 @@ export const DiscoveryQueueSchema = z
   .strictObject({
     schema_version: z.literal("1.0.0").describe("Schema version of the discovery queue."),
     updated_at: UtcTimestamp.describe("UTC timestamp of the last queue mutation."),
-    items: z.array(QueueItemSchema).default([]).describe("Authoritative private queue items."),
+    items: z
+      .array(QueueItemSchema)
+      .default([])
+      .describe("Queue items, stored one file per item in docs/discovery/queue/."),
     negative_memory: z
       .array(NegativeVerificationRecordSchema)
       .default([])
       .describe("Permanent negative-verification memory across runs."),
   })
-  .describe("Authoritative private discovery queue with permanent negative memory.");
+  .describe(
+    "Authoritative discovery queue with permanent negative memory, stored in docs/discovery/ of the single public repository (D1).",
+  );
 export type DiscoveryQueue = z.infer<typeof DiscoveryQueueSchema>;
 
 export const PublicQueueItemSchema = z
