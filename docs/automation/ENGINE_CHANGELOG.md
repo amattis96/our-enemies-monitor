@@ -19,6 +19,8 @@ Security thresholds, protection details, investigative queries, and exact detect
 - Registered task_c_review_fix (Daily 03:30 and 04:30 Europe/Rome, active)
 - Registered task_d_legacy_merge (Paused 2026-11-21 (replaced by auto-merge.yml) Europe/Rome, paused)
 - Registered auto_merge_workflow (On verified C handoff + green CI UTC, event_driven)
+- Registered task_e_discovery (Daily 06:00 Europe/Rome, active)
+- Registered task_f_ai_benchmark (Sunday 07:00 Europe/Rome, active)
 
 ### Roles
 - Registered role task_a_osint_ingest
@@ -26,8 +28,12 @@ Security thresholds, protection details, investigative queries, and exact detect
 - Registered role task_c_review_fix
 - Registered role auto_merge_workflow
 - Registered role human_maintainer
+- Registered role task_e_discovery
+- Registered role task_f_ai_benchmark
 
 ### Models
 - task_a_osint_ingest: openai-chatgpt/scheduled-automation
 - task_b_editorial: openai-chatgpt/scheduled-automation
 - task_c_review_fix: openai-chatgpt/scheduled-automation
+- task_e_discovery: openai-chatgpt/scheduled-automation
+- task_f_ai_benchmark: openai-chatgpt/scheduled-automation

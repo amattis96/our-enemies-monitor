@@ -212,7 +212,7 @@ Before declaring work done, run `pnpm check` (and `pnpm build` plus
 
 ## Scheduled research, editorial review and automated integration
 
-**Live task configuration verified 21 November 2026 (Europe/Rome):**
+**Live task configuration verified 26 November 2026 (Europe/Rome):**
 [scheduled-task register](docs/CHATGPT_SCHEDULED_TASKS.md),
 [recorded full prompts](docs/automation/CHATGPT_TASK_PROMPTS.md), and
 [M8/M9 prompt updates guide](docs/automation/SCHEDULED_TASKS_PROMPT_UPDATES.md). These
@@ -227,6 +227,10 @@ workflow must not be reactivated. The legacy
 | **B: Editorial** | Mon/Wed/Fri 02:00 | One independently researched IT/EN article pair as a `needs_review` PR when defensible |
 | **C: Review & Fix** | Daily 03:30 and 04:30 | Evidence/code review, targeted fixes on eligible PR branches, tests and exact-HEAD handoff |
 | **D: Approval & Merge** | Retired 21 November 2026 | Merge step moved to the `auto-merge.yml` GitHub workflow (below); the D rules that follow describe the conditions that workflow enforces |
+| **E: Discovery** | Daily 06:00 | Rotating investigative discovery, falsification and dormant cases; shadow/conditional queue access under current gates |
+| **F: External AI Benchmark** | Sunday 07:00 | PK-23 findability and interpretation evaluation of genuinely accessible models; no model promotion |
+
+A/B/C/E/F emit PK-08 RunManifest reports under the current schema; persistence is conditional on authorized paths. The scheduler prompts reflect the maintainer's single-repository decision for ordinary OSINT, with implementation still in transition. An enabled scheduler is not evidence that a package is accepted or that external models are accessible. The new roles do not extend permissions to modify canonical data, merge, or alter control-plane policy. Consult the live prompt snapshot and current package gates.
 
 **Task A acquisition:** examine the actual merged coverage cutoff, rescan
 at least 72 hours of overlap, deduplicate against merged records and all open

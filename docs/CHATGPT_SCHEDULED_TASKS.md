@@ -1,6 +1,6 @@
-# ChatGPT scheduled tasks: A / B / C / D
+# ChatGPT scheduled tasks: A / B / C / D / E / F
 
-**Verified external configuration:** 20 November 2026, via ChatGPT Automations. The C/D retry slots and the removal of Task D's inaccessible GitHub administration-API prerequisite are active in the scheduler.
+**Verified external configuration:** 26 November 2026 (Europe/Rome), read directly from ChatGPT Automations. A/B/C updated; E/F enabled; D remains paused.
 **Repository branch:** `main` (not `master`). Timezone: `Europe/Rome`.
 ChatGPT is the runtime scheduler; this repository is a dated, inspectable
 record of its instructions, not a synchronizing service. Reverify the
@@ -10,10 +10,12 @@ live task configuration before relying on a historical snapshot.
 
 | Task | Name | Schedule (Europe/Rome) | Automation ID |
 | --- | --- | --- | --- |
-| **A** | Our Enemies Monitor OSINT & Ingest | Daily 00:30 | `Automation_d84b474727c0819199f8a2ccede9168c` |
-| **B** | Our Enemies Monitor Editorial | Mon/Wed/Fri 02:00 | `6af644cc6d508191b5164cb2e7c4be39` |
-| **C** | Our Enemies Monitor Review & Fix | Daily 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
-| **D** | Our Enemies Monitor Approval & Merge | Paused 21 November 2026 (was daily 05:00 and 06:00) | `Automation_3acbfb8631b08191a714de25bca509ca` |
+| A | Our Enemies Monitor OSINT & Ingest | Daily 00:30 | `Automation_d84b474727c0819199f8a2ccede9168c` |
+| B | Our Enemies Monitor Editorial | Mon/Wed/Fri 02:00 | `6af644cc6d508191b5164cb2e7c4be39` |
+| C | Our Enemies Monitor Review & Fix | Daily 03:30 and 04:30 | `6af64712482c81918d8772f4fa8c6efc` |
+| D | Our Enemies Monitor Approval & Merge | Paused 21 November 2026 (was daily 05:00 and 06:00) | `Automation_3acbfb8631b08191a714de25bca509ca` |
+| E | Our Enemies Monitor Discovery | Daily 06:00 | `6b076f44e3ec81919dcc65fe4a5a6cbe` |
+| F | Our Enemies Monitor AI Benchmark | Sunday 07:00 | `6b076fd5771881918d5dea58c4a0703b` |
 
 **Task D retirement (21 November 2026, maintainer decision):** merging moved
 to the GitHub workflow `auto-merge.yml` ([AUTO_MERGE.md](automation/AUTO_MERGE.md)),
@@ -25,13 +27,13 @@ and verified by GitHub CI, machine-readable handoff); see
 Task C must keep writing `Status: READY_FOR_D` with the reviewed 40-hex HEAD,
 and must not repeat negative verdict tokens in a READY handoff.
 
-All four were enabled on 15 November 2026, and their next scheduled
-runs begin on 16 November 2026. Full active prompt copies are kept in
+A/B/C/D were originally enabled on 15 November 2026. A/B/C/E/F are now enabled;
+D is paused. Full live prompt copies (including historical D) are kept in
 [CHATGPT_TASK_PROMPTS.md](automation/CHATGPT_TASK_PROMPTS.md).
 An in-repository prompt edit **does not** update a ChatGPT automation;
 the tasks were updated in the ChatGPT scheduler separately.
 
-**Task D availability fix (20 November 2026):** the GitHub App cannot read
+**Historical Task D availability fix (20 November 2026, before retirement):** the GitHub App cannot read
 repository branch protection or ruleset administration endpoints (HTTP 403),
 but this is not a merge-readiness failure. The live D prompt now skips those
 administrative reads entirely. It requires the normal current-HEAD checks,
@@ -79,7 +81,7 @@ pushes, bypasses, control-plane merges by D, or AI promotion to human-reviewed.
    evidence failure. Source-only PRs do not require ingestion dry-run.
    Never
    APPROVE, merge or modify main.
-5. **D, verification & merge:** use C's comment as a traceable lead,
+5. **Historical D, verification & merge (now delegated to `auto-merge.yml`):** use C's comment as a traceable lead,
    not as a trusted authorization. Recheck exact HEAD, base freshness,
    diff, conflicts, evidence, both required statuses `check` and
    `evidence-diff`, and main CI. For eligible non-control-plane changes,
@@ -92,6 +94,11 @@ pushes, bypasses, control-plane merges by D, or AI promotion to human-reviewed.
    pending or unverifiable checks, changed content, missing handoff
    or other impediments. No admin bypass, waiver, self-APPROVE or
    direct push.
+
+6. **E, Discovery:** rotating `actor_maturation`, `cold_case_sweep` and `pre_event_sweep`; independent evidence and falsifiers, dormant hypothesis checks and bounded queue/lease/backpressure only where current contracts authorize them. Shadow until activation gates pass; no direct canonical writes or bypass of A/B/C.
+7. **F, External AI Benchmark:** weekly PK-23 evaluation of genuinely accessible external models, findability and interpretation, caveats and citation accuracy. No fabricated results, no automatic model promotion; deterministic audits and unavailable external tests reported separately.
+
+**M8–M13 transition:** A/B/C keep the existing PR contracts and add conditional RunManifest reporting (including no-results runs), multilingual acquisition/quarantine for A, editorial separation for B and source-first/cross-model verification for C where actually feasible. E/F being scheduled does not establish package acceptance. Ordinary open-source material follows the maintainer's single-repository decision as implemented on main; genuinely sensitive material remains excluded. See the exact [live prompts](automation/CHATGPT_TASK_PROMPTS.md). No change to publication gates is implied by this register.
 
 **GitHub identity:** all agents currently use the same `amattis96`
 account; distinct task runs are not independent GitHub identities.
@@ -140,8 +147,7 @@ ordinary GitHub PR approval requirement.
 
 ## Execution records and failure handling
 
-Use [TASK_RUN_LOG.md](automation/TASK_RUN_LOG.md) for **all four tasks**,
-including task D. Record actual run times, baseline and verified head
+Use [TASK_RUN_LOG.md](automation/TASK_RUN_LOG.md) for A/B/C and historical D; A/B/C/E/F also emit PK-08 RunManifest according to the current schema and authorized persistence path. If persistence is unavailable, report the manifest in ChatGPT without changing content PR contracts. Record actual run times, baseline and verified head
 SHAs, sources consulted, checks and links, corrections, blockers and
 merge/deploy results. C additionally posts one structured handoff
 comment on every eligible reviewed PR. These comments are editable
@@ -158,8 +164,7 @@ The narrow content-invariant `research/*` synchronization documented
 in AGENTS.md preserves C's factual assessment of **identical blobs**,
 but requires D to attest the new SHA, check the changed base for new
 collisions and wait for entirely fresh CI. A new `main` tip may
-require updated checks. A retry at 04:30 for C and 06:00 for D mitigates one-run bottlenecks, but still cannot guarantee the next merge; a 90-minute gap between B/C/D
-does not guarantee a task's earlier work has finished. D must stop
+require updated checks. The C retry at 04:30 mitigates one-run bottlenecks but does not guarantee the next merge. The historical D retry is disabled. The auto-merge workflow must stop
 further merges whenever the last main CI/deploy is failing, pending
 or unverified; it must not merge multiple PRs simultaneously.
 
@@ -177,7 +182,7 @@ CI success or publication. The 15 November merged
 [PR #20](https://github.com/amattis96/our-enemies-monitor/pull/20)
 implemented the Fable changes; [PR #21](https://github.com/amattis96/our-enemies-monitor/pull/21)
 recorded deferral of a second account. The current governance supersedes
-the old no-agent-merge convention for **Task D alone**.
+the old no-agent-merge convention for historical D alone; integration is now delegated to the workflow.
 
 ## Verification and future improvements
 

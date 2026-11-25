@@ -152,6 +152,20 @@
       "schedule": "On verified C handoff + green CI",
       "timezone": "UTC",
       "status": "event_driven"
+    },
+    {
+      "task_id": "task_e_discovery",
+      "role": "discovery",
+      "schedule": "Daily 06:00",
+      "timezone": "Europe/Rome",
+      "status": "active"
+    },
+    {
+      "task_id": "task_f_ai_benchmark",
+      "role": "benchmark",
+      "schedule": "Sunday 07:00",
+      "timezone": "Europe/Rome",
+      "status": "active"
     }
   ],
   "roles": [
@@ -214,6 +228,30 @@
         "en": "Sole authority permitted to assign reviewed status, approve control-plane changes, handle D12 personal data, and decide retractions."
       },
       "can_set_human_reviewed": true
+    },
+    {
+      "id": "task_e_discovery",
+      "label": {
+        "it": "Task E — Discovery investigativa",
+        "en": "Task E — Investigative discovery"
+      },
+      "responsibilities": {
+        "it": "Esplora piste a rotazione, ricerca evidenze e controprove e rivaluta casi dormienti in shadow o secondo i gate autorizzati; non modifica direttamente i dati canonici.",
+        "en": "Rotates investigative leads, seeks evidence and falsifiers and revisits dormant cases in shadow or under authorized gates; no direct canonical writes."
+      },
+      "can_set_human_reviewed": false
+    },
+    {
+      "id": "task_f_ai_benchmark",
+      "label": {
+        "it": "Task F — Benchmark AI esterni",
+        "en": "Task F — External AI benchmark"
+      },
+      "responsibilities": {
+        "it": "Valuta reperibilità e interpretazione con modelli realmente accessibili; dichiara limiti e non promuove automaticamente modelli.",
+        "en": "Evaluates findability and interpretation with genuinely accessible models; reports limits and never automatically promotes models."
+      },
+      "can_set_human_reviewed": false
     }
   ],
   "models": [
@@ -242,6 +280,24 @@
       "purpose": {
         "it": "Verifica indipendente di fonti, schemi e caveat.",
         "en": "Independent verification of sources, schemas, and caveats."
+      }
+    },
+    {
+      "role": "task_e_discovery",
+      "provider": "openai-chatgpt",
+      "model": "scheduled-automation",
+      "purpose": {
+        "it": "Discovery investigativa e verifica delle piste.",
+        "en": "Investigative discovery and lead verification."
+      }
+    },
+    {
+      "role": "task_f_ai_benchmark",
+      "provider": "openai-chatgpt",
+      "model": "scheduled-automation",
+      "purpose": {
+        "it": "Esecuzione e rendicontazione del benchmark PK-23, subordinata alla disponibilità reale dei modelli esterni.",
+        "en": "PK-23 benchmark execution and reporting, conditional on actual external model availability."
       }
     }
   ],
