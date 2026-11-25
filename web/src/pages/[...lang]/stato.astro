@@ -1,0 +1,133 @@
+---
+import {
+  loadPublicRunManifests,
+  projectPublicEngineManifest,
+  readEngineManifest,
+} from "../../../../src/engine/manifest.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const engine = projectPublicEngineManifest(readEngineManifest());
+const runs = loadPublicRunManifests();
+const missedRuns = runs.filter((r) => r.status === "missed");
+
+const RUN_STATUS_LABELS: Record<string, { it: string; en: string }> = {
+  completed_with_results: { it: "Completata con risultati", en: "Completed with results" },
+  completed_no_results: { it: "Completata senza risultati", en: "Completed (no results)" },
+  partial: { it: "Parziale", en: "Partial" },
+  failed: { it: "Fallita", en: "Failed" },
+  cancelled: { it: "Annullata", en: "Cancelled" },
+  missed: { it: "Mancante (missed)", en: "Missed" },
+};
+---
+
+<Base
+  title={c("Stato del sistema", "System status")}
+  lang={lang}
+  description={c(
+    "Stato operativo delle esecuzioni pianificate, incluse le esecuzioni mancanti (missed), da proiezioni sanitizzate dei manifest.",
+    "Operational status of scheduled runs, including missed runs, from sanitized run manifest projections.",
+  )}
+>
+  <p class="kicker">{ui(lang).navMethod}</p>
+  <h1>{c("Stato delle esecuzioni", "Execution status")}</h1>
+  <p class="lede max-w-3xl">
+    {c(
+      "Questa pagina è generata esclusivamente dalle proiezioni sanitizzate dei manifest di esecuzione (PK-08). Le query investigative, le fonti consultate e i messaggi d'errore sensibili restano nel dominio riservato. Le esecuzioni mai avviate vengono rilevate in modo indipendente e registrate come missed.",
+      "This page is generated exclusively from sanitized run manifest projections (PK-08). Investigative queries, consulted sources, and sensitive error messages remain in the private domain. Runs that never started are detected independently and recorded as missed.",
+    )}
+  </p>
+
+  <section class="mt-6 grid gap-4 md:grid-cols-4 max-w-4xl">
+    <div class="card">
+      <p class="meta">{c("Versione motore", "Engine version")}</p>
+      <p class="text-xl font-mono font-semibold">{engine.engine_version}</p>
+    </div>
+    <div class="card">
+      <p class="meta">{c("Esecuzioni registrate", "Recorded runs")}</p>
+      <p class="text-xl font-mono font-semibold">{Math.max(runs.length, engine.operational_metrics.runs_recorded)}</p>
+    </div>
+    <div class="card">
+      <p class="meta">{c("Esecuzioni mancanti (missed)", "Missed runs")}</p>
+      <p class="text-xl font-mono font-semibold">{Math.max(missedRuns.length, engine.operational_metrics.missed_runs)}</p>
+    </div>
+    <div class="card">
+      <p class="meta">{c("Ultimo snapshot", "Latest snapshot")}</p>
+      <p class="text-sm font-mono">{engine.operational_metrics.last_snapshot_id}</p>
+    </div>
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Registro delle esecuzioni sanitizzate", "Sanitized run log")}</h2>
+    {runs.length === 0 ? (
+      <div class="notice max-w-3xl mt-4">
+        {c(
+          "Nessun manifest di esecuzione pubblico archiviato finora in docs/runs/. Quando le esecuzioni programmate o i rilevamenti missed vengono proiettati, compaiono automaticamente in questa tabella con stato e versione del motore.",
+          "No public run manifests archived yet in docs/runs/. Once scheduled runs or missed-run detections are projected, they appear automatically in this table with their status and engine version.",
+        )}
+      </div>
+    ) : (
+      <div class="relative overflow-x-auto mt-4">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Run ID</th>
+              <th scope="col">{c("Attività", "Task")}</th>
+              <th scope="col">{c("Pianificata (UTC)", "Scheduled (UTC)")}</th>
+              <th scope="col">{c("Stato", "Status")}</th>
+              <th scope="col">{c("Motore", "Engine")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {runs.map((run) => (
+              <tr>
+                <td class="font-mono">{run.run_id}</td>
+                <td>{run.task}</td>
+                <td class="font-mono">{run.scheduled_at}</td>
+                <td>
+                  <span class={run.status === "missed" ? "font-semibold" : ""}>
+                    {RUN_STATUS_LABELS[run.status]?.[lang] ?? run.status}
+                  </span>
+                </td>
+                <td class="font-mono">{run.engine_version}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Cadenze monitorate", "Monitored cadences")}</h2>
+    <div class="relative overflow-x-auto mt-4">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{c("Attività", "Task")}</th>
+            <th scope="col">{c("Pianificazione", "Schedule")}</th>
+            <th scope="col">{c("Stato", "Status")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {engine.cadences.map((cadence) => (
+            <tr>
+              <td class="font-mono">{cadence.task_id}</td>
+              <td>{cadence.schedule} ({cadence.timezone})</td>
+              <td>{cadence.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="meta mt-4">
+      <a href={href("metodo/motore/", lang)}>{c("Trasparenza del motore", "Engine transparency")}</a>{" "}
+      · <a href={href("rettifiche/", lang)}>{c("Rettifiche e diritto di replica", "Corrections and right of reply")}</a>.
+    </p>
+  </section>
+</Base>

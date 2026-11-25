@@ -53,6 +53,12 @@ function initialProgressMap(): Map<string, PackageProgress> {
     "PK-08",
     "PK-09",
     "PK-10",
+    "PK-11",
+    "PK-12",
+    "PK-13",
+    "PK-14",
+    "PK-16",
+    "PK-17",
   ]) {
     const entry = copy.get(id);
     if (!entry) continue;

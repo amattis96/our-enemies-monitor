@@ -1,0 +1,155 @@
+---
+import { readRetractionRegister } from "../../../../src/retractions/register.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const register = readRetractionRegister();
+const activeNotices = register.entries.filter(
+  (entry) => entry.status !== "resolved" || entry.public_notice !== null,
+);
+
+const GITHUB_ISSUE_URL =
+  "https://github.com/amattis96/our-enemies-monitor/issues/new?labels=correction,evidence&title=Rettifica+%2F+Evidence%3A+&body=Record+ID%3A+%0APrimary+source+URL%3A+%0AWhat+is+known+vs+inferred%3A+%0A";
+
+const SAMPLE_LINKED_REPLY = {
+  reply_id: "REP-SAMPLE-001",
+  target_id: "TL-0001",
+  target_path: "events/TL-0001/",
+  status: { it: "Esempio procedurale collegato", en: "Linked procedural sample" },
+  recorded_at: "2026-11-25",
+  summary: {
+    it: "Replica di prova collegata alla scheda TL-0001 per dimostrare il collegamento pubblico tra segnalazione, verifica della fonte primaria e nota di contesto senza alterare i fatti storici canonici.",
+    en: "Sample right-of-reply linked to record TL-0001 to demonstrate public linkage between a submitted reply, primary-source verification, and context notice without silently altering canonical historical facts.",
+  },
+};
+---
+
+<Base
+  title={c("Rettifiche e diritto di replica", "Corrections and right of reply")}
+  lang={lang}
+  description={c(
+    "Registro pubblico delle rettifiche, avvisi di revisione in corso, procedura di diritto di replica e trattamento D12 dei dati personali.",
+    "Public retraction register, active review notices, right-of-reply procedure, and D12 personal-data handling.",
+  )}
+>
+  <p class="kicker">{ui(lang).navMethod}</p>
+  <h1>{c("Rettifiche e diritto di replica", "Corrections and right of reply")}</h1>
+  <p class="lede max-w-3xl">
+    {c(
+      "Questa pagina è alimentata dal registro delle rettifiche (PK-07) e pubblica gli avvisi di revisione in corso, le correzioni tracciate e la procedura per esercitare il diritto di replica o portare nuove evidenze.",
+      "This page is fed by the retraction register (PK-07) and publishes active review notices, traced corrections, and the procedure to exercise the right of reply or bring new evidence.",
+    )}
+  </p>
+
+  <section class="mt-8">
+    <h2>{c("Avvisi di revisione e rettifiche", "Review notices and corrections")}</h2>
+    {activeNotices.length === 0 ? (
+      <div class="notice max-w-3xl mt-4">
+        {c(
+          "Nessuna rettifica o sospensione attiva nel registro (docs/retractions/register.v1.json).",
+          "No active retractions or suspensions in the register (docs/retractions/register.v1.json).",
+        )}
+      </div>
+    ) : (
+      <div class="grid gap-4 mt-4 max-w-4xl">
+        {activeNotices.map((entry) => (
+          <article class="card">
+            <p class="meta font-mono">
+              {entry.id} · {entry.source_id} · {entry.level} · {entry.status} · {entry.recorded_at}
+            </p>
+            {entry.public_notice ? (
+              <p>{entry.public_notice[lang]}</p>
+            ) : (
+              <p>{entry.reason}</p>
+            )}
+          </article>
+        ))}
+      </div>
+    )}
+    <p class="meta mt-4 max-w-3xl">
+      <strong>{c("Copie non controllabili", "Uncontrollable copies")}:</strong>{" "}
+      {register.uncontrollable_copies_declaration}
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Porta un'evidenza o esercita il diritto di replica", "Bring evidence or exercise right of reply")}</h2>
+    <div class="grid gap-4 md:grid-cols-2 mt-4 max-w-4xl">
+      <div class="card">
+        <h3>{c("Casi ordinari (segnalazione GitHub)", "Ordinary cases (GitHub issue)")}</h3>
+        <p>
+          {c(
+            "Per correzioni fattuali, integrazioni basate su fonti pubbliche o prove contrarie documentate, apri una segnalazione pubblica indicando l'ID del record e la fonte primaria.",
+            "For factual corrections, public-source additions, or documented contrary evidence, open a public issue specifying the record ID and primary source.",
+          )}
+        </p>
+        <p class="mt-3">
+          <a class="chip" href={GITHUB_ISSUE_URL} rel="noopener noreferrer">
+            {c("Porta un'evidenza su GitHub", "Bring evidence on GitHub")}
+          </a>
+        </p>
+      </div>
+      <div class="card">
+        <h3>{c("Evidenze sensibili e repliche personali (D12)", "Sensitive evidence and personal replies (D12)")}</h3>
+        <p>
+          {c(
+            "Per repliche riguardanti persone nominate, richieste di rimozione o oscuramento di dati personali (D12) o documenti non pubblicabili, utilizza il canale riservato diretto al titolare (amattis96) invece di una issue pubblica.",
+            "For replies concerning named persons, personal-data redaction or removal requests (D12), or non-public documents, use the private direct channel to the maintainer (amattis96) instead of a public issue.",
+          )}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-8 max-w-3xl">
+    <h2>{c("Procedura, tempi e moderazione", "Procedure, response times and moderation")}</h2>
+    <ul class="list-disc pl-5 space-y-2 mt-3">
+      <li>
+        <strong>{c("Tempi di risposta dichiarati", "Declared response times")}:</strong>{" "}
+        {c(
+          "presa in carico entro 48 ore; contenimento urgente D12 entro 24 ore; valutazione iniziale entro 5 giorni lavorativi; esito e pubblicazione nel registro entro 10 giorni lavorativi.",
+          "acknowledgement within 48 hours; urgent D12 containment within 24 hours; initial triage within 5 business days; resolution and register update within 10 business days.",
+        )}
+      </li>
+      <li>
+        <strong>{c("Moderazione", "Moderation")}:</strong>{" "}
+        {c(
+          "le repliche devono indicare affermazioni specifiche e fonti verificabili; i fatti storici canonici non vengono cancellati silenziosamente ma affiancati da avvisi e correzioni tracciate.",
+          "replies must identify specific claims and verifiable sources; canonical historical facts are never silently erased, and remain accompanied by traced notices and corrections.",
+        )}
+      </li>
+      <li>
+        <strong>{c("Dati personali (D12)", "Personal data (D12)")}:</strong>{" "}
+        {c(
+          "i dati personali non necessari o non più conservabili vengono rimossi lasciando una traccia amministrativa minima; nessuna relazione su persone fisiche viene pubblicata senza fonte primaria collegata.",
+          "unnecessary or non-retainable personal data is removed while preserving a minimal administrative trace; no relationship about a named person is published without a linked primary source.",
+        )}
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-8 max-w-3xl">
+    <h2>{c("Repliche collegate alle schede", "Replies linked to records")}</h2>
+    <article class="card mt-3">
+      <p class="meta font-mono">
+        {SAMPLE_LINKED_REPLY.reply_id} · {SAMPLE_LINKED_REPLY.status[lang]} · {SAMPLE_LINKED_REPLY.recorded_at}
+      </p>
+      <p class="mt-1">
+        {SAMPLE_LINKED_REPLY.summary[lang]}
+      </p>
+      <p class="meta mt-2">
+        {c("Scheda collegata", "Linked record")}:{" "}
+        <a href={href(SAMPLE_LINKED_REPLY.target_path, lang)}>{SAMPLE_LINKED_REPLY.target_id}</a>
+      </p>
+    </article>
+    <p class="meta mt-4">
+      <a href={href("changes/", lang)}>{c("Modifiche e correzioni storiche", "Historical changes and corrections")}</a>{" "}
+      · <a href={href("metodo/motore/", lang)}>{c("Trasparenza del motore", "Engine transparency")}</a>.
+    </p>
+  </section>
+</Base>

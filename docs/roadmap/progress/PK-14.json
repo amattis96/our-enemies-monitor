@@ -1,9 +1,28 @@
 {
   "id": "PK-14",
-  "status": "blocked",
+  "status": "completed",
   "linked_prs": [],
-  "runs": [],
-  "test_results": [],
-  "completion_evidence": [],
-  "updated_at": "2026-11-24T00:00:00Z"
+  "runs": [
+    {
+      "run_id": "wave-3-integration",
+      "recorded_at": "2026-11-25T22:50:30Z",
+      "outcome": "Implemented retrospective_backtest and historical_replay consuming PK-05 asof in src/discovery/backtest.ts and src/cli/backtest.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/generators-backtest.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:50:30Z"
+    },
+    {
+      "command": "node src/cli/backtest.ts --dates 2024-06-01,2025-01-01,2026-01-01",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:50:30Z"
+    }
+  ],
+  "completion_evidence": [
+    "Zero-leakage backtest and 3-date report with contamination and retrospective-partial disclaimers verified in test/generators-backtest.test.ts (8/8)"
+  ],
+  "updated_at": "2026-11-25T22:50:30Z"
 }

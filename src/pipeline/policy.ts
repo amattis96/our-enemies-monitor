@@ -128,6 +128,8 @@ export const CONTROL_PLANE: readonly string[] = [
   "docs/quality/thresholds.v1.json",
   "docs/quality/sets/",
   "docs/audit/inferences/registry.v1.json",
+  "docs/automation/engine.manifest.json",
+  "src/discovery/path-grammar.v1.json",
   "docs/security/",
   "package.json",
   "pnpm-lock.yaml",
