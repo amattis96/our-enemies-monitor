@@ -39,7 +39,13 @@
     "cadence:measure": "node src/cli/cadence.ts",
     "audit:mentions": "node src/cli/mentions.ts",
     "ingest": "node src/cli/ingest.ts",
-    "i18n:migrate-hashes": "node src/cli/migrate-translation-hashes.ts"
+    "i18n:migrate-hashes": "node src/cli/migrate-translation-hashes.ts",
+    "check:roadmap": "node src/cli/check-roadmap.ts",
+    "render:roadmap": "node src/cli/render-roadmap.ts",
+    "quality:report": "node src/cli/quality-report.ts",
+    "audit:entities": "node src/cli/audit-entities.ts",
+    "asof": "node src/cli/asof.ts",
+    "snapshot": "node src/cli/snapshot.ts"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",

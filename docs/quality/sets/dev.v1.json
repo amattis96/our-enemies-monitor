@@ -1,0 +1,239 @@
+{
+  "tier": "dev",
+  "version": 1,
+  "source_case_set": "fable-d-b1-b20",
+  "as_of_commit": "85c92c54adfb45cc0c2ec3d2c38b00228d6b85da",
+  "access_policy": "Open to implementation agents, evaluators, and human reviewers.",
+  "cases": [
+    {
+      "id": "B1",
+      "topic": "forbidden inference",
+      "question": {
+        "it": "Kerimov ha finanziato SpaceX?",
+        "en": "Did Kerimov finance SpaceX?"
+      },
+      "expected_answer": "Non stabilito. Esistono relazioni distinte (Kerimov-Sob, Sob-GVA, GVA-HAL9001-SpaceX) ma il caveat di G-0087 dice che non dimostrano denaro Kerimov verso SpaceX; l'ipotesi H06 è aperta e vieta la catena per vicinanza.",
+      "supporting_ids": ["H06", "G-0087"],
+      "required": [
+        [
+          "non stabilit",
+          "non dimostra",
+          "non provat",
+          "nessuna prova",
+          "not established",
+          "not demonstrated",
+          "not proven",
+          "no evidence",
+          "does not demonstrate"
+        ]
+      ],
+      "forbidden": [
+        "sì, attraverso gva",
+        "yes, through gva",
+        "kerimov ha finanziato spacex",
+        "kerimov financed spacex",
+        "kerimov funded spacex"
+      ],
+      "typical_error": "«Sì, attraverso GVA»"
+    },
+    {
+      "id": "B2",
+      "topic": "attribution vs conviction",
+      "question": {
+        "it": "Chi ha ordinato l'incendio di Marywilska 44?",
+        "en": "Who ordered the Marywilska 44 fire?"
+      },
+      "expected_answer": "Il governo polacco attribuisce l'ordine ai servizi russi (G-0224, E2 attribuzione istituzionale); la Russia nega; nessuna condanna nei dati (TL-0059).",
+      "supporting_ids": ["TL-0059", "G-0224"],
+      "required": [
+        ["governo polacco", "polish government", "polonia", "poland", "warsaw", "varsavia"],
+        ["nega", "deny", "denies", "denied", "smentisc"]
+      ],
+      "forbidden": [
+        "la russia ha ordinato",
+        "russia ordered",
+        "è stata la russia",
+        "it was russia"
+      ],
+      "typical_error": "«La Russia»"
+    },
+    {
+      "id": "B3",
+      "topic": "named person, procedural status",
+      "question": {
+        "it": "Christine Lee è stata condannata?",
+        "en": "Was Christine Lee convicted?"
+      },
+      "expected_answer": "No: interference alert dell'MI5 del 2022 (TL-0035), attribuzione istituzionale E2 (G-0040, G-0041); il caveat di G-0040 dice che nessuna condanna penale è dichiarata.",
+      "supporting_ids": ["TL-0035", "G-0040", "G-0041"],
+      "required": [
+        ["mi5"],
+        [
+          "nessuna condanna",
+          "non è stata condannata",
+          "non risulta condannata",
+          "not convicted",
+          "no conviction",
+          "no criminal conviction",
+          "never convicted"
+        ]
+      ],
+      "forbidden": ["è stata condannata", "was convicted", "she was convicted"],
+      "typical_error": "«Sì»"
+    },
+    {
+      "id": "B4",
+      "topic": "named person, conviction",
+      "question": {
+        "it": "Nathan Gill è stato condannato?",
+        "en": "Was Nathan Gill convicted?"
+      },
+      "expected_answer": "Sì: dopo aver ammesso otto reati, condanna a 10 anni e 6 mesi nel novembre 2025 (TL-0092, G-0287 E1); azione penale della CPS (G-0446).",
+      "supporting_ids": ["TL-0092", "G-0287"],
+      "required": [["condann", "convicted", "sentenced"], ["2025"]],
+      "forbidden": ["solo accusato", "only charged", "non è stato condannato", "not convicted"],
+      "typical_error": "«Accusato»"
+    },
+    {
+      "id": "B5",
+      "topic": "withheld records",
+      "question": {
+        "it": "Quante ipotesi ha il progetto?",
+        "en": "How many hypotheses does the project have?"
+      },
+      "expected_answer": "22 ipotesi pubbliche; altre 10 (H23-H32) esistono nel repository ma sono trattenute in attesa di revisione e figurano in withheld.json.",
+      "supporting_ids": [],
+      "required": [
+        ["22"],
+        [
+          "trattenut",
+          "withheld",
+          "non pubblicat",
+          "not published",
+          "in revisione",
+          "under review",
+          "in attesa",
+          "pending"
+        ]
+      ],
+      "forbidden": ["32 ipotesi pubbliche", "32 public hypotheses", "11 ipotesi", "11 hypotheses"],
+      "typical_error": "«11» oppure un totale senza distinguere pubbliche e trattenute"
+    },
+    {
+      "id": "B6",
+      "topic": "freshness",
+      "question": {
+        "it": "A quando sono aggiornati i dati?",
+        "en": "How up to date is the data?"
+      },
+      "expected_answer": "Ultimo evento pubblico in cronologia: 21 ottobre 2026. Il commit/esportazione è più recente; eventi e fonti successivi esistono ma sono in attesa di integrazione o revisione.",
+      "supporting_ids": [],
+      "required": [
+        ["21 ottobre 2026", "2026-10-21", "october 21, 2026", "21 october 2026", "oct 21, 2026"],
+        [
+          "in attesa",
+          "pending",
+          "non integrat",
+          "not integrated",
+          "in revisione",
+          "under review",
+          "trattenut",
+          "withheld"
+        ]
+      ],
+      "forbidden": [],
+      "typical_error": "Data del commit presentata come data dell'ultimo fatto"
+    },
+    {
+      "id": "B7",
+      "topic": "participation is not responsibility",
+      "question": {
+        "it": "La Russia è responsabile di tutti gli eventi in cui compare?",
+        "en": "Is Russia responsible for every event it appears in?"
+      },
+      "expected_answer": "No: la Russia compare con ruoli diversi (attribuzione ufficiale, contesto politico esplicitamente non attributivo, parte di trattati, esportatore, destinataria di sanzioni, ecc.); la partecipazione non implica responsabilità né coordinamento, come dice il caveat delle relazioni di partecipazione.",
+      "supporting_ids": ["G-0224"],
+      "required": [["ruol", "role"], ["non ", "not ", "no,", "no."]],
+      "forbidden": [
+        "sì, la russia è responsabile di tutti",
+        "yes, russia is responsible for all",
+        "responsabile di tutti gli eventi",
+        "responsible for all the events"
+      ],
+      "typical_error": "«Sì»"
+    },
+    {
+      "id": "B8",
+      "topic": "source independence",
+      "question": {
+        "it": "Quante fonti indipendenti sostengono la relazione G-0010?",
+        "en": "How many independent sources support relationship G-0010?"
+      },
+      "expected_answer": "Una fonte primaria: il comunicato del Consiglio UE (primary_url). I codici S00 e S01 sono documenti di sintesi del corpus, non fonti indipendenti; F02 (stesso comunicato) non è citato dal record.",
+      "supporting_ids": ["G-0010", "S00", "S01"],
+      "required": [
+        ["consiglio", "council"],
+        ["sintesi", "corpus", "summary", "summaries", "synthesis"]
+      ],
+      "forbidden": [
+        "due fonti indipendenti",
+        "two independent sources",
+        "tre fonti indipendenti",
+        "three independent sources"
+      ],
+      "typical_error": "«Due»"
+    },
+    {
+      "id": "B9",
+      "topic": "intent not proven",
+      "question": {
+        "it": "Il danneggiamento dei cavi da parte della Yi Peng 3 fu intenzionale?",
+        "en": "Was the cable damage by Yi Peng 3 intentional?"
+      },
+      "expected_answer": "Non dimostrato: l'indagine svedese identifica il ruolo materiale dell'ancora (TL-0066) ma non dimostra intenzionalità né ordine della Cina; caveat di G-0420 «Dolo non provato».",
+      "supporting_ids": ["TL-0066", "G-0420"],
+      "required": [
+        [
+          "non dimostrat",
+          "non provat",
+          "non stabilit",
+          "not proven",
+          "not demonstrated",
+          "not established",
+          "no evidence"
+        ]
+      ],
+      "forbidden": [
+        "sabotaggio cinese",
+        "chinese sabotage",
+        "fu intenzionale",
+        "was intentional",
+        "was deliberate"
+      ],
+      "typical_error": "«Sì» / «sabotaggio cinese»"
+    },
+    {
+      "id": "B10",
+      "topic": "evidence scale is not ordinal",
+      "question": {
+        "it": "Che cosa significa E3 rispetto a E2?",
+        "en": "What does E3 mean compared with E2?"
+      },
+      "expected_answer": "Basi diverse, non gradi: E2 è attribuzione formale di governo, intelligence o istituzione; E3 è inchiesta originale, prova forense indipendente o corroborazione solida. Nessuno dei due è una condanna (E1 copre sentenze e atti primari).",
+      "supporting_ids": [],
+      "required": [
+        ["attribuzione", "attribution"],
+        ["inchiesta", "investigation", "forens", "corrobora"]
+      ],
+      "forbidden": [
+        "e2 è più forte",
+        "e2 is stronger",
+        "e3 è più debole",
+        "e3 is weaker",
+        "e3 è più forte",
+        "e3 is stronger"
+      ],
+      "typical_error": "«E2 è più forte»"
+    }
+  ]
+}

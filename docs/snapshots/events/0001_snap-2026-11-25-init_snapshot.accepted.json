@@ -1,0 +1,16 @@
+{
+  "commit": "9082e40e473881d5be7381449009c60acf81775c",
+  "dataset_hash": "1150379c640462fac039957a72879e2ab178de85e4a32b290909af873aaffc29",
+  "event_id": "evt-0001-snap-2026-11-25-init-snapshot.accepted",
+  "idempotency_key": "snap-2026-11-25-init:snapshot.accepted:9082e40e473881d5be7381449009c60acf81775c:1150379c640462fac039957a72879e2ab178de85e4a32b290909af873aaffc29",
+  "precision": "second",
+  "recorded_at": "2026-11-25T21:27:49Z",
+  "snapshot_id": "snap-2026-11-25-init",
+  "transition": "snapshot.accepted",
+  "versions": {
+    "dataset": "0.1.0",
+    "engine": "1.0.0",
+    "portal": "0.1.0",
+    "schema": "1.0.0"
+  }
+}

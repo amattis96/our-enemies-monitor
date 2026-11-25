@@ -1,4 +1,5 @@
 ---
+import { cleanExportDetail, cleanExportLabel } from "../../../src/site/glossary.ts";
 import type { ExportMenuItem } from "../lib/exports.ts";
 import Icon from "./Icon.astro";
 
@@ -11,6 +12,7 @@ interface Props {
   class?: string;
 }
 const { label, groups, class: className } = Astro.props;
+const lang = Astro.url.pathname.includes("/en/") || Astro.url.pathname === "/en" ? "en" : "it";
 ---
 
 <details class:list={["export-menu no-print", className]} data-export-menu data-pagefind-ignore>
@@ -26,12 +28,14 @@ const { label, groups, class: className } = Astro.props;
           <p class="kicker">{group.title}</p>
           <ul>
             {group.items.map((item) => {
+              const displayLabel = cleanExportLabel(item.label, lang);
+              const displayDetail = cleanExportDetail(item.detail, lang);
               const body = (
                 <>
                   <span class="export-format">{item.format}</span>
                   <span class="export-text">
-                    <span class="export-label">{item.label}</span>
-                    {item.detail && <span class="export-detail">{item.detail}</span>}
+                    <span class="export-label">{displayLabel}</span>
+                    {displayDetail && <span class="export-detail">{displayDetail}</span>}
                   </span>
                 </>
               );

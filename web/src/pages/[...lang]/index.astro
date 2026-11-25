@@ -10,6 +10,7 @@ import { choose, languageFromParam, languagePaths, textOf, ui } from "../../../.
 import { archivedResearch } from "../../../../src/site/research.ts";
 import { THEME_ICON } from "../../../../src/site/visual.ts";
 import EvidenceStamp from "../../components/EvidenceStamp.astro";
+import GlossaryTerm from "../../components/GlossaryTerm.astro";
 import Icon from "../../components/Icon.astro";
 import Illustration from "../../components/Illustration.astro";
 import T from "../../components/T.astro";
@@ -131,17 +132,79 @@ const dateline = [
     <div class="masthead-rule"></div>
   </Fragment>
 
+  <section aria-labelledby="now-title" class="mt-6">
+    <h2 id="now-title" class="section-title">{c("Cosa succede adesso", "What's happening now")}</h2>
+    <div class="front">
+      <section class="front-lead" aria-labelledby="lead-title">
+        <p class="kicker kicker-signal">
+          {leadArticle
+            ? c("In primo piano · indagine", "Featured · investigation")
+            : c("Dalla cronologia · ultimo evento integrato", "From the timeline · latest integrated event")}
+        </p>
+        {
+          leadArticle ? (
+            <article>
+              <h3 id="lead-title" class="front-lead-title">
+                <a href={href(`articles/${leadArticle.id}/`, lang)}><T text={leadArticle.title} lang={lang} /></a>
+              </h3>
+              <p class="lede"><T text={leadArticle.summary} lang={lang} /></p>
+              <p class="front-meta">
+                <span class="mono">{formatPartialDate(leadArticle.date, lang)}</span>
+                <span class="mono">{leadArticle.id}</span>
+                <span>{REVIEW_STATUS_LABELS[leadArticle.review.status][lang]}</span>
+              </p>
+            </article>
+          ) : lead && (
+            <article>
+              <h3 id="lead-title" class="front-lead-title">
+                <a href={href(`events/${lead.id}/`, lang)}><T text={lead.title} lang={lang} /></a>
+              </h3>
+              <p class="lede"><T text={lead.description} lang={lang} /></p>
+              <p class="front-meta">
+                <span class="mono">{formatDateRange(lead.date.start, lead.date.end, lang)}</span>
+                {lead.geography && <span><T text={lead.geography} lang={lang} /></span>}
+                <span class="mono">{lead.id}</span>
+                {lead.evidence_level && <EvidenceStamp level={lead.evidence_level} lang={lang} />}
+              </p>
+              <ThemeList themes={lead.themes} lang={lang} />
+            </article>
+          )
+        }
+      </section>
+
+      <section class="front-wire" aria-labelledby="wire-title">
+        <h3 id="wire-title" class="kicker">{c("Ultimi eventi integrati", "Latest integrated events")}</h3>
+        <ol>
+          {
+            wire.map((event) => (
+              <li>
+                <span class="mono meta">{formatDateRange(event.date.start, event.date.end, lang)}</span>
+                <a href={href(`events/${event.id}/`, lang)}><T text={event.title} lang={lang} /></a>
+              </li>
+            ))
+          }
+        </ol>
+        <a class="more" href={href("timeline/", lang)}>{c("Tutta la cronologia", "Full timeline")} <Icon name="ui-arrow-right" /></a>
+      </section>
+    </div>
+  </section>
+
   {
     latestResearch.length > 0 && (
       <section aria-labelledby="research-title" class="mt-10">
-        <p class="kicker kicker-signal">{c("Ricerca OSINT · archivio aggiornato", "OSINT research · updated archive")}</p>
+        <p class="kicker kicker-signal">{c("Ricerca", "Research")} <GlossaryTerm id="osint" lang={lang} /> · {c("archivio aggiornato", "updated archive")}</p>
         <h2 id="research-title" class="section-title">
           {c("Nuove fonti e dossier acquisiti", "New research sources and dossiers")}
         </h2>
         <p class="meta max-w-3xl">
           {c(
-            "Documenti acquisiti e versionati su GitHub. Le nuove informazioni non diventano automaticamente eventi della cronologia: per quelli serve l'integrazione e la revisione dei record canonici.",
-            "Research documents committed and versioned on GitHub. Newly archived findings do not automatically become timeline events: those require canonical data ingestion and record review.",
+            "Documenti acquisiti e versionati su GitHub. Le nuove informazioni non diventano automaticamente",
+            "Research documents committed and versioned on GitHub. Newly archived findings do not automatically become",
+          )}{" "}
+          <GlossaryTerm id="canonical_records" lang={lang} label={c("record canonici", "canonical records")} />:{" "}
+          {c(
+            "per quelli serve l'integrazione e la revisione.",
+            "those require data ingestion and review.",
           )}
         </p>
         <ul class="grid gap-6 md:grid-cols-2 mt-6">
@@ -167,60 +230,6 @@ const dateline = [
       </section>
     )
   }
-
-  <div class="front">
-    <section class="front-lead" aria-labelledby="lead-title">
-      <p class="kicker kicker-signal">
-        {leadArticle
-          ? c("In primo piano · indagine", "Featured · investigation")
-          : c("Dalla cronologia · ultimo evento integrato", "From the timeline · latest integrated event")}
-      </p>
-      {
-        leadArticle ? (
-          <article>
-            <h2 id="lead-title" class="front-lead-title">
-              <a href={href(`articles/${leadArticle.id}/`, lang)}><T text={leadArticle.title} lang={lang} /></a>
-            </h2>
-            <p class="lede"><T text={leadArticle.summary} lang={lang} /></p>
-            <p class="front-meta">
-              <span class="mono">{formatPartialDate(leadArticle.date, lang)}</span>
-              <span class="mono">{leadArticle.id}</span>
-              <span>{REVIEW_STATUS_LABELS[leadArticle.review.status][lang]}</span>
-            </p>
-          </article>
-        ) : lead && (
-          <article>
-            <h2 id="lead-title" class="front-lead-title">
-              <a href={href(`events/${lead.id}/`, lang)}><T text={lead.title} lang={lang} /></a>
-            </h2>
-            <p class="lede"><T text={lead.description} lang={lang} /></p>
-            <p class="front-meta">
-              <span class="mono">{formatDateRange(lead.date.start, lead.date.end, lang)}</span>
-              {lead.geography && <span><T text={lead.geography} lang={lang} /></span>}
-              <span class="mono">{lead.id}</span>
-              {lead.evidence_level && <EvidenceStamp level={lead.evidence_level} lang={lang} />}
-            </p>
-            <ThemeList themes={lead.themes} lang={lang} />
-          </article>
-        )
-      }
-    </section>
-
-    <section class="front-wire" aria-labelledby="wire-title">
-      <h2 id="wire-title" class="kicker">{c("Ultimi eventi integrati", "Latest integrated events")}</h2>
-      <ol>
-        {
-          wire.map((event) => (
-            <li>
-              <span class="mono meta">{formatDateRange(event.date.start, event.date.end, lang)}</span>
-              <a href={href(`events/${event.id}/`, lang)}><T text={event.title} lang={lang} /></a>
-            </li>
-          ))
-        }
-      </ol>
-      <a class="more" href={href("timeline/", lang)}>{c("Tutta la cronologia", "Full timeline")} <Icon name="ui-arrow-right" /></a>
-    </section>
-  </div>
 
   <section aria-labelledby="console-title" class="mt-12">
     <h2 id="console-title" class="section-title">{c("Il monitor in cifre", "The monitor in figures")}</h2>
@@ -302,11 +311,14 @@ const dateline = [
           </p>
         </div>
         <p class="meta">
+          <GlossaryTerm id="baseline" lang={lang} />{" "}
+          {c("con", "with")} <GlossaryTerm id="cutoff" lang={lang} />{" "}
           {c(
-            "Baseline di ricerca con cutoff al 21 ottobre 2026, ancora in revisione editoriale. Le proposte di Fonte_09 (fino all’11 novembre 2026) restano nel repository e non sono incluse nel portale finché non saranno integrate e revisionate. La presenza di un record della baseline non implica verifica indipendente.",
-            "Provisional research baseline with a cut-off of 21 October 2026, not an exhaustive census. Fonte_09 proposals (up to 11 November 2026) remain in Git and are not published until integrated and reviewed. Baseline records have not all been independently verified; English texts are machine translations pending review.",
+            "al 21 ottobre 2026, ancora in revisione editoriale. Le proposte di Fonte_09 (fino all’11 novembre 2026) restano nel repository e non sono incluse nel portale finché non saranno integrate e revisionate. La presenza di un record della baseline non implica verifica indipendente.",
+            "of 21 October 2026, not an exhaustive census. Fonte_09 proposals (up to 11 November 2026) remain in Git and are not published until integrated and reviewed. Baseline records have not all been independently verified; English texts are machine translations pending review.",
           )}{" "}
-          <a href={href("methodology/", lang)}>{t.navMethodology}</a>
+          <a href={href("methodology/", lang)}>{t.navMethodology}</a> ·{" "}
+          <a href={href("glossario/", lang)}>{c("Glossario", "Glossary")}</a>
         </p>
       </div>
     </div>

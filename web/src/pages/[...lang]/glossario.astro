@@ -1,0 +1,120 @@
+---
+import {
+  GLOSSARY,
+  GLOSSARY_CATEGORY_LABELS,
+  type GlossaryCategory,
+} from "../../../../src/site/glossary.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const categories: GlossaryCategory[] = ["method", "evidence", "technical", "governance"];
+const grouped = categories
+  .map((category) => ({
+    category,
+    label: GLOSSARY_CATEGORY_LABELS[category][lang],
+    entries: GLOSSARY.filter((entry) => entry.category === category),
+  }))
+  .filter((g) => g.entries.length > 0);
+---
+
+<Base
+  title={c("Glossario", "Glossary")}
+  lang={lang}
+  description={c(
+    "Definizioni in linguaggio chiaro dei termini usati nel monitor: OSINT, FIMI, baseline, cutoff, record canonici, GNSS, UBO e livelli E1–E5.",
+    "Plain-language definitions of terms used in the monitor: OSINT, FIMI, baseline, cut-off, canonical records, GNSS, UBO and E1–E5 levels.",
+  )}
+  searchable
+>
+  <header class="page-head">
+    <p class="kicker">{c("Guida alla lettura", "Reading guide")}</p>
+    <h1>{c("Glossario", "Glossary")}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "Spiegazione in linguaggio chiaro dei termini tecnici, metodologici ed evidenziali usati nelle schede e nelle indagini.",
+        "Plain-language explanations of the technical, methodological and evidentiary terms used across records and investigations.",
+      )}
+    </p>
+  </header>
+
+  <nav class="glossary-toc" aria-label={c("Categorie del glossario", "Glossary categories")}>
+    {grouped.map((g) => (
+      <a class="chip" href={`#${g.category}`}>{g.label}</a>
+    ))}
+  </nav>
+
+  {
+    grouped.map((g) => (
+      <section id={g.category} class="mt-10">
+        <h2>{g.label}</h2>
+        <dl class="glossary-list">
+          {g.entries.map((entry) => (
+            <div id={entry.id} class="glossary-item">
+              <dt>
+                <span class="glossary-item-term">{entry.term[lang]}</span>
+                <span class="glossary-item-short"> — {entry.short[lang]}</span>
+              </dt>
+              <dd>
+                <p>{entry.definition[lang]}</p>
+                {entry.seeAlso && (
+                  <p class="meta">
+                    <a href={href(entry.seeAlso, lang)}>
+                      {c("Approfondisci nella sezione dedicata", "Explore in the dedicated section")}
+                    </a>
+                  </p>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .glossary-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-4) 0 var(--space-6);
+  }
+  .glossary-list {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 56rem;
+  }
+  .glossary-item {
+    padding: var(--space-4);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-2);
+    background: var(--paper-raised);
+  }
+  .glossary-item:target {
+    border-color: var(--accent);
+    background: var(--accent-wash);
+  }
+  .glossary-item dt {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .glossary-item-short {
+    font-weight: 400;
+    color: var(--ink-2);
+  }
+  .glossary-item dd {
+    margin: var(--space-2) 0 0;
+    color: var(--ink-2);
+  }
+  .glossary-item dd p {
+    margin: 0;
+  }
+  .glossary-item dd p + p {
+    margin-top: var(--space-2);
+  }
+</style>

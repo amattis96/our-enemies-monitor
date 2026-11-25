@@ -4,10 +4,12 @@ import { z } from "zod";
 import { ARTICLE_SCHEMAS, CASE_SCHEMAS, COLLECTIONS } from "../model/index.ts";
 import { ProposalFile } from "../model/proposals.ts";
 import { SCHEMAS_DIR } from "../pipeline/paths.ts";
+import { RoadmapPlanSchema } from "../roadmap/schema.ts";
 
 // Generate JSON Schema for each collection, the article files, the B18 case and
-// claim records (ADR-06, additive) and the M6
-// proposals sidecar (`proposals.schema.json`) from the Zod model.
+// claim records (ADR-06, additive), the M6 proposals sidecar
+// (`proposals.schema.json`), and the M8 executable roadmap (`roadmap.schema.json`)
+// from the Zod model.
 // With --check, fail instead of writing when the files are stale.
 const check = process.argv.includes("--check");
 
@@ -17,6 +19,7 @@ const expected = new Map(
     ...ARTICLE_SCHEMAS,
     ...CASE_SCHEMAS,
     proposals: ProposalFile,
+    roadmap: RoadmapPlanSchema,
   }).map(([collection, schema]) => {
     const json = z.toJSONSchema(schema, { target: "draft-2020-12", io: "input" });
     const document = {

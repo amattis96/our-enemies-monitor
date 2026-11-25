@@ -1,0 +1,69 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { glossaryEntry } from "../../../src/site/glossary.ts";
+import { href } from "../lib/links.ts";
+
+interface Props {
+  id: string;
+  lang: Language;
+  /** Optional custom visible text (e.g. lowercase or plural form). */
+  label?: string;
+  /** Force or suppress the inline first-occurrence explanation; auto-tracked per page when omitted. */
+  first?: boolean;
+}
+
+const pageSeen = new WeakMap<object, Set<string>>();
+const { id, lang, label, first } = Astro.props;
+const entry = glossaryEntry(id);
+
+let isFirst = first;
+if (isFirst === undefined) {
+  const locals = Astro.locals as object;
+  let seen = pageSeen.get(locals);
+  if (!seen) {
+    seen = new Set<string>();
+    pageSeen.set(locals, seen);
+  }
+  const key = id.toLowerCase();
+  isFirst = !seen.has(key);
+  seen.add(key);
+}
+
+const visibleLabel = label ?? entry?.short[lang] ?? id;
+---
+
+{
+  entry ? (
+    <span class="glossary-ref">
+      <a
+        class="glossary-term"
+        href={href(`glossario/#${entry.id}`, lang)}
+        title={`${entry.term[lang]}: ${entry.definition[lang]}`}
+      >
+        {label ?? entry.term[lang]}
+      </a>
+      {isFirst && (
+        <span class="glossary-inline"> ({entry.short[lang]})</span>
+      )}
+    </span>
+  ) : (
+    <span>{visibleLabel}</span>
+  )
+}
+
+<style>
+  .glossary-term {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--ink-3);
+    text-underline-offset: 0.18em;
+  }
+  .glossary-term:hover {
+    text-decoration-style: solid;
+    text-decoration-color: var(--accent);
+  }
+  .glossary-inline {
+    color: var(--ink-2);
+    font-size: 0.92em;
+  }
+</style>

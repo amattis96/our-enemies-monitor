@@ -1,6 +1,6 @@
 ---
 import type { Language } from "../../../src/model/index.ts";
-import { ui } from "../../../src/site/i18n.ts";
+import { choose, ui } from "../../../src/site/i18n.ts";
 import { inlineSvg } from "../lib/design.ts";
 import { href } from "../lib/links.ts";
 import Icon from "./Icon.astro";
@@ -14,10 +14,11 @@ interface Props {
 }
 const { lang, translated } = Astro.props;
 const t = ui(lang);
+const c = (it: string, en: string) => choose(lang, it, en);
 const current = Astro.url.pathname;
 const home = href("", lang);
 
-/** Primary areas; `also` marks sub-pages that keep the item active. */
+/** Primary navigation areas; `also` marks sub-pages that keep the item active. */
 const items = [
   { path: "articles/", label: t.navArticles, icon: "nav-investigations", also: [] },
   { path: "timeline/", label: t.navTimeline, icon: "nav-timeline", also: [] },
@@ -34,7 +35,7 @@ const items = [
     path: "methodology/",
     label: t.navMethod,
     icon: "nav-methodology",
-    also: ["data/", "changes/"],
+    also: ["glossario/", "data/", "changes/"],
   },
 ].map((item) => {
   const target = href(item.path, lang);
@@ -101,12 +102,12 @@ const mark = inlineSvg("logo-mark.svg", "hdr");
           </li>
         ))
       }
-    </ul>
-    <ul class="sheet-secondary">
-      <li><a href={href("hypotheses/", lang)}>{t.navHypotheses}</a></li>
-      <li><a href={href("sources/", lang)}>{t.navSources}</a></li>
-      <li><a href={href("data/", lang)}>{t.navData}</a></li>
-      <li><a href={href("changes/", lang)}>{t.navChanges}</a></li>
+      <li>
+        <a href={href("glossario/", lang)} aria-current={current.startsWith(href("glossario/", lang)) ? "page" : undefined}>
+          <Icon name="nav-methodology" />
+          {c("Glossario", "Glossary")}
+        </a>
+      </li>
     </ul>
   </nav>
   <div class="sheet-tools">

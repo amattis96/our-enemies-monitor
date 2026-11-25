@@ -1,0 +1,645 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "roadmap.schema.json",
+  "title": "roadmap",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Schema version of the roadmap plan"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Document title"
+    },
+    "updated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Plan date in YYYY-MM-DD format"
+    },
+    "frozen_scope": {
+      "type": "object",
+      "properties": {
+        "items_count": {
+          "type": "number",
+          "const": 140,
+          "description": "Total number of tracked items (1-140)"
+        },
+        "packages_count": {
+          "type": "number",
+          "const": 39,
+          "description": "Total number of top-level packages (PK-00..PK-38)"
+        },
+        "milestones": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "M8",
+              "M9",
+              "M10",
+              "M11",
+              "M12",
+              "M13"
+            ],
+            "description": "Roadmap milestone identifier (M8 through M13)"
+          },
+          "description": "Ordered milestone IDs"
+        }
+      },
+      "required": [
+        "items_count",
+        "packages_count",
+        "milestones"
+      ],
+      "additionalProperties": false,
+      "description": "Frozen scope metadata"
+    },
+    "milestones": {
+      "minItems": 6,
+      "maxItems": 6,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "M8",
+              "M9",
+              "M10",
+              "M11",
+              "M12",
+              "M13"
+            ],
+            "description": "Milestone identifier (M8-M13)"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Milestone title"
+          },
+          "exit_criteria": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Criteria required to close the milestone"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "exit_criteria"
+        ],
+        "additionalProperties": false,
+        "description": "Milestone definition and exit criteria"
+      },
+      "description": "Milestones M8 through M13"
+    },
+    "decisions": {
+      "minItems": 14,
+      "maxItems": 14,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^D([1-9]|1[0-4])$",
+            "description": "Decision identifier (D1 through D14)"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Short decision title"
+          },
+          "recommendation": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Recommended resolution from ENGINE_PLAN.md"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "resolved"
+            ],
+            "description": "Current decision status (open or resolved)"
+          },
+          "resolution": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Recorded resolution when status is resolved"
+          },
+          "blocks_description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Summary of what this decision blocks"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "recommendation",
+          "status",
+          "resolution",
+          "blocks_description"
+        ],
+        "additionalProperties": false,
+        "description": "Owner decision entry (D1-D14)"
+      },
+      "description": "Owner decisions D1 through D14"
+    },
+    "packages": {
+      "minItems": 39,
+      "maxItems": 39,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+            "description": "Package identifier (PK-00 through PK-38)"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable package title"
+          },
+          "milestone": {
+            "type": "string",
+            "enum": [
+              "M8",
+              "M9",
+              "M10",
+              "M11",
+              "M12",
+              "M13"
+            ],
+            "description": "Target milestone"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 140,
+              "description": "Traceability item number from 1 to 140"
+            },
+            "description": "Roadmap items (1-140) covered directly by this package"
+          },
+          "effort": {
+            "type": "string",
+            "enum": [
+              "S",
+              "M",
+              "L",
+              "research"
+            ],
+            "description": "Estimated implementation effort"
+          },
+          "recurring_cost": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "Ongoing operational cost"
+          },
+          "impact": {
+            "type": "string",
+            "enum": [
+              "medium",
+              "medium_high",
+              "high",
+              "critical"
+            ],
+            "description": "Expected impact"
+          },
+          "dependencies": {
+            "type": "object",
+            "properties": {
+              "requires": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                      "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^D([1-9]|1[0-4])$",
+                      "description": "Owner decision identifier (D1 through D14)"
+                    }
+                  ],
+                  "description": "Reference to a package, subpackage, or owner decision"
+                },
+                "description": "Blocking dependencies required before starting the package"
+              },
+              "to_complete": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                      "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^D([1-9]|1[0-4])$",
+                      "description": "Owner decision identifier (D1 through D14)"
+                    }
+                  ],
+                  "description": "Reference to a package, subpackage, or owner decision"
+                },
+                "description": "Dependencies required to close/complete the package (may start without them)"
+              },
+              "to_activate": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                      "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^D([1-9]|1[0-4])$",
+                      "description": "Owner decision identifier (D1 through D14)"
+                    }
+                  ],
+                  "description": "Reference to a package, subpackage, or owner decision"
+                },
+                "description": "Dependencies required before activating in production or publishing"
+              },
+              "extensions": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                      "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^D([1-9]|1[0-4])$",
+                      "description": "Owner decision identifier (D1 through D14)"
+                    }
+                  ],
+                  "description": "Reference to a package, subpackage, or owner decision"
+                },
+                "description": "Optional future capabilities that do not block the base version"
+              }
+            },
+            "required": [
+              "requires",
+              "to_complete",
+              "to_activate",
+              "extensions"
+            ],
+            "additionalProperties": false,
+            "description": "Package dependencies across the four types"
+          },
+          "deliverables": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Key deliverables for this package"
+          },
+          "acceptance_criteria": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Verifiable acceptance criteria required to complete the package"
+          },
+          "human_review_required": {
+            "type": "boolean",
+            "description": "Whether owner/human review or approval is required"
+          },
+          "execution_role": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Expected execution role(s)"
+          },
+          "data_readiness_gate_required": {
+            "description": "Whether the M13 Data Readiness Gate must pass before activation",
+            "type": "boolean"
+          },
+          "initial_disposition": {
+            "description": "Optional initial disposition (e.g., deferred for PK-32, conditional for PK-34..36)",
+            "type": "string",
+            "enum": [
+              "active",
+              "deferred",
+              "conditional"
+            ]
+          },
+          "subpackages_only": {
+            "description": "True when execution is split entirely into subpackages (e.g., PK-06, PK-15)",
+            "type": "boolean"
+          },
+          "subpackages": {
+            "description": "Optional subpackages with independent operational state",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                  "description": "Subpackage identifier (e.g., PK-06A, PK-15A, PK-25-CAL)"
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Human-readable subpackage title"
+                },
+                "milestone": {
+                  "type": "string",
+                  "enum": [
+                    "M8",
+                    "M9",
+                    "M10",
+                    "M11",
+                    "M12",
+                    "M13"
+                  ],
+                  "description": "Target milestone"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 140,
+                    "description": "Traceability item number from 1 to 140"
+                  },
+                  "description": "Roadmap items (1-140) covered by this subpackage"
+                },
+                "effort": {
+                  "type": "string",
+                  "enum": [
+                    "S",
+                    "M",
+                    "L",
+                    "research"
+                  ],
+                  "description": "Estimated implementation effort"
+                },
+                "recurring_cost": {
+                  "type": "string",
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ],
+                  "description": "Ongoing operational cost"
+                },
+                "impact": {
+                  "type": "string",
+                  "enum": [
+                    "medium",
+                    "medium_high",
+                    "high",
+                    "critical"
+                  ],
+                  "description": "Expected impact"
+                },
+                "dependencies": {
+                  "type": "object",
+                  "properties": {
+                    "requires": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                            "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^D([1-9]|1[0-4])$",
+                            "description": "Owner decision identifier (D1 through D14)"
+                          }
+                        ],
+                        "description": "Reference to a package, subpackage, or owner decision"
+                      },
+                      "description": "Blocking dependencies required before starting the package"
+                    },
+                    "to_complete": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                            "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^D([1-9]|1[0-4])$",
+                            "description": "Owner decision identifier (D1 through D14)"
+                          }
+                        ],
+                        "description": "Reference to a package, subpackage, or owner decision"
+                      },
+                      "description": "Dependencies required to close/complete the package (may start without them)"
+                    },
+                    "to_activate": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                            "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^D([1-9]|1[0-4])$",
+                            "description": "Owner decision identifier (D1 through D14)"
+                          }
+                        ],
+                        "description": "Reference to a package, subpackage, or owner decision"
+                      },
+                      "description": "Dependencies required before activating in production or publishing"
+                    },
+                    "extensions": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^PK-(0[0-9]|[12][0-9]|3[0-8])([A-D]|-CAL)?$",
+                            "description": "Package or subpackage identifier (e.g., PK-00, PK-06B, PK-15A, PK-25-CAL)"
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^D([1-9]|1[0-4])$",
+                            "description": "Owner decision identifier (D1 through D14)"
+                          }
+                        ],
+                        "description": "Reference to a package, subpackage, or owner decision"
+                      },
+                      "description": "Optional future capabilities that do not block the base version"
+                    }
+                  },
+                  "required": [
+                    "requires",
+                    "to_complete",
+                    "to_activate",
+                    "extensions"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Subpackage dependencies across the four types"
+                },
+                "deliverables": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": "Key deliverables for this subpackage"
+                },
+                "acceptance_criteria": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": "Verifiable acceptance criteria required to complete the subpackage"
+                },
+                "human_review_required": {
+                  "type": "boolean",
+                  "description": "Whether owner/human review or approval is required"
+                },
+                "execution_role": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Expected execution role(s), e.g. implementation_agent, investigative_agent"
+                },
+                "initial_disposition": {
+                  "description": "Optional initial disposition if deferred or conditional",
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "deferred",
+                    "conditional"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "milestone",
+                "items",
+                "effort",
+                "recurring_cost",
+                "impact",
+                "dependencies",
+                "deliverables",
+                "acceptance_criteria",
+                "human_review_required",
+                "execution_role"
+              ],
+              "additionalProperties": false,
+              "description": "Subpackage definition with independent operational state"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "milestone",
+          "items",
+          "effort",
+          "recurring_cost",
+          "impact",
+          "dependencies",
+          "deliverables",
+          "acceptance_criteria",
+          "human_review_required",
+          "execution_role"
+        ],
+        "additionalProperties": false,
+        "description": "Roadmap package definition (PK-00 through PK-38)"
+      },
+      "description": "Packages PK-00 through PK-38"
+    },
+    "parked_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 140,
+            "description": "Parked item number (e.g., 86-90, 106, 32)"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Short item title"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Reason the item is parked"
+          },
+          "reconsider_when": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Condition or milestone to reconsider this item"
+          }
+        },
+        "required": [
+          "item",
+          "title",
+          "reason",
+          "reconsider_when"
+        ],
+        "additionalProperties": false,
+        "description": "Parked item entry explicitly accounted for outside active packages"
+      },
+      "description": "Explicitly parked items (86-90, 106, 32)"
+    }
+  },
+  "required": [
+    "version",
+    "title",
+    "updated_at",
+    "frozen_scope",
+    "milestones",
+    "decisions",
+    "packages",
+    "parked_items"
+  ],
+  "additionalProperties": false,
+  "description": "Protected executable roadmap plan (docs/roadmap/plan.v1.json)"
+}
