@@ -69,6 +69,8 @@ jobs:
                 passed: verdict.passed,
                 checks: verdict.checks,
                 withheld_count: verdict.withheld_count,
+                warnings_count: verdict.warnings.length,
+                warnings: verdict.warnings,
               },
               null,
               2,
