@@ -1,0 +1,30 @@
+{
+  "id": "PK-02",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-1-m8-integration",
+      "recorded_at": "2026-11-25T22:34:00Z",
+      "outcome": "Implemented src/quality/, src/cli/quality-report.ts, docs/quality/, and test/quality.test.ts; awaiting external acceptance gates (PK-01, PK-08, D1, D6, D9)"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "node src/cli/quality-report.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:30:53Z"
+    },
+    {
+      "command": "pnpm check",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:33:40Z"
+    }
+  ],
+  "completion_evidence": [
+    "src/quality/ and src/cli/quality-report.ts implemented with 5-pillar quality report and dev.v1.json evaluation set",
+    "test/quality.test.ts (12/12) and full pnpm check (39/39 files, 415/415 tests) pass; d6_passed=true, visual_pages=931, severe_a11y=0"
+  ],
+  "notes": "No private repository needed (D1). Still needed to complete: PK-08, owner decisions D6 (thresholds) and D9 (AI budget); agent metrics are not measured yet and the public held-out split is not an independent holdout.",
+  "updated_at": "2026-11-26T12:00:00Z"
+}

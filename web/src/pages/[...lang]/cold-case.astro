@@ -1,0 +1,67 @@
+---
+import { choose, languageFromParam, languagePaths } from "../../../../src/site/i18n.ts";
+import { projectLaboratory } from "../../../../src/site/laboratory.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+import "../../styles/lab.css";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const lab = projectLaboratory(getModel());
+---
+
+<Base
+  title={c("Cold case", "Cold cases")}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Proiezione pubblica sanitizzata delle ipotesi dormienti e dei casi freddi, priva di fingerprint di riattivazione.",
+    "Sanitized public projection of dormant hypotheses and cold cases, without private reactivation fingerprints.",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">{c("Laboratorio · Cold case", "Laboratory · Cold cases")}</span>
+    <h1 class="mt-3">{c("Cold case e ipotesi dormienti", "Cold cases & dormant hypotheses")}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "Solo i metadati pubblici sanitizzati vengono mostrati qui (stato, periodo sintetico, motivazione di chiusura). I fingerprint di riattivazione (entità, luoghi, tecniche, radici note) restano rigorosamente nel dominio privato.",
+        "Only sanitized public metadata is displayed here (status, summary period, closure rationale). Private reactivation fingerprints (entities, places, techniques, known roots) remain strictly in the private domain.",
+      )}
+    </p>
+
+    <nav class="lab-subnav" aria-label={c("Viste del laboratorio", "Laboratory views")}>
+      <a href={href("laboratorio/", lang)}>{c("Area unificata", "Unified view")}</a>
+      <a href={href("domande/", lang)}>{c("Domande aperte", "Open questions")}</a>
+      <a href={href("cold-case/", lang)} aria-current="page">{c("Cold case", "Cold cases")}</a>
+      <a href={href("copertura/", lang)}>{c("Copertura", "Coverage")}</a>
+    </nav>
+
+    {lab.cold_cases.length === 0 ? (
+      <div class="notice max-w-3xl mt-6">
+        {c(
+          "Nessun cold case pubblico registrato al momento. Le valutazioni periodiche e le eventuali riaperture compaiono qui in forma sanitizzata senza esporre i fingerprint.",
+          "No public cold cases recorded at the moment. Periodic evaluations and reopenings appear here in sanitized form without exposing fingerprints.",
+        )}
+      </div>
+    ) : (
+      <div class="lab-cards">
+        {lab.cold_cases.map((cc) => (
+          <article class="lab-card">
+            <div class="lab-card-header">
+              <span class="lab-code">{cc.hypothesis_id}</span>
+              <span class="lab-pill">{cc.status}</span>
+            </div>
+            <p class="meta mb-0">
+              {c("Periodo", "Period")}: {cc.period_summary} ·{" "}
+              {c("Riattivazioni", "Reactivations")}: {cc.reactivation_count}
+            </p>
+            {cc.closure_rationale && <p class="meta mb-0">{cc.closure_rationale}</p>}
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</Base>

@@ -1,0 +1,24 @@
+{
+  "id": "PK-08",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-2-m8-integration",
+      "recorded_at": "2026-11-25T22:42:00Z",
+      "outcome": "Implemented src/runs/{schema,manifest,reconcile,index}.ts, src/cli/check-missed-runs.ts, schemas/run.schema.json, docs/runs/, and test/runs-queue-dormant.test.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/runs-queue-dormant.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:41:55Z"
+    }
+  ],
+  "completion_evidence": [
+    "Run manifest schema, public/private projection, missed-run reconciliation, and schemas/run.schema.json verified in test/runs-queue-dormant.test.ts (14/14)"
+  ],
+  "notes": "No private repository needed (D1): manifests are stored in docs/runs/manifests/ via agent/runs-* PRs. Acceptance still needs 7 consecutive days of valid manifests and a deliberately skipped run detected as missed.",
+  "updated_at": "2026-11-26T12:00:00Z"
+}

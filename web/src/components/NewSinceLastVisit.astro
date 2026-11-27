@@ -1,0 +1,86 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import { href } from "../lib/links.ts";
+
+interface Props {
+  lang: Language;
+  latestDate: string;
+  totalEvents: number;
+  totalEntities: number;
+}
+
+const { lang, latestDate, totalEvents, totalEntities } = Astro.props;
+const c = (it: string, en: string) => choose(lang, it, en);
+---
+
+<aside
+  class="new-since callout callout-info"
+  data-latest={latestDate}
+  data-events={String(totalEvents)}
+  data-entities={String(totalEntities)}
+  data-lang={lang}
+  aria-live="polite"
+>
+  <p class="kicker" style="margin:0;">
+    {c("Aggiornamenti dall'ultima visita", "New since your last visit")}
+  </p>
+  <p class="new-since-msg" style="margin:0.35rem 0;">
+    {c(
+      `Archivio locale: ${totalEvents} eventi e ${totalEntities} entità pubblicate (ultimo evento: ${latestDate}).`,
+      `Local archive: ${totalEvents} events and ${totalEntities} published entities (latest event: ${latestDate}).`,
+    )}
+  </p>
+  <div class="flex flex-wrap items-center gap-3">
+    <a href={href("changes/", lang)}>{c("Vedi registro modifiche", "View change log")}</a>{" "}
+    <a href={href("timeline/", lang)}>{c("Apri cronologia", "Open timeline")}</a>{" "}
+    <button type="button" class="btn btn-ghost new-since-mark">
+      {c("Segna come visto", "Mark as seen")}
+    </button>
+  </div>
+</aside>
+
+<script is:inline>
+  (() => {
+    const STORAGE_KEY = "oem-last-visit";
+    const box = document.querySelector(".new-since");
+    if (!box) return;
+    const lang = box.getAttribute("data-lang") || "it";
+    const latest = box.getAttribute("data-latest") || "";
+    const events = Number(box.getAttribute("data-events") || "0");
+    const msg = box.querySelector(".new-since-msg");
+    const markBtn = box.querySelector(".new-since-mark");
+
+    const render = () => {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const prev = JSON.parse(raw);
+        if (!prev || typeof prev !== "object") return;
+        const diffEvents = Math.max(0, events - Number(prev.events || 0));
+        if (msg) {
+          if (diffEvents > 0 || (prev.latest && latest > prev.latest)) {
+            msg.textContent =
+              lang === "it"
+                ? `Dalla tua ultima visita (${prev.seenAt || prev.latest || "precedente"}): ${diffEvents} nuovi eventi in cronologia (ultimo: ${latest}).`
+                : `Since your last visit (${prev.seenAt || prev.latest || "previous"}): ${diffEvents} new timeline events (latest: ${latest}).`;
+          } else {
+            msg.textContent =
+              lang === "it"
+                ? `Nessun nuovo evento rispetto alla tua ultima visita (${prev.seenAt || latest}).`
+                : `No new events since your last visit (${prev.seenAt || latest}).`;
+          }
+        }
+      } catch {}
+    };
+
+    render();
+    markBtn?.addEventListener("click", () => {
+      try {
+        const seenAt = new Date().toISOString().slice(0, 10);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ latest, events, seenAt }));
+        render();
+      } catch {}
+    });
+  })();
+</script>

@@ -1,0 +1,79 @@
+---
+import { formatPartialDate, REVIEW_STATUS_LABELS } from "../../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths, textOf } from "../../../../../src/site/i18n.ts";
+import {
+  type ElectionDossierProjection,
+  projectElectionDossiers,
+} from "../../../../../src/site/stix.ts";
+import T from "../../../components/T.astro";
+import Base from "../../../layouts/Base.astro";
+import { href } from "../../../lib/links.ts";
+import { getModel } from "../../../lib/model.ts";
+import "../../../styles/lab.css";
+
+export function getStaticPaths() {
+  const dossiers = projectElectionDossiers(getModel());
+  return languagePaths().flatMap((lp) =>
+    dossiers.map((dossier) => ({
+      params: { lang: lp.params.lang, id: dossier.id },
+      props: { dossier },
+    })),
+  );
+}
+
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+const { dossier } = Astro.props as { dossier: ElectionDossierProjection };
+const ev = dossier.event;
+---
+
+<Base
+  title={`${textOf(ev.title, lang)} · ${c("Tema elezioni", "Elections theme")}`}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Scheda di un evento classificato nel tema elezioni e influenza politica, con le relazioni pubbliche che lo citano e i loro livelli di evidenza.",
+    "Record of an event filed under the elections and political influence theme, with the public relationships citing it and their evidence levels.",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">{c("Laboratorio · Tema elezioni", "Laboratory · Elections theme")}</span>
+    <h1 class="mt-3"><T text={ev.title} lang={lang} /></h1>
+    <p class="meta">
+      {dossier.id} · {formatPartialDate(ev.date.start, lang)}{ev.evidence_level ? ` · ${ev.evidence_level}` : ""} · {REVIEW_STATUS_LABELS[ev.review.status][lang]}
+    </p>
+    <div class="notice max-w-3xl mt-4">
+      {choose(lang, dossier.caveat.it, dossier.caveat.en)}
+    </div>
+
+    <section class="mt-6 max-w-3xl">
+      <h2>{c("Fatto o evento registrato", "Recorded fact or event")}</h2>
+      <p class="mt-2"><T text={ev.description} lang={lang} /></p>
+      <p class="meta">
+        <a href={href(`events/${ev.id}/`, lang)}>{c("Apri scheda evento completa", "Open full event record")} →</a>
+      </p>
+    </section>
+
+    <section class="mt-8">
+      <h2>{c("Relazioni pubbliche citate", "Cited public relationships")}</h2>
+      {dossier.documentedRelationships.length === 0 ? (
+        <p class="meta mt-2">{c("Nessuna relazione pubblica diretta associata.", "No direct public relationships associated.")}</p>
+      ) : (
+        <div class="lab-cards">
+          {dossier.documentedRelationships.map((rel) => (
+            <article class="lab-card">
+              <div class="lab-card-header">
+                <span class="lab-code">{rel.id}</span>
+                <span class="lab-pill">{rel.evidence_level}</span>
+              </div>
+              <p class="mb-0 font-mono text-sm">
+                {rel.subject} → {rel.predicate} → {rel.object}
+              </p>
+              {rel.caveat && <p class="meta mb-0"><T text={rel.caveat} lang={lang} /></p>}
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,29 @@
+{
+  "id": "PK-13",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-3-integration",
+      "recorded_at": "2026-11-25T22:50:30Z",
+      "outcome": "Implemented brief generation, outcomes, false-alarm countermeasures in src/briefs/, src/cli/generate-brief.ts, and docs/automation/SCHEDULED_TASKS_PROMPT_UPDATES.md"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/orchestration-briefs.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:50:30Z"
+    },
+    {
+      "command": "node src/cli/generate-brief.ts --dry-run",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:50:30Z"
+    }
+  ],
+  "completion_evidence": [
+    "Brief generation and false-alarm countermeasures verified in test/orchestration-briefs.test.ts (7/7) and dry-run CLI"
+  ],
+  "notes": "Awaiting acceptance: PK-06 (D2) and PK-09 completed, four live briefs over the M9 cycle.",
+  "updated_at": "2026-11-26T12:00:00Z"
+}

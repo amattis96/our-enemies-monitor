@@ -1,0 +1,24 @@
+{
+  "id": "PK-37",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-5-integration",
+      "recorded_at": "2026-11-25T23:10:00Z",
+      "outcome": "Implemented descriptive situation room projection in src/site/stix.ts (buildSituationRoom) and Astro route web/src/pages/[...lang]/situazione.astro"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/projections-i18n-situation.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:10:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Descriptive situation room aggregation and projection verified in test/projections-i18n-situation.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

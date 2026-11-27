@@ -1,0 +1,66 @@
+{
+  "report_version": 1,
+  "generated_at": "2026-11-25T23:41:51.360Z",
+  "commit": "d9ea19bcdcf58af9889ca41e214909073f057ae5",
+  "thresholds_version": 1,
+  "test_families": [
+    {
+      "id": "data_integrity",
+      "frequencies": ["per_pr", "release"],
+      "blocking_in_ci": true
+    },
+    {
+      "id": "evidence_integrity",
+      "frequencies": ["per_pr", "prompt_change", "release"],
+      "blocking_in_ci": true
+    },
+    {
+      "id": "discovery_quality",
+      "frequencies": ["prompt_change", "release"],
+      "blocking_in_ci": false
+    },
+    {
+      "id": "agent_quality",
+      "frequencies": ["prompt_change", "release"],
+      "blocking_in_ci": true
+    },
+    {
+      "id": "publication_integrity",
+      "frequencies": ["per_pr", "per_deploy", "design_change", "release"],
+      "blocking_in_ci": true
+    }
+  ],
+  "reference_sets": {
+    "dev_cases": 10,
+    "scorer_self_check_pass_rate": 1,
+    "holdout_aggregate": {
+      "tier": "holdout",
+      "rotation_id": "holdout-v1-epoch-1",
+      "total_cases": 5,
+      "needs_rotation": false,
+      "independent": false,
+      "limitation": "B16-B20 are public in docs/audit/baseline/: any agent with repository access can read them. Results on this split are not an independent validation; independent evaluation needs a fresh, unexposed case set or an external evaluator."
+    }
+  },
+  "d6_gates": {
+    "passed": true,
+    "blockers": []
+  },
+  "agent_metrics": {
+    "measured": false,
+    "note": "No recorded agent answers yet. Expected answers are used only for the scorer self-check and are never reported as agent results."
+  },
+  "discovery_eval": {
+    "ex_ante_composite": 0,
+    "ex_post_yield_rate": 0,
+    "useful_refutations": 0
+  },
+  "visual_audit": {
+    "built": true,
+    "pages_scanned": 1065,
+    "severe_errors": 0,
+    "warnings": 0,
+    "passed": true,
+    "ci_matrix_combinations": 60
+  }
+}

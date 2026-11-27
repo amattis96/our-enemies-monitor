@@ -1,0 +1,135 @@
+---
+import { readRetractionRegister } from "../../../../src/retractions/register.ts";
+import { choose, languageFromParam, languagePaths, ui } from "../../../../src/site/i18n.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const register = readRetractionRegister();
+const activeNotices = register.entries.filter(
+  (entry) => entry.status !== "resolved" || entry.public_notice !== null,
+);
+
+const GITHUB_ISSUE_URL =
+  "https://github.com/amattis96/our-enemies-monitor/issues/new?labels=correction,evidence&title=Rettifica+%2F+Evidence%3A+&body=Record+ID%3A+%0APrimary+source+URL%3A+%0AWhat+is+known+vs+inferred%3A+%0A";
+---
+
+<Base
+  title={c("Rettifiche e diritto di replica", "Corrections and right of reply")}
+  lang={lang}
+  description={c(
+    "Registro pubblico delle rettifiche e delle sospensioni cautelative, e come segnalare un errore o portare un'evidenza contraria.",
+    "Public register of corrections and precautionary suspensions, and how to report an error or bring contrary evidence.",
+  )}
+>
+  <p class="kicker">{ui(lang).navMethod}</p>
+  <h1>{c("Rettifiche e diritto di replica", "Corrections and right of reply")}</h1>
+  <p class="lede max-w-3xl">
+    {c(
+      "Questa pagina è generata dal registro delle rettifiche: mostra gli avvisi di revisione in corso, le correzioni tracciate e come segnalare un errore o portare un'evidenza contraria.",
+      "This page is generated from the corrections register: it shows ongoing review notices, traced corrections and how to report an error or bring contrary evidence.",
+    )}
+  </p>
+
+  <section class="mt-8">
+    <h2>{c("Avvisi di revisione e rettifiche", "Review notices and corrections")}</h2>
+    {activeNotices.length === 0 ? (
+      <div class="notice max-w-3xl mt-4">
+        {c(
+          "Nessuna rettifica o sospensione attiva nel registro.",
+          "No active correction or suspension in the register.",
+        )}
+      </div>
+    ) : (
+      <div class="grid gap-4 mt-4 max-w-4xl">
+        {activeNotices.map((entry) => (
+          <article class="card">
+            <p class="meta font-mono">
+              {entry.id} · {entry.source_id} · {entry.level} · {entry.status} · {entry.recorded_at}
+            </p>
+            {entry.public_notice ? (
+              <p>{entry.public_notice[lang]}</p>
+            ) : (
+              <p>{entry.reason}</p>
+            )}
+          </article>
+        ))}
+      </div>
+    )}
+    <p class="meta mt-4 max-w-3xl">
+      <strong>{c("Copie non controllabili", "Uncontrollable copies")}:</strong>{" "}
+      {c(
+        "le sospensioni e le correzioni valgono per le pagine, gli export e l'indice di ricerca di questo sito. Copie già scaricate, archivi esterni, fork, cache e citazioni di terzi restano fuori dal nostro controllo e non possono essere ritirati.",
+        "suspensions and corrections apply to this site's pages, exports and search index. Copies already downloaded, external archives, forks, caches and third-party citations are outside our control and cannot be recalled.",
+      )}
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <h2>{c("Porta un'evidenza o esercita il diritto di replica", "Bring evidence or exercise right of reply")}</h2>
+    <div class="grid gap-4 md:grid-cols-2 mt-4 max-w-4xl">
+      <div class="card">
+        <h3>{c("Casi ordinari (segnalazione GitHub)", "Ordinary cases (GitHub issue)")}</h3>
+        <p>
+          {c(
+            "Per correzioni fattuali, integrazioni basate su fonti pubbliche o prove contrarie documentate, apri una segnalazione pubblica indicando l'ID del record e la fonte primaria.",
+            "For factual corrections, public-source additions, or documented contrary evidence, open a public issue specifying the record ID and primary source.",
+          )}
+        </p>
+        <p class="mt-3">
+          <a class="chip" href={GITHUB_ISSUE_URL} rel="noopener noreferrer">
+            {c("Porta un'evidenza su GitHub", "Bring evidence on GitHub")}
+          </a>
+        </p>
+      </div>
+      <div class="card">
+        <h3>{c("Evidenze sensibili e repliche personali", "Sensitive evidence and personal replies")}</h3>
+        <p>
+          {c(
+            "Per repliche su persone nominate, richieste di rimozione di dati personali o documenti non pubblicabili non usare una segnalazione pubblica con quei contenuti. Un canale riservato dedicato è in preparazione: nel frattempo apri una segnalazione senza dati personali e chiedi un contatto privato.",
+            "For replies about named persons, personal-data removal requests or non-public documents, do not put that content in a public issue. A dedicated private channel is being set up: meanwhile, open an issue without personal data and ask for a private contact.",
+          )}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-8 max-w-3xl">
+    <h2>{c("Procedura e moderazione", "Procedure and moderation")}</h2>
+    <ul class="list-disc pl-5 space-y-2 mt-3">
+      <li>
+        <strong>{c("Tempi", "Timing")}:</strong>{" "}
+        {c(
+          "la procedura formale di replica, con tempi di risposta dichiarati, è in definizione e sarà pubblicata qui. Fino ad allora le segnalazioni sono valutate senza impegni di tempo.",
+          "the formal reply procedure, with declared response times, is being defined and will be published here. Until then, reports are assessed without time commitments.",
+        )}
+      </li>
+      <li>
+        <strong>{c("Moderazione", "Moderation")}:</strong>{" "}
+        {c(
+          "le repliche devono indicare affermazioni specifiche e fonti verificabili; i fatti storici canonici non vengono cancellati silenziosamente ma affiancati da avvisi e correzioni tracciate.",
+          "replies must identify specific claims and verifiable sources; canonical historical facts are never silently erased, and remain accompanied by traced notices and corrections.",
+        )}
+      </li>
+      <li>
+        <strong>{c("Dati personali", "Personal data")}:</strong>{" "}
+        {c(
+          "i dati personali non necessari o non più conservabili vengono rimossi lasciando una traccia amministrativa minima; nessuna relazione su persone fisiche viene pubblicata senza fonte primaria collegata.",
+          "unnecessary or non-retainable personal data is removed while preserving a minimal administrative trace; no relationship about a named person is published without a linked primary source.",
+        )}
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-8 max-w-3xl">
+    <h2>{c("Repliche collegate alle schede", "Replies linked to records")}</h2>
+    <p class="mt-3">{c("Nessuna replica registrata finora.", "No reply recorded so far.")}</p>
+    <p class="meta mt-4">
+      <a href={href("changes/", lang)}>{c("Modifiche e correzioni storiche", "Historical changes and corrections")}</a>{" "}
+      · <a href={href("metodo/motore/", lang)}>{c("Trasparenza del motore", "Engine transparency")}</a>.
+    </p>
+  </section>
+</Base>

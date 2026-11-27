@@ -13,6 +13,7 @@
       "!data",
       "!schemas",
       "!docs/audit/baseline/baseline-*.json",
+      "!docs/roadmap/plan.v1.json",
       "!**/*.md",
       "!pnpm-lock.yaml"
     ]

@@ -1,20 +1,26 @@
 ---
 import { HYPOTHESIS_PRIORITIES } from "../../../../../src/model/index.ts";
-import { HYPOTHESIS_STATUS_LABELS, PRIORITY_LABELS } from "../../../../../src/site/format.ts";
+import {
+  HYPOTHESIS_STATUS_LABELS,
+  PRIORITY_LABELS,
+  REVIEW_STATUS_LABELS,
+} from "../../../../../src/site/format.ts";
 import { choose, languageFromParam, languagePaths, ui } from "../../../../../src/site/i18n.ts";
 import ArchiveTabs from "../../../components/ArchiveTabs.astro";
 import ExportMenu from "../../../components/ExportMenu.astro";
+import GlossaryTerm from "../../../components/GlossaryTerm.astro";
 import NodeLink from "../../../components/NodeLink.astro";
 import T from "../../../components/T.astro";
 import Base from "../../../layouts/Base.astro";
 import { collectionExports } from "../../../lib/exports.ts";
 import { href } from "../../../lib/links.ts";
-import { getModel } from "../../../lib/model.ts";
+import { getModel, getTraces } from "../../../lib/model.ts";
 
 export const getStaticPaths = () => languagePaths();
 const lang = languageFromParam(Astro.params.lang);
 const c = (it: string, en: string) => choose(lang, it, en);
 const model = getModel();
+const tracesById = new Map(getTraces().map((trace) => [trace.id, trace]));
 const groups = HYPOTHESIS_PRIORITIES.map((priority) => ({
   priority,
   items: model.dataset.hypotheses.filter((h) => h.priority === priority),
@@ -29,8 +35,12 @@ const groups = HYPOTHESIS_PRIORITIES.map((priority) => ({
   </div>
   <div class="notice max-w-3xl">
     {c(
-      "Domande investigative falsificabili, non relazioni accertate. Un'ipotesi prioritaria non diventa vera per la sua priorità. Può essere promossa a relazione solo con una fonte primaria e una revisione umana.",
-      "Falsifiable investigative questions, not established relationships. A priority hypothesis does not become true because of its priority. It can be promoted to a relationship only with a primary source and human review.",
+      "Domande investigative falsificabili, non relazioni accertate",
+      "Falsifiable investigative questions, not established relationships",
+    )} (<GlossaryTerm id="e5" lang={lang} />).{" "}
+    {c(
+      "Un'ipotesi prioritaria non diventa vera per la sua priorità. Può essere promossa a relazione solo con una fonte primaria e una revisione umana.",
+      "A priority hypothesis does not become true because of its priority. It can be promoted to a relationship only with a primary source and human review.",
     )}{" "}
     <a href={href("network/hypotheses/", lang)}>{c("Grafo esplorativo", "Exploratory graph")}</a>
     · <a href={href("trace/", lang)}>{c("Tracciati", "Traces")}</a>.
@@ -43,21 +53,46 @@ const groups = HYPOTHESIS_PRIORITIES.map((priority) => ({
           <table>
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">{c("Domanda", "Question")}</th>
+                <th scope="col">{c("Domanda investigativa", "Investigative question")}</th>
                 <th scope="col">{c("Soggetti", "Subjects")}</th>
-                <th scope="col">{c("Stato", "Status")}</th>
+                <th scope="col">{c("Stato, verifica e prove necessarie", "Status, verification and evidence needed")}</th>
               </tr>
             </thead>
             <tbody>
-              {g.items.map((h) => (
-                <tr>
-                  <td class="font-mono"><a href={href(`hypotheses/${h.id}/`, lang)}>{h.id}</a></td>
-                  <td><T text={h.question} lang={lang} /></td>
-                  <td><NodeLink id={h.subject} lang={lang} /> · <NodeLink id={h.object} lang={lang} /></td>
-                  <td>{HYPOTHESIS_STATUS_LABELS[h.status][lang]}</td>
-                </tr>
-              ))}
+              {g.items.map((h) => {
+                const trace = tracesById.get(h.id);
+                const lastNote = h.review.notes.at(-1);
+                return (
+                  <tr>
+                    <td>
+                      <a href={href(`hypotheses/${h.id}/`, lang)} title={`${h.id}`}>
+                        <T text={h.question} lang={lang} />
+                      </a>
+                      <div class="meta font-mono">{h.id}</div>
+                    </td>
+                    <td><NodeLink id={h.subject} lang={lang} /> · <NodeLink id={h.object} lang={lang} /></td>
+                    <td>
+                      <div><strong>{HYPOTHESIS_STATUS_LABELS[h.status][lang]}</strong></div>
+                      <div class="meta">
+                        {c("Verifica:", "Verification:")} {REVIEW_STATUS_LABELS[h.review.status][lang]}
+                        {lastNote ? ` · ${lastNote}` : ""}
+                      </div>
+                      <div class="meta">
+                        {c("Prove necessarie:", "Evidence needed:")}{" "}
+                        <T text={h.evidence_needed} lang={lang} />
+                      </div>
+                      {trace && (
+                        <div class="meta">
+                          <a href={href(`trace/${h.id}/`, lang)}>
+                            {c("Tracciato collegato", "Linked trace")} ({trace.steps.length}{" "}
+                            {trace.steps.length === 1 ? c("passaggio", "step") : c("passaggi", "steps")})
+                          </a>
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

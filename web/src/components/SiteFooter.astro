@@ -1,39 +1,63 @@
 ---
 import type { Language } from "../../../src/model/index.ts";
-import { ui } from "../../../src/site/i18n.ts";
+import { choose, ui } from "../../../src/site/i18n.ts";
 import { inlineSvg } from "../lib/design.ts";
 import { href } from "../lib/links.ts";
+import Icon from "./Icon.astro";
 
 interface Props {
   lang: Language;
 }
 const { lang } = Astro.props;
 const t = ui(lang);
+const c = (it: string, en: string) => choose(lang, it, en);
 const repo = "https://github.com/amattis96/our-enemies-monitor";
-const columns = [
+
+type FooterLink = { path: string; label: string; icon: string };
+type FooterGroup = { title: string; links: FooterLink[] };
+
+/**
+ * Footer link groups. Primary sections stay in SiteHeader; the footer
+ * carries the observatory hubs and the reference pages. Icons come from the
+ * Dossier sprite only (no new symbols).
+ */
+const groups: FooterGroup[] = [
   {
-    title: t.footerExplore,
+    title: c("Osservatorio", "Observatory"),
     links: [
-      ["timeline/", t.navTimeline],
-      ["network/", t.navNetwork],
-      ["atlas/", t.navAtlas],
-      ["dependencies/", t.navDependencies],
-      ["entities/", t.navEntities],
-      ["hypotheses/", t.navHypotheses],
-      ["sources/", t.navSources],
+      { path: "inizia-qui/", label: c("Inizia qui", "Start here"), icon: "ui-arrow-right" },
+      {
+        path: "situazione/",
+        label: c("Sala situazione", "Situation room"),
+        icon: "nav-observatory",
+      },
+      { path: "laboratorio/", label: c("Laboratorio", "Laboratory"), icon: "ui-zoom-in" },
+      { path: "brief/", label: c("Brief", "Briefs"), icon: "nav-investigations" },
+      { path: "stato/", label: c("Stato esecuzioni", "Run status"), icon: "st-pending" },
+      { path: "metodo/motore/", label: c("Motore", "Engine"), icon: "ui-command" },
     ],
   },
   {
     title: t.footerMethod,
     links: [
-      ["articles/", t.navArticles],
-      ["methodology/", t.navMethodology],
-      ["data/", t.navData],
-      ["changes/", t.navChanges],
-      ["search/", t.navSearch],
+      { path: "methodology/", label: t.navMethodology, icon: "nav-methodology" },
+      { path: "glossario/", label: c("Glossario", "Glossary"), icon: "ui-list" },
+      { path: "hypotheses/", label: t.navHypotheses, icon: "nav-hypotheses" },
+      { path: "sources/", label: t.navSources, icon: "nav-sources" },
+      { path: "affidabilita/", label: c("Origine fonti", "Source origin"), icon: "st-primary" },
+      { path: "rettifiche/", label: c("Rettifiche", "Corrections"), icon: "st-needs-review" },
     ],
   },
-] as const;
+  {
+    title: c("Dati aperti", "Open data"),
+    links: [
+      { path: "data/", label: t.navData, icon: "nav-data" },
+      { path: "api/", label: c("API e citazione", "API and citation"), icon: "ui-download" },
+      { path: "changes/", label: t.navChanges, icon: "nav-changes" },
+      { path: "search/", label: t.navSearch, icon: "nav-search" },
+    ],
+  },
+];
 ---
 
 <footer class="site-footer" data-pagefind-ignore>
@@ -44,24 +68,35 @@ const columns = [
         <span class="brand-name">Our Enemies Monitor</span>
       </a>
       <p>{t.footerDisclaimer}</p>
-      <p class="meta">
-        {t.footerCode} <a href={`${repo}/blob/main/LICENSE`}>MIT</a> · {t.footerData}{" "}
-        <a href={`${repo}/blob/main/LICENSE-DATA.md`}>CC0 1.0</a> · <a href={repo}>{t.footerSource}</a>
-      </p>
     </div>
     {
-      columns.map((column) => (
-        <nav aria-label={column.title}>
-          <p class="kicker">{column.title}</p>
+      groups.map((group) => (
+        <nav class="footer-group" aria-label={group.title}>
+          <p class="kicker">{group.title}</p>
           <ul>
-            {column.links.map(([path, label]) => (
+            {group.links.map((link) => (
               <li>
-                <a href={href(path, lang)}>{label}</a>
+                <a href={href(link.path, lang)}>
+                  <Icon name={link.icon} />
+                  <span>{link.label}</span>
+                </a>
               </li>
             ))}
           </ul>
         </nav>
       ))
     }
+  </div>
+  <div class="footer-bar">
+    <p>
+      {t.footerCode} <a href={`${repo}/blob/main/LICENSE`}>MIT</a> · {t.footerData}{" "}
+      <a href={`${repo}/blob/main/LICENSE-DATA.md`}>CC0 1.0</a>
+    </p>
+    <p>
+      <a href={repo} rel="noopener">
+        <Icon name="ui-external" />
+        {t.footerSource}
+      </a>
+    </p>
   </div>
 </footer>

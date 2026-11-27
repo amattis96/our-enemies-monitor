@@ -1,0 +1,57 @@
+---
+import type { Language } from "../../../src/model/index.ts";
+import { choose } from "../../../src/site/i18n.ts";
+import { href } from "../lib/links.ts";
+
+export interface TextAlternativeItem {
+  id: string;
+  label: string;
+  hrefPath: string;
+  meta?: string;
+  caveat?: string | null;
+}
+
+interface Props {
+  lang: Language;
+  view: "network" | "timeline" | "atlas";
+  items: TextAlternativeItem[];
+  heading?: string;
+}
+
+const { lang, view, items, heading } = Astro.props;
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const defaultHeading =
+  view === "network"
+    ? c(
+        "Alternativa testuale della bacheca relazioni",
+        "Text alternative of the relationship board",
+      )
+    : view === "timeline"
+      ? c("Alternativa testuale della cronologia", "Text alternative of the timeline")
+      : c("Alternativa testuale dell'atlante", "Text alternative of the atlas");
+---
+
+<section class="text-alternative mt-6" aria-label={heading ?? defaultHeading}>
+  <details>
+    <summary class="text-sm font-medium cursor-pointer">
+      {heading ?? defaultHeading}{" "}
+      <span class="meta">({items.length})</span>
+    </summary>
+    {
+      items.length === 0 ? (
+        <p class="meta mt-2">{c("Nessuna voce pubblica disponibile.", "No public entries available.")}</p>
+      ) : (
+        <ul class="mt-3 grid gap-2 text-sm">
+          {items.map((item) => (
+            <li>
+              <a href={href(item.hrefPath, lang)} data-essential-link>{item.label}</a>
+              {item.meta && <span class="meta">{" "}· {item.meta}</span>}
+              {item.caveat && <span class="meta">{" "}({item.caveat})</span>}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </details>
+</section>

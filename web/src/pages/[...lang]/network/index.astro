@@ -4,6 +4,7 @@ import { ENTITY_KIND_LABELS, RELATION_GROUP_LABELS } from "../../../../../src/si
 import { choose, languageFromParam, languagePaths, ui } from "../../../../../src/site/i18n.ts";
 import { evidenceGraph, isParticipation } from "../../../../../src/site/read-model.ts";
 import LimitsNote from "../../../components/LimitsNote.astro";
+import TextAlternative from "../../../components/TextAlternative.astro";
 import EvidenceBoard from "../../../islands/EvidenceBoard.tsx";
 import "../../../styles/board.css";
 import Base from "../../../layouts/Base.astro";
@@ -22,6 +23,12 @@ const layout = layoutBoard(
   graph.nodes,
   graph.edges.map((e) => ({ source: e.source, target: e.target, weak: participation.has(e.id) })),
 );
+const textItems = graph.nodes.map((node) => ({
+  id: node.id,
+  label: node.label[lang],
+  hrefPath: `${node.kind === "event" ? "events" : "entities"}/${node.id}/`,
+  meta: ENTITY_KIND_LABELS[node.kind]?.[lang] ?? node.kind,
+}));
 ---
 
 <Base title={ui(lang).navNetwork} lang={lang} wide description={c("Bacheca investigativa delle relazioni documentate fra entità ed eventi.", "Investigation board of documented relationships between entities and events.")}>
@@ -66,4 +73,5 @@ const layout = layoutBoard(
       )}
     </p>
   </LimitsNote>
+  <TextAlternative lang={lang} view="network" items={textItems} />
 </Base>

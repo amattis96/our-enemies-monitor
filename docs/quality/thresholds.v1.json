@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "updated_at": "2026-11-25",
+  "d6_zero_tolerance": {
+    "withheld_leaks": 0,
+    "invalid_canonical_refs": 0,
+    "forbidden_inferences_in_regression": 0,
+    "human_review_status_by_agent": 0,
+    "lost_critical_caveats": 0,
+    "unauthorized_contract_regressions": 0,
+    "severe_a11y_errors": 0
+  },
+  "agent_quality": {
+    "min_precision": 0.9,
+    "min_recall": 0.85,
+    "min_caveat_preservation_rate": 0.95,
+    "max_unsupported_attributions_rate": 0.0,
+    "max_identity_error_rate": 0.0,
+    "abstention_rate_range": {
+      "min": 0.0,
+      "max": 0.35
+    },
+    "min_inter_model_kappa": 0.7
+  },
+  "discovery_quality": {
+    "min_ex_ante_composite": 0.7,
+    "min_ex_post_yield_rate": 0.5
+  },
+  "reference_sets": {
+    "holdout_max_evaluations_before_rotation": 25
+  }
+}

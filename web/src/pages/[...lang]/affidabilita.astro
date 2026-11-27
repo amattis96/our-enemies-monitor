@@ -1,0 +1,75 @@
+---
+import { EVIDENCE_LEVELS } from "../../../../src/model/index.ts";
+import { ORIGIN_TYPE_LABELS, REVIEW_STATUS_LABELS } from "../../../../src/site/format.ts";
+import { choose, languageFromParam, languagePaths } from "../../../../src/site/i18n.ts";
+import { projectReliabilityRegister } from "../../../../src/site/stix.ts";
+import Base from "../../layouts/Base.astro";
+import { href } from "../../lib/links.ts";
+import { getModel } from "../../lib/model.ts";
+import "../../styles/lab.css";
+
+export const getStaticPaths = () => languagePaths();
+const lang = languageFromParam(Astro.params.lang);
+const c = (it: string, en: string) => choose(lang, it, en);
+
+const register = projectReliabilityRegister(getModel());
+const originLabel = (origin: string) =>
+  origin in ORIGIN_TYPE_LABELS
+    ? ORIGIN_TYPE_LABELS[origin as keyof typeof ORIGIN_TYPE_LABELS][lang]
+    : c("Origine non ancora determinata", "Origin not yet determined");
+const statusLabel = (status: string) =>
+  status in REVIEW_STATUS_LABELS
+    ? REVIEW_STATUS_LABELS[status as keyof typeof REVIEW_STATUS_LABELS][lang]
+    : status;
+---
+
+<Base
+  title={c("Origine e revisione delle fonti", "Source origin and review")}
+  lang={lang}
+  wide={true}
+  description={c(
+    "Come sono composte le fonti pubbliche: tipo di origine, stato di revisione e livelli di evidenza delle affermazioni che le citano.",
+    "How the public sources are made up: origin type, review status and evidence levels of the statements citing them.",
+  )}
+>
+  <div class="lab-sheet">
+    <span class="lab-register-badge">{c("Metodo · Fonti", "Method · Sources")}</span>
+    <h1 class="mt-3">{c("Origine e revisione delle fonti", "Source origin and review")}</h1>
+    <p class="lede max-w-3xl">
+      {c(
+        "Questa pagina descrive la composizione delle fonti, non assegna un punteggio di affidabilità. I livelli di evidenza (E1–E5) indicano il tipo di base documentale, non una graduatoria.",
+        "This page describes how the sources are made up; it does not score reliability. Evidence levels (E1–E5) indicate the kind of documentary basis, not a ranking.",
+      )}{" "}
+      <a href={href("sources/", lang)}>{c("Elenco delle fonti", "Source index")}</a>.
+    </p>
+
+    <section class="mt-6">
+      <h2>{c("Affermazioni pubbliche per livello di evidenza", "Public statements by evidence level")}</h2>
+      <p class="meta max-w-3xl">{c("Relazioni pubbliche (E1–E4) e ipotesi (E5), non fonti.", "Public relationships (E1–E4) and hypotheses (E5), not sources.")}</p>
+      <div class="flex flex-wrap gap-3 mt-3">
+        {EVIDENCE_LEVELS.map((lvl) => (
+          <span class="lab-pill">{lvl}: {register.byEvidenceLevel[lvl]}</span>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-8 grid gap-6 md:grid-cols-2">
+      <div class="card">
+        <h2>{c("Origine delle fonti", "Source origin")} ({register.totalSources})</h2>
+        <ul class="mt-3 space-y-1 text-sm">
+          {Object.entries(register.byOriginType).map(([origin, count]) => (
+            <li>{originLabel(origin)}: <span class="font-mono">{count}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="card">
+        <h2>{c("Stato di revisione delle fonti", "Source review status")}</h2>
+        <ul class="mt-3 space-y-1 text-sm">
+          {Object.entries(register.byReviewStatus).map(([status, count]) => (
+            <li>{statusLabel(status)}: <span class="font-mono">{count}</span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </div>
+</Base>

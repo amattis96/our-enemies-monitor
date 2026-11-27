@@ -1,0 +1,25 @@
+{
+  "id": "PK-19",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-4-integration",
+      "recorded_at": "2026-11-25T23:01:00Z",
+      "outcome": "Verified dossier design system, semantic tokens, responsive card/table layouts, and updated docs/design/IMPLEMENTATION_PLAN.md"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "pnpm check:contrast",
+      "passed": true,
+      "recorded_at": "2026-11-25T23:01:00Z"
+    }
+  ],
+  "completion_evidence": [
+    "Semantic design tokens and WCAG contrast verified via pnpm check:contrast",
+    "UX and design regressions verified in test/ux-design.test.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

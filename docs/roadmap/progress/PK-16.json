@@ -1,0 +1,29 @@
+{
+  "id": "PK-16",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-3-integration",
+      "recorded_at": "2026-11-25T22:50:30Z",
+      "outcome": "Implemented engine manifest, changelog, and manifest check in docs/automation/{engine.manifest.json,ENGINE_CHANGELOG.md}, src/engine/{manifest,changelog}.ts, and src/cli/check-engine-manifest.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/transparency-rights.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:50:30Z"
+    },
+    {
+      "command": "node src/cli/check-engine-manifest.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:50:30Z"
+    }
+  ],
+  "completion_evidence": [
+    "Engine manifest and changelog consistency verified via test/transparency-rights.test.ts (8/8) and check-engine-manifest.ts"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

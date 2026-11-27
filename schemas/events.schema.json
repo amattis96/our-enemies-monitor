@@ -63,6 +63,11 @@
       "additionalProperties": false,
       "description": "Date of the fact with explicit precision; distinct from the date of its discovery, attribution, judgment or publication."
     },
+    "first_reported": {
+      "description": "Date when the fact was first reported or disclosed (YYYY, YYYY-MM or YYYY-MM-DD), distinct from the fact date; absent when unknown.",
+      "type": "string",
+      "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+    },
     "title": {
       "type": "object",
       "properties": {

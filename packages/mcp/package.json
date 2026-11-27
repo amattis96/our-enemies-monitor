@@ -1,0 +1,17 @@
+{
+  "name": "@our-enemies-monitor/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only MCP server over the public Our Enemies Monitor query library (PK-22).",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
+  "bin": {
+    "oem-mcp": "./src/server.ts"
+  },
+  "scripts": {
+    "start": "node src/server.ts"
+  }
+}

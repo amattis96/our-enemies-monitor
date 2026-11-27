@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { validatePredicateMapping } from "../claims/index.ts";
 import {
   type CasePilotFile as CasePilot,
   CasePilotFile,
@@ -6,6 +7,8 @@ import {
   type Claim,
   type ClaimKind,
   type Dataset,
+  type QualifiedAssertion,
+  type QualifiedCase,
 } from "../model/index.ts";
 import { repoPath } from "../pipeline/paths.ts";
 import type { Issue } from "../pipeline/validate.ts";
@@ -235,4 +238,174 @@ export function denialsOf(pilot: CasePilot, claimId: string): Claim[] {
 /** Cases containing an event: phases of one case count once. */
 export function casesOf(pilot: CasePilot, eventIds: string[]): string[] {
   return pilot.cases.filter((c) => c.events.some((id) => eventIds.includes(id))).map((c) => c.id);
+}
+
+// ---------------------------------------------------------------------------
+// PK-06A: Qualified cases & assertions validation, incident counting, and attribution distinction
+
+export type CaseIncidentCounts = {
+  case_id: string;
+  incident_count: number;
+  assertion_count: number;
+  per_incident_assertions: Record<string, number>;
+};
+
+/**
+ * Computes separate incident counts for a QualifiedCase, distinguishing
+ * distinct incidents within a case from phases/events of a single incident.
+ */
+export function countCaseIncidents(
+  kase: QualifiedCase,
+  assertions: readonly QualifiedAssertion[],
+): CaseIncidentCounts {
+  const caseAssertions = assertions.filter((a) => a.case_id === kase.id);
+  const perIncident: Record<string, number> = {};
+  for (const inc of kase.incidents) {
+    perIncident[inc.id] = caseAssertions.filter((a) => a.incident_id === inc.id).length;
+  }
+  return {
+    case_id: kase.id,
+    incident_count: kase.incidents.length,
+    assertion_count: caseAssertions.length,
+    per_incident_assertions: perIncident,
+  };
+}
+
+/**
+ * Explicitly distinguishes "un'autorità ha attribuito" (`authority_attributed`)
+ * from "l'attribuzione è accertata" (`attribution_established`).
+ */
+export function isAttributionEstablished(assertion: QualifiedAssertion): boolean {
+  return assertion.attribution_qualification === "attribution_established";
+}
+
+/**
+ * Validates PK-06A qualified cases and assertions against the canonical dataset:
+ * - Enforces case-has-at-least-one-assertion invariant.
+ * - Verifies `incident_id` references belong to the target case.
+ * - Distinguishes `authority_attributed` vs `attribution_established`.
+ * - Verifies supporting/contrary evidence sources and polarity.
+ * - Verifies `migration` invariants (script cannot set `verified`).
+ * - Validates canonical predicate mapping against non-forcing rules.
+ */
+export function validateQualifiedCasesAndAssertions(
+  cases: readonly QualifiedCase[],
+  assertions: readonly QualifiedAssertion[],
+  dataset: Dataset,
+): Issue[] {
+  const errors: string[] = [];
+  const events = new Map(dataset.events.map((e) => [e.id, e]));
+  const entities = new Map(dataset.entities.map((e) => [e.id, e]));
+  const sources = new Map(dataset.sources.map((s) => [s.id, s]));
+  const caseMap = new Map(cases.map((c) => [c.id, c]));
+  const assertionMap = new Map(assertions.map((a) => [a.id, a]));
+
+  const hasNode = (id: string) => entities.has(id) || events.has(id);
+
+  for (const kase of cases) {
+    if (kase.assertions.length === 0) {
+      errors.push(`${kase.id}: case must have at least one assertion`);
+    }
+    const matchingAssertions = assertions.filter((a) => a.case_id === kase.id);
+    if (matchingAssertions.length === 0) {
+      errors.push(`${kase.id}: no matching assertions found for case`);
+    }
+    for (const assertionId of kase.assertions) {
+      if (!assertionMap.has(assertionId)) {
+        errors.push(`${kase.id}: unknown assertion ${assertionId}`);
+      }
+    }
+    for (const eventId of kase.events) {
+      if (!events.has(eventId)) errors.push(`${kase.id}: unknown event ${eventId}`);
+    }
+    for (const incident of kase.incidents) {
+      for (const eventId of incident.events) {
+        if (!events.has(eventId)) {
+          errors.push(`${kase.id}/${incident.id}: unknown event ${eventId}`);
+        }
+        if (!kase.events.includes(eventId)) {
+          errors.push(`${kase.id}/${incident.id}: event ${eventId} is not listed in case.events`);
+        }
+      }
+    }
+    for (const sourceId of kase.sources) {
+      if (!sources.has(sourceId)) errors.push(`${kase.id}: unknown source ${sourceId}`);
+    }
+  }
+
+  for (const assertion of assertions) {
+    const label = assertion.id;
+    const kase = caseMap.get(assertion.case_id);
+    if (!kase) {
+      errors.push(`${label}: unknown case ${assertion.case_id}`);
+    } else if (
+      assertion.incident_id !== null &&
+      !kase.incidents.some((inc) => inc.id === assertion.incident_id)
+    ) {
+      errors.push(`${label}: incident ${assertion.incident_id} does not belong to ${kase.id}`);
+    }
+
+    if (!hasNode(assertion.subject)) errors.push(`${label}: unknown subject ${assertion.subject}`);
+    if (!hasNode(assertion.object)) errors.push(`${label}: unknown object ${assertion.object}`);
+    if (assertion.asserted_by !== null && !hasNode(assertion.asserted_by)) {
+      errors.push(`${label}: unknown asserter ${assertion.asserted_by}`);
+    }
+
+    if (
+      assertion.attribution_qualification === "authority_attributed" &&
+      assertion.asserted_by === null
+    ) {
+      errors.push(`${label}: authority_attributed requires asserted_by`);
+    }
+    if (
+      assertion.attribution_qualification === "attribution_established" &&
+      assertion.verification_state !== "verified"
+    ) {
+      errors.push(
+        `${label}: attribution_established requires verification_state 'verified' (cannot be unverified)`,
+      );
+    }
+
+    if (
+      assertion.migration.updated_by === "script" &&
+      (assertion.migration.evidentiary_verification === "verified" ||
+        assertion.verification_state === "verified")
+    ) {
+      errors.push(`${label}: scripted migration cannot assign 'verified'`);
+    }
+
+    for (const item of assertion.supporting_evidence) {
+      if (item.polarity !== "supporting") {
+        errors.push(`${label}: supporting_evidence item ${item.id} has polarity ${item.polarity}`);
+      }
+      if (!sources.has(item.source_id)) {
+        errors.push(`${label}: unknown supporting source ${item.source_id}`);
+      }
+    }
+    for (const item of assertion.contrary_evidence) {
+      if (item.polarity !== "contrary") {
+        errors.push(`${label}: contrary_evidence item ${item.id} has polarity ${item.polarity}`);
+      }
+      if (!sources.has(item.source_id)) {
+        errors.push(`${label}: unknown contrary source ${item.source_id}`);
+      }
+    }
+
+    const mappingErrors = validatePredicateMapping({
+      original_predicate: assertion.original_predicate,
+      canonical_predicate: assertion.canonical_predicate,
+      mapping_version: "1.0.0",
+      classification_status: assertion.classification_status,
+      direction: null,
+      allowed_subjects: [],
+      allowed_objects: [],
+      relation_group: null,
+      non_forcing_note: null,
+    });
+    for (const msg of mappingErrors) {
+      errors.push(`${label}: ${msg}`);
+    }
+  }
+
+  return errors.map((message): Issue => ({ severity: "error", file: "data/cases", message }));
 }

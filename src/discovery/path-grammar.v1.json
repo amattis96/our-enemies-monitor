@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0.0",
+  "grammar_version": "1.0.0",
+  "excluded_classification_statuses": ["unmapped", "needs_review"],
+  "enforce_b15_forbidden_pairs": true,
+  "rules": [
+    {
+      "id": "PG-ALLOW-001",
+      "status": "allowed",
+      "first_predicate": "CONTROLLED",
+      "second_predicate": "CONTROLLED",
+      "direction": "forward",
+      "temporal_compatibility": "overlap_required",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company"],
+        "bridge": ["person", "organization", "company"],
+        "target": ["organization", "company", "asset", "event"]
+      },
+      "condition": null,
+      "question_template": {
+        "it": "Esiste un controllo diretto o una delega operativa documentata tra {source} e {target} oltre al tramite di {bridge}?",
+        "en": "Is there documented direct control or operational delegation between {source} and {target} beyond the intermediary {bridge}?"
+      },
+      "rationale": "Transitive control chains across corporate or organizational intermediaries are valid discovery questions when temporally overlapping."
+    },
+    {
+      "id": "PG-ALLOW-002",
+      "status": "allowed",
+      "first_predicate": "OWNED",
+      "second_predicate": "CONTROLLED",
+      "direction": "forward",
+      "temporal_compatibility": "overlap_required",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company"],
+        "bridge": ["company", "organization", "asset"],
+        "target": ["company", "organization", "asset", "event"]
+      },
+      "condition": null,
+      "question_template": {
+        "it": "La proprietà di {source} su {bridge} si estende in un controllo documentato su {target}?",
+        "en": "Does {source}'s ownership of {bridge} extend into documented control over {target}?"
+      },
+      "rationale": "Ownership of a controlling intermediary warrants checking whether beneficial control reaches the target."
+    },
+    {
+      "id": "PG-ALLOW-003",
+      "status": "allowed",
+      "first_predicate": "CONTROLLED",
+      "second_predicate": "COMMISSIONED",
+      "direction": "forward",
+      "temporal_compatibility": "sequential_or_overlap",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company"],
+        "bridge": ["person", "organization", "company"],
+        "target": ["person", "organization", "company", "event"]
+      },
+      "condition": null,
+      "question_template": {
+        "it": "Esistono evidenze che {source} abbia autorizzato o incaricato direttamente {target} tramite {bridge}?",
+        "en": "Is there evidence that {source} directly authorized or tasked {target} through {bridge}?"
+      },
+      "rationale": "Control over an entity that commissioned an act raises a valid verification question about upstream authorization."
+    },
+    {
+      "id": "PG-ALLOW-004",
+      "status": "allowed",
+      "first_predicate": "SUPPLIED",
+      "second_predicate": "SUPPLIED",
+      "direction": "forward",
+      "temporal_compatibility": "overlap_required",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company", "asset"],
+        "bridge": ["company", "organization", "asset"],
+        "target": ["state", "institution", "organization", "company", "asset"]
+      },
+      "condition": null,
+      "question_template": {
+        "it": "Esiste una fornitura diretta o una dipendenza critica tra {source} e {target} oltre alla catena tramite {bridge}?",
+        "en": "Is there a direct supply link or critical dependency between {source} and {target} beyond the chain through {bridge}?"
+      },
+      "rationale": "Multi-tier supply chains are valid discovery paths for dependency and bypass verification."
+    },
+    {
+      "id": "PG-ALLOW-005",
+      "status": "allowed",
+      "first_predicate": "COLLABORATED_WITH",
+      "second_predicate": "COLLABORATED_WITH",
+      "direction": "bidirectional",
+      "temporal_compatibility": "overlap_required",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company"],
+        "bridge": ["person", "organization", "company"],
+        "target": ["state", "institution", "person", "organization", "company"]
+      },
+      "condition": null,
+      "question_template": {
+        "it": "Esiste una collaborazione operativa documentata tra {source} e {target}, entrambi legati a {bridge}?",
+        "en": "Is there documented operational collaboration between {source} and {target}, both linked to {bridge}?"
+      },
+      "rationale": "Open collaboration triads may indicate an undocumented direct operational link."
+    },
+    {
+      "id": "PG-ALLOW-006",
+      "status": "allowed",
+      "first_predicate": "COORDINATED_WITH",
+      "second_predicate": "PARTICIPATED_IN",
+      "direction": "forward",
+      "temporal_compatibility": "overlap_required",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company"],
+        "bridge": ["person", "organization", "company"],
+        "target": ["event"]
+      },
+      "condition": null,
+      "question_template": {
+        "it": "È documentato un ruolo o partecipazione diretta di {source} in {target}, oltre al coordinamento con {bridge}?",
+        "en": "Is a direct role or participation of {source} in {target} documented beyond coordination with {bridge}?"
+      },
+      "rationale": "Operational coordination with an event participant justifies checking direct involvement in the event."
+    },
+    {
+      "id": "PG-COND-001",
+      "status": "conditional",
+      "first_predicate": "FUNDED",
+      "second_predicate": "OWNED",
+      "direction": "forward",
+      "temporal_compatibility": "overlap_required",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company"],
+        "bridge": ["person", "organization", "company"],
+        "target": ["company", "asset", "organization"]
+      },
+      "condition": "Must ask only about financial/beneficial interest, never asserting operational control (PK-06C).",
+      "question_template": {
+        "it": "Il finanziamento di {source} verso {bridge} comporta un interesse beneficiario o patrimoniale documentato in {target}?",
+        "en": "Does {source}'s funding of {bridge} involve a documented financial or beneficial interest in {target}?"
+      },
+      "rationale": "Funding + ownership may warrant financial-beneficial verification without inferring operational control."
+    },
+    {
+      "id": "PG-COND-002",
+      "status": "conditional",
+      "first_predicate": "ATTRIBUTED_BY_AUTHORITY",
+      "second_predicate": "CONTROLLED",
+      "direction": "forward",
+      "temporal_compatibility": "sequential_or_overlap",
+      "allowed_node_kinds": {
+        "source": ["state", "institution"],
+        "bridge": ["state", "institution", "person", "organization", "company"],
+        "target": ["organization", "company", "asset", "event"]
+      },
+      "condition": "Requires independent corroboration beyond single authority attribution.",
+      "question_template": {
+        "it": "Esistono riscontri indipendenti sull'attribuzione di {source} riguardante il controllo di {bridge} su {target}?",
+        "en": "Is there independent corroboration for {source}'s attribution regarding {bridge}'s control over {target}?"
+      },
+      "rationale": "Authority attribution combined with control requires independent corroboration."
+    },
+    {
+      "id": "PG-FORB-001",
+      "status": "forbidden",
+      "first_predicate": "FUNDED",
+      "second_predicate": "CONTROLLED",
+      "direction": "forward",
+      "temporal_compatibility": "any",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company", "asset"],
+        "bridge": ["state", "institution", "person", "organization", "company", "asset"],
+        "target": ["state", "institution", "person", "organization", "company", "asset", "event"]
+      },
+      "condition": "PK-06C non-forcing rule: funding does not imply operational control.",
+      "question_template": {
+        "it": "VIETATO: il finanziamento non implica controllo.",
+        "en": "FORBIDDEN: funding does not imply control."
+      },
+      "rationale": "Forbidden by PK-06C (funding != control)."
+    },
+    {
+      "id": "PG-FORB-002",
+      "status": "forbidden",
+      "first_predicate": "CO_PRESENT_AT",
+      "second_predicate": "COLLABORATED_WITH",
+      "direction": "bidirectional",
+      "temporal_compatibility": "any",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company", "asset"],
+        "bridge": ["state", "institution", "person", "organization", "company", "asset"],
+        "target": ["state", "institution", "person", "organization", "company", "asset"]
+      },
+      "condition": "PK-06C non-forcing rule: co-presence does not imply collaboration.",
+      "question_template": {
+        "it": "VIETATO: la compresenza non implica collaborazione.",
+        "en": "FORBIDDEN: co-presence does not imply collaboration."
+      },
+      "rationale": "Forbidden by PK-06C (co-presence != collaboration)."
+    },
+    {
+      "id": "PG-FORB-003",
+      "status": "forbidden",
+      "first_predicate": "PARTICIPATED_IN",
+      "second_predicate": "COLLABORATED_WITH",
+      "direction": "bidirectional",
+      "temporal_compatibility": "any",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company", "asset"],
+        "bridge": ["state", "institution", "person", "organization", "company", "asset", "event"],
+        "target": ["state", "institution", "person", "organization", "company", "asset"]
+      },
+      "condition": "PK-06C non-forcing rule: participation does not imply collaboration.",
+      "question_template": {
+        "it": "VIETATO: la partecipazione non implica collaborazione.",
+        "en": "FORBIDDEN: participation does not imply collaboration."
+      },
+      "rationale": "Forbidden by PK-06C (participation != collaboration)."
+    },
+    {
+      "id": "PG-FORB-004",
+      "status": "forbidden",
+      "first_predicate": "ACCUSED_OF",
+      "second_predicate": "COMMISSIONED",
+      "direction": "forward",
+      "temporal_compatibility": "any",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company", "asset"],
+        "bridge": ["state", "institution", "person", "organization", "company", "asset", "event"],
+        "target": ["state", "institution", "person", "organization", "company", "asset", "event"]
+      },
+      "condition": "PK-06C non-forcing rule: accusation does not establish commission.",
+      "question_template": {
+        "it": "VIETATO: l'accusa non stabilisce il mandato.",
+        "en": "FORBIDDEN: accusation does not establish commission."
+      },
+      "rationale": "Forbidden by PK-06C (accusation != commission)."
+    },
+    {
+      "id": "PG-FORB-005",
+      "status": "forbidden",
+      "first_predicate": "POLITICALLY_SUPPORTED",
+      "second_predicate": "COORDINATED_WITH",
+      "direction": "forward",
+      "temporal_compatibility": "any",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company", "asset"],
+        "bridge": ["state", "institution", "person", "organization", "company", "asset"],
+        "target": ["state", "institution", "person", "organization", "company", "asset"]
+      },
+      "condition": "PK-06C non-forcing rule: political support does not imply coordination.",
+      "question_template": {
+        "it": "VIETATO: il sostegno politico non implica coordinamento.",
+        "en": "FORBIDDEN: political support does not imply coordination."
+      },
+      "rationale": "Forbidden by PK-06C (political_support != coordination)."
+    },
+    {
+      "id": "PG-FORB-006",
+      "status": "forbidden",
+      "first_predicate": "ACCUSED_OF",
+      "second_predicate": "CONTROLLED",
+      "direction": "forward",
+      "temporal_compatibility": "any",
+      "allowed_node_kinds": {
+        "source": ["state", "institution", "person", "organization", "company", "asset"],
+        "bridge": ["state", "institution", "person", "organization", "company", "asset"],
+        "target": ["state", "institution", "person", "organization", "company", "asset", "event"]
+      },
+      "condition": "PK-06C non-forcing rule: accusation does not establish control.",
+      "question_template": {
+        "it": "VIETATO: l'accusa non stabilisce il controllo.",
+        "en": "FORBIDDEN: accusation does not establish control."
+      },
+      "rationale": "Forbidden by PK-06C (accusation != control)."
+    }
+  ]
+}

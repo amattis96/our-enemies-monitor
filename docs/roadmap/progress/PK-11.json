@@ -1,0 +1,25 @@
+{
+  "id": "PK-11",
+  "status": "awaiting_acceptance",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-3-integration",
+      "recorded_at": "2026-11-25T22:50:30Z",
+      "outcome": "Implemented protected path grammar src/discovery/path-grammar.v1.json and 7 deterministic DiscoveryGenerator modules + registry in src/discovery/generators/"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "npx vitest run test/generators-backtest.test.ts",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:50:30Z"
+    }
+  ],
+  "completion_evidence": [
+    "Protected path grammar excludes unmapped relationships and forbidden inference pairs (B15)",
+    "All 7 deterministic generators + shadow promotion registry verified in test/generators-backtest.test.ts (8/8)"
+  ],
+  "updated_at": "2026-11-25T23:59:00Z",
+  "notes": "Code delivered on branch feat/engine-plan-m8-m13 ahead of its blocking dependencies; acceptance is held until every 'requires'/'to_complete' package is completed and the owner decisions it needs are resolved (review 2026-11-25)."
+}

@@ -1,0 +1,1691 @@
+{
+  "version": "1.0",
+  "title": "OEM, piano di implementazione del motore investigativo",
+  "updated_at": "2026-11-26",
+  "frozen_scope": {
+    "items_count": 140,
+    "packages_count": 39,
+    "milestones": [
+      "M8",
+      "M9",
+      "M10",
+      "M11",
+      "M12",
+      "M13"
+    ]
+  },
+  "milestones": [
+    {
+      "id": "M8",
+      "title": "Fondamenta",
+      "exit_criteria": "Confine riservato verificato da test; schemi versionati; migrazioni reversibili; identità e provenienza utilizzabili dal motore; piano eseguibile da check:roadmap."
+    },
+    {
+      "id": "M9",
+      "title": "Ciclo investigativo",
+      "exit_criteria": "Quattro settimane di ciclo investigativo tracciato, con esiti revisionati, costi registrati e coda sotto controllo grazie alla backpressure."
+    },
+    {
+      "id": "M10",
+      "title": "Chiarezza pubblica e trasparenza",
+      "exit_criteria": "Esperienza d'uso migliorata senza regressioni, rettifiche pubblicabili, stato delle automazioni verificabile."
+    },
+    {
+      "id": "M11",
+      "title": "Interoperabilità e visibilità",
+      "exit_criteria": "Parità semantica tra le proiezioni attive (sito, export, Markdown, MCP), nessuna esposizione di dati riservati."
+    },
+    {
+      "id": "M12",
+      "title": "Espansione della conoscenza",
+      "exit_criteria": "Generatori avanzati validati, nuove piste pertinenti, almeno due filiere modellate, sala situazione descrittiva online."
+    },
+    {
+      "id": "M13",
+      "title": "Statistica validata",
+      "exit_criteria": "Metodi statistici attivati solo se validati; i metodi non idonei ai dati sono documentati come tali."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "title": "Storage per il materiale non pubblicabile",
+      "recommendation": "Repository privato separato, accessi per ruolo, gateway di pubblicazione. Verificare piano GitHub con ruleset su repo privati, credenziali task schedulati e accessi effettivi degli agenti.",
+      "status": "resolved",
+      "resolution": "26 novembre 2026, titolare: repository unico pubblico our-enemies-monitor come fonte autorevole. Il materiale OSINT non ancora pubblicabile (fonti archiviate, candidati, ipotesi, piste, coda di discovery, verifiche negative, bozze, Run Manifest, metadati) resta nel repository con separazione logica (directory, schemi, stati, proiezioni). La presenza nel repository non implica validazione, approvazione, integrazione nel grafo o pubblicazione: decide il gateway di pubblicazione con il gate M5. Il materiale realmente confidenziale è una funzionalità futura e opzionale (private_investigative) che richiederà una nuova decisione esplicita; nessun repository privato è prerequisito dei pacchetti ordinari.",
+      "blocks_description": "PK-01; completamento di PK-02 e PK-09"
+    },
+    {
+      "id": "D2",
+      "title": "Conferma di ADR-06",
+      "recommendation": "Confermare, con migrazione progressiva, asserzioni qualificate e stati separati per migrazione strutturale, verifica probatoria e ciclo di vita.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "PK-06"
+    },
+    {
+      "id": "D3",
+      "title": "Dominio e intestatario",
+      "recommendation": "Dominio stabile (per esempio .eu o .org) intestato al titolare.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "Solo PK-15B"
+    },
+    {
+      "id": "D4",
+      "title": "Canale riservato per repliche ed evidenze sensibili",
+      "recommendation": "Casella dedicata con procedura di moderazione.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "PK-17"
+    },
+    {
+      "id": "D5",
+      "title": "Crawler AI per l'addestramento",
+      "recommendation": "Consentire ricerca e citazione; addestramento deciso a parte.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "Completamento di PK-20"
+    },
+    {
+      "id": "D6",
+      "title": "Soglie di qualità",
+      "recommendation": "Vincoli a zero attivi come gate bloccanti; soglie calibrate per metodo e categoria; budget Lighthouse per tipo di pagina; valutatore e set di riferimento protetti.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "Completamento di PK-02"
+    },
+    {
+      "id": "D7",
+      "title": "Russo e ucraino",
+      "recommendation": "Entrambi per acquisizione; ucraino prioritario anche per pubblicazione.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "PK-26; pubblicazione in PK-31"
+    },
+    {
+      "id": "D8",
+      "title": "Accesso ai dati delle piattaforme",
+      "recommendation": "Solo accessi legittimi e fonti effettivamente utilizzabili.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "PK-32"
+    },
+    {
+      "id": "D9",
+      "title": "Budget AI",
+      "recommendation": "Tetto mensile distinto per consumi API, limiti abbonamenti, tempo agenti e capacità di revisione; quote morbide; riserva per P0/P1; budget API per benchmark in CI.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "PK-12; benchmark di PK-02"
+    },
+    {
+      "id": "D10",
+      "title": "Account Search Console e Bing",
+      "recommendation": "Sotto il controllo del titolare.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "Completamento di PK-20"
+    },
+    {
+      "id": "D11",
+      "title": "Revisori madrelingua",
+      "recommendation": "Bloccano la pubblicazione dei contenuti che li richiedono, non lo sviluppo.",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "Pubblicazione in PK-31"
+    },
+    {
+      "id": "D12",
+      "title": "Conservazione, redazione e cancellazione del materiale riservato",
+      "recommendation": "Minimizzazione: traccia epistemica minima, rimozione di dati personali non necessari e di materiale non più conservabile; regole per provider AI esterni.",
+      "status": "resolved",
+      "resolution": "26 novembre 2026, titolare: minimizzazione e protezione solo per il materiale effettivamente sensibile (credenziali e token, dati personali non necessari, URL con autenticazione, dettagli operativi realmente sensibili). Le normali attività investigative su fonti aperte non sono riservate e possono essere elaborate con i servizi AI in abbonamento (ChatGPT, Claude, Codex, Claude Code, Gemini) senza API Enterprise o ZDR. Restano pertinenza, minimizzazione, tracciabilità e rispetto delle fonti. Le policy per indagini umane confidenziali sono differite alla loro eventuale introduzione.",
+      "blocks_description": "Completamento di PK-01, PK-09, PK-17"
+    },
+    {
+      "id": "D13",
+      "title": "Autorità su policy, benchmark, soglie, workflow e gate",
+      "recommendation": "Solo il titolare approva tramite ruleset; identità umana, di pubblicazione e di auto-merge separate (GitHub App al posto del PAT personale).",
+      "status": "open",
+      "resolution": null,
+      "blocks_description": "PK-01"
+    },
+    {
+      "id": "D14",
+      "title": "Snapshot e backup",
+      "recommendation": "Distinguere snapshot pubblici, revisioni riservate e copie esterne non controllabili; backup cifrati del riservato con prova periodica di ripristino.",
+      "status": "resolved",
+      "resolution": "26 novembre 2026, titolare: versionamento Git, registro degli snapshot (docs/snapshots/) e backup adeguati al repository pubblico attuale. Nessun backup cifrato di un patrimonio riservato inesistente come prerequisito del motore OSINT.",
+      "blocks_description": "Completamento di PK-01"
+    }
+  ],
+  "packages": [
+    {
+      "id": "PK-00",
+      "title": "Piano eseguibile e controllo della roadmap",
+      "milestone": "M8",
+      "items": [],
+      "effort": "S",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Tre livelli separati: docs/roadmap/plan.v1.json, docs/roadmap/progress/, docs/roadmap/ENGINE_PLAN.md generato",
+        "Sottopacchetti (06A-06D, 15A-15B, PK-25-CAL) come entità con stato proprio",
+        "CLI check:roadmap con errori strutturali e avvisi di sovrapposizione su active-work.json"
+      ],
+      "acceptance_criteria": [
+        "Il manifest iniziale riproduce ENGINE_PLAN.md; check:roadmap è verde anche con D1 e D13 aperte (PK-01 blocked) ed elenca come eligible PK-00, PK-02, PK-03, PK-04, PK-05, PK-15A.",
+        "Una PR ordinaria che completa un pacchetto aggiorna lo stato operativo senza toccare il piano protetto e senza richiedere il titolare."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-01",
+      "title": "Sicurezza, identità, confine e gateway di pubblicazione",
+      "milestone": "M8",
+      "items": [
+        7,
+        132,
+        137
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "critical",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [
+          "D13"
+        ],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "docs/security/THREAT_MODEL.md e docs/security/PUBLIC_BOUNDARY.md con classi di materiale ortogonali agli stati probatori ed editoriali",
+        "Gateway di pubblicazione come confine probatorio, editoriale e applicativo tra il patrimonio del repository e le proiezioni pubblicate (sito, grafo, timeline, API, MCP, export, feed, sitemap, metadati social, indici)",
+        "Identità separate (GitHub App per auto-merge), CODEOWNERS limitato al piano di controllo, ruleset e isolamento workflow"
+      ],
+      "acceptance_criteria": [
+        "Verifica via API: ruleset attivo, CODEOWNERS protetto, nessun bypass non autorizzato, approvazioni invalidate dopo nuovi commit.",
+        "Una PR di contenuti passa in auto-merge senza approvazione umana; una PR sul piano di controllo non può essere unita dall'identità di auto-merge.",
+        "Un record non pubblicabile conservato nel repository non raggiunge sito, export, API, MCP, sitemap, feed, metadati social o indici; test dei permessi di ogni workflow."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, owner_approval"
+    },
+    {
+      "id": "PK-02",
+      "title": "Qualità in CI, famiglie di test e set di riferimento",
+      "milestone": "M8",
+      "items": [
+        48,
+        130,
+        16
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "critical",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [
+          "PK-08",
+          "D6",
+          "D9"
+        ],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Cinque famiglie di test: integrità dati, integrità evidenze, qualità discovery, qualità agenti, integrità pubblicazione",
+        "Set di riferimento B12 in tre livelli (sviluppo, validazione, split trattenuto pubblico) con limite dichiarato: un set pubblico non è un holdout indipendente; valutazione indipendente con set temporanei non esposti o valutatore esterno",
+        "Test visivi Playwright (375, 768, 1440px, chiaro/scuro), axe, Lighthouse"
+      ],
+      "acceptance_criteria": [
+        "Vincoli a zero di D6 attivi come gate bloccanti; rapporto JSON delle metriche versionato come stato operativo.",
+        "Nessuna metrica di agente calcolata dalle risposte attese; i risultati sullo split pubblico dichiarano di non essere una validazione indipendente; un holdout indipendente, se usato, non è conservato nel repository.",
+        "Una PR di agente che modifica un risultato atteso non si unisce senza approvazione del titolare."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-03",
+      "title": "Contratti dei dati, conteggi e Markdown",
+      "milestone": "M8",
+      "items": [
+        95,
+        101,
+        140,
+        39
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "File .metadata.json per ogni export, nessun testo prima dell'intestazione nei CSV, rispetto ADR-10",
+        "Versione .md di ogni record generata qui (voce 101)",
+        "Modulo unico dei conteggi con data dello snapshot e test di parità tra HTML, JSON, CSV e .md"
+      ],
+      "acceptance_criteria": [
+        "Parità dei campi critici al 100%; nessun numero scritto a mano nei template; consumatori di data/v1 non rotti."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-04",
+      "title": "Identità delle entità",
+      "milestone": "M8",
+      "items": [
+        11,
+        102
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Identificativi esterni qualificati (LEI, registri, Wikidata, siti ufficiali) e alias con periodo di validità",
+        "Arricchimento da registri societari e sanzioni; pnpm audit:entities con Fellegi-Sunter e Jaro-Winkler",
+        "Merge reversibile, split e redirect degli identificativi precedenti"
+      ],
+      "acceptance_criteria": [
+        "Nessuna fusione automatica; coppie in attesa ammesse ma mai fuse; test di merge, split, redirect e traslitterazione."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, owner_review"
+    },
+    {
+      "id": "PK-05",
+      "title": "Modello temporale e registro degli snapshot",
+      "milestone": "M8",
+      "items": [
+        17,
+        120
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "critical",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Tempo dei fatti (first_reported, valid_from, valid_to, asserted_on, precision) e tempo della conoscenza in docs/snapshots/revisions/, escluso dalle proiezioni pubbliche",
+        "Registro append-only delle transizioni in docs/snapshots/events/ con hash deterministico",
+        "Comando pnpm asof <data> --mode canonical|published|acquired|verified"
+      ],
+      "acceptance_criteria": [
+        "Test di leakage per ogni modalità, con una correzione successiva che non compare in una ricostruzione precedente.",
+        "Deploy fallito, ripubblicazione e ritiro ricostruibili dalle transizioni; due build identiche producono lo stesso hash."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-06",
+      "title": "Casi, asserzioni, provenienza, predicati (06A-06D)",
+      "milestone": "M8",
+      "items": [],
+      "effort": "L",
+      "recurring_cost": "medium",
+      "impact": "critical",
+      "dependencies": {
+        "requires": [
+          "PK-04",
+          "PK-05",
+          "D2"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "06A schemi data/cases/ e data/claims/",
+        "06B grafo asserzione-evidenze-fonti-radici B17 e indipendenza per asserzione",
+        "06C predicati canonici e regola di non forzatura",
+        "06D migrazione progressiva con dimensioni ortogonali"
+      ],
+      "acceptance_criteria": [
+        "Tutte le relazioni con stato di classificazione e di migrazione; nessun verified assegnato da script.",
+        "Test di non forzatura sui quattro casi; test sull'origine ignota; ogni caso con almeno un'asserzione."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, editorial_review",
+      "subpackages_only": true,
+      "subpackages": [
+        {
+          "id": "PK-06A",
+          "title": "Schemi casi e asserzioni",
+          "milestone": "M8",
+          "items": [
+            27,
+            117
+          ],
+          "effort": "M",
+          "recurring_cost": "medium",
+          "impact": "critical",
+          "dependencies": {
+            "requires": [
+              "PK-04",
+              "PK-05",
+              "D2"
+            ],
+            "to_complete": [],
+            "to_activate": [],
+            "extensions": []
+          },
+          "deliverables": [
+            "Promozione pilota ADR-06 a data/cases/ e data/claims/"
+          ],
+          "acceptance_criteria": [
+            "Ogni caso con almeno un'asserzione; distinzione tra attribuzione e accertamento."
+          ],
+          "human_review_required": true,
+          "execution_role": "implementation_agent, editorial_review"
+        },
+        {
+          "id": "PK-06B",
+          "title": "Provenienza e indipendenza per asserzione",
+          "milestone": "M8",
+          "items": [
+            118
+          ],
+          "effort": "M",
+          "recurring_cost": "medium",
+          "impact": "critical",
+          "dependencies": {
+            "requires": [
+              "PK-04",
+              "PK-05",
+              "D2"
+            ],
+            "to_complete": [],
+            "to_activate": [],
+            "extensions": []
+          },
+          "deliverables": [
+            "Grafo asserzione-evidenze-fonti-radici B17 con derivazioni multiple",
+            "Origine ignota mai conteggiata come indipendente"
+          ],
+          "acceptance_criteria": [
+            "Test sull'origine ignota; genealogia obbligatoria per ogni fonte nuova."
+          ],
+          "human_review_required": true,
+          "execution_role": "implementation_agent, editorial_review"
+        },
+        {
+          "id": "PK-06C",
+          "title": "Predicati canonici e non forzatura",
+          "milestone": "M8",
+          "items": [],
+          "effort": "S",
+          "recurring_cost": "low",
+          "impact": "high",
+          "dependencies": {
+            "requires": [
+              "PK-04",
+              "PK-05",
+              "D2"
+            ],
+            "to_complete": [],
+            "to_activate": [],
+            "extensions": []
+          },
+          "deliverables": [
+            "Classi con direzione e tipi ammessi; stati mapped, unmapped, needs_review",
+            "Regola di non forzatura ed esclusione automatica di unmapped dalle inferenze"
+          ],
+          "acceptance_criteria": [
+            "Test di non forzatura sui quattro casi della regola."
+          ],
+          "human_review_required": true,
+          "execution_role": "implementation_agent, editorial_review"
+        },
+        {
+          "id": "PK-06D",
+          "title": "Migrazione progressiva",
+          "milestone": "M8",
+          "items": [],
+          "effort": "S",
+          "recurring_cost": "low",
+          "impact": "high",
+          "dependencies": {
+            "requires": [
+              "PK-04",
+              "PK-05",
+              "D2"
+            ],
+            "to_complete": [],
+            "to_activate": [],
+            "extensions": []
+          },
+          "deliverables": [
+            "Tre dimensioni ortogonali: migrazione strutturale, verifica probatoria, ciclo di vita"
+          ],
+          "acceptance_criteria": [
+            "Tutte le relazioni con stato di classificazione e migrazione; nessun verified da script."
+          ],
+          "human_review_required": true,
+          "execution_role": "implementation_agent, editorial_review"
+        }
+      ]
+    },
+    {
+      "id": "PK-07",
+      "title": "Propagazione e contenimento delle rettifiche",
+      "milestone": "M8",
+      "items": [
+        119,
+        47
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "critical",
+      "dependencies": {
+        "requires": [
+          "PK-06B"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Indice inverso fonte -> asserzioni/relazioni/eventi/articoli/ipotesi e pnpm impact <fonte>",
+        "Risposta per livelli fino alla sospensione cautelativa su tutte le proiezioni controllate",
+        "Limite massimo di obsolescenza per proiezioni locali e registro delle rettifiche"
+      ],
+      "acceptance_criteria": [
+        "Test con fonte decisiva ritirata: asserzione sospesa in ogni proiezione controllata; procedura avviata per quelle esterne; nessuna modifica automatica del fatto storico."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-08",
+      "title": "Manifest di esecuzione e registro delle ricerche",
+      "milestone": "M9",
+      "items": [
+        1,
+        135
+      ],
+      "effort": "S",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "schemas/run.schema.json comune e costante ENGINE_VERSION",
+        "Manifest minimizzato nel repository (docs/runs/manifests/, uno per run, append-only, tramite branch agent/runs-*) e riepilogo per /stato; query OSINT e fonti pubbliche conservate, solo segreti e dati realmente sensibili rimossi",
+        "Controllo indipendente per stato missed e prevenzione dei cicli workflow con GITHUB_TOKEN"
+      ],
+      "acceptance_criteria": [
+        "7 giorni consecutivi con manifest validi; un'esecuzione saltata di proposito viene rilevata come missed."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent, task_prompt_update"
+    },
+    {
+      "id": "PK-09",
+      "title": "Coda di discovery con macchina a stati",
+      "milestone": "M9",
+      "items": [
+        2,
+        127,
+        131
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "critical",
+      "dependencies": {
+        "requires": [
+          "PK-08"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Coda autorevole unica in docs/discovery/ (un file per voce, memoria negativa permanente) con controllo ottimistico sulla revision in assegnazione, finalizzazione e salvataggio",
+        "Tre campi ortogonali: status, disposition, epistemic_outcome",
+        "Interfaccia comune dei generatori in src/discovery/generators/"
+      ],
+      "acceptance_criteria": [
+        "Due esecuzioni sulla stessa voce: una sola ottiene l'assegnazione.",
+        "Un'esecuzione con assegnazione scaduta che termina dopo la riassegnazione non sovrascrive l'esito.",
+        "Rigenerare la coda non crea duplicati; resa misurabile separando disposizione ed esito epistemico."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-10",
+      "title": "Ipotesi dormienti e riattivazione",
+      "milestone": "M9",
+      "items": [
+        3
+      ],
+      "effort": "S",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-09"
+        ],
+        "to_complete": [],
+        "to_activate": [
+          "PK-06B"
+        ],
+        "extensions": [
+          "PK-25",
+          "PK-28"
+        ]
+      },
+      "deliverables": [
+        "Stato dormant e impronta conservati nel repository, esclusi dalle proiezioni pubbliche salvo regole del Laboratorio",
+        "Valutazione non meccanica della novità materiale e distinzione tra controllo pianificato e riapertura probatoria",
+        "Storico delle riattivazioni e chiusure motivate"
+      ],
+      "acceptance_criteria": [
+        "Tabella di casi di prova (ripresa, fonte irrilevante, evidenza discriminante, rettifica, smentita, controllo periodico) con esiti attesi tutti rispettati."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-11",
+      "title": "Generatori deterministici v1",
+      "milestone": "M9",
+      "items": [
+        5,
+        122,
+        15,
+        123,
+        139
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-06",
+          "PK-09"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-31"
+        ]
+      },
+      "deliverables": [
+        "Grammatica dei percorsi path-grammar.v1.json nel piano di controllo",
+        "Generatori v1: triadi aperte vincolate, ponti deboli, contraddizioni B15, variazioni temporali e atti giudiziari"
+      ],
+      "acceptance_criteria": [
+        "Ogni generatore misurato sul set di validazione per qualità ex ante e resa ex post prima di passare oltre shadow; zero voci che riproducano coppie vietate."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-12",
+      "title": "Orchestrazione, transizione, budget e backpressure",
+      "milestone": "M9",
+      "items": [
+        10,
+        4,
+        21,
+        128,
+        129,
+        136
+      ],
+      "effort": "M",
+      "recurring_cost": "high",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-08",
+          "PK-09",
+          "D9"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-25"
+        ]
+      },
+      "deliverables": [
+        "Ruolo Discovery separato da Task B, shadow mode e attivazione selettiva",
+        "Revisore critico indipendente, OEM Task Contract con adattatori multi-fornitore",
+        "Priorità operative P0-P4, backpressure, budget su quattro risorse e rapporto settimanale di bias"
+      ],
+      "acceptance_criteria": [
+        "Simulazione di saturazione: P3 e P4 calano, P0 e P1 restano invariati.",
+        "Generatore sospeso e ripristinato senza fermare il sistema; Task A-D senza interruzioni durante shadow mode.",
+        "Costo per esecuzione registrato; cambio di fornitore equivalente sul set di validazione."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent, task_config"
+    },
+    {
+      "id": "PK-13",
+      "title": "Brief, esiti, falsi allarmi e contromisure",
+      "milestone": "M9",
+      "items": [
+        29,
+        33,
+        12,
+        31
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-06",
+          "PK-09"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Brief settimanale e avvisi quotidiani filtrabili",
+        "Registro degli allarmi con esito, Brier score facoltativo e registro dei falsi allarmi",
+        "Contromisure collegate ai casi con stadi distinti"
+      ],
+      "acceptance_criteria": [
+        "4 brief coerenti con i manifest; ogni allarme con esito o stato aperto; ogni contromisura con stadio dichiarato."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent, investigative_agent"
+    },
+    {
+      "id": "PK-14",
+      "title": "Backtest e replay storico di base",
+      "milestone": "M9",
+      "items": [
+        34
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-05",
+          "PK-11"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Backtest retrospettivo e replay storico distinti su asof --mode canonical e acquired",
+        "Dichiarazione della contaminazione temporale degli LLM"
+      ],
+      "acceptance_criteria": [
+        "Test di assenza di leakage sui dati; rapporto su almeno 3 date con modalità, limiti di contaminazione e ricostruzioni retrospettive parziali dichiarati."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-15",
+      "title": "Testi e navigazione (15A), dominio (15B)",
+      "milestone": "M10",
+      "items": [],
+      "effort": "S",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "15A: nomi leggibili, /glossario, numeri dal modulo unico PK-03, navigazione semplificata",
+        "15B: dominio proprio configurato con redirect"
+      ],
+      "acceptance_criteria": [
+        "Nessun codice interno come unica etichetta; ogni termine del glossario definito; redirect verificati."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent",
+      "subpackages_only": true,
+      "subpackages": [
+        {
+          "id": "PK-15A",
+          "title": "Testi e navigazione",
+          "milestone": "M10",
+          "items": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "effort": "S",
+          "recurring_cost": "low",
+          "impact": "high",
+          "dependencies": {
+            "requires": [],
+            "to_complete": [
+              "PK-03"
+            ],
+            "to_activate": [],
+            "extensions": [
+              "PK-10"
+            ]
+          },
+          "deliverables": [
+            "Nomi leggibili in primo piano, /glossario, definizione accanto ai badge E1-E5",
+            "Testi di servizio rivisti, navigazione semplificata e home riordinata"
+          ],
+          "acceptance_criteria": [
+            "Nessun codice interno come unica etichetta; ogni termine del glossario definito."
+          ],
+          "human_review_required": false,
+          "execution_role": "implementation_agent"
+        },
+        {
+          "id": "PK-15B",
+          "title": "Dominio proprio",
+          "milestone": "M10",
+          "items": [
+            105
+          ],
+          "effort": "S",
+          "recurring_cost": "low",
+          "impact": "high",
+          "dependencies": {
+            "requires": [
+              "D3"
+            ],
+            "to_complete": [],
+            "to_activate": [],
+            "extensions": []
+          },
+          "deliverables": [
+            "Dominio proprio configurato con redirect dal vecchio indirizzo GitHub Pages"
+          ],
+          "acceptance_criteria": [
+            "Redirect verificati verso il nuovo dominio."
+          ],
+          "human_review_required": false,
+          "execution_role": "implementation_agent"
+        }
+      ]
+    },
+    {
+      "id": "PK-16",
+      "title": "Trasparenza del motore generata",
+      "milestone": "M10",
+      "items": [
+        43,
+        44,
+        45
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-08"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "engine.manifest.json versionato con proiezione pubblica sanitizzata",
+        "docs/automation/ENGINE_CHANGELOG.md generato, /metodo/motore e /stato",
+        "Controllo CI di coerenza semantica tra manifest, codice e pagina"
+      ],
+      "acceptance_criteria": [
+        "Una soglia modificata nel codice senza aggiornare il manifest fa fallire il CI."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, owner_editorial_texts"
+    },
+    {
+      "id": "PK-17",
+      "title": "Rettifiche e diritto di replica",
+      "milestone": "M10",
+      "items": [
+        46,
+        47,
+        56
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-07",
+          "D4"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Pagina pubblica delle rettifiche alimentata da PK-07",
+        "Procedura di replica e canale Porta un'evidenza"
+      ],
+      "acceptance_criteria": [
+        "Procedura pubblicata in italiano e inglese; una replica di prova, in un ambiente di test e non pubblicata come reale, collegata a una scheda."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, owner_procedure"
+    },
+    {
+      "id": "PK-18",
+      "title": "UX fondamentale ed esploratore",
+      "milestone": "M10",
+      "items": [
+        49,
+        50,
+        134,
+        51,
+        52,
+        53,
+        55,
+        57,
+        58,
+        59
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-03"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-05",
+          "PK-06",
+          "PK-22"
+        ]
+      },
+      "deliverables": [
+        "Sintesi in testa a ogni scheda, esploratore con filtri nell'URL",
+        "Accessibilità bacheca, prestazioni, Inizia qui, pagina API, 404 utile, novità dall'ultima visita"
+      ],
+      "acceptance_criteria": [
+        "axe senza errori gravi; budget Lighthouse rispettati; ogni vista filtrata riproducibile da URL."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-19",
+      "title": "Design rimandato, verificato",
+      "milestone": "M10",
+      "items": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-02"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Verifica stato reale con screenshot PK-02 e prove d'uso su compiti campione",
+        "Implementazione delle voci utili a partire da 60 e 61"
+      ],
+      "acceptance_criteria": [
+        "Ogni voce marcata in docs/design/IMPLEMENTATION_PLAN.md come già fatta, implementata o scartata con motivazione."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-20",
+      "title": "SEO e GEO automatici",
+      "milestone": "M11",
+      "items": [
+        91,
+        92,
+        93,
+        94,
+        97,
+        98,
+        99,
+        100,
+        104
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-03",
+          "PK-15A"
+        ],
+        "to_complete": [
+          "PK-07",
+          "D5",
+          "D10"
+        ],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "pnpm check:seo post-build con errori bloccanti e avvisi",
+        "robots.txt, alternative testuali per parti interattive, JSON-LD per record, IndexNow e regola in AGENTS.md"
+      ],
+      "acceptance_criteria": [
+        "Un caso di prova per ogni errore bloccante fa fallire la build; tutte le pagine interattive con alternativa testuale."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-21",
+      "title": "Citabilità",
+      "milestone": "M11",
+      "items": [
+        54,
+        96
+      ],
+      "effort": "S",
+      "recurring_cost": "low",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-05",
+          "PK-15A"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Immagini di anteprima in build, Cita questa pagina (APA/BibTeX), permalink agli snapshot",
+        "CITATION.cff, DOI Zenodo per release rilevanti e gestione snapshot ritirati"
+      ],
+      "acceptance_criteria": [
+        "Release di prova con DOI e citazione valida; uno snapshot ritirato mostra il proprio stato."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-22",
+      "title": "Libreria di interrogazione e server MCP",
+      "milestone": "M11",
+      "items": [
+        107
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-03",
+          "PK-06"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-09",
+          "PK-24",
+          "PK-11",
+          "PK-26"
+        ]
+      },
+      "deliverables": [
+        "src/query/ libreria unica di interrogazione condivisa da portale, CLI e MCP",
+        "packages/mcp/ in sola lettura sulla proiezione pubblicabile con limite di obsolescenza"
+      ],
+      "acceptance_criteria": [
+        "Parità con il sito sugli stessi filtri; nessun dato non pubblicabile raggiungibile; test dei limiti."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-23",
+      "title": "Benchmark AI esterni",
+      "milestone": "M11",
+      "items": [
+        103
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-20"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Benchmark di reperibilità e interpretazione con classificazione cause mancata citazione (incluso unknown)"
+      ],
+      "acceptance_criteria": [
+        "Due esecuzioni mensili confrontabili."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent, investigative_agent"
+    },
+    {
+      "id": "PK-24",
+      "title": "Laboratorio pubblico e 'Perché lo sappiamo?'",
+      "milestone": "M11",
+      "items": [
+        68,
+        69,
+        70,
+        71,
+        79,
+        133
+      ],
+      "effort": "L",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-06",
+          "PK-09",
+          "PK-10"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-26",
+          "PK-27"
+        ]
+      },
+      "deliverables": [
+        "Quarto registro visivo Laboratorio con proiezione pubblica moderata",
+        "Vista Perché lo sappiamo? su eventi, attori e relazioni"
+      ],
+      "acceptance_criteria": [
+        "Nessuna voce interna visibile in sito, export o indici; ogni scheda con almeno un'asserzione mostra la vista probatoria."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, owner_review"
+    },
+    {
+      "id": "PK-25",
+      "title": "Tassonomie, catalogo e calendario",
+      "milestone": "M12",
+      "items": [
+        8,
+        9
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-06"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Campo techniques (DISARM, MITRE ATT&CK, tassonomia interna) e manifest versionato delle tassonomie",
+        "Catalogo delle vulnerabilità modello JRC e Hybrid CoE"
+      ],
+      "acceptance_criteria": [
+        "Ogni evento classificato o marcato non classificabile; accuratezza per categoria misurata sul set di validazione."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent, investigative_agent",
+      "subpackages": [
+        {
+          "id": "PK-25-CAL",
+          "title": "Calendario eventi a rischio e dossier",
+          "milestone": "M12",
+          "items": [
+            6,
+            30
+          ],
+          "effort": "S",
+          "recurring_cost": "low",
+          "impact": "high",
+          "dependencies": {
+            "requires": [],
+            "to_complete": [],
+            "to_activate": [],
+            "extensions": []
+          },
+          "deliverables": [
+            "Calendario aggregato da fonti ufficiali e dossier per eventi a rischio (avviabile da M9)"
+          ],
+          "acceptance_criteria": [
+            "Calendario aggiornato da fonti ufficiali e dossier generati per eventi a rischio."
+          ],
+          "human_review_required": false,
+          "execution_role": "implementation_agent, investigative_agent"
+        }
+      ]
+    },
+    {
+      "id": "PK-26",
+      "title": "Acquisizione multilingua e registro delle fonti",
+      "milestone": "M12",
+      "items": [
+        23,
+        138
+      ],
+      "effort": "L",
+      "recurring_cost": "high",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-08",
+          "D7"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Registro delle fonti per paese e lingua con radice genealogica tipica",
+        "Acquisizione in lingue locali (inclusi russo e ucraino) e misura di copertura"
+      ],
+      "acceptance_criteria": [
+        "Fonti attive per francese, tedesco, polacco, ucraino, romeno e lingue baltiche; rapporto di copertura per paese."
+      ],
+      "human_review_required": false,
+      "execution_role": "investigative_agent, implementation_agent"
+    },
+    {
+      "id": "PK-27",
+      "title": "Piste e cammini temporali",
+      "milestone": "M12",
+      "items": [
+        18,
+        19,
+        20
+      ],
+      "effort": "L",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-05",
+          "PK-06",
+          "PK-11",
+          "PK-25"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Collezione data/leads/ con passi tipizzati e cammini temporali nel rispetto della grammatica",
+        "Cinque spiegazioni concorrenti (incluse ipotesi composite) ed esito distinto"
+      ],
+      "acceptance_criteria": [
+        "Ogni pista significativa con le cinque spiegazioni valutate o dichiarate non applicabili e un esito; nessuna pista su combinazioni vietate o relazioni unmapped."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent, investigative_agent"
+    },
+    {
+      "id": "PK-28",
+      "title": "Ricerca ibrida",
+      "milestone": "M12",
+      "items": [
+        126
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-06"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-10"
+        ]
+      },
+      "deliverables": [
+        "Indice testuale, vettoriale e strutturato ricostruibile, con indici pubblici e interni separati"
+      ],
+      "acceptance_criteria": [
+        "Confronto con la sola ricerca testuale sul set di validazione: precision@k, recall@k, nDCG@k, latenza, costo, conservazione dei caveat."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-29",
+      "title": "Motore delle dipendenze strategiche",
+      "milestone": "M12",
+      "items": [
+        124,
+        125
+      ],
+      "effort": "L",
+      "recurring_cost": "high",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-06",
+          "PK-09",
+          "PK-25"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-13"
+        ]
+      },
+      "deliverables": [
+        "Dimensioni distinte con unità, denominatore e natura del valore; analisi delle conseguenze multidominio",
+        "Generatori dipendenza condivisa e propagazione economica nella coda"
+      ],
+      "acceptance_criteria": [
+        "Almeno due filiere modellate con fonti; un caso di prova sulla propagazione; test che non produca conclusioni causali non supportate."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent, investigative_agent"
+    },
+    {
+      "id": "PK-30",
+      "title": "Proiezioni pubbliche delle nuove capacità",
+      "milestone": "M12",
+      "items": [
+        72,
+        73,
+        74,
+        75,
+        77,
+        78,
+        80,
+        81,
+        83,
+        84,
+        85
+      ],
+      "effort": "L",
+      "recurring_cost": "medium",
+      "impact": "medium_high",
+      "dependencies": {
+        "requires": [
+          "PK-20",
+          "PK-24",
+          "PK-25"
+        ],
+        "to_complete": [
+          "PK-13",
+          "PK-27"
+        ],
+        "to_activate": [],
+        "extensions": [
+          "PK-34",
+          "PK-35"
+        ]
+      },
+      "deliverables": [
+        "Pagine tecniche, vulnerabilità, piste, dossier, brief con RSS, affidabilità, STIX 2.1 cyber e glossario esteso",
+        "Bacheca con modalità investigativa separata e cronologia a due assi"
+      ],
+      "acceptance_criteria": [
+        "check:seo e test di parità verdi; revisione del titolare sulle pagine del Laboratorio."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, owner_review"
+    },
+    {
+      "id": "PK-31",
+      "title": "Traduzioni europee",
+      "milestone": "M12",
+      "items": [
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116
+      ],
+      "effort": "L",
+      "recurring_cost": "high",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-15A"
+        ],
+        "to_complete": [],
+        "to_activate": [
+          "D7",
+          "D11"
+        ],
+        "extensions": [
+          "PK-25"
+        ]
+      },
+      "deliverables": [
+        "Livelli L1-L5, glossario IATE, controllo semantico con stato machine_flagged",
+        "Fallback traduzione superata, indice di ricerca per lingua e budget di build"
+      ],
+      "acceptance_criteria": [
+        "Livelli L1-L3 completi nella prima lingua; zero machine_flagged pubblicati; nessuna traduzione superata indicizzata; budget di build rispettato."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, translation_agent, reviewers"
+    },
+    {
+      "id": "PK-32",
+      "title": "Accoppiamento incidente-campagna",
+      "milestone": "M12",
+      "items": [
+        26
+      ],
+      "effort": "L",
+      "recurring_cost": "high",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-09",
+          "D8"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Integrazioni modulari per piattaforma con controlli negativi e benchmark dedicato"
+      ],
+      "acceptance_criteria": [
+        "Provenienza e condizioni d'uso documentate.",
+        "Benchmark con controlli negativi e confronto con almeno un metodo semplice.",
+        "Zero attribuzioni automatiche da sola correlazione temporale; passaggio oltre shadow solo con metriche adeguate."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent",
+      "initial_disposition": "deferred"
+    },
+    {
+      "id": "PK-33",
+      "title": "Dataset osservativo pilota",
+      "milestone": "M13",
+      "items": [
+        121
+      ],
+      "effort": "L",
+      "recurring_cost": "high",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-08"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Dataset separato da data/ con criteri costanti, denominatori pubblici e registro della copertura nel tempo"
+      ],
+      "acceptance_criteria": [
+        "Acquisizione attiva con criteri invariati e copertura documentata; passaggio a PK-34 subordinato al Data Readiness Gate."
+      ],
+      "human_review_required": false,
+      "execution_role": "investigative_agent, implementation_agent"
+    },
+    {
+      "id": "PK-34",
+      "title": "Frequenze attese e rilevamento sequenziale",
+      "milestone": "M13",
+      "items": [
+        13,
+        14
+      ],
+      "effort": "M",
+      "recurring_cost": "medium",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-02",
+          "PK-14",
+          "PK-33"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Modelli Poisson o binomiale negativa con CUSUM/EWMA calibrati e trattamento finestre sovrapposte"
+      ],
+      "acceptance_criteria": [
+        "Prova a ritroso senza leakage; tasso di falsi allarmi dichiarato."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent",
+      "data_readiness_gate_required": true,
+      "initial_disposition": "conditional"
+    },
+    {
+      "id": "PK-35",
+      "title": "Analisi spaziale",
+      "milestone": "M13",
+      "items": [
+        24,
+        76
+      ],
+      "effort": "L",
+      "recurring_cost": "medium",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-34"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Statistica di scansione di Kulldorff con modello di esposizione e aggregazioni pubbliche sicure"
+      ],
+      "acceptance_criteria": [
+        "Modello di esposizione e precisione geografica documentati; validazione su dati simulati/osservativi.",
+        "Controllo automatico aggregazioni pubbliche; ammesso rapporto di non idoneità."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent",
+      "data_readiness_gate_required": true,
+      "initial_disposition": "conditional"
+    },
+    {
+      "id": "PK-36",
+      "title": "Metodi sperimentali",
+      "milestone": "M13",
+      "items": [
+        22,
+        25,
+        27,
+        28
+      ],
+      "effort": "research",
+      "recurring_cost": "low",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-06",
+          "PK-14"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Aalen-Johansen, cattura-ricattura, co-occorrenze con modello nullo e processi di Hawkes"
+      ],
+      "acceptance_criteria": [
+        "Per ogni metodo: attivazione dopo validazione oppure rapporto che documenta perché non è idoneo ai dati."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent",
+      "data_readiness_gate_required": true,
+      "initial_disposition": "conditional"
+    },
+    {
+      "id": "PK-37",
+      "title": "Sala situazione descrittiva",
+      "milestone": "M12",
+      "items": [
+        35,
+        82
+      ],
+      "effort": "L",
+      "recurring_cost": "medium",
+      "impact": "high",
+      "dependencies": {
+        "requires": [
+          "PK-13",
+          "PK-24"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": [
+          "PK-25",
+          "PK-26",
+          "PK-27",
+          "PK-34",
+          "PK-35"
+        ]
+      },
+      "deliverables": [
+        "Pagina mobile-first con ultimi eventi verificati, dossier, aggiornamenti probatori, piste, contromisure, copertura e brief"
+      ],
+      "acceptance_criteria": [
+        "Nessun contenuto non pubblicabile; ogni elemento rimanda alla sua scheda con caveat."
+      ],
+      "human_review_required": false,
+      "execution_role": "implementation_agent"
+    },
+    {
+      "id": "PK-38",
+      "title": "Prova a ritroso avanzata e scenari",
+      "milestone": "M13",
+      "items": [
+        34,
+        36
+      ],
+      "effort": "M",
+      "recurring_cost": "low",
+      "impact": "medium",
+      "dependencies": {
+        "requires": [
+          "PK-14"
+        ],
+        "to_complete": [],
+        "to_activate": [],
+        "extensions": []
+      },
+      "deliverables": [
+        "Test di scenario end-to-end, prova a ritroso dei metodi avanzati ed esercitazioni a tavolino"
+      ],
+      "acceptance_criteria": [
+        "Almeno uno scenario end-to-end completo; test di interruzione e ripristino; assenza di leakage nelle prove storiche."
+      ],
+      "human_review_required": true,
+      "execution_role": "implementation_agent, owner"
+    }
+  ],
+  "parked_items": [
+    {
+      "item": 86,
+      "title": "Confronto affiancato",
+      "reason": "Rischio di classifica implicita di ostilità basata sulla quantità di dati",
+      "reconsider_when": "Dopo PK-24, con regola esplicita anti-classifica"
+    },
+    {
+      "item": 87,
+      "title": "Racconto guidato",
+      "reason": "Costo editoriale alto",
+      "reconsider_when": "Dopo PK-30"
+    },
+    {
+      "item": 88,
+      "title": "Riquadri incorporabili",
+      "reason": "Beneficio basso oggi",
+      "reconsider_when": "Dopo PK-21"
+    },
+    {
+      "item": 89,
+      "title": "Sito offline",
+      "reason": "Contraddice una sala situazione aggiornata",
+      "reconsider_when": "Sostituita dagli snapshot datati di PK-21"
+    },
+    {
+      "item": 90,
+      "title": "Statistiche di visita",
+      "reason": "Facoltativa",
+      "reconsider_when": "Su decisione del titolare, solo senza cookie"
+    },
+    {
+      "item": 106,
+      "title": "llms.txt",
+      "reason": "Quasi mai letto dagli agenti",
+      "reconsider_when": "Generabile a costo nullo dentro PK-20"
+    },
+    {
+      "item": 32,
+      "title": "STIX universale",
+      "reason": "Molte relazioni OEM non hanno corrispondenza in STIX",
+      "reconsider_when": "Assorbita in PK-30, solo dominio cyber"
+    }
+  ]
+}

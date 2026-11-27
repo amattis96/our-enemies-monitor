@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { readM5References } from "../editorial/m5.ts";
 import {
   COLLECTION_NAMES,
@@ -11,6 +12,11 @@ import {
   personReference,
   publicationEligible,
 } from "../pipeline/evidence-policy.ts";
+import { DEFAULT_REGISTER_PATH, suspendedRecordIds } from "../retractions/register.ts";
+
+function defaultSuspendedRecordIds(): ReadonlySet<string> {
+  return existsSync(DEFAULT_REGISTER_PATH) ? suspendedRecordIds() : new Set();
+}
 
 export type WithheldReason =
   | "needs_review"
@@ -22,7 +28,8 @@ export type WithheldReason =
   | "person_primary_missing"
   | "person_primary_unregistered"
   | "legacy_hypothesis_changed"
-  | "uncited_source_metadata";
+  | "uncited_source_metadata"
+  | "retraction_suspended";
 export type Withheld = { id: string; collection: keyof Dataset; reasons: WithheldReason[] };
 export type PublicationReport = {
   kind: "publication_report";
@@ -78,12 +85,18 @@ function originalHypothesis(h: Hypothesis) {
 export function publicationReport(
   dataset: Dataset,
   references: M5References = readM5References(),
+  suspendedIds: ReadonlySet<string> = defaultSuspendedRecordIds(),
 ): PublicationReport {
   const reasons = new Map<string, WithheldReason[]>();
   const add = (id: string, reason: WithheldReason) => {
     const list = reasons.get(id) ?? [];
     if (!list.includes(reason)) list.push(reason);
     reasons.set(id, list);
+  };
+  const isSuspended = (id: string) => {
+    if (!suspendedIds.has(id)) return false;
+    add(id, "retraction_suspended");
+    return true;
   };
   const eligible = (r: {
     id: string;
@@ -97,7 +110,11 @@ export function publicationReport(
   const allSourceIds = new Set(dataset.sources.map((s) => s.id));
   const invalidSources = new Set(
     dataset.sources
-      .filter((s) => s.review.status === "imported_unreviewed" && !publicationEligible(s))
+      .filter(
+        (s) =>
+          suspendedIds.has(s.id) ||
+          (s.review.status === "imported_unreviewed" && !publicationEligible(s)),
+      )
       .map((s) => s.id),
   );
   const sourcesValid = (r: { id: string; sources: string[] }) => {
@@ -110,10 +127,15 @@ export function publicationReport(
   const events = dataset.events.filter((e) => {
     const a = eligible(e);
     const b = sourcesValid(e);
+    const s = !isSuspended(e.id);
     if (e.timeline_status !== "integrated") add(e.id, "pending_integration");
-    return a && b && e.timeline_status === "integrated";
+    return a && b && s && e.timeline_status === "integrated";
   });
-  const entities = dataset.entities.filter(eligible);
+  const entities = dataset.entities.filter((e) => {
+    const a = eligible(e);
+    const s = !isSuspended(e.id);
+    return a && s;
+  });
   const eventIds = new Set(events.map((e) => e.id));
   const allEventIds = new Set(dataset.events.map((e) => e.id));
   const nodeIds = new Set([...eventIds, ...entities.map((e) => e.id)]);
@@ -127,7 +149,8 @@ export function publicationReport(
     const a = eligible(r),
       b = sourcesValid(r),
       c = endpoints(r),
-      d = r.events.every((id) => eventIds.has(id));
+      d = r.events.every((id) => eventIds.has(id)),
+      s = !isSuspended(r.id);
     if (!d) add(r.id, "withheld_event");
     const ref =
       persons.has(r.subject) || persons.has(r.object)
@@ -135,13 +158,14 @@ export function publicationReport(
         : "direct";
     if (ref === "missing") add(r.id, "person_primary_missing");
     if (ref === "unregistered") add(r.id, "person_primary_unregistered");
-    return a && b && c && d && ref !== "missing" && ref !== "unregistered";
+    return a && b && c && d && s && ref !== "missing" && ref !== "unregistered";
   });
   const projections: PublicationReport["projections"] = [];
   const hypotheses = dataset.hypotheses.flatMap((h) => {
     const a = eligible(h),
       b = sourcesValid(h),
-      c = endpoints(h);
+      c = endpoints(h),
+      s = !isSuspended(h.id);
     const original = h.review.status === "imported_unreviewed" ? originalHypothesis(h) : undefined;
     if (h.review.status === "imported_unreviewed" && !original?.same)
       add(h.id, "legacy_hypothesis_changed");
@@ -157,6 +181,7 @@ export function publicationReport(
       !a ||
       !b ||
       !c ||
+      !s ||
       !validEvents ||
       (h.review.status === "imported_unreviewed" && !original?.same)
     )
@@ -174,13 +199,15 @@ export function publicationReport(
   });
   const exposures = dataset.exposures.filter((r) => {
     const a = eligible(r),
-      b = sourcesValid(r);
-    return a && b;
+      b = sourcesValid(r),
+      s = !isSuspended(r.id);
+    return a && b && s;
   });
   const cited = new Set(
     [...events, ...relationships, ...hypotheses, ...exposures].flatMap((r) => r.sources),
   );
   const selected = dataset.sources.filter((s) => {
+    if (isSuspended(s.id)) return false;
     if (publicationEligible(s)) return true;
     if (s.review.status === "needs_review" && cited.has(s.id)) return true;
     if (s.review.status === "needs_review") add(s.id, "uncited_source_metadata");
@@ -221,6 +248,10 @@ export function publicationReport(
     transformed,
   };
 }
-export function publishedDataset(dataset: Dataset, references?: M5References): Dataset {
-  return publicationReport(dataset, references).dataset;
+export function publishedDataset(
+  dataset: Dataset,
+  references?: M5References,
+  suspendedIds?: ReadonlySet<string>,
+): Dataset {
+  return publicationReport(dataset, references, suspendedIds).dataset;
 }

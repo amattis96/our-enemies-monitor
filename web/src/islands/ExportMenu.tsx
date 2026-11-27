@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { cleanExportDetail, cleanExportLabel } from "../../../src/site/glossary.ts";
 
 /**
  * «Esporta» disclosure shared by the islands; same markup and classes as
@@ -18,6 +19,9 @@ type Props = { label: string; groups: ExportGroup[]; sprite: string };
 
 export function ExportMenu({ label, groups, sprite }: Props) {
   const ref = useRef<HTMLDetailsElement>(null);
+  const lang =
+    typeof document !== "undefined" && document.documentElement.lang === "en" ? "en" : "it";
+
   useEffect(() => {
     const menu = ref.current;
     if (!menu) return;
@@ -57,12 +61,14 @@ export function ExportMenu({ label, groups, sprite }: Props) {
             <p className="kicker">{group.title}</p>
             <ul>
               {group.items.map((item) => {
+                const displayLabel = cleanExportLabel(item.label, lang);
+                const displayDetail = cleanExportDetail(item.detail, lang);
                 const body = (
                   <>
                     <span className="export-format">{item.format}</span>
                     <span className="export-text">
-                      <span className="export-label">{item.label}</span>
-                      {item.detail && <span className="export-detail">{item.detail}</span>}
+                      <span className="export-label">{displayLabel}</span>
+                      {displayDetail && <span className="export-detail">{displayDetail}</span>}
                     </span>
                   </>
                 );

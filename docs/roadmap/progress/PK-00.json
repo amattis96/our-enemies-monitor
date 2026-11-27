@@ -1,0 +1,29 @@
+{
+  "id": "PK-00",
+  "status": "completed",
+  "linked_prs": [],
+  "runs": [
+    {
+      "run_id": "wave-1-m8-integration",
+      "recorded_at": "2026-11-25T22:34:00Z",
+      "outcome": "Implemented src/roadmap/{schema,index,render}.ts, src/cli/{check,render}-roadmap.ts, docs/roadmap/plan.v1.json, docs/roadmap/progress/*, schemas/roadmap.schema.json, and test/roadmap.test.ts"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "pnpm check:roadmap",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:33:40Z"
+    },
+    {
+      "command": "pnpm check",
+      "passed": true,
+      "recorded_at": "2026-11-25T22:33:40Z"
+    }
+  ],
+  "completion_evidence": [
+    "docs/roadmap/plan.v1.json validates against RoadmapPlanSchema and schemas/roadmap.schema.json with 39 packages, 7 subpackages, 140 items, and D1-D14",
+    "pnpm check:roadmap reports 0 errors and 0 warnings; test/roadmap.test.ts passes in vitest (39/39 files, 415/415 tests)"
+  ],
+  "updated_at": "2026-11-25T22:34:00Z"
+}

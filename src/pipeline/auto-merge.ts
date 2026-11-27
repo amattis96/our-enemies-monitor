@@ -8,7 +8,8 @@
  *
  * A pull request is merged only when ALL of these hold:
  * - base `main`, head branch in this repository, not draft;
- * - branch class `research/*`, `agent/ingest-*` or `agent/publish-ART-*`, and
+ * - branch class `research/*`, `agent/ingest-*`, `agent/publish-ART-*`,
+ *   `agent/runs-*` or `agent/discovery-*`, and
  *   every changed path is allowed for that class (never the control plane);
  * - no `evidence-waiver` or `automerge:hold` label;
  * - the latest `OEM Task C | Review & Fix` comment by the maintainer account
@@ -73,12 +74,24 @@ const BRANCHES: BranchRules[] = [
     match: (ref) => ref.startsWith("agent/publish-ART-"),
     allowed: [{ prefix: ARTICLES, statuses: ["modified"] }],
   },
+  {
+    match: (ref) => ref.startsWith("agent/runs-"),
+    allowed: [
+      { prefix: "docs/runs/manifests/", statuses: ["added"] },
+      { prefix: "docs/audit/ai-benchmarks/runs/", statuses: ["added"] },
+    ],
+  },
+  {
+    match: (ref) => ref.startsWith("agent/discovery-"),
+    allowed: [{ prefix: "docs/discovery/", statuses: ["added", "modified"] }],
+  },
 ];
 
 /** First path outside the branch's allowed set, or null when all are allowed. */
 export function pathViolation(headRef: string, files: FileChange[]): string | null {
   const rules = BRANCHES.find((b) => b.match(headRef));
-  if (!rules) return `branch ${headRef} is not an automated research/ingest/publish branch`;
+  if (!rules)
+    return `branch ${headRef} is not an automated research/ingest/publish/runs/discovery branch`;
   if (files.length === 0) return "empty diff";
   for (const file of files) {
     const ok = rules.allowed.some(
