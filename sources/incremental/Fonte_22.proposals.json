@@ -21,7 +21,7 @@
         "it": "Statement by President von der Leyen on the 22nd package of sanctions against Russia"
       },
       "publisher": "Commissione europea",
-      "url": "https://cyprus.representation.ec.europa.eu/news/statement-president-von-der-leyen-22nd-package-sanctions-against-russia-2026-11-23_en",
+      "url": "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/statement_26_2563/STATEMENT_26_2563_EN.pdf",
       "published": "2026-11-23"
     },
     {
@@ -32,15 +32,6 @@
       "publisher": "Reuters",
       "url": "https://www.reuters.com/business/finance/eu-commission-proposes-22nd-sanctions-package-russia-2026-11-23/",
       "published": "2026-11-23"
-    },
-    {
-      "key": "R03",
-      "title": {
-        "it": "EU proposes sweeping new Russia sanctions targeting banks, crypto and sports events"
-      },
-      "publisher": "Associated Press",
-      "url": "https://apnews.com/article/ecad86868390f6602b346c70d1fa5757",
-      "published": "2026-11-23"
     }
   ],
   "operations": [
@@ -50,8 +41,7 @@
       "item": "OEM-20261124-001",
       "sources": [
         "R01",
-        "R02",
-        "R03"
+        "R02"
       ],
       "notes": [
         "Proposed sanctions only; do not treat as adopted or effective. Verify final Council legal acts and bank/vessel lists before updating."
@@ -79,10 +69,10 @@
       },
       "places": [],
       "evidence_note": {
-        "it": "E1: dichiarazione primaria della Commissione sulla proposta; E3: dettagli aggiuntivi riferiti da Reuters e AP. Nessuna adozione finale documentata."
+        "it": "E1: dichiarazione primaria della Commissione sulla presentazione della proposta, STATEMENT/26/2563; R02 corrobora la presentazione. Nessuna adozione finale documentata."
       },
       "publisher": "Commissione europea",
-      "url": "https://cyprus.representation.ec.europa.eu/news/statement-president-von-der-leyen-22nd-package-sanctions-against-russia-2026-11-23_en",
+      "url": "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/statement_26_2563/STATEMENT_26_2563_EN.pdf",
       "claims": {
         "perpetrator": null,
         "sponsor": null,
